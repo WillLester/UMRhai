@@ -16,4 +16,9 @@ public class CityLogic implements CityLSer{
 		return false;
 	}
 
+	public boolean reviseCity(CityVO city) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
 }

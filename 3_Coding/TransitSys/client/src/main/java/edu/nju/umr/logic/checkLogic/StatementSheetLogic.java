@@ -9,7 +9,7 @@ import edu.nju.umr.vo.ResultMessage;
 
 public class StatementSheetLogic implements StatementSheetLSer{
 
-	public ResultMessage seeStatementSheet(Date start, Date end) {
+	public ResultMessage seeStatementSheet(Date start, Date end, String id) {
 		// TODO 自动生成的方法存根
 		return null;
 	}
