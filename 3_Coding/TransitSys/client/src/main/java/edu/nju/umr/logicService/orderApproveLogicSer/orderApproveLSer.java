@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.vo.ResultMessage;
 
-public interface orderApproveLSer {
+public interface OrderApproveLSer {
 	public ResultMessage askExamine();
 	public boolean examine(boolean approve,ArrayList<String> id);
 	public ResultMessage chooseOrder(String id);
