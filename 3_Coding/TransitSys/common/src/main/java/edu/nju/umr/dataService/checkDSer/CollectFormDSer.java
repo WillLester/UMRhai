@@ -5,9 +5,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import edu.nju.umr.po.order.CollectPO;
+import edu.nju.umr.po.order.IncomePO;
 
 public interface CollectFormDSer extends Remote{
-	public ArrayList<CollectPO> findCollect(Date start,Date end) throws RemoteException;
+	public ArrayList<IncomePO> findCollect(Date start,Date end) throws RemoteException;
 	
 }

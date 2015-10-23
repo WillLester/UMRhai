@@ -1,13 +1,13 @@
 package edu.nju.umr.data.workOrgManData;
 
-import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.OrgPO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
+public class WorkManData extends UnicastRemoteObject implements OrgManDSer{
 
 	protected WorkManData() throws RemoteException {
 		super();

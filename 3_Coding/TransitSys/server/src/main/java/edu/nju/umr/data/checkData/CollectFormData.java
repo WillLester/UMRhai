@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
-import edu.nju.umr.po.order.CollectPO;
+import edu.nju.umr.po.order.IncomePO;
 
 public class CollectFormData extends UnicastRemoteObject implements CollectFormDSer{
 
@@ -15,7 +15,7 @@ public class CollectFormData extends UnicastRemoteObject implements CollectFormD
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<CollectPO> findCollect(Date start, Date end)
+	public ArrayList<IncomePO> findCollect(Date start, Date end)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;

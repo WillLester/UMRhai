@@ -4,10 +4,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.po.WorkPO;
 
-public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
+public class OrgManData extends UnicastRemoteObject implements WorkManDSer{
 
 	protected OrgManData() throws RemoteException {
 		super();

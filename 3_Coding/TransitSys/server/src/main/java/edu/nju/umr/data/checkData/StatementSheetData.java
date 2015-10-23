@@ -7,7 +7,7 @@ import java.util.Date;
 
 import edu.nju.umr.dataService.checkDSer.StatementSheetDSer;
 import edu.nju.umr.po.OrgPO;
-import edu.nju.umr.po.order.CollectPO;
+import edu.nju.umr.po.order.IncomePO;
 
 public class StatementSheetData extends UnicastRemoteObject implements StatementSheetDSer{
 
@@ -16,7 +16,7 @@ public class StatementSheetData extends UnicastRemoteObject implements Statement
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<CollectPO> getCollectRec(Date date, String id)
+	public ArrayList<IncomePO> getCollectRec(Date date, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
