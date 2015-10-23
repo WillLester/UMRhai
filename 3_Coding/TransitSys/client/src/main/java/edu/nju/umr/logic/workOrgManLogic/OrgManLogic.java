@@ -36,4 +36,9 @@ public class OrgManLogic implements OrgManLSer{
 		return null;
 	}
 
+	public ResultMessage getCities() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

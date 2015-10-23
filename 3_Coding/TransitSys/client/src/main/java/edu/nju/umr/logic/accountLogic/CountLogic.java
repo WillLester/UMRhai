@@ -16,4 +16,29 @@ public class CountLogic implements CountLSer{
 		return null;
 	}
 
+	public ResultMessage orgList() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ResultMessage getWorkers(String id) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ResultMessage getVans(String id) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ResultMessage getStock(String id) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ResultMessage getAccount(String id) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

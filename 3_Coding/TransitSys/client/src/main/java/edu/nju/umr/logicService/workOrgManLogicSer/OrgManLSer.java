@@ -10,4 +10,5 @@ public interface OrgManLSer {
 	public ResultMessage checkOrg(String id);
 	public ResultMessage orgList();
 	public ResultMessage searchOrg(String keyword);
+	public ResultMessage getCities();
 }

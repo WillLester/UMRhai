@@ -2,7 +2,12 @@ package edu.nju.umr.vo;
 
 public class ResultMessage {
 	private boolean isSuccessful;
-	private Object Message;
+	private Object message;
+	public ResultMessage(boolean isSuccessful,Object message) {
+		// TODO 自动生成的构造函数存根
+		this.isSuccessful = isSuccessful;
+		this.message = message;
+	}
 	public boolean isSuccessful() {
 		return isSuccessful;
 	}
@@ -10,9 +15,9 @@ public class ResultMessage {
 		this.isSuccessful = isSuccessful;
 	}
 	public Object getMessage() {
-		return Message;
+		return message;
 	}
 	public void setMessage(Object message) {
-		Message = message;
+		this.message = message;
 	}
 }

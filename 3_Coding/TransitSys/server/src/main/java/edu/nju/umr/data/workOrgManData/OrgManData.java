@@ -1,40 +1,46 @@
 package edu.nju.umr.data.workOrgManData;
 
+import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
+import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.OrgPO;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
-import edu.nju.umr.po.WorkPO;
-
-public class OrgManData extends UnicastRemoteObject implements WorkManDSer{
+public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
 	protected OrgManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<WorkPO> findWork(String keyword) throws RemoteException {
+	public ArrayList<OrgPO> findOrg(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	public boolean addWork(WorkPO work) throws RemoteException {
+	public boolean addOrg(OrgPO org) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
-	public boolean deleteWork(String id) throws RemoteException {
+	public boolean deleteOrg(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
-	public boolean reviseWork(WorkPO work) throws RemoteException {
+	public boolean reviseOrg(OrgPO org) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
-	public WorkPO checkWork(String id) throws RemoteException {
+	public OrgPO checkOrg(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ArrayList<CityPO> getCities() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
