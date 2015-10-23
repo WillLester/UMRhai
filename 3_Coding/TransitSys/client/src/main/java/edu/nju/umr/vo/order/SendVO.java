@@ -1,5 +1,5 @@
 package edu.nju.umr.vo.order;
 
-public class OrderVO {
+public class SendVO {
 
 }
