@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
+import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.ReceivePO;
 
 public class ReceiveOrderData extends UnicastRemoteObject implements ReceiveOrderDSer{
@@ -16,6 +17,11 @@ public class ReceiveOrderData extends UnicastRemoteObject implements ReceiveOrde
 	public boolean create(ReceivePO order) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return false;
+	}
+
+	public ExpressPO getExpress(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }
