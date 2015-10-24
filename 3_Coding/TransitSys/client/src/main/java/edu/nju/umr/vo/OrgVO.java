@@ -19,31 +19,16 @@ public class OrgVO {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public Organization getKind() {
 		return kind;
 	}
-	public void setKind(Organization kind) {
-		this.kind = kind;
-	}
 	public String getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
 	public CityVO getCity() {
 		return city;
-	}
-	public void setCity(CityVO city) {
-		this.city = city;
 	}
 }

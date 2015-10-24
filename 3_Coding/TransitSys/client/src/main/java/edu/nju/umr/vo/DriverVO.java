@@ -25,44 +25,23 @@ public class DriverVO {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
 	public String getIdNum() {
 		return idNum;
-	}
-	public void setIdNum(String idNum) {
-		this.idNum = idNum;
 	}
 	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
 	public Sex getSex() {
 		return sex;
 	}
-	public void setSex(Sex sex) {
-		this.sex = sex;
-	}
 	public Date getDriveLimit() {
 		return driveLimit;
-	}
-	public void setDriveLimit(Date driveLimit) {
-		this.driveLimit = driveLimit;
 	}
 	
 }

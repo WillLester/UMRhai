@@ -17,25 +17,13 @@ public class ShelfVO {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public int getRow() {
 		return row;
-	}
-	public void setRow(int row) {
-		this.row = row;
 	}
 	public int getPlace() {
 		return place;
 	}
-	public void setPlace(int place) {
-		this.place = place;
-	}
 	public Part getPart() {
 		return part;
-	}
-	public void setPart(Part part) {
-		this.part = part;
 	}
 }

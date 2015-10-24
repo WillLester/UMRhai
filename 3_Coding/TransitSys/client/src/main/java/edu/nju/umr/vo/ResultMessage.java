@@ -11,13 +11,7 @@ public class ResultMessage {
 	public boolean isSuccessful() {
 		return isSuccessful;
 	}
-	public void setSuccessful(boolean isSuccessful) {
-		this.isSuccessful = isSuccessful;
-	}
 	public Object getMessage() {
 		return message;
-	}
-	public void setMessage(Object message) {
-		this.message = message;
 	}
 }

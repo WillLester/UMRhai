@@ -36,4 +36,9 @@ public class WorkManLogic implements WorkManLSer{
 		return null;
 	}
 
+	public ResultMessage orgList() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

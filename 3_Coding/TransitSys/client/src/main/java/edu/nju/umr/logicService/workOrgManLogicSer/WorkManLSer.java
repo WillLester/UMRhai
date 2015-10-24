@@ -10,4 +10,5 @@ public interface WorkManLSer {
 	public ResultMessage checkWork(String id);
 	public ResultMessage WorkList();
 	public ResultMessage searchWork(String keyword);
+	public ResultMessage orgList();
 }

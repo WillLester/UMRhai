@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
 
 public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
@@ -35,6 +36,11 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 	}
 
 	public WorkPO checkWork(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ArrayList<OrgPO> getOrgs() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
