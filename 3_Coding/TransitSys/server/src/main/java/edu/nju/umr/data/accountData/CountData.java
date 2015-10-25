@@ -3,14 +3,20 @@ package edu.nju.umr.data.accountData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.CountPO;
+import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.Part;
 
 public class CountData extends UnicastRemoteObject implements CountDSer{
 
@@ -26,32 +32,78 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	public CountPO findInitInfo() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		CityPO city = new CityPO("北京", "010");
+		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
+		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
+		orgList.add(org);
+		WorkPO work = new WorkPO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER);
+		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
+		workerList.add(work);
+		@SuppressWarnings("deprecation")
+		Date date = new Date(109, 4, 25);
+		VanPO van = new VanPO("00001", "苏A-12345", date, null, "00001");
+		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
+		vanList.add(van);
+		GoodPO good = new GoodPO("00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
+		goodList.add(good);
+		StockPO stock = new StockPO(goodList);
+		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
+		stockList.add(stock);
+		AccountPO account = new AccountPO("00001", "Excited", 25000);
+		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+		accountList.add(account);
+		CountPO count = new CountPO("12345", orgList, workerList, vanList, stockList, accountList);
+		
+		return count;
 	}
 
 	public ArrayList<OrgPO> findOrg() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		CityPO city = new CityPO("北京", "010");
+		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
+		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
+		orgList.add(org);
+		return orgList;
 	}
 
 	public ArrayList<WorkPO> getWorkers(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		WorkPO work = new WorkPO("宝华", "12345678901", id, "00001", Jurisdiction.COURIER);
+		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
+		workerList.add(work);
+		return workerList;
 	}
 
 	public ArrayList<VanPO> getVans(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		@SuppressWarnings("deprecation")
+		Date date = new Date(109, 4, 25);
+		VanPO van = new VanPO("00001", "苏A-12345", date, null, id);
+		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
+		vanList.add(van);
+		return vanList;
 	}
 
 	public ArrayList<StockPO> getStock(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		@SuppressWarnings("deprecation")
+		Date date = new Date(109, 4, 25);
+		GoodPO good = new GoodPO("00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
+		goodList.add(good);
+		StockPO stock = new StockPO(goodList);
+		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
+		stockList.add(stock);
+		return stockList;
 	}
 
 	public ArrayList<AccountPO> getAccount(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		AccountPO account = new AccountPO("00001", "Excited", 25000);
+		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+		accountList.add(account);
+		return accountList;
 	}
 	
 }

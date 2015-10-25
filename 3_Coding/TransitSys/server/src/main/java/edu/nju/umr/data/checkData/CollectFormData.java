@@ -18,7 +18,15 @@ public class CollectFormData extends UnicastRemoteObject implements CollectFormD
 	public ArrayList<IncomePO> findCollect(Date start, Date end)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		@SuppressWarnings("deprecation")
+		Date date = new Date(109, 4, 25);
+		String express1 = "1024656";
+		ArrayList<String> express = new ArrayList<String>();
+		express.add(express1);
+		IncomePO income = new IncomePO(date, "宝华", 23.33, express, "00001");
+		ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
+		incomeList.add(income);
+		return incomeList;
 	}
 
 }

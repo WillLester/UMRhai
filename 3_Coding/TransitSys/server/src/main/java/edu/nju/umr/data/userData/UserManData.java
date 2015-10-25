@@ -9,7 +9,7 @@ import edu.nju.umr.po.UserPO;
 
 public class UserManData extends UnicastRemoteObject implements UserManDSer{
 
-	protected UserManData() throws RemoteException {
+	public UserManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

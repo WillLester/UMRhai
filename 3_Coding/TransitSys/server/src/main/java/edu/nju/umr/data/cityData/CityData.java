@@ -16,17 +16,17 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 
 	public boolean add(CityPO city) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public boolean revise(CityPO city) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public boolean reviseCities(CitiesPO cities) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 }

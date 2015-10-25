@@ -8,22 +8,24 @@ public class AccountLogic implements AccountLSer{
 
 	public boolean addAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public boolean deleteAccount(String id) {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public boolean reviseAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public ResultMessage checkAccount(String id) {
 		// TODO 自动生成的方法存根
-		return null;
+		AccountVO account = new AccountVO("12345", "Excited", 25000);
+		ResultMessage message = new ResultMessage(true, account);
+		return message;
 	}
 
 	public ResultMessage accountList() {

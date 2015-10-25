@@ -9,7 +9,7 @@ import edu.nju.umr.po.VanPO;
 
 public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
-	protected VanManData() throws RemoteException {
+	public VanManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

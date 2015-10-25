@@ -18,7 +18,12 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 	public ArrayList<DiaryPO> seeDiary(Date start, Date end)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		@SuppressWarnings("deprecation")
+		Date date = new Date(109, 4, 25,11,24,30);
+		DiaryPO diary = new DiaryPO("生成快递单", date);
+		ArrayList<DiaryPO> diaryList = new ArrayList<DiaryPO>();
+		diaryList.add(diary);
+		return diaryList;
 	}
 	
 }

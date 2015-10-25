@@ -10,7 +10,7 @@ import edu.nju.umr.po.WorkPO;
 
 public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 
-	protected WorkManData() throws RemoteException {
+	public WorkManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

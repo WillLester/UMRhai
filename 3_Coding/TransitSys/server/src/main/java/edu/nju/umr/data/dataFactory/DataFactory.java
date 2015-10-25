@@ -4,6 +4,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.orderNewData.TransitOrderData;
+import edu.nju.umr.data.userData.UserManData;
+import edu.nju.umr.data.workOrgManData.VanManData;
+import edu.nju.umr.data.workOrgManData.WageManData;
+import edu.nju.umr.data.workOrgManData.WorkManData;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
@@ -85,27 +90,27 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFac
 
 	public WorkManDSer getWorkMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new WorkManData();
 	}
 
 	public WageManDSer getWageMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new WageManData();
 	}
 
 	public VanManDSer getVanMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new VanManData();
 	}
 
 	public UserManDSer getUserMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new UserManData();
 	}
 
 	public TransitOrderDSer getTransitOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new TransitOrderData();
 	}
 
 	public StockWarningDSer getStockWarning() throws RemoteException {

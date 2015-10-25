@@ -9,7 +9,7 @@ import edu.nju.umr.po.order.TransitPO;
 
 public class TransitOrderData extends UnicastRemoteObject implements TransitOrderDSer{
 
-	protected TransitOrderData() throws RemoteException {
+	public TransitOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
