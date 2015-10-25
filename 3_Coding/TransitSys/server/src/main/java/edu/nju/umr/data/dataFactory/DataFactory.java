@@ -2,10 +2,38 @@ package edu.nju.umr.data.dataFactory;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
+import edu.nju.umr.data.accountData.AccountData;
+import edu.nju.umr.data.accountData.CountData;
+import edu.nju.umr.data.checkData.CollectFormData;
+import edu.nju.umr.data.checkData.DiaryData;
+import edu.nju.umr.data.checkData.StatementSheetData;
+import edu.nju.umr.data.cityData.CityData;
+import edu.nju.umr.data.orderApproveData.OrderApproveData;
+import edu.nju.umr.data.orderApproveData.OrderResubmitData;
+import edu.nju.umr.data.orderNewData.ArriveOrderData;
+import edu.nju.umr.data.orderNewData.CenterLoadingOrderData;
+import edu.nju.umr.data.orderNewData.ExpressOrderData;
+import edu.nju.umr.data.orderNewData.HallLoadingOrderData;
+import edu.nju.umr.data.orderNewData.IncomeOrderData;
+import edu.nju.umr.data.orderNewData.PaymentOrderData;
+import edu.nju.umr.data.orderNewData.ReceiveOrderData;
+import edu.nju.umr.data.orderNewData.RecipientOrderData;
+import edu.nju.umr.data.orderNewData.SendOrderData;
+import edu.nju.umr.data.orderNewData.StockInOrderData;
+import edu.nju.umr.data.orderNewData.StockOutOrderData;
 import edu.nju.umr.data.orderNewData.TransitOrderData;
+import edu.nju.umr.data.stockData.StockCheckData;
+import edu.nju.umr.data.stockData.StockCheckNowData;
+import edu.nju.umr.data.stockData.StockCheckWarnData;
+import edu.nju.umr.data.stockData.StockDivideData;
+import edu.nju.umr.data.stockData.StockWarningData;
+import edu.nju.umr.data.transitInfoData.CourierData;
+import edu.nju.umr.data.transitInfoData.CustomerData;
+import edu.nju.umr.data.userData.LoginData;
 import edu.nju.umr.data.userData.UserManData;
+import edu.nju.umr.data.workOrgManData.DriverManData;
+import edu.nju.umr.data.workOrgManData.OrgManData;
 import edu.nju.umr.data.workOrgManData.VanManData;
 import edu.nju.umr.data.workOrgManData.WageManData;
 import edu.nju.umr.data.workOrgManData.WorkManData;
@@ -24,6 +52,8 @@ import edu.nju.umr.dataService.dataFactory.CountDFacSer;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
 import edu.nju.umr.dataService.dataFactory.DiaryDFacSer;
+import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
+import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
@@ -75,11 +105,9 @@ import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
-import edu.nju.umr.po.DriverPO;
-import edu.nju.umr.po.order.ExpressPO;
 
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,CollectFormDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
-DiaryDFacSer,DriverManDSer,ExpressOrderDSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,ReceiveOrderDFacSer,
+DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,ReceiveOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,StatementSheetDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFacSer,WorkManDFacSer{
 
@@ -115,169 +143,148 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFac
 
 	public StockWarningDSer getStockWarning() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockWarningData();
 	}
 
 	public StockOutOrderDSer getStockOutOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockOutOrderData();
 	}
 
 	public StockInOrderDSer getStockInOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockInOrderData();
 	}
 
 	public StockDivideDSer getStockDivide() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockDivideData();
 	}
 
 	public StockCheckWarnDSer getStockCheckWarn() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockCheckWarnData();
 	}
 
 	public StockCheckNowDSer getStockCheckNow() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockCheckNowData();
 	}
 
 	public StockCheckDSer getStockCheck() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StockCheckData();
 	}
 
 	public StatementSheetDSer getStatementSheet() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new StatementSheetData();
 	}
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new SendOrderData();
 	}
 
 	public RecipientOrderDSer getRecipientOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new RecipientOrderData();
 	}
 
 	public ReceiveOrderDSer getReceiveOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new ReceiveOrderData();
 	}
 
 	public PaymentOrderDSer getPaymentOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new PaymentOrderData();
 	}
 
 	public OrgManDSer getOrgMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new OrgManData();
 	}
 
 	public OrderApproveDSer getOrderApprove() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new OrderApproveData();
 	}
 
 	public LoginDSer getLogin() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new LoginData();
 	}
 
 	public IncomeOrderDSer getIncomeOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new IncomeOrderData();
 	}
 
 	public HallLoadingOrderDSer getHallLoadingOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public boolean create(ExpressPO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	public ArrayList<DriverPO> findDriver(String keyword)
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public boolean addDriver(DriverPO Driver) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	public boolean deleteDriver(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	public boolean reviseDriver(DriverPO Driver) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	public DriverPO checkDriver(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
+		return new HallLoadingOrderData();
 	}
 
 	public DiaryDSer getDiary() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new DiaryData();
 	}
 
 	public CustomerDSer getCustomer() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CustomerData();
 	}
 
 	public CourierDSer getCourier() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CourierData();
 	}
 
 	public CountDSer getCountData() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CountData();
 	}
 
 	public CollectFormDSer getCollect() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CollectFormData();
 	}
 
 	public CityDSer getCity() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CityData();
 	}
 
 	public CenterLoadingOrderDSer getCenterLoadingOrder()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new CenterLoadingOrderData();
 	}
 
 	public ArriveOrderDSer getArriveOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new ArriveOrderData();
 	}
 
 	public AccountDSer getAccountData() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new AccountData();
 	}
 
 	public OrderResubmitDSer getOrderResubmit() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new OrderResubmitData();
+	}
+
+	public ExpressOrderDSer getExpressOrder() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new ExpressOrderData();
+	}
+
+	public DriverManDSer getDriverMan() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new DriverManData();
 	}
 
 }

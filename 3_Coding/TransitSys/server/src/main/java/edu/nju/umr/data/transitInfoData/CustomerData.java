@@ -8,7 +8,7 @@ import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 
 public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 
-	protected CustomerData() throws RemoteException {
+	public CustomerData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

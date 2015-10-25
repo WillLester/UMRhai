@@ -10,7 +10,7 @@ import edu.nju.umr.po.enums.Part;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
 
-	protected StockDivideData() throws RemoteException {
+	public StockDivideData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

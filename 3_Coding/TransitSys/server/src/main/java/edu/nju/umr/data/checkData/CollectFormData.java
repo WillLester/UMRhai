@@ -10,7 +10,7 @@ import edu.nju.umr.po.order.IncomePO;
 
 public class CollectFormData extends UnicastRemoteObject implements CollectFormDSer{
 
-	protected CollectFormData() throws RemoteException {
+	public CollectFormData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

@@ -8,7 +8,7 @@ import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 
 public class StockCheckWarnData extends UnicastRemoteObject implements StockCheckWarnDSer{
 
-	protected StockCheckWarnData() throws RemoteException {
+	public StockCheckWarnData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

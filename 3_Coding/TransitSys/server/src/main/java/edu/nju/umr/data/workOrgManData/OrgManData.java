@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
-	protected OrgManData() throws RemoteException {
+	public OrgManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

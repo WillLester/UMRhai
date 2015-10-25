@@ -11,7 +11,7 @@ import edu.nju.umr.po.AccountPO;
 public class AccountData extends UnicastRemoteObject implements AccountDSer{
 
 
-	protected AccountData() throws RemoteException {
+	public AccountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

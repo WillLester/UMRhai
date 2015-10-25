@@ -20,7 +20,7 @@ import edu.nju.umr.po.enums.Part;
 
 public class CountData extends UnicastRemoteObject implements CountDSer{
 
-	protected CountData() throws RemoteException {
+	public CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

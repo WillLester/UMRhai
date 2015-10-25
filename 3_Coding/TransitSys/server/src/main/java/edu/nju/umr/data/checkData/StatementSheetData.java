@@ -13,7 +13,7 @@ import edu.nju.umr.po.order.IncomePO;
 
 public class StatementSheetData extends UnicastRemoteObject implements StatementSheetDSer{
 
-	protected StatementSheetData() throws RemoteException {
+	public StatementSheetData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

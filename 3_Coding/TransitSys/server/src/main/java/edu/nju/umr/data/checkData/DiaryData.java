@@ -10,7 +10,7 @@ import edu.nju.umr.po.DiaryPO;
 
 public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 
-	protected DiaryData() throws RemoteException {
+	public DiaryData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

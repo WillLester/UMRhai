@@ -11,7 +11,7 @@ import edu.nju.umr.po.enums.Sex;
 
 public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 
-	protected DriverManData() throws RemoteException {
+	public DriverManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

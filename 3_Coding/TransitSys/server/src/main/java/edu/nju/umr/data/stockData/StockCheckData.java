@@ -11,7 +11,7 @@ import edu.nju.umr.po.order.OrderPO;
 
 public class StockCheckData extends UnicastRemoteObject implements StockCheckDSer{
 
-	protected StockCheckData() throws RemoteException {
+	public StockCheckData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
