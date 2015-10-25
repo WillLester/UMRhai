@@ -1,10 +1,11 @@
 package edu.nju.umr.po.order;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.GoodState;
 
-public class ArrivePO {
+public class ArrivePO implements Serializable{
 	private String centerId;
 	private Date date;
 	private String id;

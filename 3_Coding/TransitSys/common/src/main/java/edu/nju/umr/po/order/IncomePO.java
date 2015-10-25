@@ -1,9 +1,10 @@
 package edu.nju.umr.po.order;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class IncomePO{
+public class IncomePO implements Serializable{
 	private Date date;
 	private String courier;
 	private double cost;

@@ -1,8 +1,10 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
+
 import edu.nju.umr.po.enums.Part;
 
-public class ShelfPO {
+public class ShelfPO implements Serializable{
 	private String id;
 	private int row;
 	private int place;

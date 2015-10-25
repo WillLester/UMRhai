@@ -1,8 +1,10 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
+
 import edu.nju.umr.po.enums.Organization;
 
-public class OrgPO {
+public class OrgPO implements Serializable{
 	private String id;
 	private String name;
 	private Organization kind;

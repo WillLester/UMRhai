@@ -1,9 +1,10 @@
 package edu.nju.umr.po.order;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CenterLoadingPO {
+public class CenterLoadingPO implements Serializable{
 	private Date date;
 	private String id;
 	private String target;

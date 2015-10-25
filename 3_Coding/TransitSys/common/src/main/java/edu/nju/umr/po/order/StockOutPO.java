@@ -1,10 +1,11 @@
 package edu.nju.umr.po.order;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Transit;
 
-public class StockOutPO {
+public class StockOutPO implements Serializable{
 	private String id;
 	private String expressId;
 	private Date date;

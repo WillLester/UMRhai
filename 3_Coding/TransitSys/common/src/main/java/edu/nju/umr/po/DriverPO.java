@@ -1,10 +1,11 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Sex;
 
-public class DriverPO {
+public class DriverPO implements Serializable{
 	private String id;
 	private String name;
 	private Date birthday;

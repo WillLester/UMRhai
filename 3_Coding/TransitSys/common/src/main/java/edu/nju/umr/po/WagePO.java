@@ -1,8 +1,10 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
+
 import edu.nju.umr.po.enums.Wage;
 
-public class WagePO {
+public class WagePO implements Serializable{
 	private String workerId;
 	private Wage kind;
 	private int money;

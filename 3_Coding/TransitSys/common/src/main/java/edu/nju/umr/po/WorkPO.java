@@ -1,8 +1,10 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
+
 import edu.nju.umr.po.enums.Jurisdiction;
 
-public class WorkPO {
+public class WorkPO implements Serializable{
 	private String name;
 	private String mobile;
 	private String orgId;

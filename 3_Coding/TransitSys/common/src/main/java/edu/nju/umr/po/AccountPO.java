@@ -1,6 +1,8 @@
 package edu.nju.umr.po;
 
-public class AccountPO {
+import java.io.Serializable;
+
+public class AccountPO implements Serializable{
 	private String id;
 	private String name;
 	private int balance;

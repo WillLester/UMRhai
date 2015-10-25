@@ -1,8 +1,10 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
+
 import edu.nju.umr.po.enums.Jurisdiction;
 
-public class UserPO {
+public class UserPO implements Serializable{
 	private String id;
 	private String password;
 	private Jurisdiction juri;
