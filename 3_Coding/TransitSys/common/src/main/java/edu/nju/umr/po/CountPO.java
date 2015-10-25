@@ -1,8 +1,9 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CountPO {
+public class CountPO implements Serializable{
 	private String id;
 	private ArrayList<OrgPO> organizations;
 	private ArrayList<WorkPO> workers;

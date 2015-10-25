@@ -1,6 +1,8 @@
 package edu.nju.umr.po;
 
-public class CitiesPO {
+import java.io.Serializable;
+
+public class CitiesPO implements Serializable{
 	private String city1;
 	private String city2;
 	private int distance;

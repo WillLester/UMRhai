@@ -1,8 +1,9 @@
 package edu.nju.umr.po.order;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class HallLoadingPO {
+public class HallLoadingPO implements Serializable{
 	private String hallId;
 	private String convertId;
 	private String arriveLoc;

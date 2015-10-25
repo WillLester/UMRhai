@@ -1,8 +1,9 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DiaryPO {
+public class DiaryPO implements Serializable{
 	private String operation;
 	private Date time;
 	public DiaryPO(String operation,Date time) {

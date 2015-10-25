@@ -111,7 +111,7 @@ DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,Income
 RecipientOrderDFacSer,SendOrderDFacSer,StatementSheetDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFacSer,WorkManDFacSer{
 
-	protected DataFactory() throws RemoteException {
+	public DataFactory() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

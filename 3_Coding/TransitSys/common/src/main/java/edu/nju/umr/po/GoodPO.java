@@ -1,10 +1,11 @@
 package edu.nju.umr.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Part;
 
-public class GoodPO {
+public class GoodPO implements Serializable{
 	private String id;
 	private Date date;
 	private String city;

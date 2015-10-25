@@ -1,9 +1,10 @@
 package edu.nju.umr.po;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.Date;
 
-public class VanPO {
+public class VanPO implements Serializable{
 	private String id;
 	private String plateNum;
 	private Date servTime;
