@@ -28,5 +28,6 @@ public class AccountDriver {
 		for(int i = 0;i < accountList2.size();i++){
 			System.out.println(accountList2.get(i).getName() + " " + accountList2.get(i).getBalance());
 		}
+		
 	}
 }
