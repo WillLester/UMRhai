@@ -6,7 +6,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 
 	public boolean checkWarning(String id) {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 }

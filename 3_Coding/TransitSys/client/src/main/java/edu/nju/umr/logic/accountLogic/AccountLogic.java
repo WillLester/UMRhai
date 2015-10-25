@@ -1,5 +1,7 @@
 package edu.nju.umr.logic.accountLogic;
 
+import java.util.ArrayList;
+
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -30,12 +32,20 @@ public class AccountLogic implements AccountLSer{
 
 	public ResultMessage accountList() {
 		// TODO 自动生成的方法存根
-		return null;
+		AccountVO account1 = new AccountVO("12345", "Excited", 25000);
+		AccountVO account2 = new AccountVO("54321", "亦可赛艇", 8964);
+		ArrayList<AccountVO> ar=new ArrayList<AccountVO>();
+		ar.add(account1);
+		ar.add(account2);
+		ResultMessage message = new ResultMessage(true, ar);
+		return message;
 	}
 
 	public ResultMessage searchAccount(String keyword) {
 		// TODO 自动生成的方法存根
-		return null;
+		AccountVO account = new AccountVO("12345", "Excited", 25000);
+		ResultMessage message = new ResultMessage(true, account);
+		return message;
 	}
 
 }

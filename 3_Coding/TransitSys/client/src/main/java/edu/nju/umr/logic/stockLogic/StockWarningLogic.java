@@ -7,7 +7,7 @@ public class StockWarningLogic implements StockWarningLSer{
 
 	public boolean setWarning(int w, int part, String id) {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 	public ResultMessage getWarning(String id) {
