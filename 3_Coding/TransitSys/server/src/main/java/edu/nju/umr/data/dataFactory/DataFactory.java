@@ -5,9 +5,9 @@ import java.rmi.server.UnicastRemoteObject;
 
 import edu.nju.umr.data.accountData.AccountData;
 import edu.nju.umr.data.accountData.CountData;
-import edu.nju.umr.data.checkData.CollectFormData;
-import edu.nju.umr.data.checkData.DiaryData;
 import edu.nju.umr.data.checkData.StatementSheetData;
+import edu.nju.umr.data.checkData.DiaryData;
+import edu.nju.umr.data.checkData.CollectFormData;
 import edu.nju.umr.data.cityData.CityData;
 import edu.nju.umr.data.orderApproveData.OrderApproveData;
 import edu.nju.umr.data.orderApproveData.OrderResubmitData;
@@ -39,15 +39,15 @@ import edu.nju.umr.data.workOrgManData.WageManData;
 import edu.nju.umr.data.workOrgManData.WorkManData;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
-import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
-import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.checkDSer.StatementSheetDSer;
+import edu.nju.umr.dataService.checkDSer.DiaryDSer;
+import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.CityDFacSer;
-import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
+import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
@@ -64,7 +64,7 @@ import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
-import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
+import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockCheckDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockCheckNowDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockCheckWarnDFacSer;
@@ -106,9 +106,9 @@ import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 
-public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,CollectFormDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
+public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,StatementSheetDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,ReceiveOrderDFacSer,
-RecipientOrderDFacSer,SendOrderDFacSer,StatementSheetDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
+RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFacSer,WorkManDFacSer{
 
 	public DataFactory() throws RemoteException {
@@ -176,9 +176,9 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFac
 		return new StockCheckData();
 	}
 
-	public StatementSheetDSer getStatementSheet() throws RemoteException {
+	public CollectFormDSer getCollectForm() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StatementSheetData();
+		return new CollectFormData();
 	}
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
@@ -246,9 +246,9 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFac
 		return new CountData();
 	}
 
-	public CollectFormDSer getCollect() throws RemoteException {
+	public StatementSheetDSer getStatement() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CollectFormData();
+		return new StatementSheetData();
 	}
 
 	public CityDSer getCity() throws RemoteException {

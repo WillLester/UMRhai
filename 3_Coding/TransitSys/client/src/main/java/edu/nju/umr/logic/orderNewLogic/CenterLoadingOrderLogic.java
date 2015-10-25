@@ -1,19 +1,57 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
+import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
+import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
 public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
-
+	CenterLoadingOrderDFacSer dataFac;
+	CenterLoadingOrderDSer centerData;
+	public CenterLoadingOrderLogic() {
+		// TODO 自动生成的构造函数存根
+		try{
+			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			centerData = dataFac.getCenterLoadingOrder();
+		} catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } 
+	}
 	public boolean create(CenterLoadingVO order) {
 		// TODO 自动生成的方法存根
-		return false;
+		boolean isSuc = false;
+		try {
+			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), order.getId(), order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress()));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return isSuc;
 	}
 
 	public ResultMessage getHalls() {
 		// TODO 自动生成的方法存根
-		return null;
+		ArrayList<String> halls = null;
+		try {
+			halls = centerData.getHalls();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return new ResultMessage(true, halls);
 	}
 
 }

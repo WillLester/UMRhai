@@ -8,6 +8,6 @@ import edu.nju.umr.po.order.OrderPO;
 
 public interface OrderApproveDSer extends Remote{
 	public ArrayList<OrderPO> getExamine() throws RemoteException;
-	public boolean update(ArrayList<OrderPO> po) throws RemoteException;
+	public boolean update(ArrayList<String> id) throws RemoteException;
 	public Object getOrder(String id) throws RemoteException;
 }

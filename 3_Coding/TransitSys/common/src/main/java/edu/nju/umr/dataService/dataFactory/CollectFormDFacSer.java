@@ -6,5 +6,5 @@ import java.rmi.RemoteException;
 import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
 
 public interface CollectFormDFacSer extends Remote{
-	public CollectFormDSer getCollect() throws RemoteException;
+	public CollectFormDSer getCollectForm() throws RemoteException;
 }
