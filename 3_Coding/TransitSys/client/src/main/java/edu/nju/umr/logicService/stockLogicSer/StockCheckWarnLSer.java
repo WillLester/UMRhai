@@ -1,5 +1,7 @@
 package edu.nju.umr.logicService.stockLogicSer;
 
+import edu.nju.umr.vo.ResultMessage;
+
 public interface StockCheckWarnLSer {
-	public boolean checkWarning(String id);
+	public ResultMessage checkWarning(String id);
 }

@@ -1,5 +1,7 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,46 +9,109 @@ import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
+import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 
 public class VanManLogic implements VanManLSer{
-
+	VanManDFacSer dataFac;
+	VanManDSer vanData;
+	
+	public VanManLogic(){
+		try{
+			dataFac=(VanManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			vanData=dataFac.getVanMan();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public boolean addVan(VanVO Van) {
 		// TODO 自动生成的方法存根
-		return true;
+		boolean isSuccessful=false;
+		try{
+			isSuccessful=vanData.addVan(new VanPO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		}catch(RemoteException e)
+		{
+			e.printStackTrace();
+		}
+		return isSuccessful;
 	}
 
 	public boolean deleteVan(String id) {
 		// TODO 自动生成的方法存根
-		return true;
+		boolean isSuccessful=false;
+		try{
+			isSuccessful=vanData.deleteVan(id);
+		}catch(RemoteException e)
+		{
+			e.printStackTrace();
+		}
+		return isSuccessful;
 	}
 
 	public boolean reviseVan(VanVO Van) {
 		// TODO 自动生成的方法存根
-		return true;
+		boolean isSuccessful=false;
+		try{
+			isSuccessful=vanData.reviseVan(new VanPO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		}catch(RemoteException e)
+		{
+			e.printStackTrace();
+		}
+		return isSuccessful;
 	}
 
 	public ResultMessage checkVan(String id) {
 		// TODO 自动生成的方法存根
-		VanVO van=new VanVO("1","11111",new Date(),null,"1");
-		ResultMessage message = new ResultMessage(true, van);
+		VanPO Van=null;
+		boolean isSuccessful=false;
+		try{
+			Van=vanData.checkVan(id);
+			isSuccessful=true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 
 	public ResultMessage VanList() {
 		// TODO 自动生成的方法存根
-		VanVO van1=new VanVO("1","11111",new Date(),null,"1");
-		VanVO van2=new VanVO("2","22222",new Date(),null,"2");
-		ArrayList<VanVO> ar=new ArrayList<VanVO>();
-		ar.add(van1);
-		ar.add(van2);
-		ResultMessage message = new ResultMessage(true, ar);
+		ArrayList<VanPO> ar=null;
+		boolean isSuccessful=false;
+		try
+		{
+			ar=vanData.findVan("");
+			isSuccessful=true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
+		for(int i=0;i<ar.size();i++)
+		{
+			VanPO Van=ar.get(i);
+			arVO.add(new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		}
+		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
 
 	public ResultMessage searchVan(String keyword) {
 		// TODO 自动生成的方法存根
-		VanVO van=new VanVO("1","11111",new Date(),null,"1");
-		ResultMessage message = new ResultMessage(true, van);
+		VanPO Van=null;
+		boolean isSuccessful=false;
+		try{
+			Van=vanData.checkVan(keyword);
+			isSuccessful=true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 

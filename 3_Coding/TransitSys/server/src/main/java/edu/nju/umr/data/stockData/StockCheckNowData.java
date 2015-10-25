@@ -29,5 +29,9 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 		// TODO 自动生成的方法存根
 		return true;
 	}
+	
+	public boolean outputExcel(String location, StockPO stock) throws RemoteException{
+		return true;
+	}
 
 }

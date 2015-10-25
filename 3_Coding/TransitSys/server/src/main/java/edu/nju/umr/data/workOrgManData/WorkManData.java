@@ -51,7 +51,7 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
 		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1")));
 		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","1")));
-		return null;
+		return ar1;
 	}
 
 }

@@ -1,23 +1,52 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.workOrgManLogicSer.WageManLSer;
 import edu.nju.umr.po.WagePO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WageVO;
 import edu.nju.umr.vo.WorkVO;
+import edu.nju.umr.dataService.dataFactory.WageManDFacSer;
+import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
 
 public class WageManLogic implements WageManLSer{
-
+	WageManDFacSer dataFac;
+	WageManDSer wageData;
+	
+	public WageManLogic(){
+		try{
+			dataFac=(WageManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			wageData=dataFac.getWageMan();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public ResultMessage WorkList() {
 		// TODO 自动生成的方法存根
-		ArrayList<WorkVO> ar=new ArrayList<WorkVO>();
-		ar.add(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN));
-		ar.add(new WorkVO("Worker2","22222222222","2","2",Jurisdiction.COURIER));
-		ResultMessage message = new ResultMessage(true, ar);
+		ArrayList<WorkPO> ar= null;
+		boolean isSuccessful=false;
+		try{
+			ar=wageData.findWork("");
+			isSuccessful=true;
+		}
+		catch(RemoteException e){
+			e.printStackTrace();
+		}
+		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
+		for(int i=0;i<ar.size();i++)
+		{
+			WorkPO Work=ar.get(i);
+			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
+		}
+		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
 
@@ -28,7 +57,18 @@ public class WageManLogic implements WageManLSer{
 
 	public ResultMessage getWage(String id) {
 		// TODO 自动生成的方法存根
-		ResultMessage message = new ResultMessage(true, new WagePO("WorkerID1",Wage.MONTH,5,5));
+		boolean isSuccessful=false;
+		WagePO wage=null;
+		try
+		{
+			wage=wageData.getWage(id);
+			isSuccessful=true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		ResultMessage message=new ResultMessage(isSuccessful,new WageVO(wage.getWorkerId(),wage.getKind(),wage.getCommission(),wage.getMoney()));
 		return message;
 	}
 
