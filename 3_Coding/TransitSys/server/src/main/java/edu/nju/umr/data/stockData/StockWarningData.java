@@ -15,13 +15,16 @@ public class StockWarningData extends UnicastRemoteObject implements StockWarnin
 
 	public ArrayList<Integer> getWarning(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		ArrayList<Integer> ar=new ArrayList<Integer>();
+		ar.add(1);
+		ar.add(2);
+		return ar;
 	}
 
 	public boolean setWarning(int w, int part, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return false;
+		return true;
 	}
 
 }

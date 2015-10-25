@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.po.UserPO;
+import edu.nju.umr.po.enums.Jurisdiction;
 
 public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
@@ -15,7 +16,7 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
 	public UserPO findUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
 	}
 
 }

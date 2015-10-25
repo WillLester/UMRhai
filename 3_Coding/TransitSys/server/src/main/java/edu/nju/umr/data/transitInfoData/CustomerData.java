@@ -15,7 +15,10 @@ public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 
 	public ArrayList<String> findTransit(String barcode) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		ArrayList<String> ar=new ArrayList<String>();
+		ar.add("abcdefg");
+		ar.add("TestTest");
+		return ar;
 	}
 
 }

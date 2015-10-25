@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.enums.Part;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
 
@@ -16,6 +17,9 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 
 	public ArrayList<ShelfPO> getShelves(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
+		ArrayList<ShelfPO> ar=new ArrayList<ShelfPO>();
+		ar.add(new ShelfPO("1",1,1,Part.PLANE));
+		ar.add(new ShelfPO("2",3,4,Part.TRAIN));
 		return null;
 	}
 
@@ -36,7 +40,8 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 
 	public ShelfPO getShelf(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return new ShelfPO("2",3,4,Part.TRAIN);
+		//return null;
 	}
 
 }
