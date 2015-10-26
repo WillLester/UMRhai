@@ -1,11 +1,12 @@
 package edu.nju.umr.dataService.workOrgManDSer;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.po.DriverPO;
 
-public interface DriverManDSer {
+public interface DriverManDSer extends Remote{
 	public ArrayList<DriverPO> findDriver(String keyword) throws RemoteException;
 	public boolean addDriver(DriverPO Driver) throws RemoteException;
 	public boolean deleteDriver(String id) throws RemoteException;

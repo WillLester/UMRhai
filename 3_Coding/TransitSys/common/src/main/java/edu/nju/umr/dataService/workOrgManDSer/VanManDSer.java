@@ -1,11 +1,12 @@
 package edu.nju.umr.dataService.workOrgManDSer;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.po.VanPO;
 
-public interface VanManDSer {
+public interface VanManDSer extends Remote{
 	public ArrayList<VanPO> findVan(String keyword) throws RemoteException;
 	public boolean addVan(VanPO Van) throws RemoteException;
 	public boolean deleteVan(String id) throws RemoteException;
