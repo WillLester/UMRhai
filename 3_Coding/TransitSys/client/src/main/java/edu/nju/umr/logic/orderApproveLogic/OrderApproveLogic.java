@@ -10,8 +10,10 @@ import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.order.OrderPO;
+import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
+import edu.nju.umr.vo.order.PaymentVO;
 
 public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDFacSer dataFac;
@@ -59,9 +61,12 @@ public class OrderApproveLogic implements OrderApproveLSer{
 
 	public ResultMessage chooseOrder(String id) {
 		// TODO 自动生成的方法存根
-		Object order = null;
+		PaymentVO order = null;
 		try {
-			order = approveData.getOrder(id);
+			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id);
+			System.out.println(orderpo.getId());
+			order = new PaymentVO(orderpo.getId(), orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks());
+			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
