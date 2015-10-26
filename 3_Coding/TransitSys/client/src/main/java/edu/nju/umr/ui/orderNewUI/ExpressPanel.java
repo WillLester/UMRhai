@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.transitInfoUI;
+package edu.nju.umr.ui.orderNewUI;
 
 import javax.swing.JPanel;
 
