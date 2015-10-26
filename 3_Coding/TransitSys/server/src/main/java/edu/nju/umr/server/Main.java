@@ -7,16 +7,15 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import edu.nju.umr.data.dataFactory.DataFactory;
-import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
 		try{
-			AccountDFacSer account = new DataFactory();
+			DataFactory dataFactory = new DataFactory();
 			LocateRegistry.createRegistry(8885);
-			Naming.bind("rmi://localhost:8885/DataFactory", account);
+			Naming.bind("rmi://localhost:8885/DataFactory", dataFactory);
 		} catch (RemoteException e) { 
             System.out.println("创建远程对象发生异常！"); 
             e.printStackTrace(); 

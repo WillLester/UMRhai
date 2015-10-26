@@ -1,6 +1,9 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,12 +24,14 @@ public class DriverManLogic implements DriverManLSer{
 	public DriverManLogic(){
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-			driverData=dataFac.getDriverMan();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+			driverData = dataFac.getDriverMan();
+		} catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } 
 	}
 
 	public boolean addDriver(DriverVO Driver) {

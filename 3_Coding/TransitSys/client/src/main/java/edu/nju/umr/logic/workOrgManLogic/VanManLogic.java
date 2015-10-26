@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,13 +21,15 @@ public class VanManLogic implements VanManLSer{
 	
 	public VanManLogic(){
 		try{
-			dataFac=(VanManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-			vanData=dataFac.getVanMan();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+			dataFac= (VanManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			vanData = dataFac.getVanMan();
+		} catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } 
 	}
 	public boolean addVan(VanVO Van) {
 		// TODO 自动生成的方法存根

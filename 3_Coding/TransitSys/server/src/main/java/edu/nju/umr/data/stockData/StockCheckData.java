@@ -7,7 +7,11 @@ import java.util.Date;
 
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.OrderPO;
+import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.po.order.StockOutPO;
 
 public class StockCheckData extends UnicastRemoteObject implements StockCheckDSer{
 
@@ -16,13 +20,22 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<OrderPO> getInOut(Date start, Date end, String id)
+	public ArrayList<StockInPO> getIn(Date start, Date end, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<OrderPO> ar=new ArrayList();
-		ar.add(new OrderPO("1",Order.EXPRESS,"sb1",new Date(),false));
-		ar.add(new OrderPO("2",Order.ARRIVE,"sb2",new Date(),true));
-		return ar;
+		ArrayList<StockInPO> inList = new ArrayList<StockInPO>();
+		StockInPO po = new StockInPO("12345", "123343421", new Date(115,4,3), "北京", Part.PLANE, "T10000", 5, 3);
+		inList.add(po);
+		return inList;
+	}
+
+	public ArrayList<StockOutPO> getOut(Date start, Date end, String id)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		ArrayList<StockOutPO> outList = new ArrayList<StockOutPO>();
+		StockOutPO po = new StockOutPO("12345", "1000012314", new Date(115,4,3), Transit.PLANE, "1029142");
+		outList.add(po);
+		return outList;
 	}
 
 }
