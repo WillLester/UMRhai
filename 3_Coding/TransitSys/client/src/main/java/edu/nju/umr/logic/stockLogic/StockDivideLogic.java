@@ -29,8 +29,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=null;
 		boolean isSuccessful=false;
-		try
-		{
+		try{
 			ar=checkData.getShelves(id);
 			isSuccessful=true;
 		}

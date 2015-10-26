@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
+import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningLogic implements StockWarningLSer{
@@ -21,7 +22,7 @@ public class StockWarningLogic implements StockWarningLSer{
 			}
 	}
 
-	public boolean setWarning(int w, int part, String id) {
+	public boolean setWarning(int w, Part part, String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{

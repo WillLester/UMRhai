@@ -34,10 +34,6 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 
 	public ResultMessage checkNow(String id) {
 		// TODO 自动生成的方法存根
-		//StockVO sv=new StockVO(new ArrayList<GoodVO>());
-		//sv.getGoods().add(new GoodVO("1",new Date(),"南京",Part.PLANE,"shelf1",1,1));
-		//sv.getGoods().add(new GoodVO("2",new Date(),"上海",Part.TRAIN,"shelf2",3,4));
-		//ResultMessage message = new ResultMessage(true, sv);
 		boolean isSuccessful=false;
 		StockPO stock=null;
 		try{

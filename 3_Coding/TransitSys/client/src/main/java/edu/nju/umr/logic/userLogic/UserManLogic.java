@@ -68,8 +68,7 @@ public class UserManLogic implements UserManLSer{
 			UserPO user=userData.findUser(id);
 			userVO=new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId());
 			isSuccessful=true;
-		}catch(Exception e)
-		{
+		}catch(Exception e){ 
 			e.printStackTrace();
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, userVO);
@@ -89,8 +88,7 @@ public class UserManLogic implements UserManLSer{
 			e.printStackTrace();
 		}
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
-		for(int i=0;i<ar.size();i++)
-		{
+		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
 			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
 		}

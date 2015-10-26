@@ -31,10 +31,9 @@ public class LoginLogic implements LoginLSer{
 		UserVO userVO=null;
 		try{
 			UserPO user=loginData.findUser(id);
-			if(user.getPassword().equals(password)){
-				isSuccessful=true;
-				userVO=new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId());
-			}
+			isSuccessful=true;
+			userVO=new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId());
+			
 		}catch(Exception e)
 		{
 			e.printStackTrace();
