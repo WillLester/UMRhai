@@ -1,15 +1,14 @@
 package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.SendVO;
-import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
+import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
+import edu.nju.umr.po.order.SendPO;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.SendVO;
 
 public class SendOrderLogic implements SendOrderLSer{
 	SendOrderDFacSer dataFac;

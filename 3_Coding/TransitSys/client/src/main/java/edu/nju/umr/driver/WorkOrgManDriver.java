@@ -19,12 +19,14 @@ public class WorkOrgManDriver {
 		System.out.println(driver.work.reviseWork(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN)));
 		WorkVO workVO=(WorkVO)driver.work.checkWork("1").getMessage();
 		System.out.println(workVO.getName());
+		@SuppressWarnings("unchecked")
 		ArrayList<WorkVO> ar=(ArrayList<WorkVO>)driver.work.WorkList().getMessage();
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkVO work=ar.get(i);
 			System.out.println(work.getName());
 		}
+		@SuppressWarnings("unchecked")
 		ArrayList<OrgVO> or=(ArrayList<OrgVO>)driver.work.orgList().getMessage();
 		for(int i=0;i<ar.size();i++)
 		{
