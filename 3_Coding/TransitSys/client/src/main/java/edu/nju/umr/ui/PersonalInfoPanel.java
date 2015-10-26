@@ -1,5 +1,7 @@
 package edu.nju.umr.ui;
 
-public class PersonalInfoPanel {
+import javax.swing.JPanel;
+
+public class PersonalInfoPanel extends JPanel{
 
 }

@@ -1,4 +1,4 @@
-package edu.nju.umr.ui;
+package edu.nju.umr.ui.userManUI;
 
 import javax.swing.JPanel;
 
