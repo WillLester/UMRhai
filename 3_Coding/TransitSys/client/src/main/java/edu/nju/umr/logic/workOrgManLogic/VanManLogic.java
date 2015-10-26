@@ -20,7 +20,9 @@ public class VanManLogic implements VanManLSer{
 	public VanManLogic(){
 		try{
 			dataFac=(VanManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-			vanData=dataFac.getVanMan();
+			
+			dataFac.getVanMan();
+			//System.out.println(dataFac.getClass());
 		}
 		catch(Exception e)
 		{

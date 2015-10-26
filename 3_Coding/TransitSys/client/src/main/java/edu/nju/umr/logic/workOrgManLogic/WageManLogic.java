@@ -50,9 +50,18 @@ public class WageManLogic implements WageManLSer{
 		return message;
 	}
 
-	public boolean reviseWage(ArrayList<WageVO> wage) {
+	public boolean reviseWage(WageVO wage) {
 		// TODO 自动生成的方法存根
-		return true;
+		boolean isSuccessful=false;
+		try{
+			WagePO wagePO=new WagePO(wage.getWorkerId(),wage.getKind(),wage.getCommission(),wage.getMoney());
+			isSuccessful=wageData.reviseWage(wagePO);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return isSuccessful;
 	}
 
 	public ResultMessage getWage(String id) {

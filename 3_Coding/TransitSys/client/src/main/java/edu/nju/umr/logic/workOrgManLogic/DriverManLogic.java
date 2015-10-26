@@ -21,7 +21,7 @@ public class DriverManLogic implements DriverManLSer{
 	public DriverManLogic(){
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-			driverData=dataFac.getDriverMan();
+			driverData=(DriverManDSer)dataFac.getDriverMan();
 		}
 		catch(Exception e)
 		{

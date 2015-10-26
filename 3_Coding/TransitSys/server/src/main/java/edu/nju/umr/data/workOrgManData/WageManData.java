@@ -32,7 +32,8 @@ public class WageManData extends UnicastRemoteObject implements WageManDSer{
 
 	public WagePO getWage(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new WagePO("WorkerID1",Wage.MONTH,5,5);
+		WagePO wage=new WagePO("WorkID1",Wage.COMMISSION,5,5);
+		return wage;
 	}
 
 }
