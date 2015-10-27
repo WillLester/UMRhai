@@ -1,42 +1,19 @@
 package edu.nju.umr.ui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import javax.swing.JInternalFrame;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-public class FuncFrame extends JFrame {
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FuncFrame frame = new FuncFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public FuncFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+public class FuncFrame extends JInternalFrame {
+	static final int FRAME_X = MainFrame.FRAME_WIDTH/10;
+	static final int FRAME_Y = MainFrame.FRAME_HEIGHT/10;
+	static final int FRAME_WIDTH = (int)(MainFrame.FRAME_WIDTH*0.8);
+	static final int FRAME_HEIGHT = (int)(MainFrame.FRAME_HEIGHT*0.8);
+	public FuncFrame(String title) {
+		setTitle(title);
+		setResizable(true);
+		setMaximizable(true);
+		setIconifiable(true);
+		setClosable(true);
+		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 	}
 
 }
