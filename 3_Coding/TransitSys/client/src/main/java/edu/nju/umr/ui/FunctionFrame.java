@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 public class FunctionFrame extends JInternalFrame{
@@ -7,7 +8,10 @@ public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_Y = MainFrame.FRAME_HEIGHT/10;
 	static final int FRAME_WIDTH = (int)(MainFrame.FRAME_WIDTH*0.8);
 	static final int FRAME_HEIGHT = (int)(MainFrame.FRAME_HEIGHT*0.8);
+	private JDesktopPane desktop;
 	public FunctionFrame(String title) {
+		desktop = new JDesktopPane();
+		this.getContentPane().add(desktop);
 		setTitle(title);
 		setResizable(true);
 		setMaximizable(true);

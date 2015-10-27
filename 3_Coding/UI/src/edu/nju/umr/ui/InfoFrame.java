@@ -3,7 +3,7 @@ package edu.nju.umr.ui;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-public class InfoFrame extends JInternalFrame{
+public class InfoFrame extends JInternalFrame {
 	static final int FRAME_X = FunctionFrame.FRAME_WIDTH/20;
 	static final int FRAME_Y = FunctionFrame.FRAME_HEIGHT/20;
 	static final int FRAME_WIDTH = (int)(FunctionFrame.FRAME_WIDTH*0.9);
@@ -21,5 +21,9 @@ public class InfoFrame extends JInternalFrame{
 		setClosable(true);
 		setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
 		setTitle(title);
+		HintFrame hint = new HintFrame("提示",FRAME_X,FRAME_Y);
+		desktop.add(hint);
+		hint.setVisible(true);
 	}
+
 }

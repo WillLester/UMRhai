@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
-		FuncFrame funcFrame = new FuncFrame("功能");
+		FunctionFrame funcFrame = new FunctionFrame("功能");
 		desktop.add(funcFrame);
 		funcFrame.setVisible(true);
 	}

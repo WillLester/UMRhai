@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JInternalFrame;
 
-public class HintFrame extends JInternalFrame{
+public class HintFrame extends JInternalFrame {
 	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.3);
 	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.3);
 	/**
@@ -17,4 +17,5 @@ public class HintFrame extends JInternalFrame{
 		setBounds(x * 2, y * 2, FRAME_WIDTH, FRAME_HEIGHT);
 
 	}
+
 }
