@@ -1,15 +1,24 @@
 package edu.nju.umr.ui;
 
 import java.awt.EventQueue;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.Toolkit;
 
-import javax.swing.JFrame;
-
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 	static final int FRAME_X = Toolkit.getDefaultToolkit().getScreenSize().width/10;
 	static final int FRAME_Y = Toolkit.getDefaultToolkit().getScreenSize().height/10;
 	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.8);
-	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.8);
+	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.8);
 	/**
 	 * Launch the application.
 	 */
