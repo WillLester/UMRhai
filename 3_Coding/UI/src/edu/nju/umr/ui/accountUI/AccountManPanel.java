@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 
 import edu.nju.umr.ui.Constants;
 
-public class AccountManPanel extends JPanel{
+public class AccountManPanel extends JPanel {
 	private JTextField textField;
 	private JTextField nameField;
 	private JTextField balanceField;
@@ -27,7 +27,7 @@ public class AccountManPanel extends JPanel{
 		
 		JLabel accountLabel = new JLabel("账户管理");
 		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-		accountLabel.setBounds(3*Constants.WIDTH_DIV_9, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		accountLabel.setBounds(3*Constants.WIDTH_DIV_9, Constants.LABEL_Y/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(accountLabel);
 		
 		textField = new JTextField();

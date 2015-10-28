@@ -1,8 +1,8 @@
 package edu.nju.umr.ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -39,10 +39,14 @@ public class MainFrame extends JFrame {
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
-		this.getContentPane().add(new PersonalInfoPanel(),BorderLayout.CENTER);
-//		FunctionFrame funcFrame = new FunctionFrame("功能");
-//		desktop.add(funcFrame);
-//		funcFrame.setVisible(true);
-
+		FunctionFrame func = new FunctionFrame("账户管理");
+		desktop.add(func);
+		func.setVisible(true);
+		try {
+			func.setSelected(true);
+		} catch (PropertyVetoException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	}
 }
