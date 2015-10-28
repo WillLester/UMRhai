@@ -5,48 +5,78 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class PersonalInfoPanel extends JPanel{
+	private JTextField nameField;
+	private JTextField orgField;
+	private JTextField dutyField;
+	private JTextField mobileField;
+	
 	public PersonalInfoPanel() {
 		setLayout(null);
-		this.setSize(MainFrame.FRAME_WIDTH, MainFrame.FRAME_HEIGHT);
-		System.out.println(this.getWidth() + " " + this.getHeight());
+		this.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
+//		System.out.println(this.getWidth() + " " + this.getHeight());
 		JLabel personalInfo = new JLabel("个人信息");
 		personalInfo.setFont(new Font("华文新魏", Font.PLAIN, 25));
-		personalInfo.setBounds(this.getWidth()/9, this.getHeight()/10, this.getWidth()/9, this.getHeight()/7);
+		personalInfo.setBounds(Constants.LABEL_X, Constants.LABEL_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(personalInfo);
 		
 		JLabel name = new JLabel("姓名");
 		name.setFont(new Font("华文新魏", Font.PLAIN, 20));
-		name.setBounds(this.getWidth()/9, this.getHeight()/10 + 2 * this.getHeight()/10, this.getWidth()/9, this.getHeight()/20);
+		name.setBounds(Constants.LABEL_X, 3*Constants.LABEL_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(name);
 		
 		JLabel org = new JLabel("机构");
 		org.setFont(new Font("华文新魏", Font.PLAIN, 20));
-		org.setBounds(this.getWidth()/9, this.getHeight()/10 + 3 * this.getHeight()/10, this.getWidth()/9, this.getHeight()/20);
+		org.setBounds(Constants.LABEL_X, 4*Constants.LABEL_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(org);
 		
 		JLabel post = new JLabel("职务");
 		post.setFont(new Font("华文新魏", Font.PLAIN, 20));
-		post.setBounds(this.getWidth()/9, this.getHeight()/10 + 4 * this.getHeight()/10, this.getWidth()/9, this.getHeight()/20);
+		post.setBounds(Constants.LABEL_X, 5*Constants.LABEL_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(post);
 		
 		JLabel mobile = new JLabel("手机号");
 		mobile.setFont(new Font("华文新魏", Font.PLAIN, 20));
-		mobile.setBounds(this.getWidth()/9, this.getHeight()/10 + 5 * this.getHeight()/10, this.getWidth()/9, this.getHeight()/20);
+		mobile.setBounds(Constants.LABEL_X, 6*Constants.LABEL_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(mobile);
 		
 		JButton logoutButton = new JButton("注销");
-		logoutButton.setBounds(8 * this.getWidth()/10, this.getHeight()/20, this.getWidth()/18, this.getHeight()/20);
+		logoutButton.setBounds(12 * Constants.BUTTON_X, Constants.BUTTON_Y, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
 		add(logoutButton);
 		
 		JButton exitButton = new JButton("退出");
-		exitButton.setBounds(7 * this.getWidth()/8, this.getHeight()/20, this.getWidth()/18, this.getHeight()/20);
+		exitButton.setBounds(13 * Constants.BUTTON_X, Constants.BUTTON_Y, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
 		add(exitButton);
 		
-		JButton button = new JButton("返回主界面");
-		button.setBounds(8 * this.getWidth()/10, 8*this.getHeight()/10, this.getWidth()/10, this.getHeight()/20);
-		add(button);
+		JButton returnButton = new JButton("返回主界面");
+		returnButton.setBounds(12 * Constants.BUTTON_X, 8*Constants.BUTTON_Y, Constants.BUTTON_WIDTH_L, Constants.BUTTON_HEIGHT);
+		add(returnButton);
+		
+		nameField = new JTextField();
+		nameField.setEditable(false);
+		nameField.setBounds(Constants.TEXTFIELD_X, 3*Constants.TEXTFIELD_Y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		add(nameField);
+		nameField.setColumns(10);
+		
+		orgField = new JTextField();
+		orgField.setEditable(false);
+		orgField.setBounds(Constants.TEXTFIELD_X, 4*Constants.TEXTFIELD_Y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		add(orgField);
+		orgField.setColumns(10);
+		
+		dutyField = new JTextField();
+		dutyField.setEditable(false);
+		dutyField.setBounds(Constants.TEXTFIELD_X, 5*Constants.TEXTFIELD_Y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		add(dutyField);
+		dutyField.setColumns(10);
+		
+		mobileField = new JTextField();
+		mobileField.setEditable(false);
+		mobileField.setBounds(Constants.TEXTFIELD_X, 6*Constants.TEXTFIELD_Y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		add(mobileField);
+		mobileField.setColumns(10);
 
 	}
 }
