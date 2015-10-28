@@ -8,9 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.nju.umr.ui.Constants;
-
-public class CountInfoPanel extends JPanel{
+public class CountInfoPanel extends JPanel {
 	private JTextField nameField;
 	private JTextField mobileField;
 	private JTextField dutyField;
@@ -35,48 +33,48 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel countLabel = new JLabel("期初信息查看");
 		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-		countLabel.setBounds(3*Constants.WIDTH_DIV_9, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		countLabel.setBounds(375, 37, 142, 27);
 		add(countLabel);
 		
 		JLabel orgLabel = new JLabel("机构信息");
 		orgLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		orgLabel.setBounds(Constants.WIDTH_DIV_15*9/5, Constants.HEIGHT_DIV_10*13/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		orgLabel.setBounds(130, 81, 76, 15);
 		add(orgLabel);
 		
 		JComboBox orgCombo = new JComboBox();
-		orgCombo.setBounds(Constants.WIDTH_DIV_15*5/6, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		orgCombo.setBounds(63, 102, 200, 21);
 		add(orgCombo);
 		
 		JLabel stockLabel = new JLabel("库存信息");
 		stockLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		stockLabel.setBounds(Constants.WIDTH_DIV_15*6*19/20, Constants.HEIGHT_DIV_10*13/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		stockLabel.setBounds(414, 81, 65, 15);
 		add(stockLabel);
 		
 		JComboBox stockCombo = new JComboBox();
-		stockCombo.setBounds(Constants.WIDTH_DIV_15*5*19/20, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		stockCombo.setBounds(346, 102, 200, 21);
 		add(stockCombo);
 		
 		JLabel accountLabel = new JLabel("账户信息");
 		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		accountLabel.setBounds(710, Constants.HEIGHT_DIV_10*13/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		accountLabel.setBounds(710, 81, 76, 15);
 		add(accountLabel);
 		
 		JComboBox accountCombo = new JComboBox();
-		accountCombo.setBounds(645, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		accountCombo.setBounds(645, 102, 200, 21);
 		add(accountCombo);
 		
 		JLabel workerLabel = new JLabel("人员信息");
 		workerLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		workerLabel.setBounds(Constants.WIDTH_DIV_15*9/5, Constants.HEIGHT_DIV_10*2*11/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		workerLabel.setBounds(130, 133, 76, 15);
 		add(workerLabel);
 		
 		JComboBox workerCombo = new JComboBox();
-		workerCombo.setBounds(Constants.WIDTH_DIV_15*5/6, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		workerCombo.setBounds(63, 158, 200, 21);
 		add(workerCombo);
 		
 		JLabel nameLabel = new JLabel("姓名");
 		nameLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		nameLabel.setBounds(Constants.WIDTH_DIV_15*4/5, 189, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		nameLabel.setBounds(54, 189, 45, 27);
 		add(nameLabel);
 		
 		nameField = new JTextField();
@@ -87,7 +85,7 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel mobileLabel = new JLabel("手机号");
 		mobileLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		mobileLabel.setBounds(Constants.WIDTH_DIV_15*4/5, 226, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		mobileLabel.setBounds(54, 226, 54, 27);
 		add(mobileLabel);
 		
 		mobileField = new JTextField();
@@ -98,7 +96,7 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel dutyLabel = new JLabel("职务");
 		dutyLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		dutyLabel.setBounds(Constants.WIDTH_DIV_15*4/5, 263, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		dutyLabel.setBounds(54, 263, 54, 27);
 		add(dutyLabel);
 		
 		dutyField = new JTextField();
@@ -108,17 +106,17 @@ public class CountInfoPanel extends JPanel{
 		dutyField.setColumns(10);
 		
 		JComboBox vanCombo = new JComboBox();
-		vanCombo.setBounds(Constants.WIDTH_DIV_15*5/6, 333, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		vanCombo.setBounds(63, 333, 200, 21);
 		add(vanCombo);
 		
 		JLabel vanLabel = new JLabel("车辆信息");
 		vanLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		vanLabel.setBounds(Constants.WIDTH_DIV_15*9/5, 308, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		vanLabel.setBounds(130, 308, 76, 15);
 		add(vanLabel);
 		
 		JLabel idLabel = new JLabel("ID");
 		idLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		idLabel.setBounds(54, 367, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		idLabel.setBounds(54, 367, 54, 15);
 		add(idLabel);
 		
 		idField = new JTextField();
@@ -129,7 +127,7 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel plateLabel = new JLabel("车牌号");
 		plateLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		plateLabel.setBounds(54, 392, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		plateLabel.setBounds(54, 392, 54, 27);
 		add(plateLabel);
 		
 		plateField = new JTextField();
@@ -140,7 +138,7 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel dateLabel = new JLabel("服役时间");
 		dateLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		dateLabel.setBounds(54, 426, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		dateLabel.setBounds(54, 426, 65, 21);
 		add(dateLabel);
 		
 		dateField = new JTextField();
@@ -151,11 +149,11 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel goodLabel = new JLabel("货物信息");
 		goodLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		goodLabel.setBounds(Constants.WIDTH_DIV_15*6*19/20, Constants.HEIGHT_DIV_10*2*11/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		goodLabel.setBounds(414, 133, 65, 15);
 		add(goodLabel);
 		
 		JComboBox goodCombo = new JComboBox();
-		goodCombo.setBounds(Constants.WIDTH_DIV_15*5*19/20, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		goodCombo.setBounds(346, 158, 200, 21);
 		add(goodCombo);
 		
 		JLabel expressLabel = new JLabel("快递单号");
@@ -263,4 +261,5 @@ public class CountInfoPanel extends JPanel{
 		add(button);
 
 	}
+
 }

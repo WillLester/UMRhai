@@ -4,6 +4,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 import edu.nju.umr.ui.accountUI.AccountManPanel;
+import edu.nju.umr.ui.accountUI.CountInfoPanel;
 
 public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/10;
@@ -20,6 +21,7 @@ public class FunctionFrame extends JInternalFrame{
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
-		this.add(new AccountManPanel());
+		this.add(new CountInfoPanel());
+		System.out.println(this.getWidth()+" " + this.getHeight());
 	}
 }
