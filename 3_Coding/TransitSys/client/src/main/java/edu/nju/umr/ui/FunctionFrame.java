@@ -17,11 +17,13 @@ public class FunctionFrame extends JInternalFrame{
 		this.getContentPane().add(desktop);
 		setTitle(title);
 		setResizable(true);
-		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
-		this.add(new CountInfoPanel());
+//		this.add(new CountInfoPanel());
 		System.out.println(this.getWidth()+" " + this.getHeight());
+		InfoFrame info = new InfoFrame("期初信息");
+		desktop.add(info);
+		info.setVisible(true);
 	}
 }

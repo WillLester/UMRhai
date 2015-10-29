@@ -7,10 +7,10 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
-	static final int FRAME_X = Toolkit.getDefaultToolkit().getScreenSize().width/10;
-	static final int FRAME_Y = Toolkit.getDefaultToolkit().getScreenSize().height/10;
-	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.8);
-	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.8);
+	static final int FRAME_X = Toolkit.getDefaultToolkit().getScreenSize().width/20;
+	static final int FRAME_Y = Toolkit.getDefaultToolkit().getScreenSize().height/40;
+	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.9);
+	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.9);
 	private JDesktopPane desktop;
 
 	/**
