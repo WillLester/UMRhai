@@ -1,12 +1,9 @@
 package edu.nju.umr.ui;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-import edu.nju.umr.ui.accountUI.AccountManPanel;
+import edu.nju.umr.ui.accountUI.CountPanel;
 
 public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/20;
@@ -24,9 +21,9 @@ public class FunctionFrame extends JInternalFrame{
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
 		this.setVisible(true);;
-//		this.getContentPane().add(new AccountManPanel());
-		InfoFrame info = new InfoFrame("期初信息");
-		desktop.add(info);
-		info.setVisible(true);
+		this.getContentPane().add(new CountPanel());
+//		InfoFrame info = new InfoFrame("期初信息");
+//		desktop.add(info);
+//		info.setVisible(true);
 	}
 }

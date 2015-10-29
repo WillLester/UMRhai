@@ -24,6 +24,7 @@ public class MainFrame extends JFrame{
 		this.setVisible(true);
 		FunctionFrame func = new FunctionFrame("账户管理");
 		desktop.add(func);
+		func.setVisible(true);
 		System.out.println(this.getWidth() + " " + this.getHeight());
 	}
 }
