@@ -58,7 +58,7 @@ public class CountInfoPanel extends JPanel{
 		
 		JLabel accountLabel = new JLabel("账户信息");
 		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
-		accountLabel.setBounds(710, Constants.HEIGHT_DIV_10*13/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
+		accountLabel.setBounds(Constants.WIDTH_DIV_15*10*24/25, Constants.HEIGHT_DIV_10*13/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S/2);
 		add(accountLabel);
 		
 		JComboBox accountCombo = new JComboBox();
