@@ -20,7 +20,7 @@ public class FunctionFrame extends JInternalFrame{
 		setIconifiable(true);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
-		this.setVisible(true);;
+		this.setVisible(true);
 		this.getContentPane().add(new CountPanel());
 //		InfoFrame info = new InfoFrame("期初信息");
 //		desktop.add(info);

@@ -5,7 +5,7 @@ import javax.swing.JInternalFrame;
 
 public class InfoFrame extends JInternalFrame {
 	static final int FRAME_X = FunctionFrame.FRAME_WIDTH/20;
-	static final int FRAME_Y = FunctionFrame.FRAME_HEIGHT/20;
+	static final int FRAME_Y = FunctionFrame.FRAME_HEIGHT/40;
 	static final int FRAME_WIDTH = (int)(FunctionFrame.FRAME_WIDTH*0.9);
 	static final int FRAME_HEIGHT = (int)(FunctionFrame.FRAME_HEIGHT*0.9);
 	private JDesktopPane desktop;

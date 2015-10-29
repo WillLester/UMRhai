@@ -9,8 +9,7 @@ public class Constants {
 	public static final int LABEL_HEIGHT_S = FRAME_HEIGHT/20;
 	public static final int WIDTH_DIV_15 = FRAME_WIDTH/15;
 	public static final int HEIGHT_DIV_20 = FRAME_HEIGHT/20;
-	public static final int BUTTON_WIDTH_S = FRAME_WIDTH/18;
-	public static final int BUTTON_WIDTH_L = FRAME_WIDTH/10;
+	public static final int BUTTON_WIDTH = FRAME_WIDTH*2/25;
 	public static final int BUTTON_HEIGHT = FRAME_HEIGHT/25;
 	public static final int WIDTH_DIV_5 = FRAME_WIDTH/5;
 	public static final int HEIGHT_DIV_10 = FRAME_HEIGHT/10;

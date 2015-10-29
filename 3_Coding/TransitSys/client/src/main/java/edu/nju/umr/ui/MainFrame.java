@@ -1,15 +1,13 @@
 package edu.nju.umr.ui;
 
-import java.awt.Toolkit;
-
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
-	static final int FRAME_X = Toolkit.getDefaultToolkit().getScreenSize().width/20;
-	static final int FRAME_Y = Toolkit.getDefaultToolkit().getScreenSize().height/40;
-	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.9);
-	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.9);
+	static final int FRAME_X = 1366/20;
+	static final int FRAME_Y = 768/40;
+	static final int FRAME_WIDTH = (int)(1366*0.9);
+	static final int FRAME_HEIGHT = (int)(768*0.9);
 	private JDesktopPane desktop;
 
 	/**

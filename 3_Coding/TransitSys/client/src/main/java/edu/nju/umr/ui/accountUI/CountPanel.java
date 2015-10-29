@@ -35,7 +35,7 @@ public class CountPanel extends JPanel{
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
 		
 		countList = new JTable();
@@ -64,35 +64,35 @@ public class CountPanel extends JPanel{
 		add(accountLabel);
 		
 		JComboBox orgList = new JComboBox();
-		orgList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*23/10, 161, 21);
+		orgList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*23/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
 		add(orgList);
 		
 		JComboBox stockList = new JComboBox();
-		stockList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*29/10, 161, 21);
+		stockList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*29/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
 		add(stockList);
 		
 		JComboBox accountList = new JComboBox();
-		accountList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*35/10, 161, 21);
+		accountList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*35/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
 		add(accountList);
 		
 		JButton addButton = new JButton("确认新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(910, Constants.HEIGHT_DIV_10*41/10, Constants.BUTTON_WIDTH_L*4/5, Constants.BUTTON_HEIGHT);
+		addButton.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*41/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(340, 441, 93, 23);
+		deleteButton.setBounds(Constants.WIDTH_DIV_9*27/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(deleteButton);
 		
 		JButton checkButton = new JButton("查看");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkButton.setBounds(492, 441, 93, 23);
+		checkButton.setBounds(Constants.WIDTH_DIV_9*37/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(checkButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(899, 553, 93, 23);
+		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(exitButton);
 
 	}

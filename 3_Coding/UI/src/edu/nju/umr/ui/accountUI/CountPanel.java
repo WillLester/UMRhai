@@ -35,7 +35,7 @@ public class CountPanel extends JPanel {
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+600, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+600, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
 		
 		table = new JTable();
