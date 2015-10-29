@@ -17,11 +17,12 @@ public class InfoFrame extends JInternalFrame{
 	public InfoFrame(String title) {
 		desktop = new JDesktopPane();
 		this.getContentPane().add(desktop);
-		setResizable(true);
-		setIconifiable(true);
+		setResizable(false);
 		setClosable(true);
+		setIconifiable(true);
 		setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
 		setTitle(title);
+		System.out.println(this.getWidth() +" " + this.getHeight());
 		this.add(new CountInfoPanel());
 	}
 }

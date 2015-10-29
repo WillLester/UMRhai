@@ -1,6 +1,5 @@
 package edu.nju.umr.ui;
 
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.JDesktopPane;
@@ -22,8 +21,9 @@ public class MainFrame extends JFrame{
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
+		this.setVisible(true);
 		FunctionFrame func = new FunctionFrame("账户管理");
 		desktop.add(func);
-		func.setVisible(true);
+		System.out.println(this.getWidth() + " " + this.getHeight());
 	}
 }

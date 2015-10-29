@@ -13,11 +13,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.ui.Constants;
+import javax.swing.JTable;
 
 public class AccountManPanel extends JPanel {
 	private JTextField textField;
 	private JTextField nameField;
 	private JTextField balanceField;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -36,35 +38,11 @@ public class AccountManPanel extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBackground(Color.BLACK);
-		separator.setForeground(Color.DARK_GRAY);
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(Constants.WIDTH_DIV_5/3 + 5*Constants.TEXTFIELD_WIDTH_S/2, Constants.HEIGHT_DIV_10*2, 1, 7*Constants.TEXTFIELD_HEIGHT);
-		add(separator);
-		
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		searchButton.setBounds(10*Constants.WIDTH_DIV_15*19/20, Constants.HEIGHT_DIV_10, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
 		add(searchButton);
-		
-		JButton nameButton = new JButton("账户名称");
-		nameButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		nameButton.setBounds(Constants.WIDTH_DIV_5/3, Constants.HEIGHT_DIV_10*2-Constants.BUTTON_HEIGHT, 5*Constants.TEXTFIELD_WIDTH_S/2, Constants.BUTTON_HEIGHT);
-		add(nameButton);
-		
-		JButton balanceButton = new JButton("账户余额");
-		balanceButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		balanceButton.setBounds(Constants.WIDTH_DIV_5/3 + 5*Constants.TEXTFIELD_WIDTH_S/2, Constants.HEIGHT_DIV_10*2-Constants.BUTTON_HEIGHT, 5*Constants.TEXTFIELD_WIDTH_S/2, Constants.BUTTON_HEIGHT);
-		add(balanceButton);
-		
-		JList accountList = new JList();
-		accountList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		accountList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		accountList.setBounds(Constants.WIDTH_DIV_5/3, Constants.HEIGHT_DIV_10*2, 5*Constants.TEXTFIELD_WIDTH_S, 7*Constants.TEXTFIELD_HEIGHT);
-		add(accountList);
-		accountList.setVisible(true);
 		
 		nameField = new JTextField();
 		nameField.setBounds(Constants.WIDTH_DIV_15*3, Constants.HEIGHT_DIV_10*5, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
@@ -111,6 +89,11 @@ public class AccountManPanel extends JPanel {
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(Constants.WIDTH_DIV_15*8, Constants.HEIGHT_DIV_10*6, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
 		add(exitButton);
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setBounds(188, 122, 450, 168);
+		add(table);
 
 	}
 }
