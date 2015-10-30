@@ -1,15 +1,12 @@
 package edu.nju.umr.ui.stockUI;
 
-import java.awt.Font;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
-import edu.nju.umr.ui.Constants;
-
-public class StockWarningPanel extends JPanel{
+public class StockWarningPanel extends JPanel {
 	private JTextField planeField;
 	private JTextField trainField;
 	private JTextField vanField;
@@ -68,18 +65,19 @@ public class StockWarningPanel extends JPanel{
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(428, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.setBounds(428, 407, 93, 23);
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消修改");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cancelButton.setBounds(555, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancelButton.setBounds(555, 407, 93, 23);
 		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(746, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.setBounds(746, 407, 93, 23);
 		add(exitButton);
 
 	}
+
 }
