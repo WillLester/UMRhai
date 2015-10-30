@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.OrderNewUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -11,19 +11,20 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-public class RecipientPanel extends JPanel {
+public class ArrivePanel extends JPanel {
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
 	 */
-	public RecipientPanel() {
+	public ArrivePanel() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("营业厅到达单");
+		JLabel lblNewLabel = new JLabel("中转中心到达单");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(382, 45, 242, 67);
+		lblNewLabel.setBounds(364, 10, 242, 67);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("中转单编号");
@@ -41,6 +42,16 @@ public class RecipientPanel extends JPanel {
 		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(342, 268, 107, 24);
 		add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("中转中心编号");
+		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(329, 107, 120, 24);
+		add(lblNewLabel_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(474, 110, 193, 24);
+		add(textField_1);
+		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("出发地");
 		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));

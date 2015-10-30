@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.OrderNewUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -24,27 +24,27 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 
-public class TransitPanel extends JPanel {
+public class CenterLoadingPanel extends JPanel {
 	private JTextField textField_1;
+	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField;
 	private JTextField textField_4;
 	private JTable table;
-	private JTextField textField_2;
 
 	/**
 	 * Create the panel.
 	 */
-	public TransitPanel() {
+	public CenterLoadingPanel() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("中转单");
+		JLabel lblNewLabel = new JLabel("中转中心装车单");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		lblNewLabel.setBounds(392, 10, 243, 67);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("中转单编号");
+		JLabel lblNewLabel_2 = new JLabel("汽运编号");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(355, 87, 120, 24);
@@ -95,7 +95,7 @@ public class TransitPanel extends JPanel {
 		label_2.setBounds(692, 122, 25, 22);
 		add(label_2);
 		
-		JLabel lblNewLabel_4 = new JLabel("出发地");
+		JLabel lblNewLabel_4 = new JLabel("到达地");
 		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
 		lblNewLabel_4.setBounds(242, 155, 85, 24);
 		add(lblNewLabel_4);
@@ -105,7 +105,18 @@ public class TransitPanel extends JPanel {
 		comboBox.setBounds(307, 155, 87, 25);
 		add(comboBox);
 		
-		JLabel label_4 = new JLabel("监装员");
+		JLabel label_3 = new JLabel("监装员");
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(421, 157, 85, 24);
+		add(label_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_2.setColumns(10);
+		textField_2.setBounds(485, 157, 85, 25);
+		add(textField_2);
+		
+		JLabel label_4 = new JLabel("押运员");
 		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
 		label_4.setBounds(609, 157, 85, 24);
 		add(label_4);
@@ -116,7 +127,7 @@ public class TransitPanel extends JPanel {
 		textField_3.setBounds(674, 158, 85, 25);
 		add(textField_3);
 		
-		JLabel label_5 = new JLabel("航班号");
+		JLabel label_5 = new JLabel("车辆代号");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
 		label_5.setBounds(220, 204, 120, 24);
@@ -130,7 +141,7 @@ public class TransitPanel extends JPanel {
 		
 		JLabel label_6 = new JLabel("运费：");
 		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_6.setBounds(696, 204, 232, 24);
+		label_6.setBounds(599, 204, 232, 24);
 		add(label_6);
 		
 		JLabel label_7 = new JLabel("订单条形码号");
@@ -202,28 +213,6 @@ public class TransitPanel extends JPanel {
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(542, 499, 93, 23);
 		add(button_1);
-		
-		JLabel label_3 = new JLabel("到达地");
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(421, 155, 85, 24);
-		add(label_3);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(485, 157, 87, 25);
-		add(comboBox_1);
-		
-		JLabel label_9 = new JLabel("货柜号");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_9.setBounds(506, 204, 120, 24);
-		add(label_9);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		textField_2.setBounds(609, 203, 69, 25);
-		add(textField_2);
 		
 
 	}

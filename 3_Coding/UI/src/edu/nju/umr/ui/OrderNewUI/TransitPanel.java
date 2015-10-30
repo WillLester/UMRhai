@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.OrderNewUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

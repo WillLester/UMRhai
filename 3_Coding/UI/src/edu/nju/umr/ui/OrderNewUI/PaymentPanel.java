@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.OrderNewUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -24,114 +24,124 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 
-public class StockOutPanel extends JPanel {
-	private JTextField textField_1;
+public class PaymentPanel extends JPanel {
+	private JTextField textField_2;
+	private JTextField textField_3;
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel() {
+	public PaymentPanel() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("出库单");
+		JLabel lblNewLabel = new JLabel("付款单");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		lblNewLabel.setBounds(392, 10, 243, 67);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("快递编号");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(355, 87, 120, 24);
-		add(lblNewLabel_2);
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_1.setBounds(485, 87, 165, 25);
-		add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("出库日期");
+		JLabel lblNewLabel_3 = new JLabel("付款日期");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(297, 134, 120, 24);
+		lblNewLabel_3.setBounds(286, 98, 120, 24);
 		add(lblNewLabel_3);
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
 		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(411, 133, 85, 26);
+		spinner.setBounds(392, 97, 85, 26);
 		add(spinner);
 		
 		JLabel label = new JLabel("年");
 		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(506, 135, 25, 22);
+		label.setBounds(487, 99, 25, 22);
 		add(label);
 		
 		JSpinner spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setBounds(541, 133, 48, 26);
+		spinner_1.setBounds(522, 97, 48, 26);
 		add(spinner_1);
 		
 		JLabel label_1 = new JLabel("月");
 		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(599, 135, 25, 22);
+		label_1.setBounds(580, 99, 25, 22);
 		add(label_1);
 		
 		JSpinner spinner_2 = new JSpinner();
 		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
 		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(634, 133, 48, 26);
+		spinner_2.setBounds(615, 97, 48, 26);
 		add(spinner_2);
 		
 		JLabel label_2 = new JLabel("日");
 		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(693, 135, 25, 22);
+		label_2.setBounds(673, 99, 25, 22);
 		add(label_2);
 		
-		JLabel lblNewLabel_4 = new JLabel("目的地");
-		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(355, 179, 85, 24);
-		add(lblNewLabel_4);
+		JLabel label_3 = new JLabel("付款人");
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(235, 175, 85, 24);
+		add(label_3);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(431, 179, 87, 25);
-		add(comboBox);
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_2.setColumns(10);
+		textField_2.setBounds(302, 174, 85, 25);
+		add(textField_2);
+		
+		JLabel label_4 = new JLabel("付款金额");
+		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_4.setBounds(397, 175, 85, 24);
+		add(label_4);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_3.setColumns(10);
+		textField_3.setBounds(487, 174, 85, 25);
+		add(textField_3);
+		
+		JLabel label_8 = new JLabel("备注");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_8.setBounds(429, 291, 130, 24);
+		add(label_8);
 		
 		JButton button = new JButton("确定");
 		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(347, 434, 93, 23);
+		button.setBounds(342, 499, 93, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(541, 434, 93, 23);
+		button_1.setBounds(542, 499, 93, 23);
 		add(button_1);
 		
-		JLabel label_7 = new JLabel("装运形式");
-		label_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_7.setBounds(541, 179, 85, 24);
-		add(label_7);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(634, 179, 87, 25);
-		add(comboBox_1);
-		
-		JLabel label_3 = new JLabel("中转单/汽运编号");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(315, 282, 160, 24);
-		add(label_3);
+		JLabel label_5 = new JLabel("付款账号");
+		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_5.setBounds(597, 175, 85, 24);
+		add(label_5);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("宋体", Font.PLAIN, 20));
 		textField.setColumns(10);
-		textField.setBounds(485, 281, 233, 25);
+		textField.setBounds(692, 174, 120, 25);
 		add(textField);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(274, 325, 435, 154);
+		add(textArea);
+		
+		JLabel label_6 = new JLabel("条目");
+		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_6.setBounds(437, 237, 85, 24);
+		add(label_6);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
+		comboBox.setBounds(499, 237, 87, 25);
+		add(comboBox);
 		
 
 	}

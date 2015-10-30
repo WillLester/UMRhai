@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.OrderNewUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -24,17 +24,20 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 
-public class StockOutPanel extends JPanel {
+public class StockInPanel extends JPanel {
 	private JTextField textField_1;
+	private JTextField textField_2;
 	private JTextField textField;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel() {
+	public StockInPanel() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("出库单");
+		JLabel lblNewLabel = new JLabel("入库单");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		lblNewLabel.setBounds(392, 10, 243, 67);
@@ -52,7 +55,7 @@ public class StockOutPanel extends JPanel {
 		add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("出库日期");
+		JLabel lblNewLabel_3 = new JLabel("入库日期");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(297, 134, 120, 24);
@@ -93,45 +96,67 @@ public class StockOutPanel extends JPanel {
 		
 		JLabel lblNewLabel_4 = new JLabel("目的地");
 		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(355, 179, 85, 24);
+		lblNewLabel_4.setBounds(378, 179, 85, 24);
 		add(lblNewLabel_4);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(431, 179, 87, 25);
+		comboBox.setBounds(455, 179, 87, 25);
 		add(comboBox);
+		
+		JLabel label_3 = new JLabel("区号");
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(355, 242, 85, 24);
+		add(label_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_2.setColumns(10);
+		textField_2.setBounds(411, 241, 48, 25);
+		add(textField_2);
+		
+		JLabel label_4 = new JLabel("排号");
+		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_4.setBounds(521, 242, 85, 24);
+		add(label_4);
 		
 		JButton button = new JButton("确定");
 		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(347, 434, 93, 23);
+		button.setBounds(347, 453, 93, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(541, 434, 93, 23);
+		button_1.setBounds(542, 453, 93, 23);
 		add(button_1);
-		
-		JLabel label_7 = new JLabel("装运形式");
-		label_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_7.setBounds(541, 179, 85, 24);
-		add(label_7);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(634, 179, 87, 25);
-		add(comboBox_1);
-		
-		JLabel label_3 = new JLabel("中转单/汽运编号");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(315, 282, 160, 24);
-		add(label_3);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("宋体", Font.PLAIN, 20));
 		textField.setColumns(10);
-		textField.setBounds(485, 281, 233, 25);
+		textField.setBounds(569, 242, 48, 25);
 		add(textField);
+		
+		JLabel label_5 = new JLabel("架号");
+		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_5.setBounds(355, 293, 85, 24);
+		add(label_5);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_3.setColumns(10);
+		textField_3.setBounds(411, 292, 48, 25);
+		add(textField_3);
+		
+		JLabel label_6 = new JLabel("位号");
+		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_6.setBounds(521, 293, 85, 24);
+		add(label_6);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		textField_4.setColumns(10);
+		textField_4.setBounds(569, 292, 48, 25);
+		add(textField_4);
 		
 
 	}
