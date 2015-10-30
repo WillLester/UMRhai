@@ -3,10 +3,7 @@ package edu.nju.umr.ui;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-import edu.nju.umr.ui.accountUI.CountPanel;
-import edu.nju.umr.ui.orderApproveUI.OrderApprovePanel;
-import edu.nju.umr.ui.stockUI.StockCheckNowPanel;
-import edu.nju.umr.ui.stockUI.StockCheckPanel;
+import edu.nju.umr.ui.stockUI.StockDividePanel;
 
 public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/20;
@@ -24,7 +21,7 @@ public class FunctionFrame extends JInternalFrame{
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
 		this.setVisible(true);
-		this.getContentPane().add(new StockCheckNowPanel());
+		this.getContentPane().add(new StockDividePanel());
 //		InfoFrame info = new InfoFrame("期初信息");
 //		desktop.add(info);
 //		info.setVisible(true);

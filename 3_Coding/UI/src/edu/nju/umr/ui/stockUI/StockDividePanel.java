@@ -1,17 +1,17 @@
 package edu.nju.umr.ui.stockUI;
 
-import java.awt.Font;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.ui.Constants;
 
-public class StockDividePanel extends JPanel{
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
+
+public class StockDividePanel extends JPanel {
 	private JTextField searchField;
 	private JTable shelfList;
 	private JTextField idField;
@@ -86,27 +86,27 @@ public class StockDividePanel extends JPanel{
 		
 		JButton addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(332, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		addButton.setBounds(332, 541, 93, 23);
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(455, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		deleteButton.setBounds(455, 541, 93, 23);
 		add(deleteButton);
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(578, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.setBounds(578, 541, 93, 23);
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消修改");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cancelButton.setBounds(701, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancelButton.setBounds(701, 541, 93, 23);
 		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(881, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.setBounds(881, 541, 93, 23);
 		add(exitButton);
 	}
 }
