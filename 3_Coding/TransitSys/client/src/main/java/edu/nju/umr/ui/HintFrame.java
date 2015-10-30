@@ -1,12 +1,10 @@
 package edu.nju.umr.ui;
 
-import java.awt.Toolkit;
-
 import javax.swing.JInternalFrame;
 
 public class HintFrame extends JInternalFrame{
-	static final int FRAME_WIDTH = (int)(Toolkit.getDefaultToolkit().getScreenSize().width*0.3);
-	static final int FRAME_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().height*0.3);
+	static final int FRAME_WIDTH = (int)(1366*0.3);
+	static final int FRAME_HEIGHT = (int)(768*0.3);
 	/**
 	 * Create the frame.
 	 */
