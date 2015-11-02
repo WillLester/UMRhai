@@ -27,9 +27,7 @@ public class UserDriver {
 		System.out.println(user.newUser(userNew));
 		System.out.println(user.deleteUser("00001"));
 		System.out.println(user.reviseUser(userNew));
-		UserVO voGetted = (UserVO) user.checkUser("00001").getMessage();
-		System.out.println(voGetted.getId() + " " + voGetted.getPassword() + " " + voGetted.getOrgId() + " " + voGetted.getJuri() + " " + voGetted.getName() + " " + voGetted.getMobile());
-		ArrayList<UserVO> voList = (ArrayList<UserVO>) user.userList().getMessage();
+		ArrayList<UserVO> voList = (ArrayList<UserVO>) user.findUser("").getMessage();
 		for(UserVO user:voList){
 			System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 		}

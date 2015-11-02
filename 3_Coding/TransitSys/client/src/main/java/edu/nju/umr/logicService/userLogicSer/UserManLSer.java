@@ -7,6 +7,5 @@ public interface UserManLSer {
 	public boolean newUser(UserVO user);
 	public boolean deleteUser(String id);
 	public boolean reviseUser(UserVO user);
-	public ResultMessage checkUser(String id);
-	public ResultMessage userList();
+	public ResultMessage findUser(String keyword);
 }

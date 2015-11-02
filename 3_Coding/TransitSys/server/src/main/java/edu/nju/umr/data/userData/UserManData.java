@@ -15,9 +15,12 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		// TODO 自动生成的构造函数存根
 	}
 
-	public UserPO findUser(String id) throws RemoteException {
+	public ArrayList<UserPO> findUser(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
+		ArrayList<UserPO> ar=new ArrayList<UserPO>();
+		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊"));
+		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2","一个机构编号啊2"));
+		return ar;
 	}
 
 	public boolean addUser(UserPO user) throws RemoteException {
@@ -34,13 +37,4 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		// TODO 自动生成的方法存根
 		return true;
 	}
-
-	public ArrayList<UserPO> userList() throws RemoteException {
-		// TODO 自动生成的方法存根
-		ArrayList<UserPO> ar=new ArrayList<UserPO>();
-		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊"));
-		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2","一个机构编号啊2"));
-		return ar;
-	}
-
 }

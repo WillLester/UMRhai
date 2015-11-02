@@ -60,27 +60,12 @@ public class UserManLogic implements UserManLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage checkUser(String id) {
-		// TODO 自动生成的方法存根
-		UserVO userVO=null;
-		boolean isSuccessful=false;
-		try{
-			UserPO user=userData.findUser(id);
-			userVO=new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId());
-			isSuccessful=true;
-		}catch(Exception e){ 
-			e.printStackTrace();
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, userVO);
-		return message;
-	}
-
-	public ResultMessage userList() {
+	public ResultMessage findUser(String keyword) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
 		try{
-			ar=userData.userList();
+			ar=userData.findUser(keyword);
 			isSuccessful=true;
 		}
 		catch(Exception e)
@@ -95,5 +80,4 @@ public class UserManLogic implements UserManLSer{
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
-
 }
