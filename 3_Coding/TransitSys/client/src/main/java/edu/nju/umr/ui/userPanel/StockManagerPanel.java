@@ -14,18 +14,18 @@ import javax.swing.border.EmptyBorder;
 
 public class StockManagerPanel extends JFrame{
 	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					StockManagerPanel frame = new StockManagerPanel();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StockManagerPanel frame = new StockManagerPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public StockManagerPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

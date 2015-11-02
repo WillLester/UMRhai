@@ -14,18 +14,18 @@ import javax.swing.border.EmptyBorder;
 
 public class FinanceSuperPanel extends JFrame{
 	private JPanel contentPane;
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FinanceSuperPanel frame = new FinanceSuperPanel();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FinanceSuperPanel frame = new FinanceSuperPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public FinanceSuperPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

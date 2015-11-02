@@ -13,18 +13,18 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class TransitCenterPanel extends JFrame{
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					TransitCenterPanel frame = new TransitCenterPanel();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TransitCenterPanel frame = new TransitCenterPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public TransitCenterPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

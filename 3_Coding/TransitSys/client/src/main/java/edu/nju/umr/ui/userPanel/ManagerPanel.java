@@ -1,6 +1,7 @@
 package edu.nju.umr.ui.userPanel;
 
 import java.awt.Container;
+import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -13,6 +14,18 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class ManagerPanel extends JFrame{
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ManagerPanel frame = new ManagerPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	public ManagerPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1229, 691);

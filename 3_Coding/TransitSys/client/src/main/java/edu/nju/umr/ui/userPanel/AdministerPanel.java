@@ -21,19 +21,19 @@ public class AdministerPanel extends JFrame {
 	private JTextField nameTxt;
 	private JTextField levelTxt;
 	
-//
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AdministerPanel frame = new AdministerPanel();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AdministerPanel frame = new AdministerPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public AdministerPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

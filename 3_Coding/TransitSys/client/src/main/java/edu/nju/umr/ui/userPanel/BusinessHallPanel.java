@@ -21,7 +21,18 @@ public class BusinessHallPanel extends JFrame {
 	private JTextField nameTxt;
 	private JTextField levelTxt;
 	
-
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					BusinessHallPanel frame = new BusinessHallPanel();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	public BusinessHallPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1229, 691);
