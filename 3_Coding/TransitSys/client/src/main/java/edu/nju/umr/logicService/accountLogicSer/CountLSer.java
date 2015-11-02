@@ -7,8 +7,9 @@ public interface CountLSer {
 	public boolean newCount(CountVO count);
 	public ResultMessage checkInitInfo();
 	public ResultMessage orgList();
-	public ResultMessage getWorkers(String id);
-	public ResultMessage getVans(String id);
-	public ResultMessage getStock(String id);
-	public ResultMessage getAccount(String id);
+//	public ResultMessage getWorkers(String id);
+//	public ResultMessage getVans(String id);
+	public ResultMessage getStocks();
+//	public ResultMessage getStock(String stockId);
+	public ResultMessage getAccount();
 }

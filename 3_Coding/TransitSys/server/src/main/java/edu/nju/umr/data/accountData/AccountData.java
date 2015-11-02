@@ -42,10 +42,10 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 		return true;
 	}
 
-	public AccountPO checkAccount(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		AccountPO account = new AccountPO(id, "Excited", 25000);
-		return account;
-	}
+//	public AccountPO checkAccount(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		AccountPO account = new AccountPO(id, "Excited", 25000);
+//		return account;
+//	}
 
 }

@@ -11,5 +11,5 @@ public interface AccountDSer extends Remote{
 	public boolean addAccount(AccountPO account) throws RemoteException;
 	public boolean deleteAccount(String id) throws RemoteException;
 	public boolean reviseAccount(AccountPO account) throws RemoteException;
-	public AccountPO checkAccount(String id) throws RemoteException;
+//	public AccountPO checkAccount(String id) throws RemoteException;
 }

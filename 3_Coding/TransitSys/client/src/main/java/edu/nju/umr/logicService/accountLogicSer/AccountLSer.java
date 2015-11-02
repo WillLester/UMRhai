@@ -7,7 +7,7 @@ public interface AccountLSer {
 	public boolean addAccount(AccountVO account);
 	public boolean deleteAccount(String id);
 	public boolean reviseAccount(AccountVO account);
-	public ResultMessage checkAccount(String id);
-	public ResultMessage accountList();
+//	public ResultMessage checkAccount(String id);
+//	public ResultMessage accountList();
 	public ResultMessage searchAccount(String keyword);
 }

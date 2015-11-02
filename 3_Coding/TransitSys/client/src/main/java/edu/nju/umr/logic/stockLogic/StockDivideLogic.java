@@ -3,13 +3,12 @@ package edu.nju.umr.logic.stockLogic;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
-import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
-import edu.nju.umr.po.enums.Part;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.ShelfVO;
-import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.dataService.dataFactory.StockDivideDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
+import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
+import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.ShelfVO;
 
 public class StockDivideLogic implements StockDivideLSer{
 	StockDivideDFacSer dataFac;

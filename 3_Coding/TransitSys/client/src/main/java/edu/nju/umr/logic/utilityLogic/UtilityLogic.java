@@ -9,4 +9,13 @@ public class UtilityLogic {
 	public ResultMessage getOrgs(){
 		return null;
 	}
+//	public ResultMessage getWorkers(String orgId){
+//		return null;
+//	}
+//	public ResultMessage getVans(String orgId){
+//		return null;
+//	}
+	public ResultMessage getStocks(){
+		return null;
+	}
 }

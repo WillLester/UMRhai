@@ -85,7 +85,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		return vanList;
 	}
 
-	public ArrayList<StockPO> getStock(String id) throws RemoteException {
+	public ArrayList<StockPO> getStocks() throws RemoteException {
 		// TODO 自动生成的方法存根
 		@SuppressWarnings("deprecation")
 		Date date = new Date(109, 4, 25);
@@ -98,7 +98,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		return stockList;
 	}
 
-	public ArrayList<AccountPO> getAccount(String id) throws RemoteException {
+	public ArrayList<AccountPO> getAccount() throws RemoteException {
 		// TODO 自动生成的方法存根
 		AccountPO account = new AccountPO("00001", "Excited", 25000);
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();

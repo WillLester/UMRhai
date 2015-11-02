@@ -27,13 +27,13 @@ public class AccountDriver {
 		System.out.println(driver.account.addAccount(new AccountVO("00001", "赛艇", 233)));
 		System.out.println(driver.account.deleteAccount("00001"));
 		System.out.println(driver.account.reviseAccount(new AccountVO("00001", "赛艇", 233)));
-		AccountVO account = (AccountVO) driver.account.checkAccount("00001").getMessage();
-		System.out.println(account.getName() + " " + account.getBalance());
-		@SuppressWarnings("unchecked")
-		ArrayList<AccountVO> accountList = (ArrayList<AccountVO>) driver.account.accountList().getMessage();
-		for(int i = 0;i < accountList.size();i++){
-			System.out.println(accountList.get(i).getName() + " " + accountList.get(i).getBalance());
-		}
+//		AccountVO account = (AccountVO) driver.account.checkAccount("00001").getMessage();
+//		System.out.println(account.getName() + " " + account.getBalance());
+//		@SuppressWarnings("unchecked")
+//		ArrayList<AccountVO> accountList = (ArrayList<AccountVO>) driver.account.accountList().getMessage();
+//		for(int i = 0;i < accountList.size();i++){
+//			System.out.println(accountList.get(i).getName() + " " + accountList.get(i).getBalance());
+//		}
 		@SuppressWarnings("unchecked")
 		ArrayList<AccountVO> accountList2 = (ArrayList<AccountVO>) driver.account.searchAccount("蛤").getMessage();
 		for(int i = 0;i < accountList2.size();i++){
@@ -67,8 +67,8 @@ public class AccountDriver {
 		System.out.println(this.count.newCount(count));
 		this.checkInfo();
 		this.orgList();
-		this.getWorkers();
-		this.getVans();
+//		this.getWorkers();
+//		this.getVans();
 		this.getStock();
 		this.getAccount();
 	}
@@ -98,20 +98,20 @@ public class AccountDriver {
 			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
 		}
 	}
-	private void getWorkers(){
-		ArrayList<WorkVO> workers = (ArrayList<WorkVO>) count.getWorkers("00001").getMessage();
-		for(WorkVO work:workers){
-			System.out.println(work.getName() + " " + work.getOrgId() + " " + work.getMobile() + " " + work.getJuri());
-		}
-	}
-	private void getVans(){
-		ArrayList<VanVO> vans = (ArrayList<VanVO>) count.getVans("00001").getMessage();
-		for(VanVO van:vans){
-			System.out.println(van.getId() + " " + van.getOrgId() + " " + van.getPlateNum() + " " + van.getServTime());
-		}
-	}
+//	private void getWorkers(){
+//		ArrayList<WorkVO> workers = (ArrayList<WorkVO>) count.getWorkers("00001").getMessage();
+//		for(WorkVO work:workers){
+//			System.out.println(work.getName() + " " + work.getOrgId() + " " + work.getMobile() + " " + work.getJuri());
+//		}
+//	}
+//	private void getVans(){
+//		ArrayList<VanVO> vans = (ArrayList<VanVO>) count.getVans("00001").getMessage();
+//		for(VanVO van:vans){
+//			System.out.println(van.getId() + " " + van.getOrgId() + " " + van.getPlateNum() + " " + van.getServTime());
+//		}
+//	}
 	private void getStock(){
-		ArrayList<StockVO> stocks = (ArrayList<StockVO>) count.getStock("00001").getMessage();
+		ArrayList<StockVO> stocks = (ArrayList<StockVO>) count.getStocks().getMessage();
 		for(StockVO stock:stocks){
 			for(GoodVO good:stock.getGoods()){
 				System.out.println(good.getId() + " " + good.getCity() + " " + good.getDate() + " " + good.getPart() + " " + good.getShelf() + " " + good.getRow() + " " + good.getPlace());
@@ -119,7 +119,7 @@ public class AccountDriver {
 		}
 	}
 	private void getAccount(){
-		ArrayList<AccountVO> accounts = (ArrayList<AccountVO>) count.getAccount("00001").getMessage();
+		ArrayList<AccountVO> accounts = (ArrayList<AccountVO>) count.getAccount().getMessage();
 		for(AccountVO account:accounts){
 			System.out.println(account.getName() + " " + account.getBalance());
 		}

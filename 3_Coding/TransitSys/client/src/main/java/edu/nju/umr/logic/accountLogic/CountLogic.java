@@ -184,12 +184,12 @@ public class CountLogic implements CountLSer{
 		return new ResultMessage(true, vanList);
 	}
 
-	public ResultMessage getStock(String id) {
+	public ResultMessage getStocks() {
 		// TODO 自动生成的方法存根
 		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 		ArrayList<StockPO> stock;
 		try {
-			stock = countData.getStock(id);
+			stock = countData.getStocks();
 			for(StockPO po:stock){
 				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
 				for(GoodPO gPo:po.getGoods()){
@@ -207,11 +207,11 @@ public class CountLogic implements CountLSer{
 		return new ResultMessage(true, stockList);
 	}
 
-	public ResultMessage getAccount(String id) {
+	public ResultMessage getAccount() {
 		// TODO 自动生成的方法存根
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 		try {
-			ArrayList<AccountPO> account = countData.getAccount(id);
+			ArrayList<AccountPO> account = countData.getAccount();
 			for(AccountPO po:account){
 				AccountVO vo = new AccountVO(po.getId(), po.getName(), po.getBalance());
 				accountList.add(vo);

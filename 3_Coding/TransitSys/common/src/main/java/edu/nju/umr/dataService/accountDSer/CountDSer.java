@@ -17,6 +17,6 @@ public interface CountDSer extends Remote{
 	public ArrayList<OrgPO> findOrg() throws RemoteException;
 	public ArrayList<WorkPO> getWorkers(String id) throws RemoteException;
 	public ArrayList<VanPO> getVans(String id) throws RemoteException;
-	public ArrayList<StockPO> getStock(String id) throws RemoteException;
-	public ArrayList<AccountPO> getAccount(String id) throws RemoteException;
+	public ArrayList<StockPO> getStocks() throws RemoteException;
+	public ArrayList<AccountPO> getAccount() throws RemoteException;
 }
