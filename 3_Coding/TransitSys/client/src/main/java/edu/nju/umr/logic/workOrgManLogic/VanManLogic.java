@@ -4,16 +4,13 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Date;
 
-import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
-import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.VanVO;
-import edu.nju.umr.po.VanPO;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
+import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.VanVO;
 
 public class VanManLogic implements VanManLSer{
 	VanManDFacSer dataFac;

@@ -6,4 +6,7 @@ public class UtilityLogic {
 	public ResultMessage getCities(){
 		return null;
 	}
+	public ResultMessage getOrgs(){
+		return null;
+	}
 }

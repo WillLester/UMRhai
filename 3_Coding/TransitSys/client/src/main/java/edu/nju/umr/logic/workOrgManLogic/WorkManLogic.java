@@ -32,11 +32,11 @@ public class WorkManLogic implements WorkManLSer{
 		}
 	}
 
-	public boolean addWork(WorkVO Work) {
+	public boolean addWork(WorkVO work) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=workData.addWork(new WorkPO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
+			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
 		}
 		catch(Exception e)
 		{
@@ -56,11 +56,11 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public boolean reviseWork(WorkVO Work) {
+	public boolean reviseWork(WorkVO work) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=workData.reviseWork(new WorkPO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
+			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -68,41 +68,41 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage checkWork(String id) {
-		// TODO 自动生成的方法存根
-		WorkPO Work=null;
-		boolean isSuccessful=false;
-		try{
-			Work=workData.checkWork(id);
-			isSuccessful=true;
-		}catch(RemoteException e)
-		{
-			e.printStackTrace();
-		}
-		ResultMessage message=new ResultMessage(isSuccessful,new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
-		return message;
-	}
+//	public ResultMessage checkWork(String id) {
+//		// TODO 自动生成的方法存根
+//		WorkPO Work=null;
+//		boolean isSuccessful=false;
+//		try{
+//			Work=workData.checkWork(id);
+//			isSuccessful=true;
+//		}catch(RemoteException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ResultMessage message=new ResultMessage(isSuccessful,new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
+//		return null;
+//	}
 
-	public ResultMessage WorkList() {
-		// TODO 自动生成的方法存根
-		ArrayList<WorkPO> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=workData.findWork("");
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			WorkPO Work=ar.get(i);
-			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
-	}
+//	public ResultMessage WorkList() {
+//		// TODO 自动生成的方法存根
+//		ArrayList<WorkPO> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=workData.findWork("");
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			WorkPO Work=ar.get(i);
+//			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+//		return message;
+//	}
 
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根

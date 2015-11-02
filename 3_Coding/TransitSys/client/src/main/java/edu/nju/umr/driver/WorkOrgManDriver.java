@@ -35,17 +35,17 @@ public class WorkOrgManDriver {
 		System.out.println(work.addWork(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN)));
 		System.out.println(work.deleteWork("1"));
 		System.out.println(work.reviseWork(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN)));
-		WorkVO workVO=(WorkVO)work.checkWork("1").getMessage();
-		System.out.println(workVO.getName());
-		@SuppressWarnings("unchecked")
-		ArrayList<WorkVO> ar=(ArrayList<WorkVO>)work.WorkList().getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			WorkVO work=ar.get(i);
-			System.out.println(work.getName());
-		}
+//		WorkVO workVO=(WorkVO)work.checkWork("1").getMessage();
+//		System.out.println(workVO.getName());
+//		@SuppressWarnings("unchecked")
+//		ArrayList<WorkVO> ar=(ArrayList<WorkVO>)work.WorkList().getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			WorkVO work=ar.get(i);
+//			System.out.println(work.getName());
+//		}
 		ArrayList<OrgVO> or=(ArrayList<OrgVO>)work.orgList().getMessage();
-		for(int i=0;i<ar.size();i++)
+		for(int i=0;i<or.size();i++)
 		{
 			OrgVO Org=or.get(i);
 			System.out.println(Org.getName());
@@ -116,16 +116,16 @@ public class WorkOrgManDriver {
 		
 	}
 	private void driverWage(){
-		ArrayList<WorkVO> ar=null;
-		ar=(ArrayList<WorkVO>)wage.WorkList().getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			WorkVO work=ar.get(i);
-			System.out.println(work.getId()+" "+work.getMobile()+" "+work.getName()+" "+work.getOrgId()+" "+work.getJuri());
-		}
-		System.out.println(wage.reviseWage(new WageVO("1",Wage.MONTH,5,5)));
-		WageVO wage=(WageVO)this.wage.getWage("1").getMessage();
-		System.out.println(wage.getWorkerId()+" "+wage.getKind()+" "+wage.getMoney()+" "+wage.getCommission());
+//		ArrayList<WorkVO> ar=null;
+//		ar=(ArrayList<WorkVO>)wage.searchWorker().getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			WorkVO work=ar.get(i);
+//			System.out.println(work.getId()+" "+work.getMobile()+" "+work.getName()+" "+work.getOrgId()+" "+work.getJuri());
+//		}
+//		System.out.println(wage.reviseWage(new WageVO("1",Wage.MONTH,5,5)));
+//		WageVO wage=(WageVO)this.wage.getWage("1").getMessage();
+//		System.out.println(wage.getWorkerId()+" "+wage.getKind()+" "+wage.getMoney()+" "+wage.getCommission());
 		
 	}
 	

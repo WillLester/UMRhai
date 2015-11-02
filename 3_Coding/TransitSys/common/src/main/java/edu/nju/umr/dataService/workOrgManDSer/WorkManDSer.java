@@ -12,6 +12,6 @@ public interface WorkManDSer extends Remote{
 	public boolean addWork(WorkPO work) throws RemoteException;
 	public boolean deleteWork(String id) throws RemoteException;
 	public boolean reviseWork(WorkPO work) throws RemoteException;
-	public WorkPO checkWork(String id) throws RemoteException;
+//	public WorkPO checkWork(String id) throws RemoteException;
 	public ArrayList<OrgPO> getOrgs() throws RemoteException;
 }
