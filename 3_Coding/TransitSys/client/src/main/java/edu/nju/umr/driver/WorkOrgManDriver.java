@@ -55,20 +55,20 @@ public class WorkOrgManDriver {
 		System.out.println(org.addOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1"))));
 		System.out.println(org.deleteOrg("1"));
 		System.out.println(org.reviseOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1"))));
-		OrgVO org=(OrgVO)this.org.checkOrg("1").getMessage();
-		System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
+//		OrgVO org=(OrgVO)this.org.checkOrg("1").getMessage();
+//		System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
 		ArrayList<OrgVO> ar=null;
-		ar=(ArrayList<OrgVO>)this.org.orgList().getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			org=ar.get(i);
-			System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
-		}
+//		ar=(ArrayList<OrgVO>)this.org.orgList().getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			OrgVO org=ar.get(i);
+//			System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
+//		}
 		
 		ar=(ArrayList<OrgVO>)this.org.searchOrg("").getMessage();
 		for(int i=0;i<ar.size();i++)
 		{
-			org=ar.get(i);
+			OrgVO org=ar.get(i);
 			System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
 		}
 		
@@ -100,18 +100,17 @@ public class WorkOrgManDriver {
 		System.out.println(drive.addDriver(new DriverVO("1","司机1",new Date(1900-01-01),"司机编号1","司机手机号1",Sex.MAN,new Date())));
 		System.out.println(drive.deleteDriver("1"));
 		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",new Date(1900-01-01),"司机编号1","司机手机号1",Sex.MAN,new Date())));
-		DriverVO Driver=(DriverVO)drive.checkDriver("1").getMessage();
-		System.out.println(Driver.getId()+" "+Driver.getName()+" "+Driver.getBirthday()+" "+Driver.getIdNum()+" "+Driver.getMobile()+" "+Driver.getSex()+" "+Driver.getDriveLimit());
-		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.DriverList().getMessage();
+		
+		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.searchDriver(null).getMessage();
 		for(int i=0;i<ar.size();i++)
 		{
-			Driver=ar.get(i);
-			System.out.println(Driver.getId()+" "+Driver.getName()+" "+Driver.getBirthday()+" "+Driver.getIdNum()+" "+Driver.getMobile()+" "+Driver.getSex()+" "+Driver.getDriveLimit());
+			DriverVO driver=ar.get(i);
+			System.out.println(driver.getId()+" "+driver.getName()+" "+driver.getBirthday()+" "+driver.getIdNum()+" "+driver.getMobile()+" "+driver.getSex()+" "+driver.getDriveLimit());
 		}
 		ar=(ArrayList<DriverVO>)drive.searchDriver("").getMessage();
 		for(int i=0;i<ar.size();i++)
 		{
-			Driver=ar.get(i);
+			DriverVO Driver=ar.get(i);
 			System.out.println(Driver.getId()+" "+Driver.getName()+" "+Driver.getBirthday()+" "+Driver.getIdNum()+" "+Driver.getMobile()+" "+Driver.getSex()+" "+Driver.getDriveLimit());
 		}
 		

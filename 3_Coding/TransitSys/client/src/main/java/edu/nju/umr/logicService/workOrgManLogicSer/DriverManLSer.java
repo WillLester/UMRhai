@@ -8,6 +8,6 @@ public interface DriverManLSer {
 	public boolean deleteDriver(String id);
 	public boolean reviseDriver(DriverVO Driver);
 	public ResultMessage checkDriver(String id);
-	public ResultMessage DriverList();
+//	public ResultMessage driverList();
 	public ResultMessage searchDriver(String keyword);
 }

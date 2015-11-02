@@ -59,41 +59,41 @@ public class OrgManLogic implements OrgManLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage checkOrg(String id) {
-		boolean isSuccessful=false;
-		OrgPO orgPO=null;
-		try{
-			orgPO=orgData.checkOrg(id);
-			isSuccessful=true;
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		OrgVO orgVO=new OrgVO(orgPO.getId(),orgPO.getName(),orgPO.getKind(),orgPO.getLocation(),new CityVO(orgPO.getCity().getId(),orgPO.getCity().getName()));
-		ResultMessage message = new ResultMessage(isSuccessful, orgVO);
-		return message;
-	}
+//	public ResultMessage checkOrg(String id) {
+//		boolean isSuccessful=false;
+//		OrgPO orgPO=null;
+//		try{
+//			orgPO=orgData.checkOrg(id);
+//			isSuccessful=true;
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		OrgVO orgVO=new OrgVO(orgPO.getId(),orgPO.getName(),orgPO.getKind(),orgPO.getLocation(),new CityVO(orgPO.getCity().getId(),orgPO.getCity().getName()));
+//		ResultMessage message = new ResultMessage(isSuccessful, orgVO);
+//		return message;
+//	}
 
-	public ResultMessage orgList() {
-		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=orgData.findOrg("");
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName())));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
-	}
+//	public ResultMessage orgList() {
+//		// TODO 自动生成的方法存根
+//		ArrayList<OrgPO> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=orgData.findOrg("");
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			OrgPO Org=ar.get(i);
+//			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName())));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+//		return message;
+//	}
 
 	public ResultMessage searchOrg(String keyword) {
 		// TODO 自动生成的方法存根

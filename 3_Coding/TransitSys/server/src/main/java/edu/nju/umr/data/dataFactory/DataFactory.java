@@ -32,6 +32,7 @@ import edu.nju.umr.data.transitInfoData.CourierData;
 import edu.nju.umr.data.transitInfoData.CustomerData;
 import edu.nju.umr.data.userData.LoginData;
 import edu.nju.umr.data.userData.UserManData;
+import edu.nju.umr.data.utilityData.UtilityData;
 import edu.nju.umr.data.workOrgManData.DriverManData;
 import edu.nju.umr.data.workOrgManData.OrgManData;
 import edu.nju.umr.data.workOrgManData.VanManData;
@@ -74,6 +75,7 @@ import edu.nju.umr.dataService.dataFactory.StockOutOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
+import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.dataFactory.WageManDFacSer;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
@@ -100,6 +102,7 @@ import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
+import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
@@ -109,7 +112,7 @@ import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,StatementSheetDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,ReceiveOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
-StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFacSer,WorkManDFacSer{
+StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFacSer,WorkManDFacSer,UtilityDFacSer{
 
 	public DataFactory() throws RemoteException {
 		super();
@@ -285,6 +288,11 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WageManDFac
 	public DriverManDSer getDriverMan() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return new DriverManData();
+	}
+
+	public UtilityDSer getUtility() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new UtilityData();
 	}
 
 }
