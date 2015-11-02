@@ -7,16 +7,16 @@ import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
-import edu.nju.umr.dataService.userDSer.UserManDSer;
+import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
+import edu.nju.umr.dataService.userDSer.LoginDSer;
 
 public class LoginLogic implements LoginLSer{
-	UserManDFacSer dataFac;
-	UserManDSer loginData;
+	LoginDFacSer dataFac;
+	LoginDSer loginData;
 	public LoginLogic(){
 		try{
-		dataFac=(UserManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-		loginData=dataFac.getUserMan();
+		dataFac=(LoginDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+		loginData=dataFac.getLogin();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class LoginLogic implements LoginLSer{
 		boolean isSuccessful=false;
 		UserVO userVO=null;
 		try{
-			UserPO user=loginData.findUser(id);
+			UserPO user=loginData.findUser(id,password);
 			isSuccessful=true;
 			userVO=new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId());
 			

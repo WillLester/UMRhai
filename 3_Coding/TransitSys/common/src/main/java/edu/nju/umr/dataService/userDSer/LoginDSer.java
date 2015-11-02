@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 import edu.nju.umr.po.UserPO;
 
 public interface LoginDSer extends Remote{
-	public UserPO findUser(String id) throws RemoteException;
+	public UserPO findUser(String id,String password) throws RemoteException;
 }
