@@ -5,17 +5,13 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
-import edu.nju.umr.po.DriverPO;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Sex;
-import edu.nju.umr.vo.DriverVO;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
+import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
+import edu.nju.umr.po.DriverPO;
+import edu.nju.umr.vo.DriverVO;
+import edu.nju.umr.vo.ResultMessage;
 
 public class DriverManLogic implements DriverManLSer{
 	DriverManDFacSer dataFac;

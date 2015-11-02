@@ -87,12 +87,12 @@ public class WorkOrgManDriver {
 		System.out.println(van.reviseVan(new VanVO("1","营业厅1",new Date(),null,"1")));
 		VanVO vanVO=(VanVO)van.checkVan("1").getMessage();
 		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
-		ArrayList<VanVO> ar=(ArrayList<VanVO>)van.VanList().getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			vanVO=ar.get(i);
-			System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
-		}
+//		ArrayList<VanVO> ar=(ArrayList<VanVO>)van.VanList().getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			vanVO=ar.get(i);
+//			System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
+//		}
 		vanVO=(VanVO)van.searchVan("1").getMessage();
 		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
 	}

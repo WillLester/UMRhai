@@ -31,11 +31,11 @@ public class VanManLogic implements VanManLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean addVan(VanVO Van) {
+	public boolean addVan(VanVO van) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=vanData.addVan(new VanPO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -55,11 +55,11 @@ public class VanManLogic implements VanManLSer{
 		return isSuccessful;
 	}
 
-	public boolean reviseVan(VanVO Van) {
+	public boolean reviseVan(VanVO van) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=vanData.reviseVan(new VanPO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -82,27 +82,27 @@ public class VanManLogic implements VanManLSer{
 		return message;
 	}
 
-	public ResultMessage VanList() {
-		// TODO 自动生成的方法存根
-		ArrayList<VanPO> ar=null;
-		boolean isSuccessful=false;
-		try
-		{
-			ar=vanData.findVan("");
-			isSuccessful=true;
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			VanPO Van=ar.get(i);
-			arVO.add(new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
-	}
+//	public ResultMessage VanList() {
+//		// TODO 自动生成的方法存根
+//		ArrayList<VanPO> ar=null;
+//		boolean isSuccessful=false;
+//		try
+//		{
+//			ar=vanData.findVan("");
+//			isSuccessful=true;
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			VanPO Van=ar.get(i);
+//			arVO.add(new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+//		return message;
+//	}
 
 	public ResultMessage searchVan(String keyword) {
 		// TODO 自动生成的方法存根

@@ -39,11 +39,11 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 		return true;
 	}
 
-	public OrgPO checkOrg(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-
-		return new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1"));
-	}
+//	public OrgPO checkOrg(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//
+//		return new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1"));
+//	}
 
 	public ArrayList<CityPO> getCities() throws RemoteException {
 		// TODO 自动生成的方法存根
