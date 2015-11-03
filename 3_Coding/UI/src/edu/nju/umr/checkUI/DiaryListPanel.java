@@ -44,11 +44,11 @@ public class DiaryListPanel extends JPanel {
 		add(endDate);
 		
 		JButton cancel = new JButton("取消");
-		cancel.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		cancel.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");
-		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(confirm);
 		
 	    diaryTable = new JTable();
@@ -66,7 +66,7 @@ public class DiaryListPanel extends JPanel {
 		add(nameLabel);
 		
 		JButton button = new JButton("退出");
-		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(button);
 
 	}

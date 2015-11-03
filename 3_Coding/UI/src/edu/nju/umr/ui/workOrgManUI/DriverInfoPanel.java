@@ -103,11 +103,11 @@ public class DriverInfoPanel extends JPanel {
 		add(deadline);
 		
 		JButton cancel = new JButton("取消");
-		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");
-		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH_S-40, cancel.getY(), Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, cancel.getY(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(confirm);
 
 	}
