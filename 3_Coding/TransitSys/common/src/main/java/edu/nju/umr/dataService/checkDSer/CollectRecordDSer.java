@@ -7,7 +7,7 @@ import java.util.Date;
 
 import edu.nju.umr.po.order.IncomePO;
 
-public interface CollectFormDSer extends Remote{
+public interface CollectRecordDSer extends Remote{
 	public ArrayList<IncomePO> getCollectRec(Date date,String id) throws RemoteException;
 	
 }

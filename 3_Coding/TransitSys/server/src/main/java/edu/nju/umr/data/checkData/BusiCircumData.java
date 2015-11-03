@@ -5,15 +5,15 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-import edu.nju.umr.dataService.checkDSer.StatementSheetDSer;
+import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.order.IncomePO;
 
-public class StatementSheetData extends UnicastRemoteObject implements StatementSheetDSer{
+public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSer{
 
-	public StatementSheetData() throws RemoteException {
+	public BusiCircumData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

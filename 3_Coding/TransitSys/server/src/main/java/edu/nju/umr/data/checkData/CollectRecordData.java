@@ -5,15 +5,15 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
+import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.order.IncomePO;
 
-public class CollectFormData extends UnicastRemoteObject implements CollectFormDSer{
+public class CollectRecordData extends UnicastRemoteObject implements CollectRecordDSer{
 
-	public CollectFormData() throws RemoteException {
+	public CollectRecordData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}

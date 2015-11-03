@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import edu.nju.umr.dataService.checkDSer.StatementSheetDSer;
+import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
@@ -19,7 +19,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 
 public class BusiCircumLogic implements BusiCircumLSer{
 	StatementSheetDFacSer dataFac;
-	StatementSheetDSer statementData;
+	BusiCircumDSer statementData;
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

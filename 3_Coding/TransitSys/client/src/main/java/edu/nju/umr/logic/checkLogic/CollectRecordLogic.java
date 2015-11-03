@@ -7,17 +7,17 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import edu.nju.umr.dataService.checkDSer.CollectFormDSer;
+import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
-import edu.nju.umr.logicService.checkLogicSer.CollectFormLSer;
+import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
-public class CollectFormLogic implements CollectFormLSer{
+public class CollectRecordLogic implements CollectRecordLSer{
 	CollectFormDFacSer dataFac;
-	CollectFormDSer collectData;
-	public CollectFormLogic() {
+	CollectRecordDSer collectData;
+	public CollectRecordLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CollectFormDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");

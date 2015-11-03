@@ -2,10 +2,10 @@ package edu.nju.umr.driver;
 
 import java.util.ArrayList;
 
-import edu.nju.umr.logic.checkLogic.CollectFormLogic;
+import edu.nju.umr.logic.checkLogic.CollectRecordLogic;
 import edu.nju.umr.logic.checkLogic.DiaryLogic;
 import edu.nju.umr.logic.checkLogic.BusiCircumLogic;
-import edu.nju.umr.logicService.checkLogicSer.CollectFormLSer;
+import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.vo.DiaryVO;
@@ -13,7 +13,7 @@ import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.order.IncomeVO;
 
 public class CheckDriver {
-	CollectFormLSer collect = new CollectFormLogic();
+	CollectRecordLSer collect = new CollectRecordLogic();
 	DiaryLSer diary = new DiaryLogic();
 	BusiCircumLSer statement = new BusiCircumLogic();
 	public static void main(String[] args) {
