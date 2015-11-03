@@ -64,16 +64,16 @@ public class AccountDriver {
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 		accountList.add(account);
 		CountVO count = new CountVO("12345", orgList, workerList, vanList, stockList, accountList);
-		System.out.println(this.count.newCount(count));
+//		System.out.println(this.count.newCount(count));
 		this.checkInfo();
-		this.orgList();
+//		this.orgList();
 //		this.getWorkers();
 //		this.getVans();
-		this.getStock();
-		this.getAccount();
+//		this.getStock();
+//		this.getAccount();
 	}
 	private void checkInfo(){
-		CountVO vo = (CountVO) count.checkInitInfo().getMessage();
+		CountVO vo = (CountVO) count.checkInitInfo("1").getMessage();
 		System.out.println(vo.getId());
 		for(OrgVO org:vo.getOrganizations()){
 			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
@@ -93,11 +93,11 @@ public class AccountDriver {
 			System.out.println(account.getName() + " " + account.getBalance());
 		}
 	}
-	private void orgList(){
-		for(OrgVO org:(ArrayList<OrgVO>)count.orgList().getMessage()){
-			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
-		}
-	}
+//	private void orgList(){
+//		for(OrgVO org:(ArrayList<OrgVO>)count.orgList().getMessage()){
+//			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
+//		}
+//	}
 //	private void getWorkers(){
 //		ArrayList<WorkVO> workers = (ArrayList<WorkVO>) count.getWorkers("00001").getMessage();
 //		for(WorkVO work:workers){
@@ -110,18 +110,18 @@ public class AccountDriver {
 //			System.out.println(van.getId() + " " + van.getOrgId() + " " + van.getPlateNum() + " " + van.getServTime());
 //		}
 //	}
-	private void getStock(){
-		ArrayList<StockVO> stocks = (ArrayList<StockVO>) count.getStocks().getMessage();
-		for(StockVO stock:stocks){
-			for(GoodVO good:stock.getGoods()){
-				System.out.println(good.getId() + " " + good.getCity() + " " + good.getDate() + " " + good.getPart() + " " + good.getShelf() + " " + good.getRow() + " " + good.getPlace());
-			}
-		}
-	}
-	private void getAccount(){
-		ArrayList<AccountVO> accounts = (ArrayList<AccountVO>) count.getAccount().getMessage();
-		for(AccountVO account:accounts){
-			System.out.println(account.getName() + " " + account.getBalance());
-		}
-	}
+//	private void getStock(){
+//		ArrayList<StockVO> stocks = (ArrayList<StockVO>) count.getStocks().getMessage();
+//		for(StockVO stock:stocks){
+//			for(GoodVO good:stock.getGoods()){
+//				System.out.println(good.getId() + " " + good.getCity() + " " + good.getDate() + " " + good.getPart() + " " + good.getShelf() + " " + good.getRow() + " " + good.getPlace());
+//			}
+//		}
+//	}
+//	private void getAccount(){
+//		ArrayList<AccountVO> accounts = (ArrayList<AccountVO>) count.getAccount().getMessage();
+//		for(AccountVO account:accounts){
+//			System.out.println(account.getName() + " " + account.getBalance());
+//		}
+//	}
 }

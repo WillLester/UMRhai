@@ -9,7 +9,7 @@ import java.util.Date;
 
 import edu.nju.umr.dataService.checkDSer.StatementSheetDSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
-import edu.nju.umr.logicService.checkLogicSer.StatementSheetLSer;
+import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.CityVO;
@@ -17,10 +17,10 @@ import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
-public class StatementSheetLogic implements StatementSheetLSer{
+public class BusiCircumLogic implements BusiCircumLSer{
 	StatementSheetDFacSer dataFac;
 	StatementSheetDSer statementData;
-	public StatementSheetLogic() {
+	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (StatementSheetDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
@@ -33,7 +33,7 @@ public class StatementSheetLogic implements StatementSheetLSer{
             e.printStackTrace();   
         } 
 	}
-	public ResultMessage seeStatementSheet(Date start, Date end, String id) {
+	public ResultMessage seeBusinessCircum(Date start, Date end) {
 		// TODO 自动生成的方法存根
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
 		try {

@@ -30,7 +30,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		return false;
 	}
 
-	public CountPO findInitInfo() throws RemoteException {
+	public CountPO findInitInfo(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		CityPO city = new CityPO("北京", "010");
 		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
@@ -67,19 +67,19 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		return orgList;
 	}
 
-	public ArrayList<WorkPO> getWorkers(String id) throws RemoteException {
+	public ArrayList<WorkPO> getWorkers() throws RemoteException {
 		// TODO 自动生成的方法存根
-		WorkPO work = new WorkPO("宝华", "12345678901", id, "00001", Jurisdiction.COURIER);
+		WorkPO work = new WorkPO("宝华", "12345678901","1", "00001", Jurisdiction.COURIER);
 		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
 		workerList.add(work);
 		return workerList;
 	}
 
-	public ArrayList<VanPO> getVans(String id) throws RemoteException {
+	public ArrayList<VanPO> getVans() throws RemoteException {
 		// TODO 自动生成的方法存根
 		@SuppressWarnings("deprecation")
 		Date date = new Date(109, 4, 25);
-		VanPO van = new VanPO("00001", "苏A-12345", date, null, id);
+		VanPO van = new VanPO("00001", "苏A-12345", date, null, "1");
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
 		return vanList;
