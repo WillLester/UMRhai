@@ -29,6 +29,10 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 		incomeList.add(income);
 		return incomeList;
 	}
+	public ArrayList<OrgPO> getHall()
+			throws RemoteException{
+		return null;
+	}
 
 	
 
