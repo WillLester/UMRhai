@@ -30,8 +30,8 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 		return true;
 	}
 	
-	public boolean outputExcel(String location, StockPO stock) throws RemoteException{
-		return true;
-	}
+//	public boolean outputExcel(String location, StockPO stock) throws RemoteException{
+//		return true;
+//	}
 
 }

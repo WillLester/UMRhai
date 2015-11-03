@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
+import edu.nju.umr.po.StockPO;
 
 public class StockCheckWarnData extends UnicastRemoteObject implements StockCheckWarnDSer{
 
@@ -19,6 +20,11 @@ public class StockCheckWarnData extends UnicastRemoteObject implements StockChec
 		ar.add(1);
 		ar.add(2);
 		return ar;
+	}
+
+	public StockPO getStock(String stockId) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

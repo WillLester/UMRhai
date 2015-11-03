@@ -15,7 +15,7 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<ShelfPO> getShelves(String id) throws RemoteException {
+	public ArrayList<ShelfPO> getShelves(String id,String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=new ArrayList<ShelfPO>();
 		ar.add(new ShelfPO("1",1,1,Part.PLANE));
@@ -38,10 +38,10 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		return true;
 	}
 
-	public ShelfPO getShelf(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return new ShelfPO("2",3,4,Part.TRAIN);
-		//return null;
-	}
+//	public ShelfPO getShelf(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return new ShelfPO("2",3,4,Part.TRAIN);
+//		//return null;
+//	}
 
 }

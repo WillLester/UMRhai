@@ -24,26 +24,26 @@ public class StockDivideLogic implements StockDivideLSer{
 		}
 	}
 
-	public ResultMessage shelfList(String id) {
+	public ResultMessage searchShelf(String id,String keyword) {
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=null;
 		boolean isSuccessful=false;
-		try{
-			ar=checkData.getShelves(id);
-			isSuccessful=true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		ArrayList<ShelfVO> arVO=new ArrayList<ShelfVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			ShelfPO shelf=ar.get(i);
-			arVO.add(new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
+//		try{
+//			ar=checkData.getShelves(id);
+//			isSuccessful=true;
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ArrayList<ShelfVO> arVO=new ArrayList<ShelfVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			ShelfPO shelf=ar.get(i);
+//			arVO.add(new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		return null;
 	}
 
 	public boolean addShelf(ShelfVO shelf) {
@@ -88,19 +88,19 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage checkShelf(String id) {
-		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
-		ShelfPO shelf=null;
-		try{
-			shelf=checkData.getShelf(id);
-			isSuccessful=true;
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-		return message;
-	}
+//	public ResultMessage checkShelf(String id) {
+//		// TODO 自动生成的方法存根
+//		boolean isSuccessful=false;
+//		ShelfPO shelf=null;
+//		try{
+//			shelf=checkData.getShelf(id);
+//			isSuccessful=true;
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+//		return message;
+//	}
 
 }

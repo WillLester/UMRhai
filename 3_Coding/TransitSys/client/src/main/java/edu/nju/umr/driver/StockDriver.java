@@ -61,16 +61,16 @@ public class StockDriver {
 		}
 	}
 	private void driveDivide(){
-		ArrayList<ShelfVO> shelfList = (ArrayList<ShelfVO>) divide.shelfList("00001").getMessage();
-		for(ShelfVO shelf:shelfList){
-			System.out.println(shelf.getId() + " " + shelf.getPart() + " " + shelf.getRow() + " " + shelf.getPlace());
-		}
+//		ArrayList<ShelfVO> shelfList = (ArrayList<ShelfVO>) divide.shelfList("00001").getMessage();
+//		for(ShelfVO shelf:shelfList){
+//			System.out.println(shelf.getId() + " " + shelf.getPart() + " " + shelf.getRow() + " " + shelf.getPlace());
+//		}
 		ShelfVO vo = new ShelfVO("2",3,4,Part.TRAIN);
 		System.out.println(divide.addShelf(vo));
 		System.out.println(divide.deleteShelf("T10000"));
 		System.out.println(divide.reviseShelf(vo));
-		ShelfVO get = (ShelfVO) divide.checkShelf("T10000").getMessage();
-		System.out.println(get.getId() + " " + get.getPart() + " " + get.getRow() + " " + get.getPlace());
+//		ShelfVO get = (ShelfVO) divide.checkShelf("T10000").getMessage();
+//		System.out.println(get.getId() + " " + get.getPart() + " " + get.getRow() + " " + get.getPlace());
 	}
 	private void driveWarning(){
 		System.out.println(warning.setWarning(50, Part.VAN, "00001"));

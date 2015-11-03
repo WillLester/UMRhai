@@ -74,14 +74,14 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 			GoodVO good=arVO.get(i);
 			ar.add(new GoodPO(good.getId(),good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
 		}
-		StockPO stockPO=new StockPO(ar);
-		try{
-			isSuccessful=checkData.outputExcel(location, stockPO);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		StockPO stockPO=new StockPO(ar);
+//		try{
+//			isSuccessful=checkData.outputExcel(location, stockPO);
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
