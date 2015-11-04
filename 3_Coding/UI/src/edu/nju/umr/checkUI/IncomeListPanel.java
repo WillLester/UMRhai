@@ -57,11 +57,11 @@ public class IncomeListPanel extends JPanel {
 		add(cbHall);
 		
 		JButton cancel = new JButton("取消");
-		cancel.setBounds(this.getWidth()/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		cancel.setBounds(this.getWidth()/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");
-		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH_S-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(confirm);
 		
 		
@@ -85,7 +85,7 @@ public class IncomeListPanel extends JPanel {
 		add(IncomeTable);
 		
 		JButton out = new JButton("退出");
-		out.setBounds(this.getWidth()/10*8, IncomeTable.getY()+IncomeTable.getHeight()+20, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		out.setBounds(this.getWidth()/10*8, IncomeTable.getY()+IncomeTable.getHeight()+20, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(out);
 		
 

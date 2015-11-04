@@ -36,7 +36,7 @@ public class CollectFormPanel extends JPanel {
 		add(collectTable);
 		
 		JButton out = new JButton("退出");
-		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH_S, this.getHeight()/10*8, Constants.BUTTON_WIDTH_S, Constants.BUTTON_HEIGHT);
+		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(out);
 
 	}

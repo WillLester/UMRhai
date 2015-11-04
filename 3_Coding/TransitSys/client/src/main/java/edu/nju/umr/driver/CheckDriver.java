@@ -2,20 +2,20 @@ package edu.nju.umr.driver;
 
 import java.util.ArrayList;
 
-import edu.nju.umr.logic.checkLogic.CollectFormLogic;
+import edu.nju.umr.logic.checkLogic.CollectRecordLogic;
 import edu.nju.umr.logic.checkLogic.DiaryLogic;
-import edu.nju.umr.logic.checkLogic.StatementSheetLogic;
-import edu.nju.umr.logicService.checkLogicSer.CollectFormLSer;
+import edu.nju.umr.logic.checkLogic.BusiCircumLogic;
+import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
-import edu.nju.umr.logicService.checkLogicSer.StatementSheetLSer;
+import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.order.IncomeVO;
 
 public class CheckDriver {
-	CollectFormLSer collect = new CollectFormLogic();
+	CollectRecordLSer collect = new CollectRecordLogic();
 	DiaryLSer diary = new DiaryLogic();
-	StatementSheetLSer statement = new StatementSheetLogic();
+	BusiCircumLSer statement = new BusiCircumLogic();
 	public static void main(String[] args) {
 		CheckDriver driver = new CheckDriver();
 		driver.driveCollect();
@@ -42,7 +42,7 @@ public class CheckDriver {
 		}
 	}
 	private void driveStatement(){
-		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) statement.seeStatementSheet(null, null, "00001").getMessage();
+		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) statement.seeBusinessCircum(null, null).getMessage();
 		for(IncomeVO income:incomes){
 			System.out.println(income.getId() + " " + income.getCost() + " " + income.getCourier() + " " + income.getDate());
 			for(String ex:income.getExpress()){

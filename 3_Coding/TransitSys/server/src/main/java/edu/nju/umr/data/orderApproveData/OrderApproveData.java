@@ -28,7 +28,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		return orderList;
 	}
 
-	public boolean update(ArrayList<String> id) throws RemoteException {
+	public boolean update(boolean isPassed,ArrayList<String> id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return true;
 	}
