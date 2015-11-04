@@ -51,7 +51,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = approveData.update(id);
+			isSuc = approveData.update(approve,id);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
