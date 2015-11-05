@@ -7,15 +7,19 @@ import edu.nju.umr.po.enums.Part;
 
 public class GoodPO implements Serializable{
 	private String id;
+	private String stockId;
 	private Date date;
 	private String city;
 	private Part part;
 	private String shelf;
 	private int row;
 	private int place;
-	public GoodPO(String id,Date date,String city,Part part,String shelf,int row,int place) {
-		// TODO 自动生成的构造函数存根
+
+	public GoodPO(String id, String stockId, Date date, String city, Part part,
+			String shelf, int row, int place) {
+		super();
 		this.id = id;
+		this.stockId = stockId;
 		this.date = date;
 		this.city = city;
 		this.part = part;
@@ -43,5 +47,8 @@ public class GoodPO implements Serializable{
 	}
 	public int getPlace() {
 		return place;
+	}
+	public String getStockId() {
+		return stockId;
 	}
 }

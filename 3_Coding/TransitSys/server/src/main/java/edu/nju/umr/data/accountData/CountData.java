@@ -44,10 +44,10 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		VanPO van = new VanPO("00001", "苏A-12345", date, null, "00001");
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
-		GoodPO good = new GoodPO("00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		GoodPO good = new GoodPO("00001", "00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
 		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
 		goodList.add(good);
-		StockPO stock = new StockPO(goodList);
+		StockPO stock = new StockPO("00001",goodList);
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
 		stockList.add(stock);
 		AccountPO account = new AccountPO("00001", "Excited", 25000);
@@ -89,10 +89,10 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		// TODO 自动生成的方法存根
 		@SuppressWarnings("deprecation")
 		Date date = new Date(109, 4, 25);
-		GoodPO good = new GoodPO("00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		GoodPO good = new GoodPO("00001", "00001",date, "北京", Part.TRAIN, "T00001", 3, 5);
 		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
 		goodList.add(good);
-		StockPO stock = new StockPO(goodList);
+		StockPO stock = new StockPO("00001",goodList);
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
 		stockList.add(stock);
 		return stockList;

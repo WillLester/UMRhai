@@ -18,8 +18,8 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 	public ArrayList<ShelfPO> getShelves(String id,String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=new ArrayList<ShelfPO>();
-		ar.add(new ShelfPO("1",1,1,Part.PLANE));
-		ar.add(new ShelfPO("2",3,4,Part.TRAIN));
+		ar.add(new ShelfPO("1","00001",1,1,Part.PLANE));
+		ar.add(new ShelfPO("2","00001",3,4,Part.TRAIN));
 		return ar;
 	}
 

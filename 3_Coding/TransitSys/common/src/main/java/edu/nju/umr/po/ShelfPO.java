@@ -6,18 +6,26 @@ import edu.nju.umr.po.enums.Part;
 
 public class ShelfPO implements Serializable{
 	private String id;
+	private String stockId;
 	private int row;
 	private int place;
 	private Part part;
-	public ShelfPO(String id,int row,int place,Part part) {
-		// TODO 自动生成的构造函数存根
+	
+	public ShelfPO(String id, String stockId, int row, int place, Part part) {
+		super();
 		this.id = id;
+		this.stockId = stockId;
 		this.row = row;
 		this.place = place;
 		this.part = part;
 	}
+
 	public String getId() {
 		return id;
+	}
+	
+	public String getStockId() {
+		return stockId;
 	}
 	public int getRow() {
 		return row;

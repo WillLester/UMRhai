@@ -51,7 +51,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		boolean isSuccessful=false;
 		try
 		{
-			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
 		}
 		catch(Exception e)
 		{
@@ -79,7 +79,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		boolean isSuccessful=false;
 		try
 		{
-			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
 		}
 		catch(Exception e)
 		{

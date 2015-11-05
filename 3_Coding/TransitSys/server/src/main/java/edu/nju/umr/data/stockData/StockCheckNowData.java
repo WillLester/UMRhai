@@ -19,9 +19,9 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 
 	public StockPO getStock(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		StockPO sp=new StockPO(new ArrayList<GoodPO>());
-		sp.getGoods().add(new GoodPO("1",new Date(),"南京",Part.PLANE,"shelf1",1,1));
-		sp.getGoods().add(new GoodPO("2",new Date(),"上海",Part.TRAIN,"shelf2",3,4));
+		StockPO sp=new StockPO("00001",new ArrayList<GoodPO>());
+		sp.getGoods().add(new GoodPO("1","00001",new Date(),"南京",Part.PLANE,"shelf1",1,1));
+		sp.getGoods().add(new GoodPO("2","00001",new Date(),"上海",Part.TRAIN,"shelf2",3,4));
 		return sp;
 	}
 

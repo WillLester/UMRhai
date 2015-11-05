@@ -72,7 +72,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		for(int i=0;i<arVO.size();i++)
 		{
 			GoodVO good=arVO.get(i);
-			ar.add(new GoodPO(good.getId(),good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
+			ar.add(new GoodPO(good.getId(),"00001",good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
 		}
 //		StockPO stockPO=new StockPO(ar);
 //		try{
