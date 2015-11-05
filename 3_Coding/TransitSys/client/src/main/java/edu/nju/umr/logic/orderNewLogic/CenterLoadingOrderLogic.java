@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
@@ -33,7 +34,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), order.getId(), order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress()));
+			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), order.getId(), order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress(),Calendar.getInstance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

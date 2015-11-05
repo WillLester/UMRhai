@@ -2,6 +2,7 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class CenterLoadingPO implements Serializable{
@@ -12,8 +13,12 @@ public class CenterLoadingPO implements Serializable{
 	private String supervision;
 	private String escort;
 	private ArrayList<String> express;
-	public CenterLoadingPO(Date date,String id,String target,String vanId,String supervision,String escort,ArrayList<String> express) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public CenterLoadingPO(Date date, String id, String target, String vanId,
+			String supervision, String escort, ArrayList<String> express,
+			Calendar opTime) {
+		super();
 		this.date = date;
 		this.id = id;
 		this.target = target;
@@ -21,6 +26,7 @@ public class CenterLoadingPO implements Serializable{
 		this.supervision = supervision;
 		this.escort = escort;
 		this.express = express;
+		this.opTime = opTime;
 	}
 	public Date getDate() {
 		return date;
@@ -43,4 +49,8 @@ public class CenterLoadingPO implements Serializable{
 	public String getId() {
 		return id;
 	}
+	public Calendar getOpTime() {
+		return opTime;
+	}
+	
 }

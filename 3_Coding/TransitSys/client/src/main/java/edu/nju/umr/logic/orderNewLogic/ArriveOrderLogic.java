@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -33,7 +34,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), order.getId(), order.getStartPlace(), order.getState()));
+			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), order.getId(), order.getStartPlace(), order.getState(),Calendar.getInstance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
