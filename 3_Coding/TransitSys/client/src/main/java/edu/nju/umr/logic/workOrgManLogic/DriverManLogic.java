@@ -33,13 +33,13 @@ public class DriverManLogic implements DriverManLSer{
 	public boolean addDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
-		try
-		{
-			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try
+//		{
+//			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
@@ -59,13 +59,13 @@ public class DriverManLogic implements DriverManLSer{
 	public boolean reviseDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
-		try
-		{
-			isSuccessful=driverData.reviseDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try
+//		{
+//			isSuccessful=driverData.reviseDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
@@ -73,14 +73,14 @@ public class DriverManLogic implements DriverManLSer{
 		// TODO 自动生成的方法存根
 		DriverPO Driver=null;
 		boolean isSuccessful=false;
-		try{
-			Driver=driverData.checkDriver(id);
-			isSuccessful=true;
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		ResultMessage message = new ResultMessage(isSuccessful,new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
-		return message;
+//		try{
+//			Driver=driverData.checkDriver(id);
+//			isSuccessful=true;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful,new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
+		return null;
 	}
 
 //	public ResultMessage driverList() {
@@ -116,11 +116,11 @@ public class DriverManLogic implements DriverManLSer{
 			e.printStackTrace();
 		}
 		ArrayList<DriverVO> arVO=new ArrayList<DriverVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			DriverPO Driver = ar.get(i);
-			arVO.add(new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
-		}
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			DriverPO Driver = ar.get(i);
+//			arVO.add(new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
+//		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}

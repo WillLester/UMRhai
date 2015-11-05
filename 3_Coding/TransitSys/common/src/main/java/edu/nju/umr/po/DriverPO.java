@@ -1,6 +1,7 @@
 package edu.nju.umr.po;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Sex;
@@ -12,16 +13,20 @@ public class DriverPO implements Serializable{
 	private String idNum;
 	private String mobile;
 	private Sex sex;
-	private Date driveLimit;
-	public DriverPO(String id,String name,Date birthday,String idNum,String mobile,Sex sex,Date driveLimit) {
-		// TODO 自动生成的构造函数存根
+	private Calendar driveStart;
+	private Calendar driveEnd;
+	
+	public DriverPO(String id, String name, Date birthday, String idNum,
+			String mobile, Sex sex, Calendar driveStart, Calendar driveEnd) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;
 		this.idNum = idNum;
 		this.mobile = mobile;
 		this.sex = sex;
-		this.driveLimit = driveLimit;
+		this.driveStart = driveStart;
+		this.driveEnd = driveEnd;
 	}
 	public String getId() {
 		return id;
@@ -41,7 +46,11 @@ public class DriverPO implements Serializable{
 	public Sex getSex() {
 		return sex;
 	}
-	public Date getDriveLimit() {
-		return driveLimit;
+	public Calendar getDriveStart() {
+		return driveStart;
 	}
+	public Calendar getDriveEnd() {
+		return driveEnd;
+	}
+	
 }
