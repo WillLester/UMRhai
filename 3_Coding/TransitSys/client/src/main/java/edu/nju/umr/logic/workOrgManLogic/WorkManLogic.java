@@ -139,8 +139,8 @@ public class WorkManLogic implements WorkManLSer{
 		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
 		for(int i=0;i<ar.size();i++)
 		{
-			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName())));
+			OrgPO org=ar.get(i);
+			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;

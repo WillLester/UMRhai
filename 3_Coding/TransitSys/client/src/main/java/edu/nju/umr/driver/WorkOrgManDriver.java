@@ -52,9 +52,9 @@ public class WorkOrgManDriver {
 		}
 	}
 	private void driverOrg(){
-		System.out.println(org.addOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1"))));
+		System.out.println(org.addOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1","江苏"))));
 		System.out.println(org.deleteOrg("1"));
-		System.out.println(org.reviseOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1"))));
+		System.out.println(org.reviseOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1","江苏"))));
 //		OrgVO org=(OrgVO)this.org.checkOrg("1").getMessage();
 //		System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
 		ArrayList<OrgVO> ar=null;

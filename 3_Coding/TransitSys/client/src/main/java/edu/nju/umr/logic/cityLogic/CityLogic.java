@@ -35,7 +35,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = cityData.add(new CityPO(city.getName(), city.getId()));
+			isSuc = cityData.add(new CityPO(city.getName(), city.getId(),null));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = cityData.revise(new CityPO(city.getName(), city.getId()));
+			isSuc = cityData.revise(new CityPO(city.getName(), city.getId(),city.getProvince()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class CityLogic implements CityLSer{
 		try {
 			ArrayList<CityPO> cities = cityData.getCities();
 			for(CityPO city:cities){
-				CityVO vo = new CityVO(city.getName(), city.getId());
+				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
 				cityList.add(vo);
 			}
 		} catch (RemoteException e) {

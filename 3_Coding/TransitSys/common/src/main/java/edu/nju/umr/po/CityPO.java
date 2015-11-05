@@ -5,10 +5,13 @@ import java.io.Serializable;
 public class CityPO implements Serializable{
 	private String name;
 	private String id;
-	public CityPO(String name,String id) {
-		// TODO 自动生成的构造函数存根
+	private String province;
+	
+	public CityPO(String name, String id, String province) {
+		super();
 		this.name = name;
 		this.id = id;
+		this.province = province;
 	}
 	public String getName() {
 		return name;
@@ -16,4 +19,8 @@ public class CityPO implements Serializable{
 	public String getId() {
 		return id;
 	}
+	public String getProvince() {
+		return province;
+	}
+	
 }

@@ -56,7 +56,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		try {
 			ArrayList<OrgPO> halls = statementData.getHall();
 			for(OrgPO hall:halls){
-				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId());
+				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
 				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
 				hallList.add(vo);
 			}

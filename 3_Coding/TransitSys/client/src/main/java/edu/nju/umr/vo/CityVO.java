@@ -3,15 +3,21 @@ package edu.nju.umr.vo;
 public class CityVO {
 	private String name;
 	private String id;
-	public CityVO(String name,String id) {
-		// TODO 自动生成的构造函数存根
+	private String province;
+	
+	public CityVO(String name, String id, String province) {
+		super();
 		this.name = name;
 		this.id = id;
+		this.province = province;
 	}
 	public String getName() {
 		return name;
 	}
 	public String getId() {
 		return id;
+	}
+	public String getProvince() {
+		return province;
 	}
 }

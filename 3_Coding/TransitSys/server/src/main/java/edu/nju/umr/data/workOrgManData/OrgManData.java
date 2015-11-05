@@ -19,8 +19,8 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	public ArrayList<OrgPO> findOrg(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1")));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","1")));
+		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","025","江苏")));
+		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","025","江苏")));
 		return ar1;
 	}
 
@@ -48,8 +48,8 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	public ArrayList<CityPO> getCities() throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<CityPO> ar=new ArrayList<CityPO>();
-		ar.add(new CityPO("南京","1"));
-		ar.add(new CityPO("北京","2"));
+		ar.add(new CityPO("南京","1","江苏"));
+		ar.add(new CityPO("北京","2","北京"));
 		return ar;
 	}
 

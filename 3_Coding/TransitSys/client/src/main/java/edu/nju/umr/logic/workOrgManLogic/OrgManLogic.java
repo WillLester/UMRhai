@@ -29,7 +29,7 @@ public class OrgManLogic implements OrgManLSer{
 	public boolean addOrg(OrgVO org) {
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName())));
+			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class OrgManLogic implements OrgManLSer{
 	public boolean reviseOrg(OrgVO org) {
 		boolean isSuccessful=false;
 		try{
-			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName())));
+			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -109,8 +109,8 @@ public class OrgManLogic implements OrgManLSer{
 		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
 		for(int i=0;i<ar.size();i++)
 		{
-			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName())));
+			OrgPO org=ar.get(i);
+			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
@@ -131,7 +131,7 @@ public class OrgManLogic implements OrgManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			CityPO city=ar.get(i);
-			arVO.add(new CityVO(city.getId(),city.getName()));
+			arVO.add(new CityVO(city.getId(),city.getName(),city.getProvince()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;

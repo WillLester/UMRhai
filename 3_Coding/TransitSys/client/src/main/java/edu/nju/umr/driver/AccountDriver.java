@@ -42,7 +42,7 @@ public class AccountDriver {
 		driver.driveCount();
 	}
 	private void driveCount(){
-		CityVO city = new CityVO("北京", "010");
+		CityVO city = new CityVO("北京", "010","北京");
 		OrgVO org = new OrgVO("00001", "HaHa", Organization.HALL, "香港记者", city);
 		ArrayList<OrgVO> orgList = new ArrayList<OrgVO>();
 		orgList.add(org);
