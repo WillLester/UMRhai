@@ -1,6 +1,7 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Part;
@@ -14,8 +15,12 @@ public class StockInPO implements Serializable{
 	private String shelfId;
 	private int row;
 	private int place;
-	public StockInPO(String id,String expressId,Date date,String arrivePlace,Part part,String shelfId,int row,int place) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public StockInPO(String id, String expressId, Date date,
+			String arrivePlace, Part part, String shelfId, int row, int place,
+			Calendar opTime) {
+		super();
 		this.id = id;
 		this.expressId = expressId;
 		this.date = date;
@@ -24,6 +29,7 @@ public class StockInPO implements Serializable{
 		this.shelfId = shelfId;
 		this.row = row;
 		this.place = place;
+		this.opTime = opTime;
 	}
 	public String getId() {
 		return id;
@@ -48,5 +54,8 @@ public class StockInPO implements Serializable{
 	}
 	public int getPlace() {
 		return place;
+	}
+	public Calendar getOpTime() {
+		return opTime;
 	}
 }

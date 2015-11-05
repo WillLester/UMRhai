@@ -3,6 +3,7 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.po.order.StockInPO;
@@ -27,7 +28,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	public boolean create(StockInVO order) {
 		boolean isSuccessful=false;
 		try{
-			StockInPO orderPO=new StockInPO(order.getId(),order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace());
+			StockInPO orderPO=new StockInPO(order.getId(),order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance());
 			stockinData.create(orderPO);
 			isSuccessful=true;
 		}

@@ -2,6 +2,7 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TransitPO implements Serializable{
 	private String id;
@@ -11,6 +12,7 @@ public class TransitPO implements Serializable{
 	private String containerId;
 	private String supervision;
 	private ArrayList<String> express;
+	private Calendar opTime;
 	public TransitPO(String id,String planeId,String startPlace,String arrivePlace,String containerId,String supervision,ArrayList<String> express) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;

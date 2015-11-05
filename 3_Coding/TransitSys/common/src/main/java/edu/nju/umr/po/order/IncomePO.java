@@ -2,6 +2,7 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class IncomePO implements Serializable{
@@ -10,13 +11,17 @@ public class IncomePO implements Serializable{
 	private double cost;
 	private ArrayList<String> express;
 	private String id;
-	public IncomePO(Date date,String courier,double cost,ArrayList<String> express,String id) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public IncomePO(Date date, String courier, double cost,
+			ArrayList<String> express, String id, Calendar opTime) {
+		super();
 		this.date = date;
 		this.courier = courier;
 		this.cost = cost;
 		this.express = express;
 		this.id = id;
+		this.opTime = opTime;
 	}
 	public Date getDate() {
 		return date;
@@ -32,5 +37,8 @@ public class IncomePO implements Serializable{
 	}
 	public String getId() {
 		return id;
+	}
+	public Calendar getOpTime() {
+		return opTime;
 	}
 }

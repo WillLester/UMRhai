@@ -2,6 +2,7 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
@@ -26,7 +27,7 @@ public class SendOrderLogic implements SendOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			SendPO orderPO=new SendPO(order.getDate(),order.getExpressId(),order.getId(),order.getCourier());
+			SendPO orderPO=new SendPO(order.getDate(),order.getExpressId(),order.getId(),order.getCourier(),Calendar.getInstance());
 			sendData.create(orderPO);
 			isSuccessful=true;
 		}

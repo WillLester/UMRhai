@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
@@ -31,7 +32,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
-			isSuc = paymentData.create(new PaymentPO(order.getId(), order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks()));
+			isSuc = paymentData.create(new PaymentPO(order.getId(), order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

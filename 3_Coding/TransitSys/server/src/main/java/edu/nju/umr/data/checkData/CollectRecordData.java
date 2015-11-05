@@ -24,9 +24,9 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 		String express1 = "1024656";
 		ArrayList<String> express = new ArrayList<String>();
 		express.add(express1);
-		IncomePO income = new IncomePO(date, "宝华", 23.33, express, id);
+//		IncomePO income = new IncomePO(date, "宝华", 23.33, express, id);
 		ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
-		incomeList.add(income);
+//		incomeList.add(income);
 		return incomeList;
 	}
 	public ArrayList<OrgPO> getHall()

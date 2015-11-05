@@ -3,6 +3,7 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
 import edu.nju.umr.po.order.StockOutPO;
@@ -27,7 +28,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 	public boolean create(StockOutVO order) {
 		boolean isSuccessful=false;
 		try{
-			StockOutPO orderPO=new StockOutPO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId());
+			StockOutPO orderPO=new StockOutPO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),Calendar.getInstance());
 			stockoutData.create(orderPO);
 			isSuccessful=true;
 		}

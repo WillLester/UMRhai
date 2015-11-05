@@ -1,6 +1,7 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SendPO implements Serializable{
@@ -8,12 +9,16 @@ public class SendPO implements Serializable{
 	private String expressId;
 	private String id;
 	private String courier;
-	public SendPO(Date date,String expressId,String id,String name) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public SendPO(Date date, String expressId, String id, String courier,
+			Calendar opTime) {
+		super();
 		this.date = date;
 		this.expressId = expressId;
 		this.id = id;
-		this.courier = name;
+		this.courier = courier;
+		this.opTime = opTime;
 	}
 	public Date getDate() {
 		return date;
@@ -26,5 +31,8 @@ public class SendPO implements Serializable{
 	}
 	public String getCourier() {
 		return courier;
+	}
+	public Calendar getOpTime() {
+		return opTime;
 	}
 }

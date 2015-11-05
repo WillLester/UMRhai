@@ -3,6 +3,7 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.order.RecipientPO;
@@ -28,7 +29,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			RecipientPO orderPO=new RecipientPO(order.getDate(),order.getId(),order.getTransitId(),order.getStartPlace(),order.getState());
+			RecipientPO orderPO=new RecipientPO(order.getDate(),order.getId(),order.getTransitId(),order.getStartPlace(),order.getState(),Calendar.getInstance());
 			recipientData.create(orderPO);
 			isSuccessful=true;
 		}

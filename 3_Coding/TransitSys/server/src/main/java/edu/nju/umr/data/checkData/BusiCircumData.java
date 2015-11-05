@@ -26,9 +26,9 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 		String express1 = "1024656";
 		ArrayList<String> express = new ArrayList<String>();
 		express.add(express1);
-		IncomePO income = new IncomePO(date, "宝华", 23.33, express, "00001");
+//		IncomePO income = new IncomePO(date, "宝华", 23.33, express, "00001");
 		ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
-		incomeList.add(income);
+//		incomeList.add(income);
 		return incomeList;
 	}
 

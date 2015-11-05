@@ -3,6 +3,7 @@ package edu.nju.umr.data.orderApproveData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
@@ -37,7 +38,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		// TODO 自动生成的方法存根
 		@SuppressWarnings("deprecation")
 		Date date = new Date(109, 4, 25,11,24,30);
-		PaymentPO pay = new PaymentPO(id, date, "董先生", "12345", Pay.WAGE, 100, null);
+		PaymentPO pay = new PaymentPO(id, date, "董先生", "12345", Pay.WAGE, 100, null,Calendar.getInstance());
 		return pay;
 	}
 

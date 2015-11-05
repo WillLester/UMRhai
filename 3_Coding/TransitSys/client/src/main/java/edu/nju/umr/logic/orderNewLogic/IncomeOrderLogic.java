@@ -32,12 +32,12 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	public boolean create(IncomeVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
-		try {
-			isSuc = incomeData.create(new IncomePO(order.getDate(), order.getCourier(), order.getCost(), order.getExpress(), order.getId()));
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		try {
+//			isSuc = incomeData.create(new IncomePO(order.getDate(), order.getCourier(), order.getCost(), order.getExpress(), order.getId()));
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 		return isSuc;
 	}
 

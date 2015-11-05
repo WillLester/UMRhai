@@ -1,6 +1,7 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.po.enums.Pay;
@@ -13,8 +14,11 @@ public class PaymentPO implements Serializable{
 	private Pay kind;
 	private double amount;
 	private String remarks;
-	public PaymentPO(String id,Date date,String payer,String account,Pay kind,double amount,String remarks) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public PaymentPO(String id, Date date, String payer, String account,
+			Pay kind, double amount, String remarks, Calendar opTime) {
+		super();
 		this.id = id;
 		this.date = date;
 		this.payer = payer;
@@ -22,6 +26,7 @@ public class PaymentPO implements Serializable{
 		this.kind = kind;
 		this.amount = amount;
 		this.remarks = remarks;
+		this.opTime = opTime;
 	}
 	public String getId() {
 		return id;
@@ -44,4 +49,8 @@ public class PaymentPO implements Serializable{
 	public String getRemarks() {
 		return remarks;
 	}
+	public Calendar getOpTime() {
+		return opTime;
+	}
+	
 }
