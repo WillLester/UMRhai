@@ -32,14 +32,14 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	public boolean create(HallLoadingVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc=false;
-		try
-		{
-			isSuc=hallData.create(new HallLoadingPO(order.getHallId(),order.getConvertId(),order.getArriveLoc(),order.getVanId(),order.getSupervision(),order.getEscort(),order.getExpress()));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try
+//		{
+//			isSuc=hallData.create(new HallLoadingPO(order.getHallId(),order.getConvertId(),order.getArriveLoc(),order.getVanId(),order.getSupervision(),order.getEscort(),order.getExpress()));
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuc;
 	}
 

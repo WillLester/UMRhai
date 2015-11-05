@@ -30,12 +30,12 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	public boolean create(ExpressVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
-		try {
-			isSuc = expressData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), order.getId(), order.getArrive(), order.getKind(), order.getCost()));
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		try {
+//			isSuc = expressData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), order.getId(), order.getArrive(), order.getKind(), order.getCost()));
+//		} catch (RemoteException e) {
+	//		// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+	//	}
 		return isSuc;
 	}
 

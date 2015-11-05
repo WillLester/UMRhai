@@ -2,8 +2,10 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class HallLoadingPO implements Serializable{
+	private String id;
 	private String hallId;
 	private String convertId;
 	private String arriveLoc;
@@ -11,8 +13,14 @@ public class HallLoadingPO implements Serializable{
 	private String supervision;
 	private String escort;
 	private ArrayList<String> express;
-	public HallLoadingPO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express) {
-		// TODO 自动生成的构造函数存根
+	private Calendar date;
+	private Calendar opTime;
+	
+	public HallLoadingPO(String id, String hallId, String convertId,
+			String arriveLoc, String vanId, String supervision, String escort,
+			ArrayList<String> express, Calendar date, Calendar opTime) {
+		super();
+		this.id = id;
 		this.hallId = hallId;
 		this.convertId = convertId;
 		this.arriveLoc = arriveLoc;
@@ -20,6 +28,8 @@ public class HallLoadingPO implements Serializable{
 		this.supervision = supervision;
 		this.escort = escort;
 		this.express = express;
+		this.date = date;
+		this.opTime = opTime;
 	}
 	public String getHallId() {
 		return hallId;
@@ -42,4 +52,14 @@ public class HallLoadingPO implements Serializable{
 	public ArrayList<String> getExpress() {
 		return express;
 	}
+	public Calendar getOpTime() {
+		return opTime;
+	}
+	public Calendar getDate() {
+		return date;
+	}
+	public String getId() {
+		return id;
+	}
+	
 }

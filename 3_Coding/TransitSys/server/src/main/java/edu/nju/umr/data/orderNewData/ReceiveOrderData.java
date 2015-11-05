@@ -25,7 +25,8 @@ public class ReceiveOrderData extends UnicastRemoteObject implements ReceiveOrde
 		// TODO 自动生成的方法存根
 		@SuppressWarnings("deprecation")
 		Date date = new Date(109, 4, 25,11,24,30);
-		ExpressPO express = new ExpressPO("宝华", "香港", "长者", "北京", "16087292054", "10000000000", 1, "大新闻", 10, 10,10, 20, 1000, "12345",date , Express.NORMAL, 100);
+//		ExpressPO express = new ExpressPO("宝华", "香港", "长者", "北京", "16087292054", "10000000000", 1, "大新闻", 10, 10,10, 20, 1000, "12345",date , Express.NORMAL, 100);
+		ExpressPO express = null;
 		return express;
 	}
 
