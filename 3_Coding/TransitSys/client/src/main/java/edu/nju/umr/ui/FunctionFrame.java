@@ -7,6 +7,7 @@ import edu.nju.umr.ui.accountUI.CountPanel;
 import edu.nju.umr.ui.workOrgManUI.*;
 import edu.nju.umr.ui.stockUI.*;
 import edu.nju.umr.ui.userManUI.*;
+import edu.nju.umr.ui.orderNewUI.*;
 
 public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/20;
