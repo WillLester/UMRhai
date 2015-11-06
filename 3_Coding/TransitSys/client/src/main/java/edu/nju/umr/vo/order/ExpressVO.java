@@ -11,6 +11,10 @@ public class ExpressVO {
 	private String receiveLoc;
 	private String sendMobile;
 	private String receiveMobile;
+	private String sendPhone;
+	private String receivePhone;
+	private String sendUnit;
+	private String receiveUnit;
 	private int num;
 	private String name;
 	private double length;
@@ -22,15 +26,24 @@ public class ExpressVO {
 	private Calendar arrive;
 	private Express kind;
 	private double cost;
-	public ExpressVO(String sender,String sendLoc,String receiver,String receiveLoc,String sendMobile,String receiveMobile,
-			int num,String name,double length,double width, double height, double weight,double volumn,String id,Calendar arrive,Express kind,double cost) {
-		// TODO 自动生成的构造函数存根
+	
+	public ExpressVO(String sender, String sendLoc, String receiver,
+			String receiveLoc, String sendMobile, String receiveMobile,
+			String sendPhone, String receivePhone, String sendUnit,
+			String receiveUnit, int num, String name, double length,
+			double width, double height, double weight, double volumn,
+			String id, Calendar arrive, Express kind, double cost) {
+		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
 		this.receiver = receiver;
 		this.receiveLoc = receiveLoc;
 		this.sendMobile = sendMobile;
 		this.receiveMobile = receiveMobile;
+		this.sendPhone = sendPhone;
+		this.receivePhone = receivePhone;
+		this.sendUnit = sendUnit;
+		this.receiveUnit = receiveUnit;
 		this.num = num;
 		this.name = name;
 		this.length = length;
@@ -93,6 +106,18 @@ public class ExpressVO {
 	}
 	public double getCost() {
 		return cost;
+	}
+	public String getSendPhone() {
+		return sendPhone;
+	}
+	public String getReceivePhone() {
+		return receivePhone;
+	}
+	public String getSendUnit() {
+		return sendUnit;
+	}
+	public String getReceiveUnit() {
+		return receiveUnit;
 	}
 	
 }

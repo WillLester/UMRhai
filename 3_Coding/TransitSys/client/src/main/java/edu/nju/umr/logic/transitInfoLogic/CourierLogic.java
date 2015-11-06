@@ -35,7 +35,7 @@ public class CourierLogic implements CourierLSer{
 			e.printStackTrace();
 		}
 		ResultMessage message=new ResultMessage(isSuccessful,new ExpressVO(express.getSender(),express.getSendLoc(),express.getReceiver(),express.getReceiveLoc(),express.getSendMobile(),
-				express.getReceiveMobile(),express.getNum(),express.getName(),express.getLength(),express.getWidth(),express.getHeight(),express.getWeight(),express.getVolumn(),express.getId(),
+				express.getReceiveMobile(),express.getSendPhone(),express.getReceivePhone(),express.getSendUnit(),express.getReceiveUnit(),express.getNum(),express.getName(),express.getLength(),express.getWidth(),express.getHeight(),express.getWeight(),express.getVolumn(),express.getId(),
 				express.getArrive(),express.getKind(),express.getCost()));
 		return message;
 	}

@@ -58,7 +58,7 @@ public class OrderNewDriver {
 		}
 	}
 	public void driverExpress(){
-		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",1,"Name",1,1,1,1,1,"ID",Calendar.getInstance(),Express.NORMAL,1)));
+		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",null,null,null,null,1,"Name",1,1,1,1,1,"ID",Calendar.getInstance(),Express.NORMAL,1)));
 		
 	}
 	public void driverHallLoading(){
