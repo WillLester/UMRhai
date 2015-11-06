@@ -10,6 +10,7 @@ import edu.nju.umr.data.checkData.CollectRecordData;
 import edu.nju.umr.data.checkData.CostBeneData;
 import edu.nju.umr.data.checkData.DiaryData;
 import edu.nju.umr.data.cityData.CityData;
+import edu.nju.umr.data.cityData.ConstantData;
 import edu.nju.umr.data.orderApproveData.OrderApproveData;
 import edu.nju.umr.data.orderApproveData.OrderResubmitData;
 import edu.nju.umr.data.orderNewData.ArriveOrderData;
@@ -78,6 +79,7 @@ import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
+import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -105,11 +107,12 @@ import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
+import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,StatementSheetDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
-StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer{
+StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer{
 
 	/**
 	 * 
@@ -290,6 +293,10 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFac
 	public CostBeneDSer getCostBene() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return new CostBeneData();
+	}
+	
+	public ConstantDSer getConstant() throws RemoteException {
+		return new ConstantData();
 	}
 
 }
