@@ -30,12 +30,12 @@ public class DriverListPanel extends JPanel {
 		textFieldSearch = new JTextField();
 		textFieldSearch.setText("请输入关键字或司机编号");
 		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,300, 21);
-		add(textFieldSearch);
+		//add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		JButton search = new JButton("搜索");
 		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 90, 21);
-		add(search);
+		//add(search);
 
 		listTable = new JTable();
 		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);

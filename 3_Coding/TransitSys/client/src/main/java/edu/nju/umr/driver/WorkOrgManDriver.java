@@ -107,18 +107,18 @@ public class WorkOrgManDriver {
 		System.out.println(drive.deleteDriver("1"));
 		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Sex.MAN,new Date())));
 		
-		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.searchDriver(null).getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			DriverVO driver=ar.get(i);
-			System.out.println(driver.getId()+" "+driver.getName()+" "+driver.getBirthday()+" "+driver.getIdNum()+" "+driver.getMobile()+" "+driver.getSex()+" "+driver.getDriveLimit());
-		}
-		ar=(ArrayList<DriverVO>)drive.searchDriver("").getMessage();
-		for(int i=0;i<ar.size();i++)
-		{
-			DriverVO Driver=ar.get(i);
-			System.out.println(Driver.getId()+" "+Driver.getName()+" "+Driver.getBirthday()+" "+Driver.getIdNum()+" "+Driver.getMobile()+" "+Driver.getSex()+" "+Driver.getDriveLimit());
-		}
+//		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.searchDriver(null).getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			DriverVO driver=ar.get(i);
+//			System.out.println(driver.getId()+" "+driver.getName()+" "+driver.getBirthday()+" "+driver.getIdNum()+" "+driver.getMobile()+" "+driver.getSex()+" "+driver.getDriveLimit());
+//		}
+//		ar=(ArrayList<DriverVO>)drive.searchDriver("").getMessage();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			DriverVO Driver=ar.get(i);
+//			System.out.println(Driver.getId()+" "+Driver.getName()+" "+Driver.getBirthday()+" "+Driver.getIdNum()+" "+Driver.getMobile()+" "+Driver.getSex()+" "+Driver.getDriveLimit());
+//		}
 		
 	}
 	

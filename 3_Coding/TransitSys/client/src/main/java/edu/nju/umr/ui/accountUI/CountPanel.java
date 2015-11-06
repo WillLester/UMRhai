@@ -29,14 +29,14 @@ public class CountPanel extends JPanel{
 		searchField = new JTextField();
 		searchField.setText("请输入关键字");
 		searchField.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*11/10, Constants.TEXTFIELD_WIDTH_L, Constants.TEXTFIELD_HEIGHT);
-		add(searchField);
+		//add(searchField);
 		searchField.setColumns(10);
 		
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(searchButton);
+		//add(searchButton);
 		
 		countList = new JTable();
 		countList.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
