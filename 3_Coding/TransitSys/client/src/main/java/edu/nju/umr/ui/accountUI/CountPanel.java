@@ -43,41 +43,41 @@ public class CountPanel extends JPanel{
 		countList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		add(countList);
 		
-		JLabel addLabel = new JLabel("新增账");
-		addLabel.setFont(new Font("华文新魏", Font.PLAIN, 17));
-		addLabel.setBounds(Constants.WIDTH_DIV_9*69/10, Constants.HEIGHT_DIV_10*17/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(addLabel);
+//		JLabel addLabel = new JLabel("新增账");
+//		addLabel.setFont(new Font("华文新魏", Font.PLAIN, 17));
+//		addLabel.setBounds(Constants.WIDTH_DIV_9*69/10, Constants.HEIGHT_DIV_10*17/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+//		add(addLabel);
+//		
+//		JLabel orgLabel = new JLabel("选择机构");
+//		orgLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+//		orgLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*23/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+//		add(orgLabel);
+//		
+//		JLabel stockLabel = new JLabel("选择库存");
+//		stockLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+//		stockLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*29/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+//		add(stockLabel);
+//		
+//		JLabel accountLabel = new JLabel("选择账户");
+//		accountLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+//		accountLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*35/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+//		add(accountLabel);
+//		
+//		JComboBox orgList = new JComboBox();
+//		orgList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*23/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
+//		add(orgList);
+//		
+//		JComboBox stockList = new JComboBox();
+//		stockList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*29/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
+//		add(stockList);
+//		
+//		JComboBox accountList = new JComboBox();
+//		accountList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*35/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
+//		add(accountList);
 		
-		JLabel orgLabel = new JLabel("选择机构");
-		orgLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		orgLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*23/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(orgLabel);
-		
-		JLabel stockLabel = new JLabel("选择库存");
-		stockLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		stockLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*29/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(stockLabel);
-		
-		JLabel accountLabel = new JLabel("选择账户");
-		accountLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		accountLabel.setBounds(Constants.WIDTH_DIV_9*62/10, Constants.HEIGHT_DIV_10*35/10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(accountLabel);
-		
-		JComboBox orgList = new JComboBox();
-		orgList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*23/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
-		add(orgList);
-		
-		JComboBox stockList = new JComboBox();
-		stockList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*29/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
-		add(stockList);
-		
-		JComboBox accountList = new JComboBox();
-		accountList.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*35/10+7, Constants.TEXTFIELD_WIDTH_S*9/8, Constants.TEXTFIELD_HEIGHT*5/6);
-		add(accountList);
-		
-		JButton addButton = new JButton("确认新增");
+		JButton addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(Constants.WIDTH_DIV_9*67/10, Constants.HEIGHT_DIV_10*41/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
