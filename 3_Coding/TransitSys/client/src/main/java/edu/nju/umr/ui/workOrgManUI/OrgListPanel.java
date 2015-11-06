@@ -31,7 +31,7 @@ public class OrgListPanel extends JPanel {
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 300, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 770, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -77,11 +77,11 @@ public class OrgListPanel extends JPanel {
 		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 93, 23);
 		add(delete);
 		
-		JButton modify = new JButton("修改");
+		JButton modify = new JButton("确认修改");
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 93, 23);
 		add(modify);
 		
-		JButton confirmMod = new JButton("确认修改");
+		JButton confirmMod = new JButton("取消修改");
 		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
 		add(confirmMod);
 		

@@ -62,10 +62,10 @@ public class UserListPanel extends JPanel {
 		deleteButton.setBounds(525, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(deleteButton);
 		
-//		JButton confirmButton = new JButton("修改");
-//		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-//		confirmButton.setBounds(504, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-//		add(confirmButton);
+		JButton confirmButton = new JButton("确认修改");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		confirmButton.setBounds(895, 437, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		add(confirmButton);
 //		
 //		JButton cancelButton = new JButton("查看");
 //		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -133,10 +133,16 @@ public class UserListPanel extends JPanel {
 		nameField.setBounds(855,271,200,24);
 		add(nameField);
 		
-		JTextField orgField=new JTextField("机构");
-		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
-		orgField.setBounds(855,321,200,24);
-		add(orgField);
+//		JTextField orgField=new JTextField("机构");
+//		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
+//		orgField.setBounds(855,321,200,24);
+//		add(orgField);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
+		comboBox_2.setFont(new Font("宋体", Font.PLAIN, 12));
+		comboBox_2.setBounds(855, 321, 200, 24);
+		add(comboBox_2);
 		
 		JTextField phoneField=new JTextField("手机号");
 		phoneField.setFont(new Font("宋体", Font.PLAIN, 12));
