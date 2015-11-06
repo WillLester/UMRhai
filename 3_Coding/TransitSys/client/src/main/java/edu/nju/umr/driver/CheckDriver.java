@@ -23,6 +23,7 @@ public class CheckDriver {
 		driver.driveStatement();
 	}
 	private void driveCollect(){
+		@SuppressWarnings("unchecked")
 		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) collect.seeCollectRecord(null, null).getMessage();
 		for(IncomeVO income:incomes){
 			System.out.println(income.getId() + " " + income.getCost() + " " + income.getCourier() + " " + income.getDate());

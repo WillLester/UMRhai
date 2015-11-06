@@ -2,18 +2,21 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.GoodState;
 
 public class ArrivePO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8474934805502655478L;
 	private String centerId;
-	private Date date;
+	private Calendar date;
 	private String id;
 	private String startPlace;
 	private GoodState state;
 	private Calendar opTime;
-	public ArrivePO(String centerId, Date date, String id, String startPlace,
+	public ArrivePO(String centerId, Calendar date, String id, String startPlace,
 			GoodState state, Calendar opTime) {
 		super();
 		this.centerId = centerId;
@@ -23,7 +26,7 @@ public class ArrivePO implements Serializable{
 		this.state = state;
 		this.opTime = opTime;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getId() {

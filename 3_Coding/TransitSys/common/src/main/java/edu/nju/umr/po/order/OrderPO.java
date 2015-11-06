@@ -1,17 +1,21 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Order;
 
 public class OrderPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 588251361686260255L;
 	private String id;
 	private Order kind;
 	private String operator;
-	private Date time;
+	private Calendar time;
 	private boolean isPassed;
-	public OrderPO(String id,Order kind,String operator,Date time,boolean isPassed) {
+	public OrderPO(String id,Order kind,String operator,Calendar time,boolean isPassed) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.kind = kind;
@@ -28,7 +32,7 @@ public class OrderPO implements Serializable{
 	public String getOperator() {
 		return operator;
 	}
-	public Date getTime() {
+	public Calendar getTime() {
 		return time;
 	}
 	public boolean isPassed() {

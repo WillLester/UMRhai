@@ -1,14 +1,18 @@
 package edu.nju.umr.po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 public class DiaryPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1403096551316019080L;
 	private String operation;
-	private Date time;
+	private Calendar time;
 	private String operator;
 	
-	public DiaryPO(String operation, Date time, String operator) {
+	public DiaryPO(String operation, Calendar time, String operator) {
 		super();
 		this.operation = operation;
 		this.time = time;
@@ -17,7 +21,7 @@ public class DiaryPO implements Serializable{
 	public String getOperation() {
 		return operation;
 	}
-	public Date getTime() {
+	public Calendar getTime() {
 		return time;
 	}
 	public String getOperator() {

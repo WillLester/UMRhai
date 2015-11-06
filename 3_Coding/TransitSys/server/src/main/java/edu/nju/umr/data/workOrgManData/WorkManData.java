@@ -13,6 +13,11 @@ import edu.nju.umr.po.enums.Organization;
 
 public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6579757885515328662L;
+
 	public WorkManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

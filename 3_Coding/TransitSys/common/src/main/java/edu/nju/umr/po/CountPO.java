@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CountPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3831768397563399168L;
 	private String id;
 	private ArrayList<OrgPO> organizations;
 	private ArrayList<WorkPO> workers;

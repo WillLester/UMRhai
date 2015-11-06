@@ -1,5 +1,6 @@
 package edu.nju.umr.driver;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -18,7 +19,6 @@ public class OrderNewDriver {
 	private HallLoadingOrderLSer hallLoading=new HallLoadingOrderLogic();
 	private IncomeOrderLSer income=new IncomeOrderLogic();
 	private PaymentOrderLSer payment=new PaymentOrderLogic();
-	private ReceiveOrderLSer receive=new ReceiveOrderLogic();
 	private RecipientOrderLSer recipient=new RecipientOrderLogic();
 	private SendOrderLSer send=new SendOrderLogic();
 	private StockInOrderLSer stockIn=new StockInOrderLogic();
@@ -33,7 +33,6 @@ public class OrderNewDriver {
 		driver.driverHallLoading();
 		driver.driverIncomeOrder();
 		driver.driverPayment();
-		driver.driverReceive();
 		driver.driverRecipient();
 		driver.driverSend();
 		driver.driverStockIn();
@@ -41,7 +40,8 @@ public class OrderNewDriver {
 		driver.driverTransit();
 	}
 	public void driverArrive(){
-		System.out.println(arrive.create(new ArriveVO("1",new Date(),"1","南京",GoodState.INTACT)));
+		System.out.println(arrive.create(new ArriveVO("1",Calendar.getInstance(),"1","南京",GoodState.INTACT)));
+		@SuppressWarnings("unchecked")
 		ArrayList<String> ar=(ArrayList<String>)arrive.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
@@ -51,14 +51,14 @@ public class OrderNewDriver {
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(centerLoading.create(new CenterLoadingVO(new Date(),"1","北京","vanId","supervision","escort",expresses)));
+		System.out.println(centerLoading.create(new CenterLoadingVO(Calendar.getInstance(),"1","北京","vanId","supervision","escort",expresses)));
 		ArrayList<String> ar=(ArrayList<String>)centerLoading.getHalls().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverExpress(){
-		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",1,"Name",1,1,1,1,1,"ID",new Date(),Express.NORMAL,1)));
+		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",1,"Name",1,1,1,1,1,"ID",Calendar.getInstance(),Express.NORMAL,1)));
 		
 	}
 	public void driverHallLoading(){
@@ -79,19 +79,14 @@ public class OrderNewDriver {
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(income.create(new IncomeVO(new Date(),"courier",1.5,expresses,"ID")));
+		System.out.println(income.create(new IncomeVO(Calendar.getInstance(),"courier",1.5,expresses,"ID")));
 		ArrayList<String> ar=(ArrayList<String>)income.getCouriers("").getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverPayment(){
-		System.out.println(payment.create(new PaymentVO("ID",new Date(),"payer","acc",Pay.BONUS,10,"remarks")));
-	}
-	public void driverReceive(){
-		System.out.println(receive.create(new ReceiveVO("expressID","receiver",new Date())));
-		ExpressVO ex=(ExpressVO)receive.getExpress("").getMessage();
-		System.out.println(ex.getSender()+" "+ex.getReceiver());
+		System.out.println(payment.create(new PaymentVO("ID",Calendar.getInstance(),"payer","acc",Pay.BONUS,10,"remarks")));
 	}
 	public void driverRecipient(){
 		System.out.println(recipient.create(new RecipientVO(new Date(),"id","transitid","startp",GoodState.DAMAGED)));

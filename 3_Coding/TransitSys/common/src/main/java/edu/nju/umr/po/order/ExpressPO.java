@@ -2,11 +2,14 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.Express;
 
 public class ExpressPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6550263182575632776L;
 	private String sender;
 	private String sendLoc;
 	private String receiver;
@@ -25,7 +28,7 @@ public class ExpressPO implements Serializable{
 	private double weight;
 	private double volumn;
 	private String id;
-	private Date arrive;
+	private Calendar arrive;
 	private Express kind;
 	private double cost;
 	private Calendar opTime;
@@ -35,7 +38,7 @@ public class ExpressPO implements Serializable{
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			String id, Date arrive, Express kind, double cost, Calendar opTime) {
+			String id, Calendar arrive, Express kind, double cost, Calendar opTime) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -102,7 +105,7 @@ public class ExpressPO implements Serializable{
 	public String getId() {
 		return id;
 	}
-	public Date getArrive() {
+	public Calendar getArrive() {
 		return arrive;
 	}
 	public Express getKind() {

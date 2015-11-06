@@ -1,21 +1,25 @@
 package edu.nju.umr.po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Part;
 
 public class GoodPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5450228488458252337L;
 	private String id;
 	private String stockId;
-	private Date date;
+	private Calendar date;
 	private String city;
 	private Part part;
 	private String shelf;
 	private int row;
 	private int place;
 
-	public GoodPO(String id, String stockId, Date date, String city, Part part,
+	public GoodPO(String id, String stockId, Calendar date, String city, Part part,
 			String shelf, int row, int place) {
 		super();
 		this.id = id;
@@ -30,7 +34,7 @@ public class GoodPO implements Serializable{
 	public String getId() {
 		return id;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getCity() {

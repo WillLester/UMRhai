@@ -9,6 +9,11 @@ import edu.nju.umr.po.enums.Jurisdiction;
 
 public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8520494959646688525L;
+
 	public LoginData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

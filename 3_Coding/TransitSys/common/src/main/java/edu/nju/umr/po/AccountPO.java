@@ -3,6 +3,10 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 public class AccountPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6350938083073701474L;
 	private String id;
 	private String name;
 	private int balance;

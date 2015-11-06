@@ -3,7 +3,7 @@ package edu.nju.umr.data.accountData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
@@ -19,6 +19,11 @@ import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Part;
 
 public class CountData extends UnicastRemoteObject implements CountDSer{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3199440496716511453L;
 
 	public CountData() throws RemoteException {
 		super();
@@ -39,12 +44,10 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		WorkPO work = new WorkPO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER);
 		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
 		workerList.add(work);
-		@SuppressWarnings("deprecation")
-		Date date = new Date(109, 4, 25);
-		VanPO van = new VanPO("00001", "苏A-12345", date, null, "00001");
+		VanPO van = new VanPO("00001", "苏A-12345",Calendar.getInstance(), null, "00001");
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
-		GoodPO good = new GoodPO("00001", "00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		GoodPO good = new GoodPO("00001", "00001", Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
 		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
 		goodList.add(good);
 		StockPO stock = new StockPO("00001",goodList);
@@ -77,9 +80,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	public ArrayList<VanPO> getVans() throws RemoteException {
 		// TODO 自动生成的方法存根
-		@SuppressWarnings("deprecation")
-		Date date = new Date(109, 4, 25);
-		VanPO van = new VanPO("00001", "苏A-12345", date, null, "1");
+		VanPO van = new VanPO("00001", "苏A-12345", Calendar.getInstance(), null, "1");
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
 		return vanList;
@@ -87,9 +88,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	public ArrayList<StockPO> getStocks() throws RemoteException {
 		// TODO 自动生成的方法存根
-		@SuppressWarnings("deprecation")
-		Date date = new Date(109, 4, 25);
-		GoodPO good = new GoodPO("00001", "00001",date, "北京", Part.TRAIN, "T00001", 3, 5);
+		GoodPO good = new GoodPO("00001", "00001",Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
 		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
 		goodList.add(good);
 		StockPO stock = new StockPO("00001",goodList);

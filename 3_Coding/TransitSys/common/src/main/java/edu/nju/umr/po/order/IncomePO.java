@@ -3,17 +3,20 @@ package edu.nju.umr.po.order;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class IncomePO implements Serializable{
-	private Date date;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1315709059088122485L;
+	private Calendar date;
 	private String courier;
 	private double cost;
 	private ArrayList<String> express;
 	private String id;
 	private Calendar opTime;
 	
-	public IncomePO(Date date, String courier, double cost,
+	public IncomePO(Calendar date, String courier, double cost,
 			ArrayList<String> express, String id, Calendar opTime) {
 		super();
 		this.date = date;
@@ -23,7 +26,7 @@ public class IncomePO implements Serializable{
 		this.id = id;
 		this.opTime = opTime;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getCourier() {

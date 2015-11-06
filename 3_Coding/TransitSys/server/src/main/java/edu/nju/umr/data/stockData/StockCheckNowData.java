@@ -2,6 +2,7 @@ package edu.nju.umr.data.stockData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -12,6 +13,11 @@ import edu.nju.umr.po.enums.Part;
 
 public class StockCheckNowData extends UnicastRemoteObject implements StockCheckNowDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6212234457642125928L;
+
 	public StockCheckNowData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
@@ -20,8 +26,8 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 	public StockPO getStock(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		StockPO sp=new StockPO("00001",new ArrayList<GoodPO>());
-		sp.getGoods().add(new GoodPO("1","00001",new Date(),"南京",Part.PLANE,"shelf1",1,1));
-		sp.getGoods().add(new GoodPO("2","00001",new Date(),"上海",Part.TRAIN,"shelf2",3,4));
+		sp.getGoods().add(new GoodPO("1","00001",Calendar.getInstance(),"南京",Part.PLANE,"shelf1",1,1));
+		sp.getGoods().add(new GoodPO("2","00001",Calendar.getInstance(),"上海",Part.TRAIN,"shelf2",3,4));
 		return sp;
 	}
 

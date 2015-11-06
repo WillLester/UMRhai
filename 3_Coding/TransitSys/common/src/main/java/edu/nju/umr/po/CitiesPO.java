@@ -3,6 +3,10 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 public class CitiesPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2284621881561095776L;
 	private String city1;
 	private String city2;
 	private int distance;

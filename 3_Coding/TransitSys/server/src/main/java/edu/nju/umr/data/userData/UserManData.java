@@ -10,6 +10,11 @@ import edu.nju.umr.po.enums.Jurisdiction;
 
 public class UserManData extends UnicastRemoteObject implements UserManDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8342614834288983719L;
+
 	public UserManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

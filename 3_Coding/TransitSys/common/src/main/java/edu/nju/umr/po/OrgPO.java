@@ -5,6 +5,10 @@ import java.io.Serializable;
 import edu.nju.umr.po.enums.Organization;
 
 public class OrgPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8665604375936596624L;
 	private String id;
 	private String name;
 	private Organization kind;

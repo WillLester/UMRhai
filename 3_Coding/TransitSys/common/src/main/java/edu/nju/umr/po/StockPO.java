@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class StockPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3028163591762035472L;
 	private String stockId;
 	private ArrayList<GoodPO> goods;
 	

@@ -8,6 +8,11 @@ import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 
 public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1090030972122587470L;
+
 	public CustomerData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

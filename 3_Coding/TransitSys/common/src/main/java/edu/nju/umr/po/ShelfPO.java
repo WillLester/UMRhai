@@ -5,6 +5,10 @@ import java.io.Serializable;
 import edu.nju.umr.po.enums.Part;
 
 public class ShelfPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8063864393327534721L;
 	private String id;
 	private String stockId;
 	private int row;

@@ -3,10 +3,13 @@ package edu.nju.umr.po.order;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class CenterLoadingPO implements Serializable{
-	private Date date;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 113757402410628188L;
+	private Calendar date;
 	private String id;
 	private String target;
 	private String vanId;
@@ -15,7 +18,7 @@ public class CenterLoadingPO implements Serializable{
 	private ArrayList<String> express;
 	private Calendar opTime;
 	
-	public CenterLoadingPO(Date date, String id, String target, String vanId,
+	public CenterLoadingPO(Calendar date, String id, String target, String vanId,
 			String supervision, String escort, ArrayList<String> express,
 			Calendar opTime) {
 		super();
@@ -28,7 +31,7 @@ public class CenterLoadingPO implements Serializable{
 		this.express = express;
 		this.opTime = opTime;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getTarget() {

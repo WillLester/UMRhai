@@ -3,6 +3,10 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 public class CityPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7528731479676963784L;
 	private String name;
 	private String id;
 	private String province;

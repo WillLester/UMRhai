@@ -1,15 +1,15 @@
 package edu.nju.umr.vo;
 
 import java.awt.Image;
-import java.util.Date;
+import java.util.Calendar;
 
 public class VanVO {
 	private String id;
 	private String plateNum;
-	private Date servTime;
+	private Calendar servTime;
 	private Image photo;
 	private String orgId;
-	public VanVO(String id,String plateNum,Date servTime,Image photo,String orgId) {
+	public VanVO(String id,String plateNum,Calendar servTime,Image photo,String orgId) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.plateNum = plateNum;
@@ -23,7 +23,7 @@ public class VanVO {
 	public String getPlateNum() {
 		return plateNum;
 	}
-	public Date getServTime() {
+	public Calendar getServTime() {
 		return servTime;
 	}
 	public Image getPhoto() {

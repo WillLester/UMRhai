@@ -2,13 +2,16 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.Pay;
 
 public class PaymentPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -763899204690976592L;
 	private String id;
-	private Date date;
+	private Calendar date;
 	private String payer;
 	private String account;
 	private Pay kind;
@@ -16,7 +19,7 @@ public class PaymentPO implements Serializable{
 	private String remarks;
 	private Calendar opTime;
 	
-	public PaymentPO(String id, Date date, String payer, String account,
+	public PaymentPO(String id, Calendar date, String payer, String account,
 			Pay kind, double amount, String remarks, Calendar opTime) {
 		super();
 		this.id = id;
@@ -31,7 +34,7 @@ public class PaymentPO implements Serializable{
 	public String getId() {
 		return id;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getPayer() {

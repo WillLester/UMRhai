@@ -1,18 +1,18 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Pay;
 
 public class PaymentVO {
 	private String id;
-	private Date date;
+	private Calendar date;
 	private String payer;
 	private String account;
 	private Pay kind;
 	private double amount;
 	private String remarks;
-	public PaymentVO(String id,Date date,String payer,String account,Pay kind,double amount,String remarks) {
+	public PaymentVO(String id,Calendar date,String payer,String account,Pay kind,double amount,String remarks) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.date = date;
@@ -25,7 +25,7 @@ public class PaymentVO {
 	public String getId() {
 		return id;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getPayer() {

@@ -1,17 +1,17 @@
 package edu.nju.umr.vo.order;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 public class CenterLoadingVO {
-	private Date date;
+	private Calendar date;
 	private String id;
 	private String target;
 	private String vanId;
 	private String supervision;
 	private String escort;
 	private ArrayList<String> express;
-	public CenterLoadingVO(Date date,String id,String target,String vanId,String supervision,String escort,ArrayList<String> express) {
+	public CenterLoadingVO(Calendar date,String id,String target,String vanId,String supervision,String escort,ArrayList<String> express) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.id = id;
@@ -21,7 +21,7 @@ public class CenterLoadingVO {
 		this.escort = escort;
 		this.express = express;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getTarget() {

@@ -3,13 +3,16 @@ package edu.nju.umr.data.workOrgManData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Date;
 
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
-import edu.nju.umr.po.enums.Sex;
 
 public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2621223833650333912L;
 
 	public DriverManData() throws RemoteException {
 		super();

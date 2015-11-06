@@ -1,6 +1,6 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Order;
 
@@ -8,9 +8,9 @@ public class OrderVO {
 	private String id;
 	private Order kind;
 	private String operator;
-	private Date time;
+	private Calendar time;
 	private boolean isPassed;
-	public OrderVO(String id,Order kind,String operator,Date time,boolean isPassed) {
+	public OrderVO(String id,Order kind,String operator,Calendar time,boolean isPassed) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.kind = kind;
@@ -27,7 +27,7 @@ public class OrderVO {
 	public String getOperator() {
 		return operator;
 	}
-	public Date getTime() {
+	public Calendar getTime() {
 		return time;
 	}
 	public boolean isPassed() {

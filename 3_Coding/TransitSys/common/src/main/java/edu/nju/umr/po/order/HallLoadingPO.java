@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HallLoadingPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2792959549903355429L;
 	private String id;
 	private String hallId;
 	private String convertId;

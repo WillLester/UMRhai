@@ -1,6 +1,6 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Express;
 
@@ -19,11 +19,11 @@ public class ExpressVO {
 	private double weight;
 	private double volumn;
 	private String id;
-	private Date arrive;
+	private Calendar arrive;
 	private Express kind;
 	private double cost;
 	public ExpressVO(String sender,String sendLoc,String receiver,String receiveLoc,String sendMobile,String receiveMobile,
-			int num,String name,double length,double width, double height, double weight,double volumn,String id,Date arrive,Express kind,double cost) {
+			int num,String name,double length,double width, double height, double weight,double volumn,String id,Calendar arrive,Express kind,double cost) {
 		// TODO 自动生成的构造函数存根
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -85,7 +85,7 @@ public class ExpressVO {
 	public String getId() {
 		return id;
 	}
-	public Date getArrive() {
+	public Calendar getArrive() {
 		return arrive;
 	}
 	public Express getKind() {

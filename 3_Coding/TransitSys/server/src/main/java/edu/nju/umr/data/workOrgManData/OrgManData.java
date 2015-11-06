@@ -11,6 +11,11 @@ import java.util.ArrayList;
 
 public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6797725942565577714L;
+
 	public OrgManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

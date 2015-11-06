@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import edu.nju.umr.data.dataFactory.DataFactory;
-import edu.nju.umr.mysql.MysqlConnector;
 
 public class Main {
 
@@ -27,7 +26,6 @@ public class Main {
             System.out.println("发生URL畸形异常！"); 
             e.printStackTrace(); 
         }
-		MysqlConnector myConnector = new MysqlConnector();
 	}
 
 }

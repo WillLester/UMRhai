@@ -1,15 +1,15 @@
 package edu.nju.umr.vo.order;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 public class IncomeVO {
-	private Date date;
+	private Calendar date;
 	private String courier;
 	private double cost;
 	private ArrayList<String> express;
 	private String id;
-	public IncomeVO(Date date,String courier,double cost,ArrayList<String> express,String id) {
+	public IncomeVO(Calendar date,String courier,double cost,ArrayList<String> express,String id) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.courier = courier;
@@ -17,7 +17,7 @@ public class IncomeVO {
 		this.express = express;
 		this.id = id;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getCourier() {

@@ -1,7 +1,7 @@
 package edu.nju.umr.driver;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.logic.accountLogic.AccountLogic;
 import edu.nju.umr.logic.accountLogic.CountLogic;
@@ -10,6 +10,7 @@ import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.CountVO;
@@ -46,15 +47,13 @@ public class AccountDriver {
 		OrgVO org = new OrgVO("00001", "HaHa", Organization.HALL, "香港记者", city);
 		ArrayList<OrgVO> orgList = new ArrayList<OrgVO>();
 		orgList.add(org);
-		WorkVO work = new WorkVO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER);
+		WorkVO work = new WorkVO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER,Wage.MONTH,2500);
 		ArrayList<WorkVO> workerList = new ArrayList<WorkVO>();
 		workerList.add(work);
-		@SuppressWarnings("deprecation")
-		Date date = new Date(109, 4, 25);
-		VanVO van = new VanVO("00001", "苏A-12345", date, null, "00001");
+		VanVO van = new VanVO("00001", "苏A-12345", Calendar.getInstance(), null, "00001");
 		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
 		vanList.add(van);
-		GoodVO good = new GoodVO("00001", date, "北京", Part.TRAIN, "T00001", 3, 5);
+		GoodVO good = new GoodVO("00001", Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
 		ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
 		goodList.add(good);
 		StockVO stock = new StockVO(goodList);
@@ -63,8 +62,6 @@ public class AccountDriver {
 		AccountVO account = new AccountVO("00001", "Excited", 25000);
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 		accountList.add(account);
-		CountVO count = new CountVO("12345", orgList, workerList, vanList, stockList, accountList);
-//		System.out.println(this.count.newCount(count));
 		this.checkInfo();
 //		this.orgList();
 //		this.getWorkers();

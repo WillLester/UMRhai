@@ -5,6 +5,10 @@ import java.io.Serializable;
 import edu.nju.umr.po.enums.Jurisdiction;
 
 public class UserPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2720840768406998251L;
 	private String id;
 	private String password;
 	private Jurisdiction juri;
