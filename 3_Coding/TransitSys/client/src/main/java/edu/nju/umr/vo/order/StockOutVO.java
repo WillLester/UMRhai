@@ -1,16 +1,16 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Transit;
 
 public class StockOutVO {
 	private String id;
 	private String expressId;
-	private Date date;
+	private Calendar date;
 	private Transit kind;
 	private String transitId;
-	public StockOutVO(String id,String expressId,Date date,Transit kind,String transitId) {
+	public StockOutVO(String id,String expressId,Calendar date,Transit kind,String transitId) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.expressId = expressId;
@@ -24,7 +24,7 @@ public class StockOutVO {
 	public String getExpressId() {
 		return expressId;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public Transit getKind() {

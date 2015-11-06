@@ -1,20 +1,20 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class SendVO {
-	private Date date;
+	private Calendar date;
 	private String expressId;
 	private String id;
 	private String courier;
-	public SendVO(Date date,String expressId,String id,String name) {
+	public SendVO(Calendar date,String expressId,String id,String name) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.expressId = expressId;
 		this.id = id;
 		this.courier = name;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getExpressId() {

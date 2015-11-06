@@ -2,16 +2,19 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class SendPO implements Serializable{
-	private Date date;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8813726054468447799L;
+	private Calendar date;
 	private String expressId;
 	private String id;
 	private String courier;
 	private Calendar opTime;
 	
-	public SendPO(Date date, String expressId, String id, String courier,
+	public SendPO(Calendar date, String expressId, String id, String courier,
 			Calendar opTime) {
 		super();
 		this.date = date;
@@ -20,7 +23,7 @@ public class SendPO implements Serializable{
 		this.courier = courier;
 		this.opTime = opTime;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getExpressId() {

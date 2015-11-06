@@ -18,6 +18,7 @@ public class OrderApproveDriver {
 		driver.driveResubmit();
 	}
 	private void driveApprove(){
+		@SuppressWarnings("unchecked")
 		ArrayList<OrderVO> orders = (ArrayList<OrderVO>) approve.askExamine().getMessage();
 		for(OrderVO vo:orders){
 			System.out.println(vo.getOperator() + " " + vo.getId() + " "  + vo.getKind() + "　" + vo.getTime());
@@ -27,6 +28,7 @@ public class OrderApproveDriver {
 		System.out.println(pay.getId() + " " + pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
 	}
 	private void driveResubmit(){
+		@SuppressWarnings("unchecked")
 		ArrayList<Object> getOrders = (ArrayList<Object>) resubmit.getOrders("00001").getMessage();
 		for(Object order:getOrders){
 			PaymentVO pay = (PaymentVO)order;

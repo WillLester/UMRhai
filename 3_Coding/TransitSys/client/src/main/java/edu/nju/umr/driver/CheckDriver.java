@@ -37,11 +37,13 @@ public class CheckDriver {
 		System.out.println((Double)collect.total(incomeList).getMessage());
 	}
 	private void driveDiary(){
+		@SuppressWarnings("unchecked")
 		ArrayList<DiaryVO> diaries = (ArrayList<DiaryVO>) diary.seeDiary(null, null).getMessage();
 		for(DiaryVO vo:diaries){
 			System.out.println(vo.getOperation() + " " + vo.getTime());
 		}
 	}
+	@SuppressWarnings("unchecked")
 	private void driveStatement(){
 		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) statement.seeBusinessCircum(null, null).getMessage();
 		for(IncomeVO income:incomes){

@@ -2,19 +2,22 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.Transit;
 
 public class StockOutPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2102785279404595176L;
 	private String id;
 	private String expressId;
-	private Date date;
+	private Calendar date;
 	private Transit kind;
 	private String transitId;
 	private Calendar opTime;
 	
-	public StockOutPO(String id, String expressId, Date date, Transit kind,
+	public StockOutPO(String id, String expressId, Calendar date, Transit kind,
 			String transitId, Calendar opTime) {
 		super();
 		this.id = id;
@@ -30,7 +33,7 @@ public class StockOutPO implements Serializable{
 	public String getExpressId() {
 		return expressId;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public Transit getKind() {

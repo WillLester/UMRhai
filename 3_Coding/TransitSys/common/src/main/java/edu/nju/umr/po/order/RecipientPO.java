@@ -2,19 +2,22 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.GoodState;
 
 public class RecipientPO implements Serializable{
-	private Date date;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1377652016004151729L;
+	private Calendar date;
 	private String id;
 	private String transitId;
 	private String startPlace;
 	private GoodState state;
 	private Calendar opTime;
 	
-	public RecipientPO(Date date, String id, String transitId,
+	public RecipientPO(Calendar date, String id, String transitId,
 			String startPlace, GoodState state, Calendar opTime) {
 		super();
 		this.date = date;
@@ -24,7 +27,7 @@ public class RecipientPO implements Serializable{
 		this.state = state;
 		this.opTime = opTime;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getId() {

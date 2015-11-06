@@ -1,16 +1,16 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.GoodState;
 
 public class RecipientVO {
-	private Date date;
+	private Calendar date;
 	private String id;
 	private String transitId;
 	private String startPlace;
 	private GoodState state;
-	public RecipientVO(Date date,String id,String transitId,String startPlace,GoodState state) {
+	public RecipientVO(Calendar date,String id,String transitId,String startPlace,GoodState state) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.id = id;
@@ -18,7 +18,7 @@ public class RecipientVO {
 		this.startPlace = startPlace;
 		this.state = state;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getId() {

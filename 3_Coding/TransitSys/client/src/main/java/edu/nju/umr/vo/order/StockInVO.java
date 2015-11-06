@@ -1,19 +1,19 @@
 package edu.nju.umr.vo.order;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Part;
 
 public class StockInVO {
 	private String id;
 	private String expressId;
-	private Date date;
+	private Calendar date;
 	private String arrivePlace;
 	private Part part;
 	private String shelfId;
 	private int row;
 	private int place;
-	public StockInVO(String id,String expressId,Date date,String arrivePlace,Part part,String shelfId,int row,int place) {
+	public StockInVO(String id,String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.expressId = expressId;
@@ -30,7 +30,7 @@ public class StockInVO {
 	public String getExpressId() {
 		return expressId;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getArrivePlace() {

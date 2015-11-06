@@ -89,7 +89,7 @@ public class OrderNewDriver {
 		System.out.println(payment.create(new PaymentVO("ID",Calendar.getInstance(),"payer","acc",Pay.BONUS,10,"remarks")));
 	}
 	public void driverRecipient(){
-		System.out.println(recipient.create(new RecipientVO(new Date(),"id","transitid","startp",GoodState.DAMAGED)));
+		System.out.println(recipient.create(new RecipientVO(Calendar.getInstance(),"id","transitid","startp",GoodState.DAMAGED)));
 		ArrayList<String> ar=(ArrayList<String>)recipient.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
@@ -97,21 +97,21 @@ public class OrderNewDriver {
 		
 	}
 	public void driverSend(){
-		System.out.println(send.create(new SendVO(new Date(),"expressid","id","name")));
+		System.out.println(send.create(new SendVO(Calendar.getInstance(),"expressid","id","name")));
 		ArrayList<String> ar=(ArrayList<String>)send.getCouriers("").getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverStockIn(){
-		System.out.println(stockIn.create(new StockInVO("id","expressID",new Date(),"arrp",Part.MANEUVER,"Shelfid",1,1)));
+		System.out.println(stockIn.create(new StockInVO("id","expressID",Calendar.getInstance(),"arrp",Part.MANEUVER,"Shelfid",1,1)));
 		ArrayList<String> ar=(ArrayList<String>)stockIn.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverStockOut(){
-		System.out.println(stockOut.create(new StockOutVO("id","expressID",new Date(),Transit.PLANE,"transitid")));
+		System.out.println(stockOut.create(new StockOutVO("id","expressID",Calendar.getInstance(),Transit.PLANE,"transitid")));
 		ArrayList<String> ar=(ArrayList<String>)stockOut.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));

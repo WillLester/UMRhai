@@ -16,6 +16,7 @@ public class CityDriver {
 		System.out.println(driver.city.addCity(vo));
 		System.out.println(driver.city.reviseCity(vo));
 		System.out.println(driver.city.reviseCities(cvo));
+		@SuppressWarnings("unchecked")
 		ArrayList<CityVO> cities = (ArrayList<CityVO>) driver.city.cityList().getMessage();
 		for(CityVO city:cities){
 			System.out.println(city.getName() + " " + city.getId());

@@ -2,14 +2,17 @@ package edu.nju.umr.po.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.Part;
 
 public class StockInPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5439986688631572343L;
 	private String id;
 	private String expressId;
-	private Date date;
+	private Calendar date;
 	private String arrivePlace;
 	private Part part;
 	private String shelfId;
@@ -17,7 +20,7 @@ public class StockInPO implements Serializable{
 	private int place;
 	private Calendar opTime;
 	
-	public StockInPO(String id, String expressId, Date date,
+	public StockInPO(String id, String expressId, Calendar date,
 			String arrivePlace, Part part, String shelfId, int row, int place,
 			Calendar opTime) {
 		super();
@@ -37,7 +40,7 @@ public class StockInPO implements Serializable{
 	public String getExpressId() {
 		return expressId;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	public String getArrivePlace() {
