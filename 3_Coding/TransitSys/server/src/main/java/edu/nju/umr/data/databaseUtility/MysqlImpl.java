@@ -1,4 +1,5 @@
-package edu.nju.umr.mysql;
+package edu.nju.umr.data.databaseUtility;
+
 
 
 public abstract class MysqlImpl implements MysqlService{

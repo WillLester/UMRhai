@@ -1,4 +1,4 @@
-package edu.nju.umr.mysql;
+package edu.nju.umr.data.databaseUtility;
 
 public interface MysqlService {
 	public boolean addInfo(Object ob);
