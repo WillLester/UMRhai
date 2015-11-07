@@ -7,9 +7,14 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.po.AccountPO;
 
-@SuppressWarnings("serial")
+
 public class AccountData extends UnicastRemoteObject implements AccountDSer{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2848922847340119380L;
 
 	public AccountData() throws RemoteException {
 		super();
