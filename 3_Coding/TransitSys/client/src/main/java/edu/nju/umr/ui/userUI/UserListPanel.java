@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.userManUI;
+package edu.nju.umr.ui.userUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
