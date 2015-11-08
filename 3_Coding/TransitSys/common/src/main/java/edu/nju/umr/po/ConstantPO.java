@@ -2,9 +2,12 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 public class ConstantPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4767279044070659099L;
 	private double maxLoadPlane,maxLoadTrain,maxLoadVan,pricePlane,priceTrain,priceVan,lvEco,lvStd,lvVip;
-	public ConstantPO(double maxLoadPlane,double maxLoadTrain,double maxLoadVan,double pricePlane,double priceTrain,double priceVan,double lvEco,double lvStd,double lvVIP)
-	{
+	public ConstantPO(double maxLoadPlane,double maxLoadTrain,double maxLoadVan,double pricePlane,double priceTrain,double priceVan,double lvEco,double lvStd,double lvVIP){	
 		this.maxLoadPlane=maxLoadPlane;
 		this.maxLoadTrain=maxLoadTrain;
 		this.maxLoadVan=maxLoadVan;
