@@ -103,9 +103,6 @@ public class WorkListPanel extends JPanel {
 		add(out);
 		
 		
-		
-		
-		
 	}
 
 }

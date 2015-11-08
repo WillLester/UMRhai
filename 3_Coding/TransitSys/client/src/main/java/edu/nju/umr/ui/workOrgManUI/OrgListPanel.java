@@ -90,10 +90,12 @@ public class OrgListPanel extends JPanel {
 //		add(forDetail);
 		
 		JButton out = new JButton("退出");
-		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 93, 23);
 		add(out);
 		
-		
+		JButton workMan = new JButton("人员管理");
+		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		add(workMan);
 	}
 
 }

@@ -25,7 +25,8 @@ public class FunctionFrame extends JInternalFrame{
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
 		this.setVisible(true);
-		this.getContentPane().add(new CountInfoPanel());
+		this.getContentPane().add(new OrgListPanel());
+		//this.getContentPane().add(new WorkListPanel());
 //		InfoFrame info = new InfoFrame("期初信息");
 //		desktop.add(info);
 //		info.setVisible(true);
