@@ -4,12 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 
 public class CityData extends UnicastRemoteObject implements CityDSer{
-
+	MysqlService mysqlSer;
 	public CityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

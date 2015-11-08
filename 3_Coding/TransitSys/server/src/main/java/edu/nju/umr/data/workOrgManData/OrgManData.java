@@ -1,5 +1,6 @@
 package edu.nju.umr.data.workOrgManData;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
@@ -15,6 +16,7 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 6797725942565577714L;
+	MysqlService mysqlSer;
 
 	public OrgManData() throws RemoteException {
 		super();

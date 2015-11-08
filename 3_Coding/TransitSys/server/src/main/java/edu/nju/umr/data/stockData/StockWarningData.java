@@ -9,7 +9,7 @@ import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.po.enums.Part;
 
 public class StockWarningData extends UnicastRemoteObject implements StockWarningDSer{
-	private MysqlService mysqlSer;
+
 	public StockWarningData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

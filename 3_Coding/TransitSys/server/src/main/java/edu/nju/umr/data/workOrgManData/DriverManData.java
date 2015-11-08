@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
 
@@ -13,6 +14,7 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 2621223833650333912L;
+	MysqlService mysqlSer;
 
 	public DriverManData() throws RemoteException {
 		super();

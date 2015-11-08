@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Transit;
@@ -18,6 +19,7 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 	 * 
 	 */
 	private static final long serialVersionUID = 4838689550105494049L;
+	MysqlService mysqlSer;
 
 	public StockCheckData() throws RemoteException {
 		super();

@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.po.VanPO;
 
@@ -14,6 +15,7 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -7507578235288310599L;
+	MysqlService mysqlSer;
 
 	public VanManData() throws RemoteException {
 		super();

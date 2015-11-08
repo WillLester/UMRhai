@@ -3,6 +3,7 @@ package edu.nju.umr.data.transitInfoData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 import edu.nju.umr.po.order.ExpressPO;
 
@@ -12,6 +13,7 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -635682282196387242L;
+	MysqlService mysqlSer;
 
 	public CourierData() throws RemoteException {
 		super();

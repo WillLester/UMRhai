@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.po.DiaryPO;
 
@@ -15,7 +16,7 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 7861281030978291919L;
-
+	MysqlService mysqlSer;
 	public DiaryData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

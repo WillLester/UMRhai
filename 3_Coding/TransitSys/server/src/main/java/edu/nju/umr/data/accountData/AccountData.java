@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.po.AccountPO;
 
@@ -15,7 +16,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -2848922847340119380L;
-
+	MysqlService mysqlSer;
 	public AccountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
@@ -33,7 +34,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	}
 
 	public boolean addAccount(AccountPO account) throws RemoteException {
-		// TODO 自动生成的方法存根
+		
 		return true;
 	}
 

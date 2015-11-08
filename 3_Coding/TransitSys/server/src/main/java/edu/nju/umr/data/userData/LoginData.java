@@ -3,6 +3,7 @@ package edu.nju.umr.data.userData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Jurisdiction;
@@ -13,6 +14,7 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 8520494959646688525L;
+	MysqlService mysqlSer;
 
 	public LoginData() throws RemoteException {
 		super();

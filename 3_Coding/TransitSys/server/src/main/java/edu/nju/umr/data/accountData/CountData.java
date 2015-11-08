@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
@@ -24,7 +25,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -3199440496716511453L;
-
+	MysqlService mysqlSer;
 	public CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
