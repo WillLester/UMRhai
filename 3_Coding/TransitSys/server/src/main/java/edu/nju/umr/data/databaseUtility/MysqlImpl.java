@@ -8,6 +8,10 @@ import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.DriverPO;
+import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.enums.POKind;
 
 
@@ -102,5 +106,5 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(StockPO stock,MysqlOperation op){
 		return "";
 	}
-	private String getCommand
+	private String getCommand;
 }
