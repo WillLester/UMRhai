@@ -1,7 +1,9 @@
 package edu.nju.umr.logic.userLogic;
 
 import java.rmi.Naming;
+import java.util.Calendar;
 
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.vo.UserVO;
@@ -39,6 +41,7 @@ public class LoginLogic implements LoginLSer{
 			e.printStackTrace();
 		}
 		ResultMessage message=new ResultMessage(isSuccessful,userVO);
+		System.out.println(UtilityLogic.setRecord(null, "嘻嘻", "蛤蛤"));
 		return message;
 	}
 

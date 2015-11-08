@@ -16,11 +16,11 @@ public class UserDriver {
 	public static void main(String[] args) {
 		UserDriver driver = new UserDriver();
 		driver.driveLogin();
-		driver.driveUser();
+		//driver.driveUser();
 	}
 	private void driveLogin(){
 		UserVO user = (UserVO) login.login("12345", "hhhhh").getMessage();
-		System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
+		//System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 	}
 	private void driveUser(){
 		UserVO userNew = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
