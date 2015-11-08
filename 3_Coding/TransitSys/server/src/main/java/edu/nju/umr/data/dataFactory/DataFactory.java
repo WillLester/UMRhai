@@ -24,6 +24,7 @@ import edu.nju.umr.data.orderNewData.SendOrderData;
 import edu.nju.umr.data.orderNewData.StockInOrderData;
 import edu.nju.umr.data.orderNewData.StockOutOrderData;
 import edu.nju.umr.data.orderNewData.TransitOrderData;
+import edu.nju.umr.data.orderNewData.UpdateTransitInfoData;
 import edu.nju.umr.data.stockData.StockCheckData;
 import edu.nju.umr.data.stockData.StockCheckNowData;
 import edu.nju.umr.data.stockData.StockCheckWarnData;
@@ -80,6 +81,7 @@ import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
+import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -93,6 +95,7 @@ import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
+import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckNowDSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
@@ -112,7 +115,7 @@ import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,StatementSheetDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
-StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer{
+StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer{
 
 	/**
 	 * 
@@ -297,6 +300,10 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFac
 	
 	public ConstantDSer getConstant() throws RemoteException {
 		return new ConstantData();
+	}
+	
+	public UpdateTransitInfoDSer getUpdateTransitInfoDSer() throws RemoteException{
+		return new UpdateTransitInfoData();
 	}
 
 }
