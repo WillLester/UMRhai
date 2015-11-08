@@ -8,7 +8,10 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 城市数据
+ */
 public class CityData extends UnicastRemoteObject implements CityDSer{
 	MysqlService mysqlSer;
 	public CityData() throws RemoteException {
@@ -17,8 +20,8 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 	}
 
 	public boolean add(CityPO city) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(city, POKind.CITY);
+		
 	}
 
 	public boolean revise(CityPO city) throws RemoteException {

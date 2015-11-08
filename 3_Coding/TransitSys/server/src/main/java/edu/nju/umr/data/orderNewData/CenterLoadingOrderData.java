@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.CenterLoadingPO;
-
+/*
+ * 中转中心装车单数据
+ */
 public class CenterLoadingOrderData extends UnicastRemoteObject implements CenterLoadingOrderDSer{
 	private MysqlService mysqlSer;
 	public CenterLoadingOrderData() throws RemoteException {
@@ -16,8 +19,8 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	}
 
 	public boolean create(CenterLoadingPO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.CENTERLOADING);
+		
 	}
 
 	public ArrayList<String> getHalls() throws RemoteException {

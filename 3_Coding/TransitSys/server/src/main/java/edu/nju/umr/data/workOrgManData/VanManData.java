@@ -8,7 +8,10 @@ import java.util.Calendar;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.po.VanPO;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 车辆信息管理数据
+ */
 public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
 	/**
@@ -30,9 +33,8 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 		return ar3;
 	}
 
-	public boolean addVan(VanPO Van) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+	public boolean addVan(VanPO van) throws RemoteException {
+		return mysqlSer.addInfo(van, POKind.VAN);
 	}
 
 	public boolean deleteVan(String id) throws RemoteException {

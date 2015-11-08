@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.StockOutPO;
-
+/*
+ * 出库单数据
+ */
 public class StockOutOrderData extends UnicastRemoteObject implements StockOutOrderDSer{
 	private MysqlService mysqlSer;
 	public StockOutOrderData() throws RemoteException {
@@ -16,8 +19,7 @@ public class StockOutOrderData extends UnicastRemoteObject implements StockOutOr
 	}
 
 	public boolean create(StockOutPO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.STOCKOUT);
 	}
 
 	public ArrayList<String> getCities() throws RemoteException {

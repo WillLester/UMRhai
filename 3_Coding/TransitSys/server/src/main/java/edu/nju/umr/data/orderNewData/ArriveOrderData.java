@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.ArrivePO;
-
+/*
+ * 到达单数据
+ */
 public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderDSer{
 	private MysqlService mysqlSer;
 	public ArriveOrderData() throws RemoteException {
@@ -16,8 +19,7 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	}
 
 	public boolean create(ArrivePO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.ARRIVE);
 	}
 
 	public ArrayList<String> getCities() throws RemoteException {

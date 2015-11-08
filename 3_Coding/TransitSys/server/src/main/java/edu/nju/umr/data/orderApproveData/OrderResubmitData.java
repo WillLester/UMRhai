@@ -9,7 +9,9 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.order.PaymentPO;
-
+/*
+ * 订单重提交
+ */
 public class OrderResubmitData extends UnicastRemoteObject implements OrderResubmitDSer{
 
 	/**

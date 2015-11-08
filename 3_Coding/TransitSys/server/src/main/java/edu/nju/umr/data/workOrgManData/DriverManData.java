@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 司机信息管理数据
+ */
 public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 
 	/**
@@ -33,13 +36,11 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		return null;
 	}
 
-	public boolean addDriver(DriverPO Driver) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+	public boolean addDriver(DriverPO driver) throws RemoteException {
+		return mysqlSer.addInfo(driver, POKind.DRIVER);
 	}
 
 	public boolean deleteDriver(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
 		return true;
 	}
 

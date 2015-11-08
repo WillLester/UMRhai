@@ -11,7 +11,9 @@ import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.order.IncomePO;
-
+/*
+ * 收款记录数据
+ */
 public class CollectRecordData extends UnicastRemoteObject implements CollectRecordDSer{
 	MysqlService mysqlSer;
 	public CollectRecordData() throws RemoteException {

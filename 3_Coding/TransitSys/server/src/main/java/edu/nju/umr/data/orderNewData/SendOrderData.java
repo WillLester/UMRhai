@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.SendPO;
-
+/*
+ * 派件单数据
+ */
 public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 	private MysqlService mysqlSer;
 	public SendOrderData() throws RemoteException {
@@ -16,8 +19,7 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 	}
 
 	public boolean create(SendPO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.SEND);
 	}
 
 	public ArrayList<String> getCouriers() throws RemoteException {

@@ -17,8 +17,11 @@ import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
-
+/*
+ * 账数据
+ */
 public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	/**
@@ -32,8 +35,8 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	}
 
 	public boolean addCount(CountPO count) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return false;
+		return mysqlSer.addInfo(count, POKind.COUNT);
+		
 	}
 
 	public CountPO findInitInfo(String id) throws RemoteException {

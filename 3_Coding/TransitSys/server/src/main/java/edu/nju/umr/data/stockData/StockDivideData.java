@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
@@ -25,8 +26,7 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 	}
 
 	public boolean addShelf(ShelfPO shelf) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(shelf, POKind.SHELF);
 	}
 
 	public boolean deleteShelf(String id) throws RemoteException {

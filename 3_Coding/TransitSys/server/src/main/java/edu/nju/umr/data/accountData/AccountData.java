@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.po.AccountPO;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 账户数据
+ */
 
 public class AccountData extends UnicastRemoteObject implements AccountDSer{
 
@@ -34,12 +37,11 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	}
 
 	public boolean addAccount(AccountPO account) throws RemoteException {
-		
-		return true;
+		return mysqlSer.addInfo(account, POKind.ACCOUNT);
 	}
 
 	public boolean deleteAccount(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
+		
 		return true;
 	}
 

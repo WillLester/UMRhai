@@ -11,7 +11,10 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 人员管理数据
+ */
 public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 
 	/**
@@ -33,9 +36,8 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		return ar2;
 	}
 
-	public boolean addWork(WorkPO work) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+	public boolean addWork(WorkPO worker) throws RemoteException {
+		return mysqlSer.addInfo(worker, POKind.WORK);
 	}
 
 	public boolean deleteWork(String id) throws RemoteException {

@@ -8,7 +8,10 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Jurisdiction;
-
+import edu.nju.umr.po.enums.POKind;
+/*
+ * 用户管理数据
+ */
 public class UserManData extends UnicastRemoteObject implements UserManDSer{
 
 	/**
@@ -31,8 +34,7 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 	}
 
 	public boolean addUser(UserPO user) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(user, POKind.USER);
 	}
 
 	public boolean deleteUser(String id) throws RemoteException {

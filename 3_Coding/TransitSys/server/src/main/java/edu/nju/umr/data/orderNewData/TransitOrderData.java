@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.TransitPO;
-
+/*
+ * 中转单数据
+ */
 public class TransitOrderData extends UnicastRemoteObject implements TransitOrderDSer{
 	private MysqlService mysqlSer;
 	public TransitOrderData() throws RemoteException {
@@ -16,8 +19,8 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 	}
 
 	public boolean create(TransitPO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.TRANSIT);
+		
 	}
 
 	public ArrayList<String> getCities() throws RemoteException {

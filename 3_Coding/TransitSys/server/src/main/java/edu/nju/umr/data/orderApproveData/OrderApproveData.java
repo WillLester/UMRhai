@@ -11,7 +11,9 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
-
+/*
+ * 单据审批数据
+ */
 public class OrderApproveData extends UnicastRemoteObject implements OrderApproveDSer{
 
 	/**

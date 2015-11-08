@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.IncomePO;
-
+/*
+ * 收款单数据
+ */
 public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderDSer{
 	private MysqlService mysqlSer;
 	public IncomeOrderData() throws RemoteException {
@@ -16,8 +19,8 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 	}
 
 	public boolean create(IncomePO order) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(order, POKind.INCOME);
+		
 	}
 
 	public ArrayList<String> getCouriers(String id) throws RemoteException {

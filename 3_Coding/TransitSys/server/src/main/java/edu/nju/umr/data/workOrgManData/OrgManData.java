@@ -5,11 +5,14 @@ import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.POKind;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
+/*
+ * 机构信息管理数据
+ */
 public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
 	/**
@@ -32,8 +35,7 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	}
 
 	public boolean addOrg(OrgPO org) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.addInfo(org, POKind.ORG);
 	}
 
 	public boolean deleteOrg(String id) throws RemoteException {

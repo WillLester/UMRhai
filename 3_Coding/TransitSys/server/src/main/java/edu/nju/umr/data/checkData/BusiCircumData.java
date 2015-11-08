@@ -11,7 +11,9 @@ import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.order.IncomePO;
-
+/*
+ * 经营情况表数据
+ */
 public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSer{
 	
 	private MysqlService mysqlSer;

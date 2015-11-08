@@ -9,7 +9,9 @@ import java.util.Date;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.po.DiaryPO;
-
+/*
+ * 查看日志数据
+ */
 public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 
 	/**

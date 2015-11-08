@@ -8,7 +8,9 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
-
+/*
+ * 成本收益表数据
+ */
 public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
 	MysqlService mysqlSer;
 	public CostBeneData() throws RemoteException {
