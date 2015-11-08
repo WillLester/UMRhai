@@ -33,4 +33,7 @@ public class MysqlConnector {
 			e.printStackTrace();
 		}
 	}
+	public Connection getConnect() {
+		return connect;
+	}
 }

@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
@@ -17,6 +18,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 	 * 
 	 */
 	private static final long serialVersionUID = -3649658232155573648L;
+	private MysqlService mysqlSer;
 
 	public OrderApproveData() throws RemoteException {
 		super();
