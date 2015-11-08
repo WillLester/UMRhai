@@ -3,11 +3,14 @@ package edu.nju.umr.data.cityData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import edu.nju.umr.po.ConstantPO;
-import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
+import edu.nju.umr.po.ConstantPO;
 
 public class ConstantData  extends UnicastRemoteObject implements ConstantDSer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4333792722404056865L;
 	public ConstantData () throws RemoteException
 	{
 		super();

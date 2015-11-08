@@ -101,7 +101,6 @@ public class WorkOrgManDriver {
 		vanVO=(VanVO)van.searchVan("1").getMessage();
 		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
 	}
-	@SuppressWarnings("unchecked")
 	private void driverDriver(){
 		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Sex.MAN,new Date())));
 		System.out.println(drive.deleteDriver("1"));

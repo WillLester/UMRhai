@@ -1,7 +1,14 @@
 package edu.nju.umr.data.databaseUtility;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
+import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.ConstantPO;
+import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.enums.POKind;
-import java.sql.*;
 
 
 public class MysqlImpl implements MysqlService{
@@ -10,8 +17,20 @@ public class MysqlImpl implements MysqlService{
 	public MysqlImpl() {
 		// TODO 自动生成的构造函数存根
 		connector = new MysqlConnector();
+		try {
+			state = connector.getConnect().createStatement();
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	}
 	protected void finalize(){
+		try {
+			state.close();
+		} catch (SQLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		connector.close();
 		try {
 			super.finalize();
@@ -22,12 +41,19 @@ public class MysqlImpl implements MysqlService{
 	}
 	public boolean addInfo(Object ob, POKind kind) {
 		// TODO 自动生成的方法存根
-		
-		switch(kind){
-		case ACCOUNT:break;
-		case CITIES:break;
-		case CITY:break;
-		default:return false;
+		try{
+			switch(kind){
+			case ACCOUNT:
+				state.executeUpdate(getCommand((AccountPO) ob, MysqlOperation.INSERT));
+				break;
+			case CITIES:
+				state.executeUpdate(getCommand((CitiesPO) ob, MysqlOperation.INSERT));
+				break;
+			case CITY:break;
+			default:return false;
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -43,6 +69,21 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		return null;
 	}
-	
+	private String getCommand(AccountPO acccount,MysqlOperation op){
+		
+		return "";
+	}
+	private String getCommand(CitiesPO cities,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(CityPO city){
+		return "";
+	}
+	private String getCommand(ConstantPO constant){
+		return "";
+	}
+	private String getCommand(CountPO count){
+		return null;
+	}
 
 }
