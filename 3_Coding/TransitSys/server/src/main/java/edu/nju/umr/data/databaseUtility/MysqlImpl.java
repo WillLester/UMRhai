@@ -12,12 +12,9 @@ import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.StockPO;
-<<<<<<< HEAD
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
-=======
->>>>>>> origin/master
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
@@ -124,7 +121,6 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(StockPO stock,MysqlOperation op){
 		return "";
 	}
-<<<<<<< HEAD
 	private String getCommand(UserPO user,MysqlOperation op){
 		return "";
 	}
@@ -170,7 +166,4 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(TransitPO transit,MysqlOperation op){
 		return "";
 	}
-=======
-	private String getCommand;
->>>>>>> origin/master
 }
