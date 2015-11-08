@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
@@ -28,14 +29,14 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -3199440496716511453L;
-	MysqlService mysqlSer;
+	private static SerialHelper helper;
 	public CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
 
 	public boolean addCount(CountPO count) throws RemoteException {
-		return mysqlSer.addInfo(count, POKind.COUNT);
+		return helper.writeToFile(count, "data/count.ser");
 		
 	}
 
@@ -62,7 +63,8 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		accountList.add(account);
 		CountPO count = new CountPO("12345", orgList, workerList, vanList, stockList, accountList);
 		
-		return count;
+//		return count;
+		return (CountPO) helper.readFromFile("data/count.ser");
 	}
 
 	public ArrayList<OrgPO> findOrg() throws RemoteException {
