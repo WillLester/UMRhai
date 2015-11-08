@@ -4,12 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Part;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
-
+	private MysqlService mysqlSer;
 	public StockDivideData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

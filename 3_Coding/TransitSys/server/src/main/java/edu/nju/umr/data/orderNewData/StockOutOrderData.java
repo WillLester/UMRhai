@@ -4,11 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
 import edu.nju.umr.po.order.StockOutPO;
 
 public class StockOutOrderData extends UnicastRemoteObject implements StockOutOrderDSer{
-
+	private MysqlService mysqlSer;
 	public StockOutOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
