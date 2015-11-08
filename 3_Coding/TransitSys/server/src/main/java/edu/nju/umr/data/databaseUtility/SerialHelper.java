@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+/*
+ * 帮助完成序列化
+ */
 public class SerialHelper {
 	public static boolean writeToFile(Object ob,String loc)
 	{

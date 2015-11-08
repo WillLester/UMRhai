@@ -1,7 +1,9 @@
 package edu.nju.umr.data.databaseUtility;
 
 import java.sql.*;
-
+/*
+ * 获得到数据库的连接器，从而对数据库进行操作
+ */
 public class MysqlConnector {
 	private String url = "jdbc:mysql://localhost:3306/transitSys";
 	private Connection connect;
