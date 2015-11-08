@@ -6,8 +6,8 @@ import java.sql.Statement;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.ConstantPO;
-import edu.nju.umr.po.CountPO;
+import edu.nju.umr.po.DiaryPO;
+import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.POKind;
 
 
@@ -49,7 +49,12 @@ public class MysqlImpl implements MysqlService{
 			case CITIES:
 				state.executeUpdate(getCommand((CitiesPO) ob, MysqlOperation.INSERT));
 				break;
-			case CITY:break;
+			case CITY:
+				state.executeUpdate(getCommand((CityPO)ob, MysqlOperation.INSERT));
+				break;
+			case DIARY:
+				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
+				break;
 			default:return false;
 			}
 		} catch (SQLException e){
@@ -76,14 +81,26 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(CitiesPO cities,MysqlOperation op){
 		return "";
 	}
-	private String getCommand(CityPO city){
+	private String getCommand(CityPO city,MysqlOperation op){
 		return "";
 	}
-	private String getCommand(ConstantPO constant){
+	private String getCommand(DiaryPO diary,MysqlOperation op){
 		return "";
 	}
-	private String getCommand(CountPO count){
-		return null;
+	private String getCommand(DriverPO driver,MysqlOperation op){
+		return "";
 	}
-
+	private String getCommand(GoodPO good,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(OrgPO org,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(ShelfPO shelf,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(StockPO stock,MysqlOperation op){
+		return "";
+	}
+	private String getCommand
 }
