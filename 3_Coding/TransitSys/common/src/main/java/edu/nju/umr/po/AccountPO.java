@@ -12,6 +12,7 @@ public class AccountPO implements Serializable{
 	private int balance;
 	public AccountPO(String id,String name,int balance) {
 		// TODO 自动生成的构造函数存根
+		this.id=id;
 		this.name = name;
 		this.balance = balance;
 	}
