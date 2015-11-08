@@ -74,6 +74,43 @@ public class MysqlImpl implements MysqlService{
 			case DIARY:
 				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
 				break;
+			case DRIVER:
+				state.executeUpdate(getCommand((DriverPO)ob, MysqlOperation.INSERT));
+				break;
+			case GOOD:
+				state.executeUpdate(getCommand((GoodPO)ob, MysqlOperation.INSERT));
+				break;
+			case ORG:
+				state.executeUpdate(getCommand((OrgPO)ob, MysqlOperation.INSERT));
+				break;
+			case SHELF:
+				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
+				break;
+			case STOCK:
+				state.executeUpdate(getCommand((StockPO)ob, MysqlOperation.INSERT));
+				break;
+			case USER:
+				state.executeUpdate(getCommand((UserPO)ob, MysqlOperation.INSERT));
+				break;
+			case VAN:
+				state.executeUpdate(getCommand((VanPO)ob, MysqlOperation.INSERT));
+				break;
+			case WORK:
+				state.executeUpdate(getCommand((WorkPO)ob, MysqlOperation.INSERT));
+				break;
+			case ARRIVE:
+				state.executeUpdate(getCommand((ArrivePO)ob,MysqlOperation.INSERT));
+				break;
+			case CENTERLOADING:
+				state.executeUpdate(getCommand((CenterLoadingPO)ob,MysqlOperation.INSERT));
+				break;
+			case EXPRESS:
+				state.executeUpdate(getCommand((ExpressPO)ob,MysqlOperation.INSERT));
+				break;
+			case HALLLOADING:
+				state.executeUpdate(getCommand((HallLoadingPO)ob,MysqlOperation.INSERT));
+				break;
+				
 			default:return false;
 			}
 		} catch (SQLException e){
