@@ -8,7 +8,26 @@ import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.DriverPO;
+import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.UserPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.po.order.CenterLoadingPO;
+import edu.nju.umr.po.order.ExpressPO;
+import edu.nju.umr.po.order.HallLoadingPO;
+import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.OrderPO;
+import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.po.order.RecipientPO;
+import edu.nju.umr.po.order.SendPO;
+import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.po.order.StockOutPO;
+import edu.nju.umr.po.order.TransitPO;
 
 
 public class MysqlImpl implements MysqlService{
@@ -102,5 +121,49 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(StockPO stock,MysqlOperation op){
 		return "";
 	}
-	private String getCommand
+	private String getCommand(UserPO user,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(VanPO van,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(WorkPO work,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(ArrivePO arrive,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(CenterLoadingPO centerLoading,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(ExpressPO express,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(HallLoadingPO hallLoading,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(IncomePO income,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(OrderPO order,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(PaymentPO payment,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(RecipientPO recipient,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(SendPO send,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(StockInPO stockIn, MysqlOperation op){
+		return "";
+	}
+	private String getCommand(StockOutPO stockOut,MysqlOperation op){
+		return "";
+	}
+	private String getCommand(TransitPO transit,MysqlOperation op){
+		return "";
+	}
 }
