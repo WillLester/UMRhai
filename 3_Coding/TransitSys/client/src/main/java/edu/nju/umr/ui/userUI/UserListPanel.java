@@ -37,15 +37,20 @@ public class UserListPanel extends JPanel {
 		
 		textField = new JTextField();
 		textField.setText("请输入关键字");
-		textField.setBounds(133, 67, 542, 24);
+		textField.setBounds(133, 67, 442, 24);
 		add(textField);
 		textField.setColumns(10);
 		
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(677, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		searchButton.setBounds(577, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
+		
+		JButton allButton = new JButton("显示全部");
+		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		allButton.setBounds(577+100, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		add(allButton);
 		
 		table = new JTable();
 		table.setBounds(133, 121, 637, 335);

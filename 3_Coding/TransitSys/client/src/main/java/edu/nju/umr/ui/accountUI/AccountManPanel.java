@@ -30,15 +30,20 @@ public class AccountManPanel extends JPanel{
 		
 		textField = new JTextField();
 		textField.setText("请输入关键字");
-		textField.setBounds(233, 67, 542, 24);
+		textField.setBounds(233, 67, 442, 24);
 		add(textField);
 		textField.setColumns(10);
 		
 		
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(827, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		searchButton.setBounds(233+442, 65, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
+		
+		JButton allButton = new JButton("显示全部");
+		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		allButton.setBounds(233+442+100, 65, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		add(allButton);
 		
 		table = new JTable();
 		table.setBounds(233, 101, 637, 335);

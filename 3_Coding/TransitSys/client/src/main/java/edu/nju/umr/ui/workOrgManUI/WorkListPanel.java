@@ -32,13 +32,17 @@ public class WorkListPanel extends JPanel {
 		
 		textFieldSearch = new JTextField();
 		textFieldSearch.setText("请输入关键字");
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 300, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		JButton search = new JButton("搜索");
-		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
+		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 90, 21);
 		add(search);
+
+		JButton all = new JButton("显示全部");
+		all.setBounds(textFieldSearch.getX()+700+20, textFieldSearch.getY(), 90, 21);
+		add(all);
 		
 		listTable = new JTable();
 		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);

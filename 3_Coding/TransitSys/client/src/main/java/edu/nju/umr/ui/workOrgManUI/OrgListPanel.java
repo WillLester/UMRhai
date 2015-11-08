@@ -31,13 +31,17 @@ public class OrgListPanel extends JPanel {
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 770, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 670, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		JButton search = new JButton("搜索");
 		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
 		add(search);
+		
+		JButton all = new JButton("显示全部");
+		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+120,textFieldSearch.getY(), 90, 21);
+		add(all);
 		
 		listTable = new JTable();
 		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);

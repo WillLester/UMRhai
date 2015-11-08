@@ -8,6 +8,8 @@ import edu.nju.umr.ui.workOrgManUI.*;
 import edu.nju.umr.ui.stockUI.*;
 import edu.nju.umr.ui.userUI.*;
 import edu.nju.umr.ui.orderNewUI.*;
+import edu.nju.umr.ui.cityUI.*;
+import edu.nju.umr.ui.orderApproveUI.*;
 
 public class FunctionFrame extends JInternalFrame{
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/20;
@@ -25,8 +27,7 @@ public class FunctionFrame extends JInternalFrame{
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
 		this.setVisible(true);
-		this.getContentPane().add(new OrgListPanel());
-		//this.getContentPane().add(new WorkListPanel());
+		this.getContentPane().add(new WorkListPanel());
 //		InfoFrame info = new InfoFrame("期初信息");
 //		desktop.add(info);
 //		info.setVisible(true);
