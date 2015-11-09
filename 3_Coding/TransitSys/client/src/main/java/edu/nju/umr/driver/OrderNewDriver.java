@@ -14,6 +14,7 @@ import edu.nju.umr.logic.orderNewLogic.SendOrderLogic;
 import edu.nju.umr.logic.orderNewLogic.StockInOrderLogic;
 import edu.nju.umr.logic.orderNewLogic.StockOutOrderLogic;
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
+import edu.nju.umr.logic.orderNewLogic.UpdateTransitInfoLogic;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
@@ -56,17 +57,18 @@ public class OrderNewDriver {
 	public static void main(String[] args)
 	{
 		OrderNewDriver driver=new OrderNewDriver();
-		driver.driverArrive();
-		driver.driverCenterLoading();
-		driver.driverExpress();
-		driver.driverHallLoading();
-		driver.driverIncomeOrder();
-		driver.driverPayment();
-		driver.driverRecipient();
-		driver.driverSend();
-		driver.driverStockIn();
-		driver.driverStockOut();
-		driver.driverTransit();
+		System.out.println(UpdateTransitInfoLogic.update("1", "2"));
+//		driver.driverArrive();
+//		driver.driverCenterLoading();
+//		driver.driverExpress();
+//		driver.driverHallLoading();
+//		driver.driverIncomeOrder();
+//		driver.driverPayment();
+//		driver.driverRecipient();
+//		driver.driverSend();
+//		driver.driverStockIn();
+//		driver.driverStockOut();
+//		driver.driverTransit();
 	}
 	public void driverArrive(){
 		System.out.println(arrive.create(new ArriveVO("1",Calendar.getInstance(),"1","南京",GoodState.INTACT)));
