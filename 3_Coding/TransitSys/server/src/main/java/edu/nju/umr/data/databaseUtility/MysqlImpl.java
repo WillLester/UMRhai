@@ -116,7 +116,30 @@ public class MysqlImpl implements MysqlService{
 			case HALLLOADING:
 				state.executeUpdate(getCommand((HallLoadingPO)ob,MysqlOperation.INSERT));
 				break;
-				
+			case INCOME:
+				state.executeUpdate(getCommand((IncomePO)ob,MysqlOperation.INSERT));
+				break;
+			case ORDER:
+				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
+				break;
+			case PAYMENT:
+				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
+				break;
+			case RECIPIENT:
+				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
+				break;
+			case SEND:
+				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
+				break;
+			case STOCKIN:
+				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
+				break;
+			case STOCKOUT:
+				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
+				break;
+			case TRANSIT:
+				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
+				break;
 			default:return false;
 			}
 		} catch (SQLException e){
@@ -329,6 +352,8 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case FIND:break;
+		default:
+			break;
 		}
 		return command;
 	}
