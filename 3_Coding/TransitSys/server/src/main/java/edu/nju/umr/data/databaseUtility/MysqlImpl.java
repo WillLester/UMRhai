@@ -2,6 +2,7 @@ package edu.nju.umr.data.databaseUtility;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
@@ -87,7 +88,12 @@ public class MysqlImpl implements MysqlService{
 				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
 				break;
 			case STOCK:
-				state.executeUpdate(getCommand((StockPO)ob, MysqlOperation.INSERT));
+				//state.executeUpdate(getCommand((StockPO)ob, MysqlOperation.INSERT));
+				StockPO po=(StockPO)ob;
+				for(int i=0;i<po.getGoods().size();i++)
+				{
+					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
+				}
 				break;
 			case USER:
 				state.executeUpdate(getCommand((UserPO)ob, MysqlOperation.INSERT));
@@ -130,77 +136,266 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		return null;
 	}
-	private String getCommand(AccountPO acccount,MysqlOperation op){
-		
-		return "";
+	private static String getCommand(AccountPO account,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into account values"+"("+account.getId()+","+"'"+account.getName()+"',"+account.getBalance()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(CitiesPO cities,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into citiesInfo values"+"('"+cities.getCity1()+"','"+cities.getCity2()+"',"+cities.getDistance()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(CityPO city,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into city values"+"('"+city.getId()+"',"+"'"+city.getName()+"','"+city.getProvince()+"')";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(DiaryPO diary,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into diary values"+"("+diary.getTime()+","+"'"+diary.getOperation()+"','"+diary.getOperator()+"')";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(DriverPO driver,MysqlOperation op){
-		return "";
+	private static String getCommand(DriverPO driver,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into driver values"+"("+"'"+driver.getId()+"','"+driver.getName()+"','"+driver.getIdNum()+"','"+driver.getMobile()+"',"+driver.getSex()+","+driver.getBirthday()+","+driver.getDriveStart()+","+driver.getDriveEnd()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(GoodPO good,MysqlOperation op){
-		return "";
+	private static String getCommand(GoodPO good,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into good values"+"("+"'"+good.getId()+"','"+good.getStockId()+"','"+good.getCity()+"',"+good.getPart()+",'"+good.getShelf()+"',"+good.getRow()+","+good.getPlace()+","+good.getDate()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(OrgPO org,MysqlOperation op){
-		return "";
+	
+	private static String getCommand(OrgPO org,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into org values"+"("+"'"+org.getId()+"','"+org.getName()+"',"+org.getKind()+",'"+org.getLocation()+"','"+org.getCity().getName()+"','"+org.getCity().getId()+"'"+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(ShelfPO shelf,MysqlOperation op){
-		return "";
+	private static String getCommand(ShelfPO shelf,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into shelf values"+"('"+shelf.getId()+"','"+shelf.getStockId()+"',"+shelf.getRow()+","+shelf.getPlace()+","+shelf.getPart()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(StockPO stock,MysqlOperation op){
-		return "";
-	}
+//	private String getCommand(StockPO stock,MysqlOperation op){
+//		String command=null;
+//		switch(op)
+//		{
+//		case INSERT:command="insert into  values"+"("+account.getId()+","+"'"+account.getName()+"',"+account.getBalance()+")";break;
+//		case DELETE:break;
+//		case FIND:break;
+//		case UPDATE:break;
+//		}
+//		return command;
+//	}
 	private String getCommand(UserPO user,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into user values"+"("+"'"+user.getId()+"','"+user.getPassword()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getOrgId()+"',"+user.getJuri()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(VanPO van,MysqlOperation op){
-		return "";
+	private static String getCommand(VanPO van,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into van values"+"("+"'"+van.getId()+"','"+van.getPlateNum()+"',"+van.getServTime()+",'"+van.getPhoto()+"','"+van.getOrgId()+"'"+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(WorkPO work,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into work values"+"("+work.getId()+",'"+work.getOrgId()+"',"+work.getKind()+","+work.getMoney()+","+work.getCommission()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(ArrivePO arrive,MysqlOperation op){
-		return "";
+	private static String getCommand(ArrivePO arrive,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into arriveorderwaiting values"+"("+"'"+arrive.getId()+"','"+arrive.getCenterId()+"','"+arrive.getStartPlace()+"',"+arrive.getState()+","+new Date()+","+arrive.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(CenterLoadingPO centerLoading,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+centerLoading.getId()+"','"+centerLoading.getTarget()+"','"+centerLoading.getVanId()+"','"+centerLoading.getSupervision()+"','"+centerLoading.getEscort()+"',"+centerLoading.getDate()+","+centerLoading.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
-	private String getCommand(ExpressPO express,MysqlOperation op){
-		return "";
+	private static String getCommand(ExpressPO express,MysqlOperation op){
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+express.getId()+"','"+express.getSender()+"','"+express.getSendLoc()+"','"+express.getReceiver()+"','"+express.getReceiveLoc()+"','"+express.getSendMobile()+"','"+express.getReceiveMobile()+"','"+express.getSendPhone()+"','"+express.getReceivePhone()+"','"+express.getSendUnit()+"','"+express.getReceiveUnit()+"',"+express.getNum()+",'"+express.getName()+"',"+express.getLength()+","+express.getWidth()+","+express.getHeight()+","+express.getVolumn()+","+express.getArrive()+","+express.getKind()+","+express.getCost()+",'"+"null"+"',"+"null"+","+express.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(HallLoadingPO hallLoading,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+hallLoading.getId()+"','"+hallLoading.getHallId()+"','"+hallLoading.getConvertId()+"','"+hallLoading.getVanId()+"','"+hallLoading.getArriveLoc()+"','"+hallLoading.getSupervision()+"','"+hallLoading.getEscort()+"',"+hallLoading.getDate()+","+hallLoading.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(IncomePO income,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into incomeorderwaiting values"+"("+income.getId()+",'"+income.getCourier()+"',"+income.getCost()+","+income.getDate()+","+income.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(OrderPO order,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case FIND:break;
+		}
+		return command;
 	}
 	private String getCommand(PaymentPO payment,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into paymentorderwaiting values"+"("+payment.getId()+",'"+payment.getPayer()+"','"+payment.getAccount()+"',"+payment.getKind()+","+payment.getAmount()+",'"+payment.getRemarks()+"',"+payment.getDate()+","+payment.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(RecipientPO recipient,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into recipientorderwaiting values"+"("+recipient.getId()+",'"+recipient.getTransitId()+"','"+recipient.getStartPlace()+"',"+recipient.getState()+","+recipient.getDate()+","+recipient.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(SendPO send,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into sendorderwaiting values"+"("+send.getId()+",'"+send.getExpressId()+"','"+send.getCourier()+"',"+send.getDate()+","+send.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(StockInPO stockIn, MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into stockinorderwaiting values"+"("+stockIn.getId()+",'"+stockIn.getExpressId()+"','"+stockIn.getArrivePlace()+"',"+stockIn.getPart()+","+stockIn.getShelfId()+","+stockIn.getRow()+","+stockIn.getPlace()+","+stockIn.getDate()+","+stockIn.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(StockOutPO stockOut,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into stockoutwaiting values"+"("+stockOut.getId()+",'"+stockOut.getExpressId()+"',"+stockOut.getKind()+",'"+stockOut.getTransitId()+"',"+stockOut.getDate()+","+stockOut.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	private String getCommand(TransitPO transit,MysqlOperation op){
-		return "";
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command="insert into transitorderwaiting values"+"("+"'"+transit.getId()+"','"+transit.getPlaneId()+"','"+transit.getStartPlace()+"','"+transit.getArrivePlace()+"','"+transit.getContainerId()+"','"+transit.getSupervision()+"',"+null+","+transit.getOpTime()+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 }
