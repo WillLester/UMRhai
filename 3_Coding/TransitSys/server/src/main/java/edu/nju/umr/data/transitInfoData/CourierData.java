@@ -3,6 +3,7 @@ package edu.nju.umr.data.transitInfoData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 import edu.nju.umr.po.order.ExpressPO;
@@ -18,6 +19,7 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 	public CourierData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ExpressPO find(String barcode) throws RemoteException {

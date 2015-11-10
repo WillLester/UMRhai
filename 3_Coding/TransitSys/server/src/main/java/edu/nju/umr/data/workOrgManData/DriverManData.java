@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
@@ -22,6 +23,7 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	public DriverManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 //	public ArrayList<DriverPO> findDriver(String keyword)

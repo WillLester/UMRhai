@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
 import edu.nju.umr.po.enums.POKind;
@@ -12,10 +13,15 @@ import edu.nju.umr.po.order.RecipientPO;
  * 接收单数据
  */
 public class RecipientOrderData extends UnicastRemoteObject implements RecipientOrderDSer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 134682087211527556L;
 	private MysqlService mysqlSer;
 	public RecipientOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public boolean create(RecipientPO order) throws RemoteException {

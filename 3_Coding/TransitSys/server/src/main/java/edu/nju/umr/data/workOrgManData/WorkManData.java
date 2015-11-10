@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.po.CityPO;
@@ -26,6 +27,7 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 	public WorkManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<WorkPO> findWork(String keyword) throws RemoteException {

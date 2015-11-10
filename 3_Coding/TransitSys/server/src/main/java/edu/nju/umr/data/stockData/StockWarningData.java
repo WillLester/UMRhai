@@ -4,11 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.po.enums.Part;
 
 public class StockWarningData extends UnicastRemoteObject implements StockWarningDSer{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8891271945349984048L;
 
 	public StockWarningData() throws RemoteException {
 		super();

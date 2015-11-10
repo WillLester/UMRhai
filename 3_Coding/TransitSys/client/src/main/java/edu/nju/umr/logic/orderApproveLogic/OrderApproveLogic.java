@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
+import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -59,11 +60,11 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return isSuc;
 	}
 
-	public ResultMessage chooseOrder(String id) {
+	public ResultMessage chooseOrder(String id,Order kind) {
 		// TODO 自动生成的方法存根
 		PaymentVO order = null;
 		try {
-			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id);
+			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
 			System.out.println(orderpo.getId());
 			order = new PaymentVO(orderpo.getId(), orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks());
 			

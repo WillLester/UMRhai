@@ -13,6 +13,7 @@ import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
@@ -140,6 +141,8 @@ public class MysqlImpl implements MysqlService{
 			case TRANSIT:
 				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
 				break;
+			case TRANSITINFO:
+				
 			default:return false;
 			}
 		} catch (SQLException e){
@@ -414,12 +417,19 @@ public class MysqlImpl implements MysqlService{
 	}
 	private String getCommand(TransitPO transit,MysqlOperation op){
 		String command=null;
-		switch(op)
-		{
+		switch(op){
 		case INSERT:command="insert into transitorderwaiting values"+"("+"'"+transit.getId()+"','"+transit.getPlaneId()+"','"+transit.getStartPlace()+"','"+transit.getArrivePlace()+"','"+transit.getContainerId()+"','"+transit.getSupervision()+"',"+null+","+transit.getOpTime()+")";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
+		}
+		return command;
+	}
+	private String getCommand(TransitInfoPO transitInfo,MysqlOperation op){
+		String command = null;
+		switch(op){
+		case UPDATE:break;
+		case FIND:break;
 		}
 		return command;
 	}

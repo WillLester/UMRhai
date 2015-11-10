@@ -5,7 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
@@ -18,7 +17,6 @@ import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
 /*
  * 账数据
@@ -29,14 +27,13 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -3199440496716511453L;
-	private static SerialHelper helper;
 	public CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
 
 	public boolean addCount(CountPO count) throws RemoteException {
-		return helper.writeToFile(count, "data/count.ser");
+		return SerialHelper.writeToFile(count, "data/count.ser");
 		
 	}
 
@@ -61,10 +58,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		AccountPO account = new AccountPO("00001", "Excited", 25000);
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 		accountList.add(account);
-		CountPO count = new CountPO("12345", orgList, workerList, vanList, stockList, accountList);
-		
-//		return count;
-		return (CountPO) helper.readFromFile("data/count.ser");
+		return (CountPO) SerialHelper.readFromFile("data/count.ser");
 	}
 
 	public ArrayList<OrgPO> findOrg() throws RemoteException {

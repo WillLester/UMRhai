@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.po.CitiesPO;
@@ -13,10 +14,15 @@ import edu.nju.umr.po.enums.POKind;
  * 城市数据
  */
 public class CityData extends UnicastRemoteObject implements CityDSer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 702208404557174194L;
 	MysqlService mysqlSer;
 	public CityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public boolean add(CityPO city) throws RemoteException {

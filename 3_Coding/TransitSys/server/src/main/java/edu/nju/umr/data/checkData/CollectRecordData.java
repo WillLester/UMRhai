@@ -5,20 +5,28 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.UtilityData;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
-import edu.nju.umr.po.CityPO;
+import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.OrgPO;
-import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.order.IncomePO;
 /*
  * 收款记录数据
  */
 public class CollectRecordData extends UnicastRemoteObject implements CollectRecordDSer{
-	MysqlService mysqlSer;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2546029703937491602L;
+	private MysqlService mysqlSer;
+	private UtilityDSer utilitySer;
 	public CollectRecordData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
+		utilitySer = new UtilityData();
 	}
 
 	public ArrayList<IncomePO> getCollectRec(Date date, String id)
@@ -32,9 +40,9 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 //		incomeList.add(income);
 		return incomeList;
 	}
-	public ArrayList<OrgPO> getHall()
-			throws RemoteException{
-		return null;
+	public ArrayList<OrgPO> getHall() throws RemoteException{
+
+		return 	utilitySer.getHall();
 	}
 
 	

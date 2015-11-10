@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.po.DiaryPO;
@@ -21,6 +22,7 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 	MysqlService mysqlSer;
 	public DiaryData() throws RemoteException {
 		super();
+		mysqlSer = new MysqlImpl();
 		// TODO 自动生成的构造函数存根
 	}
 

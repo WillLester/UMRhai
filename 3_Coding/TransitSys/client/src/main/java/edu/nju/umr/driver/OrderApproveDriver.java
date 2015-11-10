@@ -6,6 +6,7 @@ import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
+import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
@@ -24,7 +25,7 @@ public class OrderApproveDriver {
 			System.out.println(vo.getOperator() + " " + vo.getId() + " "  + vo.getKind() + "　" + vo.getTime());
 		}
 		System.out.println(approve.examine(true, null));
-		PaymentVO pay = (PaymentVO) approve.chooseOrder("00001").getMessage();
+		PaymentVO pay = (PaymentVO) approve.chooseOrder("00001",Order.PAYMENT).getMessage();
 		System.out.println(pay.getId() + " " + pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
 	}
 	private void driveResubmit(){

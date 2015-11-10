@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
 import edu.nju.umr.po.UserPO;
@@ -23,6 +24,7 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 	public UserManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<UserPO> findUser(String keyword) throws RemoteException {

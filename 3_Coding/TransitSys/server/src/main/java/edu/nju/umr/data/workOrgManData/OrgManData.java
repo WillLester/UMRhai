@@ -1,5 +1,6 @@
 package edu.nju.umr.data.workOrgManData;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.CityPO;
@@ -24,6 +25,7 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	public OrgManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<OrgPO> findOrg(String keyword) throws RemoteException {

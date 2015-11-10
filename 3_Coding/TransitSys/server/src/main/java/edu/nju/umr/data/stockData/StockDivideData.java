@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
@@ -11,10 +12,15 @@ import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6752462920843759194L;
 	private MysqlService mysqlSer;
 	public StockDivideData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<ShelfPO> getShelves(String id,String keyword) throws RemoteException {

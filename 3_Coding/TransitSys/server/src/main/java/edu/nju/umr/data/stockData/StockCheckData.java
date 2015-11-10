@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.po.enums.Part;
@@ -24,6 +25,7 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 	public StockCheckData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<StockInPO> getIn(Date start, Date end, String id)

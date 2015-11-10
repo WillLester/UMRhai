@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
 import edu.nju.umr.po.order.IncomePO;
@@ -15,6 +16,7 @@ public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
 	MysqlService mysqlSer;
 	public CostBeneData() throws RemoteException {
 		super();
+		mysqlSer = new MysqlImpl();
 		// TODO 自动生成的构造函数存根
 	}
 

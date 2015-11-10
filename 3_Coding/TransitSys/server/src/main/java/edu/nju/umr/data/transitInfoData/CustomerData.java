@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 
@@ -18,6 +19,7 @@ public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 	public CustomerData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<String> findTransit(String barcode) throws RemoteException {
