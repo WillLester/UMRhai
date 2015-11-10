@@ -41,13 +41,12 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	}
 
 	public boolean deleteAccount(String id) throws RemoteException {
-		
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.ACCOUNT);
 	}
 
 	public boolean reviseAccount(AccountPO account) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(account, POKind.ACCOUNT);
 	}
 
 //	public AccountPO checkAccount(String id) throws RemoteException {

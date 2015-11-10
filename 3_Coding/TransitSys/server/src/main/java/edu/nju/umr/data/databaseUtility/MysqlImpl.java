@@ -147,7 +147,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return false;
 	}
-	public boolean deleteInfo(String statement, String key, POKind kind) {
+	public boolean deleteInfo(String key, POKind kind) {
 		// TODO 自动生成的方法存根
 		return false;
 	}
@@ -155,7 +155,7 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		return false;
 	}
-	public Object checkInfo(String statement, String key,POKind kind) {
+	public Object checkInfo(String key,POKind kind) {
 		// TODO 自动生成的方法存根
 		return null;
 	}
