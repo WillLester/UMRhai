@@ -44,12 +44,12 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 
 	public boolean deleteWork(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.WORK);
 	}
 
 	public boolean reviseWork(WorkPO work) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(work, POKind.WORK);
 	}
 
 	public WorkPO checkWork(String id) throws RemoteException {

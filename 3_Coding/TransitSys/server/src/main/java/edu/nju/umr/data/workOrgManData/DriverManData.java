@@ -43,12 +43,12 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	}
 
 	public boolean deleteDriver(String id) throws RemoteException {
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.DRIVER);
 	}
 
-	public boolean reviseDriver(DriverPO Driver) throws RemoteException {
+	public boolean reviseDriver(DriverPO driver) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(driver, POKind.DRIVER);
 	}
 
 	public DriverPO checkDriver(String id) throws RemoteException {

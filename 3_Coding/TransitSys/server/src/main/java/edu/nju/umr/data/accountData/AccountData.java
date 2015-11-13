@@ -27,15 +27,11 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 		// TODO 自动生成的构造函数存根
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<AccountPO> findAccount(String keyword)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		AccountPO account1 = new AccountPO("00001", "Excited", 25000);
-		AccountPO account2 = new AccountPO("00002", "Too Young",30000);
-		ArrayList<AccountPO> list = new ArrayList<AccountPO>();
-		list.add(account1);
-		list.add(account2);
-		return list;
+		return (ArrayList<AccountPO>) mysqlSer.checkInfo(keyword, POKind.ACCOUNT);
 	}
 
 	public boolean addAccount(AccountPO account) throws RemoteException {

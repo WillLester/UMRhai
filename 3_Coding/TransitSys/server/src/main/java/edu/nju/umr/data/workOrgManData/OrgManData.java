@@ -42,12 +42,12 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
 	public boolean deleteOrg(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.ORG);
 	}
 
 	public boolean reviseOrg(OrgPO org) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(org, POKind.ORG);
 	}
 
 //	public OrgPO checkOrg(String id) throws RemoteException {

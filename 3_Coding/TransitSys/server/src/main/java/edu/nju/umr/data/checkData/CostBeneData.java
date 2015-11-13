@@ -13,6 +13,10 @@ import edu.nju.umr.po.order.PaymentPO;
  * 成本收益表数据
  */
 public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2305024712720635004L;
 	MysqlService mysqlSer;
 	public CostBeneData() throws RemoteException {
 		super();

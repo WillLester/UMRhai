@@ -11,6 +11,8 @@ import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Organization;
 
 public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
@@ -51,6 +53,16 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		System.out.println(cal+" "+op+" "+opt);
 		System.out.println("数据层将操作日志存入数据库");
 		return true;
+	}
+
+	public ArrayList<WorkPO> getWorkers() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ArrayList<VanPO> getVans() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

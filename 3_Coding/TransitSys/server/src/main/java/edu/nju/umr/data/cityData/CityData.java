@@ -25,19 +25,19 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean add(CityPO city) throws RemoteException {
+	public boolean addCity(CityPO city) throws RemoteException {
 		return mysqlSer.addInfo(city, POKind.CITY);
 		
 	}
 
-	public boolean revise(CityPO city) throws RemoteException {
+	public boolean reviseCity(CityPO city) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(city, POKind.CITY);
 	}
 
 	public boolean reviseCities(CitiesPO cities) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(cities, POKind.CITIES);
 	}
 
 	public ArrayList<CityPO> getCities() throws RemoteException {
@@ -48,6 +48,11 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		cities.add(city1);
 		cities.add(city2);
 		return cities;
+	}
+
+	public boolean deleteCity(String cityName) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return mysqlSer.deleteInfo(cityName, POKind.CITY);
 	}
 
 }

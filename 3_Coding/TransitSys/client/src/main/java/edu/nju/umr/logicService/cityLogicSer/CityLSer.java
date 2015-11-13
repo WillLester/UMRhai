@@ -7,6 +7,7 @@ import edu.nju.umr.vo.ResultMessage;
 public interface CityLSer {
 	public boolean addCity(CityVO city);
 	public boolean reviseCity(CityVO city);
+	public boolean deleteCity(String cityName);
 	public boolean reviseCities(CitiesVO cities);
 	public ResultMessage cityList();
 }

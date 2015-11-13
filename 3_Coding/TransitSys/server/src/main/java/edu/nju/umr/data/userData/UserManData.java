@@ -41,11 +41,11 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 
 	public boolean deleteUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.USER);
 	}
 
 	public boolean reviseUser(UserPO user) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(user, POKind.USER);
 	}
 }

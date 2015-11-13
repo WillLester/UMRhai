@@ -9,6 +9,6 @@ import edu.nju.umr.po.order.OrderPO;
 
 public interface OrderApproveDSer extends Remote{
 	public ArrayList<OrderPO> getExamine() throws RemoteException;
-	public boolean update(boolean isPassed,ArrayList<String> id) throws RemoteException;
+	public boolean update(boolean isPassed,ArrayList<String> id,Order kind) throws RemoteException;
 	public Object getOrder(String id,Order kind) throws RemoteException;
 }

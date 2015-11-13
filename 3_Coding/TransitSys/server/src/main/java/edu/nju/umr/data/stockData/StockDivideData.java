@@ -37,12 +37,12 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 
 	public boolean deleteShelf(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.SHELF);
 	}
 
 	public boolean reviseShelf(ShelfPO shelf) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(shelf, POKind.SHELF);
 	}
 
 //	public ShelfPO getShelf(String id) throws RemoteException {

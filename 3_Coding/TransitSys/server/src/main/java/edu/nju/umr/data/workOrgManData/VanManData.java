@@ -41,12 +41,12 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
 	public boolean deleteVan(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.deleteInfo(id, POKind.VAN);
 	}
 
-	public boolean reviseVan(VanPO Van) throws RemoteException {
+	public boolean reviseVan(VanPO van) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return mysqlSer.reviseInfo(van, POKind.VAN);
 	}
 
 	public VanPO checkVan(String id) throws RemoteException {

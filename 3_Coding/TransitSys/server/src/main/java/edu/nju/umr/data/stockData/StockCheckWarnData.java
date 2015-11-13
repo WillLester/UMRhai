@@ -4,17 +4,17 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import edu.nju.umr.data.databaseUtility.MysqlImpl;
-import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 import edu.nju.umr.po.StockPO;
 
 public class StockCheckWarnData extends UnicastRemoteObject implements StockCheckWarnDSer{
-	private MysqlService mysqlSer;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2620162538190055811L;
 	public StockCheckWarnData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
 	}
 
 	public ArrayList<Integer> getWarning(String id) throws RemoteException {

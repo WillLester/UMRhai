@@ -8,10 +8,14 @@ import java.util.Calendar;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 
 public interface UtilityDSer extends Remote{
 	public ArrayList<CityPO> getCities() throws RemoteException;
 	public ArrayList<OrgPO> getOrgs() throws RemoteException;
+	public ArrayList<WorkPO> getWorkers() throws RemoteException;
+	public ArrayList<VanPO> getVans() throws RemoteException;
 	public ArrayList<StockPO> getStocks() throws RemoteException;
 	public ArrayList<OrgPO> getHall() throws RemoteException;
 	public boolean setRecord(Calendar cal,String op,String opt) throws RemoteException;
