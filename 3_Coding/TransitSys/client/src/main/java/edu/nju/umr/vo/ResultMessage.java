@@ -1,16 +1,21 @@
 package edu.nju.umr.vo;
 
+import edu.nju.umr.po.enums.Result;
+
 public class ResultMessage {
-	private boolean isSuccessful;
+	private Result reInfo;
 	private Object message;
-	public ResultMessage(boolean isSuccessful,Object message) {
-		// TODO 自动生成的构造函数存根
-		this.isSuccessful = isSuccessful;
+	
+	public ResultMessage(Result reInfo, Object message) {
+		super();
+		this.reInfo = reInfo;
 		this.message = message;
 	}
-	public boolean isSuccessful() {
-		return isSuccessful;
+	
+	public Result getReInfo() {
+		return reInfo;
 	}
+
 	public Object getMessage() {
 		return message;
 	}
