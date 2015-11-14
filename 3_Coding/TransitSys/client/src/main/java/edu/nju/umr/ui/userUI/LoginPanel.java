@@ -21,6 +21,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.userPanel.*;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
@@ -29,14 +30,13 @@ public class LoginPanel extends JPanel {
 	private JTextField id;
 	private JTextField password;
 	private JFrame frame;
-	private JPanel panel;
 	/**
 	 * Create the panel.
 	 */
 	public LoginPanel(JFrame fr) {
 		setLayout(null);
 		this.frame=fr;
-		panel=this;
+		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		
 		JLabel lblNewLabel = new JLabel("快递物流系统");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -59,12 +59,7 @@ public class LoginPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				LoginLSer log=new LoginLogic();
 				ResultMessage re=log.login(id.getText(), password.getText());
-				if(!re.isSuccessful())
-				{
-					HintFrame fail=new HintFrame("账号密码错误",1229/2,691/2);
-					add(fail);
-				}
-				else
+				if(re.getReInfo()==Result.SUCCESS)
 				{
 					UserVO user=(UserVO)re.getMessage();
 					System.out.println(user.getJuri());
@@ -78,6 +73,21 @@ public class LoginPanel extends JPanel {
 					case FINANCE:frame.setContentPane(new FinancePanel(user));break;
 					case MANAGER:frame.setContentPane(new ManagerPanel(user));break;
 					case ADMIN:frame.setContentPane(new AdministerPanel(user));break;
+					}
+				}
+				else
+				{
+					if(re.getReInfo()==Result.ID_WRONG)
+					{
+						new HintFrame("账号不存在!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+					}
+					if(re.getReInfo()==Result.PASSWORD_WRONG)
+					{
+						new HintFrame("密码错误!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+					}
+					if(re.getReInfo()==Result.NET_INTERRUPT)
+					{
+						new HintFrame("网络异常!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
 					}
 				}
 				

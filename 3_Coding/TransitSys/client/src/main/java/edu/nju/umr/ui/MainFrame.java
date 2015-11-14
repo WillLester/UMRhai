@@ -3,6 +3,8 @@ package edu.nju.umr.ui;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
+import edu.nju.umr.ui.userUI.LoginPanel;
+
 public class MainFrame extends JFrame{
 	/**
 	 * 
@@ -18,15 +20,11 @@ public class MainFrame extends JFrame{
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		desktop = new JDesktopPane();
-		this.getContentPane().add(desktop);
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		this.setVisible(true);
-		FunctionFrame func = new FunctionFrame("账户管理");
-		desktop.add(func);
-		func.setVisible(true);
+		this.setContentPane(new LoginPanel(this));
 		System.out.println(this.getWidth() + " " + this.getHeight());
 	}
 }
