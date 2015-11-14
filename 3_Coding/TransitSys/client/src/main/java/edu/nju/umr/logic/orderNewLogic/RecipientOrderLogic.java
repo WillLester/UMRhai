@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
@@ -25,7 +26,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public boolean create(RecipientVO order) {
+	public Result create(RecipientVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -37,16 +38,14 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
 		ArrayList<String> ar= null;
-		boolean isSuccessful=false;
 		try{
 			ar=recipientData.getCities();
-			isSuccessful=true;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
@@ -56,7 +55,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		{
 			arVO.add(ar.get(i));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

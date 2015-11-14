@@ -10,6 +10,7 @@ import java.util.Calendar;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
@@ -30,7 +31,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean create(ArriveVO order) {
+	public Result create(ArriveVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -40,7 +41,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCities() {
@@ -52,7 +53,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, cities);
+		return new ResultMessage(Result.SUCCESS, cities);
 	}
 	
 }

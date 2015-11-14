@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.DriverPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -30,7 +31,7 @@ public class DriverManLogic implements DriverManLSer{
         } 
 	}
 
-	public boolean addDriver(DriverVO Driver) {
+	public Result addDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 //		try
@@ -40,10 +41,10 @@ public class DriverManLogic implements DriverManLSer{
 //		{
 //			e.printStackTrace();
 //		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteDriver(String id) {
+	public Result deleteDriver(String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try
@@ -53,10 +54,10 @@ public class DriverManLogic implements DriverManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseDriver(DriverVO Driver) {
+	public Result reviseDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 //		try
@@ -66,7 +67,7 @@ public class DriverManLogic implements DriverManLSer{
 //		{
 //			e.printStackTrace();
 //		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage checkDriver(String id) {
@@ -100,7 +101,7 @@ public class DriverManLogic implements DriverManLSer{
 //			DriverPO Driver = ar.get(i);
 //			arVO.add(new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
 //		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

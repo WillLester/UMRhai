@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -47,7 +48,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(true, incomeList);
+		return new ResultMessage(Result.SUCCESS, incomeList);
 	}
 
 	public ResultMessage getHall() {
@@ -64,12 +65,12 @@ public class BusiCircumLogic implements BusiCircumLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, hallList);
+		return new ResultMessage(Result.SUCCESS, hallList);
 	}
 
-	public boolean outputExcel(ArrayList<IncomeVO> income, String location) {
+	public Result outputExcel(ArrayList<IncomeVO> income, String location) {
 		// TODO 自动生成的方法存根
-		return true;
+		return Result.SUCCESS;
 	}
 
 }

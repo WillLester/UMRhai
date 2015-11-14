@@ -16,6 +16,7 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.CountVO;
@@ -42,7 +43,7 @@ public class CountLogic implements CountLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean newCount() {
+	public Result newCount() {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
 		ArrayList<OrgPO> orgList= new ArrayList<OrgPO>();
@@ -82,7 +83,7 @@ public class CountLogic implements CountLSer{
 //			// TODO 自动生成的 catch 块
 //			e.printStackTrace();
 //		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage checkInitInfo(String id) {
@@ -128,7 +129,7 @@ public class CountLogic implements CountLSer{
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(true, countVo);
+		return new ResultMessage(Result.SUCCESS, countVo);
 	}
 
 //	public ResultMessage orgList() {

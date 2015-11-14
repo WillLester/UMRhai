@@ -7,6 +7,7 @@ import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningLogic implements StockWarningLSer{
@@ -22,7 +23,7 @@ public class StockWarningLogic implements StockWarningLSer{
 			}
 	}
 
-	public boolean setWarning(int w, Part part, String id) {
+	public Result setWarning(int w, Part part, String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -31,7 +32,7 @@ public class StockWarningLogic implements StockWarningLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getWarning(String id) {
@@ -46,7 +47,7 @@ public class StockWarningLogic implements StockWarningLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,ar);
+		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);
 		return message;
 	}
 

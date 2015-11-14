@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.dataFactory.OrderResubmitDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -45,7 +46,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, newOrders);
+		return new ResultMessage(Result.SUCCESS, newOrders);
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.Calendar;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -30,7 +31,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean create(CenterLoadingVO order) {
+	public Result create(CenterLoadingVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -40,7 +41,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getHalls() {
@@ -52,7 +53,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, halls);
+		return new ResultMessage(Result.SUCCESS, halls);
 	}
 
 }

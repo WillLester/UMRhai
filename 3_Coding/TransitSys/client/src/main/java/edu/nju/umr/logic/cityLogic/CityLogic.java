@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.dataFactory.CityDFacSer;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.CitiesVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -31,7 +32,7 @@ public class CityLogic implements CityLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean addCity(CityVO city) {
+	public Result addCity(CityVO city) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -40,10 +41,10 @@ public class CityLogic implements CityLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseCities(CitiesVO cities) {
+	public Result reviseCities(CitiesVO cities) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -52,10 +53,10 @@ public class CityLogic implements CityLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseCity(CityVO city) {
+	public Result reviseCity(CityVO city) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -64,7 +65,7 @@ public class CityLogic implements CityLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage cityList() {
@@ -80,11 +81,11 @@ public class CityLogic implements CityLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, cityList);
+		return new ResultMessage(Result.SUCCESS, cityList);
 	}
-	public boolean deleteCity(String cityName) {
+	public Result deleteCity(String cityName) {
 		// TODO 自动生成的方法存根
-		return false;
+		return Result.SUCCESS;
 	}
 
 }

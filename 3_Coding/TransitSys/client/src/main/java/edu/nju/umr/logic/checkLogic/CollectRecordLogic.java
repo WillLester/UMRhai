@@ -10,6 +10,7 @@ import java.util.Date;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
@@ -44,7 +45,7 @@ public class CollectRecordLogic implements CollectRecordLSer{
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(true, incomeList);
+		return new ResultMessage(Result.SUCCESS, incomeList);
 	}
 
 	public ResultMessage total(ArrayList<IncomeVO> income) {
@@ -53,7 +54,7 @@ public class CollectRecordLogic implements CollectRecordLSer{
 		for(IncomeVO in:income){
 			total = total + in.getCost();
 		}
-		return new ResultMessage(true, total);
+		return new ResultMessage(Result.SUCCESS, total);
 	}
 
 }

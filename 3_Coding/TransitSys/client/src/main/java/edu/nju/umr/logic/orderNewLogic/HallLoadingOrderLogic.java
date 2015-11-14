@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.HallLoadingPO;
 
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
@@ -29,7 +30,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
         } 
 		// TODO 自动生成的构造函数存根
 	}
-	public boolean create(HallLoadingVO order) {
+	public Result create(HallLoadingVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc=false;
 //		try
@@ -40,7 +41,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 //		{
 //			e.printStackTrace();
 //		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getOrgs() {
@@ -52,7 +53,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, orgs);
+		return new ResultMessage(Result.SUCCESS, orgs);
 	}
 
 	public ResultMessage getVans() {
@@ -64,7 +65,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, vans);
+		return new ResultMessage(Result.SUCCESS, vans);
 	}
 
 }

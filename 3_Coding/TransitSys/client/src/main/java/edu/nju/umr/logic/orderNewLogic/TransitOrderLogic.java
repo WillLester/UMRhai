@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
@@ -26,7 +27,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		}
 	}
 
-	public boolean create(TransitVO order) {
+	public Result create(TransitVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -38,7 +39,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCities() {
@@ -57,7 +58,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		{
 			arVO.add(ar.get(i));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

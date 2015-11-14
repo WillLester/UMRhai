@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.dataService.dataFactory.StockCheckWarnDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 import edu.nju.umr.vo.ResultMessage;
@@ -34,7 +35,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,ar);
+		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);
 		return message;
 	}
 

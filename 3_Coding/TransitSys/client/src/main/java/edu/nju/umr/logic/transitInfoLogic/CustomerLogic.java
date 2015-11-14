@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
@@ -35,7 +36,7 @@ public class CustomerLogic implements CustomerLogicSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,ar);
+		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);
 		return message;
 	}
 

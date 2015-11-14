@@ -13,7 +13,6 @@ import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
-import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ShelfVO;
@@ -51,7 +50,6 @@ public class StockDriver {
 				System.out.println(good.getId() + " " + good.getCity() + " " + good.getDate() + " " + good.getPart() + " " + good.getShelf() + " " + good.getRow() +" " + good.getPlace());
 				
 			}
-		System.out.println(checkNow.setPoint("00001", new Date(110,4,25)));
 		System.out.println(checkNow.outputExcel("D:\\", stock));
 	}
 	private void driveCheckWarn(){

@@ -8,6 +8,7 @@ import java.util.Date;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Sex;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -32,7 +33,7 @@ public class WorkManLogic implements WorkManLSer{
 		}
 	}
 
-	public boolean addWork(WorkVO work) {
+	public Result addWork(WorkVO work) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -42,10 +43,10 @@ public class WorkManLogic implements WorkManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteWork(String id) {
+	public Result deleteWork(String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -53,10 +54,10 @@ public class WorkManLogic implements WorkManLSer{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseWork(WorkVO work) {
+	public Result reviseWork(WorkVO work) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -65,7 +66,7 @@ public class WorkManLogic implements WorkManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 //	public ResultMessage checkWork(String id) {
@@ -121,7 +122,7 @@ public class WorkManLogic implements WorkManLSer{
 			WorkPO work=ar.get(i);
 			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri(),work.getKind(),work.getMoney()));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 
@@ -142,7 +143,7 @@ public class WorkManLogic implements WorkManLSer{
 			OrgPO org=ar.get(i);
 			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

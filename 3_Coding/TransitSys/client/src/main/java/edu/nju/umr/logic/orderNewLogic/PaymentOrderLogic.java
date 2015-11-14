@@ -9,6 +9,7 @@ import java.util.Calendar;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.order.PaymentVO;
 
@@ -28,7 +29,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean create(PaymentVO order) {
+	public Result create(PaymentVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -38,7 +39,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 }

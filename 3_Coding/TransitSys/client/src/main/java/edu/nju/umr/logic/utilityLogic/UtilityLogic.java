@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
@@ -41,7 +42,7 @@ public class UtilityLogic {
 	public ResultMessage getStocks(){
 		return null;
 	}
-	public static boolean setRecord(Calendar cal,String op,String opt){
+	public static Result setRecord(Calendar cal,String op,String opt){
 		boolean isSuc=false;
 		try
 		{
@@ -52,6 +53,6 @@ public class UtilityLogic {
 		{
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 }

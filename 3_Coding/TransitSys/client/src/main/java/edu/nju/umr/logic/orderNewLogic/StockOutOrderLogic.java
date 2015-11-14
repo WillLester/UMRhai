@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockOutVO;
@@ -25,7 +26,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public boolean create(StockOutVO order) {
+	public Result create(StockOutVO order) {
 		boolean isSuccessful=false;
 		try{
 			StockOutPO orderPO=new StockOutPO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),Calendar.getInstance());
@@ -36,7 +37,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCities() {
@@ -55,7 +56,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		{
 			arVO.add(ar.get(i));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

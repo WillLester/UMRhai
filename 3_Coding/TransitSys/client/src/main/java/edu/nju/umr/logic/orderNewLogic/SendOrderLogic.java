@@ -7,6 +7,7 @@ import java.util.Calendar;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
@@ -23,7 +24,7 @@ public class SendOrderLogic implements SendOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public boolean create(SendVO order) {
+	public Result create(SendVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -35,21 +36,19 @@ public class SendOrderLogic implements SendOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCouriers(String id) {
 		// TODO 自动生成的方法存根
 		ArrayList<String> ar= null;
-		boolean isSuccessful=false;
 		try{
 			ar=sendData.getCouriers();
-			isSuccessful=true;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, ar);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, ar);
 		return message;
 	}
 

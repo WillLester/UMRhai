@@ -6,6 +6,7 @@ import java.util.Calendar;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -40,7 +41,7 @@ public class LoginLogic implements LoginLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,userVO);
+		ResultMessage message=new ResultMessage(Result.SUCCESS,userVO);
 		System.out.println(UtilityLogic.setRecord(null, "嘻嘻", "蛤蛤"));
 		return message;
 	}

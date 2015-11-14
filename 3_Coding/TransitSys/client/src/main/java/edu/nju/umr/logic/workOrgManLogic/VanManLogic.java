@@ -9,6 +9,7 @@ import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
@@ -28,7 +29,7 @@ public class VanManLogic implements VanManLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean addVan(VanVO van) {
+	public Result addVan(VanVO van) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -37,10 +38,10 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteVan(String id) {
+	public Result deleteVan(String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -49,10 +50,10 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseVan(VanVO van) {
+	public Result reviseVan(VanVO van) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -61,7 +62,7 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage checkVan(String id) {
@@ -75,7 +76,7 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(Result.SUCCESS,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 
@@ -112,7 +113,7 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(Result.SUCCESS,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 

@@ -11,6 +11,7 @@ import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
 import edu.nju.umr.po.ConstantPO;
+import edu.nju.umr.po.enums.Result;
 
 public class ConstantLogic implements ConstantLSer{
 	ConstantDFacSer dataFac;
@@ -28,7 +29,7 @@ public class ConstantLogic implements ConstantLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean setConstant(ConstantVO constant)
+	public Result setConstant(ConstantVO constant)
 	{
 		boolean isSuc=false;
 		try
@@ -39,7 +40,7 @@ public class ConstantLogic implements ConstantLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 	public ResultMessage getConstant()
 	{
@@ -54,6 +55,6 @@ public class ConstantLogic implements ConstantLSer{
 		{
 			e.printStackTrace();
 		}
-			return new ResultMessage(isSuc,vo);
+			return new ResultMessage(Result.SUCCESS,vo);
 	}
 }

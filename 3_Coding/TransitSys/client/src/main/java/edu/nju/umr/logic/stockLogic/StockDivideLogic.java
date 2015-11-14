@@ -7,6 +7,7 @@ import edu.nju.umr.dataService.dataFactory.StockDivideDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 
@@ -46,7 +47,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		return null;
 	}
 
-	public boolean addShelf(ShelfVO shelf) {
+	public Result addShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try
@@ -57,10 +58,10 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteShelf(String id) {
+	public Result deleteShelf(String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try
@@ -71,10 +72,10 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseShelf(ShelfVO shelf) {
+	public Result reviseShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try
@@ -85,7 +86,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 //	public ResultMessage checkShelf(String id) {

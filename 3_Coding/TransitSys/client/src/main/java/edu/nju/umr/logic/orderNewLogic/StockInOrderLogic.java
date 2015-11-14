@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
@@ -25,18 +26,16 @@ public class StockInOrderLogic implements StockInOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public boolean create(StockInVO order) {
-		boolean isSuccessful=false;
+	public Result create(StockInVO order) {
 		try{
 			StockInPO orderPO=new StockInPO(order.getId(),order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance());
 			stockinData.create(orderPO);
-			isSuccessful=true;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCities() {
@@ -55,7 +54,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		{
 			arVO.add(ar.get(i));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

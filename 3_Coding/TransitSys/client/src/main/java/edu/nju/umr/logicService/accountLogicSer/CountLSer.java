@@ -1,9 +1,10 @@
 package edu.nju.umr.logicService.accountLogicSer;
 
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public interface CountLSer {
-	public boolean newCount();
+	public Result newCount();
 	public ResultMessage checkInitInfo(String id);
 //	public ResultMessage orgList();
 //	public ResultMessage getWorkers(String id);

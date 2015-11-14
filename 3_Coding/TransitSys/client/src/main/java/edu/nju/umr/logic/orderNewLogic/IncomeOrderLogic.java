@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
@@ -29,7 +30,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean create(IncomeVO order) {
+	public Result create(IncomeVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 //		try {
@@ -38,7 +39,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 //			// TODO 自动生成的 catch 块
 //			e.printStackTrace();
 //		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage getCouriers(String id) {
@@ -50,7 +51,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, couriers);
+		return new ResultMessage(Result.SUCCESS, couriers);
 	}
 
 }

@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.order.ExpressVO;
 
@@ -27,7 +28,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean create(ExpressVO order) {
+	public Result create(ExpressVO order) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 //		try {
@@ -36,7 +37,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	//		// TODO 自动生成的 catch 块
 //			e.printStackTrace();
 	//	}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 }

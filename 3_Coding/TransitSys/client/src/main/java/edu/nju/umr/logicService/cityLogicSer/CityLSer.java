@@ -1,13 +1,14 @@
 package edu.nju.umr.logicService.cityLogicSer;
 
-import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.CitiesVO;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public interface CityLSer {
-	public boolean addCity(CityVO city);
-	public boolean reviseCity(CityVO city);
-	public boolean deleteCity(String cityName);
-	public boolean reviseCities(CitiesVO cities);
+	public Result addCity(CityVO city);
+	public Result reviseCity(CityVO city);
+	public Result deleteCity(String cityName);
+	public Result reviseCities(CitiesVO cities);
 	public ResultMessage cityList();
 }

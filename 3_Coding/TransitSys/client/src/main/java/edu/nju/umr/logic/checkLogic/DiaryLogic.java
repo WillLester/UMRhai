@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.dataFactory.DiaryDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.po.DiaryPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -45,7 +46,7 @@ public class DiaryLogic implements DiaryLSer{
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(true, diaryList);
+		return new ResultMessage(Result.SUCCESS, diaryList);
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Date;
 import edu.nju.umr.dataService.dataFactory.StockCheckDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -43,7 +44,7 @@ public class StockCheckLogic implements StockCheckLSer{
 			StockInPO order=ar.get(i);
 			arVO.add(new StockInVO(order.getId(), order.getExpressId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 
@@ -63,7 +64,7 @@ public class StockCheckLogic implements StockCheckLSer{
 			StockOutPO order=ar.get(i);
 			arVO.add(new StockOutVO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId()));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

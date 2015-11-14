@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -45,10 +46,10 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, orders);
+		return new ResultMessage(Result.SUCCESS, orders);
 	}
 
-	public boolean examine(boolean approve, ArrayList<String> id) {
+	public Result examine(boolean approve, ArrayList<String> id) {
 		// TODO 自动生成的方法存根
 		boolean isSuc = false;
 		try {
@@ -57,7 +58,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {
@@ -72,7 +73,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, order);
+		return new ResultMessage(Result.SUCCESS, order);
 	}
 	
 }

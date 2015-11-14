@@ -9,6 +9,7 @@ import edu.nju.umr.dataService.stockDSer.StockCheckNowDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
@@ -47,7 +48,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 			GoodPO good=ar.get(i);
 			arVO.add(new GoodVO(good.getId(),good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new StockVO(arVO));
+		ResultMessage message=new ResultMessage(Result.SUCCESS,new StockVO(arVO));
 		return message;
 	}
 
@@ -64,7 +65,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		return isSuccessful;
 	}
 
-	public boolean outputExcel(String location, StockVO stock) {
+	public Result outputExcel(String location, StockVO stock) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		ArrayList<GoodVO> arVO=stock.getGoods();
@@ -82,7 +83,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 //		{
 //			e.printStackTrace();
 //		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 }

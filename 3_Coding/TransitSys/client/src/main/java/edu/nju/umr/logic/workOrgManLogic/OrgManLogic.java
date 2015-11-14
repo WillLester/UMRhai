@@ -9,6 +9,7 @@ import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
@@ -26,7 +27,7 @@ public class OrgManLogic implements OrgManLSer{
 			e.printStackTrace();
 		}
 	}
-	public boolean addOrg(OrgVO org) {
+	public Result addOrg(OrgVO org) {
 		boolean isSuccessful=false;
 		try{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
@@ -34,10 +35,10 @@ public class OrgManLogic implements OrgManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteOrg(String id) {
+	public Result deleteOrg(String id) {
 		boolean isSuccessful=false;
 		try{
 			isSuccessful=orgData.deleteOrg(id);
@@ -45,10 +46,10 @@ public class OrgManLogic implements OrgManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseOrg(OrgVO org) {
+	public Result reviseOrg(OrgVO org) {
 		boolean isSuccessful=false;
 		try{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
@@ -56,7 +57,7 @@ public class OrgManLogic implements OrgManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 //	public ResultMessage checkOrg(String id) {
@@ -112,7 +113,7 @@ public class OrgManLogic implements OrgManLSer{
 			OrgPO org=ar.get(i);
 			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 
@@ -133,7 +134,7 @@ public class OrgManLogic implements OrgManLSer{
 			CityPO city=ar.get(i);
 			arVO.add(new CityVO(city.getId(),city.getName(),city.getProvince()));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 

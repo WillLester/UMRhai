@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
@@ -26,7 +27,7 @@ public class UserManLogic implements UserManLSer{
 		}
 	}
 	
-	public boolean newUser(UserVO user) {
+	public Result newUser(UserVO user) {
 		boolean isSuccessful=false;
 		try{
 			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
@@ -34,10 +35,10 @@ public class UserManLogic implements UserManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteUser(String id) {
+	public Result deleteUser(String id) {
 		boolean isSuccessful=false;
 		try{
 			isSuccessful=userData.deleteUser(id);
@@ -45,10 +46,10 @@ public class UserManLogic implements UserManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseUser(UserVO user) {
+	public Result reviseUser(UserVO user) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
@@ -57,7 +58,7 @@ public class UserManLogic implements UserManLSer{
 		{
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage findUser(String keyword) {
@@ -77,7 +78,7 @@ public class UserManLogic implements UserManLSer{
 			UserPO user=ar.get(i);
 			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 }

@@ -10,7 +10,7 @@ import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -30,7 +30,7 @@ public class AccountLogic implements AccountLSer{
             e.printStackTrace();   
         } 
 	}
-	public boolean addAccount(AccountVO account) {
+	public Result addAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
 		try {
@@ -39,10 +39,10 @@ public class AccountLogic implements AccountLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean deleteAccount(String id) {
+	public Result deleteAccount(String id) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
 		try {
@@ -51,10 +51,10 @@ public class AccountLogic implements AccountLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
-	public boolean reviseAccount(AccountVO account) {
+	public Result reviseAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
 		try {
@@ -63,7 +63,7 @@ public class AccountLogic implements AccountLSer{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return isSuccessful;
+		return Result.SUCCESS;
 	}
 
 //	public ResultMessage checkAccount(String id) {
@@ -112,7 +112,7 @@ public class AccountLogic implements AccountLSer{
 			AccountVO vo = new AccountVO(arPo.get(i).getId(), arPo.get(i).getName(), arPo.get(i).getBalance());
 			ar.add(vo);
 		}
-		ResultMessage message = new ResultMessage(true, ar);
+		ResultMessage message = new ResultMessage(Result.SUCCESS, ar);
 		return message;
 	}
 
