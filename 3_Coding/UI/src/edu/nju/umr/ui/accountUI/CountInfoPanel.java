@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.ui.Constants;
+import javax.swing.JTabbedPane;
 
 public class CountInfoPanel extends JPanel {
 	private JTextField nameField;
@@ -263,5 +264,4 @@ public class CountInfoPanel extends JPanel {
 		add(button);
 
 	}
-
 }

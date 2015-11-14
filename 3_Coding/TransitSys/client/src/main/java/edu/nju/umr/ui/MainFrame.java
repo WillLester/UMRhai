@@ -4,6 +4,10 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4661313913087117797L;
 	static final int FRAME_X = 1366/20;
 	static final int FRAME_Y = 768/40;
 	static final int FRAME_WIDTH = (int)(1366*0.9);

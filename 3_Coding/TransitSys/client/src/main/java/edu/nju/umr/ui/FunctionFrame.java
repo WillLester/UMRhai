@@ -1,17 +1,15 @@
 package edu.nju.umr.ui;
 
 import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 
-import edu.nju.umr.ui.accountUI.*;
-import edu.nju.umr.ui.workOrgManUI.*;
-import edu.nju.umr.ui.stockUI.*;
-import edu.nju.umr.ui.userUI.*;
-import edu.nju.umr.ui.orderNewUI.*;
-import edu.nju.umr.ui.cityUI.*;
-import edu.nju.umr.ui.orderApproveUI.*;
+import edu.nju.umr.ui.workOrgManUI.WorkListPanel;
 
-public class FunctionFrame extends JInternalFrame{
+public class FunctionFrame extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7900240807053594323L;
 	static final int FRAME_X = MainFrame.FRAME_WIDTH/20;
 	static final int FRAME_Y = MainFrame.FRAME_HEIGHT/40;
 	static final int FRAME_WIDTH = (int)(MainFrame.FRAME_WIDTH*0.9);
@@ -22,8 +20,6 @@ public class FunctionFrame extends JInternalFrame{
 		this.getContentPane().add(desktop);
 		setTitle(title);
 		setResizable(false);
-		setClosable(true);
-		setIconifiable(true);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		System.out.println(this.getWidth()+" " + this.getHeight());
 		this.setVisible(true);
