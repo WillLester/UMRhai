@@ -1,43 +1,32 @@
 package edu.nju.umr.ui.userPanel;
 
 
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class AdministerPanel extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4514730101908039303L;
 	private JPanel contentPane;
 	private JTextField nameTxt;
 	private JTextField levelTxt;
-	
+	private JFrame mainFrame;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdministerPanel frame = new AdministerPanel();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public AdministerPanel() {
+	public AdministerPanel(JFrame mainFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1229, 691);
+		this.mainFrame = mainFrame;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,8 +88,6 @@ public class AdministerPanel extends JFrame {
 		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		userMangButton.setBounds(369, 250, 93, 83);
 		contentPane.add(userMangButton);
-		
-
-	
 	}
+	
 }
