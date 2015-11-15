@@ -97,8 +97,5 @@ public class AdministerPanel extends UserPanel {
 			}
 		});
 		this.add(userMangButton);
-		
-
-	
 	}
 }

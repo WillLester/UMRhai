@@ -3,6 +3,8 @@ package edu.nju.umr.ui.userPanel;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +17,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+
+
 import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
+import edu.nju.umr.ui.orderNewUI.SendPanel;
+import edu.nju.umr.ui.orderNewUI.RecipientPanel;
+import edu.nju.umr.ui.orderNewUI.IncomePanel;
+import edu.nju.umr.ui.userUI.UserListPanel;
+
 
 public class BusinessHallPanel extends UserPanel {
 //	private JTextField nameTxt;
@@ -80,10 +91,17 @@ public class BusinessHallPanel extends UserPanel {
 		existButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		this.add(existButton);
 		
-		JButton userMangButton = new JButton("接收单");
-		userMangButton.setBounds(282, 231, 112, 83);
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		this.add(userMangButton);
+		JButton recipient = new JButton("接收单");
+		recipient.setBounds(282, 231, 112, 83);
+		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
+		recipient.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("单据创建");
+				ffr.setContentPane(new RecipientPanel(ffr));
+			}
+		});
+		this.add(recipient);
 		
 		JButton button = new JButton("派件单");
 		button.setFont(new Font("宋体", Font.PLAIN, 12));
