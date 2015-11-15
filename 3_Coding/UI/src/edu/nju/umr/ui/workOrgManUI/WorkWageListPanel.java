@@ -12,6 +12,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 public class WorkWageListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7764066933710729156L;
 	private JTable listTable;
 	private JTextField textFieldSearch;
 	private JTextField textFieldwt;
