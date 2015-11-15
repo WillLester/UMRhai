@@ -86,10 +86,8 @@ public class StockManagerPanel extends UserPanel{
 		stockCheckButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		stockCheckButton.setBounds(269, 192, 112, 83);
 		this.add(stockCheckButton);
-		stockCheckButton.addActionListener(new ActionListener() {
-			
+		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("库存查看");
 				fr.setContentPane(new StockCheckPanel());
 			}
@@ -138,8 +136,7 @@ public class StockManagerPanel extends UserPanel{
 		stockOutButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		stockOutButton.setBounds(516, 333, 112, 83);
 		this.add(stockOutButton);
-		stockCheckButton.addActionListener(new ActionListener() {
-			
+		stockOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成出库单");
