@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.userDSer.UserManDSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 /*
  * 用户管理数据
  */
@@ -35,16 +36,16 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		return ar;
 	}
 
-	public boolean addUser(UserPO user) throws RemoteException {
+	public Result addUser(UserPO user) throws RemoteException {
 		return mysqlSer.addInfo(user, POKind.USER);
 	}
 
-	public boolean deleteUser(String id) throws RemoteException {
+	public Result deleteUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.deleteInfo(id, POKind.USER);
 	}
 
-	public boolean reviseUser(UserPO user) throws RemoteException {
+	public Result reviseUser(UserPO user) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(user, POKind.USER);
 	}

@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 /*
  * 城市数据
  */
@@ -25,17 +26,17 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean addCity(CityPO city) throws RemoteException {
+	public Result addCity(CityPO city) throws RemoteException {
 		return mysqlSer.addInfo(city, POKind.CITY);
 		
 	}
 
-	public boolean reviseCity(CityPO city) throws RemoteException {
+	public Result reviseCity(CityPO city) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(city, POKind.CITY);
 	}
 
-	public boolean reviseCities(CitiesPO cities) throws RemoteException {
+	public Result reviseCities(CitiesPO cities) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(cities, POKind.CITIES);
 	}
@@ -50,7 +51,7 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		return cities;
 	}
 
-	public boolean deleteCity(String cityName) throws RemoteException {
+	public Result deleteCity(String cityName) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.deleteInfo(cityName, POKind.CITY);
 	}

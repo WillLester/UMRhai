@@ -33,7 +33,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	}
 	public Result create(ArriveVO order) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), order.getId(), order.getStartPlace(), order.getState(),Calendar.getInstance()));
 		} catch (RemoteException e) {
@@ -41,7 +41,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage getCities() {

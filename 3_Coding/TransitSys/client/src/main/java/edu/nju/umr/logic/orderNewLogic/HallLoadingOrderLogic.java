@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
-import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.HallLoadingPO;
 
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	HallLoadingOrderDFacSer dataFac;

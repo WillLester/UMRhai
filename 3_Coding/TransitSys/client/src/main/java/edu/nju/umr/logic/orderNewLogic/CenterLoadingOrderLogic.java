@@ -33,7 +33,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	}
 	public Result create(CenterLoadingVO order) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), order.getId(), order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress(),Calendar.getInstance()));
 		} catch (RemoteException e) {
@@ -41,7 +41,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage getHalls() {

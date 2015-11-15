@@ -10,6 +10,7 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 /*
@@ -37,9 +38,9 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		return orderList;
 	}
 
-	public boolean update(boolean isPassed,ArrayList<String> id,Order kind) throws RemoteException {
+	public Result update(boolean isPassed,ArrayList<String> id,Order kind) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return Result.SUCCESS;
 	}
 
 	public Object getOrder(String id,Order kind) throws RemoteException {

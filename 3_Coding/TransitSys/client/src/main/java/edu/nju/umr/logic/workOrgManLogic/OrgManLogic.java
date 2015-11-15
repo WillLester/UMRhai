@@ -28,36 +28,36 @@ public class OrgManLogic implements OrgManLSer{
 		}
 	}
 	public Result addOrg(OrgVO org) {
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteOrg(String id) {
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=orgData.deleteOrg(id);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseOrg(OrgVO org) {
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 //	public ResultMessage checkOrg(String id) {

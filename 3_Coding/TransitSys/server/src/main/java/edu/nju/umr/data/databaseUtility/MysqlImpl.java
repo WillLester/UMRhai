@@ -18,6 +18,7 @@ import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
@@ -60,7 +61,7 @@ public class MysqlImpl implements MysqlService{
 			e.printStackTrace();
 		}
 	}
-	public boolean addInfo(Object ob, POKind kind) {
+	public Result addInfo(Object ob, POKind kind) {
 		// TODO 自动生成的方法存根
 		try{
 			switch(kind){
@@ -143,26 +144,26 @@ public class MysqlImpl implements MysqlService{
 				break;
 			case TRANSITINFO:
 				
-			default:return false;
+			default:return Result.PO_NOT_FOUND;
 			}
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		return false;
+		return Result.PO_NOT_FOUND;
 	}
-	public boolean deleteInfo(String key, POKind kind) {
+	public Result deleteInfo(String key, POKind kind) {
 		// TODO 自动生成的方法存根
-		return false;
+		return Result.PO_NOT_FOUND;
 	}
-	public boolean reviseInfo(Object ob, POKind kind) {
+	public Result reviseInfo(Object ob, POKind kind) {
 		// TODO 自动生成的方法存根
-		return false;
+		return Result.PO_NOT_FOUND;
 	}
 	public Object checkInfo(String key,POKind kind) {
 		// TODO 自动生成的方法存根
 		return null;
 	}
-	private static String getCommand(AccountPO account,MysqlOperation op){
+	private String getCommand(AccountPO account,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -206,7 +207,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(DriverPO driver,MysqlOperation op){
+	private String getCommand(DriverPO driver,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -217,7 +218,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(GoodPO good,MysqlOperation op){
+	private String getCommand(GoodPO good,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -229,7 +230,7 @@ public class MysqlImpl implements MysqlService{
 		return command;
 	}
 	
-	private static String getCommand(OrgPO org,MysqlOperation op){
+	private String getCommand(OrgPO org,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -240,7 +241,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(ShelfPO shelf,MysqlOperation op){
+	private String getCommand(ShelfPO shelf,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -273,7 +274,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(VanPO van,MysqlOperation op){
+	private String getCommand(VanPO van,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -295,7 +296,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(ArrivePO arrive,MysqlOperation op){
+	private String getCommand(ArrivePO arrive,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{
@@ -317,7 +318,7 @@ public class MysqlImpl implements MysqlService{
 		}
 		return command;
 	}
-	private static String getCommand(ExpressPO express,MysqlOperation op){
+	private String getCommand(ExpressPO express,MysqlOperation op){
 		String command=null;
 		switch(op)
 		{

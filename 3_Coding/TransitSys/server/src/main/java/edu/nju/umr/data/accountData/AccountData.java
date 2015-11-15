@@ -12,6 +12,7 @@ import edu.nju.umr.po.enums.POKind;
 /*
  * 账户数据
  */
+import edu.nju.umr.po.enums.Result;
 
 public class AccountData extends UnicastRemoteObject implements AccountDSer{
 
@@ -34,15 +35,15 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 		return (ArrayList<AccountPO>) mysqlSer.checkInfo(keyword, POKind.ACCOUNT);
 	}
 
-	public boolean addAccount(AccountPO account) throws RemoteException {
+	public Result addAccount(AccountPO account) throws RemoteException {
 		return mysqlSer.addInfo(account, POKind.ACCOUNT);
 	}
 
-	public boolean deleteAccount(String id) throws RemoteException {
+	public Result deleteAccount(String id) throws RemoteException {
 		return mysqlSer.deleteInfo(id, POKind.ACCOUNT);
 	}
 
-	public boolean reviseAccount(AccountPO account) throws RemoteException {
+	public Result reviseAccount(AccountPO account) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(account, POKind.ACCOUNT);
 	}

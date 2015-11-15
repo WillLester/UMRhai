@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 /*
  * 入库单数据
@@ -24,7 +25,7 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(StockInPO order) throws RemoteException {
+	public Result create(StockInPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.STOCKIN);
 	}
 

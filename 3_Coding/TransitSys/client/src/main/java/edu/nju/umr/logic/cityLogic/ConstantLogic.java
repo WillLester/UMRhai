@@ -31,7 +31,7 @@ public class ConstantLogic implements ConstantLSer{
 	}
 	public Result setConstant(ConstantVO constant)
 	{
-		boolean isSuc=false;
+		Result isSuc=Result.SUCCESS;
 		try
 		{
 			ConstantPO po=new ConstantPO(1,2,3,4,5,6,7,8,9);
@@ -40,21 +40,20 @@ public class ConstantLogic implements ConstantLSer{
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
-	public ResultMessage getConstant()
-	{
-		boolean isSuc=false;
+	public ResultMessage getConstant(){
+		Result isSuc = Result.SUCCESS;
 		ConstantVO vo=null;
 		try
 		{
 			ConstantPO po=constantData.getConstant();
 			vo=new ConstantVO(po.getMaxLoadPlane(),po.getMaxLoadTrain(),po.getMaxLoadVan(),po.getPricePlane(),po.getPriceTrain(),po.getPriceVan(),po.getLvEco(),po.getLvStd(),po.getLvVip());
-			isSuc=true;
+			isSuc=Result.SUCCESS;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-			return new ResultMessage(Result.SUCCESS,vo);
+			return new ResultMessage(isSuc,vo);
 	}
 }

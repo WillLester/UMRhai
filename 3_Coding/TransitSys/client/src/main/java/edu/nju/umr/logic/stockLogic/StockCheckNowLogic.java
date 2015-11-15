@@ -52,19 +52,6 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		return message;
 	}
 
-	public boolean setPoint(String id, Date date) {
-		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
-		try
-		{
-			isSuccessful=checkData.setPoint(id, date);
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return isSuccessful;
-	}
-
 	public Result outputExcel(String location, StockVO stock) {
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;

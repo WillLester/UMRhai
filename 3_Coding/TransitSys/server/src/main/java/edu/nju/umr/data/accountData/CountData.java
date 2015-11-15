@@ -18,6 +18,7 @@ import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Result;
 /*
  * 账数据
  */
@@ -32,7 +33,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		// TODO 自动生成的构造函数存根
 	}
 
-	public boolean addCount(CountPO count) throws RemoteException {
+	public Result addCount(CountPO count) throws RemoteException {
 		return SerialHelper.writeToFile(count, "data/count.ser");
 		
 	}

@@ -31,7 +31,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 	}
 	public Result create(PaymentVO order) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = paymentData.create(new PaymentPO(order.getId(), order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance()));
 		} catch (RemoteException e) {
@@ -39,7 +39,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 			e.printStackTrace();
 		}
 		
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 }

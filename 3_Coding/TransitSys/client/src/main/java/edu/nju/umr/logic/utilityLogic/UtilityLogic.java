@@ -43,7 +43,7 @@ public class UtilityLogic {
 		return null;
 	}
 	public static Result setRecord(Calendar cal,String op,String opt){
-		boolean isSuc=false;
+		Result isSuc=Result.SUCCESS;
 		try
 		{
 			UtilityDFacSer dataFac=(UtilityDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
@@ -53,6 +53,6 @@ public class UtilityLogic {
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 }

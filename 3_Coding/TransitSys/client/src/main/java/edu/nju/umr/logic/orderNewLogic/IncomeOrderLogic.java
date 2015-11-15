@@ -10,7 +10,6 @@ import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 

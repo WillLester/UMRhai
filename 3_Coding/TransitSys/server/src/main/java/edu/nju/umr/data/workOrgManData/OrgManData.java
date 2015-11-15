@@ -7,6 +7,7 @@ import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -36,16 +37,16 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 		return ar1;
 	}
 
-	public boolean addOrg(OrgPO org) throws RemoteException {
+	public Result addOrg(OrgPO org) throws RemoteException {
 		return mysqlSer.addInfo(org, POKind.ORG);
 	}
 
-	public boolean deleteOrg(String id) throws RemoteException {
+	public Result deleteOrg(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.deleteInfo(id, POKind.ORG);
 	}
 
-	public boolean reviseOrg(OrgPO org) throws RemoteException {
+	public Result reviseOrg(OrgPO org) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(org, POKind.ORG);
 	}

@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
 /*
  * 中转中心装车单数据
@@ -24,7 +25,7 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(CenterLoadingPO order) throws RemoteException {
+	public Result create(CenterLoadingPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.CENTERLOADING);
 		
 	}

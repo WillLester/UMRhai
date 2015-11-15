@@ -51,14 +51,14 @@ public class OrderApproveLogic implements OrderApproveLSer{
 
 	public Result examine(boolean approve, ArrayList<String> id) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = approveData.update(approve,id,Order.ARRIVE);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {

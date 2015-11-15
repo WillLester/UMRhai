@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Result;
 
 public class StockWarningData extends UnicastRemoteObject implements StockWarningDSer{
 
@@ -27,10 +28,10 @@ public class StockWarningData extends UnicastRemoteObject implements StockWarnin
 		return ar;
 	}
 
-	public boolean setWarning(int w, Part part, String id)
+	public Result setWarning(int w, Part part, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return true;
+		return Result.SUCCESS;
 	}
 
 }

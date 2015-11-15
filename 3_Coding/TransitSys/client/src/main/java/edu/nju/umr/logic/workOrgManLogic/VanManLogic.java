@@ -31,52 +31,52 @@ public class VanManLogic implements VanManLSer{
 	}
 	public Result addVan(VanVO van) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteVan(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=vanData.deleteVan(id);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseVan(VanVO van) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public ResultMessage checkVan(String id) {
 		// TODO 自动生成的方法存根
 		VanPO Van=null;
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			Van=vanData.checkVan(id);
-			isSuccessful=true;
+			isSuccessful=Result.SUCCESS;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 

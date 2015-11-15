@@ -46,9 +46,8 @@ public class DriverManLogic implements DriverManLSer{
 
 	public Result deleteDriver(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
-		try
-		{
+		Result isSuccessful=Result.SUCCESS;
+		try {
 			isSuccessful=driverData.deleteDriver(id);
 		}catch(Exception e)
 		{

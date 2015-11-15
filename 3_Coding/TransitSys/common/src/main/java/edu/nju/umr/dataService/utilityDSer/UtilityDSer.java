@@ -10,6 +10,7 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Result;
 
 public interface UtilityDSer extends Remote{
 	public ArrayList<CityPO> getCities() throws RemoteException;
@@ -18,5 +19,5 @@ public interface UtilityDSer extends Remote{
 	public ArrayList<VanPO> getVans() throws RemoteException;
 	public ArrayList<StockPO> getStocks() throws RemoteException;
 	public ArrayList<OrgPO> getHall() throws RemoteException;
-	public boolean setRecord(Calendar cal,String op,String opt) throws RemoteException;
+	public Result setRecord(Calendar cal,String op,String opt) throws RemoteException;
 }

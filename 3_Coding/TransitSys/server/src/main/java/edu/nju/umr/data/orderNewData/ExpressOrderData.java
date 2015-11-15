@@ -7,6 +7,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 /*
  * 快递单数据
@@ -23,7 +24,7 @@ public class ExpressOrderData extends UnicastRemoteObject implements ExpressOrde
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(ExpressPO order) throws RemoteException {
+	public Result create(ExpressPO order) throws RemoteException {
 		return mysqlSer.addInfo(order,POKind.EXPRESS);
 	}
 

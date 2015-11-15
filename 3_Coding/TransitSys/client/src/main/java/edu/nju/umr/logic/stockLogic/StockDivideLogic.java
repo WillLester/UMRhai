@@ -49,21 +49,20 @@ public class StockDivideLogic implements StockDivideLSer{
 
 	public Result addShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
-		try
-		{
+		Result isSuccessful=Result.SUCCESS;
+		try {
 			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteShelf(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try
 		{
 			isSuccessful=checkData.deleteShelf(id);
@@ -72,12 +71,12 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try
 		{
 			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
@@ -86,7 +85,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 //	public ResultMessage checkShelf(String id) {

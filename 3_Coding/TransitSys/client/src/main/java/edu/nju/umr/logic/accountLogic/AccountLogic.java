@@ -32,38 +32,38 @@ public class AccountLogic implements AccountLSer{
 	}
 	public Result addAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful = false;
+		Result isSuccessful = Result.SUCCESS;
 		try {
 			isSuccessful = accountData.addAccount(new AccountPO(account.getId(), account.getName(), account.getBalance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteAccount(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful = false;
+		Result isSuccessful = Result.SUCCESS;
 		try {
 			isSuccessful = accountData.deleteAccount(id);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseAccount(AccountVO account) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful = false;
+		Result isSuccessful = Result.SUCCESS;
 		try {
 			isSuccessful = accountData.reviseAccount(new AccountPO(account.getId(), account.getName(), account.getBalance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 //	public ResultMessage checkAccount(String id) {

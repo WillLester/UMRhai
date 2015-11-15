@@ -7,6 +7,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
 /*
  * 付款单数据
@@ -23,7 +24,7 @@ public class PaymentOrderData extends UnicastRemoteObject implements PaymentOrde
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(PaymentPO order) throws RemoteException {
+	public Result create(PaymentPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.PAYMENT);
 		
 	}

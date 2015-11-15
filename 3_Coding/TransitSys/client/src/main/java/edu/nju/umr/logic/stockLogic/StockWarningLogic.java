@@ -25,14 +25,14 @@ public class StockWarningLogic implements StockWarningLSer{
 
 	public Result setWarning(int w, Part part, String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=checkData.setWarning(w, part, id);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public ResultMessage getWarning(String id) {

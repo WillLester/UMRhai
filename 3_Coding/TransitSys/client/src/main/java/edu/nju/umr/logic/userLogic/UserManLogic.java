@@ -28,37 +28,37 @@ public class UserManLogic implements UserManLSer{
 	}
 	
 	public Result newUser(UserVO user) {
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteUser(String id) {
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=userData.deleteUser(id);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseUser(UserVO user) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public ResultMessage findUser(String keyword) {

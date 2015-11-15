@@ -34,38 +34,38 @@ public class CityLogic implements CityLSer{
 	}
 	public Result addCity(CityVO city) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result result = Result.SUCCESS;
 		try {
-			isSuc = cityData.addCity(new CityPO(city.getName(), city.getId(),null));
+			result = cityData.addCity(new CityPO(city.getName(), city.getId(),null));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return result;
 	}
 
 	public Result reviseCities(CitiesVO cities) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = cityData.reviseCities(new CitiesPO(cities.getCity1(), cities.getCity2(), cities.getDistance(), cities.getPrice()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public Result reviseCity(CityVO city) {
 		// TODO 自动生成的方法存根
-		boolean isSuc = false;
+		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage cityList() {

@@ -35,7 +35,7 @@ public class WorkManLogic implements WorkManLSer{
 
 	public Result addWork(WorkVO work) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
 		}
@@ -43,30 +43,30 @@ public class WorkManLogic implements WorkManLSer{
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result deleteWork(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=workData.deleteWork(id);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public Result reviseWork(WorkVO work) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 //	public ResultMessage checkWork(String id) {

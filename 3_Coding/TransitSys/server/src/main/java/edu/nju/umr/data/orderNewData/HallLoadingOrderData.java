@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.HallLoadingPO;
 /*
  * 营业厅装车单数据
@@ -24,7 +25,7 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(HallLoadingPO order) throws RemoteException {
+	public Result create(HallLoadingPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.HALLLOADING);
 		
 	}

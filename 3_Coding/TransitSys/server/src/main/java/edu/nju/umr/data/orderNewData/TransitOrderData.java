@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.TransitPO;
 /*
  * 中转单数据
@@ -24,7 +25,7 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(TransitPO order) throws RemoteException {
+	public Result create(TransitPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.TRANSIT);
 		
 	}

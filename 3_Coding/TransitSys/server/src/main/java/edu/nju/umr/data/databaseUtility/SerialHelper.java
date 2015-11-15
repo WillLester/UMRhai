@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import edu.nju.umr.po.enums.Result;
+
 public class SerialHelper {
-	public static boolean writeToFile(Object ob,String loc)
+	public static Result writeToFile(Object ob,String loc)
 	{
 		boolean isSuc=false;
 		try
@@ -19,7 +21,7 @@ public class SerialHelper {
 		{
 			e.printStackTrace();
 		}
-		return isSuc;
+		return Result.SERIAL_FAIL;
 	}
 	public static Object readFromFile(String loc)
 	{
@@ -33,7 +35,7 @@ public class SerialHelper {
 		{
 			e.printStackTrace();
 		}
-		return ob;
+		return Result.FILE_NOT_FOUND;
 	}
 //	public static void main(String[] args)
 //	{

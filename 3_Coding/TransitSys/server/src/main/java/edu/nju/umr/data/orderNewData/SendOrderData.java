@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;
 /*
  * 派件单数据
@@ -24,7 +25,7 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public boolean create(SendPO order) throws RemoteException {
+	public Result create(SendPO order) throws RemoteException {
 		return mysqlSer.addInfo(order, POKind.SEND);
 	}
 
