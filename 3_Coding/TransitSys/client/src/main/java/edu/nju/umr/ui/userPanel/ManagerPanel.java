@@ -170,7 +170,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看经营情况表");
-				fr.setContentPane(new BusiCircumPanel());
+				fr.setContentPane(new BusiCircumPanel(fr));
 			}
 		});
 		
@@ -183,7 +183,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看成本收益表");
-				fr.setContentPane(new CostBenePanel());
+				fr.setContentPane(new CostBenePanel(fr));
 			}
 		});
 		
@@ -196,7 +196,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看日志记录");
-				fr.setContentPane(new DiaryListPanel());
+				fr.setContentPane(new DiaryListPanel(fr));
 			}
 		});
 		
