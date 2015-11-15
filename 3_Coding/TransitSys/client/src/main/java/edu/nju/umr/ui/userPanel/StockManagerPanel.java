@@ -1,21 +1,28 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.StockInPanel;
+import edu.nju.umr.ui.orderNewUI.StockOutPanel;
+import edu.nju.umr.ui.stockUI.StockCheckNowPanel;
+import edu.nju.umr.ui.stockUI.StockCheckPanel;
+import edu.nju.umr.ui.stockUI.StockDividePanel;
+import edu.nju.umr.ui.stockUI.StockWarningPanel;
 import edu.nju.umr.vo.UserVO;
 
 public class StockManagerPanel extends UserPanel{
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7789564793624015310L;
 
 	public StockManagerPanel(UserVO user,JFrame fr) {
 //		this.user=user;
@@ -75,35 +82,83 @@ public class StockManagerPanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton userMangButton = new JButton("库存查看");
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(269, 192, 112, 83);
-		this.add(userMangButton);
+		JButton stockCheckButton = new JButton("库存查看");
+		stockCheckButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		stockCheckButton.setBounds(269, 192, 112, 83);
+		this.add(stockCheckButton);
+		stockCheckButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("库存查看");
+				fr.setContentPane(new StockCheckPanel());
+			}
+		});
 		
-		JButton button = new JButton("库存分区");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(516, 192, 112, 83);
-		this.add(button);
+		JButton divideButton = new JButton("库存分区");
+		divideButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		divideButton.setBounds(516, 192, 112, 83);
+		this.add(divideButton);
+		divideButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("库存分区");
+				fr.setContentPane(new StockDividePanel());
+			}
+		});
 		
-		JButton button_1 = new JButton("库存报警");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(760, 192, 112, 83);
-		this.add(button_1);
+		JButton warnButton = new JButton("设置警戒线");
+		warnButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		warnButton.setBounds(760, 192, 112, 83);
+		this.add(warnButton);
+		warnButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("设置警戒线");
+				fr.setContentPane(new StockWarningPanel());
+			}
+		});
 		
-		JButton button_2 = new JButton("库存盘点");
-		button_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_2.setBounds(269, 333, 112, 83);
-		this.add(button_2);
+		JButton checkNowButton = new JButton("库存盘点");
+		checkNowButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		checkNowButton.setBounds(269, 333, 112, 83);
+		this.add(checkNowButton);
+		checkNowButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("库存盘点");
+				fr.setContentPane(new StockCheckNowPanel());
+			}
+		});
 		
-		JButton button_3 = new JButton("出库单");
-		button_3.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_3.setBounds(516, 333, 112, 83);
-		this.add(button_3);
+		JButton stockOutButton = new JButton("生成出库单");
+		stockOutButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		stockOutButton.setBounds(516, 333, 112, 83);
+		this.add(stockOutButton);
+		stockCheckButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成出库单");
+				fr.setContentPane(new StockOutPanel());
+			}
+		});
 		
-		JButton button_4 = new JButton("入库单");
-		button_4.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_4.setBounds(760, 333, 112, 83);
-		this.add(button_4);
+		JButton stockInButton = new JButton("生成入库单");
+		stockInButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		stockInButton.setBounds(760, 333, 112, 83);
+		this.add(stockInButton);
+		stockInButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成入库单");
+				fr.setContentPane(new StockInPanel());
+			}
+		});
 		
 		
 	}

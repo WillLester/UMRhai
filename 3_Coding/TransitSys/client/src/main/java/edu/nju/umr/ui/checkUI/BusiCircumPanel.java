@@ -16,14 +16,14 @@ import edu.nju.umr.ui.Constants;
  * 20151029
  * 经营情况表
  */
-public class StatementSheetPanel extends JPanel {
+public class BusiCircumPanel extends JPanel {
 
 	private JTable statementTable;
 
 	/**
 	 * Create the panel.
 	 */
-	public StatementSheetPanel() {
+	public BusiCircumPanel() {
 setLayout(null);
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);

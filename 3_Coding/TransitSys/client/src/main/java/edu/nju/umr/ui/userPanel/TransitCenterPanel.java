@@ -1,22 +1,26 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.CenterLoadingPanel;
+import edu.nju.umr.ui.orderNewUI.RecipientPanel;
+import edu.nju.umr.ui.orderNewUI.TransitPanel;
 import edu.nju.umr.vo.UserVO;
 
 public class TransitCenterPanel extends UserPanel{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4764722362354952480L;
+
 	public TransitCenterPanel(UserVO user,JFrame fr) {
 //		this.user=user;
 //		setBounds(0, 0, 1229, 691);
@@ -75,21 +79,44 @@ public class TransitCenterPanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton userMangButton = new JButton("接收单");
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(299, 192, 112, 83);
-		this.add(userMangButton);
+		JButton receiveButton = new JButton("接收快递并派件");
+		receiveButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		receiveButton.setBounds(299, 192, 112, 83);
+		this.add(receiveButton);
+		receiveButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成接收单");
+				fr.setContentPane(new RecipientPanel(fr));
+			}
+		});
 		
-		JButton button = new JButton("装车单");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(546, 192, 112, 83);
-		this.add(button);
+		JButton loadingButton = new JButton("生成装车单");
+		loadingButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		loadingButton.setBounds(546, 192, 112, 83);
+		this.add(loadingButton);
+		loadingButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成装车单");
+				fr.setContentPane(new CenterLoadingPanel());
+			}
+		});
 		
-		JButton button_1 = new JButton("中转单");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(790, 192, 112, 83);
-		this.add(button_1);
-		
+		JButton transitButton = new JButton("生成中转单");
+		transitButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		transitButton.setBounds(790, 192, 112, 83);
+		this.add(transitButton);
+		transitButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成中转单");
+				fr.setContentPane(new TransitPanel());
+			}
+		});
 	}
 
 }

@@ -14,13 +14,13 @@ import javax.swing.JButton;
  * 20151029
  * 成本收益表
  */
-public class CollectFormPanel extends JPanel {
+public class CostBenePanel extends JPanel {
 	private JTable collectTable;
 
 	/**
 	 * Create the panel.
 	 */
-	public CollectFormPanel() {
+	public CostBenePanel() {
 		setLayout(null);
 		
 		this.setSize(1104,621);

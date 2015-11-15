@@ -1,21 +1,30 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.checkUI.BusiCircumPanel;
+import edu.nju.umr.ui.checkUI.CostBenePanel;
+import edu.nju.umr.ui.checkUI.DiaryListPanel;
+import edu.nju.umr.ui.cityUI.CityListPanel;
+import edu.nju.umr.ui.cityUI.ConstantPanel;
+import edu.nju.umr.ui.orderApproveUI.OrderApprovePanel;
+import edu.nju.umr.ui.workOrgManUI.OrgListPanel;
+import edu.nju.umr.ui.workOrgManUI.WageDraftPanel;
+import edu.nju.umr.ui.workOrgManUI.WorkListPanel;
 import edu.nju.umr.vo.UserVO;
 
 public class ManagerPanel extends UserPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2151583811822292521L;
+
 	public ManagerPanel(UserVO user,JFrame fr) {
 //		this.user=user;
 //		setBounds(0, 0, 1229, 691);
@@ -74,41 +83,122 @@ public class ManagerPanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton userMangButton = new JButton("单据审批");
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(269, 192, 112, 83);
-		this.add(userMangButton);
+		JButton approveButton = new JButton("单据审批");
+		approveButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		approveButton.setBounds(269, 192, 112, 83);
+		this.add(approveButton);
+		approveButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("单据审批");
+				fr.setContentPane(new OrderApprovePanel());
+			}
+		});
 		
-		JButton button = new JButton("城市管理");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(516, 192, 112, 83);
-		this.add(button);
+		JButton cityButton = new JButton("城市管理");
+		cityButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		cityButton.setBounds(516, 192, 112, 83);
+		this.add(cityButton);
+		cityButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("城市管理");
+				fr.setContentPane(new CityListPanel());
+			}
+		});
 		
-		JButton button_1 = new JButton("人员管理");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(760, 192, 112, 83);
-		this.add(button_1);
+		JButton constantButton = new JButton("常量制定");
+		constantButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		constantButton.setBounds(760, 192, 112, 83);
+		this.add(constantButton);
+		constantButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("常量制定");
+				fr.setContentPane(new ConstantPanel());
+			}
+		});
 		
-		JButton button_2 = new JButton("机构管理");
-		button_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_2.setBounds(269, 333, 112, 83);
-		this.add(button_2);
+		JButton workerButton = new JButton("人员管理");
+		workerButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		workerButton.setBounds(269, 192, 112, 83);
+		this.add(workerButton);
+		workerButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("人员管理");
+				fr.setContentPane(new WorkListPanel());
+			}
+		});
 		
-		JButton button_3 = new JButton("薪水策略管理");
-		button_3.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_3.setBounds(516, 333, 112, 83);
-		this.add(button_3);
+		JButton orgButton = new JButton("机构管理");
+		orgButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgButton.setBounds(516, 333, 112, 83);
+		this.add(orgButton);
+		orgButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("机构管理");
+				fr.setContentPane(new OrgListPanel());
+			}
+		});
 		
-		JButton button_4 = new JButton("统计查看");
-		button_4.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_4.setBounds(269, 477, 112, 83);
-		this.add(button_4);
+		JButton wageButton = new JButton("薪水策略管理");
+		wageButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		wageButton.setBounds(760, 333, 112, 83);
+		this.add(wageButton);
+		wageButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("薪水管理");
+				fr.setContentPane(new WageDraftPanel());
+			}
+		});
 		
-		JButton button_5 = new JButton("日志查询");
-		button_5.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_5.setBounds(516, 477, 112, 83);
-		this.add(button_5);
+		JButton busiCircumButton = new JButton("查看经营情况表");
+		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		busiCircumButton.setBounds(269, 477, 112, 83);
+		this.add(busiCircumButton);
+		busiCircumButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看经营情况表");
+				fr.setContentPane(new BusiCircumPanel());
+			}
+		});
 		
+		JButton costBeneButton = new JButton("查看成本收益表");
+		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		costBeneButton.setBounds(516, 477, 112, 83);
+		this.add(costBeneButton);
+		costBeneButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看成本收益表");
+				fr.setContentPane(new CostBenePanel());
+			}
+		});
+		
+		JButton diaryButton = new JButton("日志查询");
+		diaryButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		diaryButton.setBounds(760, 477, 112, 83);
+		this.add(diaryButton);
+		diaryButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看日志记录");
+				fr.setContentPane(new DiaryListPanel());
+			}
+		});
 		
 	}
 
