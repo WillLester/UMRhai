@@ -1,18 +1,23 @@
 package edu.nju.umr.ui.stockUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JFrame;
 
 import edu.nju.umr.ui.Constants;
 
 public class StockCheckNowPanel extends JPanel{
 	private JTable goodList;
-	public StockCheckNowPanel() {
+	private JFrame frame;
+	public StockCheckNowPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel checkLabel = new JLabel("库存盘点");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -36,6 +41,12 @@ public class StockCheckNowPanel extends JPanel{
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(947, 276, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}

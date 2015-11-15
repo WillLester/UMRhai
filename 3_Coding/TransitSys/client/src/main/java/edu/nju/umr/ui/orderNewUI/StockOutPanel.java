@@ -30,12 +30,14 @@ import javax.swing.JScrollBar;
 public class StockOutPanel extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel() {
+	public StockOutPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel lblNewLabel = new JLabel("出库单");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -112,6 +114,12 @@ public class StockOutPanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(541, 434, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 		
 		JLabel label_7 = new JLabel("装运形式");

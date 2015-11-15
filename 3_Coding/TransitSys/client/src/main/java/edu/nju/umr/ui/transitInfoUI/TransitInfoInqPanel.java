@@ -23,6 +23,7 @@ public class TransitInfoInqPanel extends JPanel {
 	 */
 	public TransitInfoInqPanel() {
 		setLayout(null);
+		this.setBounds(150, 0, 1229, 691);
 		
 		JLabel lblNewLabel = new JLabel("物流历史轨迹查询");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));

@@ -1,11 +1,14 @@
 package edu.nju.umr.ui.stockUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JFrame;
 
 import edu.nju.umr.ui.Constants;
 
@@ -14,12 +17,13 @@ public class StockWarningPanel extends JPanel{
 	private JTextField trainField;
 	private JTextField vanField;
 	private JTextField maneuverField;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public StockWarningPanel() {
+	public StockWarningPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel warningLabel = new JLabel("库存报警设置");
 		warningLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -79,6 +83,12 @@ public class StockWarningPanel extends JPanel{
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(746, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}

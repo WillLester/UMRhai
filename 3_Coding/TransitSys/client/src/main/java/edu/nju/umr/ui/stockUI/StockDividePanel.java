@@ -1,9 +1,12 @@
 package edu.nju.umr.ui.stockUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -17,11 +20,13 @@ public class StockDividePanel extends JPanel{
 	private JTextField idField;
 	private JTextField rowField;
 	private JTextField placeField;
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public StockDividePanel() {
+	public StockDividePanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel divideLabel = new JLabel("库存分区");
 		divideLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -107,6 +112,12 @@ public class StockDividePanel extends JPanel{
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(881, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 	}
 }

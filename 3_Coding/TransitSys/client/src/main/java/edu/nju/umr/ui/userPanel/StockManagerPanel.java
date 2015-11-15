@@ -89,7 +89,7 @@ public class StockManagerPanel extends UserPanel{
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				FunctionFrame fr = new FunctionFrame("库存查看");
-				fr.setContentPane(new StockCheckPanel());
+				fr.setContentPane(new StockCheckPanel(fr));
 			}
 		});
 		
@@ -102,7 +102,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("库存分区");
-				fr.setContentPane(new StockDividePanel());
+				fr.setContentPane(new StockDividePanel(fr));
 			}
 		});
 		
@@ -115,7 +115,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("设置警戒线");
-				fr.setContentPane(new StockWarningPanel());
+				fr.setContentPane(new StockWarningPanel(fr));
 			}
 		});
 		
@@ -128,7 +128,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("库存盘点");
-				fr.setContentPane(new StockCheckNowPanel());
+				fr.setContentPane(new StockCheckNowPanel(fr));
 			}
 		});
 		
@@ -140,7 +140,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成出库单");
-				fr.setContentPane(new StockOutPanel());
+				fr.setContentPane(new StockOutPanel(fr));
 			}
 		});
 		
@@ -153,11 +153,9 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成入库单");
-				fr.setContentPane(new StockInPanel());
+				fr.setContentPane(new StockInPanel(fr));
 			}
 		});
-		
-		
 	}
 
 }

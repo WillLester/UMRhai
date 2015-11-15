@@ -1,9 +1,12 @@
 package edu.nju.umr.ui.stockUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -12,12 +15,13 @@ import edu.nju.umr.ui.Constants;
 
 public class StockCheckPanel extends JPanel{
 	private JTable stockTable;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public StockCheckPanel() {
+	public StockCheckPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel checkLabel = new JLabel("库存查看");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -149,6 +153,12 @@ public class StockCheckPanel extends JPanel{
 		JButton exitButton = new JButton("退出查看");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(816, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) 
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}
