@@ -11,8 +11,15 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.ReceivePanel;
+import edu.nju.umr.ui.orderNewUI.ExpressPanel;
+import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
+
 
 public class CourierPanel extends UserPanel {
 
@@ -77,14 +84,28 @@ public class CourierPanel extends UserPanel {
 		
 		super(user,fr);
 		
-		JButton userMangButton = new JButton("收件");
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(314, 227, 93, 83);
-		this.add(userMangButton);
+		JButton receive = new JButton("收件");
+		receive.setFont(new Font("宋体", Font.PLAIN, 12));
+		receive.setBounds(314, 227, 93, 83);
+		receive.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("收件信息输入");
+				ffr.setContentPane(new ReceivePanel(ffr));
+			}
+		});
+		this.add(receive);
 		
 		JButton button = new JButton("订单查询");
 		button.setFont(new Font("宋体", Font.PLAIN, 12));
 		button.setBounds(505, 227, 93, 83);
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("订单查询");
+				ffr.setContentPane(new ExpressInfoInqPanel(ffr));
+			}
+		});
 		this.add(button);
 		
 		JButton button_1 = new JButton("订单创建");

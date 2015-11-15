@@ -1,7 +1,9 @@
 package edu.nju.umr.ui.workOrgManUI;
 
 import javax.swing.JPanel;
-
+import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import edu.nju.umr.ui.Constants;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -14,13 +16,15 @@ import javax.swing.JTextField;
 public class DriverListPanel extends JPanel {
 	private JTable listTable;
 	private JTextField textFieldSearch;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public DriverListPanel() {
+	public DriverListPanel(JFrame fr) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
+		frame=fr;
 		
 		JLabel nameLabel = new JLabel("司机信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -58,8 +62,13 @@ public class DriverListPanel extends JPanel {
 		add(forDetail);
 		
 		JButton out = new JButton("退出");
-//		out.setBounds(forDetail.getX(), forDetail.getY()+forDetail.getHeight()+30, 90, 21);
 		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),90,21);
+		out.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(out);
 		
 		

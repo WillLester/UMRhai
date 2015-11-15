@@ -26,10 +26,17 @@ import edu.nju.umr.ui.orderNewUI.SendPanel;
 import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.userUI.UserListPanel;
+import edu.nju.umr.ui.workOrgManUI.DriverListPanel;
+import edu.nju.umr.ui.workOrgManUI.VanListPanel;
 
 
 public class BusinessHallPanel extends UserPanel {
-//	private JTextField nameTxt;
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4435831268900821861L;
+
+	//	private JTextField nameTxt;
 //	private JTextField levelTxt;
 //	private UserVO user;
 //	
@@ -81,17 +88,17 @@ public class BusinessHallPanel extends UserPanel {
 		
 		super(user,fr);
 		
-		JButton logoutButton = new JButton("注销");
-		logoutButton.setBounds(1083, 10, 93, 23);
-		logoutButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		this.add(logoutButton);
+//		JButton logoutButton = new JButton("注销");
+//		logoutButton.setBounds(1083, 10, 93, 23);
+//		logoutButton.setFont(new Font("宋体", Font.PLAIN, 12));
+//		this.add(logoutButton);
+//		
+//		JButton existButton = new JButton("退出");
+//		existButton.setBounds(1083, 603, 93, 23);
+//		existButton.setFont(new Font("宋体", Font.PLAIN, 12));
+//		this.add(existButton);
 		
-		JButton existButton = new JButton("退出");
-		existButton.setBounds(1083, 603, 93, 23);
-		existButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		this.add(existButton);
-		
-		JButton recipient = new JButton("接收单");
+		JButton recipient = new JButton("到达单");
 		recipient.setBounds(282, 231, 112, 83);
 		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
 		recipient.addActionListener(new ActionListener(){
@@ -103,34 +110,65 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(recipient);
 		
-		JButton button = new JButton("派件单");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(489, 231, 113, 83);
-		this.add(button);
+		JButton send = new JButton("派件单");
+		send.setFont(new Font("宋体", Font.PLAIN, 12));
+		send.setBounds(489, 231, 113, 83);
+		send.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("单据创建");
+				ffr.setContentPane(new SendPanel(ffr));
+			}
+		});
+		this.add(send);
 		
-		JButton button_1 = new JButton("装车单");
-//		button_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(679, 231, 112, 83);
-		this.add(button_1);
+		JButton hallLoading = new JButton("装车单");
+		hallLoading.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("单据创建");
+				ffr.setContentPane(new HallLoadingPanel(ffr));
+			}
+		});
+		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
+		hallLoading.setBounds(679, 231, 112, 83);
+		this.add(hallLoading);
 		
-		JButton button_2 = new JButton("收款单");
-		button_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_2.setBounds(849, 231, 112, 83);
-		this.add(button_2);
+		JButton income = new JButton("收款单");
+		income.setFont(new Font("宋体", Font.PLAIN, 12));
+		income.setBounds(849, 231, 112, 83);
+		income.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("单据创建");
+				ffr.setContentPane(new IncomePanel(ffr));
+			}
+		});
+		this.add(income);
 		
-		JButton button_3 = new JButton("司机信息管理");
-		button_3.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_3.setBounds(598, 420, 113, 83);
-		this.add(button_3);
+		JButton driverMan = new JButton("司机信息管理");
+		driverMan.setFont(new Font("宋体", Font.PLAIN, 12));
+		driverMan.setBounds(598, 420, 113, 83);
+		driverMan.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("司机管理 ");
+				ffr.setContentPane(new DriverListPanel(ffr));
+			}
+		});
+		this.add(driverMan);
 		
-		JButton button_4 = new JButton("车辆信息管理");
-		button_4.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_4.setBounds(389, 420, 113, 83);
-		this.add(button_4);
+		JButton vanMan = new JButton("车辆信息管理");
+		vanMan.setFont(new Font("宋体", Font.PLAIN, 12));
+		vanMan.setBounds(389, 420, 113, 83);
+		vanMan.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("车辆管理 ");
+				ffr.setContentPane(new VanListPanel(ffr));
+			}
+		});
+		this.add(vanMan);
 		
 
 	

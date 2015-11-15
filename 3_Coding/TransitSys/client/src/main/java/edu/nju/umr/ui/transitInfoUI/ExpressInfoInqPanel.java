@@ -1,4 +1,4 @@
-package edu.nju.umr.ui.orderNewUI;
+package edu.nju.umr.ui.transitInfoUI;
 
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-public class ExpressPanel extends JPanel {
+public class ExpressInfoInqPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -29,14 +29,16 @@ public class ExpressPanel extends JPanel {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public ExpressPanel() {
+	public ExpressInfoInqPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
-		JLabel label = new JLabel("订单创建");
+		JLabel label = new JLabel("订单查询");
 		label.setBounds(437, 21, 120, 35);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -290,6 +292,12 @@ public class ExpressPanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(567+75, 484, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 
 	}

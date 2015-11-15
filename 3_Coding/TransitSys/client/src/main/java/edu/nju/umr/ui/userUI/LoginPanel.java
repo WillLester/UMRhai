@@ -62,7 +62,6 @@ public class LoginPanel extends JPanel {
 				if(re.getReInfo()==Result.SUCCESS)
 				{
 					UserVO user=(UserVO)re.getMessage();
-					System.out.println(user.getJuri());
 					switch(user.getJuri())
 					{
 					case COURIER:frame.setContentPane(new CourierPanel(user,frame));break;

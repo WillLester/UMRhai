@@ -1,8 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
 import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -13,16 +11,19 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.event.*;
 
 public class SendPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public SendPanel() {
+	public SendPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel lblNewLabel = new JLabel("派件单");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -92,6 +93,12 @@ public class SendPanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(548, 436, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 		
 		textField_1 = new JTextField();

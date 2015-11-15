@@ -30,12 +30,14 @@ import javax.swing.JScrollBar;
 public class ReceivePanel extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReceivePanel() {
+	public ReceivePanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel lblNewLabel = new JLabel("收件信息输入");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -106,6 +108,12 @@ public class ReceivePanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(542, 431, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 		
 		textField = new JTextField();
