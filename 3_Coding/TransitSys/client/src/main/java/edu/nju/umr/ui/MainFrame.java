@@ -1,6 +1,5 @@
 package edu.nju.umr.ui;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 import edu.nju.umr.ui.userUI.LoginPanel;

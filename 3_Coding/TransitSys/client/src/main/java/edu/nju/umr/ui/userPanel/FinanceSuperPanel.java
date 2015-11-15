@@ -155,7 +155,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成收款单");
-				fr.setContentPane(new IncomePanel());
+				fr.setContentPane(new IncomePanel(fr));
 			}
 		});
 		
@@ -168,7 +168,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("账户管理");
-				fr.setContentPane(new AccountManPanel());
+				fr.setContentPane(new AccountManPanel(fr));
 			}
 		});
 	}

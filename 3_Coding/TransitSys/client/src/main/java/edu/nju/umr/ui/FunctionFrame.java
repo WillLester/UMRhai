@@ -1,7 +1,6 @@
 package edu.nju.umr.ui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class FunctionFrame extends JFrame{
 	/**

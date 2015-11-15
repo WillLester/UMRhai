@@ -1,9 +1,10 @@
 package edu.nju.umr.ui.accountUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -13,7 +14,11 @@ import javax.swing.ListSelectionModel;
 import edu.nju.umr.ui.Constants;
 
 public class CountPanel extends JPanel{
-	private JTextField searchField;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6592881582489810248L;
+//	private JTextField searchField;
 	private JTable countList;
 	/**
 	 * Create the panel.
@@ -26,17 +31,17 @@ public class CountPanel extends JPanel{
 		countLabel.setBounds(6*Constants.WIDTH_DIV_15, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(countLabel);
 		
-		searchField = new JTextField();
-		searchField.setText("请输入关键字");
-		searchField.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*11/10, Constants.TEXTFIELD_WIDTH_L, Constants.TEXTFIELD_HEIGHT);
-		//add(searchField);
-		searchField.setColumns(10);
-		
-		
-		JButton searchButton = new JButton("搜索");
-		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		//add(searchButton);
+//		searchField = new JTextField();
+//		searchField.setText("请输入关键字");
+//		searchField.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*11/10, Constants.TEXTFIELD_WIDTH_L, Constants.TEXTFIELD_HEIGHT);
+//		add(searchField);
+//		searchField.setColumns(10);
+//		
+//		
+//		JButton searchButton = new JButton("搜索");
+//		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
+//		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+//		add(searchButton);
 		
 		countList = new JTable();
 		countList.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
@@ -79,6 +84,13 @@ public class CountPanel extends JPanel{
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(addButton);
+		addButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
 		
 		JButton deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
