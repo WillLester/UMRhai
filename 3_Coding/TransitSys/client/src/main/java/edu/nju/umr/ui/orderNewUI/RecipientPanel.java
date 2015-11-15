@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RecipientPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1228209298653522130L;
 	private JTextField textField;
 	private JFrame frame;
 	/**
