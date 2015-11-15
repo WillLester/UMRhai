@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
@@ -19,7 +20,7 @@ public class VanManLogic implements VanManLSer{
 	
 	public VanManLogic(){
 		try{
-			dataFac= (VanManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac= (VanManDFacSer)Naming.lookup(Url.URL);
 			vanData = dataFac.getVanMan();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

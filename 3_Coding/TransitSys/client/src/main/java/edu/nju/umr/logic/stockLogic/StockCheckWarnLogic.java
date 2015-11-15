@@ -7,6 +7,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.dataService.dataFactory.StockCheckWarnDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 
 
@@ -16,7 +17,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 	
 	public StockCheckWarnLogic(){
 		try{
-		dataFac=(StockCheckWarnDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+		dataFac=(StockCheckWarnDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockCheckWarn();
 		}catch(Exception e)
 		{

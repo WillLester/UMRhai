@@ -9,6 +9,7 @@ import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
 
@@ -17,7 +18,7 @@ public class SendOrderLogic implements SendOrderLSer{
 	SendOrderDSer sendData;
 	public SendOrderLogic(){
 		try{
-			dataFac=(SendOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
 			sendData=dataFac.getSendOrder();
 		}catch(Exception e)
 		{

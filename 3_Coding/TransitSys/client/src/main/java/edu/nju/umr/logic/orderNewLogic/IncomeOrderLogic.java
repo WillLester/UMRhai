@@ -10,6 +10,7 @@ import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
@@ -19,7 +20,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	public IncomeOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (IncomeOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (IncomeOrderDFacSer)Naming.lookup(Url.URL);
 			incomeData = dataFac.getIncomeOrder();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

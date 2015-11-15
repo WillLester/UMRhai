@@ -13,6 +13,7 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -23,7 +24,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (OrderApproveDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (OrderApproveDFacSer)Naming.lookup(Url.URL);
 			approveData = dataFac.getOrderApprove();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

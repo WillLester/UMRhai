@@ -13,6 +13,7 @@ import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -24,7 +25,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (StatementSheetDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (StatementSheetDFacSer)Naming.lookup(Url.URL);
 			statementData = dataFac.getStatement();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

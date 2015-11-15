@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockOutPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockOutVO;
 import edu.nju.umr.dataService.dataFactory.StockOutOrderDFacSer;
@@ -19,7 +20,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 
 	public StockOutOrderLogic(){
 		try{
-			dataFac=(StockOutOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(StockOutOrderDFacSer)Naming.lookup(Url.URL);
 			stockoutData=dataFac.getStockOutOrder();
 		}catch(Exception e)
 		{

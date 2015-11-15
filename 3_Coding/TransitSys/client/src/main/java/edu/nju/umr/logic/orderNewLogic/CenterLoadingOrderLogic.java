@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
@@ -21,7 +22,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	public CenterLoadingOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			centerData = dataFac.getCenterLoadingOrder();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 
@@ -20,7 +21,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	public OrderResubmitLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (OrderResubmitDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (OrderResubmitDFacSer)Naming.lookup(Url.URL);
 			resubmitData = dataFac.getOrderResubmit();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

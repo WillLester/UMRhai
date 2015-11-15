@@ -7,6 +7,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -17,13 +18,13 @@ public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;
 	LoginDSer loginData;
 	public LoginLogic(){
-//		try{
-//		dataFac=(LoginDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-//		loginData=dataFac.getLogin();
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
+		try{
+		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
+		loginData=dataFac.getLogin();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public ResultMessage login(String id, String password) {

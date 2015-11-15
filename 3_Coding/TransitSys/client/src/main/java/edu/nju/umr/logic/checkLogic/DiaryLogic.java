@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.dataFactory.DiaryDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -21,7 +22,7 @@ public class DiaryLogic implements DiaryLSer{
 	public DiaryLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (DiaryDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (DiaryDFacSer)Naming.lookup(Url.URL);
 			diaryData = dataFac.getDiary();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

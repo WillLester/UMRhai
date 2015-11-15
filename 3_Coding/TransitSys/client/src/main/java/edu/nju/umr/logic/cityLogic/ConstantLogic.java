@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
@@ -19,7 +20,7 @@ public class ConstantLogic implements ConstantLSer{
 	public ConstantLogic()
 	{
 		try{
-			dataFac = (ConstantDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (ConstantDFacSer)Naming.lookup(Url.URL);
 			constantData = dataFac.getConstant();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

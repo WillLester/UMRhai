@@ -10,6 +10,7 @@ import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Sex;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -25,7 +26,7 @@ public class WorkManLogic implements WorkManLSer{
 	public WorkManLogic()
 	{
 		try{
-			dataFac=(WorkManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(WorkManDFacSer)Naming.lookup(Url.URL);
 			workData=dataFac.getWorkMan();
 		}catch(Exception e)
 		{

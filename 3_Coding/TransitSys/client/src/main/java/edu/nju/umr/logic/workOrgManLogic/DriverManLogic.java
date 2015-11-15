@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -20,7 +21,7 @@ public class DriverManLogic implements DriverManLSer{
 	
 	public DriverManLogic(){
 		try{
-			dataFac=(DriverManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(DriverManDFacSer)Naming.lookup(Url.URL);
 			driverData = dataFac.getDriverMan();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

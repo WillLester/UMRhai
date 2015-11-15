@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
@@ -21,7 +22,7 @@ public class CollectRecordLogic implements CollectRecordLSer{
 	public CollectRecordLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (CollectFormDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (CollectFormDFacSer)Naming.lookup(Url.URL);
 			collectData = dataFac.getCollectForm();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

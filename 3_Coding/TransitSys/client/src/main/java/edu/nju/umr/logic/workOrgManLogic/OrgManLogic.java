@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;
@@ -20,7 +21,7 @@ public class OrgManLogic implements OrgManLSer{
 
 	public OrgManLogic(){
 		try{
-			dataFac=(OrgManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(OrgManDFacSer)Naming.lookup(Url.URL);
 			orgData=dataFac.getOrgMan();
 		}catch(Exception e)
 		{

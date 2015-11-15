@@ -8,6 +8,7 @@ import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 
@@ -17,7 +18,7 @@ public class StockDivideLogic implements StockDivideLSer{
 	
 	public StockDivideLogic(){
 		try{
-		dataFac=(StockDivideDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+		dataFac=(StockDivideDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockDivide();
 		}catch(Exception e)
 		{

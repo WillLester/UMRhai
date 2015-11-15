@@ -10,6 +10,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;
@@ -20,7 +21,7 @@ public class StockCheckLogic implements StockCheckLSer{
 	
 	public StockCheckLogic(){
 		try {
-			dataFac=(StockCheckDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(StockCheckDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheck();
 		}
 		catch(Exception e) {

@@ -12,6 +12,7 @@ import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CitiesVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -22,7 +23,7 @@ public class CityLogic implements CityLSer{
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (CityDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
 			cityData = dataFac.getCity();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

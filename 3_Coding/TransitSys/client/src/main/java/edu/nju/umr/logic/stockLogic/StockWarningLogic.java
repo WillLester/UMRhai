@@ -8,6 +8,7 @@ import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningLogic implements StockWarningLSer{
@@ -15,7 +16,7 @@ public class StockWarningLogic implements StockWarningLSer{
 	StockWarningDSer checkData;
 	public StockWarningLogic(){
 		try{
-			dataFac=(StockWarningDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(StockWarningDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockWarning();
 			}catch(Exception e)
 			{

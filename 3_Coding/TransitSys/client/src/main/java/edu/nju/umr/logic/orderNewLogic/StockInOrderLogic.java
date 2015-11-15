@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
@@ -19,7 +20,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 
 	public StockInOrderLogic(){
 		try{
-			dataFac=(StockInOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
 			stockinData=dataFac.getStockInOrder();
 		}catch(Exception e)
 		{

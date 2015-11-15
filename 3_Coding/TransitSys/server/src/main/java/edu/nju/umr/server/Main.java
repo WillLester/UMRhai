@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import edu.nju.umr.data.dataFactory.DataFactory;
+import edu.nju.umr.url.Url;
 
 public class Main {
 
@@ -15,7 +16,7 @@ public class Main {
 		try{
 			DataFactory dataFactory = new DataFactory();
 			LocateRegistry.createRegistry(8885);
-			Naming.bind("rmi://localhost:8885/DataFactory", dataFactory);
+			Naming.bind(Url.URL, dataFactory);
 		} catch (RemoteException e) { 
             System.out.println("创建远程对象发生异常！"); 
             e.printStackTrace(); 

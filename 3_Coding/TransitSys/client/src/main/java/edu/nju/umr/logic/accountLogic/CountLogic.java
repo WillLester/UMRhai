@@ -17,6 +17,7 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.CountVO;
@@ -33,7 +34,7 @@ public class CountLogic implements CountLSer{
 	public CountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			countFac = (CountDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			countFac = (CountDFacSer)Naming.lookup(Url.URL);
 			countData = countFac.getCountData();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

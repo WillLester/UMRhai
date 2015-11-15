@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
@@ -18,7 +19,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	RecipientOrderDSer recipientData;
 	public RecipientOrderLogic(){
 		try{
-		dataFac=(RecipientOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+		dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
 		recipientData=dataFac.getRecipientOrder();
 		}
 		catch(Exception e)

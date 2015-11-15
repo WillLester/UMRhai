@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.TransitPO;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
@@ -19,7 +20,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	
 	public TransitOrderLogic(){
 		try{
-			dataFac=(TransitOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(TransitOrderDFacSer)Naming.lookup(Url.URL);
 			transitData=dataFac.getTransitOrder();
 		}catch(Exception e)
 		{

@@ -9,6 +9,7 @@ import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.order.ExpressVO;
 
 public class ExpressOrderLogic implements ExpressOrderLSer{
@@ -17,7 +18,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (ExpressOrderDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (ExpressOrderDFacSer)Naming.lookup(Url.URL);
 			expressData = dataFac.getExpressOrder();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

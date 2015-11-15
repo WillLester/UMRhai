@@ -3,6 +3,7 @@ package edu.nju.umr.logic.transitInfoLogic;
 import java.rmi.Naming;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
@@ -16,7 +17,7 @@ public class CourierLogic implements CourierLSer{
 
 	public CourierLogic(){
 		try{
-			dataFac=(CourierDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac=(CourierDFacSer)Naming.lookup(Url.URL);
 			CourierData=dataFac.getCourier();
 		}
 		catch(Exception e)

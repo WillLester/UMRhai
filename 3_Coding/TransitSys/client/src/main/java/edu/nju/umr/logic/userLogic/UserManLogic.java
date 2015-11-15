@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
@@ -17,14 +18,14 @@ public class UserManLogic implements UserManLSer{
 	UserManDSer userData;
 	
 	public UserManLogic(){
-//		try{
-//		dataFac=(UserManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-//		userData=dataFac.getUserMan();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
+		try{
+		dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
+		userData=dataFac.getUserMan();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public Result newUser(UserVO user) {

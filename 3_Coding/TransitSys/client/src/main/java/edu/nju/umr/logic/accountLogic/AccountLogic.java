@@ -11,6 +11,7 @@ import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -20,7 +21,7 @@ public class AccountLogic implements AccountLSer{
 	public AccountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (AccountDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+			dataFac = (AccountDFacSer)Naming.lookup(Url.URL);
 			accountData = dataFac.getAccountData();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 

@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
@@ -17,7 +18,7 @@ public class UtilityLogic {
 	public UtilityLogic() {
 		// TODO 自动生成的构造函数存根
 		try {
-			utilityFac = (UtilityDFacSer) Naming.lookup("rmi://localhost:8885/DataFactory");
+			utilityFac = (UtilityDFacSer) Naming.lookup(Url.URL);
 			utilitySer = utilityFac.getUtility();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
