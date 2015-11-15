@@ -2,6 +2,8 @@ package edu.nju.umr.ui.userPanel;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +15,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.accountUI.CountPanel;
+import edu.nju.umr.ui.checkUI.BusiCircumPanel;
+import edu.nju.umr.ui.checkUI.CostBenePanel;
+import edu.nju.umr.ui.checkUI.DiaryListPanel;
+import edu.nju.umr.ui.orderNewUI.IncomePanel;
+import edu.nju.umr.ui.orderNewUI.PaymentPanel;
 
 public class FinancePanel extends UserPanel{
 
@@ -75,43 +84,83 @@ public class FinancePanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton userMangButton = new JButton("查询日志");
-		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(269, 192, 112, 83);
-		this.add(userMangButton);
+		JButton diaryButton = new JButton("查询日志");
+		diaryButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		diaryButton.setBounds(269, 192, 112, 83);
+		this.add(diaryButton);
+		diaryButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看日志");
+				fr.setContentPane(new DiaryListPanel());
+			}
+		});
 		
-		JButton button = new JButton("经营情况表");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(516, 192, 112, 83);
-		this.add(button);
+		JButton busiCircumButton = new JButton("经营情况表");
+		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		busiCircumButton.setBounds(516, 192, 112, 83);
+		this.add(busiCircumButton);
+		busiCircumButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看经营情况表");
+				fr.setContentPane(new BusiCircumPanel());
+			}
+		});
 		
-		JButton button_1 = new JButton("成本收益表");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(760, 192, 112, 83);
-		this.add(button_1);
+		JButton costBeneButton = new JButton("成本收益表");
+		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		costBeneButton.setBounds(760, 192, 112, 83);
+		this.add(costBeneButton);
+		costBeneButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("查看成本收益表");
+				fr.setContentPane(new CostBenePanel());
+			}
+		});
 		
-		JButton button_2 = new JButton("期初建账");
-		button_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_2.setBounds(269, 333, 112, 83);
-		this.add(button_2);
+		JButton countButton = new JButton("期初建账");
+		countButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		countButton.setBounds(269, 333, 112, 83);
+		this.add(countButton);
+		countButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("期初建账");
+				fr.setContentPane(new CountPanel());
+			}
+		});
 		
-		JButton button_3 = new JButton("期初信息查询");
-		button_3.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_3.setBounds(516, 333, 112, 83);
-		this.add(button_3);
+		JButton paymentButton = new JButton("生成付款单");
+		paymentButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		paymentButton.setBounds(516, 333, 112, 83);
+		this.add(paymentButton);
+		paymentButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成付款单");
+				fr.setContentPane(new PaymentPanel());
+			}
+		});
 		
-		JButton button_4 = new JButton("付款单");
-		button_4.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_4.setBounds(269, 477, 112, 83);
-		this.add(button_4);
-		
-		JButton button_5 = new JButton("收款单");
-		button_5.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_5.setBounds(516, 477, 112, 83);
-		this.add(button_5);
-
-		
-		
+		JButton incomeButton = new JButton("生成收款单");
+		incomeButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		incomeButton.setBounds(760, 333, 112, 83);
+		this.add(incomeButton);
+		incomeButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FunctionFrame fr = new FunctionFrame("生成收款单");
+				fr.setContentPane(new IncomePanel(fr));
+			}
+		});
 	}
 
 
