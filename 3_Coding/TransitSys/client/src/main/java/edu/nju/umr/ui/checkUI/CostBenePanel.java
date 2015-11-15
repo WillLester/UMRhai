@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -7,6 +8,8 @@ import javax.swing.JTable;
 import edu.nju.umr.ui.Constants;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 /*
@@ -16,13 +19,13 @@ import javax.swing.JButton;
  */
 public class CostBenePanel extends JPanel {
 	private JTable collectTable;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public CostBenePanel() {
+	public CostBenePanel(JFrame fr) {
 		setLayout(null);
-		
+		frame=fr;
 		this.setSize(1104,621);
 		
 		JLabel nameLabel = new JLabel("成本收益表");
@@ -37,6 +40,12 @@ public class CostBenePanel extends JPanel {
 		
 		JButton out = new JButton("退出");
 		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		out.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(out);
 
 	}

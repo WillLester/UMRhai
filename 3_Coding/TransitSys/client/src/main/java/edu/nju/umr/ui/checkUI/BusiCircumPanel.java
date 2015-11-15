@@ -2,6 +2,8 @@ package edu.nju.umr.ui.checkUI;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.JFrame;
 
 import edu.nju.umr.ui.Constants;
 /*
@@ -19,12 +22,13 @@ import edu.nju.umr.ui.Constants;
 public class BusiCircumPanel extends JPanel {
 
 	private JTable statementTable;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public BusiCircumPanel() {
-setLayout(null);
+	public BusiCircumPanel(JFrame fr) {
+        setLayout(null);
+        frame=fr;
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
@@ -68,6 +72,12 @@ setLayout(null);
 		
 		JButton button = new JButton("退出");
 		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button);
 
 	}

@@ -90,7 +90,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看日志");
-				fr.setContentPane(new DiaryListPanel());
+				fr.setContentPane(new DiaryListPanel(fr));
 			}
 		});
 		
@@ -103,7 +103,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看经营情况表");
-				fr.setContentPane(new BusiCircumPanel());
+				fr.setContentPane(new BusiCircumPanel(fr));
 			}
 		});
 		
@@ -116,7 +116,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("查看成本收益表");
-				fr.setContentPane(new CostBenePanel());
+				fr.setContentPane(new CostBenePanel(fr));
 			}
 		});
 		
@@ -129,7 +129,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("期初建账");
-				fr.setContentPane(new CountPanel());
+				fr.setContentPane(new CountPanel(fr));
 			}
 		});
 		
@@ -142,7 +142,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成付款单");
-				fr.setContentPane(new PaymentPanel());
+				fr.setContentPane(new PaymentPanel(fr));
 			}
 		});
 		
@@ -161,7 +161,7 @@ public class FinanceSuperPanel extends UserPanel{
 		
 		JButton accountButton = new JButton("账户管理");
 		accountButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		accountButton.setBounds(760, 333, 112, 83);
+		accountButton.setBounds(516, 333, 112, 83);
 		this.add(accountButton);
 		accountButton.addActionListener(new ActionListener() {
 			

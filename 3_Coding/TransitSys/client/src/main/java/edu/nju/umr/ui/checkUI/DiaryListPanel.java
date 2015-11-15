@@ -1,6 +1,7 @@
 package edu.nju.umr.ui.checkUI;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 import edu.nju.umr.ui.Constants;
 import javax.swing.JLabel;
@@ -11,6 +12,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * yyy
  * 20151028
@@ -18,12 +21,13 @@ import javax.swing.JScrollBar;
  */
 public class DiaryListPanel extends JPanel {
 	private JTable diaryTable;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public DiaryListPanel() {
+	public DiaryListPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
@@ -67,6 +71,12 @@ public class DiaryListPanel extends JPanel {
 		
 		JButton button = new JButton("退出");
 		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button);
 
 	}

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -20,11 +21,13 @@ public class CountPanel extends JPanel{
 	private static final long serialVersionUID = -6592881582489810248L;
 //	private JTextField searchField;
 	private JTable countList;
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public CountPanel() {
+	public CountPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel countLabel = new JLabel("期初建账");
 		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -105,6 +108,12 @@ public class CountPanel extends JPanel{
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}
