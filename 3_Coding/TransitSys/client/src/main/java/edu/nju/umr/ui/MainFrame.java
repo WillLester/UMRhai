@@ -14,7 +14,6 @@ public class MainFrame extends JFrame{
 	static final int FRAME_Y = 768/40;
 	static final int FRAME_WIDTH = (int)(1366*0.9);
 	static final int FRAME_HEIGHT = (int)(768*0.9);
-	private JDesktopPane desktop;
 
 	/**
 	 * Create the frame.

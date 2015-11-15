@@ -65,29 +65,29 @@ public class LoginPanel extends JPanel {
 					System.out.println(user.getJuri());
 					switch(user.getJuri())
 					{
-					case COURIER:frame.setContentPane(new CourierPanel(user));break;
-					case HALL:frame.setContentPane(new BusinessHallPanel(user));break;
-					case CENTER:frame.setContentPane(new TransitCenterPanel(user));break;
-					case STOCK:frame.setContentPane(new StockManagerPanel(user));break;
-					case FINANCE_SUPE:frame.setContentPane(new FinanceSuperPanel(user));break;
-					case FINANCE:frame.setContentPane(new FinancePanel(user));break;
-					case MANAGER:frame.setContentPane(new ManagerPanel(user));break;
-					case ADMIN:frame.setContentPane(new AdministerPanel(user));break;
+					case COURIER:frame.setContentPane(new CourierPanel(user,frame));break;
+					case HALL:frame.setContentPane(new BusinessHallPanel(user,frame));break;
+					case CENTER:frame.setContentPane(new TransitCenterPanel(user,frame));break;
+					case STOCK:frame.setContentPane(new StockManagerPanel(user,frame));break;
+					case FINANCE_SUPE:frame.setContentPane(new FinanceSuperPanel(user,frame));break;
+					case FINANCE:frame.setContentPane(new FinancePanel(user,frame));break;
+					case MANAGER:frame.setContentPane(new ManagerPanel(user,frame));break;
+					case ADMIN:frame.setContentPane(new AdministerPanel(user,frame));break;
 					}
 				}
 				else
 				{
 					if(re.getReInfo()==Result.ID_WRONG)
 					{
-						new HintFrame("账号不存在!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+						new HintFrame("账号不存在!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
 					}
 					if(re.getReInfo()==Result.PASSWORD_WRONG)
 					{
-						new HintFrame("密码错误!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+						new HintFrame("密码错误!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
 					}
 					if(re.getReInfo()==Result.NET_INTERRUPT)
 					{
-						new HintFrame("网络异常!",(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+						new HintFrame("网络异常!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
 					}
 				}
 				
