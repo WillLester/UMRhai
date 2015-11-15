@@ -1,10 +1,12 @@
 package edu.nju.umr.ui.userUI;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -13,21 +15,28 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.logicService.userLogicSer.UserManLSer;
+import edu.nju.umr.logic.userLogic.UserManLogic;
+import edu.nju.umr.vo.UserVO;
+
 
 public class UserListPanel extends JPanel {
 	private JTextField textField;
 	private JTable table;
+	private JFrame frame;
+	private UserManLSer serv;
 	/**
 	 * Create the panel.
 	 */
-	public UserListPanel() {
+	public UserListPanel(JFrame fr) {
+		serv=new UserManLogic();
+		frame=fr;
 		setLayout(null);
 		
 		JLabel accountLabel = new JLabel("用户管理");
@@ -45,11 +54,23 @@ public class UserListPanel extends JPanel {
 		JButton searchButton = new JButton("搜索");
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		searchButton.setBounds(577, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		searchButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				dis(textField.getText());
+			}
+		});
 		add(searchButton);
 		
 		JButton allButton = new JButton("显示全部");
 		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		allButton.setBounds(577+100, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		allButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				dis("");
+			}
+		});
 		add(allButton);
 		
 		table = new JTable();
@@ -60,6 +81,7 @@ public class UserListPanel extends JPanel {
 		JButton addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(283, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
@@ -80,6 +102,12 @@ public class UserListPanel extends JPanel {
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(895, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 		
 		JLabel idLabel=new JLabel("账号");
@@ -155,4 +183,9 @@ public class UserListPanel extends JPanel {
 		add(phoneField);
 
 	}
+	void dis(String keyword)
+	{
+		
+	}
+	
 }

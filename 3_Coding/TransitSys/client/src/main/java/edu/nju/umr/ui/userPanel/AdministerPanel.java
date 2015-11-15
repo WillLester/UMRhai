@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.FunctionFrame;
@@ -87,6 +89,13 @@ public class AdministerPanel extends UserPanel {
 		JButton userMangButton = new JButton("用户管理");
 		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		userMangButton.setBounds(369, 250, 93, 83);
+		userMangButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("用户管理");
+				ffr.setContentPane(new UserListPanel(ffr));
+			}
+		});
 		this.add(userMangButton);
 		
 

@@ -35,7 +35,7 @@ public class LoginPanel extends JPanel {
 	 */
 	public LoginPanel(JFrame fr) {
 		setLayout(null);
-		this.frame=fr;
+		frame=fr;
 		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		
 		JLabel lblNewLabel = new JLabel("快递物流系统");

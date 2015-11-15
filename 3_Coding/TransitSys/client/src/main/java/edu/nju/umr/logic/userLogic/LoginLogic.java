@@ -30,7 +30,7 @@ public class LoginLogic implements LoginLSer{
 		// TODO 自动生成的方法存根
 		//UserVO user = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
 		//ResultMessage message = new ResultMessage(true, user);
-		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.CENTER,"一个用户名啊","一个手机号啊","一个机构编号啊"));
+		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊"));
 		
 //		boolean isSuccessful=false;
 //		UserVO userVO=null;

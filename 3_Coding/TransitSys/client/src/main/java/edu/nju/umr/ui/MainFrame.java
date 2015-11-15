@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		this.setResizable(false);
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);

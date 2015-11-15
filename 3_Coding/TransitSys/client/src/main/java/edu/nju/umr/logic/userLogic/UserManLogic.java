@@ -17,47 +17,47 @@ public class UserManLogic implements UserManLSer{
 	UserManDSer userData;
 	
 	public UserManLogic(){
-		try{
-		dataFac=(UserManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-		userData=dataFac.getUserMan();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//		dataFac=(UserManDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+//		userData=dataFac.getUserMan();
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 	}
 	
 	public Result newUser(UserVO user) {
 		Result isSuccessful=Result.SUCCESS;
-		try{
-			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
 	public Result deleteUser(String id) {
 		Result isSuccessful=Result.SUCCESS;
-		try{
-			isSuccessful=userData.deleteUser(id);
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//			isSuccessful=userData.deleteUser(id);
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
 	public Result reviseUser(UserVO user) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
-		try{
-			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrgId()));
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		return isSuccessful;
 	}
 
@@ -65,14 +65,14 @@ public class UserManLogic implements UserManLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
-		try{
-			ar=userData.findUser(keyword);
-			isSuccessful=true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//			ar=userData.findUser(keyword);
+//			isSuccessful=true;
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
 		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
