@@ -29,12 +29,13 @@ public class ExpressPanel extends JPanel {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public ExpressPanel() {
+	public ExpressPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel label = new JLabel("订单创建");
 		label.setBounds(437, 21, 120, 35);
@@ -290,6 +291,12 @@ public class ExpressPanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(567+75, 484, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 
 	}

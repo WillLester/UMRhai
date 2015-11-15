@@ -111,6 +111,13 @@ public class CourierPanel extends UserPanel {
 		JButton button_1 = new JButton("订单创建");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
 		button_1.setBounds(695, 227, 93, 83);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("订单创建");
+				ffr.setContentPane(new ExpressPanel(ffr));
+			}
+		});
 		this.add(button_1);
 		
 	}

@@ -18,20 +18,20 @@ public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;
 	LoginDSer loginData;
 	public LoginLogic(){
-		try{
-		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
-		loginData=dataFac.getLogin();
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try{
+//		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
+//		loginData=dataFac.getLogin();
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 	}
 
 	public ResultMessage login(String id, String password) {
 		// TODO 自动生成的方法存根
 		//UserVO user = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
 		//ResultMessage message = new ResultMessage(true, user);
-		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊"));
+		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.COURIER,"一个用户名啊","一个手机号啊","一个机构编号啊"));
 		
 //		boolean isSuccessful=false;
 //		UserVO userVO=null;

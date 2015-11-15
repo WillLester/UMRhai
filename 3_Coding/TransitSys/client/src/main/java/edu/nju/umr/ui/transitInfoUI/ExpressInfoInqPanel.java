@@ -39,7 +39,7 @@ public class ExpressInfoInqPanel extends JPanel {
 		frame=fr;
 		
 		JLabel label = new JLabel("订单查询");
-		label.setBounds(437, 21, 120, 35);
+		label.setBounds(537, 21, 120, 35);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
 		add(label);
@@ -47,13 +47,13 @@ public class ExpressInfoInqPanel extends JPanel {
 		JLabel label_1 = new JLabel("订单条形码号");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(341+75, 66, 120, 24);
+		label_1.setBounds(341+25, 66, 120, 24);
 		add(label_1);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("宋体", Font.PLAIN, 20));
 		textField.setColumns(10);
-		textField.setBounds(489+75, 65, 165, 25);
+		textField.setBounds(489+25, 65, 165, 25);
 		add(textField);
 		
 		JLabel label_2 = new JLabel("寄件人");
@@ -204,6 +204,7 @@ public class ExpressInfoInqPanel extends JPanel {
 		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
 		spinner.setBounds(268+75, 362, 48, 26);
+		spinner.setEnabled(false);
 		add(spinner);
 		
 		JLabel label_16 = new JLabel("体积");
@@ -264,6 +265,7 @@ public class ExpressInfoInqPanel extends JPanel {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"纸箱", "木箱", "快递袋"}));
 		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		comboBox.setBounds(314+75, 411, 103, 25);
+		comboBox.setEnabled(false);
 		add(comboBox);
 		
 		JLabel label_20 = new JLabel("快递种类");
@@ -276,6 +278,7 @@ public class ExpressInfoInqPanel extends JPanel {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"经济快递", "标准快递", "特快专递"}));
 		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		comboBox_1.setBounds(554+75, 411, 123, 25);
+		comboBox_1.setEnabled(false);
 		add(comboBox_1);
 		
 		JLabel label_21 = new JLabel("费用：");
@@ -286,12 +289,12 @@ public class ExpressInfoInqPanel extends JPanel {
 		
 		JButton button = new JButton("确定");
 		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(341+75, 484, 93, 23);
+		button.setBounds(700, 66, 93, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(567+75, 484, 93, 23);
+		button_1.setBounds(537, 484, 93, 23);
 		button_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -299,6 +302,21 @@ public class ExpressInfoInqPanel extends JPanel {
 			}
 		});
 		add(button_1);
+		
+		textField_1.setEnabled(false);
+		textField_2.setEnabled(false);
+		textField_3.setEnabled(false);
+		textField_4.setEnabled(false);
+		textField_5.setEnabled(false);
+		textField_6.setEnabled(false);
+		textField_7.setEnabled(false);
+		textField_8.setEnabled(false);
+		textField_9.setEnabled(false);
+		textField_10.setEnabled(false);
+		textField_11.setEnabled(false);
+		textField_12.setEnabled(false);
+		textField_13.setEnabled(false);
+		
 
 	}
 
