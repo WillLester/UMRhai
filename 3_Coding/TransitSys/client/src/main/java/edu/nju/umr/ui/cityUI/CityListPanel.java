@@ -1,6 +1,8 @@
 package edu.nju.umr.ui.cityUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -8,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.JFrame;
 
 public class CityListPanel extends JPanel{
 	private JTable cityTable1;
@@ -17,12 +20,14 @@ public class CityListPanel extends JPanel{
 	private JTextField provinceField;
 	private JTextField priceField;
 	private JTextField distanceField;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public CityListPanel() {
+	public CityListPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel cityLabel = new JLabel("城市管理");
 		cityLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -106,6 +111,12 @@ public class CityListPanel extends JPanel{
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setBounds(871, 566, 93, 23);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}

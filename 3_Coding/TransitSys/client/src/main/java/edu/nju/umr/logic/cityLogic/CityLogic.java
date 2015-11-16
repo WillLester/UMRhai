@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.dataFactory.CityDFacSer;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.Result;
@@ -20,6 +21,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class CityLogic implements CityLSer{
 	CityDFacSer dataFac;
 	CityDSer cityData;
+	UtilityLogic utility;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -71,18 +73,19 @@ public class CityLogic implements CityLSer{
 
 	public ResultMessage cityList() {
 		// TODO 自动生成的方法存根
-		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
-		try {
-			ArrayList<CityPO> cities = cityData.getCities();
-			for(CityPO city:cities){
-				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
-				cityList.add(vo);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, cityList);
+//		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
+//		try {
+//			ArrayList<CityPO> cities = cityData.getCities();
+//			for(CityPO city:cities){
+//				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
+//				cityList.add(vo);
+//			}
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+//		return new ResultMessage(Result.SUCCESS, cityList);
+		return utility.getCities();
 	}
 	public Result deleteCity(String cityName) {
 		// TODO 自动生成的方法存根

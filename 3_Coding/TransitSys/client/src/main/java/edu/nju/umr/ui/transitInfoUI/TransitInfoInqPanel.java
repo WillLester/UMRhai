@@ -53,6 +53,12 @@ public class TransitInfoInqPanel extends JPanel {
 		JButton button_1 = new JButton("关闭");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(455, 431, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		});
 		add(button_1);
 		
 		table = new JTable();

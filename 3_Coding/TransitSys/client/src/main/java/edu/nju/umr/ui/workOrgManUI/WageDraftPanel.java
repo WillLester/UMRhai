@@ -3,11 +3,15 @@ package edu.nju.umr.ui.workOrgManUI;
 import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -16,13 +20,15 @@ public class WageDraftPanel extends JPanel {
 	private JTextField textFieldwc;
 	private JTextField textFieldwi;
 	private JTextField textFieldbound;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public WageDraftPanel() {
+	public WageDraftPanel(JFrame fr) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
+		frame=fr;
 		
 		JLabel nameLabel = new JLabel("薪水制定");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
@@ -83,6 +89,12 @@ public class WageDraftPanel extends JPanel {
 		
 		JButton cancel = new JButton("取消");
 		cancel.setBounds(this.getWidth()-300, bound.getY()+bound.getHeight()+20, 93, 23);
+		cancel.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");

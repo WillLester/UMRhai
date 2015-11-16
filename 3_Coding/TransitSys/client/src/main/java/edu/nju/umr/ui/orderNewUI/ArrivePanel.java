@@ -1,6 +1,7 @@
 package edu.nju.umr.ui.orderNewUI;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -17,12 +18,13 @@ import javax.swing.JFrame;
 public class ArrivePanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public ArrivePanel() {
+	public ArrivePanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel lblNewLabel = new JLabel("中转中心到达单");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -118,6 +120,12 @@ public class ArrivePanel extends JPanel {
 		JButton button_1 = new JButton("取消");
 		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		button_1.setBounds(548+75+25, 436, 93, 23);
+		button_1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(button_1);
 
 	}

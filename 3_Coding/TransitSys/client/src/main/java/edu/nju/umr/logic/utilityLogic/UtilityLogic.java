@@ -4,22 +4,25 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 
 public class UtilityLogic {
-	private UtilityDSer utilitySer;
-	private UtilityDFacSer utilityFac;
+	private UtilityDSer utilityData;
+	private UtilityDFacSer dataFac;
 	public UtilityLogic() {
 		// TODO 自动生成的构造函数存根
 		try {
-			utilityFac = (UtilityDFacSer) Naming.lookup(Url.URL);
-			utilitySer = utilityFac.getUtility();
+			dataFac = (UtilityDFacSer) Naming.lookup(Url.URL);
+			utilityData = dataFac.getUtility();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -29,7 +32,18 @@ public class UtilityLogic {
         }  
 	}
 	public ResultMessage getCities(){
-		return null;
+		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
+		try {
+			ArrayList<CityPO> cities = utilityData.getCities();
+			for(CityPO city:cities){
+				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
+				cityList.add(vo);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return new ResultMessage(Result.SUCCESS, cityList);
 	}
 	public ResultMessage getOrgs(){
 		return null;

@@ -3,12 +3,17 @@ package edu.nju.umr.ui.workOrgManUI;
 import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -17,13 +22,14 @@ public class OrgListPanel extends JPanel {
 	private JTextField textFieldSearch;
 	private JTextField textFieldName;
 	private JTextField textFieldAddr;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public OrgListPanel() {
+	public OrgListPanel(JFrame fr) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
+		frame=fr;
 		
 		JLabel nameLabel = new JLabel("机构信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -95,10 +101,23 @@ public class OrgListPanel extends JPanel {
 		
 		JButton out = new JButton("退出");
 		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		out.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(out);
 		
 		JButton workMan = new JButton("人员管理");
 		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		workMan.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("人员管理");
+				ffr.setContentPane(new WorkListPanel(ffr));
+			}
+		});
 		add(workMan);
 	}
 

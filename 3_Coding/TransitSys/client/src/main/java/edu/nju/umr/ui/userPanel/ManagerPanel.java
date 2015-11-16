@@ -17,6 +17,7 @@ import edu.nju.umr.ui.orderApproveUI.OrderApprovePanel;
 import edu.nju.umr.ui.workOrgManUI.OrgListPanel;
 import edu.nju.umr.ui.workOrgManUI.WageDraftPanel;
 import edu.nju.umr.ui.workOrgManUI.WorkListPanel;
+import edu.nju.umr.ui.workOrgManUI.WorkWageListPanel;
 import edu.nju.umr.vo.UserVO;
 
 public class ManagerPanel extends UserPanel{
@@ -92,7 +93,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("单据审批");
-				fr.setContentPane(new OrderApprovePanel());
+				fr.setContentPane(new OrderApprovePanel(fr));
 			}
 		});
 		
@@ -105,7 +106,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("城市管理");
-				fr.setContentPane(new CityListPanel());
+				fr.setContentPane(new CityListPanel(fr));
 			}
 		});
 		
@@ -118,7 +119,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("常量制定");
-				fr.setContentPane(new ConstantPanel());
+				fr.setContentPane(new ConstantPanel(fr));
 			}
 		});
 		
@@ -131,7 +132,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("人员管理");
-				fr.setContentPane(new WorkListPanel());
+				fr.setContentPane(new WorkListPanel(fr));
 			}
 		});
 		
@@ -144,7 +145,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("机构管理");
-				fr.setContentPane(new OrgListPanel());
+				fr.setContentPane(new OrgListPanel(fr));
 			}
 		});
 		
@@ -157,11 +158,11 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("薪水管理");
-				fr.setContentPane(new WageDraftPanel());
+				fr.setContentPane(new WorkWageListPanel(fr));
 			}
 		});
 		
-		JButton busiCircumButton = new JButton("查看经营情况表");
+		JButton busiCircumButton = new JButton("经营情况表");
 		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		busiCircumButton.setBounds(269, 477, 112, 83);
 		this.add(busiCircumButton);
@@ -169,12 +170,12 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看经营情况表");
+				FunctionFrame fr = new FunctionFrame("经营情况表");
 				fr.setContentPane(new BusiCircumPanel(fr));
 			}
 		});
 		
-		JButton costBeneButton = new JButton("查看成本收益表");
+		JButton costBeneButton = new JButton("成本收益表");
 		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		costBeneButton.setBounds(516, 477, 112, 83);
 		this.add(costBeneButton);
@@ -182,7 +183,7 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看成本收益表");
+				FunctionFrame fr = new FunctionFrame("成本收益表");
 				fr.setContentPane(new CostBenePanel(fr));
 			}
 		});
@@ -195,7 +196,7 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看日志记录");
+				FunctionFrame fr = new FunctionFrame("日志记录");
 				fr.setContentPane(new DiaryListPanel(fr));
 			}
 		});

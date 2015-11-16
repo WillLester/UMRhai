@@ -3,11 +3,16 @@ package edu.nju.umr.ui.workOrgManUI;
 import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -23,13 +28,14 @@ public class WorkWageListPanel extends JPanel {
 	private JTextField textFieldwi;
 	private JTextField textFieldBound;
 	private JTextField textFieldwm;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public WorkWageListPanel() {
+	public WorkWageListPanel(JFrame fr) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
+		frame=fr;
 		
 		JLabel nameLabel = new JLabel("人员薪水信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -101,10 +107,23 @@ public class WorkWageListPanel extends JPanel {
 		
 		JButton make = new JButton("制定薪水策略");
 		make.setBounds(getWidth()-300, wageInit.getY(), 150, 23);
+		make.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("制定薪水策略");
+				ffr.setContentPane(new WageDraftPanel(ffr));
+			}
+		});
 		add(make);
 		
 		JButton out = new JButton("退出");
 		out.setBounds(make.getX(), make.getY()+make.getHeight()+30, 93, 23);
+		out.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(out);
 	}
 

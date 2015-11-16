@@ -7,17 +7,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import edu.nju.umr.ui.Constants;
 
 public class OrderApprovePanel extends JPanel{
 	private JTable orderList;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public OrderApprovePanel() {
+	public OrderApprovePanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -52,6 +57,12 @@ public class OrderApprovePanel extends JPanel{
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(927, 327, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(exitButton);
 
 	}

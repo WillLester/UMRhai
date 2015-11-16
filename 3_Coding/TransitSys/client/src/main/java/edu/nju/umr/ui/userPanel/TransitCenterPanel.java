@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.ArrivePanel;
 import edu.nju.umr.ui.orderNewUI.CenterLoadingPanel;
-import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.orderNewUI.TransitPanel;
 import edu.nju.umr.vo.UserVO;
 
@@ -79,7 +79,7 @@ public class TransitCenterPanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton receiveButton = new JButton("接收快递并派件");
+		JButton receiveButton = new JButton("生成到达单");
 		receiveButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		receiveButton.setBounds(299, 192, 112, 83);
 		this.add(receiveButton);
@@ -87,8 +87,8 @@ public class TransitCenterPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成接收单");
-				fr.setContentPane(new RecipientPanel(fr));
+				FunctionFrame fr = new FunctionFrame("生成到达单");
+				fr.setContentPane(new  ArrivePanel(fr));
 			}
 		});
 		

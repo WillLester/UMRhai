@@ -161,7 +161,7 @@ public class CenterLoadingPanel extends JPanel {
 		expressField.setBounds(355+75, 254, 280, 25);
 		add(expressField);
 		
-		JButton newExpButton = new JButton("新增订单号");
+		JButton newExpButton = new JButton("新增");
 		newExpButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		newExpButton.setBounds(656+75, 256, 93, 23);
 		add(newExpButton);

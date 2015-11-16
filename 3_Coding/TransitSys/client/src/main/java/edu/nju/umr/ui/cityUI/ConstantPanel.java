@@ -1,9 +1,14 @@
 package edu.nju.umr.ui.cityUI;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -18,12 +23,13 @@ public class ConstantPanel extends JPanel {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
-
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public ConstantPanel() {
+	public ConstantPanel(JFrame fr) {
 		setLayout(null);
+		frame=fr;
 		
 		JLabel lblNewLabel = new JLabel("常量制定");
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -153,10 +159,16 @@ public class ConstantPanel extends JPanel {
 		button.setBounds(312, 425, 93, 23);
 		add(button);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(519, 427, 93, 23);
-		add(button_1);
+		JButton exitButton = new JButton("取消");
+		exitButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		exitButton.setBounds(519, 427, 93, 23);
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
+		add(exitButton);
 
 	}
 }
