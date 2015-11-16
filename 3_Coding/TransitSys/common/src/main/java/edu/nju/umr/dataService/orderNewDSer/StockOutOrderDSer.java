@@ -9,5 +9,5 @@ import edu.nju.umr.po.order.StockOutPO;
 
 public interface StockOutOrderDSer extends Remote{
 	public Result create(StockOutPO order) throws RemoteException;
-	public ArrayList<String> getCities() throws RemoteException;
+//	public ArrayList<String> getCities() throws RemoteException;
 }

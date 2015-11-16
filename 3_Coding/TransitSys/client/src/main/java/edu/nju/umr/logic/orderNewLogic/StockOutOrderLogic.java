@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockOutPO;
@@ -17,11 +18,13 @@ import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
 public class StockOutOrderLogic implements StockOutOrderLSer{
 	StockOutOrderDFacSer dataFac;
 	StockOutOrderDSer stockoutData;
+	UtilityLogic uti;
 
 	public StockOutOrderLogic(){
 		try{
 			dataFac=(StockOutOrderDFacSer)Naming.lookup(Url.URL);
 			stockoutData=dataFac.getStockOutOrder();
+			uti=new UtilityLogic();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -43,22 +46,23 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-		ArrayList<String> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=stockoutData.getCities();
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<String> arVO=new ArrayList<String>();
-		for(int i=0;i<ar.size();i++)
-		{
-			arVO.add(ar.get(i));
-		}
-		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-		return message;
+//		ArrayList<String> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=stockoutData.getCities();
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<String> arVO=new ArrayList<String>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			arVO.add(ar.get(i));
+//		}
+//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
+//		return message;
+		return uti.getCities();
 	}
 
 }

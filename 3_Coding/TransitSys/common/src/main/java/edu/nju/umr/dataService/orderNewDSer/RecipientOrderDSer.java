@@ -9,5 +9,5 @@ import edu.nju.umr.po.order.RecipientPO;
 
 public interface RecipientOrderDSer extends Remote{
 	public Result create(RecipientPO order) throws RemoteException;
-	public ArrayList<String> getCities() throws RemoteException;
+//	public ArrayList<String> getCities() throws RemoteException;
 }

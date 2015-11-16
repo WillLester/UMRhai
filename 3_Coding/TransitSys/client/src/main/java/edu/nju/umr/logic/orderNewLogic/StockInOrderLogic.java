@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.po.enums.Result;
@@ -19,11 +20,13 @@ import edu.nju.umr.vo.order.StockInVO;
 public class StockInOrderLogic implements StockInOrderLSer{
 	StockInOrderDFacSer dataFac;
 	StockInOrderDSer stockinData;
+	UtilityLogic uti;
 
 	public StockInOrderLogic(){
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
 			stockinData=dataFac.getStockInOrder();
+			uti=new UtilityLogic();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -43,22 +46,23 @@ public class StockInOrderLogic implements StockInOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-		ArrayList<String> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=stockinData.getCities();
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<String> arVO=new ArrayList<String>();
-		for(int i=0;i<ar.size();i++)
-		{
-			arVO.add(ar.get(i));
-		}
-		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-		return message;
+//		ArrayList<String> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=stockinData.getCities();
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<String> arVO=new ArrayList<String>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			arVO.add(ar.get(i));
+//		}
+//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
+//		return message;
+		return uti.getCities();
 	}
 	public Result checkWarning(String id){
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();

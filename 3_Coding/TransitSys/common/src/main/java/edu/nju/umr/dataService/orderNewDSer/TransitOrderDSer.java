@@ -9,5 +9,5 @@ import edu.nju.umr.po.order.TransitPO;
 
 public interface TransitOrderDSer extends Remote{
 	public Result create(TransitPO order) throws RemoteException;
-	public ArrayList<String> getCities() throws RemoteException;
+//	public ArrayList<String> getCities() throws RemoteException;
 }
