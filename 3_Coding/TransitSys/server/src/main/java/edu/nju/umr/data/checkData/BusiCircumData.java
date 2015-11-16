@@ -38,10 +38,8 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 		return incomeList;
 	}
 
-	public ArrayList<OrgPO> getHall() throws RemoteException {
-		// TODO 自动生成的方法存根
-		
-		return utilitySer.getHall();
-	}
+//	public ArrayList<OrgPO> getHall() throws RemoteException {
+//		return utilitySer.getHall();
+//	}
 
 }

@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -15,6 +16,7 @@ import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
+import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.OrgVO;
@@ -74,6 +76,24 @@ public class UtilityLogic {
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
+	public ResultMessage getHall() {
+		// TODO 自动生成的方法存根
+		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
+		Result re=Result.NET_INTERRUPT;
+		try {
+			ArrayList<OrgPO> halls = utilityData.getHall();
+			re=Result.SUCCESS;
+			for(OrgPO hall:halls){
+				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
+				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
+				hallList.add(vo);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return new ResultMessage(re, hallList);
+	}
 	public ResultMessage getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
 		Result isSuccessful=Result.NET_INTERRUPT;
@@ -128,6 +148,24 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(Result.SUCCESS, stockList);
 	}
+	public ResultMessage getAccount() {
+		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
+		Result re=Result.NET_INTERRUPT;
+		try {
+			ArrayList<AccountPO> account = utilityData.getAccount();
+			re=Result.SUCCESS;
+			for(AccountPO po:account){
+				AccountVO vo = new AccountVO(po.getId(), po.getName(), po.getBalance());
+				accountList.add(vo);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return new ResultMessage(re, accountList);
+	}
+
 	public static Result setRecord(Calendar cal,String op,String opt){
 		Result isSuc=Result.SUCCESS;
 		try

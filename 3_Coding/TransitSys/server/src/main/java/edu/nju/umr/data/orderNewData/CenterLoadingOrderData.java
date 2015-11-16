@@ -30,14 +30,13 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 		
 	}
 
-	public ArrayList<String> getHalls() throws RemoteException {
-		// TODO 自动生成的方法存根
-		String hall1 = "逸夫楼";
-		String hall2 = "商学院";
-		ArrayList<String> halls = new ArrayList<String>();
-		halls.add(hall1);
-		halls.add(hall2);
-		return halls;
-	}
+//	public ArrayList<String> getHalls() throws RemoteException {
+//		String hall1 = "逸夫楼";
+//		String hall2 = "商学院";
+//		ArrayList<String> halls = new ArrayList<String>();
+//		halls.add(hall1);
+//		halls.add(hall2);
+//		return halls;
+//	}
 
 }

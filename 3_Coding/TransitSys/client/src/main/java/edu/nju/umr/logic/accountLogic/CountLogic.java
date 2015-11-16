@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CountPO;
@@ -31,11 +32,13 @@ import edu.nju.umr.vo.WorkVO;
 public class CountLogic implements CountLSer{
 	CountDFacSer countFac;
 	CountDSer countData;
+	UtilityLogic uti;
 	public CountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			countFac = (CountDFacSer)Naming.lookup(Url.URL);
 			countData = countFac.getCountData();
+			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -133,7 +136,7 @@ public class CountLogic implements CountLSer{
 		return new ResultMessage(Result.SUCCESS, countVo);
 	}
 
-//	public ResultMessage orgList() {
+	public ResultMessage orgList() {
 //		// TODO 自动生成的方法存根
 //		ArrayList<OrgVO> orgList = new ArrayList<OrgVO>();
 //		ArrayList<OrgPO> orgs = null;
@@ -149,9 +152,10 @@ public class CountLogic implements CountLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(true, orgList);
-//	}
+		return uti.getOrgs();
+	}
 
-//	public ResultMessage getWorkers(String id) {
+	public ResultMessage getWorkers(String id) {
 //		// TODO 自动生成的方法存根
 //		ArrayList<WorkVO> workList = new ArrayList<WorkVO>();
 //		ArrayList<WorkPO> work;
@@ -166,9 +170,10 @@ public class CountLogic implements CountLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(true, workList);
-//	}
+		return uti.getWorkers(id);
+	}
 
-//	public ResultMessage getVans(String id) {
+	public ResultMessage getVans(String id) {
 //		// TODO 自动生成的方法存根
 //		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
 //		try {
@@ -183,9 +188,10 @@ public class CountLogic implements CountLSer{
 //		}
 //		
 //		return new ResultMessage(true, vanList);
-//	}
+		return uti.getVans(id);
+	}
 
-//	public ResultMessage getStocks() {
+	public ResultMessage getStocks() {
 //		// TODO 自动生成的方法存根
 //		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 //		ArrayList<StockPO> stock;
@@ -206,9 +212,10 @@ public class CountLogic implements CountLSer{
 //		}
 //		
 //		return new ResultMessage(true, stockList);
-//	}
+		return uti.getStocks();
+	}
 
-//	public ResultMessage getAccount() {
+	public ResultMessage getAccount() {
 //		// TODO 自动生成的方法存根
 //		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 //		try {
@@ -223,6 +230,7 @@ public class CountLogic implements CountLSer{
 //		}
 //		
 //		return new ResultMessage(true, accountList);
-//	}
+		return uti.getAccount();
+	}
 
 }

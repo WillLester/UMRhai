@@ -10,5 +10,5 @@ import edu.nju.umr.po.order.IncomePO;
 
 public interface BusiCircumDSer extends Remote{
 	public ArrayList<IncomePO> findCollect(Date start,Date end) throws RemoteException;
-	public ArrayList<OrgPO> getHall() throws RemoteException;
+//	public ArrayList<OrgPO> getHall() throws RemoteException;
 }

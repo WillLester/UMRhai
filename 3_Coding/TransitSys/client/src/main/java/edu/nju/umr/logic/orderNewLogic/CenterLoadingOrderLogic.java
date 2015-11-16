@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
@@ -19,11 +20,13 @@ import edu.nju.umr.vo.order.CenterLoadingVO;
 public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	CenterLoadingOrderDFacSer dataFac;
 	CenterLoadingOrderDSer centerData;
+	UtilityLogic uti;
 	public CenterLoadingOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			centerData = dataFac.getCenterLoadingOrder();
+			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -47,14 +50,15 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 
 	public ResultMessage getHalls() {
 		// TODO 自动生成的方法存根
-		ArrayList<String> halls = null;
-		try {
-			halls = centerData.getHalls();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, halls);
+//		ArrayList<String> halls = null;
+//		try {
+//			halls = centerData.getHalls();
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+//		return new ResultMessage(Result.SUCCESS, halls);
+		return uti.getHall();
 	}
 
 }

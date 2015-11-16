@@ -15,9 +15,9 @@ import edu.nju.umr.po.enums.Result;
 public interface CountDSer extends Remote{
 	public Result addCount(CountPO count) throws RemoteException;
 	public CountPO findInitInfo(String id) throws RemoteException;
-	public ArrayList<OrgPO> findOrg() throws RemoteException;
-	public ArrayList<WorkPO> getWorkers() throws RemoteException;
-	public ArrayList<VanPO> getVans() throws RemoteException;
-	public ArrayList<StockPO> getStocks() throws RemoteException;
-	public ArrayList<AccountPO> getAccount() throws RemoteException;
+//	public ArrayList<OrgPO> findOrg() throws RemoteException;
+//	public ArrayList<WorkPO> getWorkers() throws RemoteException;
+//	public ArrayList<VanPO> getVans() throws RemoteException;
+//	public ArrayList<StockPO> getStocks() throws RemoteException;
+//	public ArrayList<AccountPO> getAccount() throws RemoteException;
 }

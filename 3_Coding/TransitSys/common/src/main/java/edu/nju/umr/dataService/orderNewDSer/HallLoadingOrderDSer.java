@@ -9,6 +9,6 @@ import edu.nju.umr.po.order.HallLoadingPO;
 
 public interface HallLoadingOrderDSer extends Remote{
 	public Result create(HallLoadingPO order) throws RemoteException;
-	public ArrayList<String> getOrgs() throws RemoteException;
-	public ArrayList<String> getVans() throws RemoteException;
+//	public ArrayList<String> getOrgs() throws RemoteException;
+//	public ArrayList<String> getVans() throws RemoteException;
 }

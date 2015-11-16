@@ -9,6 +9,7 @@ import java.util.Date;
 
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
@@ -22,11 +23,13 @@ import edu.nju.umr.vo.order.IncomeVO;
 public class BusiCircumLogic implements BusiCircumLSer{
 	StatementSheetDFacSer dataFac;
 	BusiCircumDSer statementData;
+	UtilityLogic uti;
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (StatementSheetDFacSer)Naming.lookup(Url.URL);
 			statementData = dataFac.getStatement();
+			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -54,19 +57,20 @@ public class BusiCircumLogic implements BusiCircumLSer{
 
 	public ResultMessage getHall() {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
-		try {
-			ArrayList<OrgPO> halls = statementData.getHall();
-			for(OrgPO hall:halls){
-				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
-				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
-				hallList.add(vo);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, hallList);
+//		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
+//		try {
+//			ArrayList<OrgPO> halls = statementData.getHall();
+//			for(OrgPO hall:halls){
+//				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
+//				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
+//				hallList.add(vo);
+//			}
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+//		return new ResultMessage(Result.SUCCESS, hallList);
+		return uti.getHall();
 	}
 
 	public Result outputExcel(ArrayList<IncomeVO> income, String location) {

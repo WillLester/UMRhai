@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
@@ -19,5 +20,6 @@ public interface UtilityDSer extends Remote{
 	public ArrayList<VanPO> getVans(String OrgID) throws RemoteException;
 	public ArrayList<StockPO> getStocks() throws RemoteException;
 	public ArrayList<OrgPO> getHall() throws RemoteException;
+	public ArrayList<AccountPO> getAccount() throws RemoteException;
 	public Result setRecord(Calendar cal,String op,String opt) throws RemoteException;
 }

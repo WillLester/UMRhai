@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
@@ -17,10 +18,12 @@ import edu.nju.umr.vo.order.HallLoadingVO;
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	HallLoadingOrderDFacSer dataFac;
 	HallLoadingOrderDSer hallData;
+	UtilityLogic uti;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			hallData = dataFac.getHallLoadingOrder();
+			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -45,27 +48,27 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 
 	public ResultMessage getOrgs() {
-		// TODO 自动生成的方法存根
-		ArrayList<String> orgs = null;
-		try {
-			orgs = hallData.getOrgs();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, orgs);
+//		ArrayList<String> orgs = null;
+//		try {
+//			orgs = hallData.getOrgs();
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		return new ResultMessage(Result.SUCCESS, orgs);
+		return uti.getOrgs();
 	}
 
 	public ResultMessage getVans() {
 		// TODO 自动生成的方法存根
-		ArrayList<String> vans = null;
-		try {
-			vans = hallData.getVans();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, vans);
+//		ArrayList<String> vans = null;
+//		try {
+//			vans = hallData.getVans();
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+//		return new ResultMessage(Result.SUCCESS, vans);
+		return uti.getVans("");
 	}
 
 }
