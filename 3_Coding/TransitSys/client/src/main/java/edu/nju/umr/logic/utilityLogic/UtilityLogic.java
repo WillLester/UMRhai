@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
@@ -46,7 +48,23 @@ public class UtilityLogic {
 		return new ResultMessage(Result.SUCCESS, cityList);
 	}
 	public ResultMessage getOrgs(){
-		return null;
+		ArrayList<OrgPO> ar= null;
+		Result isSuccessful=Result.NET_INTERRUPT;
+		try{
+			ar=utilityData.getOrgs();
+			isSuccessful=Result.SUCCESS;
+		}
+		catch(RemoteException e){
+			e.printStackTrace();
+		}
+		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
+		for(int i=0;i<ar.size();i++)
+		{
+			OrgPO Org=ar.get(i);
+			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName(),Org.getCity().getProvince())));
+		}
+		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		return message;
 	}
 	public ResultMessage getWorkers(String orgId){
 		return null;

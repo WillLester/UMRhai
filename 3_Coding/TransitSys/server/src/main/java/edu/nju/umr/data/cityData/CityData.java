@@ -41,15 +41,14 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		return mysqlSer.reviseInfo(cities, POKind.CITIES);
 	}
 
-	public ArrayList<CityPO> getCities() throws RemoteException {
-		// TODO 自动生成的方法存根
-		CityPO city1 = new CityPO("南京", "025","江苏");
-		CityPO city2 = new CityPO("北京", "010","北京");
-		ArrayList<CityPO> cities = new ArrayList<CityPO>();
-		cities.add(city1);
-		cities.add(city2);
-		return cities;
-	}
+//	public ArrayList<CityPO> getCities() throws RemoteException {
+//		CityPO city1 = new CityPO("南京", "025","江苏");
+//		CityPO city2 = new CityPO("北京", "010","北京");
+//		ArrayList<CityPO> cities = new ArrayList<CityPO>();
+//		cities.add(city1);
+//		cities.add(city2);
+//		return cities;
+//	}
 
 	public Result deleteCity(String cityName) throws RemoteException {
 		// TODO 自动生成的方法存根
