@@ -8,12 +8,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.StockVO;
+import edu.nju.umr.vo.VanVO;
+import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 
@@ -67,13 +75,58 @@ public class UtilityLogic {
 		return message;
 	}
 	public ResultMessage getWorkers(String orgId){
-		return null;
+		ArrayList<WorkPO> ar= null;
+		Result isSuccessful=Result.NET_INTERRUPT;
+		try{
+			ar=utilityData.getWorkers("");
+			isSuccessful=Result.SUCCESS;
+		}
+		catch(RemoteException e){
+			e.printStackTrace();
+		}
+		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
+		for(int i=0;i<ar.size();i++)
+		{
+			WorkPO Work=ar.get(i);
+			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
+		}
+		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+		return message;
 	}
 	public ResultMessage getVans(String orgId){
-		return null;
+		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
+		try {
+			ArrayList<VanPO> van = utilityData.getVans(orgId);
+			for(VanPO po:van){
+				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(), po.getOrgId());
+				vanList.add(vo);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return new ResultMessage(Result.SUCCESS, vanList);
 	}
 	public ResultMessage getStocks(){
-		return null;
+		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
+		ArrayList<StockPO> stock;
+		try {
+			stock = utilityData.getStocks();
+			for(StockPO po:stock){
+				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
+				for(GoodPO gPo:po.getGoods()){
+					GoodVO gVo = new GoodVO(gPo.getId(), gPo.getDate(), gPo.getCity(), gPo.getPart(), gPo.getShelf(), gPo.getRow(), gPo.getPlace());
+					goodList.add(gVo);
+				}
+				StockVO vo = new StockVO(goodList);
+				stockList.add(vo);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return new ResultMessage(Result.SUCCESS, stockList);
 	}
 	public static Result setRecord(Calendar cal,String op,String opt){
 		Result isSuc=Result.SUCCESS;
