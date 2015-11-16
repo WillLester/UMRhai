@@ -1,12 +1,16 @@
 package edu.nju.umr.logic.stockLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
-import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.dataService.dataFactory.StockCheckWarnDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
+import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -26,18 +30,63 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 	}
 	public ResultMessage checkWarning(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
-		ArrayList<Integer> ar=new ArrayList<Integer>();
+		ArrayList<Integer> warning=new ArrayList<Integer>();
 		try{
-			ar=checkData.getWarning(id);
-			isSuccessful=true;
+			warning=checkData.getWarning(id);
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);
+		try {
+			StockPO stock = checkData.getStock(id);
+			ArrayList<GoodPO> goods = stock.getGoods();
+			ArrayList<ShelfPO> shelves = checkData.getShelves(id);
+			int planeShelf = 0;
+			int trainShelf = 0;
+			int vanShelf = 0;
+			int maneuverShelf = 0;
+			for(ShelfPO shelf:shelves){
+				switch(shelf.getPart()){
+				case PLANE:planeShelf++;break;
+				case TRAIN:trainShelf++;break;
+				case VAN:vanShelf++;break;
+				case MANEUVER:maneuverShelf++;break;
+				}
+			}
+			int planeGood = 0;
+			int trainGood = 0;
+			int vanGood = 0;
+			int maneuverGood = 0;
+			for(GoodPO good:goods){
+				switch(good.getPart()){
+				case PLANE:planeGood++;break;
+				case TRAIN:trainGood++;break;
+				case VAN:vanGood++;break;
+				case MANEUVER:maneuverGood++;break;
+				}
+			}
+			if((double)planeGood/planeShelf >= (double)warning.get(0)/100){
+				ResultMessage message = new ResultMessage(Result.SUCCESS, Result.OUT_OF_STOCK_PLANE);
+				return message;
+			}
+			if((double)trainGood/trainShelf >= (double)warning.get(1)/100){
+				ResultMessage message = new ResultMessage(Result.SUCCESS, Result.OUT_OF_STOCK_TRAIN);
+				return message;
+			}
+			if((double)vanGood/vanShelf >= (double)warning.get(2)/100){
+				ResultMessage message = new ResultMessage(Result.SUCCESS, Result.OUT_OF_STOCK_VAN);
+				return message;
+			}
+			if((double)maneuverGood/maneuverShelf >= (double)warning.get(3)/100){
+				ResultMessage message = new ResultMessage(Result.SUCCESS, Result.OUT_OF_STOCK_MANEUVER);
+				return message;
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
+		}
+		ResultMessage message=new ResultMessage(Result.SUCCESS,Result.SUCCESS);
 		return message;
 	}
-
+	
 }

@@ -3,7 +3,7 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import edu.nju.umr.po.enums.Sex;
+import edu.nju.umr.po.enums.Gender;
 
 public class DriverPO implements Serializable{
 	/**
@@ -15,12 +15,12 @@ public class DriverPO implements Serializable{
 	private Calendar birthday;
 	private String idNum;
 	private String mobile;
-	private Sex sex;
+	private Gender sex;
 	private Calendar driveStart;
 	private Calendar driveEnd;
 	
 	public DriverPO(String id, String name, Calendar birthday, String idNum,
-			String mobile, Sex sex, Calendar driveStart, Calendar driveEnd) {
+			String mobile, Gender sex, Calendar driveStart, Calendar driveEnd) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +46,7 @@ public class DriverPO implements Serializable{
 	public String getMobile() {
 		return mobile;
 	}
-	public Sex getSex() {
+	public Gender getSex() {
 		return sex;
 	}
 	public Calendar getDriveStart() {

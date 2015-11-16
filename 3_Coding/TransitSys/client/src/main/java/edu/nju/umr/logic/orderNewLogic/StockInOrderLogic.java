@@ -5,14 +5,16 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
+import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
+import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
+import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
-import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
-import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 
 public class StockInOrderLogic implements StockInOrderLSer{
 	StockInOrderDFacSer dataFac;
@@ -58,5 +60,8 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
-
+	public Result checkWarning(String id){
+		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
+		return (Result) checkWarn.checkWarning(id).getMessage();
+	}
 }

@@ -14,7 +14,7 @@ import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.Sex;
+import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.DriverVO;
@@ -102,9 +102,9 @@ public class WorkOrgManDriver {
 		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
 	}
 	private void driverDriver(){
-		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Sex.MAN,new Date())));
+		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,new Date())));
 		System.out.println(drive.deleteDriver("1"));
-		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Sex.MAN,new Date())));
+		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,new Date())));
 		
 //		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.searchDriver(null).getMessage();
 //		for(int i=0;i<ar.size();i++)

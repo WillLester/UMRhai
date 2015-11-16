@@ -1,5 +1,5 @@
 package edu.nju.umr.po.enums;
 
-public enum Sex {
+public enum Gender {
 	MAN,WOMAN
 }
