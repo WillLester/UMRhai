@@ -58,12 +58,12 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		return new WorkPO("Worker1","11111111111","1","1",Jurisdiction.ADMIN);
 	}
 
-	public ArrayList<OrgPO> getOrgs() throws RemoteException {
-		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1","江苏")));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","1","江苏")));
-		return ar1;
-	}
+//	public ArrayList<OrgPO> getOrgs() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
+//		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1","江苏")));
+//		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","1","江苏")));
+//		return ar1;
+//	}
 
 }

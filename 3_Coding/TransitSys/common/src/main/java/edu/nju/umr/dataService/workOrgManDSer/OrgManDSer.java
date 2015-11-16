@@ -14,5 +14,5 @@ public interface OrgManDSer extends Remote{
 	public Result deleteOrg(String id) throws RemoteException;
 	public Result reviseOrg(OrgPO org) throws RemoteException;
 //	public OrgPO checkOrg(String id) throws RemoteException;
-	public ArrayList<CityPO> getCities() throws RemoteException;
+//	public ArrayList<CityPO> getCities() throws RemoteException;
 }

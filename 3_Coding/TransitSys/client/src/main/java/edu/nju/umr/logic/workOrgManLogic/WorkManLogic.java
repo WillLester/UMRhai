@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
@@ -23,11 +24,13 @@ import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
+	UtilityLogic uti;
 	public WorkManLogic()
 	{
 		try{
 			dataFac=(WorkManDFacSer)Naming.lookup(Url.URL);
 			workData=dataFac.getWorkMan();
+			uti=new UtilityLogic();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -129,23 +132,24 @@ public class WorkManLogic implements WorkManLSer{
 
 	public ResultMessage orgList() {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=workData.getOrgs();
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			OrgPO org=ar.get(i);
-			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
-		}
-		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-		return message;
+//		ArrayList<OrgPO> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=workData.getOrgs();
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			OrgPO org=ar.get(i);
+//			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
+//		}
+//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
+//		return message;
+		return uti.getOrgs();
 	}
 
 }

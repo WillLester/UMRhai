@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
 import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
@@ -18,11 +19,13 @@ import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 public class OrgManLogic implements OrgManLSer{
 	OrgManDFacSer dataFac;
 	OrgManDSer orgData;
+	UtilityLogic uti;
 
 	public OrgManLogic(){
 		try{
 			dataFac=(OrgManDFacSer)Naming.lookup(Url.URL);
 			orgData=dataFac.getOrgMan();
+			uti=new UtilityLogic();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -120,23 +123,24 @@ public class OrgManLogic implements OrgManLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-		ArrayList<CityPO> ar= null;
-		boolean isSuccessful=false;
-		try{
-			ar=orgData.getCities();
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
-			e.printStackTrace();
-		}
-		ArrayList<CityVO> arVO=new ArrayList<CityVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			CityPO city=ar.get(i);
-			arVO.add(new CityVO(city.getId(),city.getName(),city.getProvince()));
-		}
-		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-		return message;
+//		ArrayList<CityPO> ar= null;
+//		boolean isSuccessful=false;
+//		try{
+//			ar=orgData.getCities();
+//			isSuccessful=true;
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
+//		ArrayList<CityVO> arVO=new ArrayList<CityVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			CityPO city=ar.get(i);
+//			arVO.add(new CityVO(city.getId(),city.getName(),city.getProvince()));
+//		}
+//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
+//		return message;
+		return uti.getCities();
 	}
 
 }
