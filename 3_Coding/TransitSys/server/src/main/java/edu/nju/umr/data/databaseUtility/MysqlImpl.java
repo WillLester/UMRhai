@@ -143,8 +143,9 @@ public class MysqlImpl implements MysqlService{
 				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
 				break;
 			case TRANSITINFO:
-				
-			default:return Result.PO_NOT_FOUND;
+				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
+				break;
+			default:return Result.PO_KIND_ERROR;
 			}
 		} catch (SQLException e){
 			e.printStackTrace();
@@ -153,6 +154,93 @@ public class MysqlImpl implements MysqlService{
 	}
 	public Result deleteInfo(String key, POKind kind) {
 		// TODO 自动生成的方法存根
+		try {
+			switch(kind){
+			case ACCOUNT:
+				state.executeUpdate(getCommand(new AccountPO(Integer.parseInt(key), null, 0), MysqlOperation.DELETE));
+				break;
+			case CITIES:
+				state.executeUpdate(getCommand(new CitiesPO(key,null,0,0), MysqlOperation.DELETE));
+				state.executeUpdate(getCommand(new CitiesPO(null, key, 0, 0),MysqlOperation.DELETE));
+				break;
+			case CITY:
+				state.executeUpdate(getCommand(new CityPO(key, null, null), MysqlOperation.DELETE));
+				break;
+//			case DIARY:
+//				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
+//				break;
+			case DRIVER:
+				state.executeUpdate(getCommand(new DriverPO(key, null, null, null, null, null, null, null), MysqlOperation.DELETE));
+				break;
+			case GOOD:
+				state.executeUpdate(getCommand(new GoodPO(key, null, null, null, null, null, 0, 0), MysqlOperation.DELETE));
+				break;
+			case ORG:
+				state.executeUpdate(getCommand(new OrgPO(key, null, null, null, null), MysqlOperation.DELETE));
+				break;
+			case SHELF:
+				state.executeUpdate(getCommand(new ShelfPO(key, null, 0, 0, null), MysqlOperation.DELETE));
+				break;
+//			case STOCK:
+//				StockPO po=(StockPO)ob;
+//				for(int i=0;i<po.getGoods().size();i++) {
+//					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
+//				}
+//				break;
+			case USER:
+				state.executeUpdate(getCommand(new UserPO(key, null, null, null, null, null), MysqlOperation.DELETE));
+				break;
+			case VAN:
+				state.executeUpdate(getCommand(new VanPO(key, null, null, null, null), MysqlOperation.DELETE));
+				break;
+//			case WORK:
+//				state.executeUpdate(getCommand(new WorkPO(null, null, null, key, null), MysqlOperation.DELETE));
+//				break;
+//			case ARRIVE:
+//				state.executeUpdate(getCommand(new ArrivePO(null, null, key, null, null, null),MysqlOperation.DELETE));
+//				break;
+//			case CENTERLOADING:
+//				state.executeUpdate(getCommand(new CenterLoadingPO(null, key, null, null, null, null, null, null),MysqlOperation.DELETE));
+//				break;
+//			case EXPRESS:
+//				state.executeUpdate(getCommand(new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, key, null, null, 0, null),MysqlOperation.DELETE));
+//				break;
+//			case HALLLOADING:
+//				state.executeUpdate(getCommand(new HallLoadingPO(key, null, null, null, null, null, null, null, null, null),MysqlOperation.DELETE));
+//				break;
+//			case INCOME:
+//				state.executeUpdate(getCommand(new IncomePO(null, null, 0, null, key, null),MysqlOperation.DELETE));
+//				break;
+//			case ORDER:
+//				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case PAYMENT:
+//				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case RECIPIENT:
+//				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case SEND:
+//				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case STOCKIN:
+//				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case STOCKOUT:
+//				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case TRANSIT:
+//				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
+//				break;
+//			case TRANSITINFO:
+//				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
+//				break;
+			default:return Result.PO_KIND_ERROR;
+		}
+		} catch (SQLException e){
+			return Result.DATABASE_ERROR;
+		}
+		
 		return Result.PO_NOT_FOUND;
 	}
 	public Result reviseInfo(Object ob, POKind kind) {
@@ -167,8 +255,8 @@ public class MysqlImpl implements MysqlService{
 		String command=null;
 		switch(op)
 		{
-		case INSERT:command="insert into account values"+"("+account.getId()+","+"'"+account.getName()+"',"+account.getBalance()+")";break;
-		case DELETE:break;
+		case INSERT:command = "insert into account values"+"("+account.getId()+","+"'"+account.getName()+"',"+account.getBalance()+")";break;
+		case DELETE:command = "delete from account where id="+account.getId();break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -176,10 +264,14 @@ public class MysqlImpl implements MysqlService{
 	}
 	private String getCommand(CitiesPO cities,MysqlOperation op){
 		String command=null;
-		switch(op)
-		{
-		case INSERT:command="insert into citiesInfo values"+"('"+cities.getCity1()+"','"+cities.getCity2()+"',"+cities.getDistance()+")";break;
-		case DELETE:break;
+		switch(op){
+		case INSERT:command = "insert into citiesInfo values"+"('"+cities.getCity1()+"','"+cities.getCity2()+"',"+cities.getDistance()+")";break;
+		case DELETE:
+			if(cities.getCity2() == null)
+				command = "delete from citiesInfo where city1='" + cities.getCity1()+"'";
+			else
+				command = "delete from citiesInfo where city2='" + cities.getCity2()+"'";
+			break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -190,7 +282,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into city values"+"('"+city.getId()+"',"+"'"+city.getName()+"','"+city.getProvince()+"')";break;
-		case DELETE:break;
+		case DELETE:command="delete from city where name='"+city.getName()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -212,7 +304,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into driver values"+"("+"'"+driver.getId()+"','"+driver.getName()+"','"+driver.getIdNum()+"','"+driver.getMobile()+"',"+driver.getSex()+","+driver.getBirthday()+","+driver.getDriveStart()+","+driver.getDriveEnd()+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from driver where id='"+driver.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -223,7 +315,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into good values"+"("+"'"+good.getId()+"','"+good.getStockId()+"','"+good.getCity()+"',"+good.getPart()+",'"+good.getShelf()+"',"+good.getRow()+","+good.getPlace()+","+good.getDate()+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from good where id='"+good.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -235,7 +327,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into org values"+"("+"'"+org.getId()+"','"+org.getName()+"',"+org.getKind()+",'"+org.getLocation()+"','"+org.getCity().getName()+"','"+org.getCity().getId()+"'"+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from org where id='"+org.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -246,7 +338,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into shelf values"+"('"+shelf.getId()+"','"+shelf.getStockId()+"',"+shelf.getRow()+","+shelf.getPlace()+","+shelf.getPart()+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from shelf where id='"+shelf.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -268,7 +360,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into user values"+"("+"'"+user.getId()+"','"+user.getPassword()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getOrgId()+"',"+user.getJuri()+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from user where id='"+user.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -279,7 +371,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into van values"+"("+"'"+van.getId()+"','"+van.getPlateNum()+"',"+van.getServTime()+",'"+van.getPhoto()+"','"+van.getOrgId()+"'"+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from van where id='"+van.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -290,7 +382,7 @@ public class MysqlImpl implements MysqlService{
 		switch(op)
 		{
 		case INSERT:command="insert into work values"+"("+work.getId()+",'"+work.getOrgId()+"',"+work.getKind()+","+work.getMoney()+","+work.getCommission()+")";break;
-		case DELETE:break;
+		case DELETE:command="delete from work where id='"+work.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;
 		}
@@ -353,8 +445,7 @@ public class MysqlImpl implements MysqlService{
 	}
 	private String getCommand(OrderPO order,MysqlOperation op){
 		String command=null;
-		switch(op)
-		{
+		switch(op){
 		case FIND:break;
 		default:
 			break;
@@ -429,8 +520,17 @@ public class MysqlImpl implements MysqlService{
 	private String getCommand(TransitInfoPO transitInfo,MysqlOperation op){
 		String command = null;
 		switch(op){
+		case INSERT:
+			String info = "";
+			for(String inf:transitInfo.getInfo()){
+				info = info + inf + " ";
+			}
+			command = "insert into transitinfo values" + "(" + "'" + transitInfo.getExpressid() + "','" + info +")";
+			break;
 		case UPDATE:break;
 		case FIND:break;
+		case DELETE:
+			break;
 		}
 		return command;
 	}

@@ -7,17 +7,17 @@ public class AccountPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6350938083073701474L;
-	private String id;
+	private int id;
 	private String name;
 	private int balance;
 	
-	public AccountPO(String id, String name, int balance) {
+	public AccountPO(int id, String name, int balance) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.balance = balance;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public String getName() {
