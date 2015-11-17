@@ -15,6 +15,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,8 @@ import javax.swing.JTable;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.logic.userLogic.UserManLogic;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 
 
@@ -182,10 +185,20 @@ public class UserListPanel extends JPanel {
 		phoneField.setBounds(855,371,200,24);
 		add(phoneField);
 
+		dis("");
 	}
 	void dis(String keyword)
 	{
-		
+		ArrayList<UserVO> ar=new ArrayList<UserVO>();
+		ResultMessage  rm=serv.findUser(keyword);
+		System.out.println("Getting...");
+		if(rm.getReInfo()==Result.SUCCESS)
+		{
+			System.out.println(rm.getReInfo());
+			ar=(ArrayList<UserVO>)rm.getMessage();
+			System.out.println(ar.get(0).getName());
+		}
+		else System.out.println("Failed!");
 	}
 	
 }
