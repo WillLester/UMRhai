@@ -9,6 +9,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.po.enums.Result;
+
 public class HintFrame extends JDialog{
 	/**
 	 * 
@@ -19,12 +21,18 @@ public class HintFrame extends JDialog{
 	/**
 	 * Create the frame.
 	 */
-	public HintFrame(String message,int x,int y) {
+	public HintFrame(Result re,int x,int y) {
 		setTitle("错误!");
 		this.setLayout(null);
 		setBounds(x, y, FRAME_WIDTH, FRAME_HEIGHT);
 		this.setVisible(true);
-		JLabel label=new JLabel(message);
+		String txt=null;
+		switch(re)
+		{
+		case SUCCESS:break;
+		//case 
+		}
+		JLabel label=new JLabel(txt);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(0, FRAME_HEIGHT/2-50, FRAME_WIDTH, 40);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));

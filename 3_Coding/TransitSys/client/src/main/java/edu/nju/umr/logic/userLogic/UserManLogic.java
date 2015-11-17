@@ -66,14 +66,14 @@ public class UserManLogic implements UserManLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
-//		try{
-//			ar=userData.findUser(keyword);
-//			isSuccessful=true;
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
+		try{
+			ar=userData.findUser(keyword);
+			isSuccessful=true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
 		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
