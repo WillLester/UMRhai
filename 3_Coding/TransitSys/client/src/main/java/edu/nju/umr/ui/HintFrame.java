@@ -30,7 +30,16 @@ public class HintFrame extends JDialog{
 		switch(re)
 		{
 		case SUCCESS:break;
-		//case 
+		case FILE_NOT_FOUND:txt="未找到对应文件";break;
+		case ID_WRONG:txt="用户名不存在";break;
+		case NET_INTERRUPT:txt="网络异常";break;
+		case OUT_OF_STOCK_MANEUVER:txt="流动库存剩余空间不足";break;
+		case OUT_OF_STOCK_PLANE:txt="飞机库存剩余空间不足";break;
+		case OUT_OF_STOCK_TRAIN:txt="火车库存剩余空间不足";break;
+		case OUT_OF_STOCK_VAN:txt="汽车库存剩余空间不足件";break;
+		case PASSWORD_WRONG:txt="密码错误";break;
+		case PO_NOT_FOUND:txt="未找到对应文件";break;
+		case SERIAL_FAIL:txt="序列化失败";break;
 		}
 		JLabel label=new JLabel(txt);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
