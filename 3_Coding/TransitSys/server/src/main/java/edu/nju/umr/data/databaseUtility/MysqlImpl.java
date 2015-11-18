@@ -165,7 +165,7 @@ public class MysqlImpl implements MysqlService{
 				state.executeUpdate(getCommand(new CitiesPO(null, key, 0, 0),MysqlOperation.DELETE));
 				break;
 			case CITY:
-				state.executeUpdate(getCommand(new CityPO(key, null, null), MysqlOperation.DELETE));
+				state.executeUpdate(getCommand(new CityPO(key, null, null,0), MysqlOperation.DELETE));
 				break;
 //			case DIARY:
 //				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
@@ -370,7 +370,7 @@ public class MysqlImpl implements MysqlService{
 		case INSERT:command="insert into city values"+"('"+city.getId()+"',"+"'"+city.getName()+"','"+city.getProvince()+"')";break;
 		case DELETE:command="delete from city where name='"+city.getName()+"'";break;
 		case FIND:break;
-		case UPDATE:command = "update city set ";break;
+		case UPDATE:command = "update city set id='"+city.getId()+"' name='"+city.getName()+"' province='"+city.getProvince()+"' where keyid="+city.getKey();break;
 		}
 		return command;
 	}
@@ -444,9 +444,9 @@ public class MysqlImpl implements MysqlService{
 		String command=null;
 		switch(op){
 		case INSERT:command="insert into user values"+"("+"'"+user.getId()+"','"+user.getPassword()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getOrg()+"',"+user.getJuri()+")";break;
-		case DELETE:command="delete from user where id='"+user.getId()+"'";break;
+		case DELETE:command="delete from user where keyid="+user.getKey();break;
 		case FIND:break;
-		case UPDATE:break;
+		case UPDATE:command="update user set id='"+user.getId()+"' password='"+user.getPassword()+"' name='"+user.getName()+"' mobile='"+user.getMobile()+"' org='"+user.getOrg()+"' juri="+user.getJuri().ordinal()+" where keyid="+user.getKey();break;
 		}
 		return command;
 	}

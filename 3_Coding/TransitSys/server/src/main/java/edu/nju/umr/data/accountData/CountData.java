@@ -40,7 +40,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	public CountPO findInitInfo(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		CityPO city = new CityPO("北京", "010","北京");
+		CityPO city = new CityPO("北京", "010","北京",1);
 		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
 		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 		orgList.add(org);

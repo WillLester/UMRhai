@@ -39,7 +39,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		Result result = Result.SUCCESS;
 		try {
-			result = cityData.addCity(new CityPO(city.getName(), city.getId(),null));
+			result = cityData.addCity(new CityPO(city.getName(), city.getId(),null,0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince()));
+			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince(),0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
