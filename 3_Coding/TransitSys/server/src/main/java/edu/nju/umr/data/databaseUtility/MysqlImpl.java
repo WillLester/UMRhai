@@ -425,7 +425,7 @@ public class MysqlImpl implements MysqlService{
 		case INSERT:command="insert into shelf values"+"('"+shelf.getId()+"','"+shelf.getStockId()+"',"+shelf.getRow()+","+shelf.getPlace()+","+shelf.getPart()+")";break;
 		case DELETE:command="delete from shelf where id='"+shelf.getId()+"'";break;
 		case FIND:break;
-		case UPDATE:break;
+		case UPDATE:command="update shelf set stockId='"+shelf.getStockId()+"' row="+shelf.getRow()+" place="+shelf.getPlace()+" part="+shelf.getPart().ordinal()+" where id='"+shelf.getId()+"'";break;
 		}
 		return command;
 	}
@@ -458,7 +458,7 @@ public class MysqlImpl implements MysqlService{
 		case INSERT:command="insert into van values"+"("+"'"+van.getId()+"','"+van.getPlateNum()+"',"+van.getServTime()+",'"+van.getPhoto()+"','"+van.getOrgId()+"'"+")";break;
 		case DELETE:command="delete from van where id='"+van.getId()+"'";break;
 		case FIND:break;
-		case UPDATE:break;
+		case UPDATE:command="update van set plateNum='"+van.getPlateNum()+"' servTime='"+DateFormat.DATE.format(van.getServTime().getTime())+"' orgId='"+van.getOrgId()+"' where id='"+van.getId()+"'";break;
 		}
 		return command;
 	}
@@ -469,7 +469,7 @@ public class MysqlImpl implements MysqlService{
 		case INSERT:command="insert into work values"+"("+work.getId()+",'"+work.getOrgId()+"',"+work.getKind()+","+work.getMoney()+","+work.getCommission()+")";break;
 		case DELETE:command="delete from work where id='"+work.getId()+"'";break;
 		case FIND:break;
-		case UPDATE:break;
+		case UPDATE:command="update work set orgId='"+work.getOrgId()+"' kind="+work.getKind().ordinal()+" money="+work.getMoney()+" commission="+work.getCommission()+" where id="+work.getId();break;
 		}
 		return command;
 	}
@@ -604,15 +604,16 @@ public class MysqlImpl implements MysqlService{
 	}
 	private String getCommand(TransitInfoPO transitInfo,MysqlOperation op){
 		String command = null;
+		String info = "";
+		for(String inf:transitInfo.getInfo()){
+			info = info + inf + " ";
+		}
 		switch(op){
-		case INSERT:
-			String info = "";
-			for(String inf:transitInfo.getInfo()){
-				info = info + inf + " ";
-			}
+		case INSERT:	
 			command = "insert into transitinfo values" + "(" + "'" + transitInfo.getExpressid() + "','" + info +")";
 			break;
-		case UPDATE:break;
+		case UPDATE:
+			command = "update transitinfo set info='"+info+"' where id='"+transitInfo.getExpressid()+"'";break;
 		case FIND:break;
 		case DELETE:
 			break;
