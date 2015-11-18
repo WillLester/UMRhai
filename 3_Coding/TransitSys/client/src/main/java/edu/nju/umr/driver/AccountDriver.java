@@ -47,7 +47,7 @@ public class AccountDriver {
 		OrgVO org = new OrgVO("00001", "HaHa", Organization.HALL, "香港记者", city);
 		ArrayList<OrgVO> orgList = new ArrayList<OrgVO>();
 		orgList.add(org);
-		WorkVO work = new WorkVO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER,Wage.MONTH,2500);
+		WorkVO work = new WorkVO("宝华", "12345678901","00001", Jurisdiction.COURIER,Wage.MONTH,2500);
 		ArrayList<WorkVO> workerList = new ArrayList<WorkVO>();
 		workerList.add(work);
 		VanVO van = new VanVO("00001", "苏A-12345", Calendar.getInstance(), null, "00001");

@@ -26,12 +26,12 @@ public class CheckDriver {
 		@SuppressWarnings("unchecked")
 		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) collect.seeCollectRecord(null, null).getMessage();
 		for(IncomeVO income:incomes){
-			System.out.println(income.getId() + " " + income.getCost() + " " + income.getCourier() + " " + income.getDate());
+			System.out.println( income.getCost() + " " + income.getCourier() + " " + income.getDate());
 			for(String ex:income.getExpress()){
 				System.out.println(ex);
 			}
 		}
-		IncomeVO income = new IncomeVO(null, "宝华", 20, null, "00001");
+		IncomeVO income = new IncomeVO(null, "宝华", 20, null);
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
 		incomeList.add(income);
 		System.out.println((Double)collect.total(incomeList).getMessage());
@@ -47,7 +47,7 @@ public class CheckDriver {
 	private void driveStatement(){
 		ArrayList<IncomeVO> incomes = (ArrayList<IncomeVO>) statement.seeBusinessCircum(null, null).getMessage();
 		for(IncomeVO income:incomes){
-			System.out.println(income.getId() + " " + income.getCost() + " " + income.getCourier() + " " + income.getDate());
+			System.out.println(income.getCost() + " " + income.getCourier() + " " + income.getDate());
 			for(String ex:income.getExpress()){
 				System.out.println(ex);
 			}

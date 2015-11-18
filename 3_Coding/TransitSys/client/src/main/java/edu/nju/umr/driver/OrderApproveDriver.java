@@ -22,18 +22,18 @@ public class OrderApproveDriver {
 		@SuppressWarnings("unchecked")
 		ArrayList<OrderVO> orders = (ArrayList<OrderVO>) approve.askExamine().getMessage();
 		for(OrderVO vo:orders){
-			System.out.println(vo.getOperator() + " " + vo.getId() + " "  + vo.getKind() + "　" + vo.getTime());
+			System.out.println(vo.getOperator() + " " +  vo.getKind() + "　" + vo.getTime());
 		}
 		System.out.println(approve.examine(true, null));
 		PaymentVO pay = (PaymentVO) approve.chooseOrder("00001",Order.PAYMENT).getMessage();
-		System.out.println(pay.getId() + " " + pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
+		System.out.println(pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
 	}
 	private void driveResubmit(){
 		@SuppressWarnings("unchecked")
 		ArrayList<Object> getOrders = (ArrayList<Object>) resubmit.getOrders("00001").getMessage();
 		for(Object order:getOrders){
 			PaymentVO pay = (PaymentVO)order;
-			System.out.println(pay.getId() + " " + pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
+			System.out.println( pay.getPayer() + " " + pay.getAccount() + " " + pay.getAmount() + " " + pay.getDate() + " " + pay.getKind() + " " + pay.getRemarks());
 		}
 	}
 }

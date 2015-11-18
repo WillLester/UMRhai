@@ -35,9 +35,9 @@ public class WorkOrgManDriver {
 		driver.driverDriver();
 	}
 	private void driverWork(){
-		System.out.println(work.addWork(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN,Wage.MONTH,2500)));
+		System.out.println(work.addWork(new WorkVO("Worker1","11111111111","1",Jurisdiction.ADMIN,Wage.MONTH,2500)));
 		System.out.println(work.deleteWork("1"));
-		System.out.println(work.reviseWork(new WorkVO("Worker1","11111111111","1","1",Jurisdiction.ADMIN,Wage.MONTH,2500)));
+		System.out.println(work.reviseWork(new WorkVO("Worker1","11111111111","1",Jurisdiction.ADMIN,Wage.MONTH,2500)));
 //		WorkVO workVO=(WorkVO)work.checkWork("1").getMessage();
 //		System.out.println(workVO.getName());
 //		@SuppressWarnings("unchecked")

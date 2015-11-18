@@ -37,11 +37,11 @@ public class StockDriver {
 	private void driveCheck(){
 		ArrayList<StockInVO> stockInList = (ArrayList<StockInVO>) check.checkStockIn(new Date(110,2,23), new Date(110,3,31), "00001").getMessage();
 		for(StockInVO vo:stockInList){
-			System.out.println(vo.getId() + " " + vo.getDate() + " " + vo.getArrivePlace() + " " + vo.getExpressId() + " " + vo.getPart() + " " + vo.getShelfId() + " " + vo.getRow() + " "+ vo.getPlace());
+			System.out.println( vo.getDate() + " " + vo.getArrivePlace() + " " + vo.getExpressId() + " " + vo.getPart() + " " + vo.getShelfId() + " " + vo.getRow() + " "+ vo.getPlace());
 		} 
 		ArrayList<StockOutVO> stockOutList = (ArrayList<StockOutVO>) check.checkStockOut(new Date(110,2,23), new Date(110,3,31), "00001").getMessage();
 		for(StockOutVO vo:stockOutList){
-			System.out.println(vo.getId() + " " +vo.getExpressId() + " " + vo.getTransitId() + " " + vo.getDate() + " " + vo.getKind());
+			System.out.println(vo.getExpressId() + " " + vo.getTransitId() + " " + vo.getDate() + " " + vo.getKind());
 		}
 	}
 	private void driveCheckNow(){

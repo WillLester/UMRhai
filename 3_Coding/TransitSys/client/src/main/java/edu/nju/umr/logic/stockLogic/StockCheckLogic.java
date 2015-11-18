@@ -43,7 +43,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockInVO> arVO=new ArrayList<StockInVO>();
 		for(int i=0;i<ar.size();i++){
 			StockInPO order=ar.get(i);
-			arVO.add(new StockInVO(order.getId(), order.getExpressId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
+			arVO.add(new StockInVO(order.getExpressId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
@@ -63,7 +63,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockOutVO> arVO=new ArrayList<StockOutVO>();
 		for(int i=0;i<ar.size();i++){
 			StockOutPO order=ar.get(i);
-			arVO.add(new StockOutVO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId()));
+			arVO.add(new StockOutVO(order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

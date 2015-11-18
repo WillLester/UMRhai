@@ -40,7 +40,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		try {
 			ArrayList<OrderPO> orderList = approveData.getExamine();
 			for(OrderPO order:orderList){
-				OrderVO vo = new OrderVO(order.getId(), order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
+				OrderVO vo = new OrderVO( order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
 				orders.add(vo);
 			}
 		} catch (RemoteException e) {
@@ -68,7 +68,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		try {
 			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
 			System.out.println(orderpo.getId());
-			order = new PaymentVO(orderpo.getId(), orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks());
+			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks());
 			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

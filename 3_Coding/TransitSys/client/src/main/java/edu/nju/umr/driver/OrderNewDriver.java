@@ -71,7 +71,7 @@ public class OrderNewDriver {
 //		driver.driverTransit();
 	}
 	public void driverArrive(){
-		System.out.println(arrive.create(new ArriveVO("1",Calendar.getInstance(),"1","南京",GoodState.INTACT)));
+		System.out.println(arrive.create(new ArriveVO("1",Calendar.getInstance(),"南京",GoodState.INTACT)));
 		@SuppressWarnings("unchecked")
 		ArrayList<String> ar=(ArrayList<String>)arrive.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
@@ -82,21 +82,21 @@ public class OrderNewDriver {
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(centerLoading.create(new CenterLoadingVO(Calendar.getInstance(),"1","北京","vanId","supervision","escort",expresses)));
+		System.out.println(centerLoading.create(new CenterLoadingVO(Calendar.getInstance(),"北京","vanId","supervision","escort",expresses,100)));
 		ArrayList<String> ar=(ArrayList<String>)centerLoading.getHalls().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverExpress(){
-		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",null,null,null,null,1,"Name",1,1,1,1,1,"ID",Calendar.getInstance(),Express.NORMAL,1)));
+		System.out.println(express.create(new ExpressVO("Sender","SendLoc","Receiver","ReceiveLoc","SendMob","ReceiveMob",null,null,null,null,1,"Name",1,1,1,1,1,Calendar.getInstance(),Express.NORMAL,1)));
 		
 	}
 	public void driverHallLoading(){
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(hallLoading.create(new HallLoadingVO("HallID","conveID","arriveloc","vanId","Super","esc",expresses)));
+		System.out.println(hallLoading.create(new HallLoadingVO("HallID","conveID","arriveloc","vanId","Super","esc",expresses,100)));
 		ArrayList<String> ar=(ArrayList<String>)hallLoading.getOrgs().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
@@ -110,17 +110,17 @@ public class OrderNewDriver {
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(income.create(new IncomeVO(Calendar.getInstance(),"courier",1.5,expresses,"ID")));
+		System.out.println(income.create(new IncomeVO(Calendar.getInstance(),"courier",1.5,expresses)));
 		ArrayList<String> ar=(ArrayList<String>)income.getCouriers("").getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverPayment(){
-		System.out.println(payment.create(new PaymentVO("ID",Calendar.getInstance(),"payer","acc",Pay.BONUS,10,"remarks")));
+		System.out.println(payment.create(new PaymentVO(Calendar.getInstance(),"payer","acc",Pay.BONUS,10,"remarks")));
 	}
 	public void driverRecipient(){
-		System.out.println(recipient.create(new RecipientVO(Calendar.getInstance(),"id","transitid","startp",GoodState.DAMAGED)));
+		System.out.println(recipient.create(new RecipientVO(Calendar.getInstance(),"transitid","startp",GoodState.DAMAGED)));
 		ArrayList<String> ar=(ArrayList<String>)recipient.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
@@ -128,21 +128,21 @@ public class OrderNewDriver {
 		
 	}
 	public void driverSend(){
-		System.out.println(send.create(new SendVO(Calendar.getInstance(),"expressid","id","name")));
+		System.out.println(send.create(new SendVO(Calendar.getInstance(),"expressid","name")));
 		ArrayList<String> ar=(ArrayList<String>)send.getCouriers("").getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverStockIn(){
-		System.out.println(stockIn.create(new StockInVO("id","expressID",Calendar.getInstance(),"arrp",Part.MANEUVER,"Shelfid",1,1)));
+		System.out.println(stockIn.create(new StockInVO("expressID",Calendar.getInstance(),"arrp",Part.MANEUVER,"Shelfid",1,1)));
 		ArrayList<String> ar=(ArrayList<String>)stockIn.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
 		}
 	}
 	public void driverStockOut(){
-		System.out.println(stockOut.create(new StockOutVO("id","expressID",Calendar.getInstance(),Transit.PLANE,"transitid")));
+		System.out.println(stockOut.create(new StockOutVO("expressID",Calendar.getInstance(),Transit.PLANE,"transitid")));
 		ArrayList<String> ar=(ArrayList<String>)stockOut.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));
@@ -152,7 +152,7 @@ public class OrderNewDriver {
 		ArrayList<String> expresses=new ArrayList<String>();
 		expresses.add("express1");
 		expresses.add("express2");
-		System.out.println(transit.create(new TransitVO("id","planeid","sp","ap","cID","supv",expresses)));
+		System.out.println(transit.create(new TransitVO("planeid","sp","ap","cID","supv",expresses)));
 		ArrayList<String> ar=(ArrayList<String>)transit.getCities().getMessage();
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i));

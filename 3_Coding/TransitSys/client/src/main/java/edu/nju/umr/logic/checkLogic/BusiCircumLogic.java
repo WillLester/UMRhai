@@ -44,7 +44,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		try {
 			ArrayList<IncomePO> income = statementData.findCollect(start, end);
 			for(IncomePO po:income){
-				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getId());
+				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
 				incomeList.add(vo);
 			}
 		} catch (RemoteException e) {

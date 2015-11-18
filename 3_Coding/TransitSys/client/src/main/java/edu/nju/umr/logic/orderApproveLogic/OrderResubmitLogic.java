@@ -40,7 +40,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 
 			for(Object order:orders){
 				PaymentPO po = (PaymentPO)order;
-				PaymentVO vo = new PaymentVO(po.getId(), po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
+				PaymentVO vo = new PaymentVO( po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
 				newOrders.add(vo);
 			}
 		} catch (RemoteException e) {

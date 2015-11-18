@@ -18,7 +18,7 @@ public class TransitInfoDriver {
 	}
 	private void driveCourier(){
 		ExpressVO express = (ExpressVO) courier.enterBarcodeCourier("123456").getMessage();
-		System.out.println(express.getId() + " " + express.getSender() + " " + express.getSendLoc() + " " + express.getSendMobile() + " " + express.getReceiver() + " " + express.getReceiveLoc() + " " + express.getReceiveMobile() + " " + express.getCost() + " " + express.getHeight() + " " + express.getLength() + 
+		System.out.println( express.getSender() + " " + express.getSendLoc() + " " + express.getSendMobile() + " " + express.getReceiver() + " " + express.getReceiveLoc() + " " + express.getReceiveMobile() + " " + express.getCost() + " " + express.getHeight() + " " + express.getLength() + 
 				" " + express.getWidth() + " " + express.getNum() + " " + express.getName() + " " + express.getArrive() + " " + express.getKind() + " " + express.getVolumn());
 	}
 	private void driveCustomer(){
