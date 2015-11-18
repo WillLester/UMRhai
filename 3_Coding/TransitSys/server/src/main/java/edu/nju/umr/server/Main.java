@@ -6,8 +6,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.data.dataFactory.DataFactory;
-import edu.nju.umr.url.Url;
 
 public class Main {
 

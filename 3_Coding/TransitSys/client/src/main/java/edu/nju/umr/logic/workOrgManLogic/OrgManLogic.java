@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 

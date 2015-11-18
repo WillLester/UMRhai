@@ -6,9 +6,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ConstantVO;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
 import edu.nju.umr.po.ConstantPO;

@@ -4,13 +4,13 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockCheckDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;

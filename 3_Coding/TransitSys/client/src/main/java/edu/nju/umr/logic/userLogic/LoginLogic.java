@@ -7,10 +7,10 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 

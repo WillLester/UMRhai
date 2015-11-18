@@ -5,12 +5,12 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 

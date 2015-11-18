@@ -11,13 +11,13 @@ import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Gender;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 

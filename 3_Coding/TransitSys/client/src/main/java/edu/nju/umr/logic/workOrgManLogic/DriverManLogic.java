@@ -6,12 +6,12 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 

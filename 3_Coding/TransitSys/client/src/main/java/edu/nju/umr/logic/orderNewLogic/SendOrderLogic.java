@@ -4,12 +4,12 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
 

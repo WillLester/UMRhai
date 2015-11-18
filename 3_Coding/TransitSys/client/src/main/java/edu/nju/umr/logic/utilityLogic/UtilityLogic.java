@@ -15,7 +15,6 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.GoodVO;
@@ -24,6 +23,7 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 

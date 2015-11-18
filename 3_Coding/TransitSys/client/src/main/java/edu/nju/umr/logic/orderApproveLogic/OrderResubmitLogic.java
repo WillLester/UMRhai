@@ -6,12 +6,12 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderResubmitDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 

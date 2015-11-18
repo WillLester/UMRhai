@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockCheckWarnDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
@@ -11,7 +12,6 @@ import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 
 

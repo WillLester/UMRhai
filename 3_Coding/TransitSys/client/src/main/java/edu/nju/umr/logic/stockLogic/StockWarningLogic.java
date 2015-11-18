@@ -3,12 +3,12 @@ package edu.nju.umr.logic.stockLogic;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningLogic implements StockWarningLSer{

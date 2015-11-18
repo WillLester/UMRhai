@@ -3,11 +3,11 @@ package edu.nju.umr.logic.transitInfoLogic;
 import java.rmi.Naming;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.order.ExpressVO;
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 

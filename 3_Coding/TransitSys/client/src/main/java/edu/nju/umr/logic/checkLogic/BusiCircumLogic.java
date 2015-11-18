@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
@@ -14,7 +15,6 @@ import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;

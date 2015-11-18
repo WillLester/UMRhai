@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
@@ -13,7 +14,6 @@ import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInVO;
 

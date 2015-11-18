@@ -3,12 +3,12 @@ package edu.nju.umr.logic.stockLogic;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockDivideDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 

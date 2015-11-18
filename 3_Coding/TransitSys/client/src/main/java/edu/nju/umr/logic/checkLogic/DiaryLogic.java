@@ -7,12 +7,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.dataFactory.DiaryDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.url.Url;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 
