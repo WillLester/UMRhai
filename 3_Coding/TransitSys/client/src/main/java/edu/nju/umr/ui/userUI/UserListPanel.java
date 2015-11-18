@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -20,8 +21,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.logic.userLogic.UserManLogic;
 import edu.nju.umr.po.enums.Result;
@@ -31,7 +36,15 @@ import edu.nju.umr.vo.UserVO;
 
 public class UserListPanel extends JPanel {
 	private JTextField textField;
-	private JTable table;
+	private JTextField idField;
+	private JTextField passwordField;
+	private JTextField nameField;
+	private JTextField mobileField;
+	private JTextField orgField;
+	private Table table;
+	private JComboBox juriBox;
+	private DefaultTableModel model;
+	
 	private JFrame frame;
 	private UserManLSer serv;
 	/**
@@ -60,7 +73,7 @@ public class UserListPanel extends JPanel {
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				dis(textField.getText());
+				displayUsers(textField.getText());
 			}
 		});
 		add(searchButton);
@@ -71,20 +84,20 @@ public class UserListPanel extends JPanel {
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				dis("");
+				displayUsers("");
 			}
 		});
 		add(allButton);
 		
-		table = new JTable();
-		table.setBounds(133, 121, 637, 335);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		add(table);
-		
 		JButton addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(283, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		
+		addButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				addUser();
+			}
+		});
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
@@ -143,12 +156,12 @@ public class UserListPanel extends JPanel {
 		phoneLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(phoneLabel);
 		
-		JTextField idField=new JTextField("账号");
+		idField=new JTextField("账号");
 		idField.setFont(new Font("宋体", Font.PLAIN, 12));
 		idField.setBounds(855,121,200,24);
 		add(idField);
 		
-		JTextField passwordField=new JTextField("密码");
+		passwordField=new JTextField("密码");
 		passwordField.setFont(new Font("宋体", Font.PLAIN, 12));
 		passwordField.setBounds(855,171,200,24);
 		add(passwordField);
@@ -158,47 +171,95 @@ public class UserListPanel extends JPanel {
 //		juriField.setBounds(855,221,200,24);
 //		add(juriField);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","中转中心仓库管理人员"}));
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		comboBox_1.setBounds(855, 221, 200, 24);
-		add(comboBox_1);
+		juriBox = new JComboBox();
+		juriBox.setModel(new DefaultComboBoxModel(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","中转中心仓库管理人员"}));
+		juriBox.setFont(new Font("宋体", Font.PLAIN, 12));
+		juriBox.setBounds(855, 221, 200, 24);
+		add(juriBox);
 		
-		JTextField nameField=new JTextField("姓名");
+		nameField=new JTextField("姓名");
 		nameField.setFont(new Font("宋体", Font.PLAIN, 12));
 		nameField.setBounds(855,271,200,24);
 		add(nameField);
 		
-//		JTextField orgField=new JTextField("机构");
-//		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
-//		orgField.setBounds(855,321,200,24);
-//		add(orgField);
+		orgField=new JTextField("机构");
+		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgField.setBounds(855,321,200,24);
+		add(orgField);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
-		comboBox_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		comboBox_2.setBounds(855, 321, 200, 24);
-		add(comboBox_2);
+//		JComboBox comboBox_2 = new JComboBox();
+//		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
+//		comboBox_2.setFont(new Font("宋体", Font.PLAIN, 12));
+//		comboBox_2.setBounds(855, 321, 200, 24);
+//		add(comboBox_2);
 		
-		JTextField phoneField=new JTextField("手机号");
-		phoneField.setFont(new Font("宋体", Font.PLAIN, 12));
-		phoneField.setBounds(855,371,200,24);
-		add(phoneField);
+		mobileField=new JTextField("手机号");
+		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
+		mobileField.setBounds(855,371,200,24);
+		add(mobileField);
 
-		dis("");
+		tableInit();
+		displayUsers("");
 	}
-	void dis(String keyword)
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false)
+				displayUser(table.getSelectedRow());
+			}
+		});
+		table.setBounds(133, 121, 637, 335);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(133, 121, 637, 335);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		add(scroll);
+	}
+	void displayUsers(String keyword)
 	{
-		ArrayList<UserVO> ar=new ArrayList<UserVO>();
-		ResultMessage  rm=serv.findUser(keyword);
-		System.out.println("Getting...");
-		if(rm.getReInfo()==Result.SUCCESS)
+		model.setRowCount(0);
+		String[] columnNames={"账号","密码","权限","姓名","手机号","机构"};
+		model.setColumnIdentifiers(columnNames);
+		ArrayList<UserVO> ar=(ArrayList<UserVO>)serv.findUser(keyword).getMessage();
+		for(int i=0;i<ar.size();i++)
 		{
-			System.out.println(rm.getReInfo());
-			ar=(ArrayList<UserVO>)rm.getMessage();
-			System.out.println(ar.get(0).getName());
+			UserVO user=ar.get(i);
+			String lv=null;
+			switch(user.getJuri())
+			{
+			case COURIER:lv="快递员";break;
+			case HALL:lv="营业厅业务员";break;
+			case CENTER:lv="中转中心业务员";break;
+			case STOCK:lv="库存管理员";break;
+			case FINANCE_SUPE:lv="高级财务";break;
+			case FINANCE:lv="普通财务";break;
+			case MANAGER:lv="总经理";break;
+			case ADMIN:lv="管理员";break;
+			}
+			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
+			model.addRow(rowData);
 		}
-		else System.out.println("Failed!");
+	}
+	void addUser(){
+		String[] rowData={};
+		model.addRow(rowData);
+		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
+	}
+	void displayUser(int row)
+	{
+		String []data=new String[6];
+		for(int i=0;i<6;i++)
+		{
+			data[i]=(String)table.getValueAt(row, i);
+		}
+		idField.setText(data[0]);
+		passwordField.setText(data[1]);
+		juriBox.getModel().setSelectedItem(data[2]);
+		nameField.setText(data[3]);
+		mobileField.setText(data[4]);
+		orgField.setText(data[5]);
 	}
 	
 }
