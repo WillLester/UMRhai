@@ -15,8 +15,8 @@ public class UserPO implements Serializable{
 	private String name;
 	private String mobile;
 	private String org;
-	private int number;
-	public UserPO(String id,String password,Jurisdiction juri,String name,String mobile,String org,int number) {
+	private int key;
+	public UserPO(String id,String password,Jurisdiction juri,String name,String mobile,String org,int key) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.password = password;
@@ -24,7 +24,7 @@ public class UserPO implements Serializable{
 		this.name = name;
 		this.mobile = mobile;
 		this.org = org;
-		this.number=number;
+		this.key=key;
 	}
 	public String getId() {
 		return id;
@@ -44,7 +44,7 @@ public class UserPO implements Serializable{
 	public String getOrg() {
 		return org;
 	}
-	public int getNumber(){
-		return number;
+	public int getKey(){
+		return key;
 	}
 }

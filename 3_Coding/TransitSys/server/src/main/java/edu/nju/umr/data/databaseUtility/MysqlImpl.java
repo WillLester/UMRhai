@@ -189,7 +189,7 @@ public class MysqlImpl implements MysqlService{
 //				}
 //				break;
 			case USER:
-				state.executeUpdate(getCommand(new UserPO(key, null, null, null, null, null), MysqlOperation.DELETE));
+				state.executeUpdate(getCommand(new UserPO(null, null, null, null, null, null,Integer.parseInt(key)), MysqlOperation.DELETE));
 				break;
 			case VAN:
 				state.executeUpdate(getCommand(new VanPO(key, null, null, null, null), MysqlOperation.DELETE));
@@ -442,9 +442,8 @@ public class MysqlImpl implements MysqlService{
 //	}
 	private String getCommand(UserPO user,MysqlOperation op){
 		String command=null;
-		switch(op)
-		{
-		case INSERT:command="insert into user values"+"("+"'"+user.getId()+"','"+user.getPassword()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getOrgId()+"',"+user.getJuri()+")";break;
+		switch(op){
+		case INSERT:command="insert into user values"+"("+"'"+user.getId()+"','"+user.getPassword()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getOrg()+"',"+user.getJuri()+")";break;
 		case DELETE:command="delete from user where id='"+user.getId()+"'";break;
 		case FIND:break;
 		case UPDATE:break;

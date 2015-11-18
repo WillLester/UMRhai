@@ -5,7 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
@@ -90,7 +89,7 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return vanList;
 	}
 	public ArrayList<AccountPO> getAccount() throws RemoteException{
-		AccountPO account = new AccountPO("00001", "Excited", 25000);
+		AccountPO account = new AccountPO(1, "Excited", 25000);
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 		accountList.add(account);
 		return accountList;

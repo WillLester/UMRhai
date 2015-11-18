@@ -77,7 +77,7 @@ public class UserManLogic implements UserManLSer{
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
 		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
-			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getNumber()));
+			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getKey()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

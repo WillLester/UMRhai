@@ -31,8 +31,8 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 	public ArrayList<UserPO> findUser(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
-		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊"));
-		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2","一个机构编号啊2"));
+		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",1));
+		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2","一个机构编号啊2",1));
 		return ar;
 	}
 

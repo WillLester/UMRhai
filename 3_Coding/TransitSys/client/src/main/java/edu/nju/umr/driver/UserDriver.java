@@ -6,7 +6,6 @@ import edu.nju.umr.logic.userLogic.LoginLogic;
 import edu.nju.umr.logic.userLogic.UserManLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
-import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.vo.UserVO;
 
@@ -23,13 +22,13 @@ public class UserDriver {
 		//System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 	}
 	private void driveUser(){
-		UserVO userNew = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
+		UserVO userNew = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",1);
 		System.out.println(user.newUser(userNew));
 		System.out.println(user.deleteUser("00001"));
 		System.out.println(user.reviseUser(userNew));
 		ArrayList<UserVO> voList = (ArrayList<UserVO>) user.findUser("").getMessage();
 		for(UserVO user:voList){
-			System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
+			System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrg() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 		}
 	}
 }

@@ -56,7 +56,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		StockPO stock = new StockPO("00001",goodList);
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
 		stockList.add(stock);
-		AccountPO account = new AccountPO("00001", "Excited", 25000);
+		AccountPO account = new AccountPO(1, "Excited", 25000);
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 		accountList.add(account);
 		return (CountPO) SerialHelper.readFromFile("data/count.ser");

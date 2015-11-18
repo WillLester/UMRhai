@@ -25,9 +25,9 @@ public class AccountDriver {
 	private CountLSer count = new CountLogic();
 	public static void main(String[] args) {
 		AccountDriver driver = new AccountDriver();
-		System.out.println(driver.account.addAccount(new AccountVO("00001", "赛艇", 233)));
+		System.out.println(driver.account.addAccount(new AccountVO(1, "赛艇", 233)));
 		System.out.println(driver.account.deleteAccount("00001"));
-		System.out.println(driver.account.reviseAccount(new AccountVO("00001", "赛艇", 233)));
+		System.out.println(driver.account.reviseAccount(new AccountVO(1, "赛艇", 233)));
 //		AccountVO account = (AccountVO) driver.account.checkAccount("00001").getMessage();
 //		System.out.println(account.getName() + " " + account.getBalance());
 //		@SuppressWarnings("unchecked")
@@ -59,7 +59,7 @@ public class AccountDriver {
 		StockVO stock = new StockVO(goodList);
 		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 		stockList.add(stock);
-		AccountVO account = new AccountVO("00001", "Excited", 25000);
+		AccountVO account = new AccountVO(1, "Excited", 25000);
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 		accountList.add(account);
 		this.checkInfo();
