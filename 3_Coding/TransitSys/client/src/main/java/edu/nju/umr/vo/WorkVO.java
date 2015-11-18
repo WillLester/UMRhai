@@ -7,31 +7,31 @@ public class WorkVO {
 	private String name;
 	private String mobile;
 	private String orgId;
-	private String id;
+//	private String id;
 	private Jurisdiction juri;
 	private Wage kind;
 	private int money;
 	private int commission;
 	
-	public WorkVO(String name, String mobile, String orgId, String id,
+	public WorkVO(String name, String mobile, String orgId, 
 			Jurisdiction juri, Wage kind, int money, int commission) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
 		this.orgId = orgId;
-		this.id = id;
+//		this.id = id;
 		this.juri = juri;
 		this.kind = kind;
 		this.money = money;
 		this.commission = commission;
 	}
-	public WorkVO(String name, String mobile, String orgId, String id,
+	public WorkVO(String name, String mobile, String orgId,
 			Jurisdiction juri, Wage kind, int money) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
 		this.orgId = orgId;
-		this.id = id;
+//		this.id = id;
 		this.juri = juri;
 		this.kind = kind;
 		this.money = money;
@@ -45,9 +45,9 @@ public class WorkVO {
 	public String getOrgId() {
 		return orgId;
 	}
-	public String getId() {
-		return id;
-	}
+//	public String getId() {
+//		return id;
+//	}
 	public Jurisdiction getJuri() {
 		return juri;
 	}

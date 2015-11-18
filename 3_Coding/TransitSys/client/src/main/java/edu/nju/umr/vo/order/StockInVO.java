@@ -5,7 +5,7 @@ import java.util.Calendar;
 import edu.nju.umr.po.enums.Part;
 
 public class StockInVO {
-	private String id;
+//	private String id;
 	private String expressId;
 	private Calendar date;
 	private String arrivePlace;
@@ -13,9 +13,9 @@ public class StockInVO {
 	private String shelfId;
 	private int row;
 	private int place;
-	public StockInVO(String id,String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place) {
+	public StockInVO(String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place) {
 		// TODO 自动生成的构造函数存根
-		this.id = id;
+//		this.id = id;
 		this.expressId = expressId;
 		this.date = date;
 		this.arrivePlace = arrivePlace;
@@ -24,9 +24,9 @@ public class StockInVO {
 		this.row = row;
 		this.place = place;
 	}
-	public String getId() {
-		return id;
-	}
+//	public String getId() {
+//		return id;
+//	}
 	public String getExpressId() {
 		return expressId;
 	}

@@ -5,13 +5,13 @@ import java.util.Calendar;
 public class SendVO {
 	private Calendar date;
 	private String expressId;
-	private String id;
+//	private String id;
 	private String courier;
-	public SendVO(Calendar date,String expressId,String id,String name) {
+	public SendVO(Calendar date,String expressId,String name) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.expressId = expressId;
-		this.id = id;
+//		this.id = id;
 		this.courier = name;
 	}
 	public Calendar getDate() {
@@ -20,9 +20,9 @@ public class SendVO {
 	public String getExpressId() {
 		return expressId;
 	}
-	public String getId() {
-		return id;
-	}
+//	public String getId() {
+//		return id;
+//	}
 	public String getCourier() {
 		return courier;
 	}

@@ -10,7 +10,8 @@ public class HallLoadingVO {
 	private String supervision;
 	private String escort;
 	private ArrayList<String> express;
-	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express) {
+	private double cost;
+	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost) {
 		// TODO 自动生成的构造函数存根
 		this.hallId = hallId;
 		this.convertId = convertId;
@@ -19,6 +20,7 @@ public class HallLoadingVO {
 		this.supervision = supervision;
 		this.escort = escort;
 		this.express = express;
+		this.cost=cost;
 	}
 	public String getHallId() {
 		return hallId;
@@ -40,6 +42,9 @@ public class HallLoadingVO {
 	}
 	public ArrayList<String> getExpress() {
 		return express;
+	}
+	public double getCost(){
+		return cost;
 	}
 	
 }
