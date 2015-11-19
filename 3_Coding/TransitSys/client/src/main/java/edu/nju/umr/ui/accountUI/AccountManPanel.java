@@ -62,10 +62,10 @@ public class AccountManPanel extends JPanel{
 		searchButton.setBounds(233+442, 65, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
 		searchButton.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountLSer.searchAccount(textField.getText());
+				accountList=getAccounts(textField.getText());
+				displayAccounts();
 			}
 		});
 		
@@ -77,7 +77,8 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountLSer.searchAccount(null);
+				accountList=getAccounts("");
+				displayAccounts();
 			}
 		});
 		
@@ -105,6 +106,12 @@ public class AccountManPanel extends JPanel{
 		JButton addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(326, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		addButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				addAccount();
+			}
+		});
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除");
@@ -182,6 +189,9 @@ public class AccountManPanel extends JPanel{
 			String[] data={ac.getName(),Integer.toString(ac.getBalance())};
 			model.addRow(data);
 		}
+	}
+	void addAccount(){
+		
 	}
 	
 }

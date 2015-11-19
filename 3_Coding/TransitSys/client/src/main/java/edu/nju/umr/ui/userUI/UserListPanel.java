@@ -29,6 +29,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.logic.userLogic.UserManLogic;
+import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
@@ -48,7 +49,7 @@ public class UserListPanel extends JPanel {
 	private JFrame frame;
 	private UserManLSer serv;
 	
-	private ArrayList<UserVO> ar;
+	private ArrayList<UserVO> users;
 	/**
 	 * Create the panel.
 	 */
@@ -75,7 +76,7 @@ public class UserListPanel extends JPanel {
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				getUsers(textField.getText());
+				users=getUsers(textField.getText());
 				displayUsers();
 			}
 		});
@@ -87,7 +88,7 @@ public class UserListPanel extends JPanel {
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				getUsers("");
+				users=getUsers("");
 				displayUsers();
 			}
 		});
@@ -107,11 +108,23 @@ public class UserListPanel extends JPanel {
 		JButton deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		deleteButton.setBounds(525, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		deleteButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				deleteUser();
+			}
+		});
 		add(deleteButton);
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		confirmButton.setBounds(895, 437, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				confirmChange();
+			}
+		});
 		add(confirmButton);
 //		
 //		JButton cancelButton = new JButton("查看");
@@ -203,7 +216,7 @@ public class UserListPanel extends JPanel {
 		add(mobileField);
 
 		tableInit();
-		ar=getUsers("");
+		users=getUsers("");
 		displayUsers();
 	}
 	void tableInit(){
@@ -226,13 +239,20 @@ public class UserListPanel extends JPanel {
 	}
 	ArrayList<UserVO> getUsers(String keyword)
 	{
-		return (ArrayList<UserVO>)serv.findUser(keyword).getMessage();
+		System.out.println(keyword);
+		ArrayList<UserVO> temp;
+		temp=(ArrayList<UserVO>)serv.findUser(keyword).getMessage();
+		for(int i=0;i<temp.size();i++)
+		{
+			System.out.println(temp.get(i).getId());
+		}
+		return temp;
 	}
 	void displayUsers(){
 		model.setRowCount(0);
-		for(int i=0;i<ar.size();i++)
+		for(int i=0;i<users.size();i++)
 		{
-			UserVO user=ar.get(i);
+			UserVO user=users.get(i);
 			String lv=null;
 			switch(user.getJuri())
 			{
@@ -271,7 +291,31 @@ public class UserListPanel extends JPanel {
 	}
 	void confirmChange(){
 		int row=table.getSelectedRow();
-		
+		Jurisdiction jur=null;
+		String temp=(String)juriBox.getModel().getSelectedItem();
+		if(temp.equals("总经理")){jur=Jurisdiction.MANAGER;}
+		if(temp.equals("高级财务人员")){jur=Jurisdiction.FINANCE_SUPE;}
+		if(temp.equals("普通财务人员")){jur=Jurisdiction.FINANCE;}
+		if(temp.equals("快递员")){jur=Jurisdiction.COURIER;}
+		if(temp.equals("营业厅业务员")){jur=Jurisdiction.HALL;}
+		if(temp.equals("中转中心业务员")){jur=Jurisdiction.CENTER;}
+		if(temp.equals("中转中心仓库管理人员")){jur=Jurisdiction.STOCK;}
+		if(temp.equals("管理员")){jur=Jurisdiction.ADMIN;}
+		if(row<users.size()){
+			UserVO pre=users.get(row);
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),pre.getNumber());
+			serv.reviseUser(now);
+		}
+		else
+		{
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),-1);
+			serv.newUser(now);
+		}
+	}
+	void deleteUser(){
+		int row=table.getSelectedRow();
+		serv.deleteUser(users.get(row).getId());
+		users.remove(row);
 	}
 	
 	

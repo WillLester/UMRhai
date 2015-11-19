@@ -150,4 +150,7 @@ public class CountPanel extends JPanel{
 //	ArrayList<CountVO> getCounts(){
 //		return serv.checkInitInfo(id);
 //	}
+	void displayCounts(){
+		
+	}
 }

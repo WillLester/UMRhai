@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
  * 查看收款记录的panel
  */
 public class IncomeListPanel extends JPanel {
-//	private JTable IncomeTable;
 	private Table IncomeTable;
 	private DefaultTableModel model;
 	JLabel listLabel;
