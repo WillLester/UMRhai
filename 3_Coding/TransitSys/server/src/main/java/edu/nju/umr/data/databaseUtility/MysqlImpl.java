@@ -1,7 +1,9 @@
 package edu.nju.umr.data.databaseUtility;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 import edu.nju.umr.constants.DateFormat;
@@ -149,9 +151,9 @@ public class MysqlImpl implements MysqlService{
 			default:return Result.PO_KIND_ERROR;
 			}
 		} catch (SQLException e){
-			e.printStackTrace();
+			return Result.DATABASE_ERROR;
 		}
-		return Result.PO_NOT_FOUND;
+		return Result.SUCCESS;
 	}
 	public Result deleteInfo(String key, POKind kind) {
 		// TODO 自动生成的方法存根
@@ -242,7 +244,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.DATABASE_ERROR;
 		}
 		
-		return Result.PO_NOT_FOUND;
+		return Result.SUCCESS;
 	}
 	public Result reviseInfo(Object ob, POKind kind) {
 		// TODO 自动生成的方法存根
@@ -331,11 +333,103 @@ public class MysqlImpl implements MysqlService{
 		} catch (SQLException e){
 			return Result.DATABASE_ERROR;
 		}
-		return Result.PO_NOT_FOUND;
+		return Result.SUCCESS;
 	}
-	public Object checkInfo(String key,POKind kind) {
+	public Object checkInfo(String keyword,POKind kind) {
 		// TODO 自动生成的方法存根
-		return null;
+		ResultSet result;
+		try{
+			switch(kind){
+			case ACCOUNT:
+				result = state.executeQuery(getCommand(new AccountPO(0, keyword, 0), MysqlOperation.FIND));
+				ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+				while(result.next()){
+					
+				}
+				break;
+			case CITIES:
+				state.executeUpdate(getCommand((CitiesPO) ob, MysqlOperation.INSERT));
+				break;
+			case CITY:
+				state.executeUpdate(getCommand((CityPO)ob, MysqlOperation.INSERT));
+				break;
+			case DIARY:
+				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
+				break;
+			case DRIVER:
+				state.executeUpdate(getCommand((DriverPO)ob, MysqlOperation.INSERT));
+				break;
+			case GOOD:
+				state.executeUpdate(getCommand((GoodPO)ob, MysqlOperation.INSERT));
+				break;
+			case ORG:
+				state.executeUpdate(getCommand((OrgPO)ob, MysqlOperation.INSERT));
+				break;
+			case SHELF:
+				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
+				break;
+			case STOCK:
+				//state.executeUpdate(getCommand((StockPO)ob, MysqlOperation.INSERT));
+				StockPO po=(StockPO)ob;
+				for(int i=0;i<po.getGoods().size();i++)
+				{
+					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
+				}
+				break;
+			case USER:
+				state.executeUpdate(getCommand((UserPO)ob, MysqlOperation.INSERT));
+				break;
+			case VAN:
+				state.executeUpdate(getCommand((VanPO)ob, MysqlOperation.INSERT));
+				break;
+			case WORK:
+				state.executeUpdate(getCommand((WorkPO)ob, MysqlOperation.INSERT));
+				break;
+			case ARRIVE:
+				state.executeUpdate(getCommand((ArrivePO)ob,MysqlOperation.INSERT));
+				break;
+			case CENTERLOADING:
+				state.executeUpdate(getCommand((CenterLoadingPO)ob,MysqlOperation.INSERT));
+				break;
+			case EXPRESS:
+				state.executeUpdate(getCommand((ExpressPO)ob,MysqlOperation.INSERT));
+				break;
+			case HALLLOADING:
+				state.executeUpdate(getCommand((HallLoadingPO)ob,MysqlOperation.INSERT));
+				break;
+			case INCOME:
+				state.executeUpdate(getCommand((IncomePO)ob,MysqlOperation.INSERT));
+				break;
+			case ORDER:
+				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
+				break;
+			case PAYMENT:
+				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
+				break;
+			case RECIPIENT:
+				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
+				break;
+			case SEND:
+				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
+				break;
+			case STOCKIN:
+				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
+				break;
+			case STOCKOUT:
+				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
+				break;
+			case TRANSIT:
+				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
+				break;
+			case TRANSITINFO:
+				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
+				break;
+			default:return Result.PO_KIND_ERROR;
+			}
+		} catch (SQLException e){
+			return Result.DATABASE_ERROR;
+		}
+		return Result.SUCCESS;
 	}
 	private String getCommand(AccountPO account,MysqlOperation op){
 		String command=null;
