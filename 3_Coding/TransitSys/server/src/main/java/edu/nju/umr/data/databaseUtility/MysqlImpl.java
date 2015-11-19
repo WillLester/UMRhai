@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.constants.DateFormat;
@@ -20,7 +21,10 @@ import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
+import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
@@ -341,44 +345,86 @@ public class MysqlImpl implements MysqlService{
 		try{
 			switch(kind){
 			case ACCOUNT:
-				result = state.executeQuery(getCommand(new AccountPO(0, keyword, 0), MysqlOperation.FIND));
+				if(keyword == null){
+					result = state.executeQuery("select * from account");
+				} else {
+					result = state.executeQuery(getCommand(new AccountPO(0, keyword, 0), MysqlOperation.FIND));
+				}
 				ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+				while(result.next()){
+					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
+					accountList.add(account);
+				}
+				return accountList;
+			case CITIES:
+				result = state.executeQuery("select * from citiesinfo");
+				ArrayList<CitiesPO> citiesList = new ArrayList<CitiesPO>();
+				while(result.next()){
+					CitiesPO cities = new CitiesPO(result.getString(0), result.getString(1), result.getDouble(2));
+					citiesList.add(cities);
+				}
+				return citiesList;
+			case CITY:
+				result = state.executeQuery("select * from city");
+				ArrayList<CityPO> cityList = new ArrayList<CityPO>();
+				while(result.next()){
+					CityPO city = new CityPO(result.getString(1), result.getString(0), result.getString(2), result.getInt(3));
+					cityList.add(city);
+				}
+				return cityList;
+//			case DIARY:
+//				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
+//				break;
+			case DRIVER:
+				result = state.executeQuery(getCommand(new DriverPO(keyword, keyword, null, null, null, null, null, null), MysqlOperation.FIND));
 				while(result.next()){
 					
 				}
 				break;
-			case CITIES:
-				state.executeUpdate(getCommand((CitiesPO) ob, MysqlOperation.INSERT));
-				break;
-			case CITY:
-				state.executeUpdate(getCommand((CityPO)ob, MysqlOperation.INSERT));
-				break;
-			case DIARY:
-				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
-				break;
-			case DRIVER:
-				state.executeUpdate(getCommand((DriverPO)ob, MysqlOperation.INSERT));
-				break;
 			case GOOD:
-				state.executeUpdate(getCommand((GoodPO)ob, MysqlOperation.INSERT));
-				break;
+				result = state.executeQuery("select * from good where stockId='"+keyword+"'");
+				ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
+				Part[] parts = Part.values();
+				while(result.next()){
+					Calendar date = Calendar.getInstance();
+					date.setTime(result.getDate(7));
+					GoodPO good = new GoodPO(result.getString(0), result.getString(1), date, result.getString(2), parts[result.getInt(3)], result.getString(4), result.getInt(5), result.getInt(6));
+					goodList.add(good);
+				}
+				return goodList;
 			case ORG:
-				state.executeUpdate(getCommand((OrgPO)ob, MysqlOperation.INSERT));
-				break;
-			case SHELF:
-				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
-				break;
-			case STOCK:
-				//state.executeUpdate(getCommand((StockPO)ob, MysqlOperation.INSERT));
-				StockPO po=(StockPO)ob;
-				for(int i=0;i<po.getGoods().size();i++)
-				{
-					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
+				Organization orgs[] = Organization.values();
+				if(keyword == null){
+					result = state.executeQuery("select * from org");
+				} else {
+					result = state.executeQuery(getCommand(new OrgPO(keyword, keyword, null, keyword, new CityPO(keyword, null, null, 0)), MysqlOperation.FIND));
+				}
+				ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
+				while(result.next()){
+					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),null );
 				}
 				break;
+//			case SHELF:
+//				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
+//				break;
+			case STOCK:
+				@SuppressWarnings("unchecked")
+				ArrayList<GoodPO> goods = (ArrayList<GoodPO>) this.checkInfo(keyword, POKind.GOOD);
+				StockPO stock = new StockPO(keyword, goodList);
+				return stock;
 			case USER:
-				state.executeUpdate(getCommand((UserPO)ob, MysqlOperation.INSERT));
-				break;
+				Jurisdiction juris[] = Jurisdiction.values();
+				if(keyword == null){
+					result = state.executeQuery("select * from user");
+				} else {
+					result = state.executeQuery(getCommand(new UserPO(keyword, keyword, null, keyword, keyword, keyword, 0), MysqlOperation.FIND));
+				}
+				ArrayList<UserPO> userList = new ArrayList<UserPO>();
+				while(result.next()){
+					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(5)], result.getString(2), result.getString(3), result.getString(4), result.getInt(6));
+					userList.add(user);
+				}
+				return userList;
 			case VAN:
 				state.executeUpdate(getCommand((VanPO)ob, MysqlOperation.INSERT));
 				break;
@@ -424,12 +470,11 @@ public class MysqlImpl implements MysqlService{
 			case TRANSITINFO:
 				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
 				break;
-			default:return Result.PO_KIND_ERROR;
+			default:return null;
 			}
 		} catch (SQLException e){
-			return Result.DATABASE_ERROR;
+			return null;
 		}
-		return Result.SUCCESS;
 	}
 	private String getCommand(AccountPO account,MysqlOperation op){
 		String command=null;
