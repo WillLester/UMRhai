@@ -3,15 +3,21 @@ package edu.nju.umr.ui.checkUI;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 /*
  * yyy
  * 20151029
@@ -20,6 +26,8 @@ import javax.swing.JButton;
 public class CostBenePanel extends JPanel {
 	private JTable collectTable;
 	private JFrame frame;
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -34,9 +42,9 @@ public class CostBenePanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
-		collectTable = new JTable();
-		collectTable.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
-		add(collectTable);
+//		collectTable = new JTable();
+//		collectTable.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
+//		add(collectTable);
 		
 		JButton out = new JButton("退出");
 		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
@@ -47,6 +55,25 @@ public class CostBenePanel extends JPanel {
 			}
 		});
 		add(out);
+		tableInit();
 
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"收入","支出","利润"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

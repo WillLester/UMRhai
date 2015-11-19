@@ -4,9 +4,13 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 
 import javax.swing.JRadioButton;
 
@@ -24,7 +28,10 @@ import javax.swing.JScrollPane;
  * 查看收款记录的panel
  */
 public class IncomeListPanel extends JPanel {
-	private JTable IncomeTable;
+//	private JTable IncomeTable;
+	private Table IncomeTable;
+	private DefaultTableModel model;
+	JLabel listLabel;
 	
 	/**
 	 * Create the panel.用以查看收款记录
@@ -75,19 +82,33 @@ public class IncomeListPanel extends JPanel {
 		add(nameLabel);
 		
 		
-		JLabel listLabel = new JLabel("收款记录");
+		listLabel = new JLabel("收款记录");
 		listLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
 		listLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*4+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(listLabel);
 		
-		IncomeTable = new JTable();
-		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
-		add(IncomeTable);
-		
 		JButton out = new JButton("退出");
 		out.setBounds(this.getWidth()/10*8, IncomeTable.getY()+IncomeTable.getHeight()+20, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(out);
-		
+		tableInit();
 
+	}
+	void tableInit(){
+		IncomeTable = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)IncomeTable.getModel();
+		IncomeTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		IncomeTable.setBounds(233, 101, 637, 335);
+		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		IncomeTable.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(IncomeTable);
+		scroll.setBounds(233, 101, 637, 335);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"时间","金额","快递员","快递编号"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

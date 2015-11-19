@@ -4,14 +4,22 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
@@ -20,8 +28,9 @@ import java.awt.event.ActionListener;
  * 查看日志记录panel
  */
 public class DiaryListPanel extends JPanel {
-	private JTable diaryTable;
 	private JFrame frame;
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -55,9 +64,9 @@ public class DiaryListPanel extends JPanel {
 		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(confirm);
 		
-	    diaryTable = new JTable();
-		diaryTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-		add(diaryTable);
+//	    diaryTable = new JTable();
+//		diaryTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+//		add(diaryTable);
 		
 		JLabel diaryLable = new JLabel("日志记录");
 		diaryLable.setFont(new Font("华文新魏",Font.PLAIN,15));
@@ -78,6 +87,25 @@ public class DiaryListPanel extends JPanel {
 			}
 		});
 		add(button);
+		tableInit();
 
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"操作人","操作","操作时间"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

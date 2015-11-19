@@ -7,14 +7,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JFrame;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import edu.nju.umr.ui.Table;
 
 public class CityListPanel extends JPanel{
-	private JTable cityTable1;
-	private JTable cityTable2;
+	private Table cityTable1;
+	private Table cityTable2;
+	private DefaultTableModel model1;
+	private DefaultTableModel model2;
 	private JTextField nameField;
 	private JTextField idField;
 	private JTextField provinceField;
@@ -34,14 +42,38 @@ public class CityListPanel extends JPanel{
 		cityLabel.setBounds(508, 35, 88, 29);
 		add(cityLabel);
 		
-		cityTable1 = new JTable();
-		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cityTable1 = new Table(new DefaultTableModel());
+		model1=(DefaultTableModel)cityTable1.getModel();
+		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
 		cityTable1.setBounds(140, 80, 403, 367);
-		add(cityTable1);
+		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cityTable1.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll1=new JScrollPane(cityTable1);
+		scroll1.setBounds(140, 80, 403, 367);
+		scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"名称"};
+		model1.setColumnIdentifiers(columnNames);
+		add(scroll1);
 		
-		cityTable2 = new JTable();
+		cityTable2 = new Table(new DefaultTableModel());
+		model2=(DefaultTableModel)cityTable2.getModel();
+		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
 		cityTable2.setBounds(567, 80, 403, 367);
-		add(cityTable2);
+		cityTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cityTable2.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll2=new JScrollPane(cityTable2);
+		scroll2.setBounds(567, 80, 403, 367);
+		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		model2.setColumnIdentifiers(columnNames);
+		add(scroll2);
 		
 		JLabel nameLabel = new JLabel("城市名");
 		nameLabel.setFont(new Font("宋体", Font.PLAIN, 15));

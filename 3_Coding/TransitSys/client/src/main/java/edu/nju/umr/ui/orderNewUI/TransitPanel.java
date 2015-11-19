@@ -30,11 +30,14 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
+import edu.nju.umr.ui.Table;
 
 public class TransitPanel extends JPanel {
 	/**
@@ -45,7 +48,8 @@ public class TransitPanel extends JPanel {
 	private JTextField supervisionField;
 	private JTextField planeIdField;
 	private JTextField expressIdField;
-	private JTable expressList;
+	private Table expressList;
+	private DefaultTableModel model;
 	private JTextField containerField;
 	private JFrame frame;
 	private TransitOrderLSer logicSer;
@@ -174,42 +178,6 @@ public class TransitPanel extends JPanel {
 		expressListLabel.setBounds(401, 289, 130, 24);
 		add(expressListLabel);
 		
-		expressList = new JTable();
-		expressList.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		expressList.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		expressList.setBounds(220, 313, 529, 176);
-		//this.add(new JScrollPane(table));
-		add(expressList);
 		
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -257,6 +225,28 @@ public class TransitPanel extends JPanel {
 		containerField.setBounds(609, 203, 69, 25);
 		add(containerField);
 		
+		tableInit();
+		
 
+	}
+	void tableInit(){
+		expressList = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)expressList.getModel();
+		expressList.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		expressList.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		expressList.setBounds(220, 313, 529, 176);
+		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		expressList.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(expressList);
+		scroll.setBounds(220, 313, 529, 176);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"订单号"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

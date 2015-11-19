@@ -2,9 +2,15 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -12,12 +18,15 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class DriverListPanel extends JPanel {
-	private JTable listTable;
 	private JTextField textFieldSearch;
 	private JFrame frame;
-
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -40,10 +49,6 @@ public class DriverListPanel extends JPanel {
 		JButton search = new JButton("搜索");
 		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 90, 21);
 		//add(search);
-
-		listTable = new JTable();
-		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-		add(listTable);
 		
 		JButton add = new JButton("新增");
 		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
@@ -70,7 +75,25 @@ public class DriverListPanel extends JPanel {
 			}
 		});
 		add(out);
+		tableInit();
 		
-		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"编号","姓名","出生日期","身份证号","手机号","性别","行驶证期限"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

@@ -3,21 +3,32 @@ package edu.nju.umr.ui.transitInfoUI;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import edu.nju.umr.ui.Table;
 
 public class TransitInfoInqPanel extends JPanel {
 	private JTextField textField_1;
-	private JTable table;
-
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -61,9 +72,25 @@ public class TransitInfoInqPanel extends JPanel {
 		});
 		add(button_1);
 		
-		table = new JTable();
+		tableInit();
+		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
 		table.setBounds(305, 191, 431, 190);
-		add(table);
-
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(305, 191, 431, 190);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"时间","位置"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

@@ -3,16 +3,25 @@ package edu.nju.umr.ui.accountUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.accountLogic.CountLogic;
+import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.CountVO;
 
 public class CountPanel extends JPanel{
 	/**
@@ -20,14 +29,18 @@ public class CountPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = -6592881582489810248L;
 //	private JTextField searchField;
-	private JTable countList;
+	private Table table;
+	private DefaultTableModel model;
+	private ArrayList<CountVO> countList;
 	private JFrame frame;
+	private CountLSer serv;
 	/**
 	 * Create the panel.
 	 */
 	public CountPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		serv=new CountLogic();
 		
 		JLabel countLabel = new JLabel("期初建账");
 		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -45,11 +58,6 @@ public class CountPanel extends JPanel{
 //		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
 //		searchButton.setBounds(Constants.WIDTH_DIV_9*13/10+620, Constants.HEIGHT_DIV_10*11/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 //		add(searchButton);
-		
-		countList = new JTable();
-		countList.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
-		countList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		add(countList);
 		
 //		JLabel addLabel = new JLabel("新增账");
 //		addLabel.setFont(new Font("华文新魏", Font.PLAIN, 17));
@@ -115,6 +123,31 @@ public class CountPanel extends JPanel{
 			}
 		});
 		add(exitButton);
+		
+		tableInit();
+		//countList=getCounts();
+		
 
 	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"名称","余额"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
+	}
+//	ArrayList<CountVO> getCounts(){
+//		return serv.checkInitInfo(id);
+//	}
 }

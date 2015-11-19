@@ -10,10 +10,16 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 /*
  * yyy
  * 20151029
@@ -21,8 +27,9 @@ import edu.nju.umr.ui.Constants;
  */
 public class BusiCircumPanel extends JPanel {
 
-	private JTable statementTable;
 	private JFrame frame;
+	private Table statementTable;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -56,9 +63,9 @@ public class BusiCircumPanel extends JPanel {
 		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(confirm);
 		
-	    statementTable = new JTable();
-		statementTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-		add(statementTable);
+//	    statementTable = new JTable();
+//		statementTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+//		add(statementTable);
 		
 		JLabel statementLabel = new JLabel("经营情况表");
 		statementLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
@@ -79,7 +86,27 @@ public class BusiCircumPanel extends JPanel {
 			}
 		});
 		add(button);
+		
+		tableInit();
 
+	}
+	void tableInit(){
+		statementTable = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)statementTable.getModel();
+		statementTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		statementTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		statementTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		statementTable.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(statementTable);
+		scroll.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"单据种类","日期","金额","缘由"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 
 }

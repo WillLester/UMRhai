@@ -5,16 +5,24 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JFrame;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 
 public class OrderApprovePanel extends JPanel{
-	private JTable orderList;
+//	private JTable orderList;
+	private Table table;
+	private DefaultTableModel model;
 	private JFrame frame;
 
 	/**
@@ -29,10 +37,10 @@ public class OrderApprovePanel extends JPanel{
 		approveLabel.setBounds(505, 40, 93, 24);
 		add(approveLabel);
 		
-		orderList = new JTable();
-		orderList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		orderList.setBounds(193, 71, 717, 421);
-		add(orderList);
+//		orderList = new JTable();
+//		orderList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+//		orderList.setBounds(193, 71, 717, 421);
+//		add(orderList);
 		
 		JButton allButton = new JButton("全选");
 		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -64,6 +72,25 @@ public class OrderApprovePanel extends JPanel{
 			}
 		});
 		add(exitButton);
+		tableInit();
 
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(193, 71, 717, 421);
+		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(193, 71, 717, 421);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"时间","种类","提交机构","提交人"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

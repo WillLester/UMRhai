@@ -9,18 +9,26 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 
 public class StockDividePanel extends JPanel{
 	private JTextField searchField;
-	private JTable shelfList;
 	private JTextField idField;
 	private JTextField rowField;
 	private JTextField placeField;
 	private JFrame frame;
+	
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -44,10 +52,6 @@ public class StockDividePanel extends JPanel{
 		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		searchButton.setBounds(827, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(searchButton);
-		
-		shelfList = new JTable();
-		shelfList.setBounds(233, 109, 638, 371);
-		add(shelfList);
 		
 		JLabel idLabel = new JLabel("编号");
 		idLabel.setFont(new Font("宋体", Font.PLAIN, 15));
@@ -119,5 +123,25 @@ public class StockDividePanel extends JPanel{
 			}
 		});
 		add(exitButton);
+		tableInit();
+		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(233, 109, 638, 371);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(233, 109, 638, 371);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"分区名称","大小"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

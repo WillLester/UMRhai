@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.Table;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -14,15 +15,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class OrgListPanel extends JPanel {
-	private JTable listTable;
 	private JTextField textFieldSearch;
 	private JTextField textFieldName;
 	private JTextField textFieldAddr;
 	private JFrame frame;
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -49,12 +56,9 @@ public class OrgListPanel extends JPanel {
 		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+120,textFieldSearch.getY(), 90, 21);
 		add(all);
 		
-		listTable = new JTable();
-		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
-		add(listTable);
 		
 		JLabel orgName = new JLabel("机构名称");
-		orgName.setBounds(Constants.TABLE_X, listTable.getY()+listTable.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		orgName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(orgName);
 		
 		textFieldName = new JTextField();
@@ -80,7 +84,7 @@ public class OrgListPanel extends JPanel {
 		textFieldAddr.setColumns(10);
 		
 		JButton add = new JButton("新增");
-		add.setBounds(listTable.getX()+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 93, 23);
+		add.setBounds(Constants.TABLE_X+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 93, 23);
 		add(add);
 		
 		JButton delete = new JButton("删除");
@@ -119,6 +123,26 @@ public class OrgListPanel extends JPanel {
 			}
 		});
 		add(workMan);
+		tableInit();
+		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"名称","种类","地址"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 
 }

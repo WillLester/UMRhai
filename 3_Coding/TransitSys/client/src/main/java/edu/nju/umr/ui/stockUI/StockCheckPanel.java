@@ -9,13 +9,20 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.Table;
 
 public class StockCheckPanel extends JPanel{
-	private JTable stockTable;
 	private JFrame frame;
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -146,10 +153,6 @@ public class StockCheckPanel extends JPanel{
 		endSLabel.setBounds(816, 118, 27, 19);
 		add(endSLabel);
 		
-		stockTable = new JTable();
-		stockTable.setBounds(219, 156, 665, 372);
-		add(stockTable);
-		
 		JButton exitButton = new JButton("退出查看");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(816, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
@@ -161,5 +164,25 @@ public class StockCheckPanel extends JPanel{
 		});
 		add(exitButton);
 
+		tableInit();
+		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(219, 156, 665, 372);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(219, 156, 665, 372);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"时间","操作","订单号","位置"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

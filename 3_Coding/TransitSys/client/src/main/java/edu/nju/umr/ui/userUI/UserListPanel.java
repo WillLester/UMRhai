@@ -42,11 +42,13 @@ public class UserListPanel extends JPanel {
 	private JTextField mobileField;
 	private JTextField orgField;
 	private Table table;
-	private JComboBox juriBox;
 	private DefaultTableModel model;
+	private JComboBox juriBox;
 	
 	private JFrame frame;
 	private UserManLSer serv;
+	
+	private ArrayList<UserVO> ar;
 	/**
 	 * Create the panel.
 	 */
@@ -73,7 +75,8 @@ public class UserListPanel extends JPanel {
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				displayUsers(textField.getText());
+				getUsers(textField.getText());
+				displayUsers();
 			}
 		});
 		add(searchButton);
@@ -84,7 +87,8 @@ public class UserListPanel extends JPanel {
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				displayUsers("");
+				getUsers("");
+				displayUsers();
 			}
 		});
 		add(allButton);
@@ -199,7 +203,8 @@ public class UserListPanel extends JPanel {
 		add(mobileField);
 
 		tableInit();
-		displayUsers("");
+		ar=getUsers("");
+		displayUsers();
 	}
 	void tableInit(){
 		table = new Table(new DefaultTableModel());
@@ -215,14 +220,16 @@ public class UserListPanel extends JPanel {
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(133, 121, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		add(scroll);
-	}
-	void displayUsers(String keyword)
-	{
-		model.setRowCount(0);
 		String[] columnNames={"账号","密码","权限","姓名","手机号","机构"};
 		model.setColumnIdentifiers(columnNames);
-		ArrayList<UserVO> ar=(ArrayList<UserVO>)serv.findUser(keyword).getMessage();
+		add(scroll);
+	}
+	ArrayList<UserVO> getUsers(String keyword)
+	{
+		return (ArrayList<UserVO>)serv.findUser(keyword).getMessage();
+	}
+	void displayUsers(){
+		model.setRowCount(0);
 		for(int i=0;i<ar.size();i++)
 		{
 			UserVO user=ar.get(i);
@@ -241,6 +248,7 @@ public class UserListPanel extends JPanel {
 			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
 			model.addRow(rowData);
 		}
+		
 	}
 	void addUser(){
 		String[] rowData={};
@@ -261,5 +269,11 @@ public class UserListPanel extends JPanel {
 		mobileField.setText(data[4]);
 		orgField.setText(data[5]);
 	}
+	void confirmChange(){
+		int row=table.getSelectedRow();
+		
+	}
+	
+	
 	
 }

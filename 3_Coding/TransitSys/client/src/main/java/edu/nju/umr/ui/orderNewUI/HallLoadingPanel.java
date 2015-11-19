@@ -1,11 +1,15 @@
 package edu.nju.umr.ui.orderNewUI;
 
 import javax.swing.JPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
@@ -14,7 +18,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
@@ -24,8 +30,12 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+
+import edu.nju.umr.ui.Table;
 
 public class HallLoadingPanel extends JPanel {
 	private JTextField textField_1;
@@ -33,7 +43,8 @@ public class HallLoadingPanel extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField;
 	private JTextField textField_4;
-	private JTable table;
+	private Table table;
+	private DefaultTableModel model;
 	private JFrame frame;
 	/**
 	 * Create the panel.
@@ -171,42 +182,11 @@ public class HallLoadingPanel extends JPanel {
 		label_8.setBounds(401+75, 289, 130, 24);
 		add(label_8);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		table.setFont(new Font("宋体", Font.PLAIN, 20));
-		table.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setBounds(220+75, 313, 529, 176);
-		//this.add(new JScrollPane(table));
-		add(table);
+//		table = new JTable();
+//		table.setFont(new Font("宋体", Font.PLAIN, 20));
+//		table.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+//		table.setBounds(220+75, 313, 529, 176);
+//		add(table);
 		
 		JButton button = new JButton("确定");
 		button.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -223,7 +203,26 @@ public class HallLoadingPanel extends JPanel {
 			}
 		});
 		add(button_1);
-		
+		tableInit();
 
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(220+75, 313, 529, 176);
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(220+75, 313, 529, 176);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"订单号"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 }

@@ -4,17 +4,23 @@ import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.Table;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class WorkWageListPanel extends JPanel {
 	/**
@@ -29,6 +35,8 @@ public class WorkWageListPanel extends JPanel {
 	private JTextField textFieldBound;
 	private JTextField textFieldwm;
 	private JFrame frame;
+	private Table table;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -52,12 +60,8 @@ public class WorkWageListPanel extends JPanel {
 		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
 		add(search);
 		
-		listTable = new JTable();
-		listTable.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
-		add(listTable);
-		
 		JLabel wageType = new JLabel("计薪方式");
-		wageType.setBounds(listTable.getX(), listTable.getY()+listTable.getHeight()+40, 54, 15);
+		wageType.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+ Constants.TABLE_HEIGHT*4+40, 54, 15);
 		add(wageType);
 		
 		textFieldwt = new JTextField();
@@ -125,6 +129,26 @@ public class WorkWageListPanel extends JPanel {
 			}
 		});
 		add(out);
+		tableInit();
+		
+	}
+	void tableInit(){
+		table = new Table(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll=new JScrollPane(table);
+		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"姓名","机构","职位"};
+		model.setColumnIdentifiers(columnNames);
+		add(scroll);
 	}
 
 }
