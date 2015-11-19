@@ -33,6 +33,7 @@ public class CountLogic implements CountLSer{
 	CountDFacSer countFac;
 	CountDSer countData;
 	UtilityLogic uti;
+	ArrayList<CountPO> countPOs;
 	public CountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
