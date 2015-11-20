@@ -166,88 +166,6 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		try {
 			state.executeUpdate(po.getCommand(MysqlOperation.DELETE));
-//			switch(kind){
-//			case ACCOUNT:
-//				state.executeUpdate(getCommand(new AccountPO(Integer.parseInt(key), null, 0), MysqlOperation.DELETE));
-//				break;
-//			case CITIES:
-//				state.executeUpdate(getCommand(new CitiesPO(key,null,0,0), MysqlOperation.DELETE));
-//				state.executeUpdate(getCommand(new CitiesPO(null, key, 0, 0),MysqlOperation.DELETE));
-//				break;
-//			case CITY:
-//				state.executeUpdate(getCommand(new CityPO(key, null, null,0), MysqlOperation.DELETE));
-//				break;
-//			case DIARY:
-//				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
-//				break;
-//			case DRIVER:
-//				state.executeUpdate(getCommand(new DriverPO(key, null, null, null, null, null, null, null), MysqlOperation.DELETE));
-//				break;
-//			case GOOD:
-//				state.executeUpdate(getCommand(new GoodPO(key, null, null, null, null, null, 0, 0), MysqlOperation.DELETE));
-//				break;
-//			case ORG:
-//				state.executeUpdate(getCommand(new OrgPO(key, null, null, null, null), MysqlOperation.DELETE));
-//				break;
-//			case SHELF:
-//				state.executeUpdate(getCommand(new ShelfPO(key, null, 0, 0, null), MysqlOperation.DELETE));
-//				break;
-//			case STOCK:
-//				StockPO po=(StockPO)ob;
-//				for(int i=0;i<po.getGoods().size();i++) {
-//					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
-//				}
-//				break;
-//			case USER:
-//				state.executeUpdate(getCommand(new UserPO(null, null, null, null, null, null,Integer.parseInt(key)), MysqlOperation.DELETE));
-//				break;
-//			case VAN:
-//				state.executeUpdate(getCommand(new VanPO(key, null, null, null, null), MysqlOperation.DELETE));
-//				break;
-//			case WORK:
-//				state.executeUpdate(getCommand(new WorkPO(null, null, null, key, null), MysqlOperation.DELETE));
-//				break;
-//			case ARRIVE:
-//				state.executeUpdate(getCommand(new ArrivePO(null, null, key, null, null, null),MysqlOperation.DELETE));
-//				break;
-//			case CENTERLOADING:
-//				state.executeUpdate(getCommand(new CenterLoadingPO(null, key, null, null, null, null, null, null),MysqlOperation.DELETE));
-//				break;
-//			case EXPRESS:
-//				state.executeUpdate(getCommand(new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, key, null, null, 0, null),MysqlOperation.DELETE));
-//				break;
-//			case HALLLOADING:
-//				state.executeUpdate(getCommand(new HallLoadingPO(key, null, null, null, null, null, null, null, null, null),MysqlOperation.DELETE));
-//				break;
-//			case INCOME:
-//				state.executeUpdate(getCommand(new IncomePO(null, null, 0, null, key, null),MysqlOperation.DELETE));
-//				break;
-//			case ORDER:
-//				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case PAYMENT:
-//				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case RECIPIENT:
-//				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case SEND:
-//				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case STOCKIN:
-//				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case STOCKOUT:
-//				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case TRANSIT:
-//				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case TRANSITINFO:
-//				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
-//				break;
-//			default:return Result.PO_KIND_ERROR;
-//		}
 		} catch (SQLException e){
 			return Result.DATABASE_ERROR;
 		}
@@ -258,103 +176,17 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		try{
 			state.executeUpdate(po.getCommand(MysqlOperation.UPDATE));
-//			switch(kind){
-//			case ACCOUNT:
-//				state.executeUpdate(getCommand((AccountPO) ob, MysqlOperation.UPDATE));
-//				break;
-//			case CITIES:
-//				state.executeUpdate(getCommand((CitiesPO) ob, MysqlOperation.UPDATE));
-//				break;
-//			case CITY:
-//				state.executeUpdate(getCommand((CityPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case DIARY:
-//				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
-//				break;
-//			case DRIVER:
-//				state.executeUpdate(getCommand((DriverPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case GOOD:
-//				state.executeUpdate(getCommand((GoodPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case ORG:
-//				state.executeUpdate(getCommand((OrgPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case SHELF:
-//				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case STOCK:
-//				StockPO po=(StockPO)ob;
-//				for(int i=0;i<po.getGoods().size();i++){
-//					state.executeUpdate(getCommand(po.getGoods().get(i),MysqlOperation.INSERT));
-//				}
-//				break;
-//			case USER:
-//				state.executeUpdate(getCommand((UserPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case VAN:
-//				state.executeUpdate(getCommand((VanPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case WORK:
-//				state.executeUpdate(getCommand((WorkPO)ob, MysqlOperation.UPDATE));
-//				break;
-//			case ARRIVE:
-//				state.executeUpdate(getCommand((ArrivePO)ob,MysqlOperation.INSERT));
-//				break;
-//			case CENTERLOADING:
-//				state.executeUpdate(getCommand((CenterLoadingPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case EXPRESS:
-//				state.executeUpdate(getCommand((ExpressPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case HALLLOADING:
-//				state.executeUpdate(getCommand((HallLoadingPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case INCOME:
-//				state.executeUpdate(getCommand((IncomePO)ob,MysqlOperation.INSERT));
-//				break;
-//			case ORDER:
-//				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case PAYMENT:
-//				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case RECIPIENT:
-//				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case SEND:
-//				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case STOCKIN:
-//				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case STOCKOUT:
-//				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case TRANSIT:
-//				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
-//				break;
-//			case TRANSITINFO:
-//				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.UPDATE));
-//				break;
-//			default:return Result.PO_KIND_ERROR;
-//			}
 		} catch (SQLException e){
 			return Result.DATABASE_ERROR;
 		}
 		return Result.SUCCESS;
 	}
-	public Object checkInfo(String keyword,POKind kind) {
-		// TODO 自动生成的方法存根
+	public Object checkAll(POKind kind){
 		ResultSet result;
 		try{
 			switch(kind){
 			case ACCOUNT:
-				if(keyword == null){
-					result = state.executeQuery("select * from account");
-				} else {
-					result = state.executeQuery(getCommand(new AccountPO(0, keyword, 0), MysqlOperation.FIND));
-				}
+				result = state.executeQuery("select * from account");
 				ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 				while(result.next()){
 					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
@@ -377,76 +209,33 @@ public class MysqlImpl implements MysqlService{
 					cityList.add(city);
 				}
 				return cityList;
-//			case DIARY:
-//				state.executeUpdate(getCommand((DiaryPO)ob, MysqlOperation.INSERT));
-//				break;
-			case DRIVER:
-				result = state.executeQuery(getCommand(new DriverPO(keyword, keyword, null, null, null, null, null, null), MysqlOperation.FIND));
-				while(result.next()){
-					
-				}
-				break;
-			case GOOD:
-				result = state.executeQuery("select * from good where stockId='"+keyword+"'");
-				ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
-				Part[] parts = Part.values();
-				while(result.next()){
-					Calendar date = Calendar.getInstance();
-					date.setTime(result.getDate(7));
-					GoodPO good = new GoodPO(result.getString(0), result.getString(1), date, result.getString(2), parts[result.getInt(3)], result.getString(4), result.getInt(5), result.getInt(6));
-					goodList.add(good);
-				}
-				return goodList;
 			case ORG:
 				Organization orgs[] = Organization.values();
-				if(keyword == null){
-					result = state.executeQuery("select * from org");
-				} else {
-					result = state.executeQuery(getCommand(new OrgPO(keyword, keyword, null, keyword, new CityPO(keyword, null, null, 0)), MysqlOperation.FIND));
-				}
+				result = state.executeQuery("select * from org");
 				ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 				while(result.next()){
 					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),null );
 				}
 				break;
-//			case SHELF:
-//				state.executeUpdate(getCommand((ShelfPO)ob, MysqlOperation.INSERT));
-//				break;
-			case STOCK:
-				@SuppressWarnings("unchecked")
-				ArrayList<GoodPO> goods = (ArrayList<GoodPO>) this.checkInfo(keyword, POKind.GOOD);
-				StockPO stock = new StockPO(keyword, goodList);
-				return stock;
 			case USER:
 				Jurisdiction juris[] = Jurisdiction.values();
-				if(keyword == null){
-					result = state.executeQuery("select * from user");
-				} else {
-					result = state.executeQuery(getCommand(new UserPO(keyword, keyword, null, keyword, keyword, keyword, 0), MysqlOperation.FIND));
-				}
+				result = state.executeQuery("select * from user");
 				ArrayList<UserPO> userList = new ArrayList<UserPO>();
 				while(result.next()){
 					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(5)], result.getString(2), result.getString(3), result.getString(4), result.getInt(6));
 					userList.add(user);
 				}
 				return userList;
-			case VAN:
-				state.executeUpdate(getCommand((VanPO)ob, MysqlOperation.INSERT));
-				break;
 			case WORK:
-				state.executeUpdate(getCommand((WorkPO)ob, MysqlOperation.INSERT));
-				break;
-			case ARRIVE:
-				state.executeUpdate(getCommand((ArrivePO)ob,MysqlOperation.INSERT));
-				break;
-			case CENTERLOADING:
-				state.executeUpdate(getCommand((CenterLoadingPO)ob,MysqlOperation.INSERT));
-				break;
-			case EXPRESS:
-				state.executeUpdate(getCommand((ExpressPO)ob,MysqlOperation.INSERT));
-				break;
-			case HALLLOADING:
-				state.executeUpdate(getCommand((HallLoadingPO)ob,MysqlOperation.INSERT));
+				juris = Jurisdiction.values();
+				result = state.executeQuery("select * from user");
+				ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
+				while(result.next()){
+					ResultSet workInfo = state.executeQuery("select * from user where id="+result.getInt(6));
+					while(workInfo.next()){
+						WorkPO work = new WorkPO(result.getString(2), result.getString(3), result.getString(4), id, juri);
+					}
+				}
 				break;
 			case INCOME:
 				state.executeUpdate(getCommand((IncomePO)ob,MysqlOperation.INSERT));
@@ -457,26 +246,21 @@ public class MysqlImpl implements MysqlService{
 			case PAYMENT:
 				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
 				break;
-			case RECIPIENT:
-				state.executeUpdate(getCommand((RecipientPO)ob,MysqlOperation.INSERT));
-				break;
-			case SEND:
-				state.executeUpdate(getCommand((SendPO)ob,MysqlOperation.INSERT));
-				break;
-			case STOCKIN:
-				state.executeUpdate(getCommand((StockInPO)ob,MysqlOperation.INSERT));
-				break;
-			case STOCKOUT:
-				state.executeUpdate(getCommand((StockOutPO)ob,MysqlOperation.INSERT));
-				break;
-			case TRANSIT:
-				state.executeUpdate(getCommand((TransitPO)ob,MysqlOperation.INSERT));
-				break;
 			case TRANSITINFO:
 				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
 				break;
 			default:return null;
 			}
+		} catch(SQLException e){
+			return null;
+		}
+	}
+
+	public Object checkInfo(PO po) {
+		// TODO 自动生成的方法存根
+		ResultSet result;
+		try{
+			
 		} catch (SQLException e){
 			return null;
 		}
