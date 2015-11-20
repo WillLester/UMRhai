@@ -3,15 +3,14 @@ package edu.nju.umr.logic.userLogic;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
-import edu.nju.umr.logicService.userLogicSer.UserManLSer;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
-import edu.nju.umr.po.UserPO;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
+import edu.nju.umr.logicService.userLogicSer.UserManLSer;
+import edu.nju.umr.po.UserPO;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.UserVO;
 
 public class UserManLogic implements UserManLSer{
 	UserManDFacSer dataFac;
@@ -77,7 +76,7 @@ public class UserManLogic implements UserManLSer{
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
 		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
-			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getKey()));
+			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getKey()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

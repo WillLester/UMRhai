@@ -222,7 +222,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from user");
 				ArrayList<UserPO> userList = new ArrayList<UserPO>();
 				while(result.next()){
-					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(5)], result.getString(2), result.getString(3), result.getString(4), result.getInt(6));
+					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getInt(5));
 					userList.add(user);
 				}
 				return userList;

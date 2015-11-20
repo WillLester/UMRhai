@@ -25,7 +25,7 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
 	public UserPO findUser(String id,String password) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new UserPO(id,"hhhhh",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",1);
+		return new UserPO(id,"hhhhh",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊",1);
 	}
 
 }
