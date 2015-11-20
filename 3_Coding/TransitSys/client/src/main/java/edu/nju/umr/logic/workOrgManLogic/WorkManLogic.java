@@ -124,7 +124,7 @@ public class WorkManLogic implements WorkManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO work=ar.get(i);
-			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri(),work.getKind(),work.getMoney()));
+			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getId(),work.getJuri(),work.getKind(),work.getMoney()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

@@ -108,7 +108,7 @@ public class UtilityLogic {
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO Work=ar.get(i);
-			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
+			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrg(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;

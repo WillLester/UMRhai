@@ -28,6 +28,7 @@ import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
@@ -222,26 +223,46 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from user");
 				ArrayList<UserPO> userList = new ArrayList<UserPO>();
 				while(result.next()){
-					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getInt(5));
-					userList.add(user);
+					ResultSet workInfo = state.executeQuery("select * from work where id="+result.getInt(5));
+					while(workInfo.next()){
+						UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getInt(5),result.getString(6),workInfo.getString(1));
+						userList.add(user);
+					}
 				}
 				return userList;
 			case WORK:
 				juris = Jurisdiction.values();
+				Wage wages[] = Wage.values();
 				result = state.executeQuery("select * from user");
 				ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
 				while(result.next()){
-					ResultSet workInfo = state.executeQuery("select * from user where id="+result.getInt(6));
-					while(workInfo.next()){
-						WorkPO work = new WorkPO(result.getString(2), result.getString(3), result.getString(4), id, juri);
+					ResultSet userInfo = state.executeQuery("select * from user where id="+result.getInt(6));
+					while(userInfo.next()){
+						WorkPO work = new WorkPO(userInfo.getString(2), userInfo.getString(3),result.getString(1) , result.getInt(0), juris[userInfo.getInt(4)], wages[result.getInt(2)], result.getInt(3), result.getInt(4));
+						workList.add(work);
 					}
 				}
-				break;
+				return workList;
 			case INCOME:
-				state.executeUpdate(getCommand((IncomePO)ob,MysqlOperation.INSERT));
+				result = state.executeQuery("select * from incomeorderpassed");
+				ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
+				while(result.next()){
+					Calendar date = Calendar.getInstance();
+					date.setTime(result.getDate(3));
+					Calendar time = Calendar.getInstance();
+					time.setTime(result.getDate(4));
+					ArrayList<String> express = new ArrayList<String>();
+					String ori[] = result.getString(5).split(" ");
+					for(int i = 0;i < ori.length;i++){
+						express.add(ori[i]);
+					}
+					IncomePO income = new IncomePO(date, result.getString(1), result.getDouble(2), express, result.getInt(0), time);
+				}
 				break;
 			case ORDER:
-				state.executeUpdate(getCommand((OrderPO)ob,MysqlOperation.INSERT));
+				ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
+				result = state.executeQuery("select * from arriveorderwaiting");
+				
 				break;
 			case PAYMENT:
 				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));

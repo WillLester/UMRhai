@@ -22,7 +22,7 @@ public class UserDriver {
 		//System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrgId() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 	}
 	private void driveUser(){
-		UserVO userNew = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊",1);
+		UserVO userNew = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊",1,null,null);
 		System.out.println(user.newUser(userNew));
 		System.out.println(user.deleteUser("00001"));
 		System.out.println(user.reviseUser(userNew));

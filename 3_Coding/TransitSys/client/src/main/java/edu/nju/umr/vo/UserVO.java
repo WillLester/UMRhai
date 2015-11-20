@@ -9,7 +9,9 @@ public class UserVO {
 	private String name;
 	private String mobile;
 	private int number;
-	public UserVO(String id,String password,Jurisdiction juri,String name,String mobile,int number) {
+	private String org;
+	private String orgId;
+	public UserVO(String id,String password,Jurisdiction juri,String name,String mobile,int number,String org,String orgId) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.password = password;
@@ -17,6 +19,8 @@ public class UserVO {
 		this.name = name;
 		this.mobile = mobile;
 		this.number=number;
+		this.org = org;
+		this.orgId = orgId;
 	}
 	public String getId() {
 		return id;
@@ -35,5 +39,11 @@ public class UserVO {
 	}
 	public int getNumber(){
 		return number;
+	}
+	public String getOrg() {
+		return org;
+	}
+	public String getOrgId() {
+		return orgId;
 	}
 }

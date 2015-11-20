@@ -17,11 +17,11 @@ public class IncomePO extends PO implements Serializable{
 	private String courier;
 	private double cost;
 	private ArrayList<String> express;
-	private String id;
+	private int id;
 	private Calendar opTime;
 	
 	public IncomePO(Calendar date, String courier, double cost,
-			ArrayList<String> express, String id, Calendar opTime) {
+			ArrayList<String> express, int id, Calendar opTime) {
 		super();
 		this.date = date;
 		this.courier = courier;
@@ -42,7 +42,7 @@ public class IncomePO extends PO implements Serializable{
 	public ArrayList<String> getExpress() {
 		return express;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public Calendar getOpTime() {
@@ -53,7 +53,12 @@ public class IncomePO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:
+			String text = "";
+			for(String exp:express){
+				text = text + exp + " ";
+			}
+			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

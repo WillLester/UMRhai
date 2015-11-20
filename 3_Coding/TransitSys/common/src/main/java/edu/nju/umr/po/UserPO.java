@@ -15,9 +15,10 @@ public class UserPO extends PO implements Serializable{
 	private Jurisdiction juri;
 	private String name;
 	private String mobile;
-//	private String org;
+	private String orgId;
+	private String org;
 	private int key;
-	public UserPO(String id,String password,Jurisdiction juri,String name,String mobile,int key) {
+	public UserPO(String id,String password,Jurisdiction juri,String name,String mobile,int key,String orgId,String org) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.password = password;
@@ -25,6 +26,8 @@ public class UserPO extends PO implements Serializable{
 		this.name = name;
 		this.mobile = mobile;
 		this.key=key;
+		this.org = org;
+		this.orgId = orgId;
 	}
 	public String getId() {
 		return id;
@@ -43,6 +46,12 @@ public class UserPO extends PO implements Serializable{
 	}
 	public int getKey(){
 		return key;
+	}
+	public String getOrgId() {
+		return orgId;
+	}
+	public String getOrg() {
+		return org;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {
