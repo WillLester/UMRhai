@@ -9,6 +9,6 @@ public interface DriverManLSer {
 	public Result deleteDriver(String id);
 	public Result reviseDriver(DriverVO Driver);
 	public ResultMessage checkDriver(String id);
-	public ResultMessage driverList();
-//	public ResultMessage searchDriver(String keyword);
+//	public ResultMessage driverList();
+	public ResultMessage searchDriver(String keyword);
 }

@@ -19,7 +19,7 @@ import edu.nju.umr.ui.userUI.LoginPanel;
 public class UserPanel extends JPanel{
 	private JTextField nameTxt;
 	private JTextField levelTxt;
-	private UserVO user;
+	static private UserVO user;
 	private JFrame frame;
 	public UserPanel(UserVO user,JFrame fr) {
 		this.user=user;
@@ -103,5 +103,8 @@ public class UserPanel extends JPanel{
 		});
 		existButton.setBounds(1083, 603, 93, 23);
 		this.add(existButton);
+	}
+	public static UserVO getUser(){
+		return user;
 	}
 }
