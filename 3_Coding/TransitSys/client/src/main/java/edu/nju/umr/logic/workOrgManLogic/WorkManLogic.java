@@ -41,7 +41,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
+			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),"",work.getJuri()));
 		}
 		catch(Exception e)
 		{
@@ -65,7 +65,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri()));
+			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrgId(),"",work.getJuri()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -124,7 +124,7 @@ public class WorkManLogic implements WorkManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO work=ar.get(i);
-			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrgId(),work.getId(),work.getJuri(),work.getKind(),work.getMoney()));
+			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrgId(),work.getJuri(),work.getKind(),work.getMoney()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

@@ -50,10 +50,11 @@ public class UtilityLogic {
 			for(CityPO city:cities){
 				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
 				cityList.add(vo);
+//				return new ResultMessage(Result.SUCCESS, cityList);
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(Result.SUCCESS, cityList);
 	}
