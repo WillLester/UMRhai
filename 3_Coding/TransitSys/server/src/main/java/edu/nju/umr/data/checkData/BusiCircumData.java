@@ -3,12 +3,13 @@ package edu.nju.umr.data.checkData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.data.utilityData.UtilityData;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.PaymentPO;
 /*
  * 经营情况表数据
  */
@@ -18,16 +19,14 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 	 */
 	private static final long serialVersionUID = -4682435735979107069L;
 	private UtilityDSer utilitySer;
-	
 	public BusiCircumData() throws RemoteException {
 		super();
 		utilitySer = new UtilityData();
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<IncomePO> findCollect(Date start, Date end)
+	public ArrayList<IncomePO> findIncome(Calendar start, Calendar end)//时间参数与findPayment相同
 			throws RemoteException {
-		// TODO 自动生成的方法存根
 		String express1 = "1024656";
 		ArrayList<String> express = new ArrayList<String>();
 		express.add(express1);
@@ -36,6 +35,14 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 //		incomeList.add(income);
 		return incomeList;
 	}
+
+	public ArrayList<PaymentPO> findPayment(Calendar start, Calendar end)//时间参数与findIncome相同
+			throws RemoteException {
+		
+		return null;
+	}
+	
+
 
 //	public ArrayList<OrgPO> getHall() throws RemoteException {
 //		return utilitySer.getHall();
