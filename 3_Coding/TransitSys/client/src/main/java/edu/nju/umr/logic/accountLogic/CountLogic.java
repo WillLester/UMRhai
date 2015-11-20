@@ -233,5 +233,9 @@ public class CountLogic implements CountLSer{
 //		return new ResultMessage(true, accountList);
 		return uti.getAccount();
 	}
+	public ResultMessage getCount(){
+		Result result=Result.SUCCESS;
+		return new ResultMessage(result,null);
+	}
 
 }
