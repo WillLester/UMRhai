@@ -105,5 +105,8 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 //		accountList.add(account);
 //		return accountList;
 //	}
+	public ArrayList<CountPO> getCount() throws RemoteException {
+		return null;
+	}
 	
 }

@@ -12,4 +12,5 @@ public interface CountLSer {
 //	public ResultMessage getStocks();
 //	public ResultMessage getStock(String stockId);
 //	public ResultMessage getAccount();
+	public ResultMessage getCount();
 }

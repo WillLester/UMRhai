@@ -26,14 +26,11 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-//	public ArrayList<DriverPO> findDriver(String keyword)
-//			throws RemoteException {
-		// TODO 自动生成的方法存根
-//		ArrayList<DriverPO> ar = new ArrayList<DriverPO>();
-//		ar.add(new DriverPO("1","司机1",new Date(1900-01-01),"司机编号1","司机手机号1",Sex.MAN,new Date()));
-//		ar.add(new DriverPO("2","司机2",new Date(1901-01-01),"司机编号2","司机手机号2",Sex.WOMAN,new Date()));
-//		return ar;
-//	}
+	public ArrayList<DriverPO> findDriver(String keyword)
+			throws RemoteException {
+		ArrayList<DriverPO> ar = new ArrayList<DriverPO>();
+		return ar;
+	}
 	public ArrayList<DriverPO> driverList(){
 		return null;
 	}
