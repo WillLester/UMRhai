@@ -8,7 +8,6 @@ import java.util.Date;
 import edu.nju.umr.data.utilityData.UtilityData;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
-import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.order.IncomePO;
 /*
  * 经营情况表数据

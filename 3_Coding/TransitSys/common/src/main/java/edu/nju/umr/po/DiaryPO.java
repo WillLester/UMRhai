@@ -3,7 +3,10 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class DiaryPO implements Serializable{
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.enums.MysqlOperation;
+
+public class DiaryPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -26,5 +29,17 @@ public class DiaryPO implements Serializable{
 	}
 	public String getOperator() {
 		return operator;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into diary values"+"("+DateFormat.TIME.format(time.getTime())+","+"'"+operation+"','"+operator+"')";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 }

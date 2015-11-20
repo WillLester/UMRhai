@@ -47,7 +47,7 @@ public class AccountLogic implements AccountLSer{
 		Result isSuccessful = Result.SUCCESS;
 		AccountPO toDelete=accountPOs.get(index);//获得待删除账户项在po的list中的位置
 		try {
-			isSuccessful = accountData.deleteAccount(toDelete.getId()+"");
+			isSuccessful = accountData.deleteAccount(toDelete.getId());
 		} catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}

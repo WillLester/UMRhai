@@ -8,7 +8,6 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 司机信息管理数据
@@ -40,16 +39,16 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	}
 
 	public Result addDriver(DriverPO driver) throws RemoteException {
-		return mysqlSer.addInfo(driver, POKind.DRIVER);
+		return mysqlSer.addInfo(driver);
 	}
 
 	public Result deleteDriver(String id) throws RemoteException {
-		return mysqlSer.deleteInfo(id, POKind.DRIVER);
+		return mysqlSer.deleteInfo(new DriverPO(id, null, null, null, null, null, null, null));
 	}
 
 	public Result reviseDriver(DriverPO driver) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(driver, POKind.DRIVER);
+		return mysqlSer.reviseInfo(driver);
 	}
 
 	public DriverPO checkDriver(String id) throws RemoteException {

@@ -3,9 +3,11 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Gender;
+import edu.nju.umr.po.enums.MysqlOperation;
 
-public class DriverPO implements Serializable{
+public class DriverPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -54,6 +56,18 @@ public class DriverPO implements Serializable{
 	}
 	public Calendar getDriveEnd() {
 		return driveEnd;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into driver values"+"("+"'"+id+"','"+name+"','"+idNum+"','"+mobile+"',"+sex.ordinal()+",'"+DateFormat.DATE.format(birthday.getTime())+"','"+DateFormat.DATE.format(driveStart.getTime())+"','"+DateFormat.DATE.format(driveEnd.getTime())+"')";break;
+		case DELETE:command="delete from driver where id='"+id+"'";break;
+		case FIND:break;
+		case UPDATE:command = "update driver set name='"+name+"' idNum='"+idNum+"' mobile='"+mobile+"' sex="+sex.ordinal()+" birthday='"+DateFormat.DATE.format(birthday.getTime())+"' driveStart='"+DateFormat.DATE.format(driveStart.getTime())+"' driveEnd='"+DateFormat.DATE.format(driveEnd.getTime())+"' where id='"+id+"'";break;
+		}
+		return command;
 	}
 	
 }

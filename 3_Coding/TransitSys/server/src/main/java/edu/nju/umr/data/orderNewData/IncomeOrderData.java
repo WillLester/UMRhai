@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 /*
@@ -26,7 +25,7 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 	}
 
 	public Result create(IncomePO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.INCOME);
+		return mysqlSer.addInfo(order);
 		
 	}
 

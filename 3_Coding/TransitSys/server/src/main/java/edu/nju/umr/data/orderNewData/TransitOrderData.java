@@ -2,12 +2,10 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.TransitPO;
 /*
@@ -26,7 +24,7 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 	}
 
 	public Result create(TransitPO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.TRANSIT);
+		return mysqlSer.addInfo(order);
 		
 	}
 

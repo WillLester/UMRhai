@@ -2,21 +2,17 @@ package edu.nju.umr.vo;
 
 
 public class AccountVO {
-//	private int id;
 	private String name;
-	private int balance;
-	public AccountVO(String name,int balance) {
+	private double balance;
+	public AccountVO(String name,double balance) {
 		// TODO 自动生成的构造函数存根
 		this.name = name;
 		this.balance = balance;
 	}
-//	public int getId() {
-//		return id;
-//	}
 	public String getName() {
 		return name;
 	}
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 	

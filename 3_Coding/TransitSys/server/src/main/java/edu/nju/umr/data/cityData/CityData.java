@@ -2,14 +2,12 @@ package edu.nju.umr.data.cityData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 城市数据
@@ -27,18 +25,18 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 	}
 
 	public Result addCity(CityPO city) throws RemoteException {
-		return mysqlSer.addInfo(city, POKind.CITY);
+		return mysqlSer.addInfo(city);
 		
 	}
 
 	public Result reviseCity(CityPO city) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(city, POKind.CITY);
+		return mysqlSer.reviseInfo(city);
 	}
 
 	public Result reviseCities(CitiesPO cities) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(cities, POKind.CITIES);
+		return mysqlSer.reviseInfo(cities);
 	}
 
 //	public ArrayList<CityPO> getCities() throws RemoteException {
@@ -52,7 +50,7 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 
 	public Result deleteCity(String cityName) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(cityName, POKind.CITY);
+		return mysqlSer.deleteInfo(new CityPO(cityName, null, null, 0));
 	}
 
 }

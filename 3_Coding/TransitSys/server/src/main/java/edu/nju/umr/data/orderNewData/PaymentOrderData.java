@@ -6,7 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
 /*
@@ -25,7 +24,7 @@ public class PaymentOrderData extends UnicastRemoteObject implements PaymentOrde
 	}
 
 	public Result create(PaymentPO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.PAYMENT);
+		return mysqlSer.addInfo(order);
 		
 	}
 

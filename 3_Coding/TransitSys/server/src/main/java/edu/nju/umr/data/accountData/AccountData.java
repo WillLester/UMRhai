@@ -36,16 +36,16 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	}
 
 	public Result addAccount(AccountPO account) throws RemoteException {
-		return mysqlSer.addInfo(account, POKind.ACCOUNT);
+		return mysqlSer.addInfo(account);
 	}
 
-	public Result deleteAccount(String id) throws RemoteException {
-		return mysqlSer.deleteInfo(id, POKind.ACCOUNT);
+	public Result deleteAccount(int id) throws RemoteException {
+		return mysqlSer.deleteInfo(new AccountPO(id, null, 0));
 	}
 
 	public Result reviseAccount(AccountPO account) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(account, POKind.ACCOUNT);
+		return mysqlSer.reviseInfo(account);
 	}
 
 //	public AccountPO checkAccount(String id) throws RemoteException {

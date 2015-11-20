@@ -2,9 +2,10 @@ package edu.nju.umr.po;
 
 import java.io.Serializable;
 
+import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Organization;
 
-public class OrgPO implements Serializable{
+public class OrgPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -36,5 +37,17 @@ public class OrgPO implements Serializable{
 	}
 	public CityPO getCity() {
 		return city;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into org values"+"("+"'"+id+"','"+name+"',"+kind.ordinal()+",'"+location+"','"+city.getName()+"','"+city.getId()+"'"+")";break;
+		case DELETE:command="delete from org where id='"+id+"'";break;
+		case FIND:break;
+		case UPDATE:command="update org set name = '"+name+"' kind ="+kind.ordinal()+" location='"+location+"' city='"+city.getName()+"' cityId='"+city.getId()+"' where id='"+id+"'";break;
+		}
+		return command;
 	}
 }

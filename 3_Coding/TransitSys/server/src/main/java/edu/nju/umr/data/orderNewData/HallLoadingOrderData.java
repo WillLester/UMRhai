@@ -2,12 +2,10 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.HallLoadingPO;
 /*
@@ -26,7 +24,7 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 	}
 
 	public Result create(HallLoadingPO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.HALLLOADING);
+		return mysqlSer.addInfo(order);
 		
 	}
 

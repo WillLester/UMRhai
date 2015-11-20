@@ -3,8 +3,9 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.MysqlOperation;
 
-public class UserPO implements Serializable{
+public class UserPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -46,5 +47,17 @@ public class UserPO implements Serializable{
 	}
 	public int getKey(){
 		return key;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into user values"+"("+"'"+id+"','"+password+"','"+name+"','"+mobile+"','"+org+"',"+juri.ordinal()+","+key+")";break;
+		case DELETE:command="delete from user where keyid="+key;break;
+		case FIND:break;
+		case UPDATE:command="update user set id='"+id+"' password='"+password+"' name='"+name+"' mobile='"+mobile+"' org='"+org+"' juri="+juri.ordinal()+" where keyid="+key;break;
+		}
+		return command;
 	}
 }

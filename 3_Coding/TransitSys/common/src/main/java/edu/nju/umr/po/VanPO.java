@@ -4,7 +4,10 @@ import java.awt.Image;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class VanPO implements Serializable{
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.enums.MysqlOperation;
+
+public class VanPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -36,5 +39,17 @@ public class VanPO implements Serializable{
 	}
 	public String getOrgId() {
 		return orgId;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+photo+"','"+orgId+"'"+")";break;
+		case DELETE:command="delete from van where id='"+id+"'";break;
+		case FIND:break;
+		case UPDATE:command="update van set plateNum='"+plateNum+"' servTime='"+DateFormat.DATE.format(servTime.getTime())+"' orgId='"+orgId+"' where id='"+id+"'";break;
+		}
+		return command;
 	}
 }

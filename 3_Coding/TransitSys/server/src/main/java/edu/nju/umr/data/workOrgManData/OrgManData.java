@@ -1,17 +1,16 @@
 package edu.nju.umr.data.workOrgManData;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
-
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 /*
  * 机构信息管理数据
  */
@@ -38,17 +37,17 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	}
 
 	public Result addOrg(OrgPO org) throws RemoteException {
-		return mysqlSer.addInfo(org, POKind.ORG);
+		return mysqlSer.addInfo(org);
 	}
 
 	public Result deleteOrg(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(id, POKind.ORG);
+		return mysqlSer.deleteInfo(new OrgPO(id, null, null, null, null));
 	}
 
 	public Result reviseOrg(OrgPO org) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(org, POKind.ORG);
+		return mysqlSer.reviseInfo(org);
 	}
 
 //	public OrgPO checkOrg(String id) throws RemoteException {

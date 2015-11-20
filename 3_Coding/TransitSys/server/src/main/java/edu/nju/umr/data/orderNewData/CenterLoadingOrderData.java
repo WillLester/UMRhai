@@ -2,12 +2,10 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
 /*
@@ -26,7 +24,7 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	}
 
 	public Result create(CenterLoadingPO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.CENTERLOADING);
+		return mysqlSer.addInfo(order);
 		
 	}
 

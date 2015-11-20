@@ -9,7 +9,6 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.po.VanPO;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 车辆信息管理数据
@@ -37,17 +36,17 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 	}
 
 	public Result addVan(VanPO van) throws RemoteException {
-		return mysqlSer.addInfo(van, POKind.VAN);
+		return mysqlSer.addInfo(van);
 	}
 
 	public Result deleteVan(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(id, POKind.VAN);
+		return mysqlSer.deleteInfo(new VanPO(id, null, null, null, null));
 	}
 
 	public Result reviseVan(VanPO van) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(van, POKind.VAN);
+		return mysqlSer.reviseInfo(van);
 	}
 
 	public VanPO checkVan(String id) throws RemoteException {

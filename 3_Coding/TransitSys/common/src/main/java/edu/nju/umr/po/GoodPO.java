@@ -3,9 +3,11 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Part;
 
-public class GoodPO implements Serializable{
+public class GoodPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -54,5 +56,17 @@ public class GoodPO implements Serializable{
 	}
 	public String getStockId() {
 		return stockId;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into good values"+"("+"'"+id+"','"+stockId+"','"+city+"',"+part.ordinal()+",'"+shelf+"',"+row+","+place+","+DateFormat.DATE.format(date.getTime())+")";break;
+		case DELETE:command="delete from good where id='"+id+"'";break;
+		case FIND:break;
+		case UPDATE:command="update good set stockId='"+stockId+"' city='"+city+"' part="+part.ordinal()+" shelf='"+shelf+"' row="+row+" place="+place+" date='"+DateFormat.DATE.format(date.getTime())+"' where id='"+id+"'";break;
+		}
+		return command;
 	}
 }

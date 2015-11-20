@@ -3,9 +3,11 @@ package edu.nju.umr.po.order;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import edu.nju.umr.po.PO;
+import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 
-public class OrderPO implements Serializable{
+public class OrderPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -37,5 +39,16 @@ public class OrderPO implements Serializable{
 	}
 	public boolean isPassed() {
 		return isPassed;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case FIND:break;
+		default:
+			break;
+		}
+		return command;
 	}
 }

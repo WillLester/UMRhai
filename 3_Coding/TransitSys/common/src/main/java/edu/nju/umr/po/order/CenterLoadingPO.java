@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CenterLoadingPO implements Serializable{
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.PO;
+import edu.nju.umr.po.enums.MysqlOperation;
+
+public class CenterLoadingPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -54,6 +58,18 @@ public class CenterLoadingPO implements Serializable{
 	}
 	public Calendar getOpTime() {
 		return opTime;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"')";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 	
 }

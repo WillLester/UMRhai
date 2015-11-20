@@ -3,7 +3,11 @@ package edu.nju.umr.po.order;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class SendPO implements Serializable{
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.PO;
+import edu.nju.umr.po.enums.MysqlOperation;
+
+public class SendPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -37,5 +41,17 @@ public class SendPO implements Serializable{
 	}
 	public Calendar getOpTime() {
 		return opTime;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into sendorderwaiting values"+"("+id+",'"+expressId+"','"+courier+"',"+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 }

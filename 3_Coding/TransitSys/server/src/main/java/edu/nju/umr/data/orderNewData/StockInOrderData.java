@@ -2,12 +2,10 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 /*
@@ -26,7 +24,7 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 	}
 
 	public Result create(StockInPO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.STOCKIN);
+		return mysqlSer.addInfo(order);
 	}
 
 //	public ArrayList<String> getCities() throws RemoteException {

@@ -2,12 +2,10 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
 /*
@@ -26,7 +24,7 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	}
 
 	public Result create(ArrivePO order) throws RemoteException {
-		return mysqlSer.addInfo(order, POKind.ARRIVE);
+		return mysqlSer.addInfo(order);
 	}
 
 //	public ArrayList<String> getCities() throws RemoteException {

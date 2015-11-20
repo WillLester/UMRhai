@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
-import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 人员管理数据
@@ -40,17 +36,17 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 	}
 
 	public Result addWork(WorkPO worker) throws RemoteException {
-		return mysqlSer.addInfo(worker, POKind.WORK);
+		return mysqlSer.addInfo(worker);
 	}
 
 	public Result deleteWork(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(id, POKind.WORK);
+		return mysqlSer.deleteInfo(new WorkPO(null, null, null, id, null));
 	}
 
 	public Result reviseWork(WorkPO work) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(work, POKind.WORK);
+		return mysqlSer.reviseInfo(work);
 	}
 
 	public WorkPO checkWork(String id) throws RemoteException {

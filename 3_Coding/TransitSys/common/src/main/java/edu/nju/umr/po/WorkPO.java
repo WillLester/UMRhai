@@ -3,9 +3,10 @@ package edu.nju.umr.po;
 import java.io.Serializable;
 
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Wage;
 
-public class WorkPO implements Serializable{
+public class WorkPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -66,5 +67,18 @@ public class WorkPO implements Serializable{
 
 	public int getCommission() {
 		return commission;
+	}
+
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op){
+		case INSERT:command="insert into work values"+"("+id+",'"+orgId+"',"+kind.ordinal()+","+money+","+commission+")";break;
+		case DELETE:command="delete from work where id='"+id+"'";break;
+		case FIND:break;
+		case UPDATE:command="update work set orgId='"+orgId+"' kind="+kind.ordinal()+" money="+money+" commission="+commission+" where id="+id;break;
+		}
+		return command;
 	}
 }

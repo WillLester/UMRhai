@@ -155,7 +155,7 @@ public class UtilityLogic {
 			ArrayList<AccountPO> account = utilityData.getAccount();
 			re=Result.SUCCESS;
 			for(AccountPO po:account){
-				AccountVO vo = new AccountVO(po.getId(), po.getName(), po.getBalance());
+				AccountVO vo = new AccountVO(po.getName(), po.getBalance());
 				accountList.add(vo);
 			}
 		} catch (RemoteException e) {

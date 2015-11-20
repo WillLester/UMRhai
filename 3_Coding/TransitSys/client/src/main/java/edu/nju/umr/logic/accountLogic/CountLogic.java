@@ -125,7 +125,7 @@ public class CountLogic implements CountLSer{
 				stockList.add(vo);
 			}
 			for(AccountPO po:count.getAccounts()){
-				AccountVO vo = new AccountVO(po.getId(), po.getName(), po.getBalance());
+				AccountVO vo = new AccountVO(po.getName(), po.getBalance());
 				accountList.add(vo);
 			}
 			countVo = new CountVO(count.getId(), orgList, workList, vanList, stockList, accountList);

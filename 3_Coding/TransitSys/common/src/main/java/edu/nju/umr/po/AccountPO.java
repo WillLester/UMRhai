@@ -2,16 +2,18 @@ package edu.nju.umr.po;
 
 import java.io.Serializable;
 
-public class AccountPO implements Serializable{
+import edu.nju.umr.po.enums.MysqlOperation;
+
+public class AccountPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6350938083073701474L;
 	private int id;
 	private String name;
-	private int balance;
+	private double balance;
 	
-	public AccountPO(int id, String name, int balance) {
+	public AccountPO(int id, String name, double balance) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,7 +25,20 @@ public class AccountPO implements Serializable{
 	public String getName() {
 		return name;
 	}
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command=null;
+		switch(op)
+		{
+		case INSERT:command = "insert into account values"+"("+id+","+"'"+name+"',"+balance+")";break;
+		case DELETE:command = "delete from account where id="+id;break;
+		case FIND:break;
+		case UPDATE:command = "update account set name='"+name+"',balance="+balance+" where id="+id;break;
+		}
+		return command;
 	}
 }

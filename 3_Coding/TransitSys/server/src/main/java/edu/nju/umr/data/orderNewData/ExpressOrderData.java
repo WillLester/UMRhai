@@ -6,7 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 /*
@@ -25,7 +24,7 @@ public class ExpressOrderData extends UnicastRemoteObject implements ExpressOrde
 	}
 
 	public Result create(ExpressPO order) throws RemoteException {
-		return mysqlSer.addInfo(order,POKind.EXPRESS);
+		return mysqlSer.addInfo(order);
 	}
 
 }

@@ -8,7 +8,6 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
-import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 
@@ -33,17 +32,17 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 	}
 
 	public Result addShelf(ShelfPO shelf) throws RemoteException {
-		return mysqlSer.addInfo(shelf, POKind.SHELF);
+		return mysqlSer.addInfo(shelf);
 	}
 
 	public Result deleteShelf(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(id, POKind.SHELF);
+		return mysqlSer.deleteInfo(new ShelfPO(id, null, 0, 0, null));
 	}
 
 	public Result reviseShelf(ShelfPO shelf) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.reviseInfo(shelf, POKind.SHELF);
+		return mysqlSer.reviseInfo(shelf);
 	}
 
 //	public ShelfPO getShelf(String id) throws RemoteException {

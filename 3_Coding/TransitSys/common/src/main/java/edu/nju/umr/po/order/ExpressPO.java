@@ -3,9 +3,12 @@ package edu.nju.umr.po.order;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.MysqlOperation;
 
-public class ExpressPO implements Serializable{
+public class ExpressPO extends PO implements Serializable{
 	/**
 	 * 
 	 */
@@ -128,5 +131,17 @@ public class ExpressPO implements Serializable{
 	}
 	public Calendar getOpTime() {
 		return opTime;
+	}
+	@Override
+	public String getCommand(MysqlOperation op) {
+		// TODO 自动生成的方法存根
+		String command = null;
+		switch(op){
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+","+DateFormat.DATE.format(arrive.getTime())+","+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case DELETE:break;
+		case FIND:break;
+		case UPDATE:break;
+		}
+		return command;
 	}
 }
