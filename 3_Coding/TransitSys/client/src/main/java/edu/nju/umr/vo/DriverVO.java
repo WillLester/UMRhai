@@ -1,8 +1,6 @@
 package edu.nju.umr.vo;
 
 import java.util.Calendar;
-import java.util.Date;
-
 import edu.nju.umr.po.enums.Gender;
 
 public class DriverVO {
@@ -12,8 +10,9 @@ public class DriverVO {
 	private String idNum;
 	private String mobile;
 	private Gender sex;
-	private Date driveLimit;
-	public DriverVO(String id,String name,Calendar birthday,String idNum,String mobile,Gender sex,Date driveLimit) {
+	private Calendar driveStart;
+	private Calendar driveEnd;
+	public DriverVO(String id,String name,Calendar birthday,String idNum,String mobile,Gender sex,Calendar driveStart,Calendar driveEnd) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.name = name;
@@ -21,7 +20,8 @@ public class DriverVO {
 		this.idNum = idNum;
 		this.mobile = mobile;
 		this.sex = sex;
-		this.driveLimit = driveLimit;
+		this.driveStart = driveStart;
+		this.driveEnd=driveEnd;
 	}
 	public String getId() {
 		return id;
@@ -41,8 +41,10 @@ public class DriverVO {
 	public Gender getSex() {
 		return sex;
 	}
-	public Date getDriveLimit() {
-		return driveLimit;
+	public Calendar getDriveStart() {
+		return driveStart;
 	}
-	
+	public Calendar getDriveEnd() {
+		return driveEnd;
+	}
 }
