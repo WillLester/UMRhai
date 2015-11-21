@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.workOrgManUI;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
@@ -11,6 +12,8 @@ import edu.nju.umr.ui.checkUI.DatePanel;
 import javax.swing.JComboBox;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -19,12 +22,16 @@ public class DriverInfoPanel extends JPanel {
 	private JTextField textFieldName;
 	private JTextField textFieldIden;
 	private JTextField textFieldMobile;
+	private JFrame frame;
+	private JPanel panel;
 
 	/**
 	 * Create the panel.
 	 */
-	public DriverInfoPanel() {
+	public DriverInfoPanel(JFrame fr,JPanel pa) {
 		setLayout(null);
+		frame=fr;
+		panel=pa;
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		JLabel nameLabel = new JLabel("司机信息");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -109,6 +116,12 @@ public class DriverInfoPanel extends JPanel {
 		
 		JButton confirm = new JButton("确认");
 		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, cancel.getY(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirm.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				DriverVO driver=new DiverVO(textFieldNum.getText(),textFieldName.getText(),born)
+			}
+		});
 		add(confirm);
 
 	}
