@@ -6,7 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
@@ -18,7 +17,6 @@ import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
-import edu.nju.umr.vo.order.PaymentVO;
 
 public class BusiCircumLogic implements BusiCircumLSer{
 	StatementSheetDFacSer dataFac;
@@ -57,26 +55,8 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		
 		return new ResultMessage(Result.SUCCESS, incomeList);
 	}
-	
-	public ResultMessage seePayment(Calendar start, Calendar end){
-		ArrayList<PaymentVO> paymentList=new ArrayList<PaymentVO>();
-		try {
-			paymentPOs=statementData.findPayment(start, end);
-			for(PaymentPO po:paymentPOs){
-				PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
-				paymentList.add(vo);
-			}
-		} catch (RemoteException e) {
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		} catch(NullPointerException e){
-			return new ResultMessage(Result.Data_Not_Found,null);
-		}
-		
-		return new ResultMessage(Result.SUCCESS,paymentList);
-		
-	}
 
-//	public ResultMessage getHall() {
+	public ResultMessage getHall() {
 		// TODO 自动生成的方法存根
 //		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
 //		try {
@@ -91,10 +71,11 @@ public class BusiCircumLogic implements BusiCircumLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, hallList);
-//		return uti.getHall();
-//	}
+		return uti.getHall();
+	}
 
-	public Result outputExcel(String data[][], String name,String location) {
+	public Result outputExcel(ArrayList<IncomeVO> income, String location) {
+		// TODO 自动生成的方法存根
 		return Result.SUCCESS;
 	}
 

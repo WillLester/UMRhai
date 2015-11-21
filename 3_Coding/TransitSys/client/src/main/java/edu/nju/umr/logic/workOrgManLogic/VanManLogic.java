@@ -106,15 +106,15 @@ public class VanManLogic implements VanManLSer{
 	public ResultMessage searchVan(String keyword) {
 		// TODO 自动生成的方法存根
 		VanPO Van=null;
-		boolean isSuccessful=false;
+		Result isSuccessful=Result.SUCCESS;
 		try{
 			Van=vanData.checkVan(keyword);
-			isSuccessful=true;
+			isSuccessful=Result.SUCCESS;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
 		return message;
 	}
 
