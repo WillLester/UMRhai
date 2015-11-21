@@ -45,7 +45,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 
 	public Object getOrder(String id,Order kind) throws RemoteException {
 		// TODO 自动生成的方法存根
-		PaymentPO pay = new PaymentPO(id, Calendar.getInstance(), "董先生", "12345", Pay.WAGE, 100, null,Calendar.getInstance());
+		PaymentPO pay = new PaymentPO(Integer.parseInt(id), Calendar.getInstance(), "董先生", "12345", Pay.WAGE, 100, null,Calendar.getInstance(),"宝华");
 		return pay;
 	}
 

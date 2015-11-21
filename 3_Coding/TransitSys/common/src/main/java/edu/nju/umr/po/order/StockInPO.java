@@ -22,10 +22,11 @@ public class StockInPO extends PO implements Serializable{
 	private int row;
 	private int place;
 	private Calendar opTime;
+	private String opName;
 	
 	public StockInPO(String id, String expressId, Calendar date,
 			String arrivePlace, Part part, String shelfId, int row, int place,
-			Calendar opTime) {
+			Calendar opTime, String opName) {
 		super();
 		this.id = id;
 		this.expressId = expressId;
@@ -36,6 +37,7 @@ public class StockInPO extends PO implements Serializable{
 		this.row = row;
 		this.place = place;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public String getId() {
 		return id;
@@ -64,12 +66,16 @@ public class StockInPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockinorderwaiting values"+"("+id+",'"+expressId+"','"+arrivePlace+"',"+part.ordinal()+","+shelfId+","+row+","+place+","+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into stockinorderwaiting values"+"("+id+",'"+expressId+"','"+arrivePlace+"',"+part.ordinal()+","+shelfId+","+row+","+place+","+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+",'"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

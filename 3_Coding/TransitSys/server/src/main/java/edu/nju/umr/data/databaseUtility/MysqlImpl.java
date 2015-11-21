@@ -24,9 +24,11 @@ import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.MysqlOperation;
+import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.po.order.ArrivePO;
@@ -256,19 +258,89 @@ public class MysqlImpl implements MysqlService{
 					for(int i = 0;i < ori.length;i++){
 						express.add(ori[i]);
 					}
-					IncomePO income = new IncomePO(date, result.getString(1), result.getDouble(2), express, result.getInt(0), time);
+					IncomePO income = new IncomePO(date, result.getString(1), result.getDouble(2), express, result.getInt(0), time,result.getString(6));
 				}
 				break;
 			case ORDER:
-				ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
+				ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();			
 				result = state.executeQuery("select * from arriveorderwaiting");
-				
-				break;
+				Calendar time = Calendar.getInstance();
+				while(result.next()){
+					time.setTime(result.getDate(5));
+					OrderPO order = new OrderPO(result.getString(0), Order.ARRIVE, result.getString(6), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from centerlorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(6));
+					OrderPO order = new OrderPO(result.getString(0), Order.CENTERLOADING, result.getString(9), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from expressorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(22));
+					OrderPO order = new OrderPO(result.getString(0), Order.EXPRESS, result.getString(23), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from halllorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(8));
+					OrderPO order = new OrderPO(result.getString(0), Order.HALLLOADING, result.getString(10), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from incomeorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(4));
+					OrderPO order = new OrderPO(result.getString(0), Order.INCOME, result.getString(6), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from paymentorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(7));
+					OrderPO order = new OrderPO(result.getString(0), Order.PAYMENT, result.getString(8), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from recipientorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(5));
+					OrderPO order = new OrderPO(result.getString(0), Order.RECIPIENT, result.getString(6), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from sendorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(4));
+					OrderPO order = new OrderPO(result.getString(0), Order.SEND, result.getString(5), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from stockinorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(9));
+					OrderPO order = new OrderPO(result.getString(0), Order.STOCKIN, result.getString(9), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from stockoutorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(5));
+					OrderPO order = new OrderPO(result.getString(0), Order.STOCKOUT, result.getString(6), time, false);
+					orderList.add(order);
+				}
+				result = state.executeQuery("select * from transitorderwaiting");
+				while(result.next()){
+					time.setTime(result.getDate(7));
+					OrderPO order = new OrderPO(result.getString(0), Order.TRANSIT, result.getString(8), time, false);
+					orderList.add(order);
+				}
+				return orderList;
 			case PAYMENT:
-				state.executeUpdate(getCommand((PaymentPO)ob,MysqlOperation.INSERT));
-				break;
-			case TRANSITINFO:
-				state.executeUpdate(getCommand((TransitInfoPO)ob,MysqlOperation.INSERT));
+				result = state.executeQuery("select * from paymentorderpassed");
+				while(result.next()){
+					Calendar date = Calendar.getInstance();
+					date.setTime(result.getDate(6));
+					Pay pays[] = Pay.values();
+					Calendar opTime = Calendar.getInstance();
+					opTime.setTime(result.getDate(7));
+					PaymentPO payment = new PaymentPO(result.getInt(0), date,result.getString(1) , result.getString(2), pays[result.getInt(3)], result.getDouble(4), result.getString(5), opTime,result.getString(8));
+				}
 				break;
 			default:return null;
 			}

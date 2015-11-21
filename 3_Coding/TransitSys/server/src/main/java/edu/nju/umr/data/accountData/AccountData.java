@@ -32,7 +32,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	public ArrayList<AccountPO> findAccount(String keyword)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return (ArrayList<AccountPO>) mysqlSer.checkInfo(keyword, POKind.ACCOUNT);
+		return (ArrayList<AccountPO>) mysqlSer.checkInfo(keyword);
 	}
 
 	public Result addAccount(AccountPO account) throws RemoteException {

@@ -19,9 +19,10 @@ public class RecipientPO extends PO implements Serializable{
 	private String startPlace;
 	private GoodState state;
 	private Calendar opTime;
+	private String opName;
 	
 	public RecipientPO(Calendar date, String id, String transitId,
-			String startPlace, GoodState state, Calendar opTime) {
+			String startPlace, GoodState state, Calendar opTime, String opName) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -29,6 +30,7 @@ public class RecipientPO extends PO implements Serializable{
 		this.startPlace = startPlace;
 		this.state = state;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -48,12 +50,15 @@ public class RecipientPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into recipientorderwaiting values"+"("+id+",'"+transitId+"','"+startPlace+"',"+state.ordinal()+","+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into recipientorderwaiting values"+"("+id+",'"+transitId+"','"+startPlace+"',"+state.ordinal()+","+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+",'"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

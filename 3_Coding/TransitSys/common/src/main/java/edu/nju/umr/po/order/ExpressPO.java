@@ -35,13 +35,15 @@ public class ExpressPO extends PO implements Serializable{
 	private Express kind;
 	private double cost;
 	private Calendar opTime;
+	private String opName;
 	
 	public ExpressPO(String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			String id, Calendar arrive, Express kind, double cost, Calendar opTime) {
+			String id, Calendar arrive, Express kind, double cost,
+			Calendar opTime, String opName) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -65,6 +67,7 @@ public class ExpressPO extends PO implements Serializable{
 		this.kind = kind;
 		this.cost = cost;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public String getSender() {
 		return sender;
@@ -132,12 +135,15 @@ public class ExpressPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command = null;
 		switch(op){
-		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+","+DateFormat.DATE.format(arrive.getTime())+","+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+","+DateFormat.DATE.format(arrive.getTime())+","+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+","+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

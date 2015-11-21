@@ -19,9 +19,10 @@ public class IncomePO extends PO implements Serializable{
 	private ArrayList<String> express;
 	private int id;
 	private Calendar opTime;
+	private String opName;
 	
 	public IncomePO(Calendar date, String courier, double cost,
-			ArrayList<String> express, int id, Calendar opTime) {
+			ArrayList<String> express, int id, Calendar opTime, String opName) {
 		super();
 		this.date = date;
 		this.courier = courier;
@@ -29,6 +30,7 @@ public class IncomePO extends PO implements Serializable{
 		this.express = express;
 		this.id = id;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -48,6 +50,9 @@ public class IncomePO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -58,7 +63,7 @@ public class IncomePO extends PO implements Serializable{
 			for(String exp:express){
 				text = text + exp + " ";
 			}
-			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"')";break;
+			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"','"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

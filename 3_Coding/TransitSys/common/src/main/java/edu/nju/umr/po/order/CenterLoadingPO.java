@@ -21,10 +21,11 @@ public class CenterLoadingPO extends PO implements Serializable{
 	private String escort;
 	private ArrayList<String> express;
 	private Calendar opTime;
+	private String opName;
 	
-	public CenterLoadingPO(Calendar date, String id, String target, String vanId,
-			String supervision, String escort, ArrayList<String> express,
-			Calendar opTime) {
+	public CenterLoadingPO(Calendar date, String id, String target,
+			String vanId, String supervision, String escort,
+			ArrayList<String> express, Calendar opTime, String opName) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -34,6 +35,7 @@ public class CenterLoadingPO extends PO implements Serializable{
 		this.escort = escort;
 		this.express = express;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -59,12 +61,15 @@ public class CenterLoadingPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"')";break;
+		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

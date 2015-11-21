@@ -23,10 +23,11 @@ public class HallLoadingPO extends PO implements Serializable{
 	private ArrayList<String> express;
 	private Calendar date;
 	private Calendar opTime;
-	
+	private String opName;
 	public HallLoadingPO(String id, String hallId, String convertId,
 			String arriveLoc, String vanId, String supervision, String escort,
-			ArrayList<String> express, Calendar date, Calendar opTime) {
+			ArrayList<String> express, Calendar date, Calendar opTime,
+			String opName) {
 		super();
 		this.id = id;
 		this.hallId = hallId;
@@ -38,6 +39,7 @@ public class HallLoadingPO extends PO implements Serializable{
 		this.express = express;
 		this.date = date;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public String getHallId() {
 		return hallId;
@@ -69,12 +71,15 @@ public class HallLoadingPO extends PO implements Serializable{
 	public String getId() {
 		return id;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

@@ -19,9 +19,10 @@ public class StockOutPO extends PO implements Serializable{
 	private Transit kind;
 	private String transitId;
 	private Calendar opTime;
+	private String opName;
 	
 	public StockOutPO(String id, String expressId, Calendar date, Transit kind,
-			String transitId, Calendar opTime) {
+			String transitId, Calendar opTime, String opName) {
 		super();
 		this.id = id;
 		this.expressId = expressId;
@@ -29,6 +30,7 @@ public class StockOutPO extends PO implements Serializable{
 		this.kind = kind;
 		this.transitId = transitId;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public String getId() {
 		return id;
@@ -48,12 +50,15 @@ public class StockOutPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockoutwaiting values"+"("+id+",'"+expressId+"',"+kind.ordinal()+",'"+transitId+"',"+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into stockoutwaiting values"+"("+id+",'"+expressId+"',"+kind.ordinal()+",'"+transitId+"',"+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+",'"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

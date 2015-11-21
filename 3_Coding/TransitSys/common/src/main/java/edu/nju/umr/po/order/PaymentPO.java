@@ -13,7 +13,7 @@ public class PaymentPO extends PO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -763899204690976592L;
-	private String id;
+	private int id;
 	private Calendar date;
 	private String payer;
 	private String account;
@@ -21,9 +21,11 @@ public class PaymentPO extends PO implements Serializable{
 	private double amount;
 	private String remarks;
 	private Calendar opTime;
+	private String opName;
 	
-	public PaymentPO(String id, Calendar date, String payer, String account,
-			Pay kind, double amount, String remarks, Calendar opTime) {
+	public PaymentPO(int id, Calendar date, String payer, String account,
+			Pay kind, double amount, String remarks, Calendar opTime,
+			String opName) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -33,8 +35,9 @@ public class PaymentPO extends PO implements Serializable{
 		this.amount = amount;
 		this.remarks = remarks;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public Calendar getDate() {
@@ -58,12 +61,15 @@ public class PaymentPO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into paymentorderwaiting values"+"("+id+",'"+payer+"','"+account+"',"+kind.ordinal()+","+amount+",'"+remarks+"',"+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+")";break;
+		case INSERT:command="insert into paymentorderwaiting values"+"("+id+",'"+payer+"','"+account+"',"+kind.ordinal()+","+amount+",'"+remarks+"',"+DateFormat.DATE.format(date.getTime())+","+DateFormat.TIME.format(opTime.getTime())+",'"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

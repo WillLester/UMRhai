@@ -19,8 +19,9 @@ public class ArrivePO extends PO implements Serializable{
 	private String startPlace;
 	private GoodState state;
 	private Calendar opTime;
-	public ArrivePO(String centerId, Calendar date, String id, String startPlace,
-			GoodState state, Calendar opTime) {
+	private String opName;
+	public ArrivePO(String centerId, Calendar date, String id,
+			String startPlace, GoodState state, Calendar opTime, String opName) {
 		super();
 		this.centerId = centerId;
 		this.date = date;
@@ -28,6 +29,7 @@ public class ArrivePO extends PO implements Serializable{
 		this.startPlace = startPlace;
 		this.state = state;
 		this.opTime = opTime;
+		this.opName = opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -47,12 +49,15 @@ public class ArrivePO extends PO implements Serializable{
 	public Calendar getOpTime() {
 		return opTime;
 	}
+	public String getOpName() {
+		return opName;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into arriveorderwaiting values"+"("+"'"+id+"','"+centerId+"','"+startPlace+"',"+state.ordinal()+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"')";break;
+		case INSERT:command="insert into arriveorderwaiting values"+"("+"'"+id+"','"+centerId+"','"+startPlace+"',"+state.ordinal()+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
