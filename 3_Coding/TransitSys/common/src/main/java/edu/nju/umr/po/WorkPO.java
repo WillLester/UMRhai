@@ -14,12 +14,12 @@ public class WorkPO extends PO implements Serializable{
 	private String name;
 	private String mobile;
 	private String orgId;
-	private String id;
+	private int id;
 	private Jurisdiction juri;
 	private Wage kind;
 	private int money;
 	private int commission;
-	public WorkPO(String name,String mobile,String orgId,String id,Jurisdiction juri) {
+	public WorkPO(String name,String mobile,String orgId,int id,Jurisdiction juri) {
 		// TODO 自动生成的构造函数存根
 		this.name = name;
 		this.mobile = mobile;
@@ -28,7 +28,7 @@ public class WorkPO extends PO implements Serializable{
 		this.juri = juri;
 	}
 	
-	public WorkPO(String name, String mobile, String orgId, String id,
+	public WorkPO(String name, String mobile, String orgId, int id,
 			Jurisdiction juri, Wage kind, int money, int commission) {
 		super();
 		this.name = name;
@@ -50,7 +50,7 @@ public class WorkPO extends PO implements Serializable{
 	public String getOrgId() {
 		return orgId;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public Jurisdiction getJuri() {

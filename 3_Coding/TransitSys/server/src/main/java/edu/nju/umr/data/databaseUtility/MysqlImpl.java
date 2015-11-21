@@ -5,44 +5,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.DiaryPO;
-import edu.nju.umr.po.DriverPO;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.PO;
-import edu.nju.umr.po.ShelfPO;
-import edu.nju.umr.po.StockPO;
-import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.UserPO;
-import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
-import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
-import edu.nju.umr.po.order.ArrivePO;
-import edu.nju.umr.po.order.CenterLoadingPO;
-import edu.nju.umr.po.order.ExpressPO;
-import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
-import edu.nju.umr.po.order.RecipientPO;
-import edu.nju.umr.po.order.SendPO;
-import edu.nju.umr.po.order.StockInPO;
-import edu.nju.umr.po.order.StockOutPO;
-import edu.nju.umr.po.order.TransitPO;
 
 
 public class MysqlImpl implements MysqlService{
@@ -218,8 +199,9 @@ public class MysqlImpl implements MysqlService{
 				ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 				while(result.next()){
 					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),null );
+					orgList.add(org);
 				}
-				break;
+				return orgList;
 			case USER:
 				Jurisdiction juris[] = Jurisdiction.values();
 				result = state.executeQuery("select * from user");
@@ -227,7 +209,7 @@ public class MysqlImpl implements MysqlService{
 				while(result.next()){
 					ResultSet workInfo = state.executeQuery("select * from work where id="+result.getInt(5));
 					while(workInfo.next()){
-						UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getInt(5),result.getString(6),workInfo.getString(1));
+						UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), workInfo.getString(1),result.getInt(5),workInfo.getString(6));
 						userList.add(user);
 					}
 				}
@@ -259,8 +241,9 @@ public class MysqlImpl implements MysqlService{
 						express.add(ori[i]);
 					}
 					IncomePO income = new IncomePO(date, result.getString(1), result.getDouble(2), express, result.getInt(0), time,result.getString(6));
+					incomeList.add(income);
 				}
-				break;
+				return incomeList;
 			case ORDER:
 				ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();			
 				result = state.executeQuery("select * from arriveorderwaiting");
@@ -333,6 +316,7 @@ public class MysqlImpl implements MysqlService{
 				return orderList;
 			case PAYMENT:
 				result = state.executeQuery("select * from paymentorderpassed");
+				ArrayList<PaymentPO> paymentList = new ArrayList<PaymentPO>();
 				while(result.next()){
 					Calendar date = Calendar.getInstance();
 					date.setTime(result.getDate(6));
@@ -340,8 +324,9 @@ public class MysqlImpl implements MysqlService{
 					Calendar opTime = Calendar.getInstance();
 					opTime.setTime(result.getDate(7));
 					PaymentPO payment = new PaymentPO(result.getInt(0), date,result.getString(1) , result.getString(2), pays[result.getInt(3)], result.getDouble(4), result.getString(5), opTime,result.getString(8));
+					paymentList.add(payment);
 				}
-				break;
+				return paymentList;
 			default:return null;
 			}
 		} catch(SQLException e){
