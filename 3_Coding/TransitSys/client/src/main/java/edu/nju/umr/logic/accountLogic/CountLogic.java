@@ -108,7 +108,7 @@ public class CountLogic implements CountLSer{
 				orgList.add(vo);
 			}
 			for(WorkPO po:count.getWorkers()){
-				WorkVO vo = new WorkVO(po.getName(), po.getMobile(), po.getOrg(),  po.getJuri(),po.getKind(),po.getMoney());
+				WorkVO vo = new WorkVO(po.getName(), po.getMobile(), po.getOrgId(),  po.getJuri(),po.getKind(),po.getMoney());
 				workList.add(vo);
 			}
 			for(VanPO po:count.getVans()){
