@@ -37,7 +37,9 @@ public class TransitInfoPO extends PO implements Serializable{
 			break;
 		case UPDATE:
 			command = "update transitinfo set info='"+info+"' where id='"+expressid+"'";break;
-		case FIND:break;
+		case FIND:
+			command = "select * from transitinfo where id='"+expressid+"'";
+			break;
 		case DELETE:
 			break;
 		}

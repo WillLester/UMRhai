@@ -44,7 +44,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
 		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 		orgList.add(org);
-		WorkPO work = new WorkPO("宝华", "12345678901", "00001", "00001", Jurisdiction.COURIER);
+		WorkPO work = new WorkPO("宝华", "12345678901", "00001", 1, Jurisdiction.COURIER);
 		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
 		workerList.add(work);
 		VanPO van = new VanPO("00001", "苏A-12345",Calendar.getInstance(), null, "00001");

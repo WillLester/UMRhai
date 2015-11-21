@@ -2,6 +2,8 @@ package edu.nju.umr.data.accountData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
@@ -32,7 +34,22 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	public ArrayList<AccountPO> findAccount(String keyword)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return (ArrayList<AccountPO>) mysqlSer.checkInfo(keyword);
+		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+		if(keyword != null){
+			ResultSet result = (ResultSet) mysqlSer.checkInfo(new AccountPO(0, keyword, 0));
+			try {
+				while(result.next()){
+					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
+					accountList.add(account);
+				}
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				return null;
+			}
+		} else {
+			return (ArrayList<AccountPO>) mysqlSer.checkAll(POKind.ACCOUNT);
+		}
+		return accountList;
 	}
 
 	public Result addAccount(AccountPO account) throws RemoteException {

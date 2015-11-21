@@ -62,7 +62,9 @@ public class UserPO extends PO implements Serializable{
 		switch(op){
 		case INSERT:command="insert into user values"+"("+"'"+id+"','"+password+"','"+name+"','"+mobile+"',"+juri.ordinal()+","+key+",'"+orgId+"')";break;
 		case DELETE:command="delete from user where keyid="+key;break;
-		case FIND:break;
+		case FIND:
+			command="select * from user where id like %"+id+"% or name like %"+name+"% or org";
+			break;
 		case UPDATE:command="update user set id='"+id+"' password='"+password+"' name='"+name+"' mobile='"+mobile+"' juri="+juri.ordinal()+" orgId='"+orgId+"' where keyid="+key;break;
 		}
 		return command;

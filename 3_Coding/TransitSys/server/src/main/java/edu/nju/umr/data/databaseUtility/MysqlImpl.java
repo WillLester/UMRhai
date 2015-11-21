@@ -338,80 +338,16 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		ResultSet result;
 		try{
-			
+			result = state.executeQuery(po.getCommand(MysqlOperation.FIND));
+			return result;
 		} catch (SQLException e){
 			return null;
 		}
 	}
-//	private String getCommand(AccountPO account,MysqlOperation op){
-//		String command=null;
-//		switch(op)
-//		{
-//		case INSERT:command = "insert into account values"+"("+account.getId()+","+"'"+account.getName()+"',"+account.getBalance()+")";break;
-//		case DELETE:command = "delete from account where id="+account.getId();break;
-//		case FIND:break;
-//		case UPDATE:command = "update account set name='"+account.getName()+"',balance="+account.getBalance()+" where id="+account.getId();break;
-//		}
-//		return command;
-//	}
-//	private String getCommand(CitiesPO cities,MysqlOperation op){
-//		String command=null;
-//		switch(op){
-//		case INSERT:command = "insert into citiesInfo values"+"('"+cities.getCity1()+"','"+cities.getCity2()+"',"+cities.getDistance()+")";break;
-//		case DELETE:
-//			if(cities.getCity2() == null)
-//				command = "delete from citiesInfo where city1='" + cities.getCity1()+"'";
-//			else
-//				command = "delete from citiesInfo where city2='" + cities.getCity2()+"'";
-//			break;
-//		case FIND:break;
-//		case UPDATE:command = "update citiesInfo set distance ="+cities.getDistance()+" where city1 = '"+cities.getCity1()+"' and city2 = '"+cities.getCity2()+"'";break;
-//		}
-//		return command;
-//	}
-//	private String getCommand(CityPO city,MysqlOperation op){
-//		String command=null;
-//		switch(op)
-//		{
-//		case INSERT:command="insert into city values"+"('"+city.getId()+"',"+"'"+city.getName()+"','"+city.getProvince()+"')";break;
-//		case DELETE:command="delete from city where name='"+city.getName()+"'";break;
-//		case FIND:break;
-//		case UPDATE:command = "update city set id='"+city.getId()+"' name='"+city.getName()+"' province='"+city.getProvince()+"' where keyid="+city.getKey();break;
-//		}
-//		return command;
-//	}
-//	private String getCommand(DiaryPO diary,MysqlOperation op){
-//		String command=null;
-//		switch(op)
-//		{
-//		case INSERT:command="insert into diary values"+"("+diary.getTime()+","+"'"+diary.getOperation()+"','"+diary.getOperator()+"')";break;
-//		case DELETE:break;
-//		case FIND:break;
-//		case UPDATE:break;
-//		}
-//		return command;
-//	}
-//	private String getCommand(DriverPO driver,MysqlOperation op){
-//		String command=null;
-//		switch(op)
-//		{
-//		case INSERT:command="insert into driver values"+"("+"'"+driver.getId()+"','"+driver.getName()+"','"+driver.getIdNum()+"','"+driver.getMobile()+"',"+driver.getSex()+","+driver.getBirthday()+","+driver.getDriveStart()+","+driver.getDriveEnd()+")";break;
-//		case DELETE:command="delete from driver where id='"+driver.getId()+"'";break;
-//		case FIND:break;
-//		case UPDATE:command = "update driver set name='"+driver.getName()+"' idNum='"+driver.getIdNum()+"' mobile='"+driver.getMobile()+"' sex="+driver.getSex().ordinal()+" birthday='"+DateFormat.DATE.format(driver.getBirthday().getTime())+"' driveStart='"+DateFormat.DATE.format(driver.getDriveStart().getTime())+"' driveEnd='"+DateFormat.DATE.format(driver.getDriveEnd().getTime())+"' where id='"+driver.getId()+"'";break;
-//		}
-//		return command;
-//	}
-//	private String getCommand(GoodPO good,MysqlOperation op){
-//		String command=null;
-//		switch(op){
-//		case INSERT:command="insert into good values"+"("+"'"+good.getId()+"','"+good.getStockId()+"','"+good.getCity()+"',"+good.getPart()+",'"+good.getShelf()+"',"+good.getRow()+","+good.getPlace()+","+good.getDate()+")";break;
-//		case DELETE:command="delete from good where id='"+good.getId()+"'";break;
-//		case FIND:break;
-//		case UPDATE:command="update good set stockId='"+good.getStockId()+"' city='"+good.getCity()+"' part="+good.getPart().ordinal()+" shelf='"+good.getShelf()+"' row="+good.getRow()+" place="+good.getPlace()+" date='"+DateFormat.DATE.format(good.getDate().getTime())+"' where id='"+good.getId()+"'";break;
-//		}
-//		return command;
-//	}
+	public Object checkDate(Calendar start, Calendar end) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 //	private String getCommand(OrgPO org,MysqlOperation op){
 //		String command=null;
