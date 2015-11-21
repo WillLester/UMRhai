@@ -30,8 +30,8 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 	public ArrayList<UserPO> findUser(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
-		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",1));
-		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2","一个机构编号啊2",1));
+		ar.add(new UserPO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊",1,null,null));
+		ar.add(new UserPO("2","Password2",Jurisdiction.CENTER,"一个用户名啊2","一个手机号啊2",1,null,null));
 		return ar;
 	}
 
@@ -41,7 +41,7 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 
 	public Result deleteUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new UserPO(id, null, null, null, null, null, 0));
+		return mysqlSer.deleteInfo(new UserPO(id, null, null, null, null, 0 ,null, null));
 	}
 
 	public Result reviseUser(UserPO user) throws RemoteException {

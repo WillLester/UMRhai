@@ -1,18 +1,12 @@
 package edu.nju.umr.logic.userLogic;
 
-import java.rmi.Naming;
-import java.util.Calendar;
-
-import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
+import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.vo.UserVO;
-import edu.nju.umr.po.UserPO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
-import edu.nju.umr.dataService.userDSer.LoginDSer;
+import edu.nju.umr.vo.UserVO;
 
 public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;
@@ -31,7 +25,7 @@ public class LoginLogic implements LoginLSer{
 		// TODO 自动生成的方法存根
 		//UserVO user = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
 		//ResultMessage message = new ResultMessage(true, user);
-		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",-1));
+		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊",-1,null,null));
 		
 //		boolean isSuccessful=false;
 //		UserVO userVO=null;
