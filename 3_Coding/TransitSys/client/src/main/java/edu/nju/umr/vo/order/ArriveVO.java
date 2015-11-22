@@ -10,13 +10,15 @@ public class ArriveVO {
 //	private String id;
 	private String startPlace;
 	private GoodState state;
-	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state) {
+	private String opName;
+	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName) {
 		// TODO 自动生成的构造函数存根
 		this.centerId = centerId;
 		this.date = date;
 //		this.id = id;
 		this.startPlace = startPlace;
 		this.state = state;
+		this.opName=opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -32,6 +34,9 @@ public class ArriveVO {
 	}
 	public String getCenterId() {
 		return centerId;
+	}
+	public String getOpName() {
+		return opName;
 	}
 	
 }

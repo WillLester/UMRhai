@@ -34,7 +34,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			RecipientPO orderPO=new RecipientPO(order.getDate(),"",order.getTransitId(),order.getStartPlace(),order.getState(),Calendar.getInstance());
+			RecipientPO orderPO=new RecipientPO(order.getDate(),"",order.getTransitId(),order.getStartPlace(),order.getState(),Calendar.getInstance(),order.getOpName());
 			recipientData.create(orderPO);
 			isSuccessful=true;
 		}

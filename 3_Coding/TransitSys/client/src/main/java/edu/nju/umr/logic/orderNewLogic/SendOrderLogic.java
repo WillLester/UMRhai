@@ -29,7 +29,7 @@ public class SendOrderLogic implements SendOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			SendPO orderPO=new SendPO(order.getDate(),order.getExpressId(),"",order.getCourier(),Calendar.getInstance());
+			SendPO orderPO=new SendPO(order.getDate(),order.getExpressId(),"",order.getCourier(),Calendar.getInstance(),order.getOpName());
 			sendData.create(orderPO);
 			isSuccessful=true;
 		}

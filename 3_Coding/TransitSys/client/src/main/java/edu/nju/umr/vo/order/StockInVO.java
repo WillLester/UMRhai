@@ -13,7 +13,8 @@ public class StockInVO {
 	private String shelfId;
 	private int row;
 	private int place;
-	public StockInVO(String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place) {
+	private String opName;
+	public StockInVO(String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place,String opName) {
 		// TODO 自动生成的构造函数存根
 //		this.id = id;
 		this.expressId = expressId;
@@ -23,6 +24,7 @@ public class StockInVO {
 		this.shelfId = shelfId;
 		this.row = row;
 		this.place = place;
+		this.opName = opName;
 	}
 //	public String getId() {
 //		return id;
@@ -47,6 +49,9 @@ public class StockInVO {
 	}
 	public int getPlace() {
 		return place;
+	}
+	public String getOpName() {
+		return opName;
 	}
 	
 }

@@ -7,12 +7,14 @@ public class SendVO {
 	private String expressId;
 //	private String id;
 	private String courier;
-	public SendVO(Calendar date,String expressId,String name) {
+	private String opName;
+	public SendVO(Calendar date,String expressId,String courier,String opName) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.expressId = expressId;
 //		this.id = id;
-		this.courier = name;
+		this.courier = courier;
+		this.opName = opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -25,5 +27,8 @@ public class SendVO {
 //	}
 	public String getCourier() {
 		return courier;
+	}
+	public String getOpName() {
+		return opName;
 	}
 }

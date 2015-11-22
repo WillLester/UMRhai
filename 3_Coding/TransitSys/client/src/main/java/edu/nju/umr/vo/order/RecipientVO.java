@@ -10,13 +10,16 @@ public class RecipientVO {
 	private String transitId;
 	private String startPlace;
 	private GoodState state;
-	public RecipientVO(Calendar date,String transitId,String startPlace,GoodState state) {
+	private String opName;
+
+	public RecipientVO(Calendar date,String transitId,String startPlace,GoodState state,String opName) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 //		this.id = id;
 		this.transitId = transitId;
 		this.startPlace = startPlace;
 		this.state = state;
+		this.opName=opName;
 	}
 	public Calendar getDate() {
 		return date;
@@ -33,5 +36,7 @@ public class RecipientVO {
 	public GoodState getState() {
 		return state;
 	}
-	
+	public String getOpName() {
+		return opName;
+	}
 }

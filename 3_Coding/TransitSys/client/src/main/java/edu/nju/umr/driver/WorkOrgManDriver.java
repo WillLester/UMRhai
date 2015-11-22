@@ -2,7 +2,6 @@ package edu.nju.umr.driver;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.logic.workOrgManLogic.DriverManLogic;
 import edu.nju.umr.logic.workOrgManLogic.OrgManLogic;
@@ -12,9 +11,9 @@ import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
+import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.DriverVO;
@@ -57,9 +56,9 @@ public class WorkOrgManDriver {
 	}
 	@SuppressWarnings("unchecked")
 	private void driverOrg(){
-		System.out.println(org.addOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1","江苏"))));
+		System.out.println(org.addOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","江苏")));
 		System.out.println(org.deleteOrg("1"));
-		System.out.println(org.reviseOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityVO("南京","1","江苏"))));
+		System.out.println(org.reviseOrg(new OrgVO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","江苏")));
 //		OrgVO org=(OrgVO)this.org.checkOrg("1").getMessage();
 //		System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
 		ArrayList<OrgVO> ar=null;
@@ -74,7 +73,7 @@ public class WorkOrgManDriver {
 		for(int i=0;i<ar.size();i++)
 		{
 			OrgVO org=ar.get(i);
-			System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity().getName()+" "+org.getCity().getId());
+			System.out.println(org.getId()+" "+org.getName()+" "+org.getKind()+" "+org.getLocation()+" "+org.getCity()+" "+org.getCityId());
 		}
 		
 		ArrayList<CityVO> ar2=null;
@@ -102,9 +101,11 @@ public class WorkOrgManDriver {
 		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime());
 	}
 	private void driverDriver(){
-		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,new Date())));
+		Calendar driveStart=Calendar.getInstance();
+		Calendar driveEnd=Calendar.getInstance();
+		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,driveStart,driveEnd)));
 		System.out.println(drive.deleteDriver("1"));
-		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,new Date())));
+		System.out.println(drive.reviseDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,driveStart,driveEnd)));
 		
 //		ArrayList<DriverVO> ar=(ArrayList<DriverVO>)drive.searchDriver(null).getMessage();
 //		for(int i=0;i<ar.size();i++)
