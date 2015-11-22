@@ -72,7 +72,7 @@ public class UtilityLogic {
 		for(int i=0;i<ar.size();i++)
 		{
 			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),new CityVO(Org.getCity().getId(),Org.getCity().getName(),Org.getCity().getProvince())));
+			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),Org.getCity(),Org.getCityId()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
@@ -85,8 +85,8 @@ public class UtilityLogic {
 			ArrayList<OrgPO> halls = utilityData.getHall();
 			re=Result.SUCCESS;
 			for(OrgPO hall:halls){
-				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
-				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
+//				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
+				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), hall.getCity(), hall.getCityId());
 				hallList.add(vo);
 			}
 		} catch (RemoteException e) {

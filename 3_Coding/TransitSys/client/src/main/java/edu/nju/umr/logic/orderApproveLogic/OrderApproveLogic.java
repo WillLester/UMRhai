@@ -68,7 +68,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		try {
 			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
 			System.out.println(orderpo.getId());
-			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks());
+			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks(),order.getOpName());
 			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

@@ -19,12 +19,9 @@ public class InfoFrame extends JFrame{
 	 * Create the frame.
 	 */
 	public InfoFrame(String title) {
-		desktop = new JDesktopPane();
-		this.getContentPane().add(desktop);
 		setResizable(false);
 		setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
 		setTitle(title);
-		System.out.println(this.getWidth() +" " + this.getHeight());
-		this.add(new CountInfoPanel());
+		this.setVisible(true);
 	}
 }

@@ -39,7 +39,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), "", order.getStartPlace(), order.getState(),Calendar.getInstance()));
+			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), "", order.getStartPlace(), order.getState(),Calendar.getInstance(),order.getOpName()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

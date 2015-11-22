@@ -7,14 +7,16 @@ public class OrgVO {
 	private String name;
 	private Organization kind;
 	private String location;
-	private CityVO city;
-	public OrgVO(String id,String name,Organization kind,String location,CityVO city) {
+	private String city;
+	private String cityId;
+	public OrgVO(String id,String name,Organization kind,String location,String city,String cityId) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.name = name;
 		this.kind = kind;
 		this.location = location;
 		this.city = city;
+		this.cityId = cityId;
 	}
 	public String getId() {
 		return id;
@@ -28,7 +30,10 @@ public class OrgVO {
 	public String getLocation() {
 		return location;
 	}
-	public CityVO getCity() {
+	public String getCity() {
 		return city;
+	}
+	public String getCityId() {
+		return cityId;
 	}
 }
