@@ -12,5 +12,5 @@ public interface MysqlService {
 	public Result reviseInfo(PO po);
 	public Object checkAll(POKind kind);
 	public Object checkInfo(PO po);
-	public Object checkDate(Calendar start,Calendar end);
+	public Object checkDate(Calendar start,Calendar end,POKind kind);
 }
