@@ -9,8 +9,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
 public interface BusiCircumLSer {
-	public ResultMessage seeIncome(Calendar start,Calendar end);
-	public ResultMessage seePayment(Calendar start,Calendar end);
-	public ResultMessage getHall();
-	public Result outputExcel(String data[][],String name,String location);
+//	public ResultMessage seeIncome(Calendar start,Calendar end);
+//	public ResultMessage seePayment(Calendar start,Calendar end);
+//	public ResultMessage getHall();
+	public ResultMessage getBusiCircum(Calendar start,Calendar end);
+	public Result outputExcel(String name,String location);
 }

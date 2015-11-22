@@ -16,15 +16,16 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.IncomeVO;
-import edu.nju.umr.vo.order.PaymentVO;
+import edu.nju.umr.vo.order.BusiCircumVO;
 
 public class BusiCircumLogic implements BusiCircumLSer{
 	StatementSheetDFacSer dataFac;
 	BusiCircumDSer statementData;
 	UtilityLogic uti;
-	ArrayList<IncomePO> incomePOs=null;
-	ArrayList<PaymentPO> paymentPOs=null;
+	ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
+//	ArrayList<IncomePO> incomePOs=null;
+//	ArrayList<PaymentPO> paymentPOs=null;
+	
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -39,32 +40,32 @@ public class BusiCircumLogic implements BusiCircumLSer{
             e.printStackTrace();   
         } 
 	}
-	//返回收款单list
-	public ResultMessage seeIncome(Calendar start, Calendar end) {
-		// TODO 自动生成的方法存根
-		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
-		try {
-			incomePOs = statementData.findIncome(start, end);
-			for(IncomePO po:incomePOs){
-				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
-				incomeList.add(vo);
-			}
-		} catch (RemoteException e) {
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		} catch (NullPointerException e){
-			return new ResultMessage(Result.Data_Not_Found,null);
-		}
+	public ResultMessage getBusiCircum(Calendar start, Calendar end) {
 		
-		return new ResultMessage(Result.SUCCESS, incomeList);
-	}
-	//返回付款单list
-	public ResultMessage seePayment(Calendar start, Calendar end){
-		ArrayList<PaymentVO> paymentList=new ArrayList<PaymentVO>();
 		try {
-			paymentPOs=statementData.findPayment(start, end);
+			ArrayList<IncomePO> incomePOs=statementData.findIncome(start, end);
+			ArrayList<PaymentPO> paymentPOs=statementData.findPayment(start, end);
+			
+			for(IncomePO po:incomePOs){
+				BusiCircumVO bc=new BusiCircumVO(0,po.getDate(),po.getCost(),null);
+				busiList.add(bc);
+			}
+			
 			for(PaymentPO po:paymentPOs){
-				PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
-				paymentList.add(vo);
+				BusiCircumVO bc=new BusiCircumVO(1,po.getDate(),po.getAmount(),po.getKind());
+				busiList.add(bc);
+			}
+			
+			for(int i=0;i<busiList.size();i++){
+				for(int j=0;j<busiList.size()-1;j++){
+					BusiCircumVO b1=busiList.get(j);
+					BusiCircumVO b2=busiList.get(j+1);
+					if(b1.getDate().compareTo(b2.getDate())>0){
+						BusiCircumVO temp=b1;
+						busiList.set(j, b2);
+						busiList.set(j+1, temp);
+					}
+				}
 			}
 		} catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
@@ -72,11 +73,65 @@ public class BusiCircumLogic implements BusiCircumLSer{
 			return new ResultMessage(Result.Data_Not_Found,null);
 		}
 		
-		return new ResultMessage(Result.SUCCESS,paymentList);
-		
+		return new ResultMessage(Result.SUCCESS,busiList);
 	}
+	
+	public Result outputExcel(String name, String location) {
+		String data[][]=new String[1+busiList.size()][4];
+		data[0][0]="单据种类";
+		data[0][1]="日期";
+		data[0][2]="金额";
+		data[0][3]="缘由";
+		
+		for(int i=0;i<busiList.size();i++){
+			data[i+1][0]=busiList.get(i).getAmount()+"";
+			Calendar c=busiList.get(i).getDate();
+			data[i+1][1]=(c.YEAR+"")+"."+(c.MONTH+"")+"."+(c.DATE+"");
+			data[i+1][2]=busiList.get(i).getAmount()+"";
+			data[i+1][3]=String.valueOf(busiList.get(i).getRemark());
+		}
+		
+		
+		return uti.outputExcel(data, name, location);
+	}
+//	//返回收款单list
+//	public ResultMessage seeIncome(Calendar start, Calendar end) {
+//		// TODO 自动生成的方法存根
+//		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
+//		try {
+//			incomePOs = statementData.findIncome(start, end);
+//			for(IncomePO po:incomePOs){
+//				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
+//				incomeList.add(vo);
+//			}
+//		} catch (RemoteException e) {
+//			return new ResultMessage(Result.NET_INTERRUPT,null);
+//		} catch (NullPointerException e){
+//			return new ResultMessage(Result.Data_Not_Found,null);
+//		}
+//		
+//		return new ResultMessage(Result.SUCCESS, incomeList);
+//	}
+//	//返回付款单list
+//	public ResultMessage seePayment(Calendar start, Calendar end){
+//		ArrayList<PaymentVO> paymentList=new ArrayList<PaymentVO>();
+//		try {
+//			paymentPOs=statementData.findPayment(start, end);
+//			for(PaymentPO po:paymentPOs){
+//				PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
+//				paymentList.add(vo);
+//			}
+//		} catch (RemoteException e) {
+//			return new ResultMessage(Result.NET_INTERRUPT,null);
+//		} catch(NullPointerException e){
+//			return new ResultMessage(Result.Data_Not_Found,null);
+//		}
+//		
+//		return new ResultMessage(Result.SUCCESS,paymentList);
+//		
+//	}
 
-	public ResultMessage getHall() {
+//	public ResultMessage getHall() {
 		// TODO 自动生成的方法存根
 //		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
 //		try {
@@ -91,12 +146,12 @@ public class BusiCircumLogic implements BusiCircumLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, hallList);
-		return uti.getHall();
-	}
+//		return uti.getHall();
+//	}
 
-	public Result outputExcel(String data[][],String name, String location) {
-		// TODO 自动生成的方法存根
-		return Result.SUCCESS;
-	}
+	
+
+	
+	
 
 }

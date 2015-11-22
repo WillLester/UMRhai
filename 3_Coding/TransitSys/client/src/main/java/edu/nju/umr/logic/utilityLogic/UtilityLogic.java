@@ -1,5 +1,8 @@
 package edu.nju.umr.logic.utilityLogic;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -7,6 +10,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import edu.nju.umr.constants.Url;
+import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
+import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.GoodPO;
@@ -23,9 +35,6 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
-import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
-import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 
 public class UtilityLogic {
 	private UtilityDSer utilityData;
@@ -179,5 +188,37 @@ public class UtilityLogic {
 			e.printStackTrace();
 		}
 		return isSuc;
+	}
+	//导出excel文件
+	public Result outputExcel(String data[][],String name, String location) {
+		HSSFWorkbook wb=new HSSFWorkbook();//创建一个workbook对应一个excel文件
+		HSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
+		
+		HSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		for(int i=0;i<data.length;i++){
+			HSSFRow row=sheet.createRow((int)i);//创建表格第i行
+			for(int j=0;j<data[0].length;j++){
+				HSSFCell cell=row.createCell(j);	
+				cell.setCellValue(data[i][j]);
+//				System.out.print(data[i][j]+" ");
+				if(i==0)
+					cell.setCellStyle(style);//表头格式居中
+			}
+//			System.out.println();
+		}
+		
+		try {
+			FileOutputStream fout=new FileOutputStream(location+name+".xls");
+			wb.write(fout);
+			fout.close();
+		} catch (FileNotFoundException e) {
+			return Result.FILE_NOT_FOUND;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return Result.FILE_NOT_FOUND;
+		}
+		return Result.SUCCESS;
 	}
 }
