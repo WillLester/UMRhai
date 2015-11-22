@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 
 import edu.nju.umr.logic.workOrgManLogic.DriverManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
+import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
@@ -22,6 +23,7 @@ import javax.swing.JTable;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -32,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 public class DriverListPanel extends JPanel {
 	private JTextField textFieldSearch;
 	private JFrame frame;
-	private JPanel panel;
+	private DriverListPanel panel;
 	private Table table;
 	private DefaultTableModel model;
 	private DriverManLSer serv;
@@ -71,22 +73,37 @@ public class DriverListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				InfoFrame fr=new InfoFrame("新增司机信息输入");
-				fr.setContentPane(new DriverInfoPanel(fr,panel));
+				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance())));
 			}
 		});
 		add(add);
 		
 		JButton delete = new JButton("删除");
 		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 90, 21);
+		delete.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
+				driverList.remove(table.getSelectedRow());
+				displayDrivers();
+			}
+		});
 		add(delete);
 		
 		JButton modify = new JButton("修改");
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 90, 21);
+		modify.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				InfoFrame fr=new InfoFrame("修改司机信息");
+				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow())));
+			}
+		});
 		add(modify);
 		
 		JButton forDetail = new JButton("查看详细");
 		forDetail.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 90, 21);
-		add(forDetail);
+//		add(forDetail);
 		
 		JButton out = new JButton("退出");
 		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),90,21);
@@ -97,8 +114,9 @@ public class DriverListPanel extends JPanel {
 			}
 		});
 		add(out);
+		
 		tableInit();
-		driverList=(ArrayList<DriverVO>)serv.searchDriver(user.getOrg()).getMessage();
+		driverList=(ArrayList<DriverVO>)serv.searchDriver(/*user.getOrg()*/"").getMessage();
 		displayDrivers();
 		
 	}
@@ -132,4 +150,31 @@ public class DriverListPanel extends JPanel {
 	void addDriver(DriverVO driver){
 		
 	}
+	public void Modify(DriverVO driver){
+		int index;
+		for(index=0;index<driverList.size();index++)
+		{
+			DriverVO dr=driverList.get(index);
+			if(dr.getId().equals(driver.getId()))
+			{
+				serv.reviseDriver(driver);
+				driverList.remove(index);
+				driverList.add(driver);
+				break;
+			}
+		}
+		if(index==driverList.size())
+		{
+			driverList.add(driver);
+			serv.addDriver(driver);
+		}
+		displayDrivers();
+	}
+//	public static void main(String[] args){
+//		JFrame f=new JFrame();
+//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		f.setSize(1300,800);
+//		f.setContentPane(new DriverListPanel(f));
+//		f.setVisible(true);
+//	}
 }

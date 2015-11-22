@@ -54,7 +54,7 @@ public class DriverVO {
 		if(sex.equals(Gender.MAN))
 			gen="男";
 		else gen="女";
-		String [] data={id,name,birthday.toString(),idNum,mobile,gen,driveStart.toString(),driveEnd.toString()};
+		String [] data={id,name,birthday.getTime().toString(),idNum,mobile,gen,driveStart.getTime().toString(),driveEnd.getTime().toString()};
 		return data;
 	}
 	

@@ -1,19 +1,23 @@
 package edu.nju.umr.ui.workOrgManUI;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.checkUI.DatePanel;
+import edu.nju.umr.vo.DriverVO;
 
 import javax.swing.JComboBox;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 
@@ -23,12 +27,16 @@ public class DriverInfoPanel extends JPanel {
 	private JTextField textFieldIden;
 	private JTextField textFieldMobile;
 	private JFrame frame;
-	private JPanel panel;
+	private DriverListPanel panel;
+	private JComboBox comboBoxSex;
+	private DatePanel born;
+	private DatePanel start;
+	private DatePanel deadline;
 
 	/**
 	 * Create the panel.
 	 */
-	public DriverInfoPanel(JFrame fr,JPanel pa) {
+	public DriverInfoPanel(JFrame fr,DriverListPanel pa,DriverVO driver) {
 		setLayout(null);
 		frame=fr;
 		panel=pa;
@@ -45,6 +53,8 @@ public class DriverInfoPanel extends JPanel {
 		textFieldNum = new JTextField();
 		textFieldNum.setBounds(driverNum.getX()+driverNum.getWidth(), driverNum.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldNum);
+		textFieldNum.setEditable(false);
+		textFieldNum.setText(driver.getId());
 		textFieldNum.setColumns(10);
 		
 		JLabel driverName = new JLabel("姓名");
@@ -54,22 +64,28 @@ public class DriverInfoPanel extends JPanel {
 		textFieldName = new JTextField();
 		textFieldName.setBounds(textFieldNum.getX(), driverName.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldName);
+		textFieldName.setText(driver.getName());
 		textFieldName.setColumns(10);
 		
 		JLabel driverSex = new JLabel("性别");
 		driverSex.setBounds(driverNum.getX(), driverName.getY()+driverName.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverSex);
 		
-		JComboBox comboBoxSex = new JComboBox();
+		comboBoxSex = new JComboBox();
 		comboBoxSex.setBounds(textFieldNum.getX(), driverSex.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		comboBoxSex.setModel(new DefaultComboBoxModel(new String[]{"男","女"}));
+		if(driver.getSex().equals(Gender.MAN))
+		comboBoxSex.setSelectedIndex(0);
+		else comboBoxSex.setSelectedIndex(1);
 		add(comboBoxSex);
 		
 		JLabel bornDate = new JLabel("出生日期");
 		bornDate.setBounds(driverNum.getX(), driverSex.getY()+driverSex.getHeight()+30,Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bornDate);
 		
-		DatePanel born=new DatePanel();
+		born=new DatePanel();
 		born.setBounds(textFieldNum.getX(), bornDate.getY()+3,Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
+		born.setDate(driver.getBirthday());
 		add(born);
 		
 		JLabel identity = new JLabel("身份证号");
@@ -79,6 +95,7 @@ public class DriverInfoPanel extends JPanel {
 		textFieldIden = new JTextField();
 		textFieldIden.setBounds(textFieldNum.getX(), identity.getY()+3, Constants.TEXTFIELD_WIDTH_S*2, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldIden);
+		textFieldIden.setText(driver.getIdNum());
 		textFieldIden.setColumns(10);
 		
 		JLabel mobile = new JLabel("手机");
@@ -87,6 +104,7 @@ public class DriverInfoPanel extends JPanel {
 		
 		textFieldMobile = new JTextField();
 		textFieldMobile.setBounds(mobile.getX()+mobile.getWidth(), mobile.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		textFieldMobile.setText(driver.getMobile());
 		add(textFieldMobile);
 		textFieldMobile.setColumns(10);
 		
@@ -98,20 +116,28 @@ public class DriverInfoPanel extends JPanel {
 		labely.setBounds(textFieldMobile.getX(), term.getY()+8, 19, 15);
 		add(labely);
 		
-		DatePanel start=new DatePanel();
+		start=new DatePanel();
 		start.setBounds(labely.getX()+20, term.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
+		start.setDate(driver.getDriveStart());
 		add(start);
 		
 		JLabel labelz = new JLabel("至");
 		labelz.setBounds(textFieldMobile.getX(), term.getY()+30, 19, 15);
 		add(labelz);
 		
-		DatePanel deadline=new DatePanel();
+		deadline=new DatePanel();
 		deadline.setBounds(labelz.getX()+20, labelz.getY(), Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
+		deadline.setDate(driver.getDriveEnd());
 		add(deadline);
 		
 		JButton cancel = new JButton("取消");
 		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancel.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+			}
+		});
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");
@@ -119,10 +145,22 @@ public class DriverInfoPanel extends JPanel {
 		confirm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				DriverVO driver=new DiverVO(textFieldNum.getText(),textFieldName.getText(),born)
+				Gender sex;
+				if(comboBoxSex.getSelectedIndex()==0)sex=Gender.MAN;
+				else sex=Gender.WOMAN;
+				DriverVO newDriver=new DriverVO(textFieldNum.getText(),textFieldName.getText(),born.getCalendar(),textFieldIden.getText(),
+						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar());
+				frame.dispose();
+				panel.Modify(newDriver);
 			}
 		});
 		add(confirm);
-
 	}
+//	public static void main(String[] args){
+//		JFrame f=new JFrame();
+//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		f.setSize(1300,800);
+//		//f.setContentPane(new DriverInfoPanel(f,null,new DriverVO("1","制杖",Calendar.getInstance(),"111","321312312312",Gender.WOMAN,Calendar.getInstance(),Calendar.getInstance())));
+//		f.setVisible(true);
+//	}
 }

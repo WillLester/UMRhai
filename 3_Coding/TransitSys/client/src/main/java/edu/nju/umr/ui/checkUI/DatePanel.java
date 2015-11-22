@@ -30,7 +30,11 @@ public class DatePanel extends JPanel {
 		comboBox = new JComboBox();
 		comboBox.setBounds(0, 0, 66, 21);
 		int nowyear=Calendar.getInstance().get(Calendar.YEAR);
-		String [] years={Integer.toString(nowyear-1),Integer.toString(nowyear),Integer.toString(nowyear+1)};
+		String [] years=new String[101];
+		for(int i=-1;i<100;i++)
+		{
+			years[i+1]=Integer.toString(nowyear-i);
+		}
 		comboBox.setModel(new DefaultComboBoxModel(years));
 		comboBox.setSelectedIndex(1);
 		add(comboBox);
@@ -76,7 +80,7 @@ public class DatePanel extends JPanel {
 	}
 	public Calendar getCalendar(){
 		Calendar calendar=Calendar.getInstance();
-		calendar.set(Integer.parseInt((String)comboBox.getModel().getSelectedItem()), Integer.parseInt((String)comboBox_1.getModel().getSelectedItem()),Integer.parseInt((String)comboBox_2.getModel().getSelectedItem()));
+		calendar.set(Integer.parseInt((String)comboBox.getModel().getSelectedItem()), Integer.parseInt((String)comboBox_1.getModel().getSelectedItem())-1,Integer.parseInt((String)comboBox_2.getModel().getSelectedItem()));
 		return calendar;
 		
 	}
@@ -103,5 +107,10 @@ public class DatePanel extends JPanel {
 		case 2:if(y%400==0||(y%4==0&&y%100!=0))date=2;else date=3;break;
 		}
 		comboBox_2.setModel(new DefaultComboBoxModel(dates[date]));
+	}
+	public void setDate(Calendar calendar){
+		comboBox.setSelectedIndex(Calendar.getInstance().get(Calendar.YEAR)-calendar.get(Calendar.YEAR)+1);
+		comboBox_1.setSelectedIndex(calendar.get(Calendar.MONTH));
+		comboBox_2.setSelectedIndex(calendar.get(Calendar.DATE)-1);
 	}
 }
