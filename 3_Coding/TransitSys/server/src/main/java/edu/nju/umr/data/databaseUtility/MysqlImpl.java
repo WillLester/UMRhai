@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
@@ -207,11 +208,8 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from user");
 				ArrayList<UserPO> userList = new ArrayList<UserPO>();
 				while(result.next()){
-					ResultSet workInfo = state.executeQuery("select * from work where id="+result.getInt(5));
-					while(workInfo.next()){
-						UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), workInfo.getString(1),result.getInt(5),workInfo.getString(6));
-						userList.add(user);
-					}
+					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getString(7),result.getInt(5),result.getString(6));
+					userList.add(user);
 				}
 				return userList;
 			case WORK:
@@ -220,11 +218,8 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from user");
 				ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
 				while(result.next()){
-					ResultSet userInfo = state.executeQuery("select * from user where id="+result.getInt(6));
-					while(userInfo.next()){
-						WorkPO work = new WorkPO(userInfo.getString(2), userInfo.getString(3),result.getString(1) , result.getInt(0), juris[userInfo.getInt(4)], wages[result.getInt(2)], result.getInt(3), result.getInt(4));
-						workList.add(work);
-					}
+					WorkPO work = new WorkPO(result.getString(2), result.getString(3),result.getString(7) , result.getString(6),result.getInt(5), juris[result.getInt(4)], wages[result.getInt(8)], result.getInt(9), result.getInt(10));
+					workList.add(work);
 				}
 				return workList;
 			case INCOME:
@@ -344,9 +339,28 @@ public class MysqlImpl implements MysqlService{
 			return null;
 		}
 	}
-	public Object checkDate(Calendar start, Calendar end) {
+	public Object checkDate(Calendar start, Calendar end,POKind kind) {
 		// TODO 自动生成的方法存根
-		return null;
+		ResultSet result;
+		try{
+			switch(kind){
+			case INCOME:
+				result = state.executeQuery("select * from incomeorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+			case PAYMENT:
+				result = state.executeQuery("select * from paymentorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+			case DIARY:
+				result = state.executeQuery("select * from diary where time between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
+			case STOCKIN:
+				result = state.executeQuery("select * from stockinorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+			case STOCKOUT:
+				result = state.executeQuery("select * from stockoutorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+			default:
+				return null;
+			}
+			return result;
+		} catch (SQLException e){
+			return null;
+		}
 	}
 	
 //	private String getCommand(OrgPO org,MysqlOperation op){
