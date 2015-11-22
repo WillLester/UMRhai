@@ -35,7 +35,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		// TODO 自动生成的方法存根
 		boolean isSuccessful=false;
 		try{
-			TransitPO orderPO=new TransitPO(order.getId(),order.getPlaneId(),order.getStartPlace(),order.getArrivePlace(),order.getContainerId(),order.getSupervision(),order.getExpress(),Calendar.getInstance());
+			TransitPO orderPO=new TransitPO("",order.getPlaneId(),order.getStartPlace(),order.getArrivePlace(),order.getContainerId(),order.getSupervision(),order.getExpress(),Calendar.getInstance());
 			transitData.create(orderPO);
 			isSuccessful=true;
 		}

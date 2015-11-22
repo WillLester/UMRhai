@@ -34,7 +34,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = paymentData.create(new PaymentPO(order.getId(), order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance()));
+			isSuc = paymentData.create(new PaymentPO("", order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
