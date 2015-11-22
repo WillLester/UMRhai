@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 /*
@@ -24,14 +25,16 @@ public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
 		// TODO 自动生成的构造函数存根
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<IncomePO> getIncomes() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return (ArrayList<IncomePO>) mysqlSer.checkAll(POKind.INCOME);
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<PaymentPO> getPayments() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		return (ArrayList<PaymentPO>) mysqlSer.checkAll(POKind.PAYMENT);
 	}
 
 }

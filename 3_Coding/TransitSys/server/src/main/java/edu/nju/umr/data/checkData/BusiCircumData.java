@@ -2,12 +2,15 @@ package edu.nju.umr.data.checkData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import edu.nju.umr.data.utilityData.UtilityData;
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
+import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
-import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 /*
@@ -18,34 +21,22 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 	 * 
 	 */
 	private static final long serialVersionUID = -4682435735979107069L;
-	private UtilityDSer utilitySer;
+	private MysqlService mysqlSer;
 	public BusiCircumData() throws RemoteException {
 		super();
-		utilitySer = new UtilityData();
+		mysqlSer = new MysqlImpl();
 		// TODO 自动生成的构造函数存根
 	}
 
 	public ArrayList<IncomePO> findIncome(Calendar start, Calendar end)//时间参数与findPayment相同
 			throws RemoteException {
-		String express1 = "1024656";
-		ArrayList<String> express = new ArrayList<String>();
-		express.add(express1);
-//		IncomePO income = new IncomePO(date, "宝华", 23.33, express, "00001");
-		ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
-//		incomeList.add(income);
-		return incomeList;
+		ResultSet result = mysqlSer.checkDate(start, end, POKind.INCOME);
+		return ArrayListFactory.produceIncomeList(result);
 	}
 
 	public ArrayList<PaymentPO> findPayment(Calendar start, Calendar end)//时间参数与findIncome相同
 			throws RemoteException {
-		
-		return null;
+		ResultSet result = mysqlSer.checkDate(start, end, POKind.PAYMENT);
+		return ArrayListFactory.producePaymentList(result);
 	}
-	
-
-
-//	public ArrayList<OrgPO> getHall() throws RemoteException {
-//		return utilitySer.getHall();
-//	}
-
 }

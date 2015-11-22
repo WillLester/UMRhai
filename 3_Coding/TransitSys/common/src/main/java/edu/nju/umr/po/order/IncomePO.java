@@ -20,9 +20,11 @@ public class IncomePO extends PO implements Serializable{
 	private int id;
 	private Calendar opTime;
 	private String opName;
+	private String orgId;
 	
 	public IncomePO(Calendar date, String courier, double cost,
-			ArrayList<String> express, int id, Calendar opTime, String opName) {
+			ArrayList<String> express, int id, Calendar opTime, String opName,
+			String orgId) {
 		super();
 		this.date = date;
 		this.courier = courier;
@@ -31,6 +33,7 @@ public class IncomePO extends PO implements Serializable{
 		this.id = id;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.orgId = orgId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -53,6 +56,10 @@ public class IncomePO extends PO implements Serializable{
 	public String getOpName() {
 		return opName;
 	}
+	
+	public String getOrgId() {
+		return orgId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -63,9 +70,10 @@ public class IncomePO extends PO implements Serializable{
 			for(String exp:express){
 				text = text + exp + " ";
 			}
-			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"','"+opName+"')";break;
+			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"','"+opName+"','"+orgId+"')";break;
 		case DELETE:break;
-		case FIND:break;
+		case FIND:
+			command = "select * from incomeorderpassed where orgId='"+orgId+"'";break;
 		case UPDATE:break;
 		}
 		return command;

@@ -9,6 +9,7 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.OrderPO;
@@ -30,12 +31,10 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		mysqlSer = new MysqlImpl();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<OrderPO> getExamine() throws RemoteException {
 		// TODO 自动生成的方法存根
-		OrderPO order = new OrderPO("12345", Order.EXPRESS, "宝华", Calendar.getInstance(), false);
-		ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();
-		orderList.add(order);
-		return orderList;
+		return (ArrayList<OrderPO>) mysqlSer.checkAll(POKind.ORDER);
 	}
 
 	public Result update(boolean isPassed,ArrayList<String> id,Order kind) throws RemoteException {

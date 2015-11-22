@@ -36,7 +36,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 		// TODO 自动生成的方法存根
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 		if(keyword != null){
-			ResultSet result = (ResultSet) mysqlSer.checkInfo(new AccountPO(0, keyword, 0));
+			ResultSet result = mysqlSer.checkInfo(new AccountPO(0, keyword, 0));
 			try {
 				while(result.next()){
 					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
@@ -64,11 +64,5 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(account);
 	}
-
-//	public AccountPO checkAccount(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		AccountPO account = new AccountPO(id, "Excited", 25000);
-//		return account;
-//	}
 
 }

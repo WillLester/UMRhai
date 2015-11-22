@@ -4,12 +4,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
-import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
@@ -28,16 +26,13 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 		mysqlSer = new MysqlImpl();
 	}
 
-	public ArrayList<StockInPO> getIn(Date start, Date end, String id)
+	public ArrayList<StockInPO> getIn(Calendar start, Calendar end, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<StockInPO> inList = new ArrayList<StockInPO>();
-		StockInPO po = new StockInPO("12345", "123343421", Calendar.getInstance(), "北京", Part.PLANE, "T10000", 5, 3,Calendar.getInstance(),"宝华");
-		inList.add(po);
-		return inList;
+		return null;
 	}
 
-	public ArrayList<StockOutPO> getOut(Date start, Date end, String id)
+	public ArrayList<StockOutPO> getOut(Calendar start, Calendar end, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<StockOutPO> outList = new ArrayList<StockOutPO>();
