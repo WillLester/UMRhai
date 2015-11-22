@@ -16,14 +16,12 @@ public class VanPO extends PO implements Serializable{
 	private String plateNum;
 	private Calendar servTime;
 	private Image photo;
-	private String orgId;
-	public VanPO(String id,String plateNum,Calendar servTime,Image photo,String orgId) {
+	public VanPO(String id,String plateNum,Calendar servTime,Image photo) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.plateNum = plateNum;
 		this.servTime = servTime;
 		this.photo = photo;
-		this.orgId = orgId;
 	}
 	public String getId() {
 		return id;
@@ -37,18 +35,15 @@ public class VanPO extends PO implements Serializable{
 	public Image getPhoto() {
 		return photo;
 	}
-	public String getOrgId() {
-		return orgId;
-	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+photo+"','"+orgId+"'"+")";break;
+		case INSERT:command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+photo+"')";break;
 		case DELETE:command="delete from van where id='"+id+"'";break;
-		case FIND:break;
-		case UPDATE:command="update van set plateNum='"+plateNum+"' servTime='"+DateFormat.DATE.format(servTime.getTime())+"' orgId='"+orgId+"' where id='"+id+"'";break;
+		case FIND:command="select * from van where id like %"+id+"% or plateNum like %"+plateNum+"%";break;
+		case UPDATE:command="update van set plateNum='"+plateNum+"' servTime='"+DateFormat.DATE.format(servTime.getTime())+"' where id='"+id+"'";break;
 		}
 		return command;
 	}

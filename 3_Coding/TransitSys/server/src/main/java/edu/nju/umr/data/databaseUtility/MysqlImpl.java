@@ -198,7 +198,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from org");
 				ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 				while(result.next()){
-					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),null );
+					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),result.getString(4),result.getString(5) );
 					orgList.add(org);
 				}
 				return orgList;

@@ -119,7 +119,7 @@ public class UtilityLogic {
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
 			for(VanPO po:van){
-				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(), po.getOrgId());
+				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto());
 				vanList.add(vo);
 			}
 		} catch (RemoteException e) {

@@ -44,14 +44,13 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	public ArrayList<OrgPO> getOrgs() throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","025","江苏",2)));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","025","江苏",2)));
+		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","025"));
+		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区","南京","025"));
 		return ar1;
 	}
 	public ArrayList<OrgPO> getHall() throws RemoteException {
 		// TODO 自动生成的方法存根
-		CityPO city = new CityPO("北京", "010","北京",1);
-		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
+		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", "北京","010");
 		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 		orgList.add(org);
 		return orgList;
@@ -83,7 +82,7 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 
 	public ArrayList<VanPO> getVans(String OrgID) throws RemoteException {
 		// TODO 自动生成的方法存根
-		VanPO van = new VanPO("00001", "苏A-12345", Calendar.getInstance(), null, "1");
+		VanPO van = new VanPO("00001", "苏A-12345", Calendar.getInstance(), null);
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
 		return vanList;

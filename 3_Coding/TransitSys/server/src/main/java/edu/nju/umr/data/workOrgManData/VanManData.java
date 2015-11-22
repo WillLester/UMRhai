@@ -30,8 +30,8 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 	public ArrayList<VanPO> findVan(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<VanPO> ar3=new ArrayList<VanPO>();
-		ar3.add(new VanPO("1","11111",Calendar.getInstance(),null,"1"));
-		ar3.add(new VanPO("2","22222",Calendar.getInstance(),null,"2"));
+		ar3.add(new VanPO("1","11111",Calendar.getInstance(),null));
+		ar3.add(new VanPO("2","22222",Calendar.getInstance(),null));
 		return ar3;
 	}
 
@@ -41,7 +41,7 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
 	public Result deleteVan(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new VanPO(id, null, null, null, null));
+		return mysqlSer.deleteInfo(new VanPO(id, null, null, null));
 	}
 
 	public Result reviseVan(VanPO van) throws RemoteException {
@@ -51,7 +51,7 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
 	public VanPO checkVan(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new VanPO("1","11111",Calendar.getInstance(),null,"1");
+		return new VanPO("1","11111",Calendar.getInstance(),null);
 	}
 	
 }

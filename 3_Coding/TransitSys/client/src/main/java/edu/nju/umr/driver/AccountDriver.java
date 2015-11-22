@@ -50,7 +50,7 @@ public class AccountDriver {
 		WorkVO work = new WorkVO("宝华", "12345678901","00001", Jurisdiction.COURIER,Wage.MONTH,2500);
 		ArrayList<WorkVO> workerList = new ArrayList<WorkVO>();
 		workerList.add(work);
-		VanVO van = new VanVO("00001", "苏A-12345", Calendar.getInstance(), null, "00001");
+		VanVO van = new VanVO("00001", "苏A-12345", Calendar.getInstance(), null);
 		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
 		vanList.add(van);
 		GoodVO good = new GoodVO("00001", Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
@@ -79,7 +79,7 @@ public class AccountDriver {
 			System.out.println(work.getName() + " " + work.getOrgId() + " " + work.getMobile() + " " + work.getJuri());
 		}
 		for(VanVO van:vo.getVans()){
-			System.out.println(van.getId() + " " + van.getOrgId() + " " + van.getPlateNum() + " " + van.getServTime());
+			System.out.println(van.getId()  + " " + van.getPlateNum() + " " + van.getServTime());
 		}
 		for(StockVO stock:vo.getStocks()){
 			for(GoodVO good:stock.getGoods()){

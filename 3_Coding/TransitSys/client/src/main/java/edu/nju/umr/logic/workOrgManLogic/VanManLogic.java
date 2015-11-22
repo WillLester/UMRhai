@@ -34,7 +34,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
+			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getOrgId()));
+			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
 		return message;
 	}
 
@@ -114,7 +114,7 @@ public class VanManLogic implements VanManLSer{
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
+		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
 		return message;
 	}
 

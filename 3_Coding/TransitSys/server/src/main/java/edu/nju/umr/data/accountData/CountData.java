@@ -8,7 +8,6 @@ import java.util.Calendar;
 import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -40,14 +39,14 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 
 	public CountPO findInitInfo(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		CityPO city = new CityPO("北京", "010","北京",1);
-		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", city);
+//		CityPO city = new CityPO("北京", "010","北京",1);
+		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", "北京","010");
 		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 		orgList.add(org);
 		WorkPO work = new WorkPO("宝华", "12345678901", "00001", 1, Jurisdiction.COURIER);
 		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
 		workerList.add(work);
-		VanPO van = new VanPO("00001", "苏A-12345",Calendar.getInstance(), null, "00001");
+		VanPO van = new VanPO("00001", "苏A-12345",Calendar.getInstance(), null);
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		vanList.add(van);
 		GoodPO good = new GoodPO("00001", "00001", Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);

@@ -34,7 +34,7 @@ public class OrgManLogic implements OrgManLSer{
 	public Result addOrg(OrgVO org) {
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityPO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince(),1)));
+			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId(),1)));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();

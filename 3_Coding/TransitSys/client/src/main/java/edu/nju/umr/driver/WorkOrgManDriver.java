@@ -87,11 +87,11 @@ public class WorkOrgManDriver {
 		
 	}
 	private void driverVan(){
-		System.out.println(van.addVan(new VanVO("1","营业厅1",Calendar.getInstance(),null,"1")));
+		System.out.println(van.addVan(new VanVO("1","营业厅1",Calendar.getInstance(),null)));
 		System.out.println(van.deleteVan("1"));
-		System.out.println(van.reviseVan(new VanVO("1","营业厅1",Calendar.getInstance(),null,"1")));
+		System.out.println(van.reviseVan(new VanVO("1","营业厅1",Calendar.getInstance(),null)));
 		VanVO vanVO=(VanVO)van.checkVan("1").getMessage();
-		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
+		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime());
 //		ArrayList<VanVO> ar=(ArrayList<VanVO>)van.VanList().getMessage();
 //		for(int i=0;i<ar.size();i++)
 //		{
@@ -99,7 +99,7 @@ public class WorkOrgManDriver {
 //			System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
 //		}
 		vanVO=(VanVO)van.searchVan("1").getMessage();
-		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime()+" "+vanVO.getOrgId());
+		System.out.println(vanVO.getId()+" "+vanVO.getPlateNum()+" "+vanVO.getServTime());
 	}
 	private void driverDriver(){
 		System.out.println(drive.addDriver(new DriverVO("1","司机1",Calendar.getInstance(),"司机编号1","司机手机号1",Gender.MAN,new Date())));

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
-import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
@@ -31,8 +30,8 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	public ArrayList<OrgPO> findOrg(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","025","江苏",2)));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区",new CityPO("南京","025","江苏",2)));
+		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","025"));
+		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区","南京","025"));
 		return ar1;
 	}
 
@@ -42,7 +41,7 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 
 	public Result deleteOrg(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new OrgPO(id, null, null, null, null));
+		return mysqlSer.deleteInfo(new OrgPO(id, null, null, null, null,null));
 	}
 
 	public Result reviseOrg(OrgPO org) throws RemoteException {
