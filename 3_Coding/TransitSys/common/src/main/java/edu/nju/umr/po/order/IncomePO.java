@@ -70,7 +70,7 @@ public class IncomePO extends PO implements Serializable{
 			for(String exp:express){
 				text = text + exp + " ";
 			}
-			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"',"+DateFormat.TIME.format(opTime.getTime())+",'"+text+"','"+opName+"','"+orgId+"')";break;
+			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"')";break;
 		case DELETE:break;
 		case FIND:
 			command = "select * from incomeorderpassed where orgId='"+orgId+"'";break;

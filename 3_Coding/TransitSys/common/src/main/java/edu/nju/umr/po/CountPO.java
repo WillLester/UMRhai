@@ -2,6 +2,7 @@ package edu.nju.umr.po;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CountPO implements Serializable{
 	/**
@@ -14,14 +15,20 @@ public class CountPO implements Serializable{
 	private ArrayList<VanPO> vans;
 	private ArrayList<StockPO> stocks;
 	private ArrayList<AccountPO> accounts;
-	public CountPO(String id,ArrayList<OrgPO> orgas,ArrayList<WorkPO> workers,ArrayList<VanPO> vans,ArrayList<StockPO> stocks,ArrayList<AccountPO> accounts) {
-		// TODO 自动生成的构造函数存根
+	private Calendar opTime;
+	
+	public CountPO(String id, ArrayList<OrgPO> organizations,
+			ArrayList<WorkPO> workers, ArrayList<VanPO> vans,
+			ArrayList<StockPO> stocks, ArrayList<AccountPO> accounts,
+			Calendar opTime) {
+		super();
 		this.id = id;
-		this.organizations = orgas;
+		this.organizations = organizations;
 		this.workers = workers;
 		this.vans = vans;
 		this.stocks = stocks;
 		this.accounts = accounts;
+		this.opTime = opTime;
 	}
 	public String getId() {
 		return id;
@@ -40,5 +47,8 @@ public class CountPO implements Serializable{
 	}
 	public ArrayList<AccountPO> getAccounts() {
 		return accounts;
+	}
+	public Calendar getOpTime() {
+		return opTime;
 	}
 }
