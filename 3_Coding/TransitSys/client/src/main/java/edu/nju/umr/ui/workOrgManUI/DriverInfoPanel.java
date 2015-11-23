@@ -8,7 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.po.enums.Gender;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.checkUI.DatePanel;
 import edu.nju.umr.vo.DriverVO;
 
@@ -150,8 +152,12 @@ public class DriverInfoPanel extends JPanel {
 				else sex=Gender.WOMAN;
 				DriverVO newDriver=new DriverVO(textFieldNum.getText(),textFieldName.getText(),born.getCalendar(),textFieldIden.getText(),
 						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar());
-				frame.dispose();
-				panel.Modify(newDriver);
+				Result result=panel.Modify(newDriver);
+				if(!result.equals(Result.SUCCESS))
+				{
+					new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				}
+				else frame.dispose();
 			}
 		});
 		add(confirm);

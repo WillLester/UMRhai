@@ -11,7 +11,9 @@ import java.awt.event.ActionEvent;
 import edu.nju.umr.logic.workOrgManLogic.DriverManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.enums.Gender;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.userPanel.UserPanel;
@@ -83,9 +85,14 @@ public class DriverListPanel extends JPanel {
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
+				Result result;
+				result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
+				if(result.equals(Result.SUCCESS))
+				{
 				driverList.remove(table.getSelectedRow());
 				displayDrivers();
+				}
+				else new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 			}
 		});
 		add(delete);
@@ -150,14 +157,17 @@ public class DriverListPanel extends JPanel {
 	void addDriver(DriverVO driver){
 		
 	}
-	public void Modify(DriverVO driver){
+	public Result Modify(DriverVO driver){
 		int index;
+		Result result=Result.SUCCESS;
 		for(index=0;index<driverList.size();index++)
 		{
 			DriverVO dr=driverList.get(index);
 			if(dr.getId().equals(driver.getId()))
 			{
-				serv.reviseDriver(driver);
+				result=serv.reviseDriver(driver);
+				if(!result.equals(Result.SUCCESS))
+					return result;
 				driverList.remove(index);
 				driverList.add(driver);
 				break;
@@ -165,10 +175,13 @@ public class DriverListPanel extends JPanel {
 		}
 		if(index==driverList.size())
 		{
+			result=serv.addDriver(driver);
+			if(!result.equals(Result.SUCCESS))
+				return result;
 			driverList.add(driver);
-			serv.addDriver(driver);
 		}
 		displayDrivers();
+		return result;
 	}
 //	public static void main(String[] args){
 //		JFrame f=new JFrame();
