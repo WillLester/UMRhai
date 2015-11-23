@@ -28,7 +28,7 @@ public class UserDriver {
 		System.out.println(user.reviseUser(userNew));
 		ArrayList<UserVO> voList = (ArrayList<UserVO>) user.findUser("").getMessage();
 		for(UserVO user:voList){
-			System.out.println(user.getUserName() + " " + user.getPassword() + " " + user.getOrg() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
+			System.out.println(user.getId() + " " + user.getPassword() + " " + user.getOrg() + " " + user.getJuri() + " " + user.getName() + " " + user.getMobile());
 		}
 	}
 }

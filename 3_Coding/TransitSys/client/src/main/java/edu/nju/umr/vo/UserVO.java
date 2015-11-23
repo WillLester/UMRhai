@@ -3,25 +3,25 @@ package edu.nju.umr.vo;
 import edu.nju.umr.po.enums.Jurisdiction;
 
 public class UserVO {
-	private String userName;
+	private String id;
 	private String password;
 	private Jurisdiction juri;
 	private String name;
 	private String mobile;
 	private String org;
-//	private int key;
-	public UserVO(String userName,String password,Jurisdiction juri,String name,String mobile,String org) {
+	private int number;
+	public UserVO(String id,String password,Jurisdiction juri,String name,String mobile,String org,int number) {
 		// TODO 自动生成的构造函数存根
-		this.userName = userName;
+		this.id = id;
 		this.password = password;
 		this.juri = juri;
 		this.name = name;
 		this.mobile = mobile;
 		this.org = org;
-//		this.key=key;
+		this.number=number;
 	}
-	public String getUserName() {
-		return userName;
+	public String getId() {
+		return id;
 	}
 	public String getPassword() {
 		return password;
@@ -38,7 +38,7 @@ public class UserVO {
 	public String getOrg() {
 		return org;
 	}
-//	public int getNumber(){
-//		return key;
-//	}
+	public int getNumber(){
+		return number;
+	}
 }

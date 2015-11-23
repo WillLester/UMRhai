@@ -244,7 +244,7 @@ public class UserListPanel extends JPanel {
 		temp=(ArrayList<UserVO>)serv.findUser(keyword).getMessage();
 		for(int i=0;i<temp.size();i++)
 		{
-			System.out.println(temp.get(i).getUserName());
+			System.out.println(temp.get(i).getId());
 		}
 		return temp;
 	}
@@ -265,7 +265,7 @@ public class UserListPanel extends JPanel {
 			case MANAGER:lv="总经理";break;
 			case ADMIN:lv="管理员";break;
 			}
-			String[] rowData={user.getUserName(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
+			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
 			model.addRow(rowData);
 		}
 		
@@ -314,7 +314,7 @@ public class UserListPanel extends JPanel {
 	}
 	void deleteUser(){
 		int row=table.getSelectedRow();
-		serv.deleteUser(users.get(row).getUserName());
+		serv.deleteUser(users.get(row).getId());
 		users.remove(row);
 	}
 	

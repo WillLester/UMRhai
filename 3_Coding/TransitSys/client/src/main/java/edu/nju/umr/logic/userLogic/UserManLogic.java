@@ -30,7 +30,7 @@ public class UserManLogic implements UserManLSer{
 	public Result newUser(UserVO user) {
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=userData.addUser(new UserPO(user.getUserName(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
+			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class UserManLogic implements UserManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=userData.reviseUser(new UserPO(user.getUserName(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
+			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class UserManLogic implements UserManLSer{
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
 		for(int i=0;i<ar.size();i++){
 			UserPO user=ar.get(i);
-			arVO.add(new UserVO(user.getUserName(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getKey()));
+			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getKey()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;

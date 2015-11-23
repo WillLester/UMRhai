@@ -103,7 +103,7 @@ public class CountLogic implements CountLSer{
 			ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 			ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 			for(OrgPO po:count.getOrganizations()){
-				CityVO cityvo = new CityVO(po.getCity().getName(), po.getCity().getUserName(),po.getCity().getProvince());
+				CityVO cityvo = new CityVO(po.getCity().getName(), po.getCity().getId(),po.getCity().getProvince());
 				OrgVO vo = new OrgVO(po.getId(), po.getName(), po.getKind(), po.getLocation(), cityvo);
 				orgList.add(vo);
 			}

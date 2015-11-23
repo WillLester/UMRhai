@@ -73,7 +73,7 @@ public class AccountDriver {
 		CountVO vo = (CountVO) count.checkInitInfo("1").getMessage();
 		System.out.println(vo.getId());
 		for(OrgVO org:vo.getOrganizations()){
-			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getUserName() + " "+ org.getKind());
+			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
 		}
 		for(WorkVO work:vo.getWorkers()){
 			System.out.println(work.getName() + " " + work.getOrgId() + " " + work.getMobile() + " " + work.getJuri());
