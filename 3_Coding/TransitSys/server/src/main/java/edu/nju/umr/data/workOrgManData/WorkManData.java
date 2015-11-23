@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
+import edu.nju.umr.data.utilityData.EnumFactory;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 人员管理数据
@@ -27,21 +30,24 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<WorkPO> findWork(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<WorkPO> ar2=new ArrayList<WorkPO>();
-		ar2.add(new WorkPO("Worker1","11111111111","1","1",Jurisdiction.ADMIN));
-		ar2.add(new WorkPO("Worker2","22222222222","2","2",Jurisdiction.COURIER));
-		return ar2;
+		if(keyword == null){
+			return (ArrayList<WorkPO>) mysqlSer.checkAll(POKind.WORK);
+		} else {
+			Jurisdiction juri = EnumFactory.getJuri(keyword);
+			return ArrayListFactory.produceWorkList(mysqlSer.checkInfo(new WorkPO(keyword, null, keyword, null, 0, juri, null, 0, 0)));
+		}
 	}
 
 	public Result addWork(WorkPO worker) throws RemoteException {
 		return mysqlSer.addInfo(worker);
 	}
 
-	public Result deleteWork(String id) throws RemoteException {
+	public Result deleteWork(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new WorkPO(null, null, null, id, null));
+		return mysqlSer.deleteInfo(new WorkPO(null, null, null, null, id, null, null, 0, 0));
 	}
 
 	public Result reviseWork(WorkPO work) throws RemoteException {
@@ -49,10 +55,10 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		return mysqlSer.reviseInfo(work);
 	}
 
-	public WorkPO checkWork(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return new WorkPO("Worker1","11111111111","1","1",Jurisdiction.ADMIN);
-	}
+//	public WorkPO checkWork(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return new WorkPO("Worker1","11111111111","1","1",Jurisdiction.ADMIN);
+//	}
 
 //	public ArrayList<OrgPO> getOrgs() throws RemoteException {
 //		// TODO 自动生成的方法存根

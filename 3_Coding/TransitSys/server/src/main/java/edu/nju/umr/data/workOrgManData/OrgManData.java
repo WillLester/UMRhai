@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
+import edu.nju.umr.data.utilityData.EnumFactory;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 /*
  * 机构信息管理数据
@@ -27,12 +30,16 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<OrgPO> findOrg(String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","025"));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区","南京","025"));
-		return ar1;
+		if(keyword == null){
+			return (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
+		} else {
+			Organization kind = EnumFactory.getOrg(keyword);
+			return ArrayListFactory.produceOrgList(mysqlSer.checkInfo(new OrgPO(keyword, keyword, kind, null, keyword, null)));
+		}
+		
 	}
 
 	public Result addOrg(OrgPO org) throws RemoteException {

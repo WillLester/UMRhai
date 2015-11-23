@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.Result;
@@ -26,21 +27,24 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public ArrayList<DriverPO> findDriver(String keyword)
+	public ArrayList<DriverPO> findDriver(String keyword,String hallId)
 			throws RemoteException {
-		ArrayList<DriverPO> ar = new ArrayList<DriverPO>();
-		return ar;
+		if(keyword == null){
+			return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(null, null, null, null, null, null, null, null, hallId)));
+		} else {
+			return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(keyword, keyword, null, null, null, null, null, null, hallId)));
+		}
 	}
-	public ArrayList<DriverPO> driverList(){
-		return null;
-	}
+//	public ArrayList<DriverPO> driverList(){
+//		return null;
+//	}
 
 	public Result addDriver(DriverPO driver) throws RemoteException {
 		return mysqlSer.addInfo(driver);
 	}
 
 	public Result deleteDriver(String id) throws RemoteException {
-		return mysqlSer.deleteInfo(new DriverPO(id, null, null, null, null, null, null, null));
+		return mysqlSer.deleteInfo(new DriverPO(id, null, null, null, null, null, null, null,null));
 	}
 
 	public Result reviseDriver(DriverPO driver) throws RemoteException {
@@ -48,10 +52,9 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		return mysqlSer.reviseInfo(driver);
 	}
 
-	public DriverPO checkDriver(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-//		return new DriverPO("1","司机1",new Date(1900-01-01),"司机编号1","司机手机号1",Sex.MAN,new Date());
-		return null;
-	}
+//	public DriverPO checkDriver(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 }

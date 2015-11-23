@@ -2,6 +2,8 @@ package edu.nju.umr.data.stockData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
@@ -23,12 +25,26 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		mysqlSer = new MysqlImpl();
 	}
 
-	public ArrayList<ShelfPO> getShelves(String id,String keyword) throws RemoteException {
+	public ArrayList<ShelfPO> getShelves(String stockId,String keyword) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<ShelfPO> ar=new ArrayList<ShelfPO>();
-		ar.add(new ShelfPO("1","00001",1,1,Part.PLANE));
-		ar.add(new ShelfPO("2","00001",3,4,Part.TRAIN));
-		return ar;
+		ResultSet result = null;
+		if(keyword == null){
+			result = mysqlSer.checkInfo(new ShelfPO(null, stockId, 0, 0, null));
+		} else {
+			result = mysqlSer.checkInfo(new ShelfPO(keyword, stockId, 0, 0, null));
+		}
+		ArrayList<ShelfPO> shelfList = new ArrayList<ShelfPO>();
+		Part parts[] = Part.values();
+		try {
+			while(result.next()){
+				ShelfPO shelf = new ShelfPO(result.getString(0), result.getString(1), result.getInt(2), result.getInt(3), parts[result.getInt(4)]);
+				shelfList.add(shelf);
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
+		return shelfList;
 	}
 
 	public Result addShelf(ShelfPO shelf) throws RemoteException {

@@ -2,6 +2,8 @@ package edu.nju.umr.data.userData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
@@ -25,7 +27,19 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
 	public UserPO findUser(String id,String password) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new UserPO(id,"hhhhh",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",1);
+		ResultSet result = mysqlSer.checkInfo(new UserPO(id, password, null, null, null, null, 0, null));
+		Jurisdiction juris[] = Jurisdiction.values();
+		try {
+			if(result.next()){
+				UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getString(7),result.getInt(5),result.getString(6));
+				return user;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
 	}
 
 }

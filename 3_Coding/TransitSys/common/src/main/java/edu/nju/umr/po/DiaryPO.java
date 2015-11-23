@@ -35,7 +35,7 @@ public class DiaryPO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into diary values"+"("+DateFormat.TIME.format(time.getTime())+","+"'"+operation+"','"+operator+"')";break;
+		case INSERT:command="insert into diary values"+"('"+DateFormat.TIME.format(time.getTime())+"','"+operation+"','"+operator+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

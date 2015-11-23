@@ -2,14 +2,16 @@ package edu.nju.umr.data.checkData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.po.DiaryPO;
+import edu.nju.umr.po.enums.POKind;
 /*
  * 查看日志数据
  */
@@ -26,12 +28,22 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 		// TODO 自动生成的构造函数存根
 	}
 
-	public ArrayList<DiaryPO> seeDiary(Date start, Date end)
+	public ArrayList<DiaryPO> seeDiary(Calendar start, Calendar end)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		DiaryPO diary = new DiaryPO("生成快递单", Calendar.getInstance(),"华莱士餐厅");
+		ResultSet result = mysqlSer.checkDate(start, end, POKind.DIARY);
 		ArrayList<DiaryPO> diaryList = new ArrayList<DiaryPO>();
-		diaryList.add(diary);
+		try {
+			while(result.next()){
+				Calendar time = Calendar.getInstance();
+				time.setTime(result.getDate(0));
+				DiaryPO diary = new DiaryPO(result.getString(1), time, result.getString(2));
+				diaryList.add(diary);
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
 		return diaryList;
 	}
 	

@@ -3,10 +3,10 @@ package edu.nju.umr.data.workOrgManData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
@@ -27,12 +27,13 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public ArrayList<VanPO> findVan(String keyword) throws RemoteException {
+	public ArrayList<VanPO> findVan(String keyword,String hallId) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<VanPO> ar3=new ArrayList<VanPO>();
-		ar3.add(new VanPO("1","11111",Calendar.getInstance(),null));
-		ar3.add(new VanPO("2","22222",Calendar.getInstance(),null));
-		return ar3;
+		if(keyword == null){
+			return ArrayListFactory.produceVanList(mysqlSer.checkInfo(new VanPO(null, null, null, null, hallId)));
+		} else {
+			return ArrayListFactory.produceVanList(mysqlSer.checkInfo(new VanPO(keyword, keyword, null, null, hallId)));
+		}
 	}
 
 	public Result addVan(VanPO van) throws RemoteException {
@@ -41,7 +42,7 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 
 	public Result deleteVan(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new VanPO(id, null, null, null));
+		return mysqlSer.deleteInfo(new VanPO(id, null, null, null,null));
 	}
 
 	public Result reviseVan(VanPO van) throws RemoteException {
@@ -49,9 +50,9 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 		return mysqlSer.reviseInfo(van);
 	}
 
-	public VanPO checkVan(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return new VanPO("1","11111",Calendar.getInstance(),null);
-	}
+//	public VanPO checkVan(String id) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return new VanPO("1","11111",Calendar.getInstance(),null);
+//	}
 	
 }

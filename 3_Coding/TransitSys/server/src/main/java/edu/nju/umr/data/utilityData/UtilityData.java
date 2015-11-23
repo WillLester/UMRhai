@@ -9,14 +9,14 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
-import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 
 public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
@@ -31,67 +31,69 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		//mysqlSer = new MysqlImpl();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<CityPO> getCities() throws RemoteException {
 		// TODO 自动生成的方法存根
-		CityPO city1 = new CityPO("南京", "025","江苏",2);
-		CityPO city2 = new CityPO("北京", "010","北京",1);
-		ArrayList<CityPO> cities = new ArrayList<CityPO>();
-		cities.add(city1);
-		cities.add(city2);
-		return cities;
+		return (ArrayList<CityPO>) mysqlSer.checkAll(POKind.CITY);
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<OrgPO> getOrgs() throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar1=new ArrayList<OrgPO>();
-		ar1.add(new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区","南京","025"));
-		ar1.add(new OrgPO("2","组织2",Organization.HALL,"南京大学鼓楼校区","南京","025"));
-		return ar1;
+		return (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
 	}
+	@SuppressWarnings("unchecked")
 	public ArrayList<OrgPO> getHall() throws RemoteException {
 		// TODO 自动生成的方法存根
-		OrgPO org = new OrgPO("00001", "HaHa", Organization.HALL, "香港记者", "北京","010");
-		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
-		orgList.add(org);
-		return orgList;
+		ArrayList<OrgPO> orgList = (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
+		ArrayList<OrgPO> hallList = new ArrayList<OrgPO>();
+		for(OrgPO org:orgList){
+			if(org.getKind().equals(Organization.HALL)){
+				hallList.add(org);
+			}
+		}
+		return hallList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<StockPO> getStocks() throws RemoteException {
 		// TODO 自动生成的方法存根
-		GoodPO good = new GoodPO("00001", "00001",Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
-		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
-		goodList.add(good);
-		StockPO stock = new StockPO("00001",goodList);
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
-		stockList.add(stock);
+		ArrayList<GoodPO> goodList = (ArrayList<GoodPO>) mysqlSer.checkAll(POKind.STOCK);
+		while(!goodList.isEmpty()){
+			ArrayList<GoodPO> stockGood = new ArrayList<GoodPO>();
+			String stockId = goodList.get(0).getStockId();
+			ArrayList<GoodPO> removeList = new ArrayList<GoodPO>();
+			for(GoodPO good:goodList){
+				if(good.getStockId().equals(stockId)){
+					removeList.add(good);
+					stockGood.add(good);
+				}
+			}
+			goodList.removeAll(removeList);
+			StockPO stock = new StockPO(stockId, stockGood);
+			stockList.add(stock);
+		}
 		return stockList;
 	}
-	public Result setRecord(Calendar cal,String op,String opt){
-		System.out.println(cal+" "+op+" "+opt);
-		System.out.println("数据层将操作日志存入数据库");
-		return Result.SUCCESS;
+	public Result setRecord(Calendar time,String operation,String operator){
+		DiaryPO diary = new DiaryPO(operation, time, operator);
+		return mysqlSer.addInfo(diary);
 	}
 
-	public ArrayList<WorkPO> getWorkers(String OrgID) throws RemoteException {
+	public ArrayList<WorkPO> getWorkers(String orgID) throws RemoteException {
 		// TODO 自动生成的方法存根
-		WorkPO work = new WorkPO("宝华", "12345678901","1", "00001", Jurisdiction.COURIER);
-		ArrayList<WorkPO> workerList = new ArrayList<WorkPO>();
-		workerList.add(work);
-		return workerList;
+		return ArrayListFactory.produceWorkList(mysqlSer.checkInfo(new WorkPO(null, null, null, orgID, 0, null, null, 0, 0)));
 	}
 
-	public ArrayList<VanPO> getVans(String OrgID) throws RemoteException {
+	public ArrayList<VanPO> getVans(String orgId) throws RemoteException {
 		// TODO 自动生成的方法存根
-		VanPO van = new VanPO("00001", "苏A-12345", Calendar.getInstance(), null);
-		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
-		vanList.add(van);
+		ArrayList<VanPO> vanList = ArrayListFactory.produceVanList(mysqlSer.checkInfo(new VanPO(null, null, null, null, orgId)));
 		return vanList;
 	}
+	@SuppressWarnings("unchecked")
 	public ArrayList<AccountPO> getAccount() throws RemoteException{
-		AccountPO account = new AccountPO(1, "Excited", 25000);
-		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
-		accountList.add(account);
-		return accountList;
+		return (ArrayList<AccountPO>) mysqlSer.checkAll(POKind.ACCOUNT);
 	}
 
 }

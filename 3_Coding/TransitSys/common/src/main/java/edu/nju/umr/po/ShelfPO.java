@@ -49,7 +49,12 @@ public class ShelfPO extends PO implements Serializable{
 		switch(op){
 		case INSERT:command="insert into shelf values"+"('"+id+"','"+stockId+"',"+row+","+place+","+part.ordinal()+")";break;
 		case DELETE:command="delete from shelf where id='"+id+"'";break;
-		case FIND:command="select * from shelf where stockId='"+stockId+"'";break;
+		case FIND:
+			if(id == null){
+				command="select * from shelf where stockId='"+stockId+"'";
+			} else {
+				command="select * from shelf where id like %"+id+"% and stockId ='"+stockId+"'";
+			}break;
 		case UPDATE:command="update shelf set stockId='"+stockId+"' row="+row+" place="+place+" part="+part.ordinal()+" where id='"+id+"'";break;
 		}
 		return command;

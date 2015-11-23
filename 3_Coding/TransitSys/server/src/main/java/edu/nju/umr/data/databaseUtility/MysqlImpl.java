@@ -11,17 +11,11 @@ import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.PO;
-import edu.nju.umr.po.UserPO;
-import edu.nju.umr.po.WorkPO;
-import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
-import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.po.order.OrderPO;
 
 
@@ -110,33 +104,14 @@ public class MysqlImpl implements MysqlService{
 				}
 				return cityList;
 			case ORG:
-				Organization orgs[] = Organization.values();
 				result = state.executeQuery("select * from org");
-				ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
-				while(result.next()){
-					OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),result.getString(4),result.getString(5) );
-					orgList.add(org);
-				}
-				return orgList;
+				return ArrayListFactory.produceOrgList(result);
 			case USER:
-				Jurisdiction juris[] = Jurisdiction.values();
 				result = state.executeQuery("select * from user");
-				ArrayList<UserPO> userList = new ArrayList<UserPO>();
-				while(result.next()){
-					UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getString(7),result.getInt(5),result.getString(6));
-					userList.add(user);
-				}
-				return userList;
+				return ArrayListFactory.produceUserList(result);
 			case WORK:
-				juris = Jurisdiction.values();
-				Wage wages[] = Wage.values();
 				result = state.executeQuery("select * from user");
-				ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
-				while(result.next()){
-					WorkPO work = new WorkPO(result.getString(2), result.getString(3),result.getString(7) , result.getString(6),result.getInt(5), juris[result.getInt(4)], wages[result.getInt(8)], result.getInt(9), result.getInt(10));
-					workList.add(work);
-				}
-				return workList;
+				return ArrayListFactory.produceWorkList(result);
 			case INCOME:
 				result = state.executeQuery("select * from incomeorderpassed");
 				return ArrayListFactory.produceIncomeList(result);
@@ -213,6 +188,15 @@ public class MysqlImpl implements MysqlService{
 			case PAYMENT:
 				result = state.executeQuery("select * from paymentorderpassed");
 				return ArrayListFactory.producePaymentList(result);
+			case STOCK:
+				result = state.executeQuery("select * from good");
+				return ArrayListFactory.produceGoodList(result);
+//			case VAN:
+//				result = state.executeQuery("select * from van");
+//				return ArrayListFactory.produceVanList(result);
+//			case DRIVER:
+//				result = state.executeQuery("select * from driver");
+//				return ArrayListFactory.produceDriverList(result);
 			default:return null;
 			}
 		} catch(SQLException e){
