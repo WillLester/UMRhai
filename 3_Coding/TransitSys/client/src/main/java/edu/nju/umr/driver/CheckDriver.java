@@ -53,7 +53,7 @@ public class CheckDriver {
 			}
 		}
 		for(OrgVO org:(ArrayList<OrgVO>)statement.getHall().getMessage()){
-			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getId() + " "+ org.getKind());
+			System.out.println(org.getName() + " " + org.getLocation() + " " + org.getCity().getName() + " " + org.getCity().getUserName() + " "+ org.getKind());
 		}
 		System.out.println(statement.outputExcel(null, "D:\\"));
 	}

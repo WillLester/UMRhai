@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.userLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.Calendar;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
@@ -18,20 +19,27 @@ public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;
 	LoginDSer loginData;
 	public LoginLogic(){
-//		try{
-//		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
-//		loginData=dataFac.getLogin();
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
+		try{
+		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
+		loginData=dataFac.getLogin();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public ResultMessage login(String id, String password) {
 		// TODO 自动生成的方法存根
 		//UserVO user = new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊");
 		//ResultMessage message = new ResultMessage(true, user);
-		return new ResultMessage(Result.SUCCESS,new UserVO("1","Password",Jurisdiction.ADMIN,"一个用户名啊","一个手机号啊","一个机构编号啊",-1));
+		try {
+			UserPO user=loginData.findUser(id, password);
+			return new ResultMessage(Result.SUCCESS,new UserVO(user.getUserName(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		
 		
 //		boolean isSuccessful=false;
 //		UserVO userVO=null;
