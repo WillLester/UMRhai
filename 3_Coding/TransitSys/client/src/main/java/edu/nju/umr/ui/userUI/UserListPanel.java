@@ -304,8 +304,8 @@ public class UserListPanel extends JPanel {
 		if(temp.equals("中转中心仓库管理人员")){jur=Jurisdiction.STOCK;}
 		if(temp.equals("管理员")){jur=Jurisdiction.ADMIN;}
 		if(row<users.size()){
-			UserVO pre=users.get(row);
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),pre.getNumber());
+			//UserVO pre=users.get(row);
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText());
 			Result result=serv.reviseUser(now);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
@@ -317,7 +317,7 @@ public class UserListPanel extends JPanel {
 		}
 		else
 		{
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),-1);
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText());
 			Result result=serv.newUser(now);
 			if(result.equals(Result.SUCCESS)){
 			users.add(now);
