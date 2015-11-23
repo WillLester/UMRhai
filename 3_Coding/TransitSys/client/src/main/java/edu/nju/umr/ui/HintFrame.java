@@ -24,7 +24,7 @@ public class HintFrame extends JDialog{
 	public HintFrame(Result result,int x,int y) {
 		setTitle("错误!");
 		this.setLayout(null);
-		setBounds(x, y, FRAME_WIDTH, FRAME_HEIGHT);
+		setBounds(x-FRAME_WIDTH/2, y-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
 		this.setVisible(true);
 		String txt=null;
 		switch(result){

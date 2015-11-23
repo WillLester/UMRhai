@@ -76,19 +76,7 @@ public class LoginPanel extends JPanel {
 				}
 				else
 				{
-//					if(re.getReInfo()==Result.ID_WRONG)
-//					{
-//						new HintFrame("账号不存在!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
-//					}
-//					if(re.getReInfo()==Result.PASSWORD_WRONG)
-//					{
-//						new HintFrame("密码错误!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
-//					}
-//					if(re.getReInfo()==Result.NET_INTERRUPT)
-//					{
-//						new HintFrame("网络异常!",frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
-//					}
-					new HintFrame(re.getReInfo(),frame.getX()+(frame.getWidth()-HintFrame.FRAME_WIDTH)/2,frame.getY()+(frame.getHeight()-HintFrame.FRAME_HEIGHT)/2);
+					new HintFrame(re.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 				}
 				
 			}

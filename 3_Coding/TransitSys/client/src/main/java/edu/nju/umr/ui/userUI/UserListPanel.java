@@ -26,6 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.logic.userLogic.UserManLogic;
@@ -219,7 +220,7 @@ public class UserListPanel extends JPanel {
 		users=getUsers("");
 		displayUsers();
 	}
-	void tableInit(){
+	private void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
@@ -237,18 +238,19 @@ public class UserListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
-	ArrayList<UserVO> getUsers(String keyword)
+	private ArrayList<UserVO> getUsers(String keyword)
 	{
-		System.out.println(keyword);
-		ArrayList<UserVO> temp;
-		temp=(ArrayList<UserVO>)serv.findUser(keyword).getMessage();
-		for(int i=0;i<temp.size();i++)
+		ArrayList<UserVO> temp=new ArrayList<UserVO>();
+		ResultMessage message;
+		message=serv.findUser(keyword);
+		if(message.getReInfo().equals(Result.SUCCESS))
 		{
-			System.out.println(temp.get(i).getId());
+			temp=(ArrayList<UserVO>)message.getMessage();
 		}
+		else reportWrong(message.getReInfo());/*new HintFrame(message.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);*/
 		return temp;
 	}
-	void displayUsers(){
+	private void displayUsers(){
 		model.setRowCount(0);
 		for(int i=0;i<users.size();i++)
 		{
@@ -270,12 +272,12 @@ public class UserListPanel extends JPanel {
 		}
 		
 	}
-	void addUser(){
+	private void addUser(){
 		String[] rowData={};
 		model.addRow(rowData);
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
 	}
-	void displayUser(int row)
+	private void displayUser(int row)
 	{
 		String []data=new String[6];
 		for(int i=0;i<6;i++)
@@ -289,7 +291,7 @@ public class UserListPanel extends JPanel {
 		mobileField.setText(data[4]);
 		orgField.setText(data[5]);
 	}
-	void confirmChange(){
+	private void confirmChange(){
 		int row=table.getSelectedRow();
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
@@ -304,18 +306,39 @@ public class UserListPanel extends JPanel {
 		if(row<users.size()){
 			UserVO pre=users.get(row);
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),pre.getNumber());
-			serv.reviseUser(now);
+			Result result=serv.reviseUser(now);
+			if(result.equals(Result.SUCCESS)){
+			    users.set(row, now);
+			    displayUsers();
+			}
+			else {
+				reportWrong(result);
+			}
 		}
 		else
 		{
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),-1);
-			serv.newUser(now);
+			Result result=serv.newUser(now);
+			if(result.equals(Result.SUCCESS)){
+			users.add(now);
+			displayUsers();
+			}
+			else {
+				reportWrong(result);
+			}
 		}
 	}
-	void deleteUser(){
+	private void deleteUser(){
 		int row=table.getSelectedRow();
-		serv.deleteUser(users.get(row).getId());
+		Result result=serv.deleteUser(users.get(row).getId());
+		if(result.equals(Result.SUCCESS)){
 		users.remove(row);
+		displayUsers();
+		}
+		else reportWrong(result);
+	}
+	private void reportWrong(Result result){
+		new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 	}
 	
 	
