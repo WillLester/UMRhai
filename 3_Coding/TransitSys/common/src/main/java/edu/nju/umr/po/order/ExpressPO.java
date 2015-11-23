@@ -143,9 +143,9 @@ public class ExpressPO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command = null;
 		switch(op){
-		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+","+DateFormat.DATE.format(arrive.getTime())+","+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+","+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+","+DateFormat.DATE.format(arrive.getTime())+","+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+","+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+")";break;
 		case DELETE:break;
-		case FIND:break;
+		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
 		}
 		return command;
