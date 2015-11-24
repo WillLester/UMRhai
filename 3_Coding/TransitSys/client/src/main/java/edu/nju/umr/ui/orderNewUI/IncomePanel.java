@@ -1,43 +1,30 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
-
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import java.awt.Font;
-
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.ui.Table;
 
 public class IncomePanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6715113587313316552L;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
