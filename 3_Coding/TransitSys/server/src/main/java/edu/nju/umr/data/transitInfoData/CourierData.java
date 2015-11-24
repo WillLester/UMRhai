@@ -41,7 +41,7 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();
+			return null;
 		}
 		return express;
 	}

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.HintFrame;
 
 public class ReceivePanel extends JPanel {
 	/**
@@ -38,10 +39,11 @@ public class ReceivePanel extends JPanel {
 		JLabel dateLabel = new JLabel("收件日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(270, 172, 120, 24);
+		dateLabel.setBounds(427, 293, 120, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
+		datePanel.setBounds(594, 293, 285, 26);
 		add(datePanel);
 		
 		JLabel receiverLabel = new JLabel("收件人");
@@ -57,19 +59,29 @@ public class ReceivePanel extends JPanel {
 		
 		JLabel idLabel = new JLabel("收件编号");
 		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		idLabel.setBounds(427, 293, 85, 24);
+		idLabel.setBounds(227, 172, 85, 24);
 		add(idLabel);
 		
 		idField = new JTextField();
 		idField.setFont(new Font("宋体", Font.PLAIN, 20));
 		idField.setColumns(10);
-		idField.setBounds(515, 292, 221, 25);
+		idField.setBounds(327, 172, 221, 25);
 		add(idField);
 		
-		JButton comfirmButton = new JButton("确定");
-		comfirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		comfirmButton.setBounds(340, 431, 93, 23);
-		add(comfirmButton);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(340, 431, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(isIllegal()){
+					
+				}
+			}
+		});;
+		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -81,10 +93,18 @@ public class ReceivePanel extends JPanel {
 			}
 		});
 		add(cancelButton);
-		
-		
-		
-
+	}
+	@SuppressWarnings("unused")
+	private boolean isIllegal(){
+		if(receiverField.getText().equals("")){
+			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY());
+			return false;
+		}
+		if(idField.getText().equals("")){
+			HintFrame hint = new HintFrame("收件编号未输入！", frame.getX(), frame.getY());
+			return false;
+		}
+		return true;
 	}
 	public static void main(String[] args) {
 		JFrame frame=new JFrame();

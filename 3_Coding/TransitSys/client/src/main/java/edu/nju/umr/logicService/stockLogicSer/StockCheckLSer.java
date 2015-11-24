@@ -1,10 +1,11 @@
 package edu.nju.umr.logicService.stockLogicSer;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.vo.ResultMessage;
 
 public interface StockCheckLSer {
-	public ResultMessage checkStockIn(Date start,Date end,String id);
-	public ResultMessage checkStockOut(Date start,Date end,String id);
+	public ResultMessage checkStockIn(Calendar start,Calendar end,String id);
+	public ResultMessage checkStockOut(Calendar start,Calendar end,String id);
 }
