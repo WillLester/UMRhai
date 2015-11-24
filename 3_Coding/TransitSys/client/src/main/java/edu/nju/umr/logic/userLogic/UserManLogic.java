@@ -32,7 +32,7 @@ public class UserManLogic implements UserManLSer{
 	public Result newUser(UserVO user) {
 		Result isSuccessful=Result.SUCCESS;
 			try {
-				isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1,null));
+				isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
@@ -45,40 +45,42 @@ public class UserManLogic implements UserManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=userData.deleteUser(id);
-		}catch(Exception e)
+		}catch(RemoteException e)
 		{
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return isSuccessful;
 	}
 
-	public Result reviseUser(UserVO user) {
-		// TODO 自动生成的方法存根
+	public Result reviseUser(UserVO user,int index) {
 		Result isSuccessful=Result.SUCCESS;
+		UserPO userpo=users.get(index);
 		try{
-			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,null));
-		}catch(Exception e)
+			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),userpo.getKey(),user.getOrgId()));
+		}catch(RemoteException e)
 		{
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return isSuccessful;
 	}
 
-	public ResultMessage findUser(String keyword,int index) {
+	public ResultMessage findUser(String keyword) {
 		Result isSuccessful=Result.SUCCESS;
-		ArrayList<UserPO> ar=new ArrayList<UserPO>();
 		try{
-			ar=userData.findUser(keyword);
+			users=userData.findUser(keyword);
 			isSuccessful=Result.SUCCESS;
 		}
-		catch(Exception e)
+		catch(RemoteException e)
 		{
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		ArrayList<UserVO> arVO=new ArrayList<UserVO>();
-		for(int i=0;i<ar.size();i++){
-			UserPO user=ar.get(i);
-			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getKey()));
+		for(int i=0;i<users.size();i++){
+			UserPO user=users.get(i);
+			arVO.add(new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getOrgId()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
