@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
-import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
-import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
-import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
-import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.AccountPO;
@@ -37,8 +33,9 @@ public class CountLogic implements CountLSer{
 	CountDFacSer countFac;
 	CountDSer countData;
 	UtilityLogic uti;
-//	ArrayList<CountPO> countPOs;
+	ArrayList<CountPO> countPOs;
 	public CountLogic() {
+		// TODO 自动生成的构造函数存根
 		try{
 			countFac = (CountDFacSer)Naming.lookup(Url.URL);
 			countData = countFac.getCountData();
@@ -52,8 +49,9 @@ public class CountLogic implements CountLSer{
         } 
 	}
 	public Result newCount() {
+		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
-		ArrayList<OrgPO> orgList ;
+		ArrayList<OrgPO> orgList= new ArrayList<OrgPO>();
 		ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
