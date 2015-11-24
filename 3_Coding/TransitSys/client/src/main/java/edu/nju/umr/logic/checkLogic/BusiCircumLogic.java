@@ -70,7 +70,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		} catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		} catch(NullPointerException e){
-			return new ResultMessage(Result.Data_Not_Found,null);
+			return new ResultMessage(Result.DATA_NOT_FOUND,null);
 		}
 		
 		return new ResultMessage(Result.SUCCESS,busiList);

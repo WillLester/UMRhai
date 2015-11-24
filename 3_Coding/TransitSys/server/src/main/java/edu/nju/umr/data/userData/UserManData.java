@@ -47,9 +47,9 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		return mysqlSer.addInfo(user);
 	}
 
-	public Result deleteUser(int key) throws RemoteException {
+	public Result deleteUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new UserPO(null, null, null, null, null, null, key, null));
+		return mysqlSer.deleteInfo(new UserPO(id, null, null, null, null, null, 0, null));
 	}
 
 	public Result reviseUser(UserPO user) throws RemoteException {
