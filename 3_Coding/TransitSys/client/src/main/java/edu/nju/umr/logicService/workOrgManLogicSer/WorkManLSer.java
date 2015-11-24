@@ -6,7 +6,7 @@ import edu.nju.umr.vo.WorkVO;
 
 public interface WorkManLSer {
 	public Result addWork(WorkVO work);
-	public Result deleteWork(String id);
+	public Result deleteWork(int id);
 	public Result reviseWork(WorkVO work);
 	public ResultMessage searchWork(String keyword);
 	public ResultMessage orgList();

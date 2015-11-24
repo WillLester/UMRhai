@@ -4,13 +4,16 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
+import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
@@ -34,7 +37,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto()));
+			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -58,7 +61,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto()));
+			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -66,20 +69,20 @@ public class VanManLogic implements VanManLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage checkVan(String id) {
-		// TODO 自动生成的方法存根
-		VanPO Van=null;
-		Result isSuccessful=Result.SUCCESS;
-		try{
-			Van=vanData.checkVan(id);
-			isSuccessful=Result.SUCCESS;
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
-		return message;
-	}
+//	public ResultMessage checkVan(String id) {
+//		// TODO 自动生成的方法存根
+//		VanPO Van=null;
+//		Result isSuccessful=Result.SUCCESS;
+//		try{
+//			Van=vanData.checkVan(id);
+//			isSuccessful=Result.SUCCESS;
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
+//		return message;
+//	}
 
 //	public ResultMessage VanList() {
 //		// TODO 自动生成的方法存根
@@ -103,19 +106,37 @@ public class VanManLogic implements VanManLSer{
 //		return message;
 //	}
 
-	public ResultMessage searchVan(String keyword) {
+	public ResultMessage searchVan(String keyword,String hallId) {
 		// TODO 自动生成的方法存根
-		VanPO Van=null;
-		Result isSuccessful=Result.SUCCESS;
+//		ArrayList<VanPO> van=null;
+//		Result isSuccessful=Result.SUCCESS;
+//		try{
+//			Van=vanData.findVan(keyword,hallId);
+//			isSuccessful=Result.SUCCESS;
+//		}catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
+//		return message;
+		ArrayList<VanPO> ar=null;
+		Result result=Result.SUCCESS;
 		try{
-			Van=vanData.checkVan(keyword);
-			isSuccessful=Result.SUCCESS;
+			ar=vanData.findVan(keyword,hallId);
+			
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
+		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
+		for(int i=0;i<ar.size();i++){
+			VanVO van=new VanVO(ar.get(i).getId(),ar.get(i).getPlateNum(),ar.get(i).getServTime(),ar.get(i).getPhoto(),ar.get(i).getHallId());
+			arVO.add(van);
+		}
+		
+		ResultMessage message = new ResultMessage(result, arVO);
 		return message;
+
 	}
 
 }
