@@ -106,7 +106,8 @@ public class RecipientPanel extends JPanel {
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
 					if(result.equals(Result.SUCCESS)){
-						
+						frame.setTitle("派件单生成");
+						frame.setContentPane(new SendPanel(frame,user));
 					} else {
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
 					}
@@ -144,6 +145,15 @@ public class RecipientPanel extends JPanel {
 		if(idField.getText().equals("")){
 			HintFrame hint = new HintFrame("中转单编号未输入", frame.getX(), frame.getY());
 			return false;
+		}
+		if(!Utility.isNumberic(idField.getText())){
+			HintFrame hint = new HintFrame("中转单编号含有非数字字符！", frame.getX(), frame.getY());
+			return false;
+		} else {
+			if((idField.getText().length() != 19)&&(idField.getText().length() != 20)){
+				HintFrame hint = new HintFrame("中转单编号长度错误！", frame.getX(), frame.getY());
+				return false;
+			}
 		}
 		return true;
 	}
