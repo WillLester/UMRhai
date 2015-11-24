@@ -18,6 +18,7 @@ import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
@@ -139,11 +140,11 @@ public class RecipientPanel extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
-			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
 			return false;
 		}
 		if(idField.getText().equals("")){
-			HintFrame hint = new HintFrame("中转单编号未输入", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("中转单编号未输入！", frame.getX(), frame.getY());
 			return false;
 		}
 		if(!Utility.isNumberic(idField.getText())){
