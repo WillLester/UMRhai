@@ -34,7 +34,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	}
 	public Result create(StockInVO order) {
 		try{
-			StockInPO orderPO=new StockInPO("",order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance(),order.getOpName());
+			StockInPO orderPO=new StockInPO(1,order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance(),order.getOpName(),order.getStockId());
 			stockinData.create(orderPO);
 		}
 		catch(Exception e)

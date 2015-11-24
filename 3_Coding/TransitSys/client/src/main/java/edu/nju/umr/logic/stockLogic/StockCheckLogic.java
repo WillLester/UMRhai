@@ -2,6 +2,7 @@ package edu.nju.umr.logic.stockLogic;
 
 import java.rmi.Naming;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.constants.Url;
@@ -29,7 +30,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		}
 	}
 
-	public ResultMessage checkStockIn(Date start, Date end, String id) {
+	public ResultMessage checkStockIn(Calendar start, Calendar end, String id) {
 		// TODO 自动生成的方法存根
 		ArrayList<StockInPO> ar=new ArrayList<StockInPO>();
 		boolean isSuccessful=false;
@@ -43,13 +44,13 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockInVO> arVO=new ArrayList<StockInVO>();
 		for(int i=0;i<ar.size();i++){
 			StockInPO order=ar.get(i);
-			arVO.add(new StockInVO(order.getExpressId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
+			arVO.add(new StockInVO(order.getExpressId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace(),order.getOpName(),order.getStockId()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
 	}
 
-	public ResultMessage checkStockOut(Date start, Date end, String id) {
+	public ResultMessage checkStockOut(Calendar start, Calendar end, String id) {
 		// TODO 自动生成的方法存根
 		ArrayList<StockOutPO> ar=new ArrayList<StockOutPO>();
 		boolean isSuccessful=false;
@@ -63,7 +64,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockOutVO> arVO=new ArrayList<StockOutVO>();
 		for(int i=0;i<ar.size();i++){
 			StockOutPO order=ar.get(i);
-			arVO.add(new StockOutVO(order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId()));
+			arVO.add(new StockOutVO(order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),order.getOpName(),order.getStockId()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

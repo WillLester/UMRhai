@@ -9,14 +9,17 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class PaymentOrderLogic implements PaymentOrderLSer{
 	PaymentOrderDFacSer dataFac;
 	PaymentOrderDSer paymentData;
+	UtilityLogic uti;
 	public PaymentOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -41,6 +44,11 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		}
 		
 		return isSuc;
+	}
+
+	public ResultMessage getAccount() {
+		// TODO Auto-generated method stub
+		return uti.getAccount();
 	}
 
 }

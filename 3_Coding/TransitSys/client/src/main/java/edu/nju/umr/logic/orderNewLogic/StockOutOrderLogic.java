@@ -33,7 +33,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 	public Result create(StockOutVO order) {
 		boolean isSuccessful=false;
 		try{
-			StockOutPO orderPO=new StockOutPO("",order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),Calendar.getInstance(),order.getOpName());
+			StockOutPO orderPO=new StockOutPO(1,order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),Calendar.getInstance(),order.getOpName(),order.getStockId());
 			stockoutData.create(orderPO);
 			isSuccessful=true;
 		}
