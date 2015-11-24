@@ -12,4 +12,5 @@ public interface UserManDSer extends Remote{
 	public Result addUser(UserPO user) throws RemoteException;
 	public Result deleteUser(String id) throws RemoteException;
 	public Result reviseUser(UserPO user) throws RemoteException;
+	public Result checkIsUsed(String id) throws RemoteException;
 }
