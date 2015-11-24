@@ -8,7 +8,7 @@ public interface VanManLSer {
 	public Result addVan(VanVO van);
 	public Result deleteVan(String id);
 	public Result reviseVan(VanVO van);
-	public ResultMessage checkVan(String id);
+//	public ResultMessage checkVan(String id);
 //	public ResultMessage VanList();
-	public ResultMessage searchVan(String keyword);
+	public ResultMessage searchVan(String keyword,String hallId);
 }

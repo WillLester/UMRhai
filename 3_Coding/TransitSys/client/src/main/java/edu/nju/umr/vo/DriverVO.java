@@ -14,7 +14,8 @@ public class DriverVO {
 	private Gender sex;
 	private Calendar driveStart;
 	private Calendar driveEnd;
-	public DriverVO(String id,String name,Calendar birthday,String idNum,String mobile,Gender sex,Calendar driveStart,Calendar driveEnd) {
+	private String hallId;
+	public DriverVO(String id,String name,Calendar birthday,String idNum,String mobile,Gender sex,Calendar driveStart,Calendar driveEnd,String hallId) {
 		// TODO 自动生成的构造函数存根
 		this.id = id;
 		this.name = name;
@@ -24,6 +25,7 @@ public class DriverVO {
 		this.sex = sex;
 		this.driveStart = driveStart;
 		this.driveEnd = driveEnd;
+		this.hallId = hallId;
 	}
 	public String getId() {
 		return id;
@@ -49,12 +51,15 @@ public class DriverVO {
 	public Calendar getDriveEnd() {
 		return driveEnd;
 	}
+	public String getHallId() {
+		return hallId;
+	}
 	public String[] getData(){
 		String gen=null;
 		if(sex.equals(Gender.MAN))
 			gen="男";
 		else gen="女";
-		String [] data={id,name,birthday.getTime().toString(),idNum,mobile,gen,driveStart.getTime().toString(),driveEnd.getTime().toString()};
+		String [] data={id,name,birthday.getTime().toString(),idNum,mobile,gen,driveStart.getTime().toString(),driveEnd.getTime().toString(),hallId};
 		return data;
 	}
 	
