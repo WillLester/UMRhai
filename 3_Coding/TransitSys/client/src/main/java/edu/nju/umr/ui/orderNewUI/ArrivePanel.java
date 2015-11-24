@@ -1,29 +1,27 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import java.awt.Font;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import edu.nju.umr.ui.checkUI.DatePanel;
 
 public class ArrivePanel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7454707708911829194L;
+	private JTextField idField;
+	private JTextField centerField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	/**
@@ -33,47 +31,47 @@ public class ArrivePanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		
-		JLabel lblNewLabel = new JLabel("中转中心到达单");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(364+75+25, 10, 242, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("中转中心到达单");
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(364+75+25, 10, 242, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("中转单编号");
-		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(342+75, 216, 107, 24);
-		add(lblNewLabel_1);
+		JLabel idLabel = new JLabel("中转单编号");
+		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		idLabel.setBounds(342+75, 216, 107, 24);
+		add(idLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setBounds(474+75+25, 216, 193, 24);
-		add(textField);
-		textField.setColumns(10);
+		idField = new JTextField();
+		idField.setFont(new Font("宋体", Font.PLAIN, 20));
+		idField.setBounds(474+75+25, 216, 193, 24);
+		add(idField);
+		idField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("到达日期");
-		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(342+75+25, 268, 107, 24);
-		add(lblNewLabel_2);
+		JLabel arriveDateLabel = new JLabel("到达日期");
+		arriveDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		arriveDateLabel.setBounds(342+75+25, 268, 107, 24);
+		add(arriveDateLabel);
 		
-		JLabel lblNewLabel_3 = new JLabel("中转中心编号");
-		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(329+75, 107, 120, 24);
-		add(lblNewLabel_3);
+		JLabel centerLabel = new JLabel("中转中心编号");
+		centerLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		centerLabel.setBounds(329+75, 107, 120, 24);
+		add(centerLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(474+75+25, 110, 193, 24);
-		add(textField_1);
-		textField_1.setColumns(10);
+		centerField = new JTextField();
+		centerField.setBounds(474+75+25, 110, 193, 24);
+		add(centerField);
+		centerField.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("出发地");
-		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(342+75+25, 162, 107, 24);
-		add(lblNewLabel_4);
+		JLabel startLabel = new JLabel("出发地");
+		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		startLabel.setBounds(342+75+25, 162, 107, 24);
+		add(startLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(474+75+25, 166, 193, 21);
-		add(comboBox);
+		JComboBox<String> cityCombo = new JComboBox<String>();
+		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityCombo.setBounds(474+75+25, 166, 193, 21);
+		add(cityCombo);
 		
 //		JSpinner spinner = new JSpinner();
 //		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
@@ -113,32 +111,32 @@ public class ArrivePanel extends JPanel {
 		add(datePanel);
 		
 		
-		JLabel lblNewLabel_8 = new JLabel("货物到达状态");
-		lblNewLabel_8.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_8.setBounds(329+75+25, 327, 120, 45);
-		add(lblNewLabel_8);
+		JLabel stateLabel = new JLabel("货物到达状态");
+		stateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		stateLabel.setBounds(329+75+25, 327, 120, 45);
+		add(stateLabel);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"完整", "损坏", "丢失"}));
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(474+75+25, 338, 193, 24);
-		add(comboBox_1);
+		JComboBox<String> stateCombo = new JComboBox<String>();
+		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
+		stateCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		stateCombo.setBounds(474+75+25, 338, 193, 24);
+		add(stateCombo);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(364+75+25, 434, 93, 23);
-		add(button);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(364+75+25, 434, 93, 23);
+		add(confirmButton);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(548+75+25, 436, 93, 23);
-		button_1.addActionListener(new ActionListener(){
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(548+75+25, 436, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
 			}
 		});
-		add(button_1);
+		add(cancelButton);
 
 	}
 	public static void main(String[] args)
