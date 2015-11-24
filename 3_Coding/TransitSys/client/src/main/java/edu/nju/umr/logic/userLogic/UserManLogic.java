@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.userLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
@@ -15,11 +16,12 @@ import edu.nju.umr.dataService.userDSer.UserManDSer;
 public class UserManLogic implements UserManLSer{
 	UserManDFacSer dataFac;
 	UserManDSer userData;
-	
+	ArrayList<UserPO> users;
 	public UserManLogic(){
 		try{
 		dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
 		userData=dataFac.getUserMan();
+		users=userData.findUser(null);
 		}
 		catch(Exception e)
 		{
@@ -29,12 +31,13 @@ public class UserManLogic implements UserManLSer{
 	
 	public Result newUser(UserVO user) {
 		Result isSuccessful=Result.SUCCESS;
-		try{
-			isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+			try {
+				isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1,null));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return Result.NET_INTERRUPT;
+			}
+		
 		return isSuccessful;
 	}
 
@@ -53,7 +56,7 @@ public class UserManLogic implements UserManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),1));
+			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,null));
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -61,8 +64,7 @@ public class UserManLogic implements UserManLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage findUser(String keyword) {
-		// TODO 自动生成的方法存根
+	public ResultMessage findUser(String keyword,int index) {
 		Result isSuccessful=Result.SUCCESS;
 		ArrayList<UserPO> ar=new ArrayList<UserPO>();
 		try{

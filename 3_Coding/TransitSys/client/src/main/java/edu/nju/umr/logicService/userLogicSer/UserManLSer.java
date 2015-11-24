@@ -7,6 +7,6 @@ import edu.nju.umr.vo.UserVO;
 public interface UserManLSer {
 	public Result newUser(UserVO user);
 	public Result deleteUser(String id);
-	public Result reviseUser(UserVO user);
+	public Result reviseUser(UserVO user,int index);
 	public ResultMessage findUser(String keyword);
 }
