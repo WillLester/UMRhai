@@ -52,128 +52,136 @@ public class UtilityLogic {
             e.printStackTrace();   
         }  
 	}
-	public ResultMessage getCities(){
-		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
+	public ArrayList<CityPO> getCities(){
+//		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
+		ArrayList<CityPO> cities=null;
 		try {
-			ArrayList<CityPO> cities = utilityData.getCities();
-			for(CityPO city:cities){
-				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
-				cityList.add(vo);
+			cities = utilityData.getCities();
+			
+//			for(CityPO city:cities){
+//				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
+//				cityList.add(vo);
 //				return new ResultMessage(Result.SUCCESS, cityList);
-			}
+//			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT,null);
+			e.printStackTrace();
+//			return null;
 		}
-		return new ResultMessage(Result.SUCCESS, cityList);
+		return cities;
+//		return new ResultMessage(Result.SUCCESS, cityList);
 	}
-	public ResultMessage getOrgs(){
+	public ArrayList<OrgPO> getOrgs(){
 		ArrayList<OrgPO> ar= null;
-		Result isSuccessful=Result.NET_INTERRUPT;
+//		Result isSuccessful=Result.NET_INTERRUPT;
 		try{
 			ar=utilityData.getOrgs();
-			isSuccessful=Result.SUCCESS;
+//			isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
+//			return null;
 		}
-		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),Org.getCity(),Org.getCityId()));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
+		return ar;
+//		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			OrgPO Org=ar.get(i);
+//			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),Org.getCity(),Org.getCityId()));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+//		return message;
 	}
-	public ResultMessage getHall() {
+	public ArrayList<OrgPO> getHall() {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
-		Result re=Result.NET_INTERRUPT;
+//		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
+//		Result re=Result.NET_INTERRUPT;
+		ArrayList<OrgPO> halls=null;
 		try {
-			ArrayList<OrgPO> halls = utilityData.getHall();
-			re=Result.SUCCESS;
-			for(OrgPO hall:halls){
-//				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
-				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), hall.getCity(), hall.getCityId());
-				hallList.add(vo);
-			}
+			halls = utilityData.getHall();
+			
+//			re=Result.SUCCESS;
+//			for(OrgPO hall:halls){
+////				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
+//				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), hall.getCity(), hall.getCityId());
+//				hallList.add(vo);
+//			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+//			return null;
 		}
-		return new ResultMessage(re, hallList);
+		return halls;
+//		return new ResultMessage(re, hallList);
 	}
-	public ResultMessage getWorkers(String orgId){
+	public ArrayList<WorkPO> getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
-		Result isSuccessful=Result.NET_INTERRUPT;
+//		Result isSuccessful=Result.NET_INTERRUPT;
 		try{
-			ar=utilityData.getWorkers("");
-			isSuccessful=Result.SUCCESS;
+			ar=utilityData.getWorkers(orgId);
+//			isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
 		}
-		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			WorkPO Work=ar.get(i);
-			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
-		}
-		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return message;
+		return ar;
+//		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
+//		for(int i=0;i<ar.size();i++)
+//		{
+//			WorkPO Work=ar.get(i);
+//			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
+//		}
+//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
+//		return message;
 	}
-	public ResultMessage getVans(String orgId){
-		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
+	public ArrayList<VanPO> getVans(String orgId){
+//		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
+		ArrayList<VanPO> van=null;
 		try {
-			ArrayList<VanPO> van = utilityData.getVans(orgId);
-			for(VanPO po:van){
-				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto());
-				vanList.add(vo);
-			}
+			van = utilityData.getVans(orgId);
+//			for(VanPO po:van){
+//				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto());
+//				vanList.add(vo);
+//			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(Result.SUCCESS, vanList);
+		return van;
 	}
-	public ResultMessage getStocks(){
-		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
-		ArrayList<StockPO> stock;
+	public ArrayList<StockPO> getStocks(){
+//		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
+		ArrayList<StockPO> stock=null;
 		try {
 			stock = utilityData.getStocks();
-			for(StockPO po:stock){
-				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
-				for(GoodPO gPo:po.getGoods()){
-					GoodVO gVo = new GoodVO(gPo.getId(), gPo.getDate(), gPo.getCity(), gPo.getPart(), gPo.getShelf(), gPo.getRow(), gPo.getPlace());
-					goodList.add(gVo);
-				}
-				StockVO vo = new StockVO(goodList);
-				stockList.add(vo);
-			}
+//			for(StockPO po:stock){
+//				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
+//				for(GoodPO gPo:po.getGoods()){
+//					GoodVO gVo = new GoodVO(gPo.getId(), gPo.getDate(), gPo.getCity(), gPo.getPart(), gPo.getShelf(), gPo.getRow(), gPo.getPlace());
+//					goodList.add(gVo);
+//				}
+//				StockVO vo = new StockVO(goodList);
+//				stockList.add(vo);
+//			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return new ResultMessage(Result.SUCCESS, stockList);
+		return stock;
 	}
-	public ResultMessage getAccount() {
-		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
-		Result re=Result.NET_INTERRUPT;
+	public ArrayList<AccountPO> getAccount() {
+//		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
+//		Result re=Result.NET_INTERRUPT;
+		ArrayList<AccountPO> account=null;
 		try {
-			ArrayList<AccountPO> account = utilityData.getAccount();
-			re=Result.SUCCESS;
-			for(AccountPO po:account){
-				AccountVO vo = new AccountVO(po.getName(), po.getBalance());
-				accountList.add(vo);
-			}
+			account = utilityData.getAccount();
+//			re=Result.SUCCESS;
+//			for(AccountPO po:account){
+//				AccountVO vo = new AccountVO(po.getName(), po.getBalance());
+//				accountList.add(vo);
+//			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		
-		return new ResultMessage(re, accountList);
+		return account;
 	}
 
 	public static Result setRecord(Calendar cal,String op,String opt){
