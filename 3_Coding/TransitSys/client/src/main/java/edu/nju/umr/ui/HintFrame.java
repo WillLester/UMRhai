@@ -22,10 +22,7 @@ public class HintFrame extends JDialog{
 	 * Create the frame.
 	 */
 	public HintFrame(Result result,int x,int y) {
-		setTitle("错误!");
-		this.setLayout(null);
-		setBounds(x-FRAME_WIDTH/2, y-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
-		this.setVisible(true);
+		initialize(x,y);
 		String txt=null;
 		switch(result){
 		case SUCCESS:break;
@@ -42,7 +39,21 @@ public class HintFrame extends JDialog{
 		default:
 			break;
 		}
-		JLabel label=new JLabel(txt);
+		textAndButton(txt);
+
+	}
+	public HintFrame(String error,int x,int y){
+		initialize(x, y);
+		textAndButton(error);
+	}
+	private void initialize(int x,int y){
+		setTitle("错误!");
+		this.setLayout(null);
+		setBounds(x-FRAME_WIDTH/2, y-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
+		this.setVisible(true);
+	}
+	private void textAndButton(String text){
+		JLabel label=new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(0, FRAME_HEIGHT/2-50, FRAME_WIDTH, 40);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -56,6 +67,5 @@ public class HintFrame extends JDialog{
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(FRAME_WIDTH/2-40, FRAME_HEIGHT/2+14, 80, 28);
 		add(confirmButton);
-
 	}
 }
