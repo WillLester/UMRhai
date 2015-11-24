@@ -118,7 +118,7 @@ public class UtilityLogic {
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO Work=ar.get(i);
-			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
+			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrg(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
@@ -128,7 +128,7 @@ public class UtilityLogic {
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
 			for(VanPO po:van){
-				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto());
+				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(),po.getHallId());
 				vanList.add(vo);
 			}
 		} catch (RemoteException e) {
@@ -221,4 +221,81 @@ public class UtilityLogic {
 		}
 		return Result.SUCCESS;
 	}
+	
+	//返回po的一系列方法
+	
+	public ArrayList<CityPO> cities(){
+		ArrayList<CityPO> city=null;
+		try {
+			city=utilityData.getCities();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return city;
+	}
+	
+	public ArrayList<OrgPO> orgs(){
+		ArrayList<OrgPO> org=null;
+		try {
+			org=utilityData.getOrgs();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return org;
+	}
+	
+	public ArrayList<OrgPO> halls(){
+		ArrayList<OrgPO> hall=null;
+		try {
+			hall=utilityData.getHall();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return hall;
+	}
+	
+	public ArrayList<WorkPO> works(String orgId){
+		ArrayList<WorkPO> work=null;
+		try {
+			work=utilityData.getWorkers(orgId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return work;
+	}
+	
+	public ArrayList<VanPO> vans(String orId){
+		ArrayList<VanPO> van=null;
+		try {
+			van=utilityData.getVans(orId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return van;
+	}
+	
+	public ArrayList<StockPO> stocks(){
+		ArrayList<StockPO> stock=null;
+		try {
+			stock=utilityData.getStocks();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stock;
+	}
+	
+	public ArrayList<AccountPO> accounts(){
+		ArrayList<AccountPO> account=null;
+		try {
+			account=utilityData.getAccount();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return account;
+	}
+	
 }

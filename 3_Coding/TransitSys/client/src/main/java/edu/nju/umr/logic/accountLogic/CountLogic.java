@@ -5,10 +5,15 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
+import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.AccountPO;
@@ -33,9 +38,8 @@ public class CountLogic implements CountLSer{
 	CountDFacSer countFac;
 	CountDSer countData;
 	UtilityLogic uti;
-	ArrayList<CountPO> countPOs;
+//	ArrayList<CountPO> countPOs;
 	public CountLogic() {
-		// TODO 自动生成的构造函数存根
 		try{
 			countFac = (CountDFacSer)Naming.lookup(Url.URL);
 			countData = countFac.getCountData();
@@ -49,13 +53,20 @@ public class CountLogic implements CountLSer{
         } 
 	}
 	public Result newCount() {
-		// TODO 自动生成的方法存根
 		boolean isSuccessful = false;
-		ArrayList<OrgPO> orgList= new ArrayList<OrgPO>();
-		ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
-		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
-		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
-		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+		ArrayList<OrgPO> orgList=uti.orgs() ;
+		ArrayList<WorkPO> workList = uti.works(null);
+		ArrayList<VanPO> vanList = uti.vans(null);
+		ArrayList<StockPO> stockList = uti.stocks();
+		ArrayList<AccountPO> accountList = uti.accounts();
+		CountPO count=new CountPO("0",orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
+		try {
+			Result result=countData.addCount(count);
+			return result;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return Result.NET_INTERRUPT;
+		}
 //		for(OrgVO vo:count.getOrganizations()){
 //			CityPO citypo = new CityPO(vo.getCity().getName(), vo.getCity().getId());
 //			OrgPO po = new OrgPO(vo.getId(), vo.getName(), vo.getKind(), vo.getLocation(), citypo);
@@ -88,31 +99,30 @@ public class CountLogic implements CountLSer{
 //			// TODO 自动生成的 catch 块
 //			e.printStackTrace();
 //		}
-		return Result.SUCCESS;
+//		return Result.SUCCESS;
 	}
 
 	public ResultMessage checkInitInfo(String id) {
-		// TODO 自动生成的方法存根
 		CountPO count = null;
 		CountVO countVo = null;
 		try {
-			count = countData.findInitInfo("1");
+			count = countData.findInitInfo(id);
 			ArrayList<OrgVO> orgList= new ArrayList<OrgVO>();
 			ArrayList<WorkVO> workList = new ArrayList<WorkVO>();
 			ArrayList<VanVO> vanList = new ArrayList<VanVO>();
 			ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 			ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 			for(OrgPO po:count.getOrganizations()){
-				CityVO cityvo = new CityVO(po.getCity().getName(), po.getCity().getId(),po.getCity().getProvince());
-				OrgVO vo = new OrgVO(po.getId(), po.getName(), po.getKind(), po.getLocation(), cityvo);
+//				CityVO cityvo = new CityVO(po.getCity(), po.getCityId(),po.getCity().getProvince());
+				OrgVO vo = new OrgVO(po.getId(), po.getName(), po.getKind(), po.getLocation(), po.getCity(),po.getCityId());
 				orgList.add(vo);
 			}
 			for(WorkPO po:count.getWorkers()){
-				WorkVO vo = new WorkVO(po.getName(), po.getMobile(), po.getOrgId(),  po.getJuri(),po.getKind(),po.getMoney());
+				WorkVO vo = new WorkVO(po.getName(), po.getMobile(), po.getOrg(),po.getOrgId(),  po.getJuri(),po.getKind(),po.getMoney());
 				workList.add(vo);
 			}
 			for(VanPO po:count.getVans()){
-				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(), po.getOrgId());
+				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(), po.getHallId());
 				vanList.add(vo);
 			}
 			for(StockPO po:count.getStocks()){
