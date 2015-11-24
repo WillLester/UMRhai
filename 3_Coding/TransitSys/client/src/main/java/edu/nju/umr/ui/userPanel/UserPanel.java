@@ -17,9 +17,13 @@ import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.userUI.LoginPanel;
 
 public class UserPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1833841005604801589L;
 	private JTextField nameTxt;
 	private JTextField levelTxt;
-	static private UserVO user;
+	private UserVO user;
 	private JFrame frame;
 	public UserPanel(UserVO user,JFrame fr) {
 		this.user=user;
@@ -104,7 +108,7 @@ public class UserPanel extends JPanel{
 		existButton.setBounds(1083, 603, 93, 23);
 		this.add(existButton);
 	}
-	public static UserVO getUser(){
+	public UserVO getUser(){
 		return user;
 	}
 }

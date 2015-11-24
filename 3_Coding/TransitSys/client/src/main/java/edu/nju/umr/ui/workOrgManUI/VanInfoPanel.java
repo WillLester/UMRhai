@@ -3,13 +3,12 @@ package edu.nju.umr.ui.workOrgManUI;
 import java.awt.Font;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.checkUI.DatePanel;
+import edu.nju.umr.ui.DatePanel;
 
 public class VanInfoPanel extends JPanel {
 	private JTextField textFieldNum;

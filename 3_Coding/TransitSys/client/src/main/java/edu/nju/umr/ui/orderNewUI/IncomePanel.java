@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.Table;
 
 public class IncomePanel extends JPanel {
@@ -31,7 +32,7 @@ public class IncomePanel extends JPanel {
 	private Table table;
 	private DefaultTableModel model;
 	private JFrame frame;
-
+	private DatePanel datePanel;
 	/**  
 	 * Create the panel.
 	 */
@@ -57,32 +58,35 @@ public class IncomePanel extends JPanel {
 		spinner.setBounds(411+40, 97, 85, 26);
 		add(spinner);
 		
-		JLabel label = new JLabel("年");
-		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(506+40, 99, 25, 22);
-		add(label);
-		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setBounds(541+40, 97, 48, 26);
-		add(spinner_1);
-		
-		JLabel label_1 = new JLabel("月");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(599+40, 99, 25, 22);
-		add(label_1);
-		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(634+40, 97, 48, 26);
-		add(spinner_2);
-		
-		JLabel label_2 = new JLabel("日");
-		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(692+40, 99, 25, 22);
-		add(label_2);
+		datePanel=new DatePanel();
+		datePanel.setBounds(474+75+25, 268, 285, 26);
+		add(datePanel);
+//		JLabel label = new JLabel("年");
+//		label.setFont(new Font("宋体", Font.PLAIN, 20));
+//		label.setBounds(506+40, 99, 25, 22);
+//		add(label);
+//		
+//		JSpinner spinner_1 = new JSpinner();
+//		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+//		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
+//		spinner_1.setBounds(541+40, 97, 48, 26);
+//		add(spinner_1);
+//		
+//		JLabel label_1 = new JLabel("月");
+//		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+//		label_1.setBounds(599+40, 99, 25, 22);
+//		add(label_1);
+//		
+//		JSpinner spinner_2 = new JSpinner();
+//		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+//		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
+//		spinner_2.setBounds(634+40, 97, 48, 26);
+//		add(spinner_2);
+//		
+//		JLabel label_2 = new JLabel("日");
+//		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
+//		label_2.setBounds(692+40, 99, 25, 22);
+//		add(label_2);
 		
 		JLabel label_3 = new JLabel("快递员");
 		label_3.setFont(new Font("宋体", Font.PLAIN, 20));

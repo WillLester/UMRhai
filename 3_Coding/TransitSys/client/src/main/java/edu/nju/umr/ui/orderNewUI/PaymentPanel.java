@@ -1,159 +1,164 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import edu.nju.umr.logic.orderNewLogic.PaymentOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
+import edu.nju.umr.po.enums.Pay;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.vo.order.PaymentVO;
 
 public class PaymentPanel extends JPanel {
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3000345225479799005L;
+	private JTextField payerField;
+	private JTextField costField;
 	private JFrame frame;
-
+	private DatePanel datePanel;
+	private String[] accountList;
+	private PaymentOrderLSer logicSer;
+	private UserVO user;
+	private JComboBox<String> accountCombo;
+	private JComboBox<String> reasonCombo;
+	private JTextArea remarkArea;
 	/**
 	 * Create the panel.
 	 */
-	public PaymentPanel(JFrame fr) {
+	public PaymentPanel(JFrame fr,UserVO user) {
 		setLayout(null);
 		frame=fr;
+		this.user = user;
+		logicSer = new PaymentOrderLogic();
 		
-		JLabel lblNewLabel = new JLabel("付款单");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setBounds(392, 10, 243, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("付款单");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setBounds(392, 10, 243, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_3 = new JLabel("付款日期");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(286, 98, 120, 24);
-		add(lblNewLabel_3);
+		JLabel dateLabel = new JLabel("付款日期");
+		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setBounds(286, 98, 120, 24);
+		add(dateLabel);	
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(392, 97, 85, 26);
-		add(spinner);
+		JLabel payerLabel = new JLabel("付款人");
+		payerLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		payerLabel.setBounds(235, 175, 85, 24);
+		add(payerLabel);
 		
-		JLabel label = new JLabel("年");
-		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(487, 99, 25, 22);
-		add(label);
+		payerField = new JTextField();
+		payerField.setFont(new Font("宋体", Font.PLAIN, 20));
+		payerField.setColumns(10);
+		payerField.setBounds(302, 174, 85, 25);
+		add(payerField);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setBounds(522, 97, 48, 26);
-		add(spinner_1);
+		JLabel amountLabel = new JLabel("付款金额");
+		amountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		amountLabel.setBounds(397, 175, 85, 24);
+		add(amountLabel);
 		
-		JLabel label_1 = new JLabel("月");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(580, 99, 25, 22);
-		add(label_1);
+		costField = new JTextField();
+		costField.setFont(new Font("宋体", Font.PLAIN, 20));
+		costField.setColumns(10);
+		costField.setBounds(487, 174, 85, 25);
+		add(costField);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(615, 97, 48, 26);
-		add(spinner_2);
+		JLabel remarkLabel = new JLabel("备注");
+		remarkLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		remarkLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		remarkLabel.setBounds(429, 291, 130, 24);
+		add(remarkLabel);
 		
-		JLabel label_2 = new JLabel("日");
-		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(673, 99, 25, 22);
-		add(label_2);
+		JLabel accountLabel = new JLabel("付款账号");
+		accountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		accountLabel.setBounds(597, 175, 85, 24);
+		add(accountLabel);
 		
-		JLabel label_3 = new JLabel("付款人");
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(235, 175, 85, 24);
-		add(label_3);
+		remarkArea = new JTextArea();
+		remarkArea.setBounds(274, 325, 435, 154);
+		add(remarkArea);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		textField_2.setBounds(302, 174, 85, 25);
-		add(textField_2);
+		JLabel reasonLabel = new JLabel("条目");
+		reasonLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		reasonLabel.setBounds(437, 237, 59, 24);
+		add(reasonLabel);
 		
-		JLabel label_4 = new JLabel("付款金额");
-		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_4.setBounds(397, 175, 85, 24);
-		add(label_4);
+		reasonCombo = new JComboBox<String>();
+		reasonCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		reasonCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"租金/年","运费/次","工资/月","奖励"}));
+		reasonCombo.setBounds(499, 237, 87, 25);
+		add(reasonCombo);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_3.setColumns(10);
-		textField_3.setBounds(487, 174, 85, 25);
-		add(textField_3);
+		datePanel=new DatePanel();
+		datePanel.setBounds(474, 98, 285, 26);
+		add(datePanel);
 		
-		JLabel label_8 = new JLabel("备注");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_8.setBounds(429, 291, 130, 24);
-		add(label_8);
+		getAccount();
+		accountCombo = new JComboBox<String>();
+		accountCombo.setBounds(692, 175, 111, 21);
+		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
+		add(accountCombo);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(342, 499, 93, 23);
-		add(button);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(342, 499, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(isIllegal()){
+					logicSer.create(createVO());
+				}
+			}
+		});
+		add(confirmButton);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(542, 499, 93, 23);
-		button_1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(542, 499, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
-		add(button_1);
+		add(cancelButton);
 		
-		JLabel label_5 = new JLabel("付款账号");
-		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_5.setBounds(597, 175, 85, 24);
-		add(label_5);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(692, 174, 120, 25);
-		add(textField);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(274, 325, 435, 154);
-		add(textArea);
-		
-		JLabel label_6 = new JLabel("条目");
-		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_6.setBounds(437, 237, 85, 24);
-		add(label_6);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(499, 237, 87, 25);
-		add(comboBox);
 		
 
+	}
+	private void getAccount(){
+		ResultMessage result = logicSer.getAccount();
+		if(result.getReInfo().equals(Result.SUCCESS)){
+			accountList = (String[]) result.getMessage();
+		}
+	}
+	private boolean isIllegal(){
+		return false;
+	}
+	private PaymentVO createVO(){
+		Calendar date = datePanel.getCalendar();
+		Pay pays[] = Pay.values();
+		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()], Double.parseDouble(costField.getText()), remarkArea.getText(), user.getName());
+		return payment;
 	}
 }
