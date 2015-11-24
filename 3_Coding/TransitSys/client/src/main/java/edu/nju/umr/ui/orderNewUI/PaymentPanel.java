@@ -20,6 +20,7 @@ import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
 import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -150,10 +151,28 @@ public class PaymentPanel extends JPanel {
 		ResultMessage result = logicSer.getAccount();
 		if(result.getReInfo().equals(Result.SUCCESS)){
 			accountList = (String[]) result.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY());
 		}
 	}
+	@SuppressWarnings("unused")
 	private boolean isIllegal(){
-		return false;
+		if(costField.getText().equals("")){
+			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY());
+			return false;
+		}
+		if(payerField.getText().equals("")){
+			HintFrame hint = new HintFrame("付款人未输入！", frame.getX(), frame.getY());
+			return false;
+		}
+		try {
+			Double.parseDouble(costField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY());
+			return false;
+		}
+		return true;
 	}
 	private PaymentVO createVO(){
 		Calendar date = datePanel.getCalendar();

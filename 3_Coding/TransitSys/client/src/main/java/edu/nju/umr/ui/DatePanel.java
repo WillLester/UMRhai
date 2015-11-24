@@ -30,10 +30,9 @@ public class DatePanel extends JPanel {
 		yearCombo = new JComboBox<String>();
 		yearCombo.setBounds(0, 0, 66, 21);
 		int nowyear=Calendar.getInstance().get(Calendar.YEAR);
-		String [] years=new String[101];
-		for(int i=-1;i<100;i++)
-		{
-			years[i+1]=Integer.toString(nowyear-i);
+		String [] years=new String[201];
+		for(int i=-100;i<101;i++){
+			years[i+100]=Integer.toString(nowyear-i);
 		}
 		yearCombo.setModel(new DefaultComboBoxModel<String>(years));
 		yearCombo.setSelectedIndex(1);
@@ -77,6 +76,9 @@ public class DatePanel extends JPanel {
 				setDate((String)yearCombo.getModel().getSelectedItem(),(String)monthCombo.getModel().getSelectedItem());
 			}
 		});
+		yearCombo.setSelectedIndex(100);
+		monthCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.MONTH));
+		dayCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.DATE)-1);
 	}
 	public Calendar getCalendar(){
 		Calendar calendar=Calendar.getInstance();

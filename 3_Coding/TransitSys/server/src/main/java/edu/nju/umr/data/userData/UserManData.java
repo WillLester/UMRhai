@@ -3,6 +3,7 @@ package edu.nju.umr.data.userData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
@@ -47,13 +48,29 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		return mysqlSer.addInfo(user);
 	}
 
-	public Result deleteUser(int key) throws RemoteException {
+	public Result deleteUser(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new UserPO(null, null, null, null, null, null, key, null));
+		return mysqlSer.deleteInfo(new UserPO(id, null, null, null, null, null, 0, null));
 	}
 
 	public Result reviseUser(UserPO user) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(user);
+	}
+
+	@Override
+	public Result checkIsUsed(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		ResultSet result = mysqlSer.checkInfo(new UserPO(id, null, null, null, null, null, 0, null));
+		try {
+			if(result.next()){
+				return Result.ID_IS_USED;
+			} else {
+				return Result.SUCCESS;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return Result.DATABASE_ERROR;
+		}
 	}
 }

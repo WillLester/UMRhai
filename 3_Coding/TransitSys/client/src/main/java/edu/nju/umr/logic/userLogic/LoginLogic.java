@@ -35,7 +35,7 @@ public class LoginLogic implements LoginLSer{
 		UserPO user;
 		try {
 			user = loginData.findUser(id, password);
-			return new ResultMessage(Result.SUCCESS,new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg()));
+			return new ResultMessage(Result.SUCCESS,new UserVO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),user.getOrgId()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
