@@ -1,35 +1,44 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 public class ExpressPanel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 472329397579383210L;
+	private JTextField barcodeField;
+	private JTextField senderField;
+	private JTextField senderLocField;
+	private JTextField sendUnitField;
+	private JTextField senderMobileField;
+	private JTextField senderPhoneField;
+	private JTextField receiverField;
+	private JTextField receiverLocField;
+	private JTextField receiverUnitField;
+	private JTextField receiverMobileField;
+	private JTextField receiverPhoneField;
+	private JTextField volumnField;
+	private JTextField weightField;
+	private JTextField nameField;
 	private JFrame frame;
+	private JTextField costField;
+	private JTextField lengthField;
+	private JTextField widthField;
+	private JTextField heightField;
 	/**
 	 * Create the panel.
 	 */
@@ -37,267 +46,319 @@ public class ExpressPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		
-		JLabel label = new JLabel("订单创建");
-		label.setBounds(437, 21, 120, 35);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("宋体", Font.PLAIN, 30));
-		add(label);
+		JLabel titleLabel = new JLabel("订单创建");
+		titleLabel.setBounds(437, 21, 120, 35);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		add(titleLabel);
 		
-		JLabel label_1 = new JLabel("订单条形码号");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(341+75, 66, 120, 24);
-		add(label_1);
+		JLabel barcodeLabel = new JLabel("订单条形码号");
+		barcodeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		barcodeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		barcodeLabel.setBounds(341+75, 66, 120, 24);
+		add(barcodeLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(489+75, 65, 165, 25);
-		add(textField);
+		barcodeField = new JTextField();
+		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
+		barcodeField.setColumns(10);
+		barcodeField.setBounds(489+75, 65, 165, 25);
+		add(barcodeField);
 		
-		JLabel label_2 = new JLabel("寄件人");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(84+75, 101, 120, 24);
-		add(label_2);
+		JLabel sender = new JLabel("寄件人");
+		sender.setHorizontalAlignment(SwingConstants.CENTER);
+		sender.setFont(new Font("宋体", Font.PLAIN, 20));
+		sender.setBounds(84+75, 101, 120, 24);
+		add(sender);
 		
-		JLabel label_3 = new JLabel("姓名");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(178+75, 135, 120, 24);
-		add(label_3);
+		JLabel senderLabel = new JLabel("姓名");
+		senderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		senderLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderLabel.setBounds(178+75, 135, 120, 24);
+		add(senderLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_1.setColumns(10);
-		textField_1.setBounds(268+75, 134, 83, 25);
-		add(textField_1);
+		senderField = new JTextField();
+		senderField.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderField.setColumns(10);
+		senderField.setBounds(268+75, 134, 83, 25);
+		add(senderField);
 		
-		JLabel label_4 = new JLabel("住址");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_4.setBounds(378+75, 135, 62, 24);
-		add(label_4);
+		JLabel senderLocLabel = new JLabel("地址");
+		senderLocLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		senderLocLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderLocLabel.setBounds(378+75, 135, 62, 24);
+		add(senderLocLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		textField_2.setBounds(437+75, 135, 165, 25);
-		add(textField_2);
+		senderLocField = new JTextField();
+		senderLocField.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderLocField.setColumns(10);
+		senderLocField.setBounds(437+75, 135, 165, 25);
+		add(senderLocField);
 		
-		JLabel label_5 = new JLabel("单位");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_5.setBounds(615+75, 135, 62, 24);
-		add(label_5);
+		JLabel senderUnitLabel = new JLabel("单位");
+		senderUnitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		senderUnitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderUnitLabel.setBounds(615+75, 135, 62, 24);
+		add(senderUnitLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_3.setColumns(10);
-		textField_3.setBounds(676+75, 134, 165, 25);
-		add(textField_3);
+		sendUnitField = new JTextField();
+		sendUnitField.setFont(new Font("宋体", Font.PLAIN, 20));
+		sendUnitField.setColumns(10);
+		sendUnitField.setBounds(676+75, 134, 165, 25);
+		add(sendUnitField);
 		
-		JLabel label_6 = new JLabel("手机");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_6.setBounds(178+75, 180, 120, 24);
-		add(label_6);
+		JLabel senderMobileLabel = new JLabel("手机");
+		senderMobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		senderMobileLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderMobileLabel.setBounds(178+75, 180, 120, 24);
+		add(senderMobileLabel);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_4.setColumns(10);
-		textField_4.setBounds(268+75, 179, 193, 25);
-		add(textField_4);
+		senderMobileField = new JTextField();
+		senderMobileField.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderMobileField.setColumns(10);
+		senderMobileField.setBounds(268+75, 179, 193, 25);
+		add(senderMobileField);
 		
-		JLabel label_7 = new JLabel("电话");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_7.setBounds(510+75, 180, 62, 24);
-		add(label_7);
+		JLabel senderPhoneLabel = new JLabel("电话");
+		senderPhoneLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		senderPhoneLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderPhoneLabel.setBounds(510+75, 180, 62, 24);
+		add(senderPhoneLabel);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_5.setColumns(10);
-		textField_5.setBounds(567+75, 179, 216, 25);
-		add(textField_5);
+		senderPhoneField = new JTextField();
+		senderPhoneField.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderPhoneField.setColumns(10);
+		senderPhoneField.setBounds(567+75, 179, 216, 25);
+		add(senderPhoneField);
 		
-		JLabel label_8 = new JLabel("收件人");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_8.setBounds(84+75, 214, 120, 24);
-		add(label_8);
+		JLabel receiver = new JLabel("收件人");
+		receiver.setHorizontalAlignment(SwingConstants.CENTER);
+		receiver.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiver.setBounds(84+75, 214, 120, 24);
+		add(receiver);
 		
-		JLabel label_9 = new JLabel("姓名");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_9.setBounds(178+75, 248, 120, 24);
-		add(label_9);
+		JLabel receiverLabel = new JLabel("姓名");
+		receiverLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		receiverLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverLabel.setBounds(178+75, 248, 120, 24);
+		add(receiverLabel);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_6.setColumns(10);
-		textField_6.setBounds(268+75, 247, 83, 25);
-		add(textField_6);
+		receiverField = new JTextField();
+		receiverField.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverField.setColumns(10);
+		receiverField.setBounds(268+75, 247, 83, 25);
+		add(receiverField);
 		
-		JLabel label_10 = new JLabel("住址");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_10.setBounds(378+75, 248, 62, 24);
-		add(label_10);
+		JLabel receiverLocLabel = new JLabel("地址");
+		receiverLocLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		receiverLocLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverLocLabel.setBounds(378+75, 248, 62, 24);
+		add(receiverLocLabel);
 		
-		textField_7 = new JTextField();
-		textField_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_7.setColumns(10);
-		textField_7.setBounds(437+75, 248, 165, 25);
-		add(textField_7);
+		receiverLocField = new JTextField();
+		receiverLocField.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverLocField.setColumns(10);
+		receiverLocField.setBounds(437+75, 248, 165, 25);
+		add(receiverLocField);
 		
-		JLabel label_11 = new JLabel("单位");
-		label_11.setHorizontalAlignment(SwingConstants.CENTER);
-		label_11.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_11.setBounds(615+75, 248, 62, 24);
-		add(label_11);
+		JLabel receiverUnitLabel = new JLabel("单位");
+		receiverUnitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		receiverUnitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverUnitLabel.setBounds(615+75, 248, 62, 24);
+		add(receiverUnitLabel);
 		
-		textField_8 = new JTextField();
-		textField_8.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_8.setColumns(10);
-		textField_8.setBounds(676+75, 248, 165, 25);
-		add(textField_8);
+		receiverUnitField = new JTextField();
+		receiverUnitField.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverUnitField.setColumns(10);
+		receiverUnitField.setBounds(676+75, 248, 165, 25);
+		add(receiverUnitField);
 		
-		JLabel label_12 = new JLabel("手机");
-		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_12.setBounds(178+75, 294, 120, 24);
-		add(label_12);
+		JLabel receiverMobileLabel = new JLabel("手机");
+		receiverMobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		receiverMobileLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverMobileLabel.setBounds(178+75, 294, 120, 24);
+		add(receiverMobileLabel);
 		
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_9.setColumns(10);
-		textField_9.setBounds(268+75, 293, 193, 25);
-		add(textField_9);
+		receiverMobileField = new JTextField();
+		receiverMobileField.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverMobileField.setColumns(10);
+		receiverMobileField.setBounds(268+75, 293, 193, 25);
+		add(receiverMobileField);
 		
-		JLabel label_13 = new JLabel("电话");
-		label_13.setHorizontalAlignment(SwingConstants.CENTER);
-		label_13.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_13.setBounds(510+75, 294, 62, 24);
-		add(label_13);
+		JLabel receiverPhoneLabel = new JLabel("电话");
+		receiverPhoneLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		receiverPhoneLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverPhoneLabel.setBounds(510+75, 294, 62, 24);
+		add(receiverPhoneLabel);
 		
-		textField_10 = new JTextField();
-		textField_10.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_10.setColumns(10);
-		textField_10.setBounds(567+75, 293, 216, 25);
-		add(textField_10);
+		receiverPhoneField = new JTextField();
+		receiverPhoneField.setFont(new Font("宋体", Font.PLAIN, 20));
+		receiverPhoneField.setColumns(10);
+		receiverPhoneField.setBounds(567+75, 293, 216, 25);
+		add(receiverPhoneField);
 		
-		JLabel label_14 = new JLabel("货物信息");
-		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_14.setBounds(84+75, 328, 120, 24);
-		add(label_14);
+		JLabel goodLabel = new JLabel("货物信息");
+		goodLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		goodLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		goodLabel.setBounds(84+75, 328, 120, 24);
+		add(goodLabel);
 		
-		JLabel label_15 = new JLabel("件数");
-		label_15.setHorizontalAlignment(SwingConstants.CENTER);
-		label_15.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_15.setBounds(178+75, 362, 120, 24);
-		add(label_15);
+		JLabel numLabel = new JLabel("件数");
+		numLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		numLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		numLabel.setBounds(178+75, 362, 120, 24);
+		add(numLabel);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(268+75, 362, 48, 26);
-		add(spinner);
+		JSpinner numSpinner = new JSpinner();
+		numSpinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		numSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
+		numSpinner.setBounds(268+75, 362, 48, 26);
+		add(numSpinner);
 		
-		JLabel label_16 = new JLabel("体积");
-		label_16.setHorizontalAlignment(SwingConstants.CENTER);
-		label_16.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_16.setBounds(335+75, 362, 62, 24);
-		add(label_16);
+		JLabel volumnLabel = new JLabel("体积");
+		volumnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		volumnLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		volumnLabel.setBounds(724, 362, 62, 24);
+		add(volumnLabel);
 		
-		textField_11 = new JTextField();
-		textField_11.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_11.setColumns(10);
-		textField_11.setBounds(397+75, 362, 41, 25);
-		add(textField_11);
+		volumnField = new JTextField();
+		volumnField.setEditable(false);
+		volumnField.setFont(new Font("宋体", Font.PLAIN, 20));
+		volumnField.setColumns(10);
+		volumnField.setBounds(779, 362, 50, 25);
+		add(volumnField);
 		
-		JLabel lblM = new JLabel("m³");
-		lblM.setHorizontalAlignment(SwingConstants.CENTER);
-		lblM.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblM.setBounds(437+75, 362, 41, 24);
-		add(lblM);
+		JLabel cubeMLabel = new JLabel("m³");
+		cubeMLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		cubeMLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		cubeMLabel.setBounds(833, 362, 41, 24);
+		add(cubeMLabel);
 		
-		JLabel label_17 = new JLabel("重量");
-		label_17.setHorizontalAlignment(SwingConstants.CENTER);
-		label_17.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_17.setBounds(479+75, 362, 62, 24);
-		add(label_17);
+		JLabel weightLabel = new JLabel("重量");
+		weightLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		weightLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		weightLabel.setBounds(854, 362, 62, 25);
+		add(weightLabel);
 		
-		textField_12 = new JTextField();
-		textField_12.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_12.setColumns(10);
-		textField_12.setBounds(531+75, 361, 41, 25);
-		add(textField_12);
+		weightField = new JTextField();
+		weightField.setFont(new Font("宋体", Font.PLAIN, 20));
+		weightField.setColumns(10);
+		weightField.setBounds(914, 362, 50, 25);
+		add(weightField);
 		
-		JLabel lblKg = new JLabel("kg");
-		lblKg.setHorizontalAlignment(SwingConstants.CENTER);
-		lblKg.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblKg.setBounds(567+75, 362, 41, 24);
-		add(lblKg);
+		JLabel kgLabel = new JLabel("kg");
+		kgLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		kgLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		kgLabel.setBounds(962, 362, 41, 24);
+		add(kgLabel);
 		
-		JLabel label_18 = new JLabel("内件品名");
-		label_18.setHorizontalAlignment(SwingConstants.CENTER);
-		label_18.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_18.setBounds(597+75, 362, 120, 24);
-		add(label_18);
+		JLabel nameLabel = new JLabel("内件品名");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		nameLabel.setBounds(271, 412, 120, 24);
+		add(nameLabel);
 		
-		textField_13 = new JTextField();
-		textField_13.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_13.setColumns(10);
-		textField_13.setBounds(704+75, 361, 193, 25);
-		add(textField_13);
+		nameField = new JTextField();
+		nameField.setFont(new Font("宋体", Font.PLAIN, 20));
+		nameField.setColumns(10);
+		nameField.setBounds(389, 411, 193, 25);
+		add(nameField);
 		
-		JLabel label_19 = new JLabel("包装种类");
-		label_19.setHorizontalAlignment(SwingConstants.CENTER);
-		label_19.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_19.setBounds(196+75, 411, 120, 24);
-		add(label_19);
+		JLabel pakKindLabel = new JLabel("包装种类");
+		pakKindLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		pakKindLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		pakKindLabel.setBounds(271, 448, 120, 24);
+		add(pakKindLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"纸箱", "木箱", "快递袋"}));
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(314+75, 411, 103, 25);
-		add(comboBox);
+		JComboBox<String> pakKindCombo = new JComboBox<String>();
+		pakKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"纸箱", "木箱", "快递袋"}));
+		pakKindCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		pakKindCombo.setBounds(389, 448, 103, 25);
+		add(pakKindCombo);
 		
-		JLabel label_20 = new JLabel("快递种类");
-		label_20.setHorizontalAlignment(SwingConstants.CENTER);
-		label_20.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_20.setBounds(437+75, 411, 120, 24);
-		add(label_20);
+		JLabel expressKindLabel = new JLabel("快递种类");
+		expressKindLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		expressKindLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressKindLabel.setBounds(512, 448, 120, 24);
+		add(expressKindLabel);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"经济快递", "标准快递", "特快专递"}));
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(554+75, 411, 123, 25);
-		add(comboBox_1);
+		JComboBox<String> expressKindCombo = new JComboBox<String>();
+		expressKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"经济快递", "标准快递", "特快专递"}));
+		expressKindCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressKindCombo.setBounds(629, 448, 123, 25);
+		add(expressKindCombo);
 		
-		JLabel label_21 = new JLabel("费用：");
-		label_21.setHorizontalAlignment(SwingConstants.LEFT);
-		label_21.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_21.setBounds(704+75, 411, 120, 24);
-		add(label_21);
+		JLabel costLabel = new JLabel("费用：");
+		costLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		costLabel.setBounds(779, 448, 83, 24);
+		add(costLabel);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(341+75, 484, 93, 23);
-		add(button);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(416, 497, 93, 23);
+		add(confirmButton);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(567+75, 484, 93, 23);
-		button_1.addActionListener(new ActionListener(){
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(636, 497, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
 			}
 		});
-		add(button_1);
+		add(cancelButton);
+		
+		costField = new JTextField();
+		costField.setEditable(false);
+		costField.setBounds(836, 448, 66, 21);
+		add(costField);
+		costField.setColumns(10);
+		
+		JLabel lengthLabel = new JLabel("长");
+		lengthLabel.setBounds(408, 362, 41, 24);
+		lengthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(lengthLabel);
+		
+		lengthField = new JTextField();
+		lengthField.setBounds(442, 362, 50, 25);
+		add(lengthField);
+		lengthField.setColumns(10);
+		
+		JLabel mLabelL = new JLabel("m");
+		mLabelL.setBounds(503, 362, 32, 24);
+		mLabelL.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(mLabelL);
+		
+		JLabel widthLabel = new JLabel("宽");
+		widthLabel.setBounds(520, 362, 62, 24);
+		widthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(widthLabel);
+		
+		widthField = new JTextField();
+		widthField.setBounds(549, 362, 50, 25);
+		add(widthField);
+		widthField.setColumns(10);
+		
+		JLabel mLabelW = new JLabel("m");
+		mLabelW.setBounds(609, 362, 32, 24);
+		mLabelW.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(mLabelW);
+		
+		JLabel heightLabel = new JLabel("高");
+		heightLabel.setBounds(625, 362, 62, 24);
+		heightLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(heightLabel);
+		
+		heightField = new JTextField();
+		heightField.setBounds(651, 362, 50, 25);
+		add(heightField);
+		heightField.setColumns(10);
+		
+		JLabel mLabelH = new JLabel("m");
+		mLabelH.setBounds(711, 362, 41, 24);
+		mLabelH.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(mLabelH);
 
 	}
 

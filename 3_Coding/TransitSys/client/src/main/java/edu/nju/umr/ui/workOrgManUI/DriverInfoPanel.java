@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.checkUI.DatePanel;
 import edu.nju.umr.vo.DriverVO;
 
 import javax.swing.JComboBox;

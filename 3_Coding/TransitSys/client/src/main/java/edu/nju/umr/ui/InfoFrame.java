@@ -1,9 +1,6 @@
 package edu.nju.umr.ui;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-
-import edu.nju.umr.ui.accountUI.CountInfoPanel;
 
 public class InfoFrame extends JFrame{
 	/**
@@ -14,7 +11,6 @@ public class InfoFrame extends JFrame{
 	static final int FRAME_Y = FunctionFrame.FRAME_HEIGHT/40;
 	static final int FRAME_WIDTH = (int)(FunctionFrame.FRAME_WIDTH*0.9);
 	static final int FRAME_HEIGHT = (int)(FunctionFrame.FRAME_HEIGHT*0.9);
-	private JDesktopPane desktop;
 	/**
 	 * Create the frame.
 	 */

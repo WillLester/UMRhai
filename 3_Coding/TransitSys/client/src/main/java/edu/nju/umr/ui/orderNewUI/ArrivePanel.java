@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import edu.nju.umr.ui.checkUI.DatePanel;
+import edu.nju.umr.ui.DatePanel;
 
 public class ArrivePanel extends JPanel {
 	/**
