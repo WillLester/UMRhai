@@ -21,6 +21,7 @@ import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -124,11 +125,17 @@ public class PaymentPanel extends JPanel {
 		confirmButton.setBounds(342, 499, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("unused")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(isIllegal()){
-					logicSer.create(createVO());
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+					}
 				}
 			}
 		});
@@ -157,7 +164,7 @@ public class PaymentPanel extends JPanel {
 		}
 	}
 	@SuppressWarnings("unused")
-	private boolean isIllegal(){
+	private boolean isLegal(){
 		if(costField.getText().equals("")){
 			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY());
 			return false;
@@ -170,6 +177,10 @@ public class PaymentPanel extends JPanel {
 			Double.parseDouble(costField.getText());
 		} catch (NumberFormatException e){
 			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY());
+			return false;
+		}
+		if(Utility.isOutOfDate(datePanel.getCalendar())){
+			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY());
 			return false;
 		}
 		return true;
