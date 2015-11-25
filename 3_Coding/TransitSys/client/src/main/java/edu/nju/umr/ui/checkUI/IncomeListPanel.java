@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -85,12 +86,13 @@ public class IncomeListPanel extends JPanel {
 		listLabel = new JLabel("收款记录");
 		listLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
 		listLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*4+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(listLabel);
+//		add(listLabel);
+		
+		tableInit();
 		
 		JButton out = new JButton("退出");
-		out.setBounds(this.getWidth()/10*8, IncomeTable.getY()+IncomeTable.getHeight()+20, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		out.setBounds(this.getWidth()/10*8, IncomeTable.getY()+IncomeTable.getHeight()+50, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(out);
-		tableInit();
 
 	}
 	void tableInit(){
@@ -105,10 +107,17 @@ public class IncomeListPanel extends JPanel {
 		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		IncomeTable.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(IncomeTable);
-		scroll.setBounds(233, 101, 637, 335);
+		scroll.setBounds(233, 231, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"时间","金额","快递员","快递编号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
+	}
+	public static void main(String[] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setContentPane(new IncomeListPanel());
+		frame.setSize(1200,800);
+		frame.setVisible(true);
 	}
 }

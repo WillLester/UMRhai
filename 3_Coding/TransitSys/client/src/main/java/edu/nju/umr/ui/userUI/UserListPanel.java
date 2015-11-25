@@ -42,6 +42,7 @@ public class UserListPanel extends JPanel {
 	private JTextField passwordField;
 	private JTextField nameField;
 	private JTextField mobileField;
+	private JTextField orgIdField;
 	private JTextField orgField;
 	private Table table;
 	private DefaultTableModel model;
@@ -169,10 +170,10 @@ public class UserListPanel extends JPanel {
 		orgLabel.setBounds(805,321, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(orgLabel);
 		
-		JLabel phoneLabel=new JLabel("手机号");
-		phoneLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		phoneLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(phoneLabel);
+		JLabel orgIdLabel=new JLabel("机构编号");
+		orgIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		add(orgIdLabel);
 		
 		idField=new JTextField("账号");
 		idField.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -211,11 +212,16 @@ public class UserListPanel extends JPanel {
 //		comboBox_2.setBounds(855, 321, 200, 24);
 //		add(comboBox_2);
 		
+		orgIdField=new JTextField("手机号");
+		orgIdField.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgIdField.setBounds(855,371,200,24);
+		add(orgIdField);
+
 		mobileField=new JTextField("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
-		mobileField.setBounds(855,371,200,24);
+		mobileField.setBounds(885,371,200,24);
 		add(mobileField);
-
+		
 		tableInit();
 		users=getUsers("");
 		displayUsers();
@@ -304,9 +310,9 @@ public class UserListPanel extends JPanel {
 		if(temp.equals("中转中心仓库管理人员")){jur=Jurisdiction.STOCK;}
 		if(temp.equals("管理员")){jur=Jurisdiction.ADMIN;}
 		if(row<users.size()){
-			//UserVO pre=users.get(row);
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText());
-			Result result=serv.reviseUser(now);
+//			UserVO pre=users.get(row);
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
+			Result result=serv.reviseUser(now,row);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
@@ -317,7 +323,7 @@ public class UserListPanel extends JPanel {
 		}
 		else
 		{
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText());
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
 			Result result=serv.newUser(now);
 			if(result.equals(Result.SUCCESS)){
 			users.add(now);
@@ -338,7 +344,7 @@ public class UserListPanel extends JPanel {
 		else reportWrong(result);
 	}
 	private void reportWrong(Result result){
-		new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+		new HintFrame(result,frame.getX(),frame.getWidth(),frame.getY(),frame.getHeight());
 	}
 	
 	
