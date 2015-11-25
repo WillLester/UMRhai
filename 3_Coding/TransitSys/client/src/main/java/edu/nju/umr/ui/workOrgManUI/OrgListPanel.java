@@ -1,21 +1,5 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import javax.swing.JPanel;
-
-import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.FunctionFrame;
-import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.Table;
-import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.OrgVO;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
-import edu.nju.umr.logic.workOrgManLogic.OrgManLogic;
-import edu.nju.umr.po.enums.Organization;
-import edu.nju.umr.po.enums.Result;
-
-import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,16 +7,33 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
+import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.OrgVO;
+import edu.nju.umr.vo.ResultMessage;
+
 public class OrgListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9120059892438869471L;
 	private JTextField textFieldSearch;
 	private JTextField textFieldName;
 	private JTextField textFieldAddr;
@@ -42,9 +43,9 @@ public class OrgListPanel extends JPanel {
 	private DefaultTableModel model;
 	private ArrayList<CityVO> cityList;
 	private ArrayList<OrgVO> orgList;
-	private JComboBox orgType;
+	private JComboBox<String> orgType;
 	private OrgManLSer serv;
-	private JComboBox cityComboBox;
+	private JComboBox<String> cityComboBox;
 	/**
 	 * Create the panel.
 	 */
@@ -102,9 +103,9 @@ public class OrgListPanel extends JPanel {
 		type.setBounds(this.getWidth()/2+100, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(type);
 		
-		orgType = new JComboBox();
+		orgType = new JComboBox<String>();
 		orgType.setBounds(type.getWidth()+type.getX(), type.getY()+5, 150, 21);
-		orgType.setModel(new DefaultComboBoxModel(new String[]{"营业厅","中转中心","总部"}));
+		orgType.setModel(new DefaultComboBoxModel<String>(new String[]{"营业厅","中转中心","总部"}));
 		add(orgType);
 		
 		JLabel address = new JLabel("机构地址");
@@ -213,12 +214,13 @@ public class OrgListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	@SuppressWarnings("unchecked")
 	private ArrayList<OrgVO> getOrgs(String keyword){
 		ArrayList<OrgVO> temp=new ArrayList<OrgVO>();
 		ResultMessage message=serv.searchOrg(keyword);
 		if(message.getReInfo()!=Result.SUCCESS)
 		{
-			new HintFrame(message.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(message.getReInfo(),frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return temp;
 		}
 		else temp=(ArrayList<OrgVO>)message.getMessage();
@@ -262,7 +264,7 @@ public class OrgListPanel extends JPanel {
 		OrgVO temp=orgList.get(row);
 		Result result=serv.deleteOrg(temp.getId());
 		if(!result.equals(Result.SUCCESS)){
-			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		else{
 			orgList.remove(row);
@@ -284,11 +286,11 @@ public class OrgListPanel extends JPanel {
 		String cityId=cityList.get(cityComboBox.getSelectedIndex()).getId();
 		
 		if(name.equals("")){
-			new HintFrame("机构名称未输入!",frame.getX()+frame.getWidth(),frame.getY()+frame.getHeight());
+			new HintFrame("机构名称未输入!",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
 		if(location.equals("")){
-			new HintFrame("机构地址未输入!",frame.getX()+frame.getWidth(),frame.getY()+frame.getHeight());
+			new HintFrame("机构地址未输入!",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
 		
@@ -298,7 +300,7 @@ public class OrgListPanel extends JPanel {
 			Result result=serv.addOrg(temp);
 			if(!result.equals(Result.SUCCESS))
 			{
-				new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			}
 			else 
 			{
@@ -310,7 +312,7 @@ public class OrgListPanel extends JPanel {
 			Result result=serv.reviseOrg(temp);
 			if(!result.equals(Result.SUCCESS))
 			{
-				new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			}
 			else 
 			{
@@ -318,12 +320,13 @@ public class OrgListPanel extends JPanel {
 			}
 		}
 	}
+	@SuppressWarnings("unchecked")
 	private ArrayList<CityVO> getCities(){
 		ArrayList<CityVO> temp=new ArrayList<CityVO>();
 		ResultMessage message=serv.getCities();
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
-			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		else 
 		{

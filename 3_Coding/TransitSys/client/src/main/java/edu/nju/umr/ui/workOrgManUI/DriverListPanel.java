@@ -1,12 +1,21 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.workOrgManLogic.DriverManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
@@ -16,25 +25,15 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
-import edu.nju.umr.ui.userPanel.UserPanel;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
-
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-
 public class DriverListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8718383258027786192L;
 	private JTextField textFieldSearch;
 	private JFrame frame;
 	private DriverListPanel panel;
@@ -47,6 +46,7 @@ public class DriverListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("unchecked")
 	public DriverListPanel(JFrame fr,UserVO uservo) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
@@ -74,7 +74,7 @@ public class DriverListPanel extends JPanel {
 				Result result=message.getReInfo();
 				if(!result.equals(Result.SUCCESS))
 				{
-					new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				}
 				else
 				{
@@ -108,7 +108,7 @@ public class DriverListPanel extends JPanel {
 				driverList.remove(table.getSelectedRow());
 				displayDrivers();
 				}
-				else new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				else new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			}
 		});
 		add(delete);

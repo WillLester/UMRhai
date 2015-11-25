@@ -1,10 +1,15 @@
 package edu.nju.umr.ui.workOrgManUI;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.po.enums.Gender;
@@ -15,16 +20,11 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.UserVO;
 
-import javax.swing.JComboBox;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Calendar;
-
-import javax.swing.JButton;
-
 public class DriverInfoPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2610622329584659171L;
 	private JTextField textFieldNum;
 	private JTextField textFieldName;
 	private JTextField textFieldIden;
@@ -32,7 +32,7 @@ public class DriverInfoPanel extends JPanel {
 	private JFrame frame;
 	private UserVO user;
 	private DriverListPanel panel;
-	private JComboBox comboBoxSex;
+	private JComboBox<String> comboBoxSex;
 	private DatePanel born;
 	private DatePanel start;
 	private DatePanel deadline;
@@ -76,9 +76,9 @@ public class DriverInfoPanel extends JPanel {
 		driverSex.setBounds(driverNum.getX(), driverName.getY()+driverName.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverSex);
 		
-		comboBoxSex = new JComboBox();
+		comboBoxSex = new JComboBox<String>();
 		comboBoxSex.setBounds(textFieldNum.getX(), driverSex.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
-		comboBoxSex.setModel(new DefaultComboBoxModel(new String[]{"男","女"}));
+		comboBoxSex.setModel(new DefaultComboBoxModel<String>(new String[]{"男","女"}));
 		if(driver.getSex().equals(Gender.MAN))
 		comboBoxSex.setSelectedIndex(0);
 		else comboBoxSex.setSelectedIndex(1);
@@ -203,14 +203,14 @@ public class DriverInfoPanel extends JPanel {
 			if(idNum.isEmpty())
 			{
 				passed=false;
-				new HintFrame("身份证号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("身份证号未输入！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 				
 			}
 			if(idNum.length()!=15&&idNum.length()!=18)
 			{
 				passed=false;
-				new HintFrame("身份证号格式错误！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("身份证号格式错误！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 			}
 			for(int i=0;i<idNum.length();i++)
@@ -218,14 +218,14 @@ public class DriverInfoPanel extends JPanel {
 				if(!((idNum.charAt(i)>='0'&&idNum.charAt(i)<='9')||(idNum.charAt(i)!='x'&&idNum.charAt(i)!='X')))
 				{
 					passed=false;
-					new HintFrame("司机编号含有非法字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame("司机编号含有非法字符！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 					return passed;
 				}
 			}
 			if(mobile.isEmpty())
 			{
 				passed=false;
-				new HintFrame("手机号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("手机号未输入！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 				
 			}
@@ -234,14 +234,14 @@ public class DriverInfoPanel extends JPanel {
 				if(!(mobile.charAt(i)>='0'&&mobile.charAt(i)<='9'))
 				{
 					passed=false;
-					new HintFrame("手机号含有非数字字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame("手机号含有非数字字符！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 					return passed;
 				}
 			}
 			if(start.getCalendar().after(deadline.getCalendar()))
 			{
 				passed=false;
-				new HintFrame("形式期限错误！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("行驶期限错误！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 			}
 		 return passed;
