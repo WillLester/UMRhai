@@ -10,5 +10,5 @@ public interface DriverManLSer {
 	public Result reviseDriver(DriverVO Driver);
 //	public ResultMessage checkDriver(String id);
 //	public ResultMessage driverList();
-	public ResultMessage searchDriver(String keyword,String hallId);
+	public ResultMessage searchDriver(String hallId);
 }
