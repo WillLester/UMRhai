@@ -237,14 +237,14 @@ public class StockInPanel extends JPanel {
 			return false;
 		}
 		if(expressField.getText().equals("")){
-			HintFrame hint = new HintFrame("快递单号未填写！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.EXPRESS_NULL, frame.getX(), frame.getY());
 			return false;
 		}
 		if(!Utility.isNumberic(expressField.getText())){
-			HintFrame hint = new HintFrame("快递单号含有非数字字符！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.EXPRESS_ILLEGAL, frame.getX(), frame.getY());
 			return false;
 		} else if(expressField.getText().length() != 10){
-			HintFrame hint = new HintFrame("快递单号长度错误！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.EXPRESS_LENGTH, frame.getX(), frame.getY());
 			return false;
 		}
 		return true;
