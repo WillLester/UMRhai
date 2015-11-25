@@ -82,7 +82,7 @@ public class UserListPanel extends JPanel {
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				users=getUsers("");
+				users=getUsers(null);
 				displayUsers();
 			}
 		});
@@ -282,6 +282,7 @@ public class UserListPanel extends JPanel {
 	}
 	private void displayUser(int row)
 	{
+		if(row<0||row>=table.getRowCount())return;
 		String []data=new String[6];
 		for(int i=0;i<6;i++)
 		{
@@ -296,6 +297,7 @@ public class UserListPanel extends JPanel {
 	}
 	private void confirmChange(){
 		int row=table.getSelectedRow();
+		if(row<0||row>=table.getRowCount())return;
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
 		if(temp.equals("总经理")){jur=Jurisdiction.MANAGER;}
@@ -307,14 +309,11 @@ public class UserListPanel extends JPanel {
 		if(temp.equals("中转中心仓库管理人员")){jur=Jurisdiction.STOCK;}
 		if(temp.equals("管理员")){jur=Jurisdiction.ADMIN;}
 		if(row<users.size()){
-//			UserVO pre=users.get(row);
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
 			Result result=serv.reviseUser(now,row);
-			System.out.println(now.getId()+now.getJuri()+" "+result);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
-			    System.out.println(now.getId()+now.getJuri());
 			}
 			else {
 				reportWrong(result);
@@ -338,6 +337,7 @@ public class UserListPanel extends JPanel {
 		Result result=serv.deleteUser(users.get(row).getId());
 		if(result.equals(Result.SUCCESS)){
 		users.remove(row);
+		table.getSelectionModel().setSelectionInterval(row-1, row-1);
 		displayUsers();
 		}
 		else reportWrong(result);
