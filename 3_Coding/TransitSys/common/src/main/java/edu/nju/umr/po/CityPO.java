@@ -41,7 +41,7 @@ public class CityPO extends PO implements Serializable{
 		case INSERT:command="insert into city values"+"('"+id+"',"+"'"+name+"','"+province+"')";break;
 		case DELETE:command="delete from city where name='"+name+"'";break;
 		case FIND:break;
-		case UPDATE:command = "update city set id='"+id+"' name='"+name+"' province='"+province+"' where keyid="+key;break;
+		case UPDATE:command = "update city set id='"+id+"',name='"+name+"',province='"+province+"' where keyid="+key;break;
 		}
 		return command;
 	}

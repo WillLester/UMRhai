@@ -1,37 +1,29 @@
 package edu.nju.umr.ui.userUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import java.awt.Font;
-import java.util.ArrayList;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.ListSelectionModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.userLogic.UserManLogic;
+import edu.nju.umr.logicService.userLogicSer.UserManLSer;
+import edu.nju.umr.po.enums.Jurisdiction;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
-import edu.nju.umr.logicService.userLogicSer.UserManLSer;
-import edu.nju.umr.logic.userLogic.UserManLogic;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 

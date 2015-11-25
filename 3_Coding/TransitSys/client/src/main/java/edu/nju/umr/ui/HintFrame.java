@@ -36,6 +36,7 @@ public class HintFrame extends JDialog{
 		case PASSWORD_WRONG:txt="密码错误";break;
 		case PO_NOT_FOUND:txt="未找到对应文件";break;
 		case SERIAL_FAIL:txt="序列化失败";break;
+		case DATABASE_ERROR:txt = "数据库发生错误";break;
 		default:
 			break;
 		}

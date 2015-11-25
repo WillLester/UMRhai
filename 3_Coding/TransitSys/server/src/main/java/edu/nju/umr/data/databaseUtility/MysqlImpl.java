@@ -71,6 +71,7 @@ public class MysqlImpl implements MysqlService{
 		try{
 			state.executeUpdate(po.getCommand(MysqlOperation.UPDATE));
 		} catch (SQLException e){
+			e.printStackTrace();
 			return Result.DATABASE_ERROR;
 		}
 		return Result.SUCCESS;

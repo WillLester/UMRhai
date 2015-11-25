@@ -34,17 +34,17 @@ public class ConstantPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		
-		JLabel lblNewLabel = new JLabel("常量制定");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(367, 10, 242, 82);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("常量制定");
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(367, 10, 242, 82);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("飞机满载量(吨)");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(246, 94, 90, 15);
-		add(lblNewLabel_1);
+		JLabel planeLabel = new JLabel("飞机满载量(吨)");
+		planeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		planeLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		planeLabel.setBounds(246, 94, 90, 15);
+		add(planeLabel);
 		
 		JLabel label = new JLabel("火车满载量(吨)");
 		label.setHorizontalAlignment(SwingConstants.CENTER);

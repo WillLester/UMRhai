@@ -73,7 +73,7 @@ public class DriverPO extends PO implements Serializable{
 		case FIND:
 			command = "select * from driver where hallId = '"+hallId+"'";
 			break;
-		case UPDATE:command = "update driver set name='"+name+"' idNum='"+idNum+"' mobile='"+mobile+"' sex="+sex.ordinal()+" birthday='"+DateFormat.DATE.format(birthday.getTime())+"' driveStart='"+DateFormat.DATE.format(driveStart.getTime())+"' driveEnd='"+DateFormat.DATE.format(driveEnd.getTime())+"' hallId ='"+hallId+"' where id='"+id+"'";break;
+		case UPDATE:command = "update driver set name='"+name+"',idNum='"+idNum+"',mobile='"+mobile+"',sex="+sex.ordinal()+",birthday='"+DateFormat.DATE.format(birthday.getTime())+"',driveStart='"+DateFormat.DATE.format(driveStart.getTime())+"',driveEnd='"+DateFormat.DATE.format(driveEnd.getTime())+"',hallId ='"+hallId+"' where id='"+id+"'";break;
 		}
 		return command;
 	}
