@@ -97,37 +97,37 @@ public class LoginPanel extends JPanel {
 		loginButton.setBounds(464, 295, 93, 23);
 		add(loginButton);
 		
-		JButton button_1 = new JButton("关闭");
-		button_1.addActionListener(new ActionListener(){
+		JButton closeButton = new JButton("关闭");
+		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
 				
 			}
 		});
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(625, 295, 93, 23);
-		add(button_1);
+		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		closeButton.setBounds(625, 295, 93, 23);
+		add(closeButton);
 		
-		JLabel label = new JLabel("密码");
-		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(464, 162, 40, 24);
-		add(label);
+		JLabel passwordLabel = new JLabel("密码");
+		passwordLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		passwordLabel.setBounds(464, 162, 40, 24);
+		add(passwordLabel);
 		
 		password = new JPasswordField();
 		password.setColumns(10);
 		password.setBounds(525, 162, 193, 24);
 		add(password);
 		
-		JButton button_2 = new JButton("物流信息查询");
-		button_2.addActionListener(new ActionListener(){
+		JButton inquiryButton = new JButton("物流信息查询");
+		inquiryButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
 			frame.setContentPane(new TransitInfoInqPanel());
 		}
 		});
-		button_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_2.setBounds(493, 233, 199, 24);
-		add(button_2);
+		inquiryButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		inquiryButton.setBounds(493, 233, 199, 24);
+		add(inquiryButton);
 
 	}
 }

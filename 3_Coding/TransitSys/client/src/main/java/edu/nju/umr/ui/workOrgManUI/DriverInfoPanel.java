@@ -189,14 +189,14 @@ public class DriverInfoPanel extends JPanel {
 				if(!(num.charAt(i)>='0'&&num.charAt(i)<='9'))
 				{
 					passed=false;
-					new HintFrame("司机编号含有非数字字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame("司机编号含有非数字字符！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 					return passed;
 				}
 			}
 			if(name.isEmpty())
 			{
 				passed=false;
-				new HintFrame("司机姓名未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("司机姓名未输入！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 				
 			}

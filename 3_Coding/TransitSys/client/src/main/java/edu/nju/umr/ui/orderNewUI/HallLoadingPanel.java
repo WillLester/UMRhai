@@ -20,12 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 //import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.orderNewLogic.HallLoadingOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
@@ -34,9 +35,6 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
-import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
-import edu.nju.umr.logic.orderNewLogic.HallLoadingOrderLogic;
-import edu.nju.umr.po.enums.Result;
 
 public class HallLoadingPanel extends JPanel {
 	/**
@@ -46,7 +44,6 @@ public class HallLoadingPanel extends JPanel {
 	private JTextField transitIdField;
 	private JTextField superviseField;
 	private JTextField guardField;
-	private JTextField textField;
 	private JTextField expressIdField;
 	private JLabel priceLabel;
 	private Table table;
@@ -271,7 +268,7 @@ public class HallLoadingPanel extends JPanel {
 		Result result=serv.create(vo);
 		if(!result.equals(Result.SUCCESS))
 		{
-			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		return;
 		
@@ -297,6 +294,7 @@ public class HallLoadingPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
@@ -304,7 +302,7 @@ public class HallLoadingPanel extends JPanel {
 		Result result = message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
-			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
 		destinationList=(ArrayList<OrgVO>)message.getMessage();
@@ -323,7 +321,7 @@ public class HallLoadingPanel extends JPanel {
 				Result result=message.getReInfo();
 				if(!result.equals(Result.SUCCESS))
 				{
-					new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				}
 				else
 				{
@@ -337,7 +335,7 @@ public class HallLoadingPanel extends JPanel {
 		result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
-			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		else
 		{
@@ -348,7 +346,7 @@ public class HallLoadingPanel extends JPanel {
 		{
 			vanListString[i]=vanList.get(i).getId();
 		}
-		comboBoxVan.setModel(new DefaultComboBoxModel(vanListString));
+		comboBoxVan.setModel(new DefaultComboBoxModel<String>(vanListString));
 		
 		
 		

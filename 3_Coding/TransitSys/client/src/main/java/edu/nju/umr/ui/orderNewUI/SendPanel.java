@@ -81,7 +81,7 @@ public class SendPanel extends JPanel {
 			courierList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
 		courierCombo = new JComboBox<String>();
@@ -104,7 +104,7 @@ public class SendPanel extends JPanel {
 						
 					} else {
 						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
 				}
 			}
@@ -124,12 +124,12 @@ public class SendPanel extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
-			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		String result = CheckLegal.isExpressLegal(barcodeField.getText());
 		if(result != null){
-			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;

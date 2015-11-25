@@ -92,7 +92,7 @@ public class StockInPanel extends JPanel {
 			cityList = (String[]) cityResult.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
 		JLabel destiLabel = new JLabel("目的地");
@@ -111,7 +111,7 @@ public class StockInPanel extends JPanel {
 			shelfList = (ArrayList<ShelfVO>) shelfResult.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
 		JLabel partLabel = new JLabel("区号");
@@ -206,7 +206,7 @@ public class StockInPanel extends JPanel {
 						
 					} else {
 						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
 				}
 			}
@@ -235,12 +235,12 @@ public class StockInPanel extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
-			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		String result = CheckLegal.isExpressLegal(expressField.getText());
 		if(result != null){
-			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;

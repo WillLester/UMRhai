@@ -97,11 +97,11 @@ public class ReceivePanel extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean isIllegal(){
 		if(receiverField.getText().equals("")){
-			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(idField.getText().equals("")){
-			HintFrame hint = new HintFrame("收件编号未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("收件编号未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;

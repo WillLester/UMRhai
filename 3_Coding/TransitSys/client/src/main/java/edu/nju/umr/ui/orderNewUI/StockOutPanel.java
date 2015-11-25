@@ -83,7 +83,7 @@ public class StockOutPanel extends JPanel {
 			cityList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		JLabel cityLabel = new JLabel("目的地");
 		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -133,7 +133,7 @@ public class StockOutPanel extends JPanel {
 						
 					} else {
 						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
 				}
 			}
@@ -153,23 +153,23 @@ public class StockOutPanel extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
-			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		String expressResult = CheckLegal.isExpressLegal(expressField.getText());
 		if(expressResult != null){
-			HintFrame hint = new HintFrame(expressResult, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(expressResult, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(transitIdField.getText().equals("")){
-			HintFrame hint = new HintFrame("中转单或汽运编号未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("中转单或汽运编号未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(!Utility.isNumberic(transitIdField.getText())){
-			HintFrame hint = new HintFrame("中转单或汽运编号含有非数字字符！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("中转单或汽运编号含有非数字字符！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		} else if((transitIdField.getText().length() != 19)&&(transitIdField.getText().length() != 20)){
-			HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;
