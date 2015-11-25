@@ -35,7 +35,6 @@ public class ConstantPanel extends JPanel {
 	private JTextField fastField;
 	private JFrame frame;
 	private ConstantLSer logicSer;
-	private ConstantVO constant;
 	/**
 	 * Create the panel.
 	 */
@@ -170,7 +169,7 @@ public class ConstantPanel extends JPanel {
 		
 		ResultMessage message = logicSer.getConstant();
 		if(message.getReInfo().equals(Result.SUCCESS)){
-			constant = (ConstantVO) message.getMessage();
+			ConstantVO constant = (ConstantVO) message.getMessage();
 			planeField.setText(""+constant.getMaxLoadPlane());
 			trainField.setText(""+constant.getMaxLoadTrain());
 			vanField.setText(""+constant.getMaxLoadVan());
@@ -206,7 +205,7 @@ public class ConstantPanel extends JPanel {
 				if(isLegal()){
 					Result result = logicSer.setConstant(createConstant());
 					if(result.equals(Result.SUCCESS)){
-						
+						frame.dispose();
 					} else {
 						@SuppressWarnings("unused")
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
@@ -235,10 +234,18 @@ public class ConstantPanel extends JPanel {
 			HintFrame hint = new HintFrame("飞机满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		if(Double.parseDouble(planeField.getText())<0){
+			HintFrame hint = new HintFrame("飞机满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		try {
 			Double.parseDouble(trainField.getText());
 		} catch (NumberFormatException e){
 			HintFrame hint = new HintFrame("火车满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(trainField.getText())<0){
+			HintFrame hint = new HintFrame("火车满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
 		try {
@@ -247,10 +254,18 @@ public class ConstantPanel extends JPanel {
 			HintFrame hint = new HintFrame("汽车满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		if(Double.parseDouble(vanField.getText())<0){
+			HintFrame hint = new HintFrame("汽车满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		try {
 			Double.parseDouble(planeCostField.getText());
 		} catch (NumberFormatException e){
 			HintFrame hint = new HintFrame("飞机运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(planeCostField.getText())<0){
+			HintFrame hint = new HintFrame("飞机运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
 		try {
@@ -259,10 +274,28 @@ public class ConstantPanel extends JPanel {
 			HintFrame hint = new HintFrame("火车运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		if(Double.parseDouble(trainCostField.getText())<0){
+			HintFrame hint = new HintFrame("火车运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(vanCostField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("汽车运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(vanCostField.getText())<0){
+			HintFrame hint = new HintFrame("汽车运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		try {
 			Double.parseDouble(economicField.getText());
 		} catch (NumberFormatException e){
 			HintFrame hint = new HintFrame("经济快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(economicField.getText())<0){
+			HintFrame hint = new HintFrame("经济快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
 		try {
@@ -271,10 +304,18 @@ public class ConstantPanel extends JPanel {
 			HintFrame hint = new HintFrame("标准快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		if(Double.parseDouble(normalField.getText())<0){
+			HintFrame hint = new HintFrame("标准快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		try {
 			Double.parseDouble(fastField.getText());
 		} catch (NumberFormatException e){
 			HintFrame hint = new HintFrame("次晨快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(fastField.getText())<0){
+			HintFrame hint = new HintFrame("次晨快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
 		return true;
