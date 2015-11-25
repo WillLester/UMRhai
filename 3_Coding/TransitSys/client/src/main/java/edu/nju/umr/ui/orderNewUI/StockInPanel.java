@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.logic.orderNewLogic.StockInOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
@@ -52,6 +53,7 @@ public class StockInPanel extends JPanel {
 	public StockInPanel(JFrame fr,UserVO user) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new StockInOrderLogic();
 		this.user = user;
 		
 		JLabel titleLabel = new JLabel("入库单");
