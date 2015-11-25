@@ -112,7 +112,7 @@ public class UserListPanel extends JPanel {
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(895, 437, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.setBounds(895, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -128,7 +128,7 @@ public class UserListPanel extends JPanel {
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(895, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.setBounds(895, 537, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -167,6 +167,11 @@ public class UserListPanel extends JPanel {
 		orgIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(orgIdLabel);
 		
+		JLabel mobileIdLabel=new JLabel("手机号");
+		mobileIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		mobileIdLabel.setBounds(805,421, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		add(mobileIdLabel);
+		
 		idField=new JTextField("账号");
 		idField.setFont(new Font("宋体", Font.PLAIN, 12));
 		idField.setBounds(855,121,200,24);
@@ -204,14 +209,14 @@ public class UserListPanel extends JPanel {
 //		comboBox_2.setBounds(855, 321, 200, 24);
 //		add(comboBox_2);
 		
-		orgIdField=new JTextField("手机号");
+		orgIdField=new JTextField("机构编号");
 		orgIdField.setFont(new Font("宋体", Font.PLAIN, 12));
 		orgIdField.setBounds(855,371,200,24);
 		add(orgIdField);
 
 		mobileField=new JTextField("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
-		mobileField.setBounds(885,371,200,24);
+		mobileField.setBounds(855,421,200,24);
 		add(mobileField);
 		
 		tableInit();
@@ -271,7 +276,7 @@ public class UserListPanel extends JPanel {
 		
 	}
 	private void addUser(){
-		String[] rowData={};
+		String[] rowData={"","","","","",""};
 		model.addRow(rowData);
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
 	}
@@ -305,9 +310,11 @@ public class UserListPanel extends JPanel {
 //			UserVO pre=users.get(row);
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
 			Result result=serv.reviseUser(now,row);
+			System.out.println(now.getId()+now.getJuri()+" "+result);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
+			    System.out.println(now.getId()+now.getJuri());
 			}
 			else {
 				reportWrong(result);
