@@ -21,8 +21,8 @@ public class HintFrame extends JDialog{
 	/**
 	 * Create the frame.
 	 */
-	public HintFrame(Result result,int x,int y) {
-		initialize(x,y);
+	public HintFrame(Result result,int x,int y,int width,int height) {
+		initialize(x,y,width,height);
 		String txt=null;
 		switch(result){
 		case SUCCESS:break;
@@ -42,14 +42,14 @@ public class HintFrame extends JDialog{
 		textAndButton(txt);
 
 	}
-	public HintFrame(String error,int x,int y){
-		initialize(x, y);
+	public HintFrame(String error,int x,int y,int width,int height){
+		initialize(x, y,width,height);
 		textAndButton(error);
 	}
-	private void initialize(int x,int y){
+	private void initialize(int x,int y,int width,int height){
 		setTitle("错误!");
 		this.setLayout(null);
-		setBounds(x-FRAME_WIDTH/2, y-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
+		setBounds(x+width/2-FRAME_WIDTH/2, y+height/2-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
 		this.setVisible(true);
 	}
 	private void textAndButton(String text){

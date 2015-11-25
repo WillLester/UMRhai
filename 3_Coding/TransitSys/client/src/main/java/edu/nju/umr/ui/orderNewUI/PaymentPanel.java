@@ -133,7 +133,7 @@ public class PaymentPanel extends JPanel {
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
 				}
 			}
@@ -159,27 +159,27 @@ public class PaymentPanel extends JPanel {
 			accountList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(costField.getText().equals("")){
-			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(payerField.getText().equals("")){
-			HintFrame hint = new HintFrame("付款人未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		try {
 			Double.parseDouble(costField.getText());
 		} catch (NumberFormatException e){
-			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
-			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;
