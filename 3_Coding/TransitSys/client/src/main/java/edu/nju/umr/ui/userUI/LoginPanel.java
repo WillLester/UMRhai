@@ -1,64 +1,77 @@
 package edu.nju.umr.ui.userUI;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
+import java.awt.event.ActionListener;
 
-import edu.nju.umr.logicService.userLogicSer.LoginLSer;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import edu.nju.umr.logic.userLogic.LoginLogic;
+import edu.nju.umr.logicService.userLogicSer.LoginLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
+import edu.nju.umr.ui.userPanel.AdministerPanel;
+import edu.nju.umr.ui.userPanel.BusinessHallPanel;
+import edu.nju.umr.ui.userPanel.CourierPanel;
+import edu.nju.umr.ui.userPanel.FinancePanel;
+import edu.nju.umr.ui.userPanel.FinanceSuperPanel;
+import edu.nju.umr.ui.userPanel.ManagerPanel;
+import edu.nju.umr.ui.userPanel.StockManagerPanel;
+import edu.nju.umr.ui.userPanel.TransitCenterPanel;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.FunctionFrame;
-import edu.nju.umr.ui.userPanel.*;
-import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 
 public class LoginPanel extends JPanel {
-	private JTextField id;
-	private JTextField password;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3358515981326880681L;
+	private JTextField idField;
+	private JPasswordField password;
 	private JFrame frame;
+	private LoginLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("unused")
 	public LoginPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		try {
+			logicSer = new LoginLogic();
+		} catch (Exception e1) {
+			// TODO 自动生成的 catch 块
+			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY());
+		}
 		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		
-		JLabel lblNewLabel = new JLabel("快递物流系统");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(464, 10, 242, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("快递物流系统");
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(464, 10, 242, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_3 = new JLabel("账号");
-		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(464, 104, 40, 24);
-		add(lblNewLabel_3);
+		JLabel idLabel = new JLabel("账号");
+		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		idLabel.setBounds(464, 104, 40, 24);
+		add(idLabel);
 		
-		id = new JTextField();
-		id.setBounds(525, 107, 193, 24);
-		add(id);
-		id.setColumns(10);
+		idField = new JTextField();
+		idField.setBounds(525, 107, 193, 24);
+		add(idField);
+		idField.setColumns(10);
 		
-		JButton button = new JButton("登陆");
-		button.addActionListener(new ActionListener() {
+		JButton loginButton = new JButton("登陆");
+		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginLSer log=new LoginLogic();
-				ResultMessage re=log.login(id.getText(), password.getText());
+				ResultMessage re=logicSer.login(idField.getText(), password.getPassword().toString().trim());
 				if(re.getReInfo()==Result.SUCCESS)
 				{
 					UserVO user=(UserVO)re.getMessage();
@@ -74,16 +87,15 @@ public class LoginPanel extends JPanel {
 					case ADMIN:frame.setContentPane(new AdministerPanel(user,frame));break;
 					}
 				}
-				else
-				{
+				else{
 					new HintFrame(re.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 				}
 				
 			}
 		});
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(464, 295, 93, 23);
-		add(button);
+		loginButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		loginButton.setBounds(464, 295, 93, 23);
+		add(loginButton);
 		
 		JButton button_1 = new JButton("关闭");
 		button_1.addActionListener(new ActionListener(){
@@ -101,7 +113,7 @@ public class LoginPanel extends JPanel {
 		label.setBounds(464, 162, 40, 24);
 		add(label);
 		
-		password = new JTextField();
+		password = new JPasswordField();
 		password.setColumns(10);
 		password.setBounds(525, 162, 193, 24);
 		add(password);

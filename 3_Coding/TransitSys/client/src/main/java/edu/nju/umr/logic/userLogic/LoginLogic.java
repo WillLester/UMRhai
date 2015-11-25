@@ -2,30 +2,22 @@ package edu.nju.umr.logic.userLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.util.Calendar;
 
-import edu.nju.umr.logic.utilityLogic.UtilityLogic;
-import edu.nju.umr.logicService.userLogicSer.LoginLSer;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.vo.UserVO;
-import edu.nju.umr.po.UserPO;
-import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.LoginDFacSer;
 import edu.nju.umr.dataService.userDSer.LoginDSer;
+import edu.nju.umr.logicService.userLogicSer.LoginLSer;
+import edu.nju.umr.po.UserPO;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.UserVO;
 
 public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;
 	LoginDSer loginData;
-	public LoginLogic(){
-		try{
+	public LoginLogic() throws Exception{
 		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
 		loginData=dataFac.getLogin();
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public ResultMessage login(String id, String password) {
