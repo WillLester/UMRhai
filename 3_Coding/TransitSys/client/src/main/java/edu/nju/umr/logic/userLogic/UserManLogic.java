@@ -32,7 +32,8 @@ public class UserManLogic implements UserManLSer{
 	public Result newUser(UserVO user) {
 		Result isSuccessful=Result.SUCCESS;
 			try {
-				isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
+				if(userData.checkIsUsed(user.getId())==Result.SUCCESS)
+					isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
