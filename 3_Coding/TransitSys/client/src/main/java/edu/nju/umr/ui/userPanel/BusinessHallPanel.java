@@ -105,7 +105,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new RecipientPanel(ffr));
+				ffr.setContentPane(new RecipientPanel(ffr,user));
 			}
 		});
 		this.add(recipient);
@@ -117,7 +117,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new SendPanel(ffr));
+				ffr.setContentPane(new SendPanel(ffr,user));
 			}
 		});
 		this.add(send);
@@ -127,7 +127,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new HallLoadingPanel(ffr));
+				ffr.setContentPane(new HallLoadingPanel(ffr,user));
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));

@@ -111,7 +111,7 @@ public class DatePanel extends JPanel {
 		dayCombo.setModel(new DefaultComboBoxModel<String>(dates[date]));
 	}
 	public void setDate(Calendar calendar){
-		yearCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.YEAR)-calendar.get(Calendar.YEAR)+1);
+		yearCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.YEAR)-calendar.get(Calendar.YEAR)+100);
 		monthCombo.setSelectedIndex(calendar.get(Calendar.MONTH));
 		dayCombo.setSelectedIndex(calendar.get(Calendar.DATE)-1);
 	}
