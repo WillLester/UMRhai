@@ -1,6 +1,7 @@
 package edu.nju.umr.vo.order;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class HallLoadingVO {
 	private String hallId;
@@ -11,7 +12,8 @@ public class HallLoadingVO {
 	private String escort;
 	private ArrayList<String> express;
 	private double cost;
-	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost) {
+	private Calendar calendar;
+	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost,Calendar cal) {
 		// TODO 自动生成的构造函数存根
 		this.hallId = hallId;
 		this.convertId = convertId;
@@ -21,6 +23,7 @@ public class HallLoadingVO {
 		this.escort = escort;
 		this.express = express;
 		this.cost=cost;
+		this.calendar=cal;
 	}
 	public String getHallId() {
 		return hallId;

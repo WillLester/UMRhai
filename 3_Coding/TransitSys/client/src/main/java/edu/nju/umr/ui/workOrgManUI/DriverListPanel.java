@@ -123,7 +123,7 @@ public class DriverListPanel extends JPanel {
 		add(out);
 		
 		tableInit();
-		driverList=(ArrayList<DriverVO>)serv.searchDriver(/*user.getOrg()*/"").getMessage();
+		driverList=(ArrayList<DriverVO>)serv.searchDriver("").getMessage();
 		displayDrivers();
 		
 	}

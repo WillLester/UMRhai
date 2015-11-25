@@ -6,6 +6,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
@@ -35,12 +36,15 @@ public class OrgListPanel extends JPanel {
 	private JTextField textFieldSearch;
 	private JTextField textFieldName;
 	private JTextField textFieldAddr;
+	private JTextField idField;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
+	private ArrayList<CityVO> cityList;
 	private ArrayList<OrgVO> orgList;
 	private JComboBox orgType;
 	private OrgManLSer serv;
+	private JComboBox cityComboBox;
 	/**
 	 * Create the panel.
 	 */
@@ -49,7 +53,8 @@ public class OrgListPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		orgList=new ArrayList<OrgVO>();
-		//serv=new OrgManLogic();
+//		serv=new OrgManLogic();
+//		cityList=getCities();
 		
 		JLabel nameLabel = new JLabel("机构信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -170,9 +175,23 @@ public class OrgListPanel extends JPanel {
 		});
 		add(workMan);
 		
+		JLabel idLabel=new JLabel("机构编号");
+		
+		idField=new JTextField();
+		
+		JLabel cityLabel=new JLabel("城市");
+		
+//		String []cityListString=new String[cityList.size()];
+//		for(int i=0;i<cityList.size();i++)
+//		{
+//			cityListString[i]=cityList.get(i).getName();
+//		}
+//		cityComboBox =new JComboBox(new DefaultComboBoxModel(cityListString));
+		
+		
 		tableInit();
-		//orgList=getOrgs("");
-		//displayOrgs();
+//		orgList=getOrgs("");
+//		displayOrgs();
 		
 	}
 	private void tableInit(){
@@ -190,7 +209,7 @@ public class OrgListPanel extends JPanel {
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"名称","种类","地址"};
+		String[] columnNames={"编号","名称","种类","地址"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
@@ -210,7 +229,7 @@ public class OrgListPanel extends JPanel {
 		for(int i=0;i<orgList.size();i++)
 		{
 			OrgVO temp=orgList.get(i);
-			String[] data={temp.getName(),temp.getKind().toString(),temp.getLocation()};
+			String[] data={temp.getId(),temp.getName(),temp.getKind().toString(),temp.getLocation()};
 			model.addRow(data);
 		}
 	}
@@ -225,6 +244,14 @@ public class OrgListPanel extends JPanel {
 		case HEADQUARTER:kind=2;break;
 		}
 		orgType.setSelectedIndex(kind);
+		idField.setText(temp.getId());
+		for(int i=0;i<cityList.size();i++){
+			if(cityList.get(i).getName().equals(temp.getCity()))
+			{
+				cityComboBox.setSelectedIndex(i);
+				break;
+			}
+		}
 	}
 	private void addOrg(){
 		String[] data={};
@@ -237,16 +264,72 @@ public class OrgListPanel extends JPanel {
 		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 		}
+		else{
+			orgList.remove(row);
+			displayOrgs();
+		}
 	}
 	private void Modify(){
-		Organization kind;
+		Organization kind=Organization.HALL;
 		switch(orgType.getSelectedIndex()){
 		case 0:kind=Organization.HALL;break;
 		case 1:kind=Organization.CENTER;break;
 		case 2:kind=Organization.HEADQUARTER;break;
 		}
-		//OrgVO temp=new OrgVO(textFieldName.getText(),kind,textFieldAddr.getText());
 		
+		String id=idField.getText();
+		String name=textFieldName.getText();
+		String location=textFieldAddr.getText();
+		String city=(String)cityComboBox.getSelectedItem();
+		String cityId=cityList.get(cityComboBox.getSelectedIndex()).getId();
+		
+		if(name.equals("")){
+			new HintFrame("机构名称未输入!",frame.getX()+frame.getWidth(),frame.getY()+frame.getHeight());
+			return;
+		}
+		if(location.equals("")){
+			new HintFrame("机构地址未输入!",frame.getX()+frame.getWidth(),frame.getY()+frame.getHeight());
+			return;
+		}
+		
+		OrgVO temp=new OrgVO(id,name,kind,location,city,cityId);
+		if(table.getSelectedRow()==orgList.size())
+		{
+			Result result=serv.addOrg(temp);
+			if(!result.equals(Result.SUCCESS))
+			{
+				new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			}
+			else 
+			{
+				
+			}
+		}
+		else
+		{
+			Result result=serv.reviseOrg(temp);
+			if(!result.equals(Result.SUCCESS))
+			{
+				new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+			}
+			else 
+			{
+				
+			}
+		}
+	}
+	private ArrayList<CityVO> getCities(){
+		ArrayList<CityVO> temp=new ArrayList<CityVO>();
+		ResultMessage message=serv.getCities();
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+		}
+		else 
+		{
+			temp=(ArrayList<CityVO>)message.getMessage();
+		}
+		return temp;
 	}
 	public static void main(String[] args)
 	{
