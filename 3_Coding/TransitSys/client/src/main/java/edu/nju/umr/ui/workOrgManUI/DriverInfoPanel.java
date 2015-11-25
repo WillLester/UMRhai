@@ -13,6 +13,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.DriverVO;
+import edu.nju.umr.vo.UserVO;
 
 import javax.swing.JComboBox;
 
@@ -29,6 +30,7 @@ public class DriverInfoPanel extends JPanel {
 	private JTextField textFieldIden;
 	private JTextField textFieldMobile;
 	private JFrame frame;
+	private UserVO user;
 	private DriverListPanel panel;
 	private JComboBox comboBoxSex;
 	private DatePanel born;
@@ -38,10 +40,11 @@ public class DriverInfoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DriverInfoPanel(JFrame fr,DriverListPanel pa,DriverVO driver) {
+	public DriverInfoPanel(JFrame fr,DriverListPanel pa,DriverVO driver,UserVO uservo) {
 		setLayout(null);
 		frame=fr;
 		panel=pa;
+		user=uservo;
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		JLabel nameLabel = new JLabel("司机信息");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -150,18 +153,99 @@ public class DriverInfoPanel extends JPanel {
 				Gender sex;
 				if(comboBoxSex.getSelectedIndex()==0)sex=Gender.MAN;
 				else sex=Gender.WOMAN;
+				
+				if(checked())
+				{
+				
 				DriverVO newDriver=new DriverVO(textFieldNum.getText(),textFieldName.getText(),born.getCalendar(),textFieldIden.getText(),
-						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar());
+						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar(),user.getOrgId());
 				Result result=panel.Modify(newDriver);
 				if(!result.equals(Result.SUCCESS))
 				{
 					new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
 				}
 				else frame.dispose();
+				}
+				
 			}
 		});
 		add(confirm);
 	}
+	 boolean checked(){
+		 boolean passed=true;
+			String num=textFieldNum.getText();
+			String name=textFieldName.getText();
+			String idNum=textFieldIden.getText();
+			String mobile=textFieldMobile.getText();
+			if(num.isEmpty())
+			{
+				passed=false;
+				new HintFrame("司机编号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+				
+			}
+			for(int i=0;i<num.length();i++)
+			{
+				if(!(num.charAt(i)>='0'&&num.charAt(i)<='9'))
+				{
+					passed=false;
+					new HintFrame("司机编号含有非数字字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					return passed;
+				}
+			}
+			if(name.isEmpty())
+			{
+				passed=false;
+				new HintFrame("司机姓名未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+				
+			}
+			if(idNum.isEmpty())
+			{
+				passed=false;
+				new HintFrame("身份证号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+				
+			}
+			if(idNum.length()!=15&&idNum.length()!=18)
+			{
+				passed=false;
+				new HintFrame("身份证号格式错误！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+			}
+			for(int i=0;i<idNum.length();i++)
+			{
+				if(!((idNum.charAt(i)>='0'&&idNum.charAt(i)<='9')||(idNum.charAt(i)!='x'&&idNum.charAt(i)!='X')))
+				{
+					passed=false;
+					new HintFrame("司机编号含有非法字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					return passed;
+				}
+			}
+			if(mobile.isEmpty())
+			{
+				passed=false;
+				new HintFrame("手机号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+				
+			}
+			for(int i=0;i<mobile.length();i++)
+			{
+				if(!(mobile.charAt(i)>='0'&&mobile.charAt(i)<='9'))
+				{
+					passed=false;
+					new HintFrame("手机号含有非数字字符！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					return passed;
+				}
+			}
+			if(start.getCalendar().after(deadline.getCalendar()))
+			{
+				passed=false;
+				new HintFrame("形式期限错误！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				return passed;
+			}
+		 return passed;
+	 }
 //	public static void main(String[] args){
 //		JFrame f=new JFrame();
 //		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
