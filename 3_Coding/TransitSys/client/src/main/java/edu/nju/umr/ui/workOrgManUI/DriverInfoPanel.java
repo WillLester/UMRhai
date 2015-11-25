@@ -162,7 +162,7 @@ public class DriverInfoPanel extends JPanel {
 				Result result=panel.Modify(newDriver);
 				if(!result.equals(Result.SUCCESS))
 				{
-					new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				}
 				else frame.dispose();
 				}
@@ -180,7 +180,7 @@ public class DriverInfoPanel extends JPanel {
 			if(num.isEmpty())
 			{
 				passed=false;
-				new HintFrame("司机编号未输入！",frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				new HintFrame("司机编号未输入！",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				return passed;
 				
 			}

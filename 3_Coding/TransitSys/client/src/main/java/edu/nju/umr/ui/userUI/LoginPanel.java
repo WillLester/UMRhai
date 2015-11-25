@@ -48,7 +48,7 @@ public class LoginPanel extends JPanel {
 			logicSer = new LoginLogic();
 		} catch (Exception e1) {
 			// TODO 自动生成的 catch 块
-			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		
@@ -88,7 +88,7 @@ public class LoginPanel extends JPanel {
 					}
 				}
 				else{
-					new HintFrame(re.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+					new HintFrame(re.getReInfo(),frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 				}
 				
 			}
