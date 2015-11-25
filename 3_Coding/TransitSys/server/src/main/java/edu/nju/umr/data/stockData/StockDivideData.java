@@ -37,7 +37,7 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		Part parts[] = Part.values();
 		try {
 			while(result.next()){
-				ShelfPO shelf = new ShelfPO(result.getString(0), result.getString(1), result.getInt(2), result.getInt(3), parts[result.getInt(4)]);
+				ShelfPO shelf = new ShelfPO(result.getString(1), result.getString(2), result.getInt(3), result.getInt(4), parts[result.getInt(5)]);
 				shelfList.add(shelf);
 			}
 		} catch (SQLException e) {
@@ -60,11 +60,5 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(shelf);
 	}
-
-//	public ShelfPO getShelf(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		return new ShelfPO("2",3,4,Part.TRAIN);
-//		//return null;
-//	}
 
 }

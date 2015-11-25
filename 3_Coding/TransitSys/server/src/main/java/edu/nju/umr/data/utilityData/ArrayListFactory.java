@@ -29,15 +29,15 @@ public class ArrayListFactory {
 		try {
 			while(result.next()){
 				Calendar date = Calendar.getInstance();
-				date.setTime(result.getDate(3));
+				date.setTime(result.getDate(4));
 				Calendar time = Calendar.getInstance();
-				time.setTime(result.getDate(4));
+				time.setTime(result.getDate(5));
 				ArrayList<String> express = new ArrayList<String>();
 				String ori[] = result.getString(5).split(" ");
 				for(int i = 0;i < ori.length;i++){
 					express.add(ori[i]);
 				}
-				IncomePO income = new IncomePO(date, result.getString(1), result.getDouble(2), express, result.getInt(0), time,result.getString(6),result.getString(7));
+				IncomePO income = new IncomePO(date, result.getString(2), result.getDouble(3), express, result.getInt(1), time,result.getString(7),result.getString(8));
 				incomeList.add(income);
 			}
 		} catch (SQLException e) {
@@ -51,11 +51,11 @@ public class ArrayListFactory {
 		try {
 			while(result.next()){
 				Calendar date = Calendar.getInstance();
-				date.setTime(result.getDate(6));
+				date.setTime(result.getDate(7));
 				Pay pays[] = Pay.values();
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(7));
-				PaymentPO payment = new PaymentPO(result.getInt(0), date,result.getString(1) , result.getString(2), pays[result.getInt(3)], result.getDouble(4), result.getString(5), opTime,result.getString(8));
+				opTime.setTime(result.getDate(8));
+				PaymentPO payment = new PaymentPO(result.getInt(1), date,result.getString(2) , result.getString(3), pays[result.getInt(4)], result.getDouble(5), result.getString(6), opTime,result.getString(9));
 				paymentList.add(payment);
 			}
 		} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class ArrayListFactory {
 		ArrayList<UserPO> userList = new ArrayList<UserPO>();
 		try {
 			while(result.next()){
-				UserPO user = new UserPO(result.getString(0), result.getString(1), juris[result.getInt(4)], result.getString(2), result.getString(3), result.getString(7),result.getInt(5),result.getString(6));
+				UserPO user = new UserPO(result.getString(1), result.getString(2), juris[result.getInt(5)], result.getString(3), result.getString(4), result.getString(8),result.getInt(6),result.getString(7));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -84,8 +84,8 @@ public class ArrayListFactory {
 		try {
 			while(result.next()){
 				Calendar date = Calendar.getInstance();
-				date.setTime(result.getDate(7));
-				GoodPO good = new GoodPO(result.getString(0), result.getString(1), date, result.getString(2), parts[result.getInt(3)], result.getString(4), result.getInt(5), result.getInt(6));
+				date.setTime(result.getDate(8));
+				GoodPO good = new GoodPO(result.getString(1), result.getString(2), date, result.getString(3), parts[result.getInt(4)], result.getString(5), result.getInt(6), result.getInt(7));
 				goodList.add(good);
 			}
 		} catch (SQLException e) {
@@ -100,7 +100,7 @@ public class ArrayListFactory {
 		ArrayList<WorkPO> workList = new ArrayList<WorkPO>();
 		try {
 			while(result.next()){
-				WorkPO work = new WorkPO(result.getString(2), result.getString(3),result.getString(7) , result.getString(6),result.getInt(5), juris[result.getInt(4)], wages[result.getInt(8)], result.getInt(9), result.getInt(10));
+				WorkPO work = new WorkPO(result.getString(3), result.getString(4),result.getString(8) , result.getString(7),result.getInt(6), juris[result.getInt(5)], wages[result.getInt(9)], result.getInt(10), result.getInt(11));
 				workList.add(work);
 			}
 		} catch (SQLException e) {
@@ -113,11 +113,11 @@ public class ArrayListFactory {
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		try {
 			while(result.next()){
-				ImageIcon icon = new ImageIcon(result.getString(3));
+				ImageIcon icon = new ImageIcon(result.getString(4));
 				Image photo = icon.getImage();
 				Calendar date = Calendar.getInstance();
-				date.setTime(result.getDate(2));
-				VanPO van = new VanPO(result.getString(0), result.getString(1), date, photo,result.getString(4));
+				date.setTime(result.getDate(3));
+				VanPO van = new VanPO(result.getString(1), result.getString(2), date, photo,result.getString(5));
 				vanList.add(van);
 			}
 		} catch (SQLException e) {
@@ -133,11 +133,11 @@ public class ArrayListFactory {
 				Calendar birthday = Calendar.getInstance();
 				Calendar driveStart = Calendar.getInstance();
 				Calendar driveEnd = Calendar.getInstance();
-				birthday.setTime(result.getDate(5));
-				driveStart.setTime(result.getDate(6));
-				driveEnd.setTime(result.getDate(7));
+				birthday.setTime(result.getDate(6));
+				driveStart.setTime(result.getDate(7));
+				driveEnd.setTime(result.getDate(8));
 				Gender genders[] = Gender.values();
-				DriverPO driver = new DriverPO(result.getString(0), result.getString(1), birthday, result.getString(2), result.getString(3), genders[result.getInt(4)], driveStart, driveEnd,result.getString(8));
+				DriverPO driver = new DriverPO(result.getString(1), result.getString(2), birthday, result.getString(3), result.getString(4), genders[result.getInt(5)], driveStart, driveEnd,result.getString(9));
 				driverList.add(driver);
 			}
 		} catch (SQLException e) {
@@ -151,7 +151,7 @@ public class ArrayListFactory {
 		ArrayList<OrgPO> orgList = new ArrayList<OrgPO>();
 		try {
 			while(result.next()){
-				OrgPO org = new OrgPO(result.getString(0), result.getString(1), orgs[result.getInt(2)], result.getString(3),result.getString(4),result.getString(5) );
+				OrgPO org = new OrgPO(result.getString(1), result.getString(2), orgs[result.getInt(3)], result.getString(4),result.getString(5),result.getString(6) );
 				orgList.add(org);
 			}
 		} catch (SQLException e) {

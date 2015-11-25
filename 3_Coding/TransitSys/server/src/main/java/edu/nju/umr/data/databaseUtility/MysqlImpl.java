@@ -83,7 +83,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from account");
 				ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 				while(result.next()){
-					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
+					AccountPO account = new AccountPO(result.getInt(1), result.getString(2), result.getDouble(3));
 					accountList.add(account);
 				}
 				return accountList;
@@ -91,7 +91,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from citiesinfo");
 				ArrayList<CitiesPO> citiesList = new ArrayList<CitiesPO>();
 				while(result.next()){
-					CitiesPO cities = new CitiesPO(result.getString(0), result.getString(1), result.getDouble(2));
+					CitiesPO cities = new CitiesPO(result.getString(1), result.getString(2), result.getDouble(3));
 					citiesList.add(cities);
 				}
 				return citiesList;
@@ -99,7 +99,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from city");
 				ArrayList<CityPO> cityList = new ArrayList<CityPO>();
 				while(result.next()){
-					CityPO city = new CityPO(result.getString(1), result.getString(0), result.getString(2), result.getInt(3));
+					CityPO city = new CityPO(result.getString(2), result.getString(1), result.getString(3), result.getInt(4));
 					cityList.add(city);
 				}
 				return cityList;
@@ -120,68 +120,68 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from arriveorderwaiting");
 				Calendar time = Calendar.getInstance();
 				while(result.next()){
-					time.setTime(result.getDate(5));
-					OrderPO order = new OrderPO(result.getString(0), Order.ARRIVE, result.getString(6), time, false);
+					time.setTime(result.getDate(6));
+					OrderPO order = new OrderPO(result.getString(1), Order.ARRIVE, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from centerlorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(6));
-					OrderPO order = new OrderPO(result.getString(0), Order.CENTERLOADING, result.getString(9), time, false);
+					time.setTime(result.getDate(7));
+					OrderPO order = new OrderPO(result.getString(1), Order.CENTERLOADING, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from expressorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(22));
-					OrderPO order = new OrderPO(result.getString(0), Order.EXPRESS, result.getString(23), time, false);
+					time.setTime(result.getDate(23));
+					OrderPO order = new OrderPO(result.getString(1), Order.EXPRESS, result.getString(24), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from halllorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(8));
-					OrderPO order = new OrderPO(result.getString(0), Order.HALLLOADING, result.getString(10), time, false);
+					time.setTime(result.getDate(9));
+					OrderPO order = new OrderPO(result.getString(1), Order.HALLLOADING, result.getString(11), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from incomeorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(4));
-					OrderPO order = new OrderPO(result.getString(0), Order.INCOME, result.getString(6), time, false);
+					time.setTime(result.getDate(5));
+					OrderPO order = new OrderPO(result.getString(1), Order.INCOME, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from paymentorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(7));
-					OrderPO order = new OrderPO(result.getString(0), Order.PAYMENT, result.getString(8), time, false);
+					time.setTime(result.getDate(8));
+					OrderPO order = new OrderPO(result.getString(1), Order.PAYMENT, result.getString(9), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from recipientorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(5));
-					OrderPO order = new OrderPO(result.getString(0), Order.RECIPIENT, result.getString(6), time, false);
+					time.setTime(result.getDate(6));
+					OrderPO order = new OrderPO(result.getString(1), Order.RECIPIENT, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from sendorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(4));
-					OrderPO order = new OrderPO(result.getString(0), Order.SEND, result.getString(5), time, false);
+					time.setTime(result.getDate(5));
+					OrderPO order = new OrderPO(result.getString(1), Order.SEND, result.getString(6), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from stockinorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(9));
-					OrderPO order = new OrderPO(result.getString(0), Order.STOCKIN, result.getString(9), time, false);
+					time.setTime(result.getDate(10));
+					OrderPO order = new OrderPO(result.getString(1), Order.STOCKIN, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from stockoutorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(5));
-					OrderPO order = new OrderPO(result.getString(0), Order.STOCKOUT, result.getString(6), time, false);
+					time.setTime(result.getDate(6));
+					OrderPO order = new OrderPO(result.getString(1), Order.STOCKOUT, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from transitorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(7));
-					OrderPO order = new OrderPO(result.getString(0), Order.TRANSIT, result.getString(8), time, false);
+					time.setTime(result.getDate(8));
+					OrderPO order = new OrderPO(result.getString(1), Order.TRANSIT, result.getString(9), time, false);
 					orderList.add(order);
 				}
 				return orderList;

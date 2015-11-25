@@ -29,7 +29,7 @@ public class LoginLogic implements LoginLSer{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
+		} 
 	}
 
 }

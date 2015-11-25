@@ -36,8 +36,8 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 		try {
 			while(result.next()){
 				Calendar time = Calendar.getInstance();
-				time.setTime(result.getDate(0));
-				DiaryPO diary = new DiaryPO(result.getString(1), time, result.getString(2));
+				time.setTime(result.getDate(1));
+				DiaryPO diary = new DiaryPO(result.getString(2), time, result.getString(3));
 				diaryList.add(diary);
 			}
 		} catch (SQLException e) {

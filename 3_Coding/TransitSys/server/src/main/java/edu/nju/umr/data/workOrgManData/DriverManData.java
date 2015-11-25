@@ -48,9 +48,4 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		return mysqlSer.reviseInfo(driver);
 	}
 
-//	public DriverPO checkDriver(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		return null;
-//	}
-
 }

@@ -71,7 +71,7 @@ public class LoginPanel extends JPanel {
 		JButton loginButton = new JButton("登陆");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultMessage re=logicSer.login(idField.getText(), password.getPassword().toString().trim());
+				ResultMessage re=logicSer.login(idField.getText(), new String(password.getPassword()));
 				if(re.getReInfo()==Result.SUCCESS)
 				{
 					UserVO user=(UserVO)re.getMessage();

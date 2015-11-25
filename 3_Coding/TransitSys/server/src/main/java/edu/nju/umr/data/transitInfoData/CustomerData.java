@@ -31,7 +31,7 @@ public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 		ArrayList<String> info = new ArrayList<String>();
 		try {
 			if(result.next()){
-				String text = result.getString(1);
+				String text = result.getString(2);
 				String infos[] = text.split(" ");
 				for(int i = 0;i < infos.length;i++){
 					info.add(infos[i]);

@@ -50,9 +50,5 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 		return mysqlSer.reviseInfo(van);
 	}
 
-//	public VanPO checkVan(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		return new VanPO("1","11111",Calendar.getInstance(),null);
-//	}
 	
 }

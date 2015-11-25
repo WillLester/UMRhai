@@ -56,18 +56,4 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 		return mysqlSer.reviseInfo(org);
 	}
 
-//	public OrgPO checkOrg(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//
-//		return new OrgPO("1","组织1",Organization.CENTER,"南京大学仙林校区",new CityPO("南京","1"));
-//	}
-
-//	public ArrayList<CityPO> getCities() throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		ArrayList<CityPO> ar=new ArrayList<CityPO>();
-//		ar.add(new CityPO("南京","1","江苏"));
-//		ar.add(new CityPO("北京","2","北京"));
-//		return ar;
-//	}
-
 }
