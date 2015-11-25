@@ -19,10 +19,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockOutPanel extends JPanel {
@@ -37,15 +37,17 @@ public class StockOutPanel extends JPanel {
 	private JFrame frame;
 	private DatePanel datePanel;
 	private StockOutOrderLSer logicSer;
-	private UserVO user;
+	private String name;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel(JFrame fr,UserVO user) {
+	public StockOutPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockOutOrderLogic();
-		this.user = user;
+		this.name = name;
+		this.orgId = orgId;
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,15 +156,9 @@ public class StockOutPanel extends JPanel {
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
 			return false;
 		}
-		if(expressField.getText().equals("")){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_NULL, frame.getX(), frame.getY());
-			return false;
-		}
-		if(!Utility.isNumberic(expressField.getText())){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_ILLEGAL, frame.getX(), frame.getY());
-			return false;
-		} else if(expressField.getText().length() != 10){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_LENGTH, frame.getX(), frame.getY());
+		String expressResult = CheckLegal.isExpressLegal(expressField.getText());
+		if(expressResult != null){
+			HintFrame hint = new HintFrame(expressResult, frame.getX(), frame.getY());
 			return false;
 		}
 		if(transitIdField.getText().equals("")){
@@ -172,17 +168,15 @@ public class StockOutPanel extends JPanel {
 		if(!Utility.isNumberic(transitIdField.getText())){
 			HintFrame hint = new HintFrame("中转单或汽运编号含有非数字字符！", frame.getX(), frame.getY());
 			return false;
-		} else {
-			if((transitIdField.getText().length() != 19)&&(transitIdField.getText().length() != 20)){
-				HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY());
-				return false;
-			}
+		} else if((transitIdField.getText().length() != 19)&&(transitIdField.getText().length() != 20)){
+			HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY());
+			return false;
 		}
 		return true;
 	}
 	private StockOutVO createVO(){
 		Transit transits[] = Transit.values();
-		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], (String) cityCombo.getSelectedItem(),transitIdField.getText(), user.getName(), user.getOrgId());
+		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], (String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId);
 		return vo;
 	}
 }

@@ -140,7 +140,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成出库单");
-				fr.setContentPane(new StockOutPanel(fr));
+				fr.setContentPane(new StockOutPanel(fr,user.getName(),user.getOrgId()));
 			}
 		});
 		
@@ -153,7 +153,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成入库单");
-				fr.setContentPane(new StockInPanel(fr));
+				fr.setContentPane(new StockInPanel(fr,user.getName(),user.getOrgId()));
 			}
 		});
 	}

@@ -5,4 +5,7 @@ public class Hints {
 	public static final String EXPRESS_NULL = "快递单号未填写！";
 	public static final String EXPRESS_ILLEGAL = "快递单号含有非数字字符！";
 	public static final String EXPRESS_LENGTH = "快递单号长度错误！";
+	public static final String TRANSIT_NULL = "中转单号未填写！";
+	public static final String TRANSIT_ILLEGAL = "中转单号含有非数字字符！";
+	public static final String TRANSIT_LENGTH = "中转单号长度错误！";
 }

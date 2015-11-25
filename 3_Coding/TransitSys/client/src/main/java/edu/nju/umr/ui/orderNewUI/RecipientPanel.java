@@ -18,10 +18,10 @@ import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.RecipientVO;
 
 public class RecipientPanel extends JPanel {
@@ -36,14 +36,14 @@ public class RecipientPanel extends JPanel {
 	private JComboBox<String> stateCombo;
 	private RecipientOrderLSer logicSer;
 	private String[] cityList;
-	private UserVO user;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public RecipientPanel(JFrame fr,UserVO user) {
+	public RecipientPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
-		this.user = user;
+		this.name = name;
 		
 		JLabel titleLabel = new JLabel("营业厅到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -108,7 +108,7 @@ public class RecipientPanel extends JPanel {
 					Result result = logicSer.create(createVO());
 					if(result.equals(Result.SUCCESS)){
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,user));
+						frame.setContentPane(new SendPanel(frame,name,orgId));
 					} else {
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
 					}
@@ -143,24 +143,16 @@ public class RecipientPanel extends JPanel {
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
 			return false;
 		}
-		if(idField.getText().equals("")){
-			HintFrame hint = new HintFrame("中转单编号未输入！", frame.getX(), frame.getY());
+		String result = CheckLegal.isTransitLegal(idField.getText());
+		if(result != null){
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
 			return false;
-		}
-		if(!Utility.isNumberic(idField.getText())){
-			HintFrame hint = new HintFrame("中转单编号含有非数字字符！", frame.getX(), frame.getY());
-			return false;
-		} else {
-			if((idField.getText().length() != 19)&&(idField.getText().length() != 20)){
-				HintFrame hint = new HintFrame("中转单编号长度错误！", frame.getX(), frame.getY());
-				return false;
-			}
 		}
 		return true;
 	}
 	private RecipientVO createVO(){
 		GoodState states[] = GoodState.values();
-		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], user.getName());
+		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name);
 		return vo;
 	}
 }

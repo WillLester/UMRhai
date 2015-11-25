@@ -105,22 +105,22 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new RecipientPanel(ffr,user));
+				ffr.setContentPane(new RecipientPanel(ffr,user.getName(),user.getOrgId()));
 			}
 		});
 		this.add(recipient);
 		
-		JButton send = new JButton("派件单");
-		send.setFont(new Font("宋体", Font.PLAIN, 12));
-		send.setBounds(489, 231, 113, 83);
-		send.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
-				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new SendPanel(ffr,user));
-			}
-		});
-		this.add(send);
+//		JButton send = new JButton("派件单");
+//		send.setFont(new Font("宋体", Font.PLAIN, 12));
+//		send.setBounds(489, 231, 113, 83);
+//		send.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e)
+//			{
+//				FunctionFrame ffr=new FunctionFrame("单据创建");
+//				ffr.setContentPane(new SendPanel(ffr,user.getName()));
+//			}
+//		});
+//		this.add(send);
 		
 		JButton hallLoading = new JButton("装车单");
 		hallLoading.addActionListener(new ActionListener(){

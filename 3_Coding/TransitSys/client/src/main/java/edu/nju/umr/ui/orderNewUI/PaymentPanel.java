@@ -23,7 +23,6 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class PaymentPanel extends JPanel {
@@ -37,17 +36,17 @@ public class PaymentPanel extends JPanel {
 	private DatePanel datePanel;
 	private String[] accountList;
 	private PaymentOrderLSer logicSer;
-	private UserVO user;
+	private String name;
 	private JComboBox<String> accountCombo;
 	private JComboBox<String> reasonCombo;
 	private JTextArea remarkArea;
 	/**
 	 * Create the panel.
 	 */
-	public PaymentPanel(JFrame fr,UserVO user) {
+	public PaymentPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		this.user = user;
+		this.name = name;
 		logicSer = new PaymentOrderLogic();
 		
 		JLabel titleLabel = new JLabel("付款单");
@@ -188,7 +187,7 @@ public class PaymentPanel extends JPanel {
 	private PaymentVO createVO(){
 		Calendar date = datePanel.getCalendar();
 		Pay pays[] = Pay.values();
-		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()], Double.parseDouble(costField.getText()), remarkArea.getText(), user.getName());
+		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()], Double.parseDouble(costField.getText()), remarkArea.getText(), name);
 		return payment;
 	}
 }

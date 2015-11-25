@@ -22,11 +22,11 @@ import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.StockInVO;
 
 public class StockInPanel extends JPanel {
@@ -41,7 +41,8 @@ public class StockInPanel extends JPanel {
 	private JComboBox<Integer> placeCombo;
 	private JFrame frame;
 	private DatePanel datePanel;
-	private UserVO user;
+	private String name;
+	private String orgId;
 	private StockInOrderLSer logicSer;
 	private ArrayList<ShelfVO> shelfList;
 	private ArrayList<ShelfVO> shelfPart;
@@ -50,11 +51,12 @@ public class StockInPanel extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unchecked")
-	public StockInPanel(JFrame fr,UserVO user) {
+	public StockInPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockInOrderLogic();
-		this.user = user;
+		this.name = name;
+		this.orgId = orgId;
 		
 		JLabel titleLabel = new JLabel("入库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,7 +106,7 @@ public class StockInPanel extends JPanel {
 		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
 		add(cityCombo);
 		
-		ResultMessage shelfResult = logicSer.getShelves(user.getOrgId());
+		ResultMessage shelfResult = logicSer.getShelves(orgId);
 		if(shelfResult.getReInfo().equals(Result.SUCCESS)){
 			shelfList = (ArrayList<ShelfVO>) shelfResult.getMessage();
 		} else {
@@ -236,22 +238,16 @@ public class StockInPanel extends JPanel {
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
 			return false;
 		}
-		if(expressField.getText().equals("")){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_NULL, frame.getX(), frame.getY());
-			return false;
-		}
-		if(!Utility.isNumberic(expressField.getText())){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_ILLEGAL, frame.getX(), frame.getY());
-			return false;
-		} else if(expressField.getText().length() != 10){
-			HintFrame hint = new HintFrame(Hints.EXPRESS_LENGTH, frame.getX(), frame.getY());
+		String result = CheckLegal.isExpressLegal(expressField.getText());
+		if(result != null){
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
 			return false;
 		}
 		return true;
 	}
 	private StockInVO createVO(){
 		Part parts[] = Part.values();
-		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(), parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(), rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, user.getName(), user.getOrgId());
+		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(), parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(), rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId);
 		return vo;
 	}
 }

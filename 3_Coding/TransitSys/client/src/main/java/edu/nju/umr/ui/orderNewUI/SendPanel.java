@@ -18,10 +18,10 @@ import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.SendVO;
 
 public class SendPanel extends JPanel {
@@ -33,16 +33,16 @@ public class SendPanel extends JPanel {
 	private JComboBox<String> courierCombo;
 	private JFrame frame;
 	private DatePanel datePanel;
-	private UserVO user;
+	private String name;
 	private String[] courierList;
 	private SendOrderLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
-	public SendPanel(JFrame fr,UserVO user) {
+	public SendPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
-		this.user = user;
+		this.name = name;
 		logicSer = new SendOrderLogic();
 		
 		JLabel titleLabel = new JLabel("派件单");
@@ -76,7 +76,7 @@ public class SendPanel extends JPanel {
 		courierLabel.setBounds(342, 162, 107, 24);
 		add(courierLabel);
 		
-		ResultMessage result = logicSer.getCouriers(user.getOrgId());
+		ResultMessage result = logicSer.getCouriers(orgId);
 		if(result.getReInfo().equals(Result.SUCCESS)){
 			courierList = (String[]) result.getMessage();
 		} else {
@@ -127,21 +127,15 @@ public class SendPanel extends JPanel {
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY());
 			return false;
 		}
-		if(barcodeField.getText().equals("")){
-			HintFrame hint = new HintFrame("快递单号未填写！", frame.getX(), frame.getY());
-			return false;
-		}
-		if(!Utility.isNumberic(barcodeField.getText())){
-			HintFrame hint = new HintFrame("快递单号含有非数字字符！", frame.getX(), frame.getY());
-			return false;
-		} else if(barcodeField.getText().length() != 10){
-			HintFrame hint = new HintFrame("快递单号长度错误！", frame.getX(), frame.getY());
+		String result = CheckLegal.isExpressLegal(barcodeField.getText());
+		if(result != null){
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY());
 			return false;
 		}
 		return true;
 	}
 	private SendVO createVO(){
-		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), user.getName());
+		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), name);
 		return vo;
 	}
 }
