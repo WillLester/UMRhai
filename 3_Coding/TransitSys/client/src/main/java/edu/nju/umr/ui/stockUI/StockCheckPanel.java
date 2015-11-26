@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -20,6 +19,10 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.Table;
 
 public class StockCheckPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7371287481571430690L;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
