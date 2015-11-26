@@ -128,7 +128,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("库存盘点");
-				fr.setContentPane(new StockCheckNowPanel(fr));
+				fr.setContentPane(new StockCheckNowPanel(fr,user.getOrgId()));
 			}
 		});
 		
