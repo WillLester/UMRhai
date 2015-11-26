@@ -17,7 +17,7 @@ import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
 public class RecipientOrderLogic implements RecipientOrderLSer{
 	RecipientOrderDFacSer dataFac;
 	RecipientOrderDSer recipientData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public RecipientOrderLogic(){
 		try{
 		dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);

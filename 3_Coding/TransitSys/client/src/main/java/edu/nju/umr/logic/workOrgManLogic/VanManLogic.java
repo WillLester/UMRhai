@@ -33,11 +33,12 @@ public class VanManLogic implements VanManLSer{
 	}
 	public Result addVan(VanVO van) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -45,11 +46,12 @@ public class VanManLogic implements VanManLSer{
 
 	public Result deleteVan(String id) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.deleteVan(id);
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -57,11 +59,12 @@ public class VanManLogic implements VanManLSer{
 
 	public Result reviseVan(VanVO van) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -118,14 +121,13 @@ public class VanManLogic implements VanManLSer{
 //		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
 //		return message;
 		ArrayList<VanPO> ar=null;
-		Result result=Result.SUCCESS;
+		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=vanData.findVan(keyword,hallId);
-			
+			result=Result.SUCCESS;
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<VanVO> arVO=new ArrayList<VanVO>();

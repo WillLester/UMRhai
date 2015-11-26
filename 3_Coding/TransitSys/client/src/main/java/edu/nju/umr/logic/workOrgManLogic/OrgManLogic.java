@@ -18,7 +18,7 @@ import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 public class OrgManLogic implements OrgManLSer{
 	OrgManDFacSer dataFac;
 	OrgManDSer orgData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 
 	public OrgManLogic(){
 		try{
@@ -39,8 +39,7 @@ public class OrgManLogic implements OrgManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -49,7 +48,7 @@ public class OrgManLogic implements OrgManLSer{
 	}
 
 	public Result deleteOrg(String id) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=orgData.deleteOrg(id);
 		}catch(RemoteException e)
@@ -62,11 +61,10 @@ public class OrgManLogic implements OrgManLSer{
 	}
 
 	public Result reviseOrg(OrgVO org) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
 			e.printStackTrace();

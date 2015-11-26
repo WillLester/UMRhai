@@ -1,8 +1,11 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Result;
@@ -16,22 +19,27 @@ import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public WorkManLogic()
 	{
 		try{
 			dataFac=(WorkManDFacSer)Naming.lookup(Url.URL);
 			workData=dataFac.getWorkMan();
 			uti=new UtilityLogic();
-		}catch(Exception e)
-		{
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
 	public Result addWork(WorkVO work) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
 		}catch (RemoteException e) {
@@ -44,10 +52,12 @@ public class WorkManLogic implements WorkManLSer{
 
 	public Result deleteWork(int id) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=workData.deleteWork(id);
 		}catch(RemoteException e){
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -55,11 +65,12 @@ public class WorkManLogic implements WorkManLSer{
 
 	public Result reviseWork(WorkVO work) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -106,9 +117,11 @@ public class WorkManLogic implements WorkManLSer{
 		ArrayList<WorkPO> ar= null;
 //		boolean isSuccessful=false;
 		try{
-			ar=workData.findWork("");
+			ar=workData.findWork(keyword);
 //			isSuccessful=true;
 		}catch(RemoteException e){
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();

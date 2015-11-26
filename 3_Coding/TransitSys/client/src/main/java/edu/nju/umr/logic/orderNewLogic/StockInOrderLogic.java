@@ -12,15 +12,17 @@ import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.ShelfVO;
 import edu.nju.umr.vo.order.StockInVO;
 
 public class StockInOrderLogic implements StockInOrderLSer{
 	StockInOrderDFacSer dataFac;
 	StockInOrderDSer stockinData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 
 	public StockInOrderLogic(){
 		try{
@@ -71,7 +73,19 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	}
 	@Override
 	public ResultMessage getShelves(String orgId) {
-		// TODO Auto-generated method stub
-		return uti.getShelves(orgId);
+		ArrayList<ShelfVO> shelves=new ArrayList<ShelfVO>();
+		ArrayList<ShelfPO> shelfPOs=null;
+		try {
+			shelfPOs=stockinData.getShelves(orgId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		
+		for(ShelfPO po:shelfPOs){
+			ShelfVO shelf=new ShelfVO(po.getId(),po.getRow(),po.getPlace(),po.getPart());
+			shelves.add(shelf);
+		}
+		return new ResultMessage(Result.SUCCESS,null);
 	}
 }

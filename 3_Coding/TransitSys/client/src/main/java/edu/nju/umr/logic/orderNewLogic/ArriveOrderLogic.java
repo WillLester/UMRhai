@@ -14,13 +14,14 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
 
 public class ArriveOrderLogic implements ArriveOrderLSer{
 	ArriveOrderDFacSer dataFac;
 	ArriveOrderDSer arriveData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -43,6 +44,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		
 		return isSuc;
@@ -58,7 +60,18 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, cities);
-		return uti.getCities();
+		
+		ResultMessage rm=uti.getCities();
+		if(rm.getReInfo()!=Result.SUCCESS){
+			return new ResultMessage(Result.NET_INTERRUPT,null);//可能存在隐患！
+		}
+		
+		ArrayList<CityVO> city=(ArrayList<CityVO>)rm.getMessage();
+		CityVO[] cityArray=new CityVO[city.size()];
+		for(int i=0;i<city.size();i++){
+			cityArray[i]=city.get(i);
+		}
+		return new ResultMessage(Result.SUCCESS,cityArray);
 	}
 	
 }

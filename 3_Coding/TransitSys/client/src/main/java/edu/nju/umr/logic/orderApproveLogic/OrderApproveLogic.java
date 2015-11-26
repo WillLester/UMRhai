@@ -35,35 +35,35 @@ public class OrderApproveLogic implements OrderApproveLSer{
         } 
 	}
 	public ResultMessage askExamine() {
-		// TODO 自动生成的方法存根
+		
 		ArrayList<OrderVO> orders = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderList = approveData.getExamine();
 			for(OrderPO order:orderList){
-				OrderVO vo = new OrderVO( order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
+				OrderVO vo = new OrderVO(order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
 				orders.add(vo);
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(Result.SUCCESS, orders);
 	}
 
 	public Result examine(boolean approve, ArrayList<String> id) {
-		// TODO 自动生成的方法存根
+		
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = approveData.update(approve,id,Order.ARRIVE);
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return isSuc;
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {
-		// TODO 自动生成的方法存根
 		PaymentVO order = null;
 		try {
 			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
@@ -71,8 +71,8 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks(),order.getOpName());
 			
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(Result.SUCCESS, order);
 	}

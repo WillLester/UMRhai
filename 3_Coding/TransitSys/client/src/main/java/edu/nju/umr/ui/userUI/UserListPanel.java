@@ -224,7 +224,7 @@ public class UserListPanel extends JPanel {
 		add(mobileField);
 		
 		tableInit();
-		users=getUsers("admin");
+		users=getUsers(null);
 		displayUsers();
 	}
 	private void tableInit(){
