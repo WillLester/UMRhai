@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
@@ -21,11 +22,13 @@ public class CityLogic implements CityLSer{
 	CityDFacSer dataFac;
 	CityDSer cityData;
 	UtilityLogic utility;
+	ArrayList<CityPO> cityPOs;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
 			cityData = dataFac.getCity();
+			cityPOs=utility.cities();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -38,14 +41,16 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		Result result = Result.SUCCESS;
 		try {
-			result = cityData.addCity(new CityPO(city.getName(), city.getId(),null,0));
+			result = cityData.addCity(new CityPO(city.getName(), city.getId(),city.getProvince(),0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return result;
 	}
-
+	
+    //制定距离和价格常量
 	public Result reviseCities(CitiesVO cities) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
@@ -54,24 +59,26 @@ public class CityLogic implements CityLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return isSuc;
 	}
 
-	public Result reviseCity(CityVO city) {
-		// TODO 自动生成的方法存根
+	public Result reviseCity(CityVO city,int index) {
+		CityPO po=cityPOs.get(index);
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince(),0));
+			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince(),po.getKey()));
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		return isSuc;
 	}
 
 	public ResultMessage cityList() {
-		// TODO 自动生成的方法存根
+		
 //		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
 //		try {
 //			ArrayList<CityPO> cities = cityData.getCities();
@@ -87,7 +94,14 @@ public class CityLogic implements CityLSer{
 		return utility.getCities();
 	}
 	public Result deleteCity(String cityName) {
-		// TODO 自动生成的方法存根
+		Result isSuc=null;
+		try {
+			isSuc=cityData.deleteCity(cityName);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Result.NET_INTERRUPT;
+		}
 		return Result.SUCCESS;
 	}
 
