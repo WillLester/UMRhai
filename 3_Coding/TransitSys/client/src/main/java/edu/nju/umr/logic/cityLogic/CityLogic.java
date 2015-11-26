@@ -21,17 +21,14 @@ import edu.nju.umr.vo.ResultMessage;
 public class CityLogic implements CityLSer{
 	CityDFacSer dataFac;
 	CityDSer cityData;
-<<<<<<< HEAD
 	UtilityLogic utility=new UtilityLogic();
-=======
->>>>>>> origin/master
 	ArrayList<CityPO> cityPOs;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
 			cityData = dataFac.getCity();
-			cityPOs=UtilityLogic.cities();
+			cityPOs=utility.cities();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -94,7 +91,7 @@ public class CityLogic implements CityLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, cityList);
-		return UtilityLogic.getCities();
+		return utility.getCities();
 	}
 	public Result deleteCity(String cityName) {
 		Result isSuc=null;
