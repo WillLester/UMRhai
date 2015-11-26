@@ -44,10 +44,10 @@ public class CourierLogic implements CourierLSer{
 		}catch(Exception e)	{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,new ExpressVO(express.getSender(),express.getSendLoc(),express.getReceiver(),express.getReceiveLoc(),
+		ResultMessage message=new ResultMessage(Result.SUCCESS,new ExpressVO(express.getId(),express.getSender(),express.getSendLoc(),express.getReceiver(),express.getReceiveLoc(),
 				express.getSendMobile(),express.getReceiveMobile(),express.getSendPhone(),express.getReceivePhone(),express.getSendUnit(),express.getReceiveUnit(),
 				express.getNum(),express.getName(),express.getLength(),express.getWidth(),express.getHeight(),express.getWeight(),express.getVolumn(),
-				express.getArrive(),express.getKind(),express.getCost()));
+				express.getArrive(),express.getKind(),express.getCost(),express.getOpName()));
 		return message;
 	}
 
