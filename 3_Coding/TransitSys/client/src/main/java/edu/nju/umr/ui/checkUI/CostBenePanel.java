@@ -76,4 +76,11 @@ public class CostBenePanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new CostBenePanel(frame));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//	}
 }

@@ -10,16 +10,16 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
-import edu.nju.umr.logicService.checkLogicSer.CollectRecordLSer;
+import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
-public class CollectRecordLogic implements CollectRecordLSer{
+public class IncomeListLogic implements IncomeListLSer{
 	CollectFormDFacSer dataFac;
 	CollectRecordDSer collectData;
-	public CollectRecordLogic() {
+	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CollectFormDFacSer)Naming.lookup(Url.URL);
@@ -32,7 +32,7 @@ public class CollectRecordLogic implements CollectRecordLSer{
             e.printStackTrace();   
         } 
 	}
-	public ResultMessage seeCollectRecord(Calendar date, String hallId) {
+	public ResultMessage seeIncomeList(Calendar date, String hallId) {
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
 		try {
 			ArrayList<IncomePO> income = collectData.getCollectRec(date, hallId);
