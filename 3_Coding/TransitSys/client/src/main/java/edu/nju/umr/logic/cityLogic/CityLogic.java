@@ -21,7 +21,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class CityLogic implements CityLSer{
 	CityDFacSer dataFac;
 	CityDSer cityData;
-	UtilityLogic utility;
+	UtilityLogic utility=new UtilityLogic();
 	ArrayList<CityPO> cityPOs;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根

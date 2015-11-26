@@ -17,7 +17,7 @@ import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
 public class StockOutOrderLogic implements StockOutOrderLSer{
 	StockOutOrderDFacSer dataFac;
 	StockOutOrderDSer stockoutData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 
 	public StockOutOrderLogic(){
 		try{

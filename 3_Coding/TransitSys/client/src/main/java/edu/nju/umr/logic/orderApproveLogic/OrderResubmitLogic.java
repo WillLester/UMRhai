@@ -19,7 +19,6 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	OrderResubmitDFacSer dataFac;
 	OrderResubmitDSer resubmitData;
 	public OrderResubmitLogic() {
-		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (OrderResubmitDFacSer)Naming.lookup(Url.URL);
 			resubmitData = dataFac.getOrderResubmit();

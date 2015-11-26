@@ -37,7 +37,7 @@ import edu.nju.umr.vo.WorkVO;
 public class CountLogic implements CountLSer{
 	CountDFacSer countFac;
 	CountDSer countData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 //	ArrayList<CountPO> countPOs;
 	public CountLogic() {
 		try{

@@ -17,7 +17,7 @@ import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
 public class TransitOrderLogic implements TransitOrderLSer{
 	TransitOrderDFacSer dataFac;
 	TransitOrderDSer transitData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	
 	public TransitOrderLogic(){
 		try{

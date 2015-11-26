@@ -20,7 +20,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 public class IncomeListLogic implements IncomeListLSer{
 	CollectFormDFacSer dataFac;
 	CollectRecordDSer collectData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

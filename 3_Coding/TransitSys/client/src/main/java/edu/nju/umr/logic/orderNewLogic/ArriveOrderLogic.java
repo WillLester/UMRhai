@@ -21,7 +21,7 @@ import edu.nju.umr.vo.order.ArriveVO;
 public class ArriveOrderLogic implements ArriveOrderLSer{
 	ArriveOrderDFacSer dataFac;
 	ArriveOrderDSer arriveData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
