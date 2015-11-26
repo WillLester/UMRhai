@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.stockLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
@@ -29,32 +30,34 @@ public class StockDivideLogic implements StockDivideLSer{
 	public ResultMessage searchShelf(String id,String keyword) {
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=null;
-		boolean isSuccessful=false;
-//		try{
-//			ar=checkData.getShelves(id);
+//		boolean isSuccessful=false;
+		try{
+			ar=checkData.getShelves(id,keyword);
 //			isSuccessful=true;
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ArrayList<ShelfVO> arVO=new ArrayList<ShelfVO>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			ShelfPO shelf=ar.get(i);
-//			arVO.add(new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-//		}
-//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-		return null;
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		ArrayList<ShelfVO> arVO=new ArrayList<ShelfVO>();
+		for(int i=0;i<ar.size();i++)
+		{
+			ShelfPO shelf=ar.get(i);
+			arVO.add(new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+		}
+		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
+		return message;
 	}
 
 	public Result addShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try {
 			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-		}
-		catch(Exception e)
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -63,12 +66,13 @@ public class StockDivideLogic implements StockDivideLSer{
 
 	public Result deleteShelf(String id) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try
 		{
 			isSuccessful=checkData.deleteShelf(id);
-		}
-		catch(Exception e)
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -77,12 +81,13 @@ public class StockDivideLogic implements StockDivideLSer{
 
 	public Result reviseShelf(ShelfVO shelf) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try
 		{
 			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-		}
-		catch(Exception e)
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}

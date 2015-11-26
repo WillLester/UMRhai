@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.transitInfoLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
 import edu.nju.umr.vo.ResultMessage;
@@ -27,13 +28,14 @@ public class CourierLogic implements CourierLSer{
 	}
 	
 	public ResultMessage enterBarcodeCourier(String barcode) {
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		ExpressPO express=null;
 		try{
 			express=CourierData.find(barcode);
-			isSuccessful=true;
-		}catch(Exception e)
-		{
+//			isSuccessful=true;
+		}catch (RemoteException e) {
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}catch(Exception e)	{
 			e.printStackTrace();
 		}
 		ResultMessage message=new ResultMessage(Result.SUCCESS,new ExpressVO(express.getSender(),express.getSendLoc(),express.getReceiver(),express.getReceiveLoc(),

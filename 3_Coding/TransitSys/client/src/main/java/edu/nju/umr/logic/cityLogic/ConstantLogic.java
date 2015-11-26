@@ -33,28 +33,33 @@ public class ConstantLogic implements ConstantLSer{
 	public Result setConstant(ConstantVO constant)
 	{
 		Result isSuc=Result.SUCCESS;
-		try
-		{
-			ConstantPO po=new ConstantPO(1,2,3,4,5,6,7,8,9);
-			isSuc=constantData.setConstant(po);
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
+		ConstantPO po=new ConstantPO(constant.getMaxLoadPlane(), constant.getMaxLoadTrain(), constant.getMaxLoadVan(), 
+					constant.getPricePlane(), constant.getPriceTrain(), constant.getPriceVan(), constant.getLvEco(), constant.getLvStd(), constant.getLvVip());
+			try {
+				isSuc=constantData.setConstant(po);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return Result.NET_INTERRUPT;
+			}
+		
 		return isSuc;
 	}
 	public ResultMessage getConstant(){
 		Result isSuc = Result.SUCCESS;
 		ConstantVO vo=null;
-		try
-		{
-			ConstantPO po=constantData.getConstant();
-			vo=new ConstantVO(po.getMaxLoadPlane(),po.getMaxLoadTrain(),po.getMaxLoadVan(),po.getPricePlane(),po.getPriceTrain(),po.getPriceVan(),po.getLvEco(),po.getLvStd(),po.getLvVip());
-			isSuc=Result.SUCCESS;
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+			ConstantPO po=null;
+			try {
+				po = constantData.getConstant();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			vo=new ConstantVO(po.getMaxLoadPlane(),po.getMaxLoadTrain(),po.getMaxLoadVan(),
+					po.getPricePlane(),po.getPriceTrain(),po.getPriceVan(),po.getLvEco(),po.getLvStd(),po.getLvVip());
+			
 			return new ResultMessage(isSuc,vo);
 	}
 }

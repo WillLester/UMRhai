@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.transitInfoLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
@@ -27,14 +28,15 @@ public class CustomerLogic implements CustomerLogicSer{
 
 	public ResultMessage enterBarcodeCustomer(String barcode) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		ArrayList<String> ar=null;
 		try{
 			ar=transitData.findTransit(barcode);
-			isSuccessful=true;
-		}
-		catch(Exception e)
-		{
+//			isSuccessful=true;
+		}catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		} catch(Exception e){
 			e.printStackTrace();
 		}
 		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);

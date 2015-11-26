@@ -10,10 +10,8 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
-import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
@@ -124,6 +122,8 @@ public class VanManLogic implements VanManLSer{
 		try{
 			ar=vanData.findVan(keyword,hallId);
 			
+		}catch (RemoteException e) {
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e)
 		{
 			e.printStackTrace();

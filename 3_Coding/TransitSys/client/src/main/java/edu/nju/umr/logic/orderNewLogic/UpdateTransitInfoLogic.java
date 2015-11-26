@@ -1,11 +1,9 @@
 package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
-
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
-import edu.nju.umr.po.TransitInfoPO;
 
 public class UpdateTransitInfoLogic {
 	UpdateTransitInfoDFacSer dataFac;

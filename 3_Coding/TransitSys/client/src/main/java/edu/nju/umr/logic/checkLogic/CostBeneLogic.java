@@ -13,6 +13,7 @@ import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.vo.CostBeneVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -72,6 +73,21 @@ public class CostBeneLogic implements CostBeneLSer{
 			ArrayList<PaymentVO> payment) {
 		// TODO 自动生成的方法存根
 		return Result.SUCCESS;
+	}
+	
+	public ResultMessage getCostBene(){
+		ResultMessage income=totalIncome();
+		ResultMessage payment=totalPayment();
+		if(income.getReInfo()!=Result.SUCCESS||payment.getReInfo()!=Result.SUCCESS){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}else{
+			double in=(double)income.getMessage();
+			double pay=(double)payment.getMessage();
+			CostBeneVO cb=new CostBeneVO(in,pay,in-pay);
+			return new ResultMessage(Result.SUCCESS,null);
+		}
+		
+		
 	}
 
 }

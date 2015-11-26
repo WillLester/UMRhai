@@ -3,20 +3,12 @@ package edu.nju.umr.logic.workOrgManLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
-
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
-import edu.nju.umr.po.enums.Jurisdiction;
-import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.enums.Gender;
-import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.po.WorkPO;
-import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
@@ -42,9 +34,9 @@ public class WorkManLogic implements WorkManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
-		}
-		catch(Exception e)
-		{
+		}catch (RemoteException e) {
+			return Result.NET_INTERRUPT;
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -112,12 +104,11 @@ public class WorkManLogic implements WorkManLSer{
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根
 		ArrayList<WorkPO> ar= null;
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		try{
 			ar=workData.findWork("");
-			isSuccessful=true;
-		}
-		catch(RemoteException e){
+//			isSuccessful=true;
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();

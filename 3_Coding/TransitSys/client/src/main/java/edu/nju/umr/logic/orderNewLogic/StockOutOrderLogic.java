@@ -2,7 +2,6 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
@@ -31,13 +30,14 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		}
 	}
 	public Result create(StockOutVO order) {
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		try{
-			StockOutPO orderPO=new StockOutPO(1,order.getExpressId(),order.getDate(),order.getKind(),order.getTransitId(),Calendar.getInstance(),order.getOpName(),order.getStockId());
+			StockOutPO orderPO=new StockOutPO(1,order.getExpressId(),order.getDate(),order.getKind(),order.getArrivePlace(),order.getTransitId(),Calendar.getInstance(),order.getOpName(),order.getStockId());
 			stockoutData.create(orderPO);
-			isSuccessful=true;
-		}
-		catch(Exception e)
+//			isSuccessful=true;
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}

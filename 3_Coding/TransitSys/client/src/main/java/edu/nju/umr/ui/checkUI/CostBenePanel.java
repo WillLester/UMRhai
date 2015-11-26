@@ -9,6 +9,7 @@ import javax.swing.ListSelectionModel;
 
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -36,7 +37,7 @@ public class CostBenePanel extends JPanel {
 		frame=fr;
 		this.setSize(1104,621);
 		
-		JLabel nameLabel = new JLabel("成本收益表");
+		JLabel nameLabel = new JLabel("成本收益");
 		nameLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
 //		nameLabel.setBounds(this.getWidth()/2-this.getWidth()/14, this.getHeight()/20, this.getWidth()/7, this.getHeight()/15);
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
@@ -56,6 +57,7 @@ public class CostBenePanel extends JPanel {
 		});
 		add(out);
 		tableInit();
+		showData();
 
 	}
 	void tableInit(){
@@ -76,4 +78,14 @@ public class CostBenePanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	private void showData(){
+		
+	}
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new CostBenePanel(frame));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//	}
 }

@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.stockLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
@@ -24,11 +25,20 @@ public class StockWarningLogic implements StockWarningLSer{
 			}
 	}
 
-	public Result setWarning(int w, Part part, String id) {
+	public Result setWarning(ArrayList<Integer> warnings, String id) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
+		Part part=Part.MANEUVER;
+		int w=-1;
+		if(warnings.get(0)!=null) {part=Part.MANEUVER;w=warnings.get(0);}
+		else if(warnings.get(1)!=null) {part=Part.PLANE;w=warnings.get(1);}
+		else if(warnings.get(2)!=null) {part=Part.PLANE;w=warnings.get(2);}
+		else if(warnings.get(3)!=null) {part=Part.PLANE;w=warnings.get(3);}
+		else{return Result.DATA_NOT_FOUND;	}
 		try{
-			isSuccessful=checkData.setWarning(w, part, id);
+			isSuccessful=checkData.setWarning(w,part, id);
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -38,14 +48,14 @@ public class StockWarningLogic implements StockWarningLSer{
 
 	public ResultMessage getWarning(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		ArrayList<Integer> ar=new ArrayList<Integer>();
 		try{
 			ar=checkData.getWarning(id);
-			isSuccessful=true;
-		}
-		catch(Exception e)
-		{
+//			isSuccessful=true;
+		}catch (RemoteException e) {
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}catch(Exception e)	{
 			e.printStackTrace();
 		}
 		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);

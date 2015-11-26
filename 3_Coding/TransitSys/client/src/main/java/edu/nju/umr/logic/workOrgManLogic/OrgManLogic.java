@@ -5,13 +5,10 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
-import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;
-import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.constants.Url;
@@ -116,10 +113,10 @@ public class OrgManLogic implements OrgManLSer{
 	public ResultMessage searchOrg(String keyword) {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgPO> ar= null;
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		try{
 			ar=orgData.findOrg("");
-			isSuccessful=true;
+//			isSuccessful=true;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();

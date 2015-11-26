@@ -36,8 +36,9 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		try{
 			StockInPO orderPO=new StockInPO(1,order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance(),order.getOpName(),order.getStockId());
 			stockinData.create(orderPO);
-		}
-		catch(Exception e)
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -67,5 +68,10 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	public Result checkWarning(String id){
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
 		return (Result) checkWarn.checkWarning(id).getMessage();
+	}
+	@Override
+	public ResultMessage getShelves(String orgId) {
+		// TODO Auto-generated method stub
+		return uti.getShelves(orgId);
 	}
 }
