@@ -3,6 +3,7 @@ package edu.nju.umr.ui.cityUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +16,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logicService.cityLogicSer.CityLSer;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.CitiesVO;
+import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.ResultMessage;
 
 public class CityListPanel extends JPanel{
 	/**
@@ -32,10 +39,13 @@ public class CityListPanel extends JPanel{
 	private JTextField priceField;
 	private JTextField distanceField;
 	private JFrame frame;
-
+	private ArrayList<CityVO> cityList;
+	private ArrayList<CitiesVO> citiesList;
+	private CityLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("unchecked")
 	public CityListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
@@ -127,6 +137,16 @@ public class CityListPanel extends JPanel{
 		distanceField.setBounds(606, 523, 106, 23);
 		add(distanceField);
 		distanceField.setColumns(10);
+		
+		ResultMessage cityResult = logicSer.cityList();
+		if(cityResult.equals(Result.SUCCESS)){
+			cityList = (ArrayList<CityVO>) cityResult.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		}
+		ResultMessage citiesResult = logicSer.citiesList();
+		
 		
 		JButton addButton = new JButton("新增城市");
 		addButton.setBounds(334, 566, 93, 23);
