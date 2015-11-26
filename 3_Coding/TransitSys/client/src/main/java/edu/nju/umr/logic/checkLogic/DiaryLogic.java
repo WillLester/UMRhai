@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nju.umr.constants.Url;
@@ -32,19 +33,19 @@ public class DiaryLogic implements DiaryLSer{
             e.printStackTrace();   
         } 
 	}
-	public ResultMessage seeDiary(Date start, Date end) {
+	public ResultMessage seeDiary(Calendar start, Calendar end) {
 		// TODO 自动生成的方法存根
 		ArrayList<DiaryVO> diaryList = new ArrayList<DiaryVO>();
 		try {
 			ArrayList<DiaryPO> diary = diaryData.seeDiary(start, end);
 			for(DiaryPO po:diary){
-				DiaryVO vo = new DiaryVO(po.getOperation(), po.getTime());
+				DiaryVO vo = new DiaryVO(po.getOperator(),po.getOperation(), po.getTime());
 				diaryList.add(vo);
 			}
 
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
 		return new ResultMessage(Result.SUCCESS, diaryList);
