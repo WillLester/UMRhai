@@ -17,22 +17,25 @@ public class StockOutPO extends PO implements Serializable{
 	private String expressId;
 	private Calendar date;
 	private Transit kind;
+	private String arrivePlace;
 	private String transitId;
 	private Calendar opTime;
 	private String opName;
 	private String stockId;
 	
-	public StockOutPO(int id, String expressId, Calendar date, Transit kind,
+	public StockOutPO(int id, String expressId, Calendar date, Transit kind,String arrivePlace,
 			String transitId, Calendar opTime, String opName, String stockId) {
 		super();
 		this.id = id;
 		this.expressId = expressId;
 		this.date = date;
 		this.kind = kind;
+		this.arrivePlace = arrivePlace;
 		this.transitId = transitId;
 		this.opTime = opTime;
 		this.opName = opName;
 		this.stockId = stockId;
+		
 	}
 	public int getId() {
 		return id;
@@ -45,6 +48,9 @@ public class StockOutPO extends PO implements Serializable{
 	}
 	public Transit getKind() {
 		return kind;
+	}
+	public String getArrivePlace() {
+		return arrivePlace;
 	}
 	public String getTransitId() {
 		return transitId;

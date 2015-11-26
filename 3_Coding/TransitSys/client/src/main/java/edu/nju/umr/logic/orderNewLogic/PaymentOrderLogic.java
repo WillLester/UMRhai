@@ -40,7 +40,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 			isSuc = paymentData.create(new PaymentPO(1, order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance(),order.getOpName()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		
 		return isSuc;

@@ -1,8 +1,8 @@
 package edu.nju.umr.logic.stockLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockCheckNowDFacSer;
@@ -24,8 +24,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		{
 			dataFac=(StockCheckNowDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheckNow();
-		}
-		catch(Exception e)
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -33,11 +32,13 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 
 	public ResultMessage checkNow(String id) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		StockPO stock=null;
 		try{
 			stock=checkData.getStock(id);
-			isSuccessful=true;
+//			isSuccessful=true;
+		}catch (RemoteException e) {
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -55,7 +56,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 
 	public Result outputExcel(String location, StockVO stock) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		ArrayList<GoodVO> arVO=stock.getGoods();
 		ArrayList<GoodPO> ar=new ArrayList<GoodPO>();
 		for(int i=0;i<arVO.size();i++)

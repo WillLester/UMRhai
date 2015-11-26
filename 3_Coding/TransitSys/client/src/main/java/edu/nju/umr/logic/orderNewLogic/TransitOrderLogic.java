@@ -2,7 +2,6 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
@@ -33,13 +32,14 @@ public class TransitOrderLogic implements TransitOrderLSer{
 
 	public Result create(TransitVO order) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		try{
 			TransitPO orderPO=new TransitPO("",order.getPlaneId(),order.getStartPlace(),order.getArrivePlace(),order.getContainerId(),order.getSupervision(),order.getExpress(),Calendar.getInstance(),order.getOpName());
 			transitData.create(orderPO);
-			isSuccessful=true;
-		}
-		catch(Exception e)
+//			isSuccessful=true;
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}

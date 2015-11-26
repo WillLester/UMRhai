@@ -22,8 +22,7 @@ public class UserManLogic implements UserManLSer{
 		dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
 		userData=dataFac.getUserMan();
 		users=userData.findUser(null);
-		}
-		catch(Exception e)
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}

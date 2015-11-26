@@ -1,6 +1,7 @@
 package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,13 +28,14 @@ public class SendOrderLogic implements SendOrderLSer{
 	}
 	public Result create(SendVO order) {
 		// TODO 自动生成的方法存根
-		boolean isSuccessful=false;
+//		boolean isSuccessful=false;
 		try{
 			SendPO orderPO=new SendPO(order.getDate(),order.getExpressId(),"",order.getCourier(),Calendar.getInstance(),order.getOpName());
 			sendData.create(orderPO);
-			isSuccessful=true;
-		}
-		catch(Exception e)
+//			isSuccessful=true;
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -45,6 +47,8 @@ public class SendOrderLogic implements SendOrderLSer{
 		ArrayList<String> ar= null;
 		try{
 			ar=sendData.getCouriers();
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
 		}catch(Exception e)
 		{
 			e.printStackTrace();

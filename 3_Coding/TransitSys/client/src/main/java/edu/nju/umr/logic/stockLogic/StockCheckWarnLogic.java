@@ -33,8 +33,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 		ArrayList<Integer> warning=new ArrayList<Integer>();
 		try{
 			warning=checkData.getWarning(id);
-		}
-		catch(RemoteException e){
+		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
 		}
 		try {
@@ -83,7 +82,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
+			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 		ResultMessage message=new ResultMessage(Result.SUCCESS,Result.SUCCESS);
 		return message;
