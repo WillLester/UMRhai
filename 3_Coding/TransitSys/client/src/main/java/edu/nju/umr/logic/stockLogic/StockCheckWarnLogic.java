@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.stockLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -23,8 +25,13 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 		try{
 		dataFac=(StockCheckWarnDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockCheckWarn();
-		}catch(Exception e)
-		{
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 	}

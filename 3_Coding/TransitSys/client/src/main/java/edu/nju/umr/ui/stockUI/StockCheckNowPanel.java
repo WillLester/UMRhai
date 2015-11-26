@@ -3,43 +3,61 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
+import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.GoodVO;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.StockVO;
 
 public class StockCheckNowPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8556287226068932490L;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
-	public StockCheckNowPanel(JFrame fr) {
+	private StockCheckNowLSer logicSer;
+	private ArrayList<GoodVO> goodList;
+	private String orgId;
+	public StockCheckNowPanel(JFrame fr,String orgId) {
 		setLayout(null);
 		frame=fr;
-		
+		this.orgId = orgId;
 		JLabel checkLabel = new JLabel("库存盘点");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
 		checkLabel.setBounds(504, 31, 95, 24);
 		add(checkLabel);
 		
-		JButton checkButton = new JButton("盘点");
-		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkButton.setBounds(947, 150, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(checkButton);
-		
-		JButton confirmButton = new JButton("确认盘点");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(947, 213, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(confirmButton);
+		JButton outputButton = new JButton("导出为Excel");
+		outputButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		outputButton.setBounds(947, 150, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		outputButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				logicSer.outputExcel(location, new StockVO(goodList));
+			}
+		});
+		add(outputButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -69,8 +87,37 @@ public class StockCheckNowPanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(186, 84, 731, 442);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"快递编号","入库日期","目的地","区号","排号","架号","位号"};
+		String[] columnNames={"快递编号","入库日期","目的地","区号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
+		ResultMessage message = logicSer.checkNow(orgId);
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			StockVO stock = (StockVO)message.getMessage();
+			goodList = stock.getGoods();
+			for(GoodVO good:goodList){
+				String info[] = new String[7];
+				info[0] = good.getId();
+				info[1] = DateFormat.DATE.format(good.getDate().getTime());
+				info[2] = good.getCity();
+				info[3] = getPart(good.getPart());
+				info[4] = good.getShelf();
+				info[5] = ""+good.getRow();
+				info[6] = ""+good.getPlace();
+				model.addRow(info);
+			}
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		}
+	}
+	private String getPart(Part part){
+		String result = null;
+		switch(part){
+		case PLANE:result = "航运区";break;
+		case TRAIN:result = "铁运区";break;
+		case VAN:result = "汽运区";break;
+		case MANEUVER:result = "机动区";break;
+		}
+		return result;
 	}
 }
