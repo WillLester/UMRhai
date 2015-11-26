@@ -245,6 +245,7 @@ public class UserListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	@SuppressWarnings("unchecked")
 	private ArrayList<UserVO> getUsers(String keyword)
 	{
 		ArrayList<UserVO> temp=new ArrayList<UserVO>();

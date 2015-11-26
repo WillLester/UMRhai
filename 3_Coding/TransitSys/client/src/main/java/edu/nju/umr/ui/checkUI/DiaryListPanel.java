@@ -13,14 +13,11 @@ import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JScrollBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -36,6 +33,10 @@ import java.util.Calendar;
  * 查看日志记录panel
  */
 public class DiaryListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -136,6 +137,7 @@ public class DiaryListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	@SuppressWarnings("unchecked")
 	private void getDiaries(Calendar start,Calendar end){
 		ResultMessage message=serv.seeDiary(start, end);
 		Result result=message.getReInfo();

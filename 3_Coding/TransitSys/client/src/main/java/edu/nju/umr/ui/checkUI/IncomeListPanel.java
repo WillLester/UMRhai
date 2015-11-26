@@ -1,13 +1,11 @@
 package edu.nju.umr.ui.checkUI;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.ListSelectionModel;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +22,6 @@ import edu.nju.umr.vo.order.IncomeVO;
 
 import javax.swing.JRadioButton;
 
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,8 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 /*
@@ -42,15 +37,18 @@ import javax.swing.JScrollPane;
  * 查看收款记录的panel
  */
 public class IncomeListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Table IncomeTable;
 	private DefaultTableModel model;
 	private ArrayList<IncomeVO> incomeList;
 	private ArrayList<OrgVO> hallList;
 	private JLabel listLabel;
-	private ButtonGroup buttongroup;
 	private JFrame frame;
 	private IncomeListLSer serv;
-	private JComboBox cbHall;
+	private JComboBox<Object> cbHall;
 	
 	/**
 	 * Create the panel.用以查看收款记录
@@ -94,13 +92,9 @@ public class IncomeListPanel extends JPanel {
 		hallLabel.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(hallLabel);
 		
-		cbHall=new JComboBox();
+		cbHall=new JComboBox<Object>();
 		cbHall.setBounds(hallLabel.getX()+hallLabel.getWidth()/2,Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, Constants.LABEL_WIDTH-10, Constants.LABEL_HEIGHT_S-10);
 		add(cbHall);
-		
-//		buttongroup=new ButtonGroup();
-//		buttongroup.add(radioButtonHall);
-//		buttongroup.add(radioButtonDate);
 		
 		JButton cancel = new JButton("取消");
 		cancel.setBounds(this.getWidth()/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
@@ -147,6 +141,7 @@ public class IncomeListPanel extends JPanel {
 		
 		dataInit();
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void dataInit(){
 		ResultMessage message=serv.getHall();
 		Result result=message.getReInfo();
@@ -183,6 +178,7 @@ public class IncomeListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	@SuppressWarnings("unchecked")
 	private void getIncomeList(){
 		Calendar date=null;
 		String id=cbHall.getSelectedIndex()==0?null:hallList.get(cbHall.getSelectedIndex()-1).getName();

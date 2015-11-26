@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import edu.nju.umr.ui.Constants;
@@ -29,7 +28,10 @@ import javax.swing.table.DefaultTableModel;
  * 成本收益表
  */
 public class CostBenePanel extends JPanel {
-	private JTable collectTable;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -67,7 +69,7 @@ public class CostBenePanel extends JPanel {
 		});
 		add(out);
 		tableInit();
-//		showData();
+		showData();
 
 	}
 	void tableInit(){
@@ -101,11 +103,11 @@ public class CostBenePanel extends JPanel {
 		model.setRowCount(0);
 		model.addRow(data);
 	}
-	public static void main(String[] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new CostBenePanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new CostBenePanel(frame));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//	}
 }
