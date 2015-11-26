@@ -38,7 +38,7 @@ import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
 public class UtilityLogic {
-	private static UtilityDSer utilityData;
+	private UtilityDSer utilityData;
 	private UtilityDFacSer dataFac;
 	public UtilityLogic() {
 		// TODO 自动生成的构造函数存根
