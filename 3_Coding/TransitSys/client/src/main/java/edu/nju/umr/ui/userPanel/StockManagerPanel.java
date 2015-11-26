@@ -89,7 +89,7 @@ public class StockManagerPanel extends UserPanel{
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				FunctionFrame fr = new FunctionFrame("库存查看");
-				fr.setContentPane(new StockCheckPanel(fr));
+				fr.setContentPane(new StockCheckPanel(fr,user.getOrgId()));
 			}
 		});
 		
