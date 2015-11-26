@@ -16,10 +16,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.cityLogic.CityLogic;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.CitiesVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -36,7 +38,6 @@ public class CityListPanel extends JPanel{
 	private JTextField nameField;
 	private JTextField idField;
 	private JTextField provinceField;
-	private JTextField priceField;
 	private JTextField distanceField;
 	private JFrame frame;
 	private ArrayList<CityVO> cityList;
@@ -45,10 +46,10 @@ public class CityListPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings("unchecked")
 	public CityListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new CityLogic();
 		
 		JLabel cityLabel = new JLabel("城市管理");
 		cityLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -85,16 +86,6 @@ public class CityListPanel extends JPanel{
 		add(provinceField);
 		provinceField.setColumns(10);
 		
-		JLabel priceLabel = new JLabel("价格");
-		priceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		priceLabel.setBounds(400, 520, 43, 29);
-		add(priceLabel);
-		
-		priceField = new JTextField();
-		priceField.setBounds(437, 524, 106, 22);
-		add(priceField);
-		priceField.setColumns(10);
-		
 		JLabel distanceLabel = new JLabel("距离");
 		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
 		distanceLabel.setBounds(567, 525, 54, 19);
@@ -129,10 +120,14 @@ public class CityListPanel extends JPanel{
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				if(cityTable1.getSelectedRow() == -1){
-					
+				Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName());
+				if(result.equals(Result.SUCCESS)){
+					initialize();
+				} else {
+					@SuppressWarnings("unused")
+					HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 				}
 			}
 		});
@@ -140,17 +135,63 @@ public class CityListPanel extends JPanel{
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setBounds(567, 566, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if((cityTable1.getSelectedRow() > 0)&&(cityTable2.getSelectedRow() > 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
+					if(isCitiesLegal()){
+						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
+						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
+						Result result = logicSer.reviseCities(new CitiesVO(city1, city2, Double.parseDouble(distanceField.getText())));
+						if(result.equals(Result.SUCCESS)){
+							initialize();
+						} else {
+							@SuppressWarnings("unused")
+							HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+						}
+					}
+				} else {
+					if(isCityLegal()){
+						Result result;
+						if(cityTable1.getSelectedRow() >= cityList.size()){
+							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()));
+						} else {
+							if(cityTable1.getSelectedRow() < 0){
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()), cityTable1.getSelectedRow());
+							} else {
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()), cityTable2.getSelectedRow());
+							}
+						}
+						if(result.equals(Result.SUCCESS)){
+							initialize();
+						} else {
+							@SuppressWarnings("unused")
+							HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+						}
+					}
+				}
+			}
+		});
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消修改");
 		cancelButton.setBounds(683, 566, 93, 23);
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
 		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setBounds(871, 566, 93, 23);
 		exitButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
@@ -161,22 +202,33 @@ public class CityListPanel extends JPanel{
 		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(cityTable2.getSelectedRow() == -1){
+					if((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow()){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
 						idField.setEnabled(true);
 						provinceField.setEnabled(true);
 						distanceField.setEnabled(false);
-						priceField.setEnabled(false);
+						CityVO citySelected = cityList.get(cityTable1.getSelectedRow());
+						nameField.setText(citySelected.getName());
+						idField.setText(citySelected.getId());
+						provinceField.setText(citySelected.getProvince());
 					} else {
 						addButton.setEnabled(false);
 						deleteButton.setEnabled(false);
 						nameField.setEnabled(false);
 						idField.setEnabled(false);
 						provinceField.setEnabled(false);
-						distanceField.setEnabled(false);
-						priceField.setEnabled(false);
+						distanceField.setEnabled(true);
+						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
+						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
+						for(CitiesVO cities:citiesList){
+							if((cities.getCity1().equals(city1))&&(cities.getCity2().equals(city2))){
+								distanceField.setText(""+cities.getDistance());
+							} else if((cities.getCity1().equals(city2))&&(cities.getCity2().equals(city1))){
+								distanceField.setText(""+cities.getDistance());
+							}
+						}
 					}
 				}
 			}
@@ -195,7 +247,36 @@ public class CityListPanel extends JPanel{
 		model2=(DefaultTableModel)cityTable2.getModel();
 		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
+				if(e.getValueIsAdjusting()==false){
+					if((cityTable1.getSelectedRow() == -1)||cityTable1.getSelectedRow() == cityTable2.getSelectedRow()){
+						addButton.setEnabled(true);
+						deleteButton.setEnabled(true);
+						nameField.setEnabled(true);
+						idField.setEnabled(true);
+						provinceField.setEnabled(true);
+						distanceField.setEnabled(false);
+						CityVO citySelected = cityList.get(cityTable2.getSelectedRow());
+						nameField.setText(citySelected.getName());
+						idField.setText(citySelected.getId());
+						provinceField.setText(citySelected.getProvince());
+					} else {
+						addButton.setEnabled(false);
+						deleteButton.setEnabled(false);
+						nameField.setEnabled(false);
+						idField.setEnabled(false);
+						provinceField.setEnabled(false);
+						distanceField.setEnabled(true);
+						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
+						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
+						for(CitiesVO cities:citiesList){
+							if((cities.getCity1().equals(city1))&&(cities.getCity2().equals(city2))){
+								distanceField.setText(""+cities.getDistance());
+							} else if((cities.getCity1().equals(city2))&&(cities.getCity2().equals(city1))){
+								distanceField.setText(""+cities.getDistance());
+							}
+						}
+					}
+				}
 			}
 		});
 		cityTable2.setBounds(567, 80, 403, 367);
@@ -206,7 +287,10 @@ public class CityListPanel extends JPanel{
 		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
-		
+		initialize();
+	}
+	@SuppressWarnings("unchecked")
+	private void initialize(){
 		ResultMessage cityResult = logicSer.cityList();
 		if(cityResult.equals(Result.SUCCESS)){
 			cityList = (ArrayList<CityVO>) cityResult.getMessage();
@@ -224,6 +308,8 @@ public class CityListPanel extends JPanel{
 		}
 	}
 	private void displayTable(){
+		model1.setRowCount(0);
+		model2.setRowCount(0);
 		for(CityVO city:cityList){
 			String cityInfo[] = new String[3];
 			cityInfo[0] = city.getName();
@@ -232,5 +318,28 @@ public class CityListPanel extends JPanel{
 			model1.addRow(cityInfo);
 			model2.addRow(cityInfo);
 		}
+	}
+	@SuppressWarnings("unused")
+	private boolean isCityLegal(){
+		if(nameField.getText().equals("")){
+			HintFrame hint = new HintFrame("城市名称未填写！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(idField.getText().equals("")){
+			HintFrame hint = new HintFrame("区号未填写！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(!Utility.isNumberic(idField.getText())){
+			HintFrame hint = new HintFrame("区号含有非数字字符！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if((idField.getText().length() > 5)||(idField.getText().length() < 3)){
+			HintFrame hint = new HintFrame("区号位数不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private boolean isCitiesLegal(){
+		return true;
 	}
 }
