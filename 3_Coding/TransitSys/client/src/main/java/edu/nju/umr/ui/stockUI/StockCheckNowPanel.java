@@ -3,19 +3,24 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.logic.stockLogic.StockCheckNowLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
@@ -54,7 +59,27 @@ public class StockCheckNowPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				logicSer.outputExcel(location, new StockVO(goodList));
+				JFileChooser chooser = new javax.swing.JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("表格","xls","xlsx");
+				chooser.setFileFilter(filter);
+				chooser.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY); 
+				int returnVal = chooser.showSaveDialog(null);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					 File file = chooser.getSelectedFile();
+					 if (file.exists()) {
+					 int copy = JOptionPane.showConfirmDialog(null,"是否要覆盖当前文件？", "保存", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+					     if (copy == JOptionPane.YES_OPTION){
+					     chooser.approveSelection();
+					     }
+					 }
+					 else
+					 chooser.approveSelection();
+					 Result result= logicSer.outputExcel(chooser.getSelectedFile().getName(), new StockVO(goodList));
+					 if(!result.equals(Result.SUCCESS))
+					 {
+						 new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+					 }
+				}
 			}
 		});
 		add(outputButton);
@@ -90,6 +115,7 @@ public class StockCheckNowPanel extends JPanel{
 		String[] columnNames={"快递编号","入库日期","目的地","区号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
+		logicSer = new StockCheckNowLogic();
 		ResultMessage message = logicSer.checkNow(orgId);
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			StockVO stock = (StockVO)message.getMessage();
