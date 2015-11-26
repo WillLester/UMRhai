@@ -183,7 +183,27 @@ public class CityListPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				if((cityTable1.getSelectedRow() > 0)&&(cityTable2.getSelectedRow() > 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
+					getDistance();
+				} else {
+					String name = "";
+					String id = "";
+					String province = "";
+					CityVO city = null;
+					if(cityTable1.getSelectedRow() > 0){
+						city = cityList.get(cityTable1.getSelectedRow());
+					} else if(cityTable2.getSelectedRow() > 0){
+						city = cityList.get(cityTable2.getSelectedRow());
+					} else {
+						return;
+					}
+					name = city.getName();
+					id = city.getId();
+					province = city.getProvince();
+					nameField.setText(name);
+					idField.setText(id);
+					provinceField.setText(province);
+				}
 			}
 		});
 		add(cancelButton);
@@ -220,15 +240,7 @@ public class CityListPanel extends JPanel{
 						idField.setEnabled(false);
 						provinceField.setEnabled(false);
 						distanceField.setEnabled(true);
-						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
-						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
-						for(CitiesVO cities:citiesList){
-							if((cities.getCity1().equals(city1))&&(cities.getCity2().equals(city2))){
-								distanceField.setText(""+cities.getDistance());
-							} else if((cities.getCity1().equals(city2))&&(cities.getCity2().equals(city1))){
-								distanceField.setText(""+cities.getDistance());
-							}
-						}
+						getDistance();
 					}
 				}
 			}
@@ -266,15 +278,7 @@ public class CityListPanel extends JPanel{
 						idField.setEnabled(false);
 						provinceField.setEnabled(false);
 						distanceField.setEnabled(true);
-						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
-						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
-						for(CitiesVO cities:citiesList){
-							if((cities.getCity1().equals(city1))&&(cities.getCity2().equals(city2))){
-								distanceField.setText(""+cities.getDistance());
-							} else if((cities.getCity1().equals(city2))&&(cities.getCity2().equals(city1))){
-								distanceField.setText(""+cities.getDistance());
-							}
-						}
+						getDistance();
 					}
 				}
 			}
@@ -337,9 +341,31 @@ public class CityListPanel extends JPanel{
 			HintFrame hint = new HintFrame("区号位数不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		if(provinceField.getText().equals("")){
+			HintFrame hint = new HintFrame("省份未填写！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		return true;
 	}
 	private boolean isCitiesLegal(){
+		try {
+			Double.parseDouble(distanceField.getText());
+		} catch (NumberFormatException e){
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame("距离格式不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
 		return true;
+	}
+	private void getDistance(){
+		String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
+		String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
+		for(CitiesVO cities:citiesList){
+			if((cities.getCity1().equals(city1))&&(cities.getCity2().equals(city2))){
+				distanceField.setText(""+cities.getDistance());
+			} else if((cities.getCity1().equals(city2))&&(cities.getCity2().equals(city1))){
+				distanceField.setText(""+cities.getDistance());
+			}
+		}
 	}
 }
