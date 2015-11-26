@@ -219,7 +219,7 @@ public class UserListPanel extends JPanel {
 		mobileField.setBounds(855,421,200,24);
 		add(mobileField);
 		
-		tableInit();
+		tableInit();                     
 		users=getUsers(null);
 		displayUsers();
 	}

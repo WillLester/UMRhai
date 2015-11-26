@@ -115,4 +115,12 @@ public class DatePanel extends JPanel {
 		monthCombo.setSelectedIndex(calendar.get(Calendar.MONTH));
 		dayCombo.setSelectedIndex(calendar.get(Calendar.DATE)-1);
 	}
+	public void setEnabled(boolean bool){
+		yearCombo.setEnabled(bool);
+		monthCombo.setEnabled(bool);
+		dayCombo.setEnabled(bool);
+	}
+	public boolean isEnabled(){
+		return yearCombo.isEnabled();
+	}
 }

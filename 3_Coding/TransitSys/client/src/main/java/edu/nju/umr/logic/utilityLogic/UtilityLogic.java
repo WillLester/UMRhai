@@ -20,6 +20,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
