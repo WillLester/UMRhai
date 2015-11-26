@@ -38,7 +38,7 @@ import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
 public class UtilityLogic {
-	private UtilityDSer utilityData;
+	private static UtilityDSer utilityData;
 	private UtilityDFacSer dataFac;
 	public UtilityLogic() {
 		// TODO 自动生成的构造函数存根
@@ -53,7 +53,7 @@ public class UtilityLogic {
             e.printStackTrace();   
         }  
 	}
-	public ResultMessage getCities(){
+	public static ResultMessage getCities(){
 		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
 		try {
 			ArrayList<CityPO> cities = utilityData.getCities();
@@ -68,7 +68,7 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(Result.SUCCESS, cityList);
 	}
-	public ResultMessage getOrgs(){
+	public static ResultMessage getOrgs(){
 		ArrayList<OrgPO> ar= null;
 		Result isSuccessful=Result.NET_INTERRUPT;
 		try{
@@ -87,7 +87,7 @@ public class UtilityLogic {
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
-	public ResultMessage getHall() {
+	public static ResultMessage getHall() {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
 		Result re=Result.NET_INTERRUPT;
@@ -105,7 +105,7 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(re, hallList);
 	}
-	public ResultMessage getWorkers(String orgId){
+	public static ResultMessage getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
 		Result isSuccessful=Result.NET_INTERRUPT;
 		try{
@@ -124,7 +124,7 @@ public class UtilityLogic {
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
-	public ResultMessage getVans(String orgId){
+	public static ResultMessage getVans(String orgId){
 		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
@@ -139,7 +139,7 @@ public class UtilityLogic {
 		
 		return new ResultMessage(Result.SUCCESS, vanList);
 	}
-	public ResultMessage getStocks(){
+	public static ResultMessage getStocks(){
 		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
 		ArrayList<StockPO> stock;
 		try {
@@ -159,7 +159,7 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(Result.SUCCESS, stockList);
 	}
-	public ResultMessage getAccount() {
+	public static ResultMessage getAccount() {
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
 		Result re=Result.NET_INTERRUPT;
 		try {
@@ -191,7 +191,7 @@ public class UtilityLogic {
 		return isSuc;
 	}
 	//导出excel文件
-	public Result outputExcel(String data[][],String name, String location) {
+	public static Result outputExcel(String data[][],String name, String location) {
 		HSSFWorkbook wb=new HSSFWorkbook();//创建一个workbook对应一个excel文件
 		HSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
 		
@@ -225,7 +225,7 @@ public class UtilityLogic {
 	
 	//返回po的一系列方法
 	
-	public ArrayList<CityPO> cities(){
+	public static ArrayList<CityPO> cities(){
 		ArrayList<CityPO> city=null;
 		try {
 			city=utilityData.getCities();
@@ -235,7 +235,7 @@ public class UtilityLogic {
 		return city;
 	}
 	
-	public ArrayList<OrgPO> orgs(){
+	public static ArrayList<OrgPO> orgs(){
 		ArrayList<OrgPO> org=null;
 		try {
 			org=utilityData.getOrgs();
@@ -245,7 +245,7 @@ public class UtilityLogic {
 		return org;
 	}
 	
-	public ArrayList<OrgPO> halls(){
+	public static ArrayList<OrgPO> halls(){
 		ArrayList<OrgPO> hall=null;
 		try {
 			hall=utilityData.getHall();
@@ -255,7 +255,7 @@ public class UtilityLogic {
 		return hall;
 	}
 	
-	public ArrayList<WorkPO> works(String orgId){
+	public static ArrayList<WorkPO> works(String orgId){
 		ArrayList<WorkPO> work=null;
 		try {
 			work=utilityData.getWorkers(orgId);
@@ -266,7 +266,7 @@ public class UtilityLogic {
 		return work;
 	}
 	
-	public ArrayList<VanPO> vans(String orId){
+	public static ArrayList<VanPO> vans(String orId){
 		ArrayList<VanPO> van=null;
 		try {
 			van=utilityData.getVans(orId);
@@ -277,7 +277,7 @@ public class UtilityLogic {
 		return van;
 	}
 	
-	public ArrayList<StockPO> stocks(){
+	public static ArrayList<StockPO> stocks(){
 		ArrayList<StockPO> stock=null;
 		try {
 			stock=utilityData.getStocks();
@@ -288,7 +288,7 @@ public class UtilityLogic {
 		return stock;
 	}
 	
-	public ArrayList<AccountPO> accounts(){
+	public static ArrayList<AccountPO> accounts(){
 		ArrayList<AccountPO> account=null;
 		try {
 			account=utilityData.getAccount();
