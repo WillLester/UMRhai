@@ -236,6 +236,7 @@ public class OrgListPanel extends JPanel {
 		}
 	}
 	private void displayOrg(int row){
+		if(row<0||row>=orgList.size())return;
 		OrgVO temp=orgList.get(table.getSelectedRow());
 		textFieldName.setText(temp.getName());
 		textFieldAddr.setText(temp.getLocation());
@@ -304,7 +305,8 @@ public class OrgListPanel extends JPanel {
 			}
 			else 
 			{
-				
+				orgList.add(temp);
+				displayOrgs();
 			}
 		}
 		else
@@ -316,7 +318,8 @@ public class OrgListPanel extends JPanel {
 			}
 			else 
 			{
-				
+				orgList.set(table.getSelectedRow(), temp);
+				displayOrgs();
 			}
 		}
 	}
