@@ -73,7 +73,7 @@ public class WorkPO extends PO implements Serializable{
 		case INSERT:command="insert into user values"+"(null,null,null,null,0,0,'"+orgId+"','"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
 		case DELETE:command="delete from user where id='"+id+"'";break;
 		case FIND:command = "select * from user where name like %"+name+"% or juri ="+juri.ordinal()+" or org like %"+org+"%";break;
-		case UPDATE:command="update user set orgId='"+org+"' kind="+kind.ordinal()+" money="+money+" commission="+commission+" where id="+id;break;
+		case UPDATE:command="update user set orgId='"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where id="+id;break;
 		}
 		return command;
 	}

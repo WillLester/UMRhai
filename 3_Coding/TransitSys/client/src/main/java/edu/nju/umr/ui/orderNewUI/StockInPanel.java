@@ -1,174 +1,253 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
+import javax.swing.SwingConstants;
+
+import edu.nju.umr.logic.orderNewLogic.StockInOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
+import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.Hints;
+import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.ShelfVO;
+import edu.nju.umr.vo.order.StockInVO;
 
 public class StockInPanel extends JPanel {
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1782284113158059802L;
+	private JTextField expressField;
+	private JComboBox<String> partCombo;
+	private JComboBox<Integer> rowCombo;
+	private JComboBox<String> shelfCombo;
+	private JComboBox<Integer> placeCombo;
 	private JFrame frame;
-
+	private DatePanel datePanel;
+	private String name;
+	private String orgId;
+	private StockInOrderLSer logicSer;
+	private ArrayList<ShelfVO> shelfList;
+	private ArrayList<ShelfVO> shelfPart;
+	private JComboBox<String> cityCombo;
 	/**
 	 * Create the panel.
 	 */
-	public StockInPanel(JFrame fr) {
+	@SuppressWarnings("unchecked")
+	public StockInPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new StockInOrderLogic();
+		this.name = name;
+		this.orgId = orgId;
 		
-		JLabel lblNewLabel = new JLabel("入库单");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setBounds(392, 10, 243, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("入库单");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setBounds(392, 10, 243, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("快递编号");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(355, 87, 120, 24);
-		add(lblNewLabel_2);
+		JLabel expressLabel = new JLabel("快递单号");
+		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		expressLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressLabel.setBounds(355, 87, 120, 24);
+		add(expressLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_1.setBounds(485, 87, 165, 25);
-		add(textField_1);
-		textField_1.setColumns(10);
+		expressField = new JTextField();
+		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressField.setBounds(485, 87, 165, 25);
+		add(expressField);
+		expressField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("入库日期");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(297, 134, 120, 24);
-		add(lblNewLabel_3);
+		JLabel dateLabel = new JLabel("入库日期");
+		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setBounds(297, 134, 120, 24);
+		add(dateLabel);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(411, 133, 85, 26);
-		add(spinner);
+		datePanel = new DatePanel();
+		datePanel.setBounds(452, 134, 285, 26);
+		add(datePanel);
 		
-		JLabel label = new JLabel("年");
-		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(506, 135, 25, 22);
-		add(label);
+		String cityList[] = null;
+		ResultMessage cityResult = logicSer.getCities();
+		if(cityResult.getReInfo().equals(Result.SUCCESS)){
+			cityList = (String[]) cityResult.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+		}
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setBounds(541, 133, 48, 26);
-		add(spinner_1);
+		JLabel destiLabel = new JLabel("目的地");
+		destiLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		destiLabel.setBounds(378, 179, 85, 24);
+		add(destiLabel);
 		
-		JLabel label_1 = new JLabel("月");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(599, 135, 25, 22);
-		add(label_1);
+		cityCombo = new JComboBox<String>();
+		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityCombo.setBounds(455, 179, 87, 25);
+		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
+		add(cityCombo);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(634, 133, 48, 26);
-		add(spinner_2);
+		ResultMessage shelfResult = logicSer.getShelves(orgId);
+		if(shelfResult.getReInfo().equals(Result.SUCCESS)){
+			shelfList = (ArrayList<ShelfVO>) shelfResult.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+		}
 		
-		JLabel label_2 = new JLabel("日");
-		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(693, 135, 25, 22);
-		add(label_2);
+		JLabel partLabel = new JLabel("区号");
+		partLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		partLabel.setBounds(355, 242, 85, 24);
+		add(partLabel);
 		
-		JLabel lblNewLabel_4 = new JLabel("目的地");
-		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(378, 179, 85, 24);
-		add(lblNewLabel_4);
+		partCombo = new JComboBox<String>();
+		partCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		partCombo.setBounds(411, 241, 48, 25);
+		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
+		partCombo.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				Part parts[] = Part.values();
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					getShelfPart(parts[partCombo.getSelectedIndex()]);
+					String shelves[] = new String[shelfPart.size()];
+					for(int i = 0;i < shelfPart.size();i++){
+						ShelfVO shelf = shelfPart.get(i);
+						shelves[i] = shelf.getId();
+					}
+					shelfCombo.setModel(new DefaultComboBoxModel<String>(shelves));
+				}
+			}
+		});
+		add(partCombo);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(455, 179, 87, 25);
-		add(comboBox);
+		JLabel shelfLabel = new JLabel("架号");
+		shelfLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		shelfLabel.setBounds(355, 293, 85, 24);
+		add(shelfLabel);
 		
-		JLabel label_3 = new JLabel("区号");
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(355, 242, 85, 24);
-		add(label_3);
+		shelfCombo = new JComboBox<String>();
+		shelfCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		shelfCombo.setBounds(411, 292, 48, 25);
+		shelfCombo.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
+					Integer rows[] = new Integer[shelf.getRow()];
+					for(int i = 1;i <= rows.length;i++){
+						rows[i] = i;
+					}
+					Integer places[] = new Integer[shelf.getPlace()];
+					for(int i = 1;i <= places.length;i++){
+						places[i] = i;
+					}
+					rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
+					placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
+				}
+			}
+		});
+		add(shelfCombo);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_2.setColumns(10);
-		textField_2.setBounds(411, 241, 48, 25);
-		add(textField_2);
+		JLabel rowLabel = new JLabel("排号");
+		rowLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		rowLabel.setBounds(521, 242, 85, 24);
+		add(rowLabel);
 		
-		JLabel label_4 = new JLabel("排号");
-		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_4.setBounds(521, 242, 85, 24);
-		add(label_4);
+		rowCombo = new JComboBox<Integer>();
+		rowCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		rowCombo.setBounds(569, 242, 48, 25);
+		add(rowCombo);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(347, 453, 93, 23);
-		add(button);
+		JLabel placeLabel = new JLabel("位号");
+		placeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		placeLabel.setBounds(521, 293, 85, 24);
+		add(placeLabel);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(542, 453, 93, 23);
-		button_1.addActionListener(new ActionListener(){
+		placeCombo = new JComboBox<Integer>();
+		placeCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		placeCombo.setBounds(569, 292, 48, 25);
+		add(placeCombo);
+		
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(347, 453, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+					}
+				}
+			}
+		});
+		add(confirmButton);
+		
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(542, 453, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
 			}
 		});
-		add(button_1);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(569, 242, 48, 25);
-		add(textField);
-		
-		JLabel label_5 = new JLabel("架号");
-		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_5.setBounds(355, 293, 85, 24);
-		add(label_5);
-		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_3.setColumns(10);
-		textField_3.setBounds(411, 292, 48, 25);
-		add(textField_3);
-		
-		JLabel label_6 = new JLabel("位号");
-		label_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_6.setBounds(521, 293, 85, 24);
-		add(label_6);
-		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_4.setColumns(10);
-		textField_4.setBounds(569, 292, 48, 25);
-		add(textField_4);
-		
-
+		add(cancelButton);
+	}
+	private void getShelfPart(Part part){
+		shelfPart = new ArrayList<ShelfVO>();
+		for(ShelfVO shelf:shelfList){
+			if(shelf.getPart().equals(part)){
+				shelfPart.add(shelf);
+			}
+		}
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		if(Utility.isOutOfDate(datePanel.getCalendar())){
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		String result = CheckLegal.isExpressLegal(expressField.getText());
+		if(result != null){
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private StockInVO createVO(){
+		Part parts[] = Part.values();
+		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(), parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(), rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId);
+		return vo;
 	}
 }

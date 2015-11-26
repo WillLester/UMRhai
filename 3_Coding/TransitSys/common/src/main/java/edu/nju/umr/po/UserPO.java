@@ -69,7 +69,7 @@ public class UserPO extends PO implements Serializable{
 				command = "select * from user where id = '"+id+"'";
 			}
 			break;
-		case UPDATE:command="update user set id='"+id+"' password='"+password+"' name='"+name+"' mobile='"+mobile+"' juri="+juri.ordinal()+" orgId='"+orgId+"' where keyid="+key;break;
+		case UPDATE:command="update user set id='"+id+"',password='"+password+"',name='"+name+"',mobile='"+mobile+"',juri="+juri.ordinal()+" where keyid="+key;break;
 		}
 		return command;
 	}

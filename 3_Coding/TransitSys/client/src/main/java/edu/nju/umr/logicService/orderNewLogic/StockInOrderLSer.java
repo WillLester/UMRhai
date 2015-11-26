@@ -7,4 +7,5 @@ import edu.nju.umr.vo.order.StockInVO;
 public interface StockInOrderLSer {
 	public Result create(StockInVO order);
 	public ResultMessage getCities();
+	public ResultMessage getShelves(String orgId);
 }

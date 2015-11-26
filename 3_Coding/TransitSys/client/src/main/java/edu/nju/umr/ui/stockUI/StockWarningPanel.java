@@ -3,25 +3,37 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFrame;
 
+import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -833178303850310584L;
 	private JTextField planeField;
 	private JTextField trainField;
 	private JTextField vanField;
 	private JTextField maneuverField;
 	private JFrame frame;
+	private StockWarningLSer logicSer;
+	private ArrayList<Integer> warnings;
 	/**
 	 * Create the panel.
 	 */
-	public StockWarningPanel(JFrame fr) {
+	@SuppressWarnings("unchecked")
+	public StockWarningPanel(JFrame fr,String orgId) {
 		setLayout(null);
 		frame=fr;
 		
@@ -70,14 +82,65 @@ public class StockWarningPanel extends JPanel{
 		add(maneuverField);
 		maneuverField.setColumns(10);
 		
+		ResultMessage message = logicSer.getWarning(orgId);
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			this.warnings = (ArrayList<Integer>) message.getMessage();
+			planeField.setText(""+warnings.get(0));
+			trainField.setText(""+warnings.get(1));
+			vanField.setText(""+warnings.get(2));
+			maneuverField.setText(""+warnings.get(3));
+		} else if(!message.getReInfo().equals(Result.FILE_NOT_FOUND)){
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		} 
+		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		confirmButton.setBounds(428, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					ArrayList<Integer> newWarn = new ArrayList<Integer>();
+					newWarn.add(Integer.parseInt(planeField.getText()));
+					newWarn.add(Integer.parseInt(trainField.getText()));
+					newWarn.add(Integer.parseInt(vanField.getText()));
+					newWarn.add(Integer.parseInt(maneuverField.getText()));
+					Result result = logicSer.setWarning(newWarn, orgId);
+					if(result.equals(Result.SUCCESS)){
+						frame.dispose();
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					}
+				}
+			}
+		});
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消修改");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		cancelButton.setBounds(555, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(warnings == null){
+					planeField.setText("");
+					trainField.setText("");
+					vanField.setText("");
+					maneuverField.setText("");
+				} else {
+					planeField.setText(""+warnings.get(0));
+					trainField.setText(""+warnings.get(1));
+					vanField.setText(""+warnings.get(2));
+					maneuverField.setText(""+warnings.get(3));
+				}
+			}
+		});
 		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
@@ -90,6 +153,49 @@ public class StockWarningPanel extends JPanel{
 			}
 		});
 		add(exitButton);
-
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		try {
+			Integer.parseInt(planeField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("航运区警戒线格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if((Integer.parseInt(planeField.getText())<0)||(Integer.parseInt(planeField.getText())>100)){
+			HintFrame hint = new HintFrame("航运区警戒线大小不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Integer.parseInt(trainField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("铁运区警戒线格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if((Integer.parseInt(trainField.getText())<0)||(Integer.parseInt(trainField.getText())>100)){
+			HintFrame hint = new HintFrame("铁运区警戒线大小不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Integer.parseInt(vanField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("汽运区警戒线格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if((Integer.parseInt(vanField.getText())<0)||(Integer.parseInt(vanField.getText())>100)){
+			HintFrame hint = new HintFrame("汽运区警戒线大小不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Integer.parseInt(maneuverField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("机动区警戒线格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if((Integer.parseInt(maneuverField.getText())<0)||(Integer.parseInt(maneuverField.getText())>100)){
+			HintFrame hint = new HintFrame("机动区警戒线大小不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
 	}
 }

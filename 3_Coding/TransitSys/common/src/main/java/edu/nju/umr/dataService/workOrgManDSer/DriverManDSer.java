@@ -8,7 +8,7 @@ import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.Result;
 
 public interface DriverManDSer extends Remote{
-	public ArrayList<DriverPO> findDriver(String keyword,String hallId) throws RemoteException;
+	public ArrayList<DriverPO> findDriver(String hallId) throws RemoteException;
 //	public ArrayList<DriverPO> driverList() throws RemoteException;
 	public Result addDriver(DriverPO driver) throws RemoteException;
 	public Result deleteDriver(String id) throws RemoteException;

@@ -1,124 +1,158 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
+import edu.nju.umr.po.enums.GoodState;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.Hints;
+import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.RecipientVO;
 
 public class RecipientPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1228209298653522130L;
-	private JTextField textField;
+	private JTextField idField;
 	private JFrame frame;
+	private DatePanel datePanel;
+	private JComboBox<String> cityCombo;
+	private JComboBox<String> stateCombo;
+	private RecipientOrderLSer logicSer;
+	private String[] cityList;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public RecipientPanel(JFrame fr) {
+	public RecipientPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
+		this.name = name;
 		
-		JLabel lblNewLabel = new JLabel("营业厅到达单");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(382+40, 45, 242, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("营业厅到达单");
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(382+40, 45, 242, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("中转单编号");
-		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(342+40, 216, 107, 24);
-		add(lblNewLabel_1);
+		JLabel idLabel = new JLabel("中转单编号");
+		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		idLabel.setBounds(342+40, 216, 107, 24);
+		add(idLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setBounds(474+40, 216, 193, 24);
-		add(textField);
-		textField.setColumns(10);
+		idField = new JTextField();
+		idField.setFont(new Font("宋体", Font.PLAIN, 20));
+		idField.setBounds(474+40, 216, 193, 24);
+		add(idField);
+		idField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("到达日期");
-		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(342+40, 268, 107, 24);
-		add(lblNewLabel_2);
+		JLabel dateLabel = new JLabel("到达日期");
+		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setBounds(342+40, 268, 107, 24);
+		add(dateLabel);
 		
-		JLabel lblNewLabel_4 = new JLabel("出发地");
-		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(342+40, 162, 107, 24);
-		add(lblNewLabel_4);
+		datePanel = new DatePanel();
+		datePanel.setBounds(532, 268, 285, 26);
+		add(datePanel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(474+40, 166, 193, 21);
-		add(comboBox);
+		JLabel startLabel = new JLabel("出发地");
+		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		startLabel.setBounds(342+40, 162, 107, 24);
+		add(startLabel);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(474+40, 268, 85, 26);
-		add(spinner);
+		getCity();
 		
-		JLabel lblNewLabel_5 = new JLabel("年");
-		lblNewLabel_5.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_5.setBounds(569+40, 269, 25, 22);
-		add(lblNewLabel_5);
+		cityCombo = new JComboBox<String>();
+		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityCombo.setBounds(474+40, 166, 193, 21);
+		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
+		add(cityCombo);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setBounds(597+40, 268, 48, 26);
-		add(spinner_1);
+		JLabel stateLabel = new JLabel("货物到达状态");
+		stateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		stateLabel.setBounds(329+40, 327, 120, 45);
+		add(stateLabel);
 		
-		JLabel lblNewLabel_6 = new JLabel("月");
-		lblNewLabel_6.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_6.setBounds(655+40, 268, 25, 22);
-		add(lblNewLabel_6);
+		stateCombo = new JComboBox<String>();
+		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
+		stateCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		stateCombo.setBounds(474+40, 338, 193, 24);
+		add(stateCombo);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(679+40, 268, 48, 26);
-		add(spinner_2);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(364+40, 434, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings("unused")
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						frame.setTitle("派件单生成");
+						frame.setContentPane(new SendPanel(frame,name,orgId));
+					} else {
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+					}
+				} 
+			}
+		});
+		add(confirmButton);
 		
-		JLabel lblNewLabel_7 = new JLabel("日");
-		lblNewLabel_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_7.setBounds(737+40, 269, 25, 22);
-		add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("货物到达状态");
-		lblNewLabel_8.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_8.setBounds(329+40, 327, 120, 45);
-		add(lblNewLabel_8);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"完整", "损坏", "丢失"}));
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(474+40, 338, 193, 24);
-		add(comboBox_1);
-		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(364+40, 434, 93, 23);
-		add(button);
-		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(548+40, 436, 93, 23);
-		button_1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(548+40, 436, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
-		add(button_1);
+		add(cancelButton);
 
+	}
+	private void getCity(){
+		ResultMessage result = logicSer.getCities();
+		if(result.getReInfo().equals(Result.SUCCESS)){
+			cityList = (String[]) result.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+		}
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		if(Utility.isOutOfDate(datePanel.getCalendar())){
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		String result = CheckLegal.isTransitLegal(idField.getText());
+		if(result != null){
+			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private RecipientVO createVO(){
+		GoodState states[] = GoodState.values();
+		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name);
+		return vo;
 	}
 }

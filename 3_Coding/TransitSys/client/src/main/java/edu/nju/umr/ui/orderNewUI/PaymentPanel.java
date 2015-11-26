@@ -21,8 +21,8 @@ import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class PaymentPanel extends JPanel {
@@ -36,17 +36,17 @@ public class PaymentPanel extends JPanel {
 	private DatePanel datePanel;
 	private String[] accountList;
 	private PaymentOrderLSer logicSer;
-	private UserVO user;
+	private String name;
 	private JComboBox<String> accountCombo;
 	private JComboBox<String> reasonCombo;
 	private JTextArea remarkArea;
 	/**
 	 * Create the panel.
 	 */
-	public PaymentPanel(JFrame fr,UserVO user) {
+	public PaymentPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		this.user = user;
+		this.name = name;
 		logicSer = new PaymentOrderLogic();
 		
 		JLabel titleLabel = new JLabel("付款单");
@@ -124,11 +124,17 @@ public class PaymentPanel extends JPanel {
 		confirmButton.setBounds(342, 499, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("unused")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(isIllegal()){
-					logicSer.create(createVO());
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+					}
 				}
 			}
 		});
@@ -153,23 +159,27 @@ public class PaymentPanel extends JPanel {
 			accountList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 	}
 	@SuppressWarnings("unused")
-	private boolean isIllegal(){
+	private boolean isLegal(){
 		if(costField.getText().equals("")){
-			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款金额未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		if(payerField.getText().equals("")){
-			HintFrame hint = new HintFrame("付款人未输入！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		try {
 			Double.parseDouble(costField.getText());
 		} catch (NumberFormatException e){
-			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY());
+			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(Utility.isOutOfDate(datePanel.getCalendar())){
+			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;
@@ -177,7 +187,7 @@ public class PaymentPanel extends JPanel {
 	private PaymentVO createVO(){
 		Calendar date = datePanel.getCalendar();
 		Pay pays[] = Pay.values();
-		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()], Double.parseDouble(costField.getText()), remarkArea.getText(), user.getName());
+		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()], Double.parseDouble(costField.getText()), remarkArea.getText(), name);
 		return payment;
 	}
 }

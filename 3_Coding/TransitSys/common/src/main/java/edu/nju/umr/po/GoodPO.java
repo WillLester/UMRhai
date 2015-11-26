@@ -65,7 +65,7 @@ public class GoodPO extends PO implements Serializable{
 		case INSERT:command="insert into good values"+"("+"'"+id+"','"+stockId+"','"+city+"',"+part.ordinal()+",'"+shelf+"',"+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"')";break;
 		case DELETE:command="delete from good where id='"+id+"'";break;
 		case FIND:command="select * from godd where stockId='"+stockId+"'";break;
-		case UPDATE:command="update good set stockId='"+stockId+"' city='"+city+"' part="+part.ordinal()+" shelf='"+shelf+"' row="+row+" place="+place+" date='"+DateFormat.DATE.format(date.getTime())+"' where id='"+id+"'";break;
+		case UPDATE:command="update good set stockId='"+stockId+"',city='"+city+"',part="+part.ordinal()+",shelf='"+shelf+"',row="+row+",place="+place+",date='"+DateFormat.DATE.format(date.getTime())+"' where id='"+id+"'";break;
 		}
 		return command;
 	}

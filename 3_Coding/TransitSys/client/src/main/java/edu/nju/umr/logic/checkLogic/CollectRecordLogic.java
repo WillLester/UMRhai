@@ -5,7 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
@@ -15,7 +15,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
-
+//查看收款记录
 public class CollectRecordLogic implements CollectRecordLSer{
 	CollectFormDFacSer dataFac;
 	CollectRecordDSer collectData;
@@ -32,18 +32,17 @@ public class CollectRecordLogic implements CollectRecordLSer{
             e.printStackTrace();   
         } 
 	}
-	public ResultMessage seeCollectRecord(Date date, String id) {
-		// TODO 自动生成的方法存根
+	public ResultMessage seeCollectRecord(Calendar date, String hallId) {
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
 		try {
-			ArrayList<IncomePO> income = collectData.getCollectRec(date, id);
+			ArrayList<IncomePO> income = collectData.getCollectRec(date, hallId);
 			for(IncomePO po:income){
 				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
 				incomeList.add(vo);
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
 		return new ResultMessage(Result.SUCCESS, incomeList);

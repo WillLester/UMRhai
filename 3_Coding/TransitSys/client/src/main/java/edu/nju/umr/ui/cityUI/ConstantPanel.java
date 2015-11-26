@@ -1,163 +1,219 @@
 package edu.nju.umr.ui.cityUI;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import edu.nju.umr.logic.cityLogic.ConstantLogic;
+import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.vo.ConstantVO;
+import edu.nju.umr.vo.ResultMessage;
 
 
 public class ConstantPanel extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3910636508748161665L;
+	private JTextField planeField;
+	private JTextField trainField;
+	private JTextField vanField;
+	private JTextField planeCostField;
+	private JTextField trainCostField;
+	private JTextField vanCostField;
+	private JTextField economicField;
+	private JTextField normalField;
+	private JTextField fastField;
 	private JFrame frame;
+	private ConstantLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	public ConstantPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new ConstantLogic();
 		
-		JLabel lblNewLabel = new JLabel("常量制定");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(367, 10, 242, 82);
-		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("飞机满载量(吨)");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(246, 94, 90, 15);
-		add(lblNewLabel_1);
+		JLabel titleLabel = new JLabel("常量制定");
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(367, 10, 242, 82);
+		add(titleLabel);
 		
-		JLabel label = new JLabel("火车满载量(吨)");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("宋体", Font.PLAIN, 12));
-		label.setBounds(246, 144, 90, 15);
-		add(label);
+		JLabel planeLabel = new JLabel("飞机满载量(吨)");
+		planeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		planeLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		planeLabel.setBounds(246, 94, 90, 15);
+		add(planeLabel);
 		
-		JLabel label_1 = new JLabel("汽车满载量(吨)");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_1.setBounds(246, 191, 90, 15);
-		add(label_1);
+		JLabel trainLabel = new JLabel("火车满载量(吨)");
+		trainLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		trainLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		trainLabel.setBounds(246, 144, 90, 15);
+		add(trainLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(362, 91, 43, 21);
-		add(textField);
-		textField.setColumns(10);
+		JLabel vanLabel = new JLabel("汽车满载量(吨)");
+		vanLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		vanLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		vanLabel.setBounds(246, 191, 90, 15);
+		add(vanLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(362, 141, 43, 21);
-		add(textField_1);
+		planeField = new JTextField();
+		planeField.setBounds(362, 91, 43, 21);
+		add(planeField);
+		planeField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(362, 188, 43, 21);
-		add(textField_2);
+		trainField = new JTextField();
+		trainField.setColumns(10);
+		trainField.setBounds(362, 141, 43, 21);
+		add(trainField);
 		
-		JLabel label_2 = new JLabel("飞机运费(元每公里每吨)");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_2.setBounds(466, 94, 143, 15);
-		add(label_2);
+		vanField = new JTextField();
+		vanField.setColumns(10);
+		vanField.setBounds(362, 188, 43, 21);
+		add(vanField);
 		
-		JLabel label_3 = new JLabel("火车运费(元每公里每吨)");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_3.setBounds(466, 144, 143, 15);
-		add(label_3);
+		JLabel planeCostLabel = new JLabel("飞机运费(元每公里每吨)");
+		planeCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		planeCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		planeCostLabel.setBounds(466, 94, 143, 15);
+		add(planeCostLabel);
 		
-		JLabel label_4 = new JLabel("汽车运费(元每公里每吨)");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_4.setBounds(466, 188, 143, 15);
-		add(label_4);
+		JLabel trainCostLabel = new JLabel("火车运费(元每公里每吨)");
+		trainCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		trainCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		trainCostLabel.setBounds(466, 144, 143, 15);
+		add(trainCostLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(637, 91, 43, 21);
-		add(textField_3);
+		JLabel vanCostLabel = new JLabel("汽车运费(元每公里每吨)");
+		vanCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		vanCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		vanCostLabel.setBounds(466, 188, 143, 15);
+		add(vanCostLabel);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(637, 141, 43, 21);
-		add(textField_4);
+		planeCostField = new JTextField();
+		planeCostField.setColumns(10);
+		planeCostField.setBounds(637, 91, 43, 21);
+		add(planeCostField);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(637, 188, 43, 21);
-		add(textField_5);
+		trainCostField = new JTextField();
+		trainCostField.setColumns(10);
+		trainCostField.setBounds(637, 141, 43, 21);
+		add(trainCostField);
 		
-		JLabel label_5 = new JLabel("快递价格比");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_5.setBounds(246, 266, 90, 15);
-		add(label_5);
+		vanCostField = new JTextField();
+		vanCostField.setColumns(10);
+		vanCostField.setBounds(637, 188, 43, 21);
+		add(vanCostField);
 		
-		JLabel label_6 = new JLabel("经济快递");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_6.setBounds(346, 266, 67, 15);
-		add(label_6);
+		JLabel priceLabel = new JLabel("快递价格比");
+		priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		priceLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		priceLabel.setBounds(246, 266, 90, 15);
+		add(priceLabel);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(410, 263, 43, 21);
-		add(textField_6);
+		JLabel economicLabel = new JLabel("经济快递/元");
+		economicLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		economicLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		economicLabel.setBounds(346, 266, 67, 15);
+		add(economicLabel);
 		
-		JLabel label_7 = new JLabel(":");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_7.setBounds(451, 266, 13, 15);
-		add(label_7);
+		economicField = new JTextField();
+		economicField.setColumns(10);
+		economicField.setBounds(410, 263, 43, 21);
+		add(economicField);
 		
-		JLabel label_8 = new JLabel("标准快递");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_8.setBounds(458, 266, 67, 15);
-		add(label_8);
+		JLabel colonLabel1 = new JLabel(":");
+		colonLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+		colonLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
+		colonLabel1.setBounds(451, 266, 13, 15);
+		add(colonLabel1);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(519, 263, 43, 21);
-		add(textField_7);
+		JLabel normalLabel = new JLabel("标准快递/元");
+		normalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		normalLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		normalLabel.setBounds(458, 266, 67, 15);
+		add(normalLabel);
 		
-		JLabel label_9 = new JLabel(":");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_9.setBounds(563, 266, 13, 15);
-		add(label_9);
+		normalField = new JTextField();
+		normalField.setColumns(10);
+		normalField.setBounds(519, 263, 43, 21);
+		add(normalField);
 		
-		JLabel label_10 = new JLabel("次晨特快");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setFont(new Font("宋体", Font.PLAIN, 12));
-		label_10.setBounds(572, 266, 67, 15);
-		add(label_10);
+		JLabel colonLabel2 = new JLabel(":");
+		colonLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		colonLabel2.setFont(new Font("宋体", Font.PLAIN, 12));
+		colonLabel2.setBounds(563, 266, 13, 15);
+		add(colonLabel2);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(637, 263, 43, 21);
-		add(textField_8);
+		JLabel fastLabel = new JLabel("次晨特快/元");
+		fastLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		fastLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		fastLabel.setBounds(572, 266, 67, 15);
+		add(fastLabel);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(312, 425, 93, 23);
-		add(button);
+		fastField = new JTextField();
+		fastField.setColumns(10);
+		fastField.setBounds(637, 263, 43, 21);
+		add(fastField);
+		
+		ResultMessage message = logicSer.getConstant();
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			ConstantVO constant = (ConstantVO) message.getMessage();
+			planeField.setText(""+constant.getMaxLoadPlane());
+			trainField.setText(""+constant.getMaxLoadTrain());
+			vanField.setText(""+constant.getMaxLoadVan());
+			planeCostField.setText(""+constant.getPricePlane());
+			trainCostField.setText(""+constant.getPriceTrain());
+			vanCostField.setText(""+constant.getPriceVan());
+			economicField.setText(""+constant.getLvEco());
+			normalField.setText(""+constant.getLvStd());
+			fastField.setText(""+constant.getLvVip());
+		} else if(message.getReInfo().equals(Result.FILE_NOT_FOUND)){
+			planeField.setText("50");
+			trainField.setText("2000");
+			vanField.setText("10");
+			planeCostField.setText("20");
+			trainCostField.setText("0.2");
+			vanCostField.setText("2");
+			economicField.setText("18");
+			normalField.setText("23");
+			fastField.setText("25");
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		}
+		
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(312, 425, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					Result result = logicSer.setConstant(createConstant());
+					if(result.equals(Result.SUCCESS)){
+						frame.dispose();
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					}
+				}
+			}
+		});		
+		add(confirmButton);
 		
 		JButton exitButton = new JButton("取消");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -169,6 +225,105 @@ public class ConstantPanel extends JPanel {
 			}
 		});
 		add(exitButton);
-
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		try{
+			Double.parseDouble(planeField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("飞机满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(planeField.getText())<0){
+			HintFrame hint = new HintFrame("飞机满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(trainField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("火车满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(trainField.getText())<0){
+			HintFrame hint = new HintFrame("火车满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(vanField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("汽车满载量格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(vanField.getText())<0){
+			HintFrame hint = new HintFrame("汽车满载量应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(planeCostField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("飞机运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(planeCostField.getText())<0){
+			HintFrame hint = new HintFrame("飞机运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(trainCostField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("火车运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(trainCostField.getText())<0){
+			HintFrame hint = new HintFrame("火车运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(vanCostField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("汽车运费格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(vanCostField.getText())<0){
+			HintFrame hint = new HintFrame("汽车运费应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(economicField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("经济快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(economicField.getText())<0){
+			HintFrame hint = new HintFrame("经济快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(normalField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("标准快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(normalField.getText())<0){
+			HintFrame hint = new HintFrame("标准快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			Double.parseDouble(fastField.getText());
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("次晨快递格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		if(Double.parseDouble(fastField.getText())<0){
+			HintFrame hint = new HintFrame("次晨快递费用应为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private ConstantVO createConstant(){
+		ConstantVO vo = new ConstantVO(Double.parseDouble(planeField.getText()), Double.parseDouble(trainField.getText()), Double.parseDouble(vanField.getText()), 
+				Double.parseDouble(planeCostField.getText()), Double.parseDouble(trainCostField.getText()), Double.parseDouble(vanCostField.getText()), 
+				Double.parseDouble(economicField.getText()), Double.parseDouble(normalField.getText()), Double.parseDouble(fastField.getText()));
+		return vo;
 	}
 }

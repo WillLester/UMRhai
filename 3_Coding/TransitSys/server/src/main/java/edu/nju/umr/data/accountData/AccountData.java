@@ -39,7 +39,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 			ResultSet result = mysqlSer.checkInfo(new AccountPO(0, keyword, 0));
 			try {
 				while(result.next()){
-					AccountPO account = new AccountPO(result.getInt(0), result.getString(1), result.getDouble(2));
+					AccountPO account = new AccountPO(result.getInt(1), result.getString(2), result.getDouble(3));
 					accountList.add(account);
 				}
 			} catch (SQLException e) {

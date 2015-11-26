@@ -1,149 +1,182 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
+import javax.swing.SwingConstants;
+
+import edu.nju.umr.logic.orderNewLogic.StockOutOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Transit;
+import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.Hints;
+import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockOutPanel extends JPanel {
-	private JTextField textField_1;
-	private JTextField textField;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6797076136600769054L;
+	private JTextField expressField;
+	private JTextField transitIdField;
+	private JComboBox<String> cityCombo;
+	private JComboBox<String> transitCombo;
 	private JFrame frame;
-
+	private DatePanel datePanel;
+	private StockOutOrderLSer logicSer;
+	private String name;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel(JFrame fr) {
+	public StockOutPanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new StockOutOrderLogic();
+		this.name = name;
+		this.orgId = orgId;
 		
-		JLabel lblNewLabel = new JLabel("出库单");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setBounds(392, 10, 243, 67);
-		add(lblNewLabel);
+		JLabel titleLabel = new JLabel("出库单");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setBounds(392, 10, 243, 67);
+		add(titleLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("快递编号");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(355, 87, 120, 24);
-		add(lblNewLabel_2);
+		JLabel expressLabel = new JLabel("快递编号");
+		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		expressLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressLabel.setBounds(355, 87, 120, 24);
+		add(expressLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField_1.setBounds(485, 87, 165, 25);
-		add(textField_1);
-		textField_1.setColumns(10);
+		expressField = new JTextField();
+		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressField.setBounds(485, 87, 165, 25);
+		add(expressField);
+		expressField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("出库日期");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(297, 134, 120, 24);
-		add(lblNewLabel_3);
+		JLabel dateLabel = new JLabel("出库日期");
+		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setBounds(297, 134, 120, 24);
+		add(dateLabel);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner.setBounds(411, 133, 85, 26);
-		add(spinner);
+		datePanel = new DatePanel();
+		datePanel.setBounds(452, 134, 285, 26);
+		add(datePanel);
 		
-		JLabel label = new JLabel("年");
-		label.setFont(new Font("宋体", Font.PLAIN, 20));
-		label.setBounds(506, 135, 25, 22);
-		add(label);
+		String cityList[] = null;
+		ResultMessage result = logicSer.getCities();
+		if(result.equals(Result.SUCCESS)){
+			cityList = (String[]) result.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+		}
+		JLabel cityLabel = new JLabel("目的地");
+		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityLabel.setBounds(355, 179, 85, 24);
+		add(cityLabel);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_1.setBounds(541, 133, 48, 26);
-		add(spinner_1);
+		cityCombo = new JComboBox<String>();
+		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
+		cityCombo.setBounds(431, 179, 87, 25);
+		add(cityCombo);
 		
-		JLabel label_1 = new JLabel("月");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_1.setBounds(599, 135, 25, 22);
-		add(label_1);
+		JLabel transitLabel = new JLabel("装运形式");
+		transitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitLabel.setBounds(541, 179, 85, 24);
+		add(transitLabel);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		spinner_2.setBounds(634, 133, 48, 26);
-		add(spinner_2);
+		transitCombo = new JComboBox<String>();
+		transitCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitCombo.setBounds(634, 179, 87, 25);
+		transitCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"飞机","铁路","公路"}));
+		add(transitCombo);
 		
-		JLabel label_2 = new JLabel("日");
-		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_2.setBounds(693, 135, 25, 22);
-		add(label_2);
+		JLabel transitIdLabel = new JLabel("中转单/汽运编号");
+		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		transitIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdLabel.setBounds(315, 282, 160, 24);
+		add(transitIdLabel);
 		
-		JLabel lblNewLabel_4 = new JLabel("目的地");
-		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(355, 179, 85, 24);
-		add(lblNewLabel_4);
+		transitIdField = new JTextField();
+		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdField.setColumns(10);
+		transitIdField.setBounds(485, 281, 233, 25);
+		add(transitIdField);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox.setBounds(431, 179, 87, 25);
-		add(comboBox);
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(347, 434, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+					}
+				}
+			}
+		});
+		add(confirmButton);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(347, 434, 93, 23);
-		add(button);
-		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(541, 434, 93, 23);
-		button_1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(541, 434, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
-		add(button_1);
-		
-		JLabel label_7 = new JLabel("装运形式");
-		label_7.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_7.setBounds(541, 179, 85, 24);
-		add(label_7);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(634, 179, 87, 25);
-		add(comboBox_1);
-		
-		JLabel label_3 = new JLabel("中转单/汽运编号");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_3.setBounds(315, 282, 160, 24);
-		add(label_3);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(485, 281, 233, 25);
-		add(textField);
-		
-
+		add(cancelButton);
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		if(Utility.isOutOfDate(datePanel.getCalendar())){
+			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		String expressResult = CheckLegal.isExpressLegal(expressField.getText());
+		if(expressResult != null){
+			HintFrame hint = new HintFrame(expressResult, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(transitIdField.getText().equals("")){
+			HintFrame hint = new HintFrame("中转单或汽运编号未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(!Utility.isNumberic(transitIdField.getText())){
+			HintFrame hint = new HintFrame("中转单或汽运编号含有非数字字符！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		} else if((transitIdField.getText().length() != 19)&&(transitIdField.getText().length() != 20)){
+			HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private StockOutVO createVO(){
+		Transit transits[] = Transit.values();
+		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], (String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId);
+		return vo;
 	}
 }

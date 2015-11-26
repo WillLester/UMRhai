@@ -109,5 +109,8 @@ public class BusiCircumPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	void getOrders(){
+		
+	}
 
 }

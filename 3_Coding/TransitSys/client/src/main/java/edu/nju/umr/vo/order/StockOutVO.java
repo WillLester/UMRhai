@@ -9,17 +9,20 @@ public class StockOutVO {
 	private String expressId;
 	private Calendar date;
 	private Transit kind;
+	private String arrivePlace;
 	private String transitId;
 	private String opName;
 	private String stockId;
-	public StockOutVO(String expressId,Calendar date,Transit kind,String transitId,String opName,String stockId) {
-		// TODO 自动生成的构造函数存根
-//		this.id = id;
+	
+	public StockOutVO(String expressId, Calendar date, Transit kind,
+			String arrivePlace, String transitId, String opName, String stockId) {
+		super();
 		this.expressId = expressId;
 		this.date = date;
 		this.kind = kind;
+		this.arrivePlace = arrivePlace;
 		this.transitId = transitId;
-		this.opName=opName;
+		this.opName = opName;
 		this.stockId = stockId;
 	}
 	public String getStockId() {
@@ -39,5 +42,8 @@ public class StockOutVO {
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public String getArrivePlace() {
+		return arrivePlace;
 	}
 }

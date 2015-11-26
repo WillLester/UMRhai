@@ -1,43 +1,29 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import javax.swing.JPanel;
-
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import java.awt.Font;
-
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.UIManager;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
+import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.UserVO;
 
 public class TransitPanel extends JPanel {
 	/**
@@ -52,14 +38,18 @@ public class TransitPanel extends JPanel {
 	private DefaultTableModel model;
 	private JTextField containerField;
 	private JFrame frame;
+	private DatePanel datePanel;
 	private TransitOrderLSer logicSer;
+	private UserVO user;
 	/**
 	 * Create the panel.
 	 */
-	public TransitPanel(JFrame fr) {
+	public TransitPanel(JFrame fr,UserVO user) {
 		setLayout(null);
 		frame = fr;
 		logicSer = new TransitOrderLogic();
+		this.user = user;
+		
 		JLabel titleLabel = new JLabel("生成中转单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -84,38 +74,9 @@ public class TransitPanel extends JPanel {
 		dateLabel.setBounds(297, 121, 120, 24);
 		add(dateLabel);
 		
-		JSpinner yearSpinner = new JSpinner();
-		yearSpinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		yearSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		yearSpinner.setBounds(411, 121, 85, 26);
-		add(yearSpinner);
-		
-		JLabel yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		yearLabel.setBounds(506, 122, 25, 22);
-		add(yearLabel);
-		
-		JSpinner monthSpinner = new JSpinner();
-		monthSpinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		monthSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		monthSpinner.setBounds(541, 122, 48, 26);
-		add(monthSpinner);
-		
-		JLabel monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		monthLabel.setBounds(599, 122, 25, 22);
-		add(monthLabel);
-		
-		JSpinner daySpinner = new JSpinner();
-		daySpinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		daySpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		daySpinner.setBounds(634, 122, 48, 26);
-		add(daySpinner);
-		
-		JLabel dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dayLabel.setBounds(692, 122, 25, 22);
-		add(dayLabel);
+		datePanel = new DatePanel();
+		datePanel.setBounds(452, 121, 285, 26);
+		add(datePanel);
 		
 		JLabel startLabel = new JLabel("出发地");
 		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));

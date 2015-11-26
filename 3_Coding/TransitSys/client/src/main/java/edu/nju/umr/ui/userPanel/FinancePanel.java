@@ -1,20 +1,12 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.accountUI.CountPanel;
 import edu.nju.umr.ui.checkUI.BusiCircumPanel;
@@ -22,10 +14,16 @@ import edu.nju.umr.ui.checkUI.CostBenePanel;
 import edu.nju.umr.ui.checkUI.DiaryListPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.orderNewUI.PaymentPanel;
+import edu.nju.umr.vo.UserVO;
 
 public class FinancePanel extends UserPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5651667612499627695L;
+
 	public FinancePanel(UserVO user,JFrame fr) {
 //		this.user=user;
 //		setBounds(0, 0, 1229, 691);
@@ -145,7 +143,7 @@ public class FinancePanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成付款单");
-				fr.setContentPane(new PaymentPanel(fr));
+				fr.setContentPane(new PaymentPanel(fr,user.getName()));
 			}
 		});
 		

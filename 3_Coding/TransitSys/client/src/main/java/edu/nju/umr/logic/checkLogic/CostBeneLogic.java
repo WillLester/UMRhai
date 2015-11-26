@@ -11,6 +11,8 @@ import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
 import edu.nju.umr.dataService.dataFactory.CostBeneDFacSer;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -33,14 +35,37 @@ public class CostBeneLogic implements CostBeneLSer{
 			e.printStackTrace();
 		}
 	}
-	public ResultMessage getIncome() {
-		// TODO 自动生成的方法存根
-		return null;
+	public ResultMessage totalIncome() {
+		ArrayList<IncomePO> incomeList=null;
+		try {
+			incomeList=costBeneDSer.getIncomes();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		
+		double total=0;
+		for(IncomePO income:incomeList){
+			total+=income.getCost();
+		}
+		return new ResultMessage(Result.SUCCESS,total);
 	}
 
-	public ResultMessage getPayment() {
-		// TODO 自动生成的方法存根
-		return null;
+	public ResultMessage totalPayment() {
+		ArrayList<PaymentPO> paymentList=null;
+		try {
+			paymentList=costBeneDSer.getPayments();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		
+		double total=0;
+		for(PaymentPO payment:paymentList){
+			total+=payment.getAmount();
+		}
+		return new ResultMessage(Result.SUCCESS,total);
 	}
 
 	public Result outputExcel(String location, ArrayList<IncomeVO> income,

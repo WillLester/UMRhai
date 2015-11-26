@@ -55,7 +55,7 @@ public class ShelfPO extends PO implements Serializable{
 			} else {
 				command="select * from shelf where id like %"+id+"% and stockId ='"+stockId+"'";
 			}break;
-		case UPDATE:command="update shelf set stockId='"+stockId+"' row="+row+" place="+place+" part="+part.ordinal()+" where id='"+id+"'";break;
+		case UPDATE:command="update shelf set stockId='"+stockId+"',row="+row+",place="+place+",part="+part.ordinal()+" where id='"+id+"'";break;
 		}
 		return command;
 	}

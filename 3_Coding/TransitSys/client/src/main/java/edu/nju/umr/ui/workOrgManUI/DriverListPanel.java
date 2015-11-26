@@ -1,12 +1,21 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.workOrgManLogic.DriverManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
@@ -16,24 +25,15 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
-import edu.nju.umr.ui.userPanel.UserPanel;
 import edu.nju.umr.vo.DriverVO;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
-
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-
 public class DriverListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8718383258027786192L;
 	private JTextField textFieldSearch;
 	private JFrame frame;
 	private DriverListPanel panel;
@@ -46,12 +46,13 @@ public class DriverListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DriverListPanel(JFrame fr) {
+	@SuppressWarnings("unchecked")
+	public DriverListPanel(JFrame fr,UserVO uservo) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
 		panel=this;
-		user=UserPanel.getUser();
+		user=uservo;
 		serv=new DriverManLogic();
 		
 		JLabel nameLabel = new JLabel("司机信息列表");
@@ -62,12 +63,27 @@ public class DriverListPanel extends JPanel {
 		textFieldSearch = new JTextField();
 		textFieldSearch.setText("请输入关键字或司机编号");
 		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,300, 21);
-		//add(textFieldSearch);
+//		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		JButton search = new JButton("搜索");
 		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 90, 21);
-		//add(search);
+		search.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				ResultMessage message=serv.searchDriver(user.getOrgId());
+				Result result=message.getReInfo();
+				if(!result.equals(Result.SUCCESS))
+				{
+					new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+				}
+				else
+				{
+					driverList=(ArrayList<DriverVO>)message.getMessage();
+					displayDrivers();
+				}
+			}
+		});
+//		add(search);
 		
 		JButton add = new JButton("新增");
 		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
@@ -75,7 +91,7 @@ public class DriverListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				InfoFrame fr=new InfoFrame("新增司机信息输入");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance())));
+				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),user.getOrgId()),user));
 			}
 		});
 		add(add);
@@ -92,7 +108,7 @@ public class DriverListPanel extends JPanel {
 				driverList.remove(table.getSelectedRow());
 				displayDrivers();
 				}
-				else new HintFrame(result,frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);
+				else new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			}
 		});
 		add(delete);
@@ -103,7 +119,7 @@ public class DriverListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				InfoFrame fr=new InfoFrame("修改司机信息");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow())));
+				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow()),user));
 			}
 		});
 		add(modify);
@@ -123,7 +139,7 @@ public class DriverListPanel extends JPanel {
 		add(out);
 		
 		tableInit();
-		driverList=(ArrayList<DriverVO>)serv.searchDriver(/*user.getOrg()*/"").getMessage();
+		driverList=(ArrayList<DriverVO>)serv.searchDriver(user.getOrgId()).getMessage();
 		displayDrivers();
 		
 	}

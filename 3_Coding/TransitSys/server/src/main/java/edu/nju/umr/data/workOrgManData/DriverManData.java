@@ -27,13 +27,9 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		mysqlSer = new MysqlImpl();
 	}
 
-	public ArrayList<DriverPO> findDriver(String keyword,String hallId)
+	public ArrayList<DriverPO> findDriver(String hallId)
 			throws RemoteException {
-		if(keyword == null){
-			return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(null, null, null, null, null, null, null, null, hallId)));
-		} else {
-			return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(keyword, keyword, null, null, null, null, null, null, hallId)));
-		}
+		return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(null, null, null, null, null, null, null, null, hallId)));
 	}
 //	public ArrayList<DriverPO> driverList(){
 //		return null;
@@ -51,10 +47,5 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(driver);
 	}
-
-//	public DriverPO checkDriver(String id) throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		return null;
-//	}
 
 }

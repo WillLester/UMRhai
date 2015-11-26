@@ -40,7 +40,11 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		} else {
 			Jurisdiction juri = EnumFactory.getJuri(keyword);
 			ResultSet result = mysqlSer.checkInfo(new UserPO(keyword, null, juri, keyword, null, keyword, 0, null));
-			return ArrayListFactory.produceUserList(result);
+			if(result != null){
+				return ArrayListFactory.produceUserList(result);
+			} else {
+				return new ArrayList<UserPO>();
+			}
 		}
 	}
 

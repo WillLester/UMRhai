@@ -38,12 +38,12 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 		Part parts[] = Part.values();
 		try {
 			while(result.next()){
-				if(result.getString(10).equals(id)){
+				if(result.getString(11).equals(id)){
 					Calendar date = Calendar.getInstance();
-					date.setTime(result.getDate(7));
+					date.setTime(result.getDate(8));
 					Calendar opTime = Calendar.getInstance();
-					opTime.setTime(result.getDate(9));
-					StockInPO stockIn = new StockInPO(result.getInt(0), result.getString(1), date, result.getString(2), parts[result.getInt(3)], result.getString(4), result.getInt(5), result.getInt(6), opTime, result.getString(9), result.getString(10));
+					opTime.setTime(result.getDate(10));
+					StockInPO stockIn = new StockInPO(result.getInt(1), result.getString(2), date, result.getString(3), parts[result.getInt(4)], result.getString(5), result.getInt(6), result.getInt(7), opTime, result.getString(10), result.getString(11));
 					stockInList.add(stockIn);
 				}
 			}
@@ -64,10 +64,10 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 			while(result.next()){
 				if(result.getString(7).equals(id)){
 					Calendar date = Calendar.getInstance();
-					date.setTime(result.getDate(4));
+					date.setTime(result.getDate(5));
 					Calendar opTime = Calendar.getInstance();
-					opTime.setTime(result.getDate(5));
-					StockOutPO stockOut = new StockOutPO(result.getInt(0), result.getString(1), date, transits[result.getInt(2)], result.getString(3), opTime, result.getString(7), result.getString(8));
+					opTime.setTime(result.getDate(6));
+					StockOutPO stockOut = new StockOutPO(result.getInt(1), result.getString(2), date, transits[result.getInt(3)], result.getString(4), opTime, result.getString(8), result.getString(9));
 					stockOutList.add(stockOut);
 				}
 			}

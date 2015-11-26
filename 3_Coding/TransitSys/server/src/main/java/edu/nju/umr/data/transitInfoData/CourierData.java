@@ -34,14 +34,14 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 		try {
 			if(result.next()){
 				Calendar arrive = Calendar.getInstance();
-				arrive.setTime(result.getDate(17));
+				arrive.setTime(result.getDate(18));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(22));
-				express = new ExpressPO(result.getString(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getString(9), result.getString(10), result.getInt(11), result.getString(12), result.getDouble(13), result.getDouble(14), result.getDouble(15), result.getDouble(24), result.getDouble(16), result.getString(0), arrive, expresses[result.getInt(18)], result.getDouble(19), opTime, result.getString(23));
+				opTime.setTime(result.getDate(23));
+				express = new ExpressPO(result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getInt(12), result.getString(13), result.getDouble(14), result.getDouble(15), result.getDouble(16), result.getDouble(25), result.getDouble(17), result.getString(1), arrive, expresses[result.getInt(19)], result.getDouble(20), opTime, result.getString(24));
 			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();
+			return null;
 		}
 		return express;
 	}
