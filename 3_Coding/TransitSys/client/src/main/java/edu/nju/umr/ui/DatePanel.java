@@ -24,7 +24,7 @@ public class DatePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public DatePanel() {
-		this.setSize(267,21);
+//		this.setSize(267,21);
 		setLayout(null);
 		
 		yearCombo = new JComboBox<String>();
