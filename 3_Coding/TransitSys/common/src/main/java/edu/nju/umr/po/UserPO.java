@@ -64,11 +64,14 @@ public class UserPO extends PO implements Serializable{
 		case DELETE:command="delete from user where id='"+id+"'";break;
 		case FIND:
 			if(name != null){
-				command="select * from user where id like '%"+id+"%' or name like '%"+name+"%' or juri="+juri.ordinal()+" or org like '%"+org+"%'";
-				System.out.println(command);
+				if(juri == null){
+					command="select * from user where id like '%"+id+"%' or name like '%"+name+"%' or org like '%"+org+"%'";
+				} else {
+					command="select * from user where juri="+juri.ordinal();
+				}
 			} else {
 				command = "select * from user where id = '"+id+"'";
-			}
+			} 
 			break;
 		case UPDATE:command="update user set id='"+id+"',password='"+password+"',name='"+name+"',mobile='"+mobile+"',juri="+juri.ordinal()+" where keyid="+key;break;
 		}

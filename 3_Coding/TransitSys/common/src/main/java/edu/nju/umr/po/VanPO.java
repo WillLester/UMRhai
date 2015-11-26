@@ -54,7 +54,7 @@ public class VanPO extends PO implements Serializable{
 			if(id == null){
 				command = "select * from van where hallId = '"+hallId+"'";
 			} else {
-				command="select * from van where id like %"+id+"% or plateNum like %"+plateNum+"% and hallId='"+hallId+"'";
+				command="select * from van where id like '%"+id+"%' or plateNum like '%"+plateNum+"%' and hallId='"+hallId+"'";
 			}
 			break;
 		case UPDATE:command="update van set plateNum='"+plateNum+"',servTime='"+DateFormat.DATE.format(servTime.getTime())+"',photo = 'vanImage/"+hallId+"/"+id+".jpg"+"',hallId = '"+hallId+"' where id='"+id+"'";break;

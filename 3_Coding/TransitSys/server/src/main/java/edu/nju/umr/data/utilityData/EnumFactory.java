@@ -5,7 +5,7 @@ import edu.nju.umr.po.enums.Organization;
 
 public class EnumFactory {
 	public static Jurisdiction getJuri(String value){
-		Jurisdiction juri = Jurisdiction.COURIER;
+		Jurisdiction juri = null;
 		switch(value){
 		case "快递员":juri = Jurisdiction.COURIER;break;
 		case "营业厅业务员":juri = Jurisdiction.HALL;break;
@@ -19,7 +19,7 @@ public class EnumFactory {
 		return juri;
 	}
 	public static Organization getOrg(String value){
-		Organization kind = Organization.HALL;
+		Organization kind = null;
 		switch(value){
 		case "营业厅":kind = Organization.HALL;break;
 		case "中转中心":kind = Organization.CENTER;break;

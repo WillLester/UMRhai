@@ -53,7 +53,13 @@ public class OrgPO extends PO implements Serializable{
 		switch(op){
 		case INSERT:command="insert into org values"+"("+"'"+id+"','"+name+"',"+kind.ordinal()+",'"+location+"','"+city+"','"+cityId+"'"+")";break;
 		case DELETE:command="delete from org where id='"+id+"'";break;
-		case FIND:command="select * from org where id like %"+id+"% or name like %"+name+"% or city like %"+city+"% or kind="+kind.ordinal();break;
+		case FIND:
+			if(kind == null){
+				command="select * from org where id like '%"+id+"%' or name like '%"+name+"%' or city like '%"+city+"%' or kind="+kind.ordinal();
+			} else {
+				command="select * from org where kind = "+kind.ordinal();
+			}
+			break;
 		case UPDATE:command="update org set name = '"+name+"',kind ="+kind.ordinal()+",location='"+location+"',city='"+city+"',cityId='"+cityId+"' where id='"+id+"'";break;
 		}
 		return command;

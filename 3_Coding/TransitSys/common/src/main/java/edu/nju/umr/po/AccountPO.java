@@ -36,7 +36,7 @@ public class AccountPO extends PO implements Serializable{
 		{
 		case INSERT:command = "insert into account values"+"("+id+","+"'"+name+"',"+balance+")";break;
 		case DELETE:command = "delete from account where id="+id;break;
-		case FIND:command = "select * from account where name like %"+name+"%";break;
+		case FIND:command = "select * from account where name like '%"+name+"%'";break;
 		case UPDATE:command = "update account set name='"+name+"',balance="+balance+" where id="+id;break;
 		}
 		return command;
