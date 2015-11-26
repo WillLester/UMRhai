@@ -1,9 +1,15 @@
 package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
+import java.util.ArrayList;
+
+import javax.activation.DataContentHandlerFactory;
+
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
+import edu.nju.umr.po.TransitInfoPO;
+import edu.nju.umr.po.enums.Result;
 
 public class UpdateTransitInfoLogic {
 	UpdateTransitInfoDFacSer dataFac;
@@ -18,12 +24,14 @@ public class UpdateTransitInfoLogic {
 			e.printStackTrace();
 		}
 	}
-	public static boolean update(String id,String info){
-		boolean isSuc=false;
+	public static Result update(String id,ArrayList<String> info){
+		Result isSuc=Result.DATABASE_ERROR;
+		isSuc=data.update(new TransitInfoPO(id, info));
 		return isSuc;
 	}
-	public static boolean addInfo(String id,String info){
-		boolean isSuc = false;
+	public static Result addInfo(String id,ArrayList<String> info){
+		Result isSuc=Result.DATABASE_ERROR;
+		isSuc=data.addInfo(new TransitInfoPO(id, info));
 		return isSuc;
 	}
 }

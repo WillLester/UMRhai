@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.stockLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -21,7 +23,13 @@ public class StockDivideLogic implements StockDivideLSer{
 		try{
 		dataFac=(StockDivideDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockDivide();
-		}catch(Exception e)
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -36,8 +44,7 @@ public class StockDivideLogic implements StockDivideLSer{
 //			isSuccessful=true;
 		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<ShelfVO> arVO=new ArrayList<ShelfVO>();
@@ -72,8 +79,7 @@ public class StockDivideLogic implements StockDivideLSer{
 			isSuccessful=checkData.deleteShelf(id);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;

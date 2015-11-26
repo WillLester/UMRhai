@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.transitInfoLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
@@ -20,9 +22,13 @@ public class CourierLogic implements CourierLSer{
 		try{
 			dataFac=(CourierDFacSer)Naming.lookup(Url.URL);
 			CourierData=dataFac.getCourier();
-		}
-		catch(Exception e)
-		{
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 	}
