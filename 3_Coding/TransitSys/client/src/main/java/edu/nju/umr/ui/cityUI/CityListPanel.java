@@ -55,39 +55,6 @@ public class CityListPanel extends JPanel{
 		cityLabel.setBounds(508, 35, 88, 29);
 		add(cityLabel);
 		
-		cityTable1 = new Table(new DefaultTableModel());
-		model1=(DefaultTableModel)cityTable1.getModel();
-		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
-			}
-		});
-		cityTable1.setBounds(140, 80, 403, 367);
-		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cityTable1.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll1=new JScrollPane(cityTable1);
-		scroll1.setBounds(140, 80, 403, 367);
-		scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"名称"};
-		model1.setColumnIdentifiers(columnNames);
-		add(scroll1);
-		
-		cityTable2 = new Table(new DefaultTableModel());
-		model2=(DefaultTableModel)cityTable2.getModel();
-		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
-			}
-		});
-		cityTable2.setBounds(567, 80, 403, 367);
-		cityTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cityTable2.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll2=new JScrollPane(cityTable2);
-		scroll2.setBounds(567, 80, 403, 367);
-		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		model2.setColumnIdentifiers(columnNames);
-		add(scroll2);
-		
 		JLabel nameLabel = new JLabel("城市名");
 		nameLabel.setFont(new Font("宋体", Font.PLAIN, 15));
 		nameLabel.setBounds(313, 471, 54, 23);
@@ -138,22 +105,37 @@ public class CityListPanel extends JPanel{
 		add(distanceField);
 		distanceField.setColumns(10);
 		
-		ResultMessage cityResult = logicSer.cityList();
-		if(cityResult.equals(Result.SUCCESS)){
-			cityList = (ArrayList<CityVO>) cityResult.getMessage();
-		} else {
-			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-		}
-		ResultMessage citiesResult = logicSer.citiesList();
-		
-		
 		JButton addButton = new JButton("新增城市");
 		addButton.setBounds(334, 566, 93, 23);
+		addButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String newInfo[] = new String[3];
+				for(int i = 0;i < 3;i++){
+					newInfo[i] = "";
+				}
+				model1.addRow(newInfo);
+				cityTable1.getSelectionModel().setSelectionInterval(model1.getRowCount()-1, model1.getRowCount()-1);
+				model2.addRow(newInfo);
+				cityTable2.getSelectionModel().setSelectionInterval(model2.getRowCount()-1, model2.getRowCount()-1);
+			}
+		});
 		add(addButton);
 		
 		JButton deleteButton = new JButton("删除城市");
 		deleteButton.setBounds(450, 566, 93, 23);
+		deleteButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(cityTable1.getSelectedRow() == -1){
+					
+				}
+			}
+		});
 		add(deleteButton);
 		
 		JButton confirmButton = new JButton("确认修改");
@@ -173,6 +155,82 @@ public class CityListPanel extends JPanel{
 			}
 		});
 		add(exitButton);
-
+		
+		cityTable1 = new Table(new DefaultTableModel());
+		model1=(DefaultTableModel)cityTable1.getModel();
+		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false){
+					if(cityTable2.getSelectedRow() == -1){
+						addButton.setEnabled(true);
+						deleteButton.setEnabled(true);
+						nameField.setEnabled(true);
+						idField.setEnabled(true);
+						provinceField.setEnabled(true);
+						distanceField.setEnabled(false);
+						priceField.setEnabled(false);
+					} else {
+						addButton.setEnabled(false);
+						deleteButton.setEnabled(false);
+						nameField.setEnabled(false);
+						idField.setEnabled(false);
+						provinceField.setEnabled(false);
+						distanceField.setEnabled(false);
+						priceField.setEnabled(false);
+					}
+				}
+			}
+		});
+		cityTable1.setBounds(140, 80, 403, 367);
+		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cityTable1.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll1=new JScrollPane(cityTable1);
+		scroll1.setBounds(140, 80, 403, 367);
+		scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		String[] columnNames={"城市名","区号","省份"};
+		model1.setColumnIdentifiers(columnNames);
+		add(scroll1);
+		
+		cityTable2 = new Table(new DefaultTableModel());
+		model2=(DefaultTableModel)cityTable2.getModel();
+		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
+		cityTable2.setBounds(567, 80, 403, 367);
+		cityTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cityTable2.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scroll2=new JScrollPane(cityTable2);
+		scroll2.setBounds(567, 80, 403, 367);
+		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		model2.setColumnIdentifiers(columnNames);
+		add(scroll2);
+		
+		ResultMessage cityResult = logicSer.cityList();
+		if(cityResult.equals(Result.SUCCESS)){
+			cityList = (ArrayList<CityVO>) cityResult.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		}
+		displayTable();
+		ResultMessage citiesResult = logicSer.citiesList();
+		if(citiesResult.equals(Result.SUCCESS)){
+			citiesList = (ArrayList<CitiesVO>) citiesResult.getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(citiesResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		}
+	}
+	private void displayTable(){
+		for(CityVO city:cityList){
+			String cityInfo[] = new String[3];
+			cityInfo[0] = city.getName();
+			cityInfo[1] = city.getId();
+			cityInfo[2] = city.getProvince();	
+			model1.addRow(cityInfo);
+			model2.addRow(cityInfo);
+		}
 	}
 }

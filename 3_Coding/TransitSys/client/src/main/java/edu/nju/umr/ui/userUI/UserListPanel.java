@@ -29,6 +29,10 @@ import edu.nju.umr.vo.UserVO;
 
 
 public class UserListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3156670290800175855L;
 	private JTextField textField;
 	private JTextField idField;
 	private JTextField passwordField;
@@ -38,7 +42,7 @@ public class UserListPanel extends JPanel {
 	private JTextField orgField;
 	private Table table;
 	private DefaultTableModel model;
-	private JComboBox juriBox;
+	private JComboBox<String> juriBox;
 	
 	private JFrame frame;
 	private UserManLSer serv;
@@ -187,8 +191,8 @@ public class UserListPanel extends JPanel {
 //		juriField.setBounds(855,221,200,24);
 //		add(juriField);
 		
-		juriBox = new JComboBox();
-		juriBox.setModel(new DefaultComboBoxModel(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","中转中心仓库管理人员"}));
+		juriBox = new JComboBox<String>();
+		juriBox.setModel(new DefaultComboBoxModel<String>(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","中转中心仓库管理人员"}));
 		juriBox.setFont(new Font("宋体", Font.PLAIN, 12));
 		juriBox.setBounds(855, 221, 200, 24);
 		add(juriBox);
@@ -220,7 +224,7 @@ public class UserListPanel extends JPanel {
 		add(mobileField);
 		
 		tableInit();
-		users=getUsers(null);
+		users=getUsers("admin");
 		displayUsers();
 	}
 	private void tableInit(){
