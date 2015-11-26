@@ -105,4 +105,16 @@ public class CityLogic implements CityLSer{
 		return Result.SUCCESS;
 	}
 
+	public ResultMessage citiesList() {
+		ArrayList<CitiesPO> city=null;
+		try {
+			city=cityData.getCitiesInfo();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		return new ResultMessage(Result.SUCCESS,city);
+	}
+
 }
