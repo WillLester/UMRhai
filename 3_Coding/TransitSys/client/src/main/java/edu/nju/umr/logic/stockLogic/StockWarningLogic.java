@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.stockLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -19,7 +21,13 @@ public class StockWarningLogic implements StockWarningLSer{
 		try{
 			dataFac=(StockWarningDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockWarning();
-			}catch(Exception e)
+			}catch (NotBoundException e) { 
+	            e.printStackTrace(); 
+	        } catch (MalformedURLException e) { 
+	            e.printStackTrace(); 
+	        } catch (RemoteException e) { 
+	            e.printStackTrace();   
+	        } catch(Exception e)
 			{
 				e.printStackTrace();
 			}
@@ -48,17 +56,17 @@ public class StockWarningLogic implements StockWarningLSer{
 
 	public ResultMessage getWarning(String id) {
 		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		ArrayList<Integer> ar=new ArrayList<Integer>();
 		try{
 			ar=checkData.getWarning(id);
-//			isSuccessful=true;
+			isSuccessful=Result.SUCCESS;
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e)	{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,ar);
+		ResultMessage message=new ResultMessage(isSuccessful,ar);
 		return message;
 	}
 

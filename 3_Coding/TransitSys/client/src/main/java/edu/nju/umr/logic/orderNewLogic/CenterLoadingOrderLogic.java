@@ -14,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
+import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
@@ -22,7 +23,6 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	CenterLoadingOrderDSer centerData;
 	UtilityLogic uti;
 	public CenterLoadingOrderLogic() {
-		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			centerData = dataFac.getCenterLoadingOrder();
@@ -43,6 +43,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return Result.NET_INTERRUPT;
 		}
 		
 		return isSuc;
@@ -58,7 +59,16 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, halls);
-		return uti.getHall();
+		ResultMessage rm=uti.getHall();
+		if(rm.getReInfo()!=Result.SUCCESS){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<OrgVO> halls=(ArrayList<OrgVO>)rm.getMessage();
+		OrgVO hallArray[]=new OrgVO[halls.size()];
+		for(int i=0;i<halls.size();i++){
+			hallArray[i]=halls.get(i);
+		}
+		return new ResultMessage(Result.SUCCESS,hallArray);
 	}
 
 }

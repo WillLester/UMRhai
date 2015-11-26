@@ -18,7 +18,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class DriverManLogic implements DriverManLSer{
 	DriverManDFacSer dataFac;
 	DriverManDSer driverData;
-	
+
 	public DriverManLogic(){
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup(Url.URL);
@@ -114,14 +114,13 @@ public class DriverManLogic implements DriverManLSer{
 		// TODO 自动生成的方法存根
 		System.out.println("ADASDASDS");
 		ArrayList<DriverPO> ar=null;
-		Result result=Result.SUCCESS;
+		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=driverData.findDriver(hallId);
 			result=Result.SUCCESS;
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<DriverVO> arVO=new ArrayList<DriverVO>();

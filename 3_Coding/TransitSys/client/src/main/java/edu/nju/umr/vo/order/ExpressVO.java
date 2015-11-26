@@ -5,6 +5,7 @@ import java.util.Calendar;
 import edu.nju.umr.po.enums.Express;
 
 public class ExpressVO {
+	private String id;
 	private String sender;
 	private String sendLoc;
 	private String receiver;
@@ -26,14 +27,16 @@ public class ExpressVO {
 	private Calendar arrive;
 	private Express kind;
 	private double cost;
+	private String opName;
 	
-	public ExpressVO(String sender, String sendLoc, String receiver,
+	public ExpressVO(String id,String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			 Calendar arrive, Express kind, double cost) {
+			 Calendar arrive, Express kind, double cost,String opName) {
 		super();
+		this.id=id;
 		this.sender = sender;
 		this.sendLoc = sendLoc;
 		this.receiver = receiver;
@@ -55,6 +58,10 @@ public class ExpressVO {
 		this.arrive = arrive;
 		this.kind = kind;
 		this.cost = cost;
+		this.opName=opName;
+	}
+	public String getId(){
+		return id;
 	}
 	public String getSender() {
 		return sender;
@@ -119,5 +126,9 @@ public class ExpressVO {
 	public String getReceiveUnit() {
 		return receiveUnit;
 	}
+	public String getOpName(){
+		return opName;
+	}
+	
 	
 }
