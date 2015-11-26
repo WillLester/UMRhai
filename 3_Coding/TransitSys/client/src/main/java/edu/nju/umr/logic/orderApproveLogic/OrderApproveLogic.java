@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
@@ -23,30 +24,32 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDSer approveData;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
-		try{
-			dataFac = (OrderApproveDFacSer)Naming.lookup(Url.URL);
-			approveData = dataFac.getOrderApprove();
-		} catch (NotBoundException e) { 
-            e.printStackTrace(); 
-        } catch (MalformedURLException e) { 
-            e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+//		try{
+//			dataFac = (OrderApproveDFacSer)Naming.lookup(Url.URL);
+//			approveData = dataFac.getOrderApprove();
+//		} catch (NotBoundException e) { 
+//            e.printStackTrace(); 
+//        } catch (MalformedURLException e) { 
+//            e.printStackTrace(); 
+//        } catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 	}
 	public ResultMessage askExamine() {
 		// TODO 自动生成的方法存根
 		ArrayList<OrderVO> orders = new ArrayList<OrderVO>();
-		try {
-			ArrayList<OrderPO> orderList = approveData.getExamine();
-			for(OrderPO order:orderList){
-				OrderVO vo = new OrderVO( order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
-				orders.add(vo);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		try {
+//			ArrayList<OrderPO> orderList = approveData.getExamine();
+//			for(OrderPO order:orderList){
+//				OrderVO vo = new OrderVO( order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
+//				orders.add(vo);
+//			}
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+		orders.add(new OrderVO("id",Order.ARRIVE,"haha","hongkong",Calendar.getInstance()));
+		orders.add(new OrderVO("id2",Order.ARRIVE,"haha","hongkong",Calendar.getInstance()));
 		return new ResultMessage(Result.SUCCESS, orders);
 	}
 
