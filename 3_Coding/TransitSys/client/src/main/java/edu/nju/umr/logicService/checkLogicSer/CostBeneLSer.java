@@ -8,7 +8,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public interface CostBeneLSer {
-	public ResultMessage getIncome();
-	public ResultMessage getPayment();
+	public ResultMessage totalIncome();
+	public ResultMessage totalPayment();
 	public Result outputExcel(String location,ArrayList<IncomeVO> income,ArrayList<PaymentVO> payment);
 }
