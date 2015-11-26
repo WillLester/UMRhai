@@ -10,15 +10,18 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
 public class IncomeListLogic implements IncomeListLSer{
 	CollectFormDFacSer dataFac;
 	CollectRecordDSer collectData;
+	UtilityLogic uti;
 	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -55,6 +58,12 @@ public class IncomeListLogic implements IncomeListLSer{
 			total = total + in.getCost();
 		}
 		return new ResultMessage(Result.SUCCESS, total);
+	}
+	//返回所有的营业厅列表
+	public ResultMessage getHall() {
+		
+		return uti.getHall();
+		 
 	}
 
 }
