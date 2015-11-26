@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.workOrgManLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -26,8 +28,13 @@ public class OrgManLogic implements OrgManLSer{
 			dataFac=(OrgManDFacSer)Naming.lookup(Url.URL);
 			orgData=dataFac.getOrgMan();
 			uti=new UtilityLogic();
-		}catch(Exception e)
-		{
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        } catch (RemoteException e) { 
+            e.printStackTrace();   
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 	}
@@ -37,6 +44,8 @@ public class OrgManLogic implements OrgManLSer{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
 		}catch(RemoteException e)
 		{
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -49,6 +58,8 @@ public class OrgManLogic implements OrgManLSer{
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return isSuccessful;
 	}
@@ -59,6 +70,8 @@ public class OrgManLogic implements OrgManLSer{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
 		}catch(RemoteException e)
 		{
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -109,6 +122,8 @@ public class OrgManLogic implements OrgManLSer{
 			isSuccessful=true;
 		}
 		catch(RemoteException e){
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();

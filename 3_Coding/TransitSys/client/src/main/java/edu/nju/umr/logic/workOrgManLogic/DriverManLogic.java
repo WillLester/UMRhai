@@ -40,6 +40,8 @@ public class DriverManLogic implements DriverManLSer{
 		try
 		{
 			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveStart(),Driver.getDriveEnd(),Driver.getHallId()));
+		}catch (RemoteException e) {
+			return Result.NET_INTERRUPT;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -51,6 +53,8 @@ public class DriverManLogic implements DriverManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try {
 			isSuccessful=driverData.deleteDriver(id);
+		}catch (RemoteException e) {
+			return Result.NET_INTERRUPT;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -64,6 +68,8 @@ public class DriverManLogic implements DriverManLSer{
 		try
 		{
 			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveStart(),Driver.getDriveEnd(),Driver.getHallId()));
+		}catch (RemoteException e) {
+			return Result.NET_INTERRUPT;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -114,6 +120,8 @@ public class DriverManLogic implements DriverManLSer{
 		try{
 			ar=driverData.findDriver(keyword,hallId);
 			result=Result.SUCCESS;
+		}catch (RemoteException e) {
+			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
