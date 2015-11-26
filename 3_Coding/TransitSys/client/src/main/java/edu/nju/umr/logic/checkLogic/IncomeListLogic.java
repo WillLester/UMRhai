@@ -14,7 +14,6 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
@@ -40,7 +39,7 @@ public class IncomeListLogic implements IncomeListLSer{
 		try {
 			ArrayList<IncomePO> income = collectData.getCollectRec(date, hallId);
 			for(IncomePO po:income){
-				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
+				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(),po.getOpName(),po.getOrgId());
 				incomeList.add(vo);
 			}
 		} catch (RemoteException e) {

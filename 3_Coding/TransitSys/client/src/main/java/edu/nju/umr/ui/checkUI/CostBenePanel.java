@@ -8,8 +8,12 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.CostBeneVO;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
+import edu.nju.umr.po.enums.Result;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -29,6 +33,7 @@ public class CostBenePanel extends JPanel {
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
+	private CostBeneLSer serv;
 	/**
 	 * Create the panel.
 	 */
@@ -47,6 +52,11 @@ public class CostBenePanel extends JPanel {
 //		collectTable.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
 //		add(collectTable);
 		
+//		JButton export = new JButton("导出");
+//		export.setBounds(550-Constants.BUTTON_WIDTH/2, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+//		
+//		add(export);
+		
 		JButton out = new JButton("退出");
 		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		out.addActionListener(new ActionListener(){
@@ -57,7 +67,7 @@ public class CostBenePanel extends JPanel {
 		});
 		add(out);
 		tableInit();
-		showData();
+//		showData();
 
 	}
 	void tableInit(){
@@ -79,13 +89,23 @@ public class CostBenePanel extends JPanel {
 		add(scroll);
 	}
 	private void showData(){
-		
+		ResultMessage message=serv.getCostBene();
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+			return;
+		}
+		CostBeneVO temp=(CostBeneVO)message.getMessage();
+		String[] data=new String[]{Double.toString(temp.getIncome()),Double.toString(temp.getPayment()),Double.toString(temp.getBenefit())};
+		model.setRowCount(0);
+		model.addRow(data);
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new CostBenePanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
+	public static void main(String[] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setContentPane(new CostBenePanel(frame));
+		frame.setSize(1200,800);
+		frame.setVisible(true);
+	}
 }

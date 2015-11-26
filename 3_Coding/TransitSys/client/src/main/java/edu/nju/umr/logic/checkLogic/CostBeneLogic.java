@@ -84,7 +84,7 @@ public class CostBeneLogic implements CostBeneLSer{
 			double in=(double)income.getMessage();
 			double pay=(double)payment.getMessage();
 			CostBeneVO cb=new CostBeneVO(in,pay,in-pay);
-			return new ResultMessage(Result.SUCCESS,null);
+			return new ResultMessage(Result.SUCCESS,cb);
 		}
 		
 		
