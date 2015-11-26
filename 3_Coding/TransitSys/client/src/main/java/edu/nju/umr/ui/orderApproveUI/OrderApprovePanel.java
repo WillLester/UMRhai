@@ -2,9 +2,7 @@ package edu.nju.umr.ui.orderApproveUI;
 
 import java.awt.Font;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,31 +12,18 @@ import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Calendar;
 
-import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
-import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
-import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.OrderVO;
-import edu.nju.umr.po.enums.Order;
 
 public class OrderApprovePanel extends JPanel{
+//	private JTable orderList;
 	private Table table;
 	private DefaultTableModel model;
 	private JFrame frame;
-	private OrderApproveLSer serv;
-	private ArrayList<OrderVO> orderList;
 
 	/**
 	 * Create the panel.
@@ -46,73 +31,40 @@ public class OrderApprovePanel extends JPanel{
 	public OrderApprovePanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
-		serv=new OrderApproveLogic();
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
 		approveLabel.setBounds(505, 40, 93, 24);
 		add(approveLabel);
 		
+//		orderList = new JTable();
+//		orderList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+//		orderList.setBounds(193, 71, 717, 421);
+//		add(orderList);
+		
 		JButton allButton = new JButton("全选");
 		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		allButton.setBounds(927, 103, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		allButton.addActionListener(new ActionListener(){@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			chooseAll();
-		}});
 		add(allButton);
 		
 		JButton passedButton = new JButton("通过审批");
 		passedButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		passedButton.setBounds(927, 159, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		passedButton.addActionListener(new ActionListener(){@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			approve(true);
-			dataInit();
-		}});
 		add(passedButton);
 		
 		JButton unpassedButton = new JButton("不通过审批");
 		unpassedButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		unpassedButton.setBounds(927, 215, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		unpassedButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				approve(false);
-				dataInit();
-			}
-		});
 		add(unpassedButton);
 		
-		JButton checkButton = new JButton("查看修改");
+		JButton checkButton = new JButton("查看详细");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		checkButton.setBounds(927, 271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		checkButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		add(checkButton);
-		
-		JButton refreshButton = new JButton("刷新");
-		refreshButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		refreshButton.setBounds(927, 327, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		refreshButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
-				dataInit();
-			}
-		});
-		add(refreshButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(927, 383, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		exitButton.setBounds(927, 327, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -121,87 +73,24 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(exitButton);
 		tableInit();
-		dataInit();
 
 	}
-	private void tableInit(){
+	void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
-		table.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				if(e.getClickCount()>= 1){
-				int row = table.rowAtPoint(e.getPoint()); 
-					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
-						table.setValueAt(false,row, 0);
-					}
-					else
-						table.setValueAt(true,row, 0);
-			}}});
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false);
+			}
+		});
 		table.setBounds(193, 71, 717, 421);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"是否选中","时间","种类","提交人"};
+		String[] columnNames={"时间","种类","提交机构","提交人"};
 		model.setColumnIdentifiers(columnNames);
-		TableColumnModel tcm = table.getColumnModel();
-		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		add(scroll);
-	}
-	private void dataInit(){
-		ResultMessage message=serv.askExamine();
-		Result result=message.getReInfo();
-		if(!result.equals(Result.SUCCESS))
-		{
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-			return;
-		}
-		orderList=(ArrayList<OrderVO>)message.getMessage();
-		displayOrders();
-	}
-	private void displayOrders(){
-		model.setRowCount(0);
-		String[] kind=new String[]{"中转中心到达单","中转中心装车单","快递单","营业厅装车单","入款单","付款单","收件单",
-				"营业厅到达单","派件单","入库单","出库单","中转单"};
-		for(int i=0;i<orderList.size();i++){
-			OrderVO temp=orderList.get(i);
-			int k=0;
-			for(Order order:Order.values())
-			{
-				if(temp.getKind().equals(order))break;
-				k++;
-			}
-			Calendar time=temp.getTime();
-			String timeString=time.get(Calendar.YEAR)+"年"+(time.get(Calendar.MONTH)+1)+"月"+time.get(Calendar.DATE)+"日";
-			model.addRow(new Object[]{new Boolean(false),timeString,kind[k],temp.getOperator()});
-		}
-	}
-	private void approve(boolean ispassed){
-		ArrayList<String> idList=new ArrayList<String>();
-		for(int i=0;i<orderList.size();i++)
-		{
-			if((Boolean)table.getValueAt(i, 0))
-			{
-				idList.add(orderList.get(i).getId());
-			}
-		}
-		Result result=serv.examine(ispassed, idList);
-		if(!result.equals(Result.SUCCESS)){
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-		}
-	}
-	private void chooseAll(){
-		for(int i=0;i<orderList.size();i++)
-		{
-			table.setValueAt(true,i,0);
-		}
-	}
-	public static void main(String[] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new OrderApprovePanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
 	}
 }
