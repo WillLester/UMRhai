@@ -39,7 +39,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), "s", order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress(),Calendar.getInstance(),order.getOpName()));
+			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), "s", order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress(),Calendar.getInstance(),order.getOpName(),order.getCost()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

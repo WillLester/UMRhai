@@ -22,10 +22,11 @@ public class CenterLoadingPO extends PO implements Serializable{
 	private ArrayList<String> express;
 	private Calendar opTime;
 	private String opName;
+	private double cost;
 	
 	public CenterLoadingPO(Calendar date, String id, String target,
 			String vanId, String supervision, String escort,
-			ArrayList<String> express, Calendar opTime, String opName) {
+			ArrayList<String> express, Calendar opTime, String opName,double cost) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -36,6 +37,7 @@ public class CenterLoadingPO extends PO implements Serializable{
 		this.express = express;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.cost=cost;
 	}
 	public Calendar getDate() {
 		return date;
@@ -63,6 +65,9 @@ public class CenterLoadingPO extends PO implements Serializable{
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public double getCost(){
+		return cost;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {

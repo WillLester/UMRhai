@@ -12,11 +12,12 @@ import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.OrderPO;
-import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.ArriveVO;
+import edu.nju.umr.vo.order.CenterLoadingVO;
 import edu.nju.umr.vo.order.OrderVO;
-import edu.nju.umr.vo.order.PaymentVO;
 
 public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDFacSer dataFac;
@@ -52,7 +53,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 
 	public Result examine(boolean approve, ArrayList<String> id) {
 		
-		Result isSuc = Result.SUCCESS;
+		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			isSuc = approveData.update(approve,id,Order.ARRIVE);
 		} catch (RemoteException e) {
@@ -64,17 +65,39 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {
-		PaymentVO order = null;
-		try {
-			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
-			System.out.println(orderpo.getId());
-			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks(),order.getOpName());
+		switch(kind){
+		case ARRIVE:
+			ArriveVO arrive=null;
+			Result arriveSuc=Result.DATA_NOT_FOUND;
+			try {
+				ArrivePO Arrivepo=(ArrivePO)approveData.getOrder(id, kind);
+				if(Arrivepo!=null)
+					arriveSuc=Result.SUCCESS;
+				arrive=new ArriveVO(Arrivepo.getCenterId(), Arrivepo.getDate(), Arrivepo.getStartPlace(), Arrivepo.getState(), Arrivepo.getOpName());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(arriveSuc,arrive);
+		
+		case CENTERLOADING:
+			CenterLoadingVO centerLoad=null;
+			Result centerLoadSuc=Result.DATA_NOT_FOUND;
 			
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		return new ResultMessage(Result.SUCCESS, order);
+		
+		
+//		PaymentVO order = null;
+//		try {
+//			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
+//			System.out.println(orderpo.getId());
+//			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks(),order.getOpName());
+//			
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			return new ResultMessage(Result.NET_INTERRUPT,null);
+//		}
+		return null;
 	}
 	
 }
