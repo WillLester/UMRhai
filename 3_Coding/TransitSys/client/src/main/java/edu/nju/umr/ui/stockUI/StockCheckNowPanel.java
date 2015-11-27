@@ -46,6 +46,8 @@ public class StockCheckNowPanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		this.orgId = orgId;
+		logicSer = new StockCheckNowLogic();
+		
 		JLabel checkLabel = new JLabel("库存盘点");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
 		checkLabel.setBounds(504, 31, 95, 24);
@@ -115,8 +117,12 @@ public class StockCheckNowPanel extends JPanel{
 		String[] columnNames={"快递编号","入库日期","目的地","区号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
-		logicSer = new StockCheckNowLogic();
+		
+		displayTable();
+	}
+	private void displayTable(){
 		ResultMessage message = logicSer.checkNow(orgId);
+		model.setRowCount(0);
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			StockVO stock = (StockVO)message.getMessage();
 			goodList = stock.getGoods();

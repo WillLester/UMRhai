@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
-import edu.nju.umr.data.utilityData.EnumFactory;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.utility.EnumTransFactory;
 /*
  * 用户管理数据
  */
@@ -38,7 +38,7 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 		if(keyword == null){
 			return (ArrayList<UserPO>) mysqlSer.checkAll(POKind.USER);
 		} else {
-			Jurisdiction juri = EnumFactory.getJuri(keyword);
+			Jurisdiction juri = EnumTransFactory.getJuri(keyword);
 			ResultSet result = mysqlSer.checkInfo(new UserPO(keyword, null, juri, keyword, null, keyword, 0, null));
 			if(result != null){
 				return ArrayListFactory.produceUserList(result);
