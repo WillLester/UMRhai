@@ -18,6 +18,7 @@ import edu.nju.umr.logic.transitInfoLogic.CustomerLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -102,7 +103,7 @@ public class TransitInfoInqPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				textArea.setText("");
+				frame.setContentPane(new LoginPanel(frame));
 			}
 		});
 		add(cancelButton);
