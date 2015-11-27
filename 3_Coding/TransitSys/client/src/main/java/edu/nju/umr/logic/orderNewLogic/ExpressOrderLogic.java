@@ -44,10 +44,10 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 //		try {
 //			isSuc = expressData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), order.getId(), order.getArrive(), order.getKind(), order.getCost()));
 //		} catch (RemoteException e) {
-	//		// TODO 自动生成的 catch 块
+//		// TODO 自动生成的 catch 块
 //			e.printStackTrace();
-	//	}
-		return Result.SUCCESS;
+//	}
+		return isSuc;
 	}
 
 }

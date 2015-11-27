@@ -41,7 +41,9 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return Result.NET_INTERRUPT;
-		}
+		} catch (Exception e) { 
+            e.printStackTrace();   
+        } 
 		
 		return isSuc;
 	}

@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
+
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
@@ -38,8 +39,9 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
 			isSuc=hallData.create(new HallLoadingPO("",order.getHallId(),order.getConvertId(),order.getArriveLoc(),order.getVanId(),order.getSupervision(),order.getEscort(),order.getExpress(),order.getDate(),Calendar.getInstance(),order.getOpName()));
-		}
-		catch(Exception e){
+		} catch (RemoteException e) { 
+            return Result.NET_INTERRUPT;
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuc;
@@ -56,7 +58,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		return uti.getOrgs();
 	}
 
-	public ResultMessage getVans() {
+	public ResultMessage getVans(String orgId) {
 		// TODO 自动生成的方法存根
 //		ArrayList<String> vans = null;
 //		try {
@@ -66,7 +68,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 //			e.printStackTrace();
 //		}
 //		return new ResultMessage(Result.SUCCESS, vans);
-		return uti.getVans("");
+		return uti.getVans(orgId);
 	}
 	
 	@Override
