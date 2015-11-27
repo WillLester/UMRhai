@@ -8,11 +8,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JFrame;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -28,18 +25,38 @@ import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.*;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.ui.orderNewUI.*;
 
 public class OrderApprovePanel extends JPanel{
-	private Table table;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ApproveTable table;
 	private DefaultTableModel model;
 	private JFrame frame;
 	private OrderApproveLSer serv;
 	private ArrayList<OrderVO> orderList;
 
+	
+	
+	class MyTableModel extends DefaultTableModel {
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		public Class getColumnClass(int c) {
+	        if(c==0)return new Boolean(true).getClass();
+	        return new String().getClass();
+	        
+	    }
+	}
 	/**
 	 * Create the panel.
 	 */
@@ -87,14 +104,14 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(unpassedButton);
 		
-		JButton checkButton = new JButton("查看修改");
+		JButton checkButton = new JButton("查看详细");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		checkButton.setBounds(927, 271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		checkButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				checkOrder();
 			}
 		});
 		add(checkButton);
@@ -125,11 +142,11 @@ public class OrderApprovePanel extends JPanel{
 
 	}
 	private void tableInit(){
-		table = new Table(new DefaultTableModel());
-		model=(DefaultTableModel)table.getModel();
+		table = new ApproveTable(new MyTableModel());
+		model=(MyTableModel)table.getModel();
 		table.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				if(e.getClickCount()>= 1){
+				if(e.getClickCount()>= 1&&table.columnAtPoint(e.getPoint())==0){
 				int row = table.rowAtPoint(e.getPoint()); 
 					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
 						table.setValueAt(false,row, 0);
@@ -149,6 +166,7 @@ public class OrderApprovePanel extends JPanel{
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		add(scroll);
 	}
+	@SuppressWarnings("unchecked")
 	private void dataInit(){
 		ResultMessage message=serv.askExamine();
 		Result result=message.getReInfo();
@@ -197,11 +215,39 @@ public class OrderApprovePanel extends JPanel{
 			table.setValueAt(true,i,0);
 		}
 	}
-	public static void main(String[] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new OrderApprovePanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
+	private void checkOrder(){
+		OrderVO order=orderList.get(table.getSelectedRow());
+		Order kind=order.getKind();
+		String id=order.getId();
+		ResultMessage message=serv.chooseOrder(id, kind);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+			return;
+		}
+		switch(kind)
+		{
+		case ARRIVE:break;
+		case CENTERLOADING:break;
+		case EXPRESS:break;
+		case HALLLOADING:break;
+		case INCOME:break;
+		case PAYMENT:break;
+		case RECEIVE:break;
+		case RECIPIENT:break;
+		case SEND:break;
+		case STOCKIN:break;
+		case STOCKOUT:break;
+		case TRANSIT:break;
+		}
+		
 	}
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new OrderApprovePanel(frame));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//	}
 }
