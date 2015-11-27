@@ -30,18 +30,16 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		}
 	}
 	public Result create(StockOutVO order) {
-//		boolean isSuccessful=false;
+		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
 			StockOutPO orderPO=new StockOutPO(1,order.getExpressId(),order.getDate(),order.getKind(),order.getArrivePlace(),order.getTransitId(),Calendar.getInstance(),order.getOpName(),order.getStockId());
-			stockoutData.create(orderPO);
-//			isSuccessful=true;
+			isSuccessful=stockoutData.create(orderPO);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuccessful;
 	}
 
 	public ResultMessage getCities() {

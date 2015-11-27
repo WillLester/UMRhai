@@ -29,7 +29,7 @@ public class UserManLogic implements UserManLSer{
 	}
 	
 	public Result newUser(UserVO user) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATABASE_ERROR;
 			try {
 				if(userData.checkIsUsed(user.getId())==Result.SUCCESS)
 					isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
@@ -42,7 +42,7 @@ public class UserManLogic implements UserManLSer{
 	}
 
 	public Result deleteUser(String id) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=userData.deleteUser(id);
 		}catch(RemoteException e)
@@ -54,7 +54,7 @@ public class UserManLogic implements UserManLSer{
 	}
 
 	public Result reviseUser(UserVO user,int index) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		UserPO userpo=users.get(index);
 		try{
 			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),userpo.getKey(),user.getOrgId()));
@@ -67,7 +67,7 @@ public class UserManLogic implements UserManLSer{
 	}
 
 	public ResultMessage findUser(String keyword) {
-		Result isSuccessful=Result.SUCCESS;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			users=userData.findUser(keyword);
 			isSuccessful=Result.SUCCESS;

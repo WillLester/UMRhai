@@ -12,8 +12,9 @@ public class HallLoadingVO {
 	private String escort;
 	private ArrayList<String> express;
 	private double cost;
-	private Calendar calendar;
-	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost,Calendar cal) {
+	private Calendar date;
+	private String opName;
+	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost,Calendar date,String opName) {
 		// TODO 自动生成的构造函数存根
 		this.hallId = hallId;
 		this.convertId = convertId;
@@ -23,7 +24,8 @@ public class HallLoadingVO {
 		this.escort = escort;
 		this.express = express;
 		this.cost=cost;
-		this.calendar=cal;
+		this.date=date;
+		this.opName=opName;
 	}
 	public String getHallId() {
 		return hallId;
@@ -48,6 +50,12 @@ public class HallLoadingVO {
 	}
 	public double getCost(){
 		return cost;
+	}
+	public String getOpName() {
+		return opName;
+	}
+	public Calendar getDate() {
+		return date;
 	}
 	
 }
