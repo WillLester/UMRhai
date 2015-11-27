@@ -137,6 +137,7 @@ public class StockDividePanel extends JPanel{
 				}
 				model.addRow(blank);
 				table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
+				idField.setText(generateId());
 			}
 		});
 		add(addButton);
@@ -163,13 +164,15 @@ public class StockDividePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				ShelfVO shelf = new ShelfVO(idField.getText(), Integer.parseInt(rowField.getText()), Integer.parseInt(placeField.getText()), EnumTransFactory.getPart((String)partCombo.getSelectedItem()));
-				if(table.getSelectedRow() >= shelfList.size()){				
-					Result result = logicSer.addShelf(shelf);
-					fresh(result);
-				} else {
-					Result result = logicSer.reviseShelf(shelf);
-					fresh(result);
+				if(isLegal()){
+					ShelfVO shelf = new ShelfVO(idField.getText(), Integer.parseInt(rowField.getText()), Integer.parseInt(placeField.getText()), EnumTransFactory.getPart((String)partCombo.getSelectedItem()));
+					if(table.getSelectedRow() >= shelfList.size()){				
+						Result result = logicSer.addShelf(shelf);
+						fresh(result);
+					} else {
+						Result result = logicSer.reviseShelf(shelf);
+						fresh(result);
+					}
 				}
 			}
 		});
@@ -180,10 +183,14 @@ public class StockDividePanel extends JPanel{
 		cancelButton.setBounds(701, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		cancelButton.addActionListener(new ActionListener() {
 			
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				ShelfVO shelf = shelfList.get(table.getSelectedRow());
+				idField.setText(shelf.getId());
+				partCombo.setSelectedIndex(shelf.getPart().ordinal());
+				rowField.setText(""+shelf.getRow());
+				placeField.setText(""+shelf.getPlace());
 			}
 		});
 		add(cancelButton);
@@ -223,13 +230,17 @@ public class StockDividePanel extends JPanel{
 	private void tableDisplay(){
 		model.setRowCount(0);
 		for(ShelfVO shelf:shelfList){
-			String info[] = new String[4];
-			info[0] = shelf.getId();
-			info[1] = EnumTransFactory.checkPart(shelf.getPart());
-			info[2] = ""+shelf.getRow();
-			info[3] = ""+shelf.getPlace();
+			String info[] = getRow(shelf);
 			model.addRow(info);
 		}
+	}
+	private String[] getRow(ShelfVO shelf){
+		String info[] = new String[4];
+		info[0] = shelf.getId();
+		info[1] = EnumTransFactory.checkPart(shelf.getPart());
+		info[2] = ""+shelf.getRow();
+		info[3] = ""+shelf.getPlace();
+		return info;
 	}
 	private void fresh(Result result){
 		if(result.equals(Result.SUCCESS)){
@@ -264,5 +275,60 @@ public class StockDividePanel extends JPanel{
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		}
+	}
+	private String generateId(){
+		int orgLength = orgId.length();
+		int preId = -1;
+		if(shelfList.size() == 0){
+			return orgId+"00000";
+		}
+		for(ShelfVO shelf:shelfList){
+			int id = Integer.parseInt(shelf.getId().substring(orgLength, orgLength+5));
+			if(id != preId+1){
+				break;
+			}
+			preId = id;
+		}
+		int intLen = integerLength(preId+1);
+		String result = orgId;
+		for(int i = 0;i < 5-intLen;i++){
+			result = result + "0";
+		}
+		result += (preId+1);
+		return result;
+	}
+	private int integerLength(int i){
+		int length = 1;
+		for(int j = 4;j >= 0;j --){
+			if(i >= Math.pow(10, j)){
+				length = j + 1;
+				return length;
+			}
+		}
+		return length;
+	}
+	@SuppressWarnings("unused")
+	private boolean isLegal(){
+		try {
+			int row = Integer.parseInt(rowField.getText());
+			if(row <= 0){
+				HintFrame hint = new HintFrame("排数必须为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+				return false;
+			}
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("排数格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		try {
+			int place = Integer.parseInt(placeField.getText());
+			if(place <= 0){
+				HintFrame hint = new HintFrame("每排位数必须为正！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+				return false;
+			}
+		} catch (NumberFormatException e){
+			HintFrame hint = new HintFrame("每排位数格式错误！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
 	}
 }
