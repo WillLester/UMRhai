@@ -38,7 +38,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
-			isSuc=hallData.create(new HallLoadingPO("",order.getHallId(),order.getConvertId(),order.getArriveLoc(),order.getVanId(),order.getSupervision(),order.getEscort(),order.getExpress(),order.getDate(),Calendar.getInstance(),order.getOpName()));
+			isSuc=hallData.create(new HallLoadingPO("",order.getHallId(),order.getConvertId(),order.getArriveLoc(),order.getVanId(),order.getSupervision(),order.getEscort(),order.getExpress(),order.getDate(),Calendar.getInstance(),order.getOpName(),order.getCost()));
 		} catch (RemoteException e) { 
             return Result.NET_INTERRUPT;
         } catch(Exception e){

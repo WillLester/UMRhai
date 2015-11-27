@@ -24,10 +24,11 @@ public class HallLoadingPO extends PO implements Serializable{
 	private Calendar date;
 	private Calendar opTime;
 	private String opName;
+	private double cost;
 	public HallLoadingPO(String id, String hallId, String convertId,
 			String arriveLoc, String vanId, String supervision, String escort,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName) {
+			String opName,double cost) {
 		super();
 		this.id = id;
 		this.hallId = hallId;
@@ -40,6 +41,7 @@ public class HallLoadingPO extends PO implements Serializable{
 		this.date = date;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.cost=cost;
 	}
 	public String getHallId() {
 		return hallId;
@@ -73,6 +75,9 @@ public class HallLoadingPO extends PO implements Serializable{
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public double getCost(){
+		return cost;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {
