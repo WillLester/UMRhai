@@ -22,7 +22,7 @@ import edu.nju.umr.vo.order.StockInVO;
 public class StockInOrderLogic implements StockInOrderLSer{
 	StockInOrderDFacSer dataFac;
 	StockInOrderDSer stockinData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 
 	public StockInOrderLogic(){
 		try{

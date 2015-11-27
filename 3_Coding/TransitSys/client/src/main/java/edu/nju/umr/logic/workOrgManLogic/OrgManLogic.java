@@ -18,7 +18,7 @@ import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 public class OrgManLogic implements OrgManLSer{
 	OrgManDFacSer dataFac;
 	OrgManDSer orgData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 
 	public OrgManLogic(){
 		try{

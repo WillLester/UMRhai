@@ -84,6 +84,7 @@ public class StockOutPanel extends JPanel {
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			
 		}
 		JLabel cityLabel = new JLabel("目的地");
 		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));

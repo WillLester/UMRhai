@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.checkLogic.BusiCircumLogic;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
@@ -50,7 +51,7 @@ public class BusiCircumPanel extends JPanel {
 	public BusiCircumPanel(JFrame fr) {
         setLayout(null);
         frame=fr;
-		
+		serv = new BusiCircumLogic();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
 		JLabel start = new JLabel("开始日期");

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
-import edu.nju.umr.data.utilityData.EnumFactory;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.utility.EnumTransFactory;
 /*
  * 人员管理数据
  */
@@ -36,7 +36,7 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 		if(keyword == null){
 			return (ArrayList<WorkPO>) mysqlSer.checkAll(POKind.WORK);
 		} else {
-			Jurisdiction juri = EnumFactory.getJuri(keyword);
+			Jurisdiction juri = EnumTransFactory.getJuri(keyword);
 			return ArrayListFactory.produceWorkList(mysqlSer.checkInfo(new WorkPO(keyword, null, keyword, null, 0, juri, null, 0, 0)));
 		}
 	}

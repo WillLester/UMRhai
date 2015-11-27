@@ -11,6 +11,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.CostBeneVO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.logic.checkLogic.CostBeneLogic;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 
@@ -42,6 +43,7 @@ public class CostBenePanel extends JPanel {
 	public CostBenePanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		serv = new CostBeneLogic();
 		this.setSize(1104,621);
 		
 		JLabel nameLabel = new JLabel("成本收益");

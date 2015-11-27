@@ -24,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 
@@ -224,7 +225,7 @@ public class UserListPanel extends JPanel {
 		add(mobileField);
 		
 		tableInit();
-		users=getUsers("admin");
+		users=getUsers(null);
 		displayUsers();
 	}
 	private void tableInit(){
@@ -264,17 +265,7 @@ public class UserListPanel extends JPanel {
 		{
 			UserVO user=users.get(i);
 			String lv=null;
-			switch(user.getJuri())
-			{
-			case COURIER:lv="快递员";break;
-			case HALL:lv="营业厅业务员";break;
-			case CENTER:lv="中转中心业务员";break;
-			case STOCK:lv="库存管理员";break;
-			case FINANCE_SUPE:lv="高级财务";break;
-			case FINANCE:lv="普通财务";break;
-			case MANAGER:lv="总经理";break;
-			case ADMIN:lv="管理员";break;
-			}
+			lv = EnumTransFactory.checkJuri(user.getJuri());
 			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
 			model.addRow(rowData);
 		}
@@ -305,14 +296,7 @@ public class UserListPanel extends JPanel {
 		if(row<0||row>=table.getRowCount())return;
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
-		if(temp.equals("总经理")){jur=Jurisdiction.MANAGER;}
-		if(temp.equals("高级财务人员")){jur=Jurisdiction.FINANCE_SUPE;}
-		if(temp.equals("普通财务人员")){jur=Jurisdiction.FINANCE;}
-		if(temp.equals("快递员")){jur=Jurisdiction.COURIER;}
-		if(temp.equals("营业厅业务员")){jur=Jurisdiction.HALL;}
-		if(temp.equals("中转中心业务员")){jur=Jurisdiction.CENTER;}
-		if(temp.equals("中转中心仓库管理人员")){jur=Jurisdiction.STOCK;}
-		if(temp.equals("管理员")){jur=Jurisdiction.ADMIN;}
+		jur = EnumTransFactory.getJuri(temp);
 		if(row<users.size()){
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
 			Result result=serv.reviseUser(now,row);

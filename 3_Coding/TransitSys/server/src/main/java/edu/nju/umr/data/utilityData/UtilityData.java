@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
@@ -28,7 +29,7 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	public UtilityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		//mysqlSer = new MysqlImpl();
+		mysqlSer = new MysqlImpl();
 	}
 
 	@SuppressWarnings("unchecked")

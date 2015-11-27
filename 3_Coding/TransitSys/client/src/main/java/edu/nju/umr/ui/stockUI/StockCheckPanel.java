@@ -3,9 +3,9 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,8 +15,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.stockLogic.StockCheckLogic;
+import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.DateTimePanel;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.StockInVO;
+import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockCheckPanel extends JPanel{
 	/**
@@ -26,12 +34,18 @@ public class StockCheckPanel extends JPanel{
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
+	private DateTimePanel dateTimeS;
+	private DateTimePanel dateTimeE;
+	private StockCheckLSer logicSer;
+	private ArrayList<StockInVO> stockInList;
+	private ArrayList<StockOutVO> stockOutList;
 	/**
 	 * Create the panel.
 	 */
-	public StockCheckPanel(JFrame fr) {
+	public StockCheckPanel(JFrame fr,String orgId) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new StockCheckLogic();
 		
 		JLabel checkLabel = new JLabel("库存查看");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -43,118 +57,45 @@ public class StockCheckPanel extends JPanel{
 		startLabel.setBounds(210, 71, 71, 24);
 		add(startLabel);
 		
-		JComboBox yearCombo = new JComboBox();
-		yearCombo.setBounds(285, 70, 71, 21);
-		add(yearCombo);
-		
-		JLabel yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		yearLabel.setBounds(366, 71, 27, 19);
-		add(yearLabel);
-		
-		JComboBox monthCombo = new JComboBox();
-		monthCombo.setBounds(392, 70, 52, 21);
-		add(monthCombo);
-		
-		JLabel monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		monthLabel.setBounds(458, 71, 27, 20);
-		add(monthLabel);
-		
-		JComboBox dayCombo = new JComboBox();
-		dayCombo.setBounds(484, 70, 52, 21);
-		add(dayCombo);
-		
-		JLabel dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		dayLabel.setBounds(546, 71, 27, 19);
-		add(dayLabel);
-		
-		JComboBox hourCombo = new JComboBox();
-		hourCombo.setBounds(572, 70, 52, 21);
-		add(hourCombo);
-		
-		JLabel hourLabel = new JLabel("时");
-		hourLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		hourLabel.setBounds(636, 71, 27, 19);
-		add(hourLabel);
-		
-		JComboBox minCombo = new JComboBox();
-		minCombo.setBounds(662, 70, 54, 21);
-		add(minCombo);
-		
-		JLabel minLabel = new JLabel("分");
-		minLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		minLabel.setBounds(726, 71, 27, 19);
-		add(minLabel);
-		
-		JComboBox secCombo = new JComboBox();
-		secCombo.setBounds(752, 70, 54, 21);
-		add(secCombo);
-		
-		JLabel secLabel = new JLabel("秒");
-		secLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		secLabel.setBounds(816, 71, 27, 19);
-		add(secLabel);
+		dateTimeS = new DateTimePanel();
+		dateTimeS.setBounds(281, 71, 450, 24);
+		add(dateTimeS);
 		
 		JLabel endLabel = new JLabel("结束时间");
 		endLabel.setFont(new Font("宋体", Font.PLAIN, 15));
 		endLabel.setBounds(210, 116, 71, 19);
 		add(endLabel);
 		
-		JComboBox endYCombo = new JComboBox();
-		endYCombo.setBounds(285, 115, 71, 21);
-		add(endYCombo);
+		dateTimeE = new DateTimePanel();
+		dateTimeE.setBounds(281, 116, 71, 19);
+		add(dateTimeE);
 		
-		JLabel endYLabel = new JLabel("年");
-		endYLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endYLabel.setBounds(366, 116, 27, 19);
-		add(endYLabel);
-		
-		JComboBox endMCombo = new JComboBox();
-		endMCombo.setBounds(392, 115, 52, 21);
-		add(endMCombo);
-		
-		JLabel endMLabel = new JLabel("月");
-		endMLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endMLabel.setBounds(458, 116, 27, 20);
-		add(endMLabel);
-		
-		JComboBox endDCombo = new JComboBox();
-		endDCombo.setBounds(484, 115, 52, 21);
-		add(endDCombo);
-		
-		JLabel endDLabel = new JLabel("日");
-		endDLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endDLabel.setBounds(546, 116, 27, 19);
-		add(endDLabel);
-		
-		JComboBox endHCombo = new JComboBox();
-		endHCombo.setBounds(572, 115, 52, 21);
-		add(endHCombo);
-		
-		JComboBox endMiCombo = new JComboBox();
-		endMiCombo.setBounds(662, 115, 54, 21);
-		add(endMiCombo);
-		
-		JComboBox endSCombo = new JComboBox();
-		endSCombo.setBounds(752, 115, 54, 21);
-		add(endSCombo);
-		
-		JLabel endHLabel = new JLabel("时");
-		endHLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endHLabel.setBounds(636, 116, 27, 19);
-		add(endHLabel);
-		
-		JLabel endMiLabel = new JLabel("分");
-		endMiLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endMiLabel.setBounds(726, 116, 27, 19);
-		add(endMiLabel);
-		
-		JLabel endSLabel = new JLabel("秒");
-		endSLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		endSLabel.setBounds(816, 118, 27, 19);
-		add(endSLabel);
+		JButton confirmButton = new JButton("查看");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		confirmButton.setBounds(736, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.addActionListener(new ActionListener(){
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e) {
+				if(isLegal()){
+					ResultMessage messageIn = logicSer.checkStockIn(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
+					if(messageIn.getReInfo().equals(Result.SUCCESS)){
+						stockInList = (ArrayList<StockInVO>) messageIn.getMessage();
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(messageIn.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					}
+					ResultMessage messageOut = logicSer.checkStockOut(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
+					if(messageOut.getReInfo().equals(Result.SUCCESS)){
+						stockOutList = (ArrayList<StockOutVO>) messageOut.getMessage();
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(messageOut.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					}
+					displayTable();
+				}
+			}
+		});
+		add(confirmButton);
 		
 		JButton exitButton = new JButton("退出查看");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -170,7 +111,7 @@ public class StockCheckPanel extends JPanel{
 		tableInit();
 		
 	}
-	void tableInit(){
+	private void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
@@ -184,8 +125,19 @@ public class StockCheckPanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(219, 156, 665, 372);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"时间","操作","订单号","位置"};
+		String[] columnNames={"时间","操作","订单号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
+	}
+	private boolean isLegal(){
+		if(dateTimeS.getCalendar().after(dateTimeE.getCalendar())){
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame("开始时间不能晚于结束时间！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private void displayTable(){
+		
 	}
 }

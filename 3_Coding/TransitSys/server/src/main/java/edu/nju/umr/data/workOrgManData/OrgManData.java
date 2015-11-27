@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
-import edu.nju.umr.data.utilityData.EnumFactory;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.utility.EnumTransFactory;
 /*
  * 机构信息管理数据
  */
@@ -36,7 +36,7 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 		if(keyword == null){
 			return (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
 		} else {
-			Organization kind = EnumFactory.getOrg(keyword);
+			Organization kind = EnumTransFactory.getOrg(keyword);
 			return ArrayListFactory.produceOrgList(mysqlSer.checkInfo(new OrgPO(keyword, keyword, kind, null, keyword, null)));
 		}
 		

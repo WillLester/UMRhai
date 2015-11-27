@@ -19,7 +19,7 @@ import edu.nju.umr.vo.order.PaymentVO;
 public class PaymentOrderLogic implements PaymentOrderLSer{
 	PaymentOrderDFacSer dataFac;
 	PaymentOrderDSer paymentData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public PaymentOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

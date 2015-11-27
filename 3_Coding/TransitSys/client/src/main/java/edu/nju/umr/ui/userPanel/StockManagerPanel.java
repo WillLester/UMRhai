@@ -89,7 +89,7 @@ public class StockManagerPanel extends UserPanel{
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				FunctionFrame fr = new FunctionFrame("库存查看");
-				fr.setContentPane(new StockCheckPanel(fr));
+				fr.setContentPane(new StockCheckPanel(fr,user.getOrgId()));
 			}
 		});
 		
@@ -102,7 +102,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("库存分区");
-				fr.setContentPane(new StockDividePanel(fr));
+				fr.setContentPane(new StockDividePanel(fr,user.getOrgId()));
 			}
 		});
 		

@@ -19,7 +19,7 @@ import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public WorkManLogic()
 	{
 		try{

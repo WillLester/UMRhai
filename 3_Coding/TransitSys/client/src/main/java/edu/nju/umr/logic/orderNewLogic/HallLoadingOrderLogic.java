@@ -18,7 +18,7 @@ import edu.nju.umr.vo.order.HallLoadingVO;
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	HallLoadingOrderDFacSer dataFac;
 	HallLoadingOrderDSer hallData;
-	UtilityLogic uti;
+	UtilityLogic uti=new UtilityLogic();
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
