@@ -38,22 +38,27 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		try {
 			isSuc = incomeData.create(new IncomePO(order.getDate(), order.getCourier(), order.getCost(), order.getExpress(), 1,Calendar.getInstance(),order.getOpName(),order.getOrgId()));
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		}
+		}catch (Exception e) { 
+            e.printStackTrace();   
+        } 
+
 		return isSuc;
 	}
 
 	public ResultMessage getCouriers(String id) {
 		// TODO 自动生成的方法存根
 		ArrayList<String> couriers = null;
+		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			couriers = incomeData.getCouriers(id);
+			isSuc=Result.SUCCESS;
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		}
-		return new ResultMessage(Result.SUCCESS, couriers);
+		} catch (Exception e) { 
+            e.printStackTrace();   
+        } 
+		return new ResultMessage(isSuc, couriers);
 	}
 
 }
