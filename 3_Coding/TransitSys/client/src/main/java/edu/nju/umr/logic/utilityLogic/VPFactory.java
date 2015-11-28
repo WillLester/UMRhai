@@ -1,5 +1,6 @@
 package edu.nju.umr.logic.utilityLogic;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.po.AccountPO;
@@ -10,6 +11,12 @@ import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.UserPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
@@ -29,6 +36,12 @@ import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.GoodVO;
+import edu.nju.umr.vo.OrgVO;
+import edu.nju.umr.vo.ShelfVO;
+import edu.nju.umr.vo.StockVO;
+import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.vo.VanVO;
+import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.vo.order.ArriveVO;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 import edu.nju.umr.vo.order.ExpressVO;
@@ -194,6 +207,37 @@ public class VPFactory {
 	
 	//账  待完善！！！
 	public static CountVO toCountVO(CountPO po){
+		ArrayList<OrgPO> orgp=po.getOrganizations();
+		ArrayList<OrgVO> orgv=null;
+		for(OrgPO op:orgp){
+			OrgVO ov=VPFactory.toOrgVO(op);
+			orgv.add(ov);
+		}
+		ArrayList<WorkPO> workp=po.getWorkers();
+		ArrayList<WorkVO> workv=null;
+		for(WorkPO wp:workp){
+			WorkVO wv=VPFactory.toWorkVO(wp);
+			workv.add(wv);
+		}
+		ArrayList<VanPO> vanp=po.getVans();
+		ArrayList<VanVO> vanv=null;
+		for(VanPO vp:vanp){
+			VanVO vv=VPFactory.toVanVO(vp);
+			vanv.add(vv);
+		}
+		ArrayList<StockPO> stockp=po.getStocks();
+		ArrayList<StockVO> stockv=null;
+		for(StockPO sp:stockp){
+			StockVO sv=VPFactory.toStockVO(sp);
+			stockv.add(sv);
+		}
+		ArrayList<AccountPO> accountp=po.getAccounts();
+		ArrayList<AccountVO> accountv=null;
+		for(AccountPO ap:accountp){
+			AccountVO av=VPFactory.toAccountVO(ap);
+			accountv.add(av);
+		}
+		CountVO vo=new CountVO(0, orgv, workv, vanv, stockv, accountv, po.getOpTime());//时间不明,id类型不一致，待修改
 		return null;	
 	}
 	public static CountPO toCountPO(CountVO vo){
@@ -225,8 +269,84 @@ public class VPFactory {
 		GoodVO vo=new GoodVO(po.getId(), po.getDate(), po.getCity(), po.getPart(), po.getShelf(), po.getRow(), po.getPlace());
 		return vo;
 	}
-	public static GoodPO toGoodPO(GoodVO vo){
-		GoodPO po=new GoodPO(vo.getId(), stockId, vo.getDate(),vo.getCity(),vo.getPart(),vo.getShelf(),vo.getRow(),vo.getPlace());
+	public static GoodPO toGoodPO(GoodVO vo,String stockId){
+		GoodPO po=new GoodPO(vo.getId(),stockId , vo.getDate(),vo.getCity(),vo.getPart(),vo.getShelf(),vo.getRow(),vo.getPlace());
+		return po;
+	}
+	
+	//机构
+	public static OrgVO toOrgVO(OrgPO po){
+		OrgVO vo=new OrgVO(po.getId(), po.getName(), po.getKind(), po.getLocation(), po.getCity(), po.getCityId());
+		return vo;
+	}
+	public static OrgPO toOrgPO(OrgVO vo){
+		OrgPO po=new OrgPO(vo.getId(), vo.getName(), vo.getKind(), vo.getLocation(), vo.getCity(), vo.getCityId());
+		return po;
+	}
+	
+	//架
+	public ShelfVO toShelfVO(ShelfPO po){
+		ShelfVO vo=new ShelfVO(po.getId(), po.getRow(), po.getPlace(), po.getPart());
+		return vo;
+	}
+	public ShelfPO toShelfPO(ShelfVO vo,String stockId){
+		ShelfPO po=new ShelfPO(vo.getId(),stockId , vo.getRow(), vo.getPlace(), vo.getPart());
+		return po;
+	}
+	
+	//库存
+	public static StockVO toStockVO(StockPO po){
+		ArrayList<GoodPO> goodp=po.getGoods();
+		ArrayList<GoodVO> goodv=null;
+		for(GoodPO good:goodp){
+			GoodVO gd=VPFactory.toGoodVO(good);
+			goodv.add(gd);
+		}
+		StockVO vo=new StockVO(goodv, po.getStockId());
+		return vo;
+	}
+	public static StockPO toStockPO(StockVO vo){
+		ArrayList<GoodVO> goodv=vo.getGoods();
+		ArrayList<GoodPO> goodp=null;
+		for(GoodVO gv:goodv){
+			GoodPO gp=VPFactory.toGoodPO(gv, vo.getStockId());
+			goodp.add(gp);
+		}
+		StockPO po=new StockPO(vo.getStockId(), goodp);
+		return po;
+	}
+	
+	//用户
+	public static UserVO toUserVO(UserPO po){
+		UserVO vo=new UserVO(po.getId(), po.getPassword(), po.getJuri(), po.getName(), po.getMobile(), po.getOrg(), po.getOrgId());
+		return vo;
+	}
+	public static UserPO toUserPO(UserVO vo,int key){
+		UserPO po=new UserPO(vo.getId(),vo.getPassword(),vo.getJuri(),vo.getName(),vo.getMobile(),vo.getOrg(),key,vo.getOrgId());
+		return po;
+	}
+	
+	//车辆
+	public static VanVO toVanVO(VanPO po){
+		VanVO vo=new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(), po.getHallId());
+		return vo;
+	}
+	public static VanPO toVanPO(VanVO vo){
+		VanPO po=new VanPO(vo.getId(), vo.getPlateNum(), vo.getServTime(), vo.getPhoto(), vo.getHallId());
+		return po;
+	}
+	
+	//工作人员
+	public static WorkVO toWorkVOCommit(WorkPO po){
+		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri(), po.getKind(), po.getMoney(), po.getCommission());
+		return vo;
+	}
+	public static WorkVO toWorkVO(WorkPO po){
+		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri(), po.getKind(), po.getMoney());
+		return vo;
+	}
+	public static WorkPO toWorkPO(WorkVO vo,int id){
+		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), vo.getOrgId(), id, vo.getJuri(), vo.getKind(), vo.getMoney(), vo.getCommission());
 		return po;
 	}
 }
