@@ -208,37 +208,37 @@ public class VPFactory {
 	//账  待完善！！！
 	public static CountVO toCountVO(CountPO po){
 		ArrayList<OrgPO> orgp=po.getOrganizations();
-		ArrayList<OrgVO> orgv=null;
+		ArrayList<OrgVO> orgv=new ArrayList<OrgVO>();
 		for(OrgPO op:orgp){
 			OrgVO ov=VPFactory.toOrgVO(op);
 			orgv.add(ov);
 		}
 		ArrayList<WorkPO> workp=po.getWorkers();
-		ArrayList<WorkVO> workv=null;
+		ArrayList<WorkVO> workv=new ArrayList<WorkVO>();
 		for(WorkPO wp:workp){
 			WorkVO wv=VPFactory.toWorkVO(wp);
 			workv.add(wv);
 		}
 		ArrayList<VanPO> vanp=po.getVans();
-		ArrayList<VanVO> vanv=null;
+		ArrayList<VanVO> vanv=new ArrayList<VanVO>();
 		for(VanPO vp:vanp){
 			VanVO vv=VPFactory.toVanVO(vp);
 			vanv.add(vv);
 		}
 		ArrayList<StockPO> stockp=po.getStocks();
-		ArrayList<StockVO> stockv=null;
+		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
 		for(StockPO sp:stockp){
 			StockVO sv=VPFactory.toStockVO(sp);
 			stockv.add(sv);
 		}
 		ArrayList<AccountPO> accountp=po.getAccounts();
-		ArrayList<AccountVO> accountv=null;
+		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
 		for(AccountPO ap:accountp){
 			AccountVO av=VPFactory.toAccountVO(ap);
 			accountv.add(av);
 		}
 		CountVO vo=new CountVO(0, orgv, workv, vanv, stockv, accountv, po.getOpTime());//时间不明,id类型不一致，待修改
-		return null;	
+		return vo;	
 	}
 	public static CountPO toCountPO(CountVO vo){
 		return null;
@@ -297,7 +297,7 @@ public class VPFactory {
 	//库存
 	public static StockVO toStockVO(StockPO po){
 		ArrayList<GoodPO> goodp=po.getGoods();
-		ArrayList<GoodVO> goodv=null;
+		ArrayList<GoodVO> goodv=new ArrayList<GoodVO>();
 		for(GoodPO good:goodp){
 			GoodVO gd=VPFactory.toGoodVO(good);
 			goodv.add(gd);
@@ -307,7 +307,7 @@ public class VPFactory {
 	}
 	public static StockPO toStockPO(StockVO vo){
 		ArrayList<GoodVO> goodv=vo.getGoods();
-		ArrayList<GoodPO> goodp=null;
+		ArrayList<GoodPO> goodp=new ArrayList<GoodPO>();
 		for(GoodVO gv:goodv){
 			GoodPO gp=VPFactory.toGoodPO(gv, vo.getStockId());
 			goodp.add(gp);
