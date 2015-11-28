@@ -2,6 +2,14 @@ package edu.nju.umr.logic.utilityLogic;
 
 import java.util.Calendar;
 
+import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
+import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.ConstantPO;
+import edu.nju.umr.po.CountPO;
+import edu.nju.umr.po.DiaryPO;
+import edu.nju.umr.po.DriverPO;
+import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
@@ -13,6 +21,14 @@ import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
+import edu.nju.umr.vo.AccountVO;
+import edu.nju.umr.vo.CitiesVO;
+import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.ConstantVO;
+import edu.nju.umr.vo.CountVO;
+import edu.nju.umr.vo.DiaryVO;
+import edu.nju.umr.vo.DriverVO;
+import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.order.ArriveVO;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 import edu.nju.umr.vo.order.ExpressVO;
@@ -136,6 +152,81 @@ public class VPFactory {
 	}
 	public static TransitPO toTransitPO(TransitVO vo,String id){
 		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),Calendar.getInstance(),vo.getOpName());
+		return po;
+	}
+	//账户
+	public static AccountVO toAccountVO(AccountPO po){
+		AccountVO vo=new AccountVO(po.getName(), po.getBalance());
+		return vo;
+	}
+	public static AccountPO toAccountPO(AccountVO vo,int id){
+		AccountPO po=new AccountPO(id, vo.getName(), vo.getBalance());
+		return po;
+	}
+	//城市
+	public static CityVO toCityVO(CityPO po){
+		CityVO vo=new CityVO(po.getName(), po.getId(), po.getProvince());
+		return vo;
+	}
+	public static CityPO toCityPO(CityVO vo,int key){
+		CityPO po=new CityPO(vo.getName(), vo.getId(),vo.getProvince(),key );
+		return po;
+	}
+	
+	//两个城市
+	public static CitiesVO toCitiesVO(CitiesPO po){
+		CitiesVO vo=new CitiesVO(po.getCity1(), po.getCity2(), po.getDistance());
+		return vo;
+	}
+	public static CitiesPO toCitiesPO(CitiesVO vo){
+		CitiesPO po=new CitiesPO(vo.getCity1(),vo.getCity2(), vo.getDistance());
+		return po;
+	}
+	//常量
+	public static ConstantVO toConstantVO(ConstantPO po){
+		ConstantVO vo=new ConstantVO(po.getMaxLoadPlane(), po.getMaxLoadTrain(), po.getMaxLoadVan(), po.getPricePlane(), po.getPriceTrain(), po.getPriceVan(), po.getLvEco(), po.getLvStd(), po.getLvVip());
+		return vo;
+	}
+	public static ConstantPO toConstantPO(ConstantVO vo){
+		ConstantPO po=new ConstantPO(vo.getMaxLoadPlane(), vo.getMaxLoadTrain(), vo.getMaxLoadVan(), vo.getPricePlane(), vo.getPriceTrain(), vo.getPriceVan(), vo.getLvEco(), vo.getLvStd(), vo.getLvVip());
+		return po;
+	}
+	
+	//账  待完善！！！
+	public static CountVO toCountVO(CountPO po){
+		return null;	
+	}
+	public static CountPO toCountPO(CountVO vo){
+		return null;
+	}
+	
+	//日志
+	public static DiaryVO toDiaryVO(DiaryPO po){
+		DiaryVO vo=new DiaryVO(po.getOperator(), po.getOperation(), po.getTime());
+		return vo;
+	}
+	public static DiaryPO toDiaryPO(DiaryVO vo){
+		DiaryPO po =new DiaryPO(vo.getOperation(), vo.getTime(), vo.getOperator());
+		return po;
+	}
+	
+	//司机
+	public static DriverVO toDriverVO(DriverPO po){
+		DriverVO vo=new DriverVO(po.getId(), po.getName(), po.getBirthday(), po.getIdNum(), po.getMobile(), po.getSex(), po.getDriveStart(), po.getDriveEnd(), po.getHallId());
+		return vo;
+	}
+	public static DriverPO toDriverPO(DriverVO vo){
+		DriverPO po=new DriverPO(vo.getId(),vo.getIdNum(),vo.getBirthday(),vo.getIdNum(),vo.getMobile(),vo.getSex(),vo.getDriveStart(),vo.getDriveEnd(),vo.getHallId());
+		return po;
+	}
+	
+	//货物
+	public static GoodVO toGoodVO(GoodPO po){
+		GoodVO vo=new GoodVO(po.getId(), po.getDate(), po.getCity(), po.getPart(), po.getShelf(), po.getRow(), po.getPlace());
+		return vo;
+	}
+	public static GoodPO toGoodPO(GoodVO vo){
+		GoodPO po=new GoodPO(vo.getId(), stockId, vo.getDate(),vo.getCity(),vo.getPart(),vo.getShelf(),vo.getRow(),vo.getPlace());
 		return po;
 	}
 }
