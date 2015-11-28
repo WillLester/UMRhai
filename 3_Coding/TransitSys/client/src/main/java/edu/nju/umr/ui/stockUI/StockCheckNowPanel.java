@@ -76,7 +76,7 @@ public class StockCheckNowPanel extends JPanel{
 					 }
 					 else
 					 chooser.approveSelection();
-					 Result result= logicSer.outputExcel(chooser.getSelectedFile().getName(), new StockVO(goodList));
+					 Result result= logicSer.outputExcel(chooser.getSelectedFile().getName(), new StockVO(goodList,orgId));
 					 if(!result.equals(Result.SUCCESS))
 					 {
 						 new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
