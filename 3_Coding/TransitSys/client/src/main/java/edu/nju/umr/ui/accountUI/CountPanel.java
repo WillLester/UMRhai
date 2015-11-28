@@ -15,6 +15,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.accountLogic.CountLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.enums.Result;
@@ -23,13 +24,13 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.CountVO;
+import edu.nju.umr.vo.ResultMessage;
 
 public class CountPanel extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6592881582489810248L;
-//	private JTextField searchField;
 	private Table table;
 	private DefaultTableModel model;
 	private ArrayList<CountVO> countList;
@@ -130,10 +131,21 @@ public class CountPanel extends JPanel{
 		add(scroll);
 	}
 	private void displayCounts(){
-		
+		model.setRowCount(0);
+		for(CountVO count:countList){
+			String info[] = {count.getId()+"",DateFormat.TIME.format(count.getTime().getTime())};
+			model.addRow(info);
+		}
 	}
+	@SuppressWarnings("unchecked")
 	private void fresh(){
-		
+		ResultMessage message = logicSer.getCount();
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			countList = (ArrayList<CountVO>) message.getMessage();
+			displayCounts();
+		} else {
+			hint(message.getReInfo());
+		}
 	}
 	private void hint(Result result){
 		@SuppressWarnings("unused")
