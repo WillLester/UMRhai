@@ -4,11 +4,13 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.vo.CountVO;
 
 public class CountInfoPanel extends JPanel{
 	private JTextField mobileField;
@@ -25,12 +27,16 @@ public class CountInfoPanel extends JPanel{
 	private JTextField placeField;
 	private JTextField accountNameField;
 	private JTextField balanceField;
+	private CountVO count;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public CountInfoPanel() {
-setLayout(null);
+	public CountInfoPanel(CountVO count,JFrame fr) {
+		setLayout(null);
+		frame = fr;
+		this.count = count;
 		
 		JLabel countLabel = new JLabel("期初信息查看");
 		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));

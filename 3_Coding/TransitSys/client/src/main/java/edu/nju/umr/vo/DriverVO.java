@@ -1,7 +1,6 @@
 package edu.nju.umr.vo;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import edu.nju.umr.po.enums.Gender;
 
