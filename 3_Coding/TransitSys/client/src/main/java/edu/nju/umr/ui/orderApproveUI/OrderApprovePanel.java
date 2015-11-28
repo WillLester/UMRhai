@@ -1,18 +1,6 @@
 package edu.nju.umr.ui.orderApproveUI;
 
 import java.awt.Font;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,16 +8,25 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
+import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.*;
 import edu.nju.umr.vo.order.OrderVO;
-import edu.nju.umr.po.enums.Order;
-import edu.nju.umr.ui.orderNewUI.*;
 
 public class OrderApprovePanel extends JPanel{
 	/**

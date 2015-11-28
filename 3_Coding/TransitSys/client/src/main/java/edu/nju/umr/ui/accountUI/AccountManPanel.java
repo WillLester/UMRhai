@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -19,16 +18,19 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.accountLogic.AccountLogic;
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
-import edu.nju.umr.vo.AccountVO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.AccountVO;
+import edu.nju.umr.vo.ResultMessage;
 
 public class AccountManPanel extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5046945253769534297L;
-	private JTextField textField;
+	private JTextField searchField;
 	private JTextField nameField;
 	private JTextField balanceField;
 	private Table table;
@@ -36,13 +38,13 @@ public class AccountManPanel extends JPanel{
 	private AccountLSer accountLSer;
 	private JFrame frame;
 	private ArrayList<AccountVO> accountList;
-	private AccountLSer serv;
+	private AccountLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	public AccountManPanel(JFrame fr) {
 		setLayout(null);
-		serv=new AccountLogic();
+		logicSer=new AccountLogic();
 		
 		JLabel accountLabel = new JLabel("账户管理");
 		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -50,11 +52,11 @@ public class AccountManPanel extends JPanel{
 		add(accountLabel);
 		frame = fr;
 		
-		textField = new JTextField();
-		textField.setText("请输入关键字");
-		textField.setBounds(233, 67, 442, 24);
-		add(textField);
-		textField.setColumns(10);
+		searchField = new JTextField();
+		searchField.setText("请输入关键字");
+		searchField.setBounds(233, 67, 442, 24);
+		add(searchField);
+		searchField.setColumns(10);
 		accountLSer = new AccountLogic();
 		
 		JButton searchButton = new JButton("搜索");
@@ -64,8 +66,10 @@ public class AccountManPanel extends JPanel{
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountList=getAccounts(textField.getText());
-				displayAccounts();
+				if(isSearchLegal()){
+					accountList=getAccounts(searchField.getText());
+					displayAccounts();
+				}
 			}
 		});
 		
@@ -77,7 +81,7 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountList=getAccounts("");
+				accountList=getAccounts(null);
 				displayAccounts();
 			}
 		});
@@ -107,8 +111,7 @@ public class AccountManPanel extends JPanel{
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(326, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		addButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				addAccount();
 			}
 		});
@@ -122,7 +125,13 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountLSer.deleteAccount(null);
+				Result result = accountLSer.deleteAccount(table.getSelectedRow());
+				if(result.equals(Result.SUCCESS)){
+					fresh();
+				} else {
+					@SuppressWarnings("unused")
+					HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+				}
 			}
 		});
 		
@@ -134,13 +143,36 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				if(isModifyLegal()){
+					Result result;
+					if(table.getSelectedRow() >= accountList.size()){
+						result = logicSer.addAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())));
+					} else {
+						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())), table.getSelectedRow());
+					}
+					if(result.equals(Result.SUCCESS)){
+						fresh();
+					} else {
+						@SuppressWarnings("unused")
+						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					}
+				}
 			}
 		});
 		
 		JButton cancelButton = new JButton("取消修改");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		cancelButton.setBounds(656, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				AccountVO account = accountList.get(table.getSelectedRow());
+				nameField.setText(account.getName());
+				balanceField.setText(account.getBalance()+"");
+			}
+		});
 		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
@@ -156,11 +188,11 @@ public class AccountManPanel extends JPanel{
 		});
 
 		tableInit();
-		//accountList=getAccounts("");
-		//displayAccounts();
+		accountList=getAccounts(null);
+		displayAccounts();
 		
 	}
-	void tableInit(){
+	private void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
@@ -178,20 +210,53 @@ public class AccountManPanel extends JPanel{
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
-	ArrayList<AccountVO> getAccounts(String keyword){
-		return (ArrayList<AccountVO>)serv.searchAccount(keyword).getMessage();
+	@SuppressWarnings("unchecked")
+	private ArrayList<AccountVO> getAccounts(String keyword){
+		ResultMessage message = logicSer.searchAccount(keyword);
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			return (ArrayList<AccountVO>)logicSer.searchAccount(keyword).getMessage();
+		} else {
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return new ArrayList<AccountVO>();
+		}
+		
 	}
-	void displayAccounts(){
+	private void displayAccounts(){
 		model.setRowCount(0);
-		for(int i=0;i<accountList.size();i++)
-		{
-			AccountVO ac=accountList.get(i);
-			String[] data={ac.getName(),Integer.toString(ac.getBalance())};
+		for(int i=0;i<accountList.size();i++){
+			AccountVO account=accountList.get(i);
+			String[] data={account.getName(),""+account.getBalance()};
 			model.addRow(data);
 		}
 	}
-	void addAccount(){
-		
+	private void addAccount(){
+		String info[] = {"",""};
+		model.addRow(info);
+		table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
 	}
-	
+	private boolean isSearchLegal(){
+		if(searchField.getText().equals("")){
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame("请输入关键字！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
+	}
+	private void fresh(){
+		if(searchField.getText().equals("")){
+			getAccounts(null);
+		} else {
+			getAccounts(searchField.getText());
+		}
+		displayAccounts();
+	}
+	private boolean isModifyLegal(){
+		if(nameField.getText().equals("")){
+			@SuppressWarnings("unused")
+			HintFrame hint = new HintFrame("请输入账户名称！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return false;
+		}
+		return true;
+	}
 }

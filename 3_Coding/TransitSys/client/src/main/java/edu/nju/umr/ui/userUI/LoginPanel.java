@@ -122,7 +122,7 @@ public class LoginPanel extends JPanel {
 		inquiryButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-			frame.setContentPane(new TransitInfoInqPanel());
+			frame.setContentPane(new TransitInfoInqPanel(frame));
 		}
 		});
 		inquiryButton.setFont(new Font("宋体", Font.PLAIN, 20));
