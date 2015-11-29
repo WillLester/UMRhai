@@ -1,33 +1,20 @@
 package edu.nju.umr.ui.userPanel;
 
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-
-
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
-import edu.nju.umr.ui.orderNewUI.SendPanel;
-import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
-import edu.nju.umr.ui.userUI.UserListPanel;
+import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.workOrgManUI.DriverListPanel;
 import edu.nju.umr.ui.workOrgManUI.VanListPanel;
+import edu.nju.umr.vo.UserVO;
 
 
 public class BusinessHallPanel extends UserPanel {
@@ -140,8 +127,8 @@ public class BusinessHallPanel extends UserPanel {
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new IncomePanel(ffr));
+				FunctionFrame ffr=new FunctionFrame("收款单生成");
+				ffr.setContentPane(new IncomePanel(ffr,user.getOrgId()));
 			}
 		});
 		this.add(income);

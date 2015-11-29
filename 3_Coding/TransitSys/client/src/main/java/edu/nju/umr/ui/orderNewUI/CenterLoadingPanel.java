@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -237,9 +239,11 @@ public class CenterLoadingPanel extends JPanel {
 		});
 		add(modifyButton);
 		
+		JScrollPane scroll = new JScrollPane();
 		expressList = new JList<String>();
 		expressList.setBounds(306, 320, 489, 165);
 		model = new DefaultListModel<String>();
+		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		expressList.setModel(model);
 		expressList.addListSelectionListener(new ListSelectionListener() {
 			
@@ -258,7 +262,10 @@ public class CenterLoadingPanel extends JPanel {
 				}
 			}
 		});
-		add(expressList);
+		scroll.setBounds(306, 320, 489, 165);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(scroll);
 	}
 	private void hint(Result result){
 		@SuppressWarnings("unused")

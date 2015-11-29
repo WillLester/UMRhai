@@ -15,7 +15,6 @@ import edu.nju.umr.ui.cityUI.CityListPanel;
 import edu.nju.umr.ui.cityUI.ConstantPanel;
 import edu.nju.umr.ui.orderApproveUI.OrderApprovePanel;
 import edu.nju.umr.ui.workOrgManUI.OrgListPanel;
-import edu.nju.umr.ui.workOrgManUI.WageDraftPanel;
 import edu.nju.umr.ui.workOrgManUI.WorkListPanel;
 import edu.nju.umr.ui.workOrgManUI.WorkWageListPanel;
 import edu.nju.umr.vo.UserVO;

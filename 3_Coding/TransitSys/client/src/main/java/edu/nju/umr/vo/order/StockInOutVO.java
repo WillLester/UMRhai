@@ -1,4 +1,4 @@
-package edu.nju.umr.vo;
+package edu.nju.umr.vo.order;
 
 import java.util.Calendar;
 

@@ -13,7 +13,6 @@ import edu.nju.umr.ui.accountUI.CountPanel;
 import edu.nju.umr.ui.checkUI.BusiCircumPanel;
 import edu.nju.umr.ui.checkUI.CostBenePanel;
 import edu.nju.umr.ui.checkUI.DiaryListPanel;
-import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.orderNewUI.PaymentPanel;
 import edu.nju.umr.vo.UserVO;
 
@@ -143,19 +142,6 @@ public class FinanceSuperPanel extends UserPanel{
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成付款单");
 				fr.setContentPane(new PaymentPanel(fr,user.getName()));
-			}
-		});
-		
-		JButton incomeButton = new JButton("生成收款单");
-		incomeButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		incomeButton.setBounds(516, 477, 112, 83);
-		this.add(incomeButton);
-		incomeButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成收款单");
-				fr.setContentPane(new IncomePanel(fr));
 			}
 		});
 		
