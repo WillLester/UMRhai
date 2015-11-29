@@ -8,11 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -20,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.orderNewLogic.CenterLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
-import edu.nju.umr.vo.order.CenterLoadingVO;
+import edu.nju.umr.ui.DatePanel;
 
 public class CenterLoadingPanel extends JPanel {
 	/**
@@ -32,9 +31,10 @@ public class CenterLoadingPanel extends JPanel {
 	private JTextField escortField;
 	private JTextField vanIdField;
 	private JTextField expressField;
-	private JTable expressList;
 	private JFrame frame;
 	private CenterLoadingOrderLSer logicSer;
+	private DatePanel datePanel;
+	private JTextField costField;
 	/**
 	 * Create the panel.
 	 */
@@ -67,45 +67,16 @@ public class CenterLoadingPanel extends JPanel {
 		dateLabel.setBounds(297+75, 121, 120, 24);
 		add(dateLabel);
 		
-		JSpinner yearSpinner = new JSpinner();
-		yearSpinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-		yearSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		yearSpinner.setBounds(411+75, 121, 85, 26);
-		add(yearSpinner);
-		
-		JLabel yearLabel = new JLabel("年");
-		yearLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		yearLabel.setBounds(506+75, 122, 25, 22);
-		add(yearLabel);
-		
-		JSpinner monthSpinner = new JSpinner();
-		monthSpinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		monthSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		monthSpinner.setBounds(541+75, 122, 48, 26);
-		add(monthSpinner);
-		
-		JLabel monthLabel = new JLabel("月");
-		monthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		monthLabel.setBounds(599+75, 122, 25, 22);
-		add(monthLabel);
-		
-		JSpinner daySpinner = new JSpinner();
-		daySpinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		daySpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		daySpinner.setBounds(634+75, 122, 48, 26);
-		add(daySpinner);
-		
-		JLabel dayLabel = new JLabel("日");
-		dayLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dayLabel.setBounds(692+75, 122, 25, 22);
-		add(dayLabel);
+		datePanel = new DatePanel();
+		datePanel.setBounds(522, 121, 285, 26);
+		add(datePanel);
 		
 		JLabel arriveLabel = new JLabel("到达地");
 		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		arriveLabel.setBounds(242+75, 155, 85, 24);
 		add(arriveLabel);
 		
-		JComboBox arriveCombo = new JComboBox();
+		JComboBox<String> arriveCombo = new JComboBox<String>();
 		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		arriveCombo.setBounds(307+75, 155, 87, 25);
 		add(arriveCombo);
@@ -146,7 +117,7 @@ public class CenterLoadingPanel extends JPanel {
 		
 		JLabel costLabel = new JLabel("运费：");
 		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		costLabel.setBounds(599+75, 204, 232, 24);
+		costLabel.setBounds(674, 204, 60, 24);
 		add(costLabel);
 		
 		JLabel expressId = new JLabel("订单条形码号");
@@ -179,43 +150,6 @@ public class CenterLoadingPanel extends JPanel {
 		expressListLabel.setBounds(401+75, 289, 130, 24);
 		add(expressListLabel);
 		
-		expressList = new JTable();
-		expressList.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		expressList.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		expressList.setBounds(220+75, 313, 529, 176);
-		//this.add(new JScrollPane(table));
-		add(expressList);
-		
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+75, 499, 93, 23);
@@ -232,6 +166,22 @@ public class CenterLoadingPanel extends JPanel {
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542+75, 499, 93, 23);
 		add(cancelButton);
+		
+		costField = new JTextField();
+		costField.setEditable(false);
+		costField.setBounds(731, 208, 66, 21);
+		add(costField);
+		costField.setColumns(10);
+		
+		JList expressList = new JList();
+		expressList.setBounds(306, 320, 489, 165);
+		add(expressList);
+		
+		JButton deleteButton = new JButton("删除");
+		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		deleteButton.setBounds(805, 378, 93, 23);
+		add(deleteButton);
+		
 		cancelButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
