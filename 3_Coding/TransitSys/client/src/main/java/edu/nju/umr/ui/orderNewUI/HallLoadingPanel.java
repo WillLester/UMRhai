@@ -264,7 +264,7 @@ public class HallLoadingPanel extends JPanel {
 		// TODO Auto-generated method stub
 //		String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost
 		HallLoadingVO vo=new HallLoadingVO(user.getOrgId(),transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar());
+				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),user.getName());
 		Result result=serv.create(vo);
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -298,7 +298,7 @@ public class HallLoadingPanel extends JPanel {
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
-		ResultMessage message=serv.getOrgs(user.getOrgId());
+		ResultMessage message=serv.getLocalHallAndAllCenter(user.getOrgId());
 		Result result = message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{

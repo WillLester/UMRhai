@@ -6,7 +6,7 @@ import edu.nju.umr.vo.order.HallLoadingVO;
 
 public interface HallLoadingOrderLSer {
 	public Result create(HallLoadingVO order);
-	public ResultMessage getOrgs();
+	public ResultMessage getLocalHallAndAllCenter(String orgId);
 	public ResultMessage getVans(String org);
 	public ResultMessage getPrice(String org1,String org2);
 }
