@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderResubmitDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class OrderResubmitLogic implements OrderResubmitLSer{
@@ -30,6 +33,26 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
             e.printStackTrace();   
         } 
 	}
+	
+	public ResultMessage toRevise(){
+		ArrayList<OrderPO> orderpo=new ArrayList<OrderPO>();
+		ArrayList<OrderVO> ordervo=new ArrayList<OrderVO>();
+		try {
+			orderpo=resubmitData.getRevise();
+			for(OrderPO po:orderpo){
+				OrderVO vo=VPFactory.toOrderVO(po);
+				ordervo.add(vo);
+			}
+			if(orderpo.size()==0){
+				return new ResultMessage(Result.DATA_NOT_FOUND,null);
+			}else
+				return new ResultMessage(Result.SUCCESS,ordervo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+	}
+	
 	public ResultMessage getOrders(String id) {
 		// TODO 自动生成的方法存根
 		ArrayList<Object> orders = null;
