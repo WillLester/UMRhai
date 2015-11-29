@@ -20,6 +20,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.IncomeVO;
 
 public class IncomePanel extends JPanel {
 	/**
@@ -32,12 +33,16 @@ public class IncomePanel extends JPanel {
 	private JFrame frame;
 	private DatePanel datePanel;
 	private ExpressListPanel expressList;
+	private String orgId;
+	private String name;
 	/**  
 	 * Create the panel.
 	 */
-	public IncomePanel(JFrame fr,String orgId) {
+	public IncomePanel(JFrame fr,String orgId,String name) {
 		setLayout(null);
 		frame=fr;
+		this.orgId = orgId;
+		this.name = name;
 		logicSer = new IncomeOrderLogic();
 		
 		JLabel titleLabel = new JLabel("收款单");
@@ -83,12 +88,6 @@ public class IncomePanel extends JPanel {
 		amountField.setColumns(10);
 		amountField.setBounds(612+40, 174, 85, 25);
 		add(amountField);
-		
-		JLabel expressLabel = new JLabel("订单条形码号");
-		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressLabel.setBounds(220+40, 255, 130, 24);
-		add(expressLabel);
 
 		expressList = new ExpressListPanel(frame);
 		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
@@ -97,6 +96,21 @@ public class IncomePanel extends JPanel {
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+40, 499, 93, 23);
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						DoHint.hint(result, frame);
+					}
+				}
+			}
+		});
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
@@ -108,5 +122,23 @@ public class IncomePanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+	}
+	private boolean isLegal(){
+		if(expressList.isEmpty()){
+			DoHint.hint("请输入订单号！", frame);
+			return false;
+		}
+		try{
+			Double.parseDouble(amountField.getText());
+		} catch(NumberFormatException e){
+			DoHint.hint("请输入金额！", frame);
+			return false;
+		}
+		
+		return true;
+	}
+	private IncomeVO createVO(){
+		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), expressList.getExpresses(), name, orgId);
+		return vo;
 	}
 }
