@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.ui.DatePanel;
+
 public class ExpressPanel extends JPanel {
 	/**
 	 * 
@@ -39,6 +41,8 @@ public class ExpressPanel extends JPanel {
 	private JTextField lengthField;
 	private JTextField widthField;
 	private JTextField heightField;
+	
+	private DatePanel datePanel;
 	/**
 	 * Create the panel.
 	 */
@@ -55,14 +59,23 @@ public class ExpressPanel extends JPanel {
 		JLabel barcodeLabel = new JLabel("订单条形码号");
 		barcodeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		barcodeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		barcodeLabel.setBounds(341+75, 66, 120, 24);
+		barcodeLabel.setBounds(189, 66, 120, 24);
 		add(barcodeLabel);
 		
 		barcodeField = new JTextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setColumns(10);
-		barcodeField.setBounds(489+75, 65, 165, 25);
+		barcodeField.setBounds(337, 65, 165, 25);
 		add(barcodeField);
+		
+		JLabel date=new JLabel("日期");
+		date.setBounds(620, 66,120, 24);
+		date.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(date);
+		
+		datePanel = new DatePanel();
+		datePanel.setBounds(670, 66, 500, 24);
+		add(datePanel);
 		
 		JLabel sender = new JLabel("寄件人");
 		sender.setHorizontalAlignment(SwingConstants.CENTER);
@@ -361,5 +374,14 @@ public class ExpressPanel extends JPanel {
 		add(mLabelH);
 
 	}
+	
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setSize(1200,800);
+//		frame.setContentPane(new ExpressPanel(frame));
+//		frame.setVisible(true);
+//	}
+	
 
 }

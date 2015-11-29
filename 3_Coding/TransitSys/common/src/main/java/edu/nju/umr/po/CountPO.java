@@ -9,7 +9,7 @@ public class CountPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3831768397563399168L;
-	private String id;
+	private int id;
 	private ArrayList<OrgPO> organizations;
 	private ArrayList<WorkPO> workers;
 	private ArrayList<VanPO> vans;
@@ -17,7 +17,7 @@ public class CountPO implements Serializable{
 	private ArrayList<AccountPO> accounts;
 	private Calendar opTime;
 	
-	public CountPO(String id, ArrayList<OrgPO> organizations,
+	public CountPO(int id, ArrayList<OrgPO> organizations,
 			ArrayList<WorkPO> workers, ArrayList<VanPO> vans,
 			ArrayList<StockPO> stocks, ArrayList<AccountPO> accounts,
 			Calendar opTime) {
@@ -30,7 +30,7 @@ public class CountPO implements Serializable{
 		this.accounts = accounts;
 		this.opTime = opTime;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public ArrayList<OrgPO> getOrganizations() {

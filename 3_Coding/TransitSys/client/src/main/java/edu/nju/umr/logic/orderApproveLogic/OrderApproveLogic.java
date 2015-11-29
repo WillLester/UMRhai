@@ -41,7 +41,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		try {
 			ArrayList<OrderPO> orderList = approveData.getExamine();
 			for(OrderPO order:orderList){
-				OrderVO vo = new OrderVO(order.getKind(), order.getOperator(), order.getTime(), order.isPassed());
+				OrderVO vo = new OrderVO(order.getId(), order.getKind(), order.getOperator(), order.getTime());
 				orders.add(vo);
 			}
 		} catch (RemoteException e) {

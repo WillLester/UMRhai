@@ -22,6 +22,7 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.po.order.RecipientPO;
 import edu.nju.umr.po.order.SendPO;
@@ -47,6 +48,7 @@ import edu.nju.umr.vo.order.CenterLoadingVO;
 import edu.nju.umr.vo.order.ExpressVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
 import edu.nju.umr.vo.order.IncomeVO;
+import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.PaymentVO;
 import edu.nju.umr.vo.order.RecipientVO;
 import edu.nju.umr.vo.order.SendVO;
@@ -105,6 +107,16 @@ public class VPFactory {
      }
 	public static IncomePO toIncomePO(IncomeVO vo,int id){
 		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), id,Calendar.getInstance(),vo.getOpName(),vo.getOrgId());
+		return po;
+	}
+	
+	//单据
+	public static OrderVO toOrderVO(OrderPO po){
+		OrderVO vo=new OrderVO(po.getId(), po.getKind(), po.getOperator(), po.getTime());
+		return vo;
+	}
+	public static OrderPO toOrderPO(OrderVO vo){
+		OrderPO po=new OrderPO(vo.getId(), vo.getKind(), vo.getOperator(), vo.getTime(), false);
 		return po;
 	}
 	
@@ -205,7 +217,7 @@ public class VPFactory {
 		return po;
 	}
 	
-	//账  待完善！！！
+	//账  
 	public static CountVO toCountVO(CountPO po){
 		ArrayList<OrgPO> orgp=po.getOrganizations();
 		ArrayList<OrgVO> orgv=new ArrayList<OrgVO>();
@@ -237,11 +249,43 @@ public class VPFactory {
 			AccountVO av=VPFactory.toAccountVO(ap);
 			accountv.add(av);
 		}
-		CountVO vo=new CountVO(0, orgv, workv, vanv, stockv, accountv, po.getOpTime());//时间不明,id类型不一致，待修改
+		CountVO vo=new CountVO(po.getId(), orgv, workv, vanv, stockv, accountv, po.getOpTime());//
 		return vo;	
 	}
-	public static CountPO toCountPO(CountVO vo){
-		return null;
+	public static CountPO toCountPO(CountVO vo,String id){
+		ArrayList<OrgPO> orgp=new ArrayList<OrgPO>();
+		ArrayList<OrgVO> orgv=vo.getOrganizations();
+		for(OrgVO ov:orgv){
+			OrgPO op=VPFactory.toOrgPO(ov);
+			orgp.add(op);
+		}
+		ArrayList<WorkPO> workp=new ArrayList<WorkPO>();
+		ArrayList<WorkVO> workv=vo.getWorkers();
+		for(WorkVO wv:workv){
+			WorkPO wp=VPFactory.toWorkPO(wv,0);
+			workp.add(wp);
+		}
+		ArrayList<VanPO> vanp=new ArrayList<VanPO>();
+		ArrayList<VanVO> vanv=vo.getVans();
+		for(VanVO vv:vanv){
+			VanPO vp=VPFactory.toVanPO(vv);
+			vanp.add(vp);
+		}
+		ArrayList<StockPO> stockp=new ArrayList<StockPO>();
+		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
+		for(StockVO sv:stockv){
+			StockPO sp=VPFactory.toStockPO(sv);
+			stockp.add(sp);
+		}
+		ArrayList<AccountPO> accountp=new ArrayList<AccountPO>();
+		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
+		for(AccountVO av:accountv){
+			AccountPO ap=VPFactory.toAccountPO(av, 0);
+			accountp.add(ap);
+		}
+		
+		CountPO po=new CountPO(vo.getId(), orgp, workp, vanp, stockp, accountp, Calendar.getInstance());
+		return po;
 	}
 	
 	//日志
