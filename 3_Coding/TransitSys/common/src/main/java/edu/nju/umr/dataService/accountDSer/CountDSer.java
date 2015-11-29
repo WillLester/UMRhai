@@ -16,4 +16,5 @@ public interface CountDSer extends Remote{
 //	public ArrayList<StockPO> getStocks() throws RemoteException;
 //	public ArrayList<AccountPO> getAccount() throws RemoteException;
 	public ArrayList<CountPO> getCount() throws RemoteException;
+	public Result deleteCount(int id) throws RemoteException;
 }

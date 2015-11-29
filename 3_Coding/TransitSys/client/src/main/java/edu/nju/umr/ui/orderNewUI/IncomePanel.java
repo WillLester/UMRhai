@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -30,6 +31,8 @@ public class IncomePanel extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private Table table;
+	private JList<String> expressList;
+	
 	private DefaultTableModel model;
 	private JFrame frame;
 	private DatePanel datePanel;
@@ -61,32 +64,6 @@ public class IncomePanel extends JPanel {
 		datePanel=new DatePanel();
 		datePanel.setBounds(474+75+25, 268, 285, 26);
 		add(datePanel);
-//		JLabel label = new JLabel("年");
-//		label.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label.setBounds(506+40, 99, 25, 22);
-//		add(label);
-//		
-//		JSpinner spinner_1 = new JSpinner();
-//		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-//		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_1.setBounds(541+40, 97, 48, 26);
-//		add(spinner_1);
-//		
-//		JLabel label_1 = new JLabel("月");
-//		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_1.setBounds(599+40, 99, 25, 22);
-//		add(label_1);
-//		
-//		JSpinner spinner_2 = new JSpinner();
-//		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-//		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_2.setBounds(634+40, 97, 48, 26);
-//		add(spinner_2);
-//		
-//		JLabel label_2 = new JLabel("日");
-//		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_2.setBounds(692+40, 99, 25, 22);
-//		add(label_2);
 		
 		JLabel label_3 = new JLabel("快递员");
 		label_3.setFont(new Font("宋体", Font.PLAIN, 20));

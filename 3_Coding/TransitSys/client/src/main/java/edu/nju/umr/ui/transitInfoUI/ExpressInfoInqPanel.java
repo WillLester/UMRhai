@@ -1,11 +1,15 @@
 package edu.nju.umr.ui.transitInfoUI;
 
 import javax.swing.JPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
@@ -13,6 +17,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+
+import edu.nju.umr.ui.DatePanel;
 
 public class ExpressInfoInqPanel extends JPanel {
 	/**
@@ -30,10 +36,12 @@ public class ExpressInfoInqPanel extends JPanel {
 	private JTextField receiverCompanyField;
 	private JTextField receiverMobileField;
 	private JTextField receiverPhoneField;
+	private JTextField costField;
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private JFrame frame;
+	private DatePanel datePanel;
 
 	/**
 	 * Create the panel.
@@ -51,14 +59,24 @@ public class ExpressInfoInqPanel extends JPanel {
 		JLabel barcodeLabel = new JLabel("订单条形码号");
 		barcodeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		barcodeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		barcodeLabel.setBounds(341+25, 66, 120, 24);
+		barcodeLabel.setBounds(189, 66, 120, 24);
 		add(barcodeLabel);
 		
 		barcodeField = new JTextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setColumns(10);
-		barcodeField.setBounds(489+25, 65, 165, 25);
+		barcodeField.setBounds(337, 65, 165, 25);
 		add(barcodeField);
+		
+		JLabel date=new JLabel("日期");
+		date.setBounds(620, 66,120, 24);
+		date.setFont(new Font("宋体", Font.PLAIN, 20));
+		add(date);
+		
+		datePanel = new DatePanel();
+		datePanel.setBounds(670, 66, 500, 24);
+		datePanel.setEnabled(false);
+		add(datePanel);
 		
 		JLabel senderLabel = new JLabel("寄件人");
 		senderLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,8 +283,8 @@ public class ExpressInfoInqPanel extends JPanel {
 		label_19.setBounds(196+75, 411, 120, 24);
 		add(label_19);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"纸箱", "木箱", "快递袋"}));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"纸箱", "木箱", "快递袋"}));
 		comboBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		comboBox.setBounds(314+75, 411, 103, 25);
 		comboBox.setEnabled(false);
@@ -278,34 +296,40 @@ public class ExpressInfoInqPanel extends JPanel {
 		label_20.setBounds(437+75, 411, 120, 24);
 		add(label_20);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"经济快递", "标准快递", "特快专递"}));
-		comboBox_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		comboBox_1.setBounds(554+75, 411, 123, 25);
-		comboBox_1.setEnabled(false);
-		add(comboBox_1);
+		JComboBox<String> expressKind = new JComboBox<String>();
+		expressKind.setModel(new DefaultComboBoxModel<String>(new String[] {"经济快递", "标准快递", "特快专递"}));
+		expressKind.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressKind.setBounds(554+75, 411, 123, 25);
+		expressKind.setEnabled(false);
+		add(expressKind);
 		
-		JLabel label_21 = new JLabel("费用：");
-		label_21.setHorizontalAlignment(SwingConstants.LEFT);
-		label_21.setFont(new Font("宋体", Font.PLAIN, 20));
-		label_21.setBounds(704+75, 411, 120, 24);
-		add(label_21);
+		JLabel costLabel = new JLabel("费用：");
+		costLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		costLabel.setBounds(704+75, 411, 120, 24);
+		add(costLabel);
 		
-		JButton button = new JButton("确定");
-		button.setFont(new Font("宋体", Font.PLAIN, 20));
-		button.setBounds(700, 66, 93, 23);
-		add(button);
+		costField = new JTextField();
+		costField.setEditable(false);
+		costField.setBounds(836, 411, 66, 21);
+		add(costField);
+		costField.setColumns(10);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 20));
-		button_1.setBounds(537, 484, 93, 23);
-		button_1.addActionListener(new ActionListener(){
+		JButton confirmButton = new JButton("确定");
+		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		confirmButton.setBounds(525, 66, 80, 23);
+		add(confirmButton);
+		
+		JButton cancelButton = new JButton("取消");
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		cancelButton.setBounds(537, 484, 93, 23);
+		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
 			}
 		});
-		add(button_1);
+		add(cancelButton);
 		
 		senderNameField.setEnabled(false);
 		senderLocField.setEnabled(false);
@@ -322,6 +346,14 @@ public class ExpressInfoInqPanel extends JPanel {
 		textField_13.setEnabled(false);
 		
 
+	}
+	
+	public static void main(String[] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setSize(1200,800);
+		frame.setContentPane(new ExpressInfoInqPanel(frame));
+		frame.setVisible(true);
 	}
 
 }
