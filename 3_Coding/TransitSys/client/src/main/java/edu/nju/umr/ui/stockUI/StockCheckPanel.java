@@ -15,6 +15,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.stockLogic.StockCheckLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
 import edu.nju.umr.po.enums.Result;
@@ -22,10 +23,9 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInOutVO;
-import edu.nju.umr.vo.order.StockInVO;
-import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockCheckPanel extends JPanel{
 	/**
@@ -46,6 +46,7 @@ public class StockCheckPanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockCheckLogic();
+		tableInit();
 		
 		JLabel checkLabel = new JLabel("库存查看");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -80,6 +81,9 @@ public class StockCheckPanel extends JPanel{
 					ResultMessage message = logicSer.orderStock(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
 					if(message.getReInfo().equals(Result.SUCCESS)){
 						stockInOutList = (ArrayList<StockInOutVO>) message.getMessage();
+					} else {
+						DoHint.hint(message.getReInfo(), fr);
+						stockInOutList = new ArrayList<StockInOutVO>();
 					}
 					displayTable();
 				}
@@ -98,7 +102,7 @@ public class StockCheckPanel extends JPanel{
 		});
 		add(exitButton);
 
-		tableInit();
+
 		
 	}
 	private void tableInit(){
@@ -128,6 +132,16 @@ public class StockCheckPanel extends JPanel{
 		return true;
 	}
 	private void displayTable(){
-		
+		model.setRowCount(0);
+		for(StockInOutVO inOut:stockInOutList){
+			String info[] = new String[6];
+			info[0] = DateFormat.TIME.format(inOut.getTime().getTime());
+			info[1] = inOut.getType();
+			info[2] = inOut.getExpressId();
+			info[3] = inOut.getShelfId();
+			info[4] = inOut.getRow()+"";
+			info[5] = inOut.getPlace()+"";
+			model.addRow(info);
+		}
 	}
 }
