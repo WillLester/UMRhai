@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class WageDraftPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1937201346793974753L;
 	private JTextField textFieldwm;
 	private JTextField textFieldwc;
 	private JTextField textFieldwi;
