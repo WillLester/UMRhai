@@ -32,22 +32,23 @@ public class ExpressListPanel extends JPanel{
 	public ExpressListPanel(JFrame fr) {
 		// TODO 自动生成的构造函数存根
 		frame = fr;
+		setLayout(null);
 		
 		JLabel expressId = new JLabel("订单条形码号");
 		expressId.setHorizontalAlignment(SwingConstants.CENTER);
 		expressId.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressId.setBounds(220+75, 255, 130, 24);
+		expressId.setBounds(47, 35, 130, 24);
 		add(expressId);
 		
 		expressField = new JTextField();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressField.setColumns(10);
-		expressField.setBounds(355+75, 254, 280, 25);
+		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
 		JButton newExpButton = new JButton("新增");
 		newExpButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		newExpButton.setBounds(656+75, 256, 93, 23);
+		newExpButton.setBounds(476, 36, 93, 23);
 		add(newExpButton);
 		newExpButton.addActionListener(new ActionListener() {
 			
@@ -62,12 +63,12 @@ public class ExpressListPanel extends JPanel{
 		JLabel expressListLabel = new JLabel("已输入订单");
 		expressListLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressListLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressListLabel.setBounds(401+75, 289, 130, 24);
+		expressListLabel.setBounds(232, 69, 130, 24);
 		add(expressListLabel);
 		
 		JButton deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(805, 378, 93, 23);
+		deleteButton.setBounds(575, 146, 93, 23);
 		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -81,7 +82,7 @@ public class ExpressListPanel extends JPanel{
 		
 		JButton modifyButton = new JButton("修改");
 		modifyButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		modifyButton.setBounds(805, 413, 93, 23);
+		modifyButton.setBounds(575, 179, 93, 23);
 		modifyButton.setEnabled(false);
 		modifyButton.addActionListener(new ActionListener() {
 			
@@ -118,7 +119,7 @@ public class ExpressListPanel extends JPanel{
 				}
 			}
 		});
-		scroll.setBounds(306, 320, 489, 165);
+		scroll.setBounds(66, 103, 489, 165);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scroll);

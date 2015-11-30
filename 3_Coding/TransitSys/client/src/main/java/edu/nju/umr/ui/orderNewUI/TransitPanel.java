@@ -3,27 +3,28 @@ package edu.nju.umr.ui.orderNewUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
-import edu.nju.umr.ui.Table;
-import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.ui.ExpressListPanel;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.ui.utility.Hints;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.TransitVO;
 
 public class TransitPanel extends JPanel {
 	/**
@@ -33,22 +34,24 @@ public class TransitPanel extends JPanel {
 	private JTextField idField;
 	private JTextField supervisionField;
 	private JTextField planeIdField;
-	private JTextField expressIdField;
-	private Table expressList;
-	private DefaultTableModel model;
 	private JTextField containerField;
+	private JComboBox<String> startCombo;
+	private JComboBox<String> arriveCombo;
+	private JComboBox<String> kindCombo;
+	private ExpressListPanel expressList;
+	private JTextField costField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private TransitOrderLSer logicSer;
-	private UserVO user;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public TransitPanel(JFrame fr,UserVO user) {
+	public TransitPanel(JFrame fr,String org,String name) {
 		setLayout(null);
 		frame = fr;
+		this.name = name;
 		logicSer = new TransitOrderLogic();
-		this.user = user;
 		
 		JLabel titleLabel = new JLabel("生成中转单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -71,7 +74,7 @@ public class TransitPanel extends JPanel {
 		JLabel dateLabel = new JLabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(297, 121, 120, 24);
+		dateLabel.setBounds(296, 121, 120, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
@@ -83,20 +86,41 @@ public class TransitPanel extends JPanel {
 		startLabel.setBounds(242, 155, 85, 24);
 		add(startLabel);
 		
-		JComboBox startCombo = new JComboBox();
+		arriveCombo = new JComboBox<String>();
+		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		arriveCombo.setBounds(485, 157, 87, 25);
+		add(arriveCombo);
+		
+		startCombo = new JComboBox<String>();
 		startCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		startCombo.setBounds(307, 155, 87, 25);
+		ResultMessage message = logicSer.getCenters();
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			String[] centers = (String[]) message.getMessage();
+			startCombo.setModel(new DefaultComboBoxModel<String>(centers));
+			for(int i = 0;i < centers.length;i++){
+				if(centers[i].equals(org)){
+					startCombo.setSelectedIndex(i);
+					String[] arrives = new String[centers.length - 1];
+					System.arraycopy(centers, 0, arrives, 0, i);
+					System.arraycopy(centers, i+1, arrives, i, centers.length - i);
+					arriveCombo.setModel(new DefaultComboBoxModel<String>(arrives));
+				}
+			}
+		} else {
+			DoHint.hint(message.getReInfo(), frame);
+		}
 		add(startCombo);
 		
 		JLabel supervisionLabel = new JLabel("监装员");
 		supervisionLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		supervisionLabel.setBounds(609, 157, 85, 24);
+		supervisionLabel.setBounds(582, 157, 85, 24);
 		add(supervisionLabel);
 		
 		supervisionField = new JTextField();
 		supervisionField.setFont(new Font("宋体", Font.PLAIN, 20));
 		supervisionField.setColumns(10);
-		supervisionField.setBounds(674, 158, 85, 25);
+		supervisionField.setBounds(646, 157, 85, 25);
 		add(supervisionField);
 		
 		JLabel planeIdLabel = new JLabel("航班号");
@@ -111,34 +135,16 @@ public class TransitPanel extends JPanel {
 		planeIdField.setBounds(328, 203, 165, 25);
 		add(planeIdField);
 		
-		JLabel costField = new JLabel("运费：");
+		JLabel costLabel = new JLabel("运费：");
+		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		costLabel.setBounds(696, 204, 100, 24);
+		add(costLabel);
+		
+		costField = new JTextField();
 		costField.setFont(new Font("宋体", Font.PLAIN, 20));
-		costField.setBounds(696, 204, 232, 24);
+		costField.setBounds(748,203,165,25);
+		costField.setEditable(false);
 		add(costField);
-		
-		JLabel expressIdLabel = new JLabel("订单条形码号");
-		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressIdLabel.setBounds(220, 255, 130, 24);
-		add(expressIdLabel);
-		
-		expressIdField = new JTextField();
-		expressIdField.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressIdField.setColumns(10);
-		expressIdField.setBounds(355, 254, 280, 25);
-		add(expressIdField);
-		
-		JButton newButton = new JButton("新增");
-		newButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		newButton.setBounds(656, 256, 93, 23);
-		add(newButton);
-		
-		JLabel expressListLabel = new JLabel("已输入订单");
-		expressListLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressListLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressListLabel.setBounds(401, 289, 130, 24);
-		add(expressListLabel);
-		
 		
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -148,7 +154,14 @@ public class TransitPanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						DoHint.hint(result, frame);
+					}
+				}
 			}
 		});
 		
@@ -164,15 +177,15 @@ public class TransitPanel extends JPanel {
 			}
 		});
 		
+		JLabel kindLabel = new JLabel("运输方式");
+		kindLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		kindLabel.setBounds(741, 157, 80, 24);
+		add(kindLabel);
+		
 		JLabel arriveLabel = new JLabel("到达地");
 		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		arriveLabel.setBounds(421, 155, 85, 24);
 		add(arriveLabel);
-		
-		JComboBox arriveCombo = new JComboBox();
-		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveCombo.setBounds(485, 157, 87, 25);
-		add(arriveCombo);
 		
 		JLabel containerLabel = new JLabel("货柜号");
 		containerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -186,28 +199,63 @@ public class TransitPanel extends JPanel {
 		containerField.setBounds(609, 203, 69, 25);
 		add(containerField);
 		
-		tableInit();
+		expressList = new ExpressListPanel(frame);
+		expressList.setBounds(206, 212, 683, 297);
+		add(expressList);
 		
-
-	}
-	void tableInit(){
-		expressList = new Table(new DefaultTableModel());
-		model=(DefaultTableModel)expressList.getModel();
-		expressList.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
+		kindCombo = new JComboBox<String>();
+		kindCombo.setBounds(827, 157, 62, 25);
+		String kind[] = {"飞机","铁路","公路"};
+		kindCombo.setModel(new DefaultComboBoxModel<String>(kind));
+		kindCombo.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					if(kindCombo.getSelectedIndex() == 0){
+						planeIdField.setEnabled(true);
+					} else {
+						planeIdField.setEnabled(false);
+					}
+				}
 			}
 		});
-		expressList.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		expressList.setBounds(220, 313, 529, 176);
-		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		expressList.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(expressList);
-		scroll.setBounds(220, 313, 529, 176);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"订单号"};
-		model.setColumnIdentifiers(columnNames);
-		add(scroll);
+		add(kindCombo);
+	}
+	private boolean isLegal(){
+		String result = CheckLegal.isTransitLegal(idField.getText());
+		if(!result.equals(null)){
+			DoHint.hint(result, frame);
+			return false;
+		}
+		if(expressList.isEmpty()){
+			DoHint.hint(Hints.EXPRESSLIST_NULL, frame);
+			return false;
+		}
+		if(supervisionField.getText().equals("")){
+			DoHint.hint("请输入监装员！", frame);
+			return false;
+		}
+		if(kindCombo.getSelectedIndex() == 0){
+			if(planeIdField.getText().equals("")){
+				DoHint.hint("请输入航班号！", frame);
+				return false;
+			}
+		}
+		if(containerField.getText().equals("")){
+			DoHint.hint("请输入货柜号！", frame);
+			return false;
+		}
+		return true;
+	}
+	private TransitVO createVO(){
+		if(kindCombo.getSelectedIndex() == 0){
+			TransitVO vo = new TransitVO(planeIdField.getText(), (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()));
+			return vo;
+		} else {
+			TransitVO vo = new TransitVO(null, (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()));
+			return vo;
+		}
 	}
 }

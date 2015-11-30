@@ -11,9 +11,12 @@ public class TransitVO {
 	private String supervision;
 	private ArrayList<String> express;
 	private String opName;
-	public TransitVO(String planeId,String startPlace,String arrivePlace,String containerId,String supervision,ArrayList<String> express,String opName) {
-		// TODO 自动生成的构造函数存根
-//		this.id = id;
+	private double cost;
+	
+	public TransitVO(String planeId, String startPlace, String arrivePlace,
+			String containerId, String supervision, ArrayList<String> express,
+			String opName, double cost) {
+		super();
 		this.planeId = planeId;
 		this.startPlace = startPlace;
 		this.arrivePlace = arrivePlace;
@@ -21,10 +24,13 @@ public class TransitVO {
 		this.supervision = supervision;
 		this.express = express;
 		this.opName = opName;
+		this.cost = cost;
 	}
-//	public String getId() {
-//		return id;
-//	}
+
+	public double getCost() {
+		return cost;
+	}
+
 	public String getPlaneId() {
 		return planeId;
 	}

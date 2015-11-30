@@ -23,6 +23,7 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.StockInOutVO;
 import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;
 
@@ -37,8 +38,7 @@ public class StockCheckPanel extends JPanel{
 	private DateTimePanel dateTimeS;
 	private DateTimePanel dateTimeE;
 	private StockCheckLSer logicSer;
-	private ArrayList<StockInVO> stockInList;
-	private ArrayList<StockOutVO> stockOutList;
+	private ArrayList<StockInOutVO> stockInOutList;
 	/**
 	 * Create the panel.
 	 */
@@ -77,19 +77,9 @@ public class StockCheckPanel extends JPanel{
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
 				if(isLegal()){
-					ResultMessage messageIn = logicSer.checkStockIn(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
-					if(messageIn.getReInfo().equals(Result.SUCCESS)){
-						stockInList = (ArrayList<StockInVO>) messageIn.getMessage();
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(messageIn.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-					}
-					ResultMessage messageOut = logicSer.checkStockOut(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
-					if(messageOut.getReInfo().equals(Result.SUCCESS)){
-						stockOutList = (ArrayList<StockOutVO>) messageOut.getMessage();
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(messageOut.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+					ResultMessage message = logicSer.orderStock(dateTimeS.getCalendar(), dateTimeE.getCalendar(), orgId);
+					if(message.getReInfo().equals(Result.SUCCESS)){
+						stockInOutList = (ArrayList<StockInOutVO>) message.getMessage();
 					}
 					displayTable();
 				}

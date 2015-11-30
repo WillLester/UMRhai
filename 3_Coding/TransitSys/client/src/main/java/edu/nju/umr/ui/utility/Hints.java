@@ -8,4 +8,5 @@ public class Hints {
 	public static final String TRANSIT_NULL = "中转单号未填写！";
 	public static final String TRANSIT_ILLEGAL = "中转单号含有非数字字符！";
 	public static final String TRANSIT_LENGTH = "中转单号长度错误！";
+	public static final String EXPRESSLIST_NULL = "请输入订单号！";
 }
