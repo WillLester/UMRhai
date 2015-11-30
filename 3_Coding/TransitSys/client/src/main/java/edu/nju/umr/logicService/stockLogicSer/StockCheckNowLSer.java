@@ -6,5 +6,5 @@ import edu.nju.umr.vo.StockVO;
 
 public interface StockCheckNowLSer {
 	public ResultMessage checkNow(String id);
-	public Result outputExcel(String location,StockVO stock);
+	public Result outputExcel(String location,String name);
 }

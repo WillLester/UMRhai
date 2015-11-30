@@ -86,7 +86,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		for(int i=0;i<busiList.size();i++){
 			data[i+1][0]=busiList.get(i).getAmount()+"";
 			Calendar c=busiList.get(i).getDate();
-			data[i+1][1]=(c.YEAR+"")+"."+(c.MONTH+"")+"."+(c.DATE+"");
+			data[i+1][1]=(c.get(Calendar.YEAR)+"")+"."+((c.get(Calendar.MONTH)+1)+"")+"."+(c.get(Calendar.DATE)+"");
 			data[i+1][2]=busiList.get(i).getAmount()+"";
 			data[i+1][3]=String.valueOf(busiList.get(i).getRemark());
 		}
