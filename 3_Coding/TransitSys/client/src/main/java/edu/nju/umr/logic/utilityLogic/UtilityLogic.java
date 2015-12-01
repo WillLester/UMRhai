@@ -145,17 +145,13 @@ public class UtilityLogic {
 		try {
 			stock = utilityData.getStocks();
 			for(StockPO po:stock){
-				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
-				for(GoodPO gPo:po.getGoods()){
-					GoodVO gVo = new GoodVO(gPo.getId(), gPo.getDate(), gPo.getCity(), gPo.getPart(), gPo.getShelf(), gPo.getRow(), gPo.getPlace());
-					goodList.add(gVo);
-				}
-				StockVO vo = new StockVO(goodList);
-				stockList.add(vo);
+				StockVO vo = VPFactory.toStockVO(po);
+				stockList.add(vo);				
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(Result.SUCCESS, stockList);
 	}

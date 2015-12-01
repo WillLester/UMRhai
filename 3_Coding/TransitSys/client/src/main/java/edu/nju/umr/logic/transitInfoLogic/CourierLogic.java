@@ -13,6 +13,7 @@ import edu.nju.umr.vo.order.ExpressVO;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 
 public class CourierLogic implements CourierLSer{
 	CourierDFacSer dataFac;
@@ -44,10 +45,7 @@ public class CourierLogic implements CourierLSer{
 		}catch(Exception e)	{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,new ExpressVO(express.getId(),express.getSender(),express.getSendLoc(),express.getReceiver(),express.getReceiveLoc(),
-				express.getSendMobile(),express.getReceiveMobile(),express.getSendPhone(),express.getReceivePhone(),express.getSendUnit(),express.getReceiveUnit(),
-				express.getNum(),express.getName(),express.getLength(),express.getWidth(),express.getHeight(),express.getWeight(),express.getVolumn(),
-				express.getArrive(),express.getKind(),express.getCost(),express.getOpName()));
+		ResultMessage message=new ResultMessage(Result.SUCCESS,VPFactory.toExpressVO(express));
 		return message;
 	}
 

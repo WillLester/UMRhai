@@ -8,6 +8,7 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
@@ -34,9 +35,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc=receiveData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(),
-					order.getSendPhone(), order.getReceivePhone(), order.getSendUnit(), order.getReceiveUnit(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), 
-					order.getId(), order.getArrive(), order.getKind(), order.getCost(), Calendar.getInstance(), order.getOpName()));
+			isSuc=receiveData.create(VPFactory.toExpressPO(order));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;

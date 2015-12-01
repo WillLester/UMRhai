@@ -22,10 +22,11 @@ public class TransitPO extends PO implements Serializable{
 	private ArrayList<String> express;
 	private Calendar opTime;
 	private String opName;
+	private double cost;
 	
 	public TransitPO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
-			ArrayList<String> express, Calendar opTime, String opName) {
+			ArrayList<String> express, Calendar opTime, String opName,double cost) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -36,6 +37,7 @@ public class TransitPO extends PO implements Serializable{
 		this.express = express;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.cost=cost;
 	}
 	public String getId() {
 		return id;
@@ -63,6 +65,9 @@ public class TransitPO extends PO implements Serializable{
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public double getCost(){
+		return cost;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {

@@ -32,6 +32,7 @@ public class ExpressPO extends PO implements Serializable{
 	private double volumn;
 	private String id;
 	private Calendar arrive;
+	private Calendar createDate;
 	private Express kind;
 	private double cost;
 	private Calendar opTime;
@@ -42,7 +43,7 @@ public class ExpressPO extends PO implements Serializable{
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			String id, Calendar arrive, Express kind, double cost,
+			String id, Calendar arrive,Calendar createDate ,Express kind, double cost,
 			Calendar opTime, String opName) {
 		super();
 		this.sender = sender;
@@ -64,6 +65,7 @@ public class ExpressPO extends PO implements Serializable{
 		this.volumn = volumn;
 		this.id = id;
 		this.arrive = arrive;
+		this.createDate=createDate;
 		this.kind = kind;
 		this.cost = cost;
 		this.opTime = opTime;
@@ -113,6 +115,9 @@ public class ExpressPO extends PO implements Serializable{
 	}
 	public Calendar getArrive() {
 		return arrive;
+	}
+	public Calendar getCreateDate(){
+		return createDate;
 	}
 	public Express getKind() {
 		return kind;

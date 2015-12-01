@@ -80,13 +80,13 @@ public class VPFactory {
      //快递单
      public static ExpressVO toExpressVO(ExpressPO po){
     	 ExpressVO vo=new ExpressVO(po.getId(), po.getSender(), po.getSendLoc(), po.getReceiver(), po.getReceiveLoc(), po.getSendMobile(), po.getReceiveMobile(), 
-    			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(), po.getHeight(), po.getWeight(), po.getVolumn(), po.getArrive(), po.getKind(), po.getCost(), po.getOpName());
+    			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(), po.getHeight(), po.getWeight(), po.getVolumn(), po.getArrive(),po.getCreateDate(), po.getKind(), po.getCost(), po.getOpName());
     	 return vo;
      }
      public static ExpressPO toExpressPO(ExpressVO vo){
     	 ExpressPO po=new ExpressPO(vo.getSender(), vo.getSendLoc(), vo.getReceiver(), vo.getReceiveLoc(),vo.getSendMobile(), vo.getReceiveMobile(),
     			 vo.getSendPhone(), vo.getReceivePhone(), vo.getSendUnit(),vo.getReceiveUnit(), vo.getNum(), vo.getName(),vo.getLength(),vo.getWidth(), vo.getHeight(), vo.getWeight(), vo.getVolumn(), 
-    			 vo.getId(), vo.getArrive(), vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName());
+    			 vo.getId(), vo.getArrive(), vo.getCreateDate(),vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName());
     	 return po;
      }
      
@@ -172,11 +172,11 @@ public class VPFactory {
 	
 	//中转单
 	public static TransitVO toTransitVO(TransitPO po){
-		TransitVO vo=new TransitVO(po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName());
+		TransitVO vo=new TransitVO(po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost());
 		return vo;
 	}
 	public static TransitPO toTransitPO(TransitVO vo,String id){
-		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),Calendar.getInstance(),vo.getOpName());
+		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),Calendar.getInstance(),vo.getOpName(),vo.getCost());
 		return po;
 	}
 	//账户

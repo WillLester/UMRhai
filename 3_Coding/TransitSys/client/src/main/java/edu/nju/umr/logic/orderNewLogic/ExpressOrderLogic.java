@@ -9,6 +9,7 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
@@ -34,9 +35,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc=expressData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(),
-					order.getSendPhone(), order.getReceivePhone(), order.getSendUnit(), order.getReceiveUnit(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), 
-					order.getId(), order.getArrive(), order.getKind(), order.getCost(), Calendar.getInstance(), order.getOpName()));
+			isSuc=expressData.create(VPFactory.toExpressPO(order));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
