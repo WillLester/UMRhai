@@ -80,13 +80,14 @@ public class VPFactory {
      //快递单
      public static ExpressVO toExpressVO(ExpressPO po){
     	 ExpressVO vo=new ExpressVO(po.getId(), po.getSender(), po.getSendLoc(), po.getReceiver(), po.getReceiveLoc(), po.getSendMobile(), po.getReceiveMobile(), 
-    			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(), po.getHeight(), po.getWeight(), po.getVolumn(), po.getArrive(),po.getCreateDate(), po.getKind(), po.getCost(), po.getOpName());
+    			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(), po.getHeight(),
+    			 po.getWeight(), po.getVolumn(), po.getArrive(),po.getCreateDate(), po.getKind(), po.getCost(), po.getOpName(), po.getParse(), po.getSendProvince(), po.getSendCity(), po.getReceiveProvince(), po.getReceiveCity());
     	 return vo;
      }
      public static ExpressPO toExpressPO(ExpressVO vo){
     	 ExpressPO po=new ExpressPO(vo.getSender(), vo.getSendLoc(), vo.getReceiver(), vo.getReceiveLoc(),vo.getSendMobile(), vo.getReceiveMobile(),
     			 vo.getSendPhone(), vo.getReceivePhone(), vo.getSendUnit(),vo.getReceiveUnit(), vo.getNum(), vo.getName(),vo.getLength(),vo.getWidth(), vo.getHeight(), vo.getWeight(), vo.getVolumn(), 
-    			 vo.getId(), vo.getArrive(), vo.getCreateDate(),vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName());
+    			 vo.getId(), vo.getArrive(), vo.getCreateDate(),vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName(),vo.getParse(),vo.getSendProvince(),vo.getSendCity(),vo.getReceiveProvince(),vo.getReceiveCity());
     	 return po;
      }
      
@@ -376,7 +377,7 @@ public class VPFactory {
 		return vo;
 	}
 	public static VanPO toVanPO(VanVO vo){
-		VanPO po=new VanPO(vo.getId(), vo.getPlateNum(), vo.getServTime(), vo.getPhoto(), vo.getHallId());
+		VanPO po=new VanPO(vo.getId(), vo.getPlateNum(), vo.getServTime(),vo.getPhoto(), vo.getHallId());
 		return po;
 	}
 	
