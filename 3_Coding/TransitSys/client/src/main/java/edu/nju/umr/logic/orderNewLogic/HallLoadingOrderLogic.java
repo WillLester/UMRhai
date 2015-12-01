@@ -76,5 +76,10 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public ResultMessage getLocalHallAndAllCenter(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
