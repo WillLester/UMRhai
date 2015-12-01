@@ -53,8 +53,7 @@ public class ExpressPO extends PO implements Serializable{
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
 			String id, Calendar arrive, Calendar createDate, Express kind,
-			double cost, String realReceiver, Calendar receiveTime,
-			Calendar opTime, String opName, Parse parse, String sendProvince,
+			double cost,Calendar opTime, String opName, Parse parse, String sendProvince,
 			String sendCity, String receiveProvince, String receiveCity) {
 		super();
 		this.sender = sender;
@@ -79,8 +78,6 @@ public class ExpressPO extends PO implements Serializable{
 		this.createDate = createDate;
 		this.kind = kind;
 		this.cost = cost;
-		this.realReceiver = realReceiver;
-		this.receiveTime = receiveTime;
 		this.opTime = opTime;
 		this.opName = opName;
 		this.parse = parse;
@@ -181,6 +178,12 @@ public class ExpressPO extends PO implements Serializable{
 	}
 	public Calendar getReceiveTime() {
 		return receiveTime;
+	}
+	public void setRealReceiver(String realReceiver) {
+		this.realReceiver = realReceiver;
+	}
+	public void setReceiveTime(Calendar receiveTime) {
+		this.receiveTime = receiveTime;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {

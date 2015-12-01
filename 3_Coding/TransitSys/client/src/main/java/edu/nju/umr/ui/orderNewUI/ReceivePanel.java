@@ -91,6 +91,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		}
 	}
 	private ReceiveVO createVO(){
-		return null;
+		ReceiveVO vo = new ReceiveVO(receiveField.getText(), receiveDate.getCalendar());
+		return vo;
 	}
 }
