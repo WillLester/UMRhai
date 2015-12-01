@@ -19,12 +19,13 @@ import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
+import edu.nju.umr.ui.orderNewUI.ExpressPanel.ConfirmListener;
 
-public class ExpressPanel extends JPanel {
+public class Test extends JPanel {
+
 	/**
-	 * 
+	 * Create the panel.
 	 */
-	private static final long serialVersionUID = 472329397579383210L;
 	protected JTextField barcodeField;
 	protected JTextField senderField;
 	protected JTextField senderCompanyField;
@@ -83,7 +84,7 @@ public class ExpressPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ExpressPanel(JFrame fr) {
+	public Test(JFrame fr) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
@@ -397,16 +398,5 @@ public class ExpressPanel extends JPanel {
 		add(mLabelH);
 
 	}
-	
-	public class ConfirmListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO 自动生成的方法存根
-			
-		}
-		
-	}
-	
-
 }
+
