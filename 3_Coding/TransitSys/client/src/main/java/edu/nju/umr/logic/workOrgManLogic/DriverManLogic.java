@@ -136,4 +136,10 @@ public class DriverManLogic implements DriverManLSer{
 		return message;
 	}
 
+//	@Override
+//	public ResultMessage searchDriver(String hallId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 }
