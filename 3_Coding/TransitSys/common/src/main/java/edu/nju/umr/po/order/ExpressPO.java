@@ -7,6 +7,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.MysqlOperation;
+import edu.nju.umr.po.enums.Parse;
 
 public class ExpressPO extends PO implements Serializable{
 	/**
@@ -32,18 +33,28 @@ public class ExpressPO extends PO implements Serializable{
 	private double volumn;
 	private String id;
 	private Calendar arrive;
+	private Calendar createDate;
 	private Express kind;
 	private double cost;
+	private String realReceiver;
+	private Calendar receiveTime;
 	private Calendar opTime;
 	private String opName;
+	private Parse parse;
+	private String sendProvince;
+	private String sendCity;
+	private String receiveProvince;
+	private String receiveCity;
+	
 	
 	public ExpressPO(String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			String id, Calendar arrive, Express kind, double cost,
-			Calendar opTime, String opName) {
+			String id, Calendar arrive, Calendar createDate, Express kind,
+			double cost,Calendar opTime, String opName, Parse parse, String sendProvince,
+			String sendCity, String receiveProvince, String receiveCity) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -64,10 +75,16 @@ public class ExpressPO extends PO implements Serializable{
 		this.volumn = volumn;
 		this.id = id;
 		this.arrive = arrive;
+		this.createDate = createDate;
 		this.kind = kind;
 		this.cost = cost;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.parse = parse;
+		this.sendProvince = sendProvince;
+		this.sendCity = sendCity;
+		this.receiveProvince = receiveProvince;
+		this.receiveCity = receiveCity;
 	}
 	public String getSender() {
 		return sender;
@@ -114,6 +131,9 @@ public class ExpressPO extends PO implements Serializable{
 	public Calendar getArrive() {
 		return arrive;
 	}
+	public Calendar getCreateDate(){
+		return createDate;
+	}
 	public Express getKind() {
 		return kind;
 	}
@@ -138,12 +158,39 @@ public class ExpressPO extends PO implements Serializable{
 	public String getOpName() {
 		return opName;
 	}
+	public Parse getParse() {
+		return parse;
+	}
+	public String getSendProvince() {
+		return sendProvince;
+	}
+	public String getSendCity() {
+		return sendCity;
+	}
+	public String getReceiveProvince() {
+		return receiveProvince;
+	}
+	public String getReceiveCity() {
+		return receiveCity;
+	}
+	public String getRealReceiver() {
+		return realReceiver;
+	}
+	public Calendar getReceiveTime() {
+		return receiveTime;
+	}
+	public void setRealReceiver(String realReceiver) {
+		this.realReceiver = realReceiver;
+	}
+	public void setReceiveTime(Calendar receiveTime) {
+		this.receiveTime = receiveTime;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command = null;
 		switch(op){
-		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+")";break;
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+realReceiver+"',"+DateFormat.TIME.format(receiveTime.getTime())+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"')";break;
 		case DELETE:break;
 		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:break;

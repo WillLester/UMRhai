@@ -6,5 +6,5 @@ import edu.nju.umr.vo.order.TransitVO;
 
 public interface TransitOrderLSer {
 	public Result create(TransitVO order);
-	public ResultMessage getCities();
+	public ResultMessage getCenters();
 }

@@ -9,15 +9,35 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.po.order.CenterLoadingPO;
+import edu.nju.umr.po.order.ExpressPO;
+import edu.nju.umr.po.order.HallLoadingPO;
+import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.OrderPO;
+import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.po.order.RecipientPO;
+import edu.nju.umr.po.order.SendPO;
+import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.po.order.StockOutPO;
+import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
 import edu.nju.umr.vo.order.CenterLoadingVO;
+import edu.nju.umr.vo.order.ExpressVO;
+import edu.nju.umr.vo.order.HallLoadingVO;
+import edu.nju.umr.vo.order.IncomeVO;
 import edu.nju.umr.vo.order.OrderVO;
+import edu.nju.umr.vo.order.PaymentVO;
+import edu.nju.umr.vo.order.RecipientVO;
+import edu.nju.umr.vo.order.SendVO;
+import edu.nju.umr.vo.order.StockInVO;
+import edu.nju.umr.vo.order.StockOutVO;
+import edu.nju.umr.vo.order.TransitVO;
 
 public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDFacSer dataFac;
@@ -73,7 +93,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 				ArrivePO Arrivepo=(ArrivePO)approveData.getOrder(id, kind);
 				if(Arrivepo!=null)
 					arriveSuc=Result.SUCCESS;
-				arrive=new ArriveVO(Arrivepo.getCenterId(), Arrivepo.getDate(), Arrivepo.getStartPlace(), Arrivepo.getState(), Arrivepo.getOpName());
+				arrive=VPFactory.toArriveVO(Arrivepo);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return new ResultMessage(Result.NET_INTERRUPT,null);
@@ -83,8 +103,175 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		case CENTERLOADING:
 			CenterLoadingVO centerLoad=null;
 			Result centerLoadSuc=Result.DATA_NOT_FOUND;
+			try {
+				CenterLoadingPO ctpo=(CenterLoadingPO)approveData.getOrder(id, kind);
+				if(ctpo!=null)
+					centerLoadSuc=Result.SUCCESS;
+				centerLoad=VPFactory.toCenterLoadVO(ctpo);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(centerLoadSuc,centerLoad);
+			
+		case EXPRESS:
+			ExpressVO ev=null;
+			Result expressSuc=Result.DATA_NOT_FOUND;
+			try {
+				ExpressPO ep=(ExpressPO)approveData.getOrder(id, kind);
+				ev=VPFactory.toExpressVO(ep);
+				if(ep!=null)
+					expressSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(expressSuc,ev);
+			
+		case HALLLOADING:
+			HallLoadingVO hv=null;
+			Result hallSuc=Result.DATA_NOT_FOUND;
+			try {
+				HallLoadingPO hp=(HallLoadingPO)approveData.getOrder(id, kind);
+				hv=VPFactory.toHallLoadingVO(hp);
+				if(hp!=null)
+					hallSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(hallSuc,hv);
+			
+		case INCOME:
+			IncomeVO iv=null;
+			Result iSuc=Result.DATA_NOT_FOUND;
+			try {
+				IncomePO ip=(IncomePO)approveData.getOrder(id, kind);
+				iv=VPFactory.toIncomeVO(ip);
+				if(ip!=null)
+					hallSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(iSuc,iv);
+			
+		case PAYMENT:
+			PaymentVO pv=null;
+			Result pSuc=Result.DATA_NOT_FOUND;
+			try {
+				PaymentPO pp=(PaymentPO)approveData.getOrder(id, kind);
+				pv=VPFactory.toPaymentVO(pp);
+				if(pp!=null)
+					hallSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(pSuc,pv);
+			
+		case RECEIVE:
+			ExpressVO rev=null;
+			Result reSuc=Result.DATA_NOT_FOUND;
+			try {
+				ExpressPO rep=(ExpressPO)approveData.getOrder(id, kind);
+				rev=VPFactory.toExpressVO(rep);
+				if(rep!=null)
+					hallSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(reSuc,rev);
+			
+		case RECIPIENT:
+			RecipientVO recipv=null;
+			Result recipSuc=Result.DATA_NOT_FOUND;
+			try {
+				RecipientPO recipp=(RecipientPO)approveData.getOrder(id, kind);
+				recipv=VPFactory.toRecipientVO(recipp);
+				if(recipp!=null)
+					recipSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(recipSuc,recipv);
+			
+		case SEND:
+			SendVO sendv=null;
+			Result sendSuc=Result.DATA_NOT_FOUND;
+			try {
+				SendPO sendp=(SendPO)approveData.getOrder(id, kind);
+				sendv=VPFactory.toSendVO(sendp);
+				if(sendp!=null)
+					sendSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(sendSuc,sendv);
+			
+		case STOCKIN:
+			StockInVO stov=null;
+			Result stoSuc=Result.DATA_NOT_FOUND;
+			try {
+				StockInPO stop=(StockInPO)approveData.getOrder(id, kind);
+				stov=VPFactory.toStockInVO(stop);
+				if(stop!=null)
+					stoSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(stoSuc,stov);
+			
+		case STOCKOUT:
+			StockOutVO outv=null;
+			Result outSuc=Result.DATA_NOT_FOUND;
+			try {
+				StockOutPO outp=(StockOutPO)approveData.getOrder(id, kind);
+				outv=VPFactory.toStockOutVO(outp);
+				if(outp!=null)
+					outSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(outSuc,outv);
+			
+		case TRANSIT:
+			TransitVO tv=null;
+			Result tSuc=Result.DATA_NOT_FOUND;
+			try {
+				TransitPO tp=(TransitPO)approveData.getOrder(id, kind);
+				tv=VPFactory.toTransitVO(tp);
+				if(tp!=null)
+					tSuc=Result.SUCCESS;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(tSuc,tv);
+			
+//		default:
+//			return null;
 			
 		}
+		return null;
+		
+		
 		
 		
 //		PaymentVO order = null;
@@ -97,7 +284,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 //			e.printStackTrace();
 //			return new ResultMessage(Result.NET_INTERRUPT,null);
 //		}
-		return null;
 	}
 	
 }

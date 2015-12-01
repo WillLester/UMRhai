@@ -5,21 +5,24 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockCheckNowDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockCheckNowDSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.StockVO;
 
 public class StockCheckNowLogic implements StockCheckNowLSer{
 	StockCheckNowDFacSer dataFac;
 	StockCheckNowDSer checkData;
+	UtilityLogic uti=new UtilityLogic();
+	StockPO stock=null;
 	
 	public StockCheckNowLogic(){
 		try
@@ -37,50 +40,48 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 			e.printStackTrace();
 		}
 	}
-
+	
 	public ResultMessage checkNow(String id) {
-		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
-		StockPO stock=null;
+		Result isSuc=Result.DATA_NOT_FOUND;		
 		try{
 			stock=checkData.getStock(id);
-//			isSuccessful=true;
+			if(stock!=null)
+				isSuc=Result.SUCCESS;
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		ArrayList<GoodPO> ar=stock.getGoods();
-		ArrayList<GoodVO> arVO=new ArrayList<GoodVO>();
-		for(int i=0;i<ar.size();i++)
-		{
-			GoodPO good=ar.get(i);
-			arVO.add(new GoodVO(good.getId(),good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
-		}
-		ResultMessage message=new ResultMessage(Result.SUCCESS,new StockVO(arVO));
+		ResultMessage message=new ResultMessage(isSuc,VPFactory.toStockVO(stock));
 		return message;
 	}
-
-	public Result outputExcel(String location, StockVO stock) {
-		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
-		ArrayList<GoodVO> arVO=stock.getGoods();
-		ArrayList<GoodPO> ar=new ArrayList<GoodPO>();
-		for(int i=0;i<arVO.size();i++)
-		{
-			GoodVO good=arVO.get(i);
-			ar.add(new GoodPO(good.getId(),"00001",good.getDate(),good.getCity(),good.getPart(),good.getShelf(),good.getRow(),good.getPlace()));
+	
+	public Result outputExcel(String location, String name) {
+		ArrayList<GoodPO> goodList=stock.getGoods();
+		String data[][]=new String[1+goodList.size()][7];
+		data[0][0]="快递编号";
+		data[0][1]="入库日期";
+		data[0][2]="目的地";
+		data[0][3]="区号";
+		data[0][4]="架号";
+		data[0][5]="排号";
+		data[0][6]="位号";
+		
+		for(int i=0;i<goodList.size();i++){
+			GoodPO good=goodList.get(i);
+			data[i+1][0]=good.getId();
+			data[i+1][1]=(good.getDate().get(Calendar.YEAR)+"")+"."+((good.getDate().get(Calendar.MONTH)+1)+"")+"."+(good.getDate().get(Calendar.DATE)+"");
+			data[i+1][2]=good.getCity();
+			data[i+1][3]=good.getPart()+"";
+			data[i+1][4]=good.getShelf()+"";
+			data[i+1][5]=good.getRow()+"";
+			data[i+1][6]=good.getPlace()+"";
 		}
-//		StockPO stockPO=new StockPO(ar);
-//		try{
-//			isSuccessful=checkData.outputExcel(location, stockPO);
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-		return Result.SUCCESS;
+		
+		
+				
+		return uti.outputExcel(data, name, location);
 	}
 
 }

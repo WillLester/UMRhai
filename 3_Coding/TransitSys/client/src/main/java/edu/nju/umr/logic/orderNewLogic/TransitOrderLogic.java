@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Calendar;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.TransitPO;
@@ -34,7 +35,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		// TODO 自动生成的方法存根
 //		boolean isSuccessful=false;
 		try{
-			TransitPO orderPO=new TransitPO("",order.getPlaneId(),order.getStartPlace(),order.getArrivePlace(),order.getContainerId(),order.getSupervision(),order.getExpress(),Calendar.getInstance(),order.getOpName());
+			TransitPO orderPO=VPFactory.toTransitPO(order, "");
 			transitData.create(orderPO);
 //			isSuccessful=true;
 		}catch(RemoteException e){
@@ -65,6 +66,12 @@ public class TransitOrderLogic implements TransitOrderLSer{
 //		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 //		return message;
 		return uti.getCities();
+	}
+
+	@Override
+	public ResultMessage getCenters() {
+		
+		return uti.getCenter();
 	}
 
 }

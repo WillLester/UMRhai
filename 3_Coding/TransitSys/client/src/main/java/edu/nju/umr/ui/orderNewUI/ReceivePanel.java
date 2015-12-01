@@ -4,113 +4,94 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
+import edu.nju.umr.logic.orderNewLogic.ReceiveOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.order.ReceiveVO;
 
-public class ReceivePanel extends JPanel {
+public class ReceivePanel extends ExpressInfoInqPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3052576244031029859L;
-	private JTextField receiverField;
-	private JTextField idField;
-	private JFrame frame;
-	private DatePanel datePanel;
+	private JTextField receiveField;
+	private DatePanel receiveDate;
+	private JLabel timelabel;
+	private ReceiveOrderLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	public ReceivePanel(JFrame fr) {
-		setLayout(null);
-		frame=fr;
-		
-		JLabel titleLabel = new JLabel("收件信息输入");
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		titleLabel.setBounds(392, 42, 243, 67);
-		add(titleLabel);
-		
-		JLabel dateLabel = new JLabel("收件日期");
-		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(427, 293, 120, 24);
-		add(dateLabel);
-		
-		datePanel = new DatePanel();
-		datePanel.setBounds(594, 293, 285, 26);
-		add(datePanel);
-		
-		JLabel receiverLabel = new JLabel("收件人");
-		receiverLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		receiverLabel.setBounds(227, 293, 85, 24);
-		add(receiverLabel);
-		
-		receiverField = new JTextField();
-		receiverField.setFont(new Font("宋体", Font.PLAIN, 20));
-		receiverField.setColumns(10);
-		receiverField.setBounds(293, 292, 85, 25);
-		add(receiverField);
-		
-		JLabel idLabel = new JLabel("收件编号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		idLabel.setBounds(227, 172, 85, 24);
-		add(idLabel);
-		
-		idField = new JTextField();
-		idField.setFont(new Font("宋体", Font.PLAIN, 20));
-		idField.setColumns(10);
-		idField.setBounds(327, 172, 221, 25);
-		add(idField);
-		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(340, 431, 93, 23);
-		confirmButton.addActionListener(new ActionListener() {
+		super(fr);
+		logicSer = new ReceiveOrderLogic();
+		cancelButton.setLocation(642, 564);
+		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(isIllegal()){
-					
-				}
-			}
-		});;
-		add(confirmButton);
-		
-		JButton cancelButton = new JButton("取消");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(542, 431, 93, 23);
-		cancelButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
 				frame.dispose();
 			}
 		});
-		add(cancelButton);
+		confirmButton.setLocation(418, 564);
+		confirmButton.addActionListener(new ConfirmListener());
+		
+		receiveField = new JTextField();
+		receiveField.setBounds(370, 517, 103, 25);
+		add(receiveField);
+		receiveField.setColumns(10);
+		
+		JLabel receivelabel = new JLabel("收件人");
+		receivelabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		receivelabel.setBounds(294, 517, 80, 24);
+		add(receivelabel);
+		
+		receiveDate = new DatePanel();
+		receiveDate.setBounds(603, 518, 400, 24);
+		add(receiveDate);
+		
+		timelabel = new JLabel("收件时间");
+		timelabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		timelabel.setBounds(503, 517, 99, 24);
+		add(timelabel);
 	}
 	@SuppressWarnings("unused")
-	private boolean isIllegal(){
-		if(receiverField.getText().equals("")){
+	protected boolean isLegal(){
+		if(receiveField.getText().equals("")){
 			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		if(idField.getText().equals("")){
+		if(barcodeField.getText().equals("")){
 			HintFrame hint = new HintFrame("收件编号未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;
 	}
-	public static void main(String[] args) {
-		JFrame frame=new JFrame();
-		frame.setContentPane(new ReceivePanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private class ConfirmListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO 自动生成的方法存根
+			if(isLegal()){
+				Result result = logicSer.create(createVO());
+				if(result.equals(Result.SUCCESS)){
+					
+				} else {
+					DoHint.hint(result, frame);
+				}
+			}
+		}
+	}
+	private ReceiveVO createVO(){
+		ReceiveVO vo = new ReceiveVO(receiveField.getText(), receiveDate.getCalendar());
+		return vo;
 	}
 }

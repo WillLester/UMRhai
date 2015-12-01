@@ -3,23 +3,26 @@ package edu.nju.umr.ui.orderNewUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.orderNewLogic.CenterLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.ExpressListPanel;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.CenterLoadingVO;
 
 public class CenterLoadingPanel extends JPanel {
 	/**
@@ -30,15 +33,20 @@ public class CenterLoadingPanel extends JPanel {
 	private JTextField supervisionField;
 	private JTextField escortField;
 	private JTextField vanIdField;
-	private JTextField expressField;
+//	private JTextField expressField;
+//	private JList<String> expressList;
 	private JFrame frame;
 	private CenterLoadingOrderLSer logicSer;
 	private DatePanel datePanel;
 	private JTextField costField;
+	private JComboBox<String> arriveCombo;
+//	private DefaultListModel<String> model;
+	private String name;
+	private ExpressListPanel expressList;
 	/**
 	 * Create the panel.
 	 */
-	public CenterLoadingPanel(JFrame fr) {
+	public CenterLoadingPanel(JFrame fr,String name) {
 		setLayout(null);
 		
 		JLabel titleLabel = new JLabel("中转中心装车单");
@@ -48,6 +56,7 @@ public class CenterLoadingPanel extends JPanel {
 		add(titleLabel);
 		frame = fr;
 		logicSer = new CenterLoadingOrderLogic();
+		this.name = name;
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -76,9 +85,16 @@ public class CenterLoadingPanel extends JPanel {
 		arriveLabel.setBounds(242+75, 155, 85, 24);
 		add(arriveLabel);
 		
-		JComboBox<String> arriveCombo = new JComboBox<String>();
+		arriveCombo = new JComboBox<String>();
 		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		arriveCombo.setBounds(307+75, 155, 87, 25);
+		ResultMessage message = logicSer.getHalls();
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			String halls[] = (String[]) message.getMessage();
+			arriveCombo.setModel(new DefaultComboBoxModel<String>(halls));;
+		} else {
+			hint(message.getReInfo());
+		}
 		add(arriveCombo);
 		
 		JLabel supervisionLabel = new JLabel("监装员");
@@ -120,36 +136,6 @@ public class CenterLoadingPanel extends JPanel {
 		costLabel.setBounds(674, 204, 60, 24);
 		add(costLabel);
 		
-		JLabel expressId = new JLabel("订单条形码号");
-		expressId.setHorizontalAlignment(SwingConstants.CENTER);
-		expressId.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressId.setBounds(220+75, 255, 130, 24);
-		add(expressId);
-		
-		expressField = new JTextField();
-		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressField.setColumns(10);
-		expressField.setBounds(355+75, 254, 280, 25);
-		add(expressField);
-		
-		JButton newExpButton = new JButton("新增");
-		newExpButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		newExpButton.setBounds(656+75, 256, 93, 23);
-		add(newExpButton);
-		newExpButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				
-			}
-		});
-		
-		JLabel expressListLabel = new JLabel("已输入订单");
-		expressListLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressListLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressListLabel.setBounds(401+75, 289, 130, 24);
-		add(expressListLabel);
-		
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+75, 499, 93, 23);
@@ -158,13 +144,27 @@ public class CenterLoadingPanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				if(isLegal()){
+					Result result = logicSer.create(createVO());
+					if(result.equals(Result.SUCCESS)){
+						
+					} else {
+						hint(result);
+					}
+				}
 			}
 		});
 		
 		JButton cancelButton = new JButton("取消");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542+75, 499, 93, 23);
+		cancelButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				frame.dispose();
+			}
+		});
 		add(cancelButton);
 		
 		costField = new JTextField();
@@ -173,23 +173,53 @@ public class CenterLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 		
-		JList expressList = new JList();
-		expressList.setBounds(306, 320, 489, 165);
+		expressList = new ExpressListPanel(frame);
+		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		add(expressList);
-		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(805, 378, 93, 23);
-		add(deleteButton);
-		
-		cancelButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				frame.dispose();
-			}
-		});
-		
-
+	}
+	private void hint(Result result){
+		@SuppressWarnings("unused")
+		HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+	}
+	private void hint(String hint){
+		@SuppressWarnings("unused")
+		HintFrame hintF = new HintFrame(hint, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+	}
+//	private boolean isExpressLegal(){
+//		String info = CheckLegal.isExpressLegal(expressField.getText());
+//		if(!info.equals(null)){
+//			hint(info);
+//			return false;
+//		}
+//		return true;
+//	}
+	private CenterLoadingVO createVO(){
+		ArrayList<String> expresses = expressList.getExpresses();
+		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), (String)arriveCombo.getSelectedItem(), vanIdField.getText(), supervisionField.getText(), escortField.getText(), expresses, Double.parseDouble(costField.getText()), name);
+		return vo;
+	}
+	private boolean isLegal(){
+		String info = CheckLegal.isTransitLegal(transitIdField.getText());
+		if(!info.equals(null)){
+			hint(info);
+			return false;
+		}
+		if(supervisionField.getText().equals("")){
+			hint("监装员未输入！");
+			return false;
+		}
+		if(escortField.getText().equals("")){
+			hint("押运员未输入！");
+			return false;
+		}
+		if(vanIdField.getText().equals("")){
+			hint("车辆代号未输入！");
+			return false;
+		}
+		if(expressList.isEmpty()){
+			hint("订单号未输入！");
+			return false;
+		}
+		return true;
 	}
 }

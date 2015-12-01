@@ -15,7 +15,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.StockInOutVO;
+import edu.nju.umr.vo.order.StockInOutVO;
 import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;
 

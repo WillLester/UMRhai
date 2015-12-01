@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import edu.nju.umr.ui.Constants;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -12,10 +13,16 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 
 public class WageDraftPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1937201346793974753L;
 	private JTextField textFieldwm;
 	private JTextField textFieldwc;
 	private JTextField textFieldwi;
@@ -35,8 +42,22 @@ public class WageDraftPanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
+		//按月发薪
+		
 		JRadioButton rbMonth = new JRadioButton("按月发薪");
 		rbMonth.setBounds(Constants.TABLE_X, Constants.TABLE_Y, 200, 23);
+		rbMonth.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					textFieldwm.setEnabled(true);
+				} else {
+					textFieldwm.setEnabled(false);
+				}
+			}
+		});
 		add(rbMonth);
 		
 		JLabel wageMonth = new JLabel("月薪");
@@ -45,13 +66,26 @@ public class WageDraftPanel extends JPanel {
 		
 		textFieldwm = new JTextField();
 		textFieldwm.setBounds(wageMonth.getX()+wageMonth.getWidth(), wageMonth.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		textFieldwm.setEnabled(false);
 		add(textFieldwm);
 		textFieldwm.setColumns(10);
 		
-		
+		//按次发薪
 		
 		JRadioButton rbCount = new JRadioButton("按次发薪");
 		rbCount.setBounds(rbMonth.getX(), wageMonth.getY()+wageMonth.getHeight()+10,200, 23);
+		rbCount.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					textFieldwc.setEnabled(true);
+				} else {
+					textFieldwc.setEnabled(false);
+				}
+			}
+		});
 		add(rbCount);
 		
 		JLabel wageCount = new JLabel("次薪");
@@ -61,12 +95,27 @@ public class WageDraftPanel extends JPanel {
 		textFieldwc = new JTextField();
 		textFieldwc.setBounds(textFieldwm.getX(), wageCount.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldwc);
+		textFieldwc.setEnabled(false);
 		textFieldwc.setColumns(10);
 		
-		
+		//提成发薪
 		
 		JRadioButton rbBound = new JRadioButton("提成发薪");
 		rbBound.setBounds(rbMonth.getX(), wageCount.getY()+wageCount.getHeight()+10,200, 23);
+		rbBound.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					textFieldwi.setEnabled(true);
+					textFieldbound.setEnabled(true);
+				} else {
+					textFieldwi.setEnabled(false);
+					textFieldbound.setEnabled(false);
+				}
+			}
+		});
 		add(rbBound);
 		
 		JLabel wageinit= new JLabel("月基本工资");
@@ -76,6 +125,7 @@ public class WageDraftPanel extends JPanel {
 		textFieldwi = new JTextField();
 		textFieldwi.setBounds(textFieldwm.getX(), wageinit.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldwi);
+		textFieldwi.setEnabled(false);
 		textFieldwi.setColumns(10);
 		
 		JLabel bound = new JLabel("提成份额");
@@ -85,7 +135,13 @@ public class WageDraftPanel extends JPanel {
 		textFieldbound = new JTextField();
 		textFieldbound.setBounds(textFieldwm.getX(), bound.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldbound);
+		textFieldbound.setEnabled(false);
 		textFieldbound.setColumns(10);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rbBound);
+		group.add(rbCount);
+		group.add(rbMonth);
 		
 		JButton cancel = new JButton("取消");
 		cancel.setBounds(this.getWidth()-300, bound.getY()+bound.getHeight()+20, 93, 23);

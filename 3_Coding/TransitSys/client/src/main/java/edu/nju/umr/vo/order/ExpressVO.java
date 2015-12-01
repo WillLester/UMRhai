@@ -3,40 +3,49 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.Parse;
 
 public class ExpressVO {
-	private String id;
-	private String sender;
-	private String sendLoc;
-	private String receiver;
-	private String receiveLoc;
-	private String sendMobile;
-	private String receiveMobile;
-	private String sendPhone;
-	private String receivePhone;
-	private String sendUnit;
-	private String receiveUnit;
-	private int num;
-	private String name;
-	private double length;
-	private double width;
-	private double height;
-	private double weight;
-	private double volumn;
-//	private String id;
-	private Calendar arrive;
-	private Express kind;
-	private double cost;
-	private String opName;
+	protected String id;
+	protected String sender;
+	protected String sendLoc;
+	protected String receiver;
+	protected String receiveLoc;
+	protected String sendMobile;
+	protected String receiveMobile;
+	protected String sendPhone;
+	protected String receivePhone;
+	protected String sendUnit;
+	protected String receiveUnit;
+	protected int num;
+	protected String name;
+	protected double length;
+	protected double width;
+	protected double height;
+	protected double weight;
+	protected double volumn;
+//	protected String id;
+	protected Calendar arrive;
+	protected Calendar createDate;
+	protected Express kind;
+	protected double cost;
+	protected String opName;
+	protected Parse parse;
+	protected String sendProvince;
+	protected String sendCity;
+	protected String receiveProvince;
+	protected String receiveCity;
 	
-	public ExpressVO(String id,String sender, String sendLoc, String receiver,
+	
+	public ExpressVO(String id, String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			 Calendar arrive, Express kind, double cost,String opName) {
+			Calendar arrive, Calendar createDate, Express kind, double cost,
+			String opName,Parse parse,String sendProvince,String sendCity,String receiveProvince,String receiveCity) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.sender = sender;
 		this.sendLoc = sendLoc;
 		this.receiver = receiver;
@@ -54,11 +63,16 @@ public class ExpressVO {
 		this.height = height;
 		this.weight = weight;
 		this.volumn = volumn;
-//		this.id = id;
 		this.arrive = arrive;
+		this.createDate = createDate;
 		this.kind = kind;
 		this.cost = cost;
-		this.opName=opName;
+		this.opName = opName;
+		this.parse = parse;
+		this.sendProvince = sendProvince;
+		this.sendCity = sendCity;
+		this.receiveProvince = receiveProvince;
+		this.receiveCity = receiveCity;
 	}
 	public String getId(){
 		return id;
@@ -102,9 +116,6 @@ public class ExpressVO {
 	public double getVolumn() {
 		return volumn;
 	}
-//	public String getId() {
-//		return id;
-//	}
 	public Calendar getArrive() {
 		return arrive;
 	}
@@ -128,6 +139,24 @@ public class ExpressVO {
 	}
 	public String getOpName(){
 		return opName;
+	}
+	public Calendar getCreateDate() {
+		return createDate;
+	}
+	public Parse getParse() {
+		return parse;
+	}
+	public String getSendProvince() {
+		return sendProvince;
+	}
+	public String getSendCity() {
+		return sendCity;
+	}
+	public String getReceiveProvince() {
+		return receiveProvince;
+	}
+	public String getReceiveCity() {
+		return receiveCity;
 	}
 	
 	

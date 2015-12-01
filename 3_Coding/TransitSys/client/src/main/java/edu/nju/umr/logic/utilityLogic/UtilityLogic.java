@@ -105,6 +105,25 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(re, hallList);
 	}
+	public ResultMessage getCenter(){
+		ArrayList<OrgVO> centerList=new ArrayList<OrgVO>();
+		Result re=Result.DATA_NOT_FOUND;
+		ArrayList<OrgPO> centers=new ArrayList<OrgPO>();
+		try {
+			centers=utilityData.getCenters();
+			if(centers.size()>0)
+				re=Result.SUCCESS;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		for(OrgPO po:centers){
+			OrgVO vo=VPFactory.toOrgVO(po);
+			centerList.add(vo);
+		}
+		return new ResultMessage(re,centerList);
+	}
 	public ResultMessage getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
 		Result isSuccessful=Result.NET_INTERRUPT;
@@ -145,17 +164,13 @@ public class UtilityLogic {
 		try {
 			stock = utilityData.getStocks();
 			for(StockPO po:stock){
-				ArrayList<GoodVO> goodList = new ArrayList<GoodVO>();
-				for(GoodPO gPo:po.getGoods()){
-					GoodVO gVo = new GoodVO(gPo.getId(), gPo.getDate(), gPo.getCity(), gPo.getPart(), gPo.getShelf(), gPo.getRow(), gPo.getPlace());
-					goodList.add(gVo);
-				}
-				StockVO vo = new StockVO(goodList);
-				stockList.add(vo);
+				StockVO vo = VPFactory.toStockVO(po);
+				stockList.add(vo);				
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(Result.SUCCESS, stockList);
 	}

@@ -1,33 +1,20 @@
 package edu.nju.umr.ui.userPanel;
 
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-
-
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
-import edu.nju.umr.ui.orderNewUI.SendPanel;
-import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
-import edu.nju.umr.ui.userUI.UserListPanel;
+import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 import edu.nju.umr.ui.workOrgManUI.DriverListPanel;
 import edu.nju.umr.ui.workOrgManUI.VanListPanel;
+import edu.nju.umr.vo.UserVO;
 
 
 public class BusinessHallPanel extends UserPanel {
@@ -88,16 +75,6 @@ public class BusinessHallPanel extends UserPanel {
 		
 		super(user,fr);
 		
-//		JButton logoutButton = new JButton("注销");
-//		logoutButton.setBounds(1083, 10, 93, 23);
-//		logoutButton.setFont(new Font("宋体", Font.PLAIN, 12));
-//		this.add(logoutButton);
-//		
-//		JButton existButton = new JButton("退出");
-//		existButton.setBounds(1083, 603, 93, 23);
-//		existButton.setFont(new Font("宋体", Font.PLAIN, 12));
-//		this.add(existButton);
-		
 		JButton recipient = new JButton("到达单");
 		recipient.setBounds(282, 231, 112, 83);
 		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -109,18 +86,6 @@ public class BusinessHallPanel extends UserPanel {
 			}
 		});
 		this.add(recipient);
-		
-//		JButton send = new JButton("派件单");
-//		send.setFont(new Font("宋体", Font.PLAIN, 12));
-//		send.setBounds(489, 231, 113, 83);
-//		send.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				FunctionFrame ffr=new FunctionFrame("单据创建");
-//				ffr.setContentPane(new SendPanel(ffr,user.getName()));
-//			}
-//		});
-//		this.add(send);
 		
 		JButton hallLoading = new JButton("装车单");
 		hallLoading.addActionListener(new ActionListener(){
@@ -140,8 +105,8 @@ public class BusinessHallPanel extends UserPanel {
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new IncomePanel(ffr));
+				FunctionFrame ffr=new FunctionFrame("收款单生成");
+				ffr.setContentPane(new IncomePanel(ffr,user.getOrgId(),user.getName()));
 			}
 		});
 		this.add(income);
@@ -165,7 +130,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("车辆管理 ");
-				ffr.setContentPane(new VanListPanel(ffr));
+				ffr.setContentPane(new VanListPanel(ffr,user));
 			}
 		});
 		this.add(vanMan);

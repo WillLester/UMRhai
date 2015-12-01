@@ -100,11 +100,11 @@ public class OrgListPanel extends JPanel {
 		textFieldName.setColumns(10);
 		
 		JLabel type = new JLabel("机构种类");
-		type.setBounds(this.getWidth()/2+100, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		type.setBounds(this.getWidth()/2-130, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(type);
 		
 		orgType = new JComboBox<String>();
-		orgType.setBounds(type.getWidth()+type.getX(), type.getY()+5, 150, 21);
+		orgType.setBounds(type.getWidth()+type.getX()-70, type.getY()+5, 150, 21);
 		orgType.setModel(new DefaultComboBoxModel<String>(new String[]{"营业厅","中转中心","总部"}));
 		add(orgType);
 		
@@ -113,7 +113,7 @@ public class OrgListPanel extends JPanel {
 		add(address);
 		
 		textFieldAddr = new JTextField();
-		textFieldAddr.setBounds(textFieldName.getX(), address.getY()+3, 400, 21);
+		textFieldAddr.setBounds(textFieldName.getX()+200, address.getY()+3, 400, 21);
 		add(textFieldAddr);
 		textFieldAddr.setColumns(10);
 		
@@ -177,8 +177,12 @@ public class OrgListPanel extends JPanel {
 		add(workMan);
 		
 		JLabel idLabel=new JLabel("机构编号");
+		idLabel.setBounds(orgType.getX()+200, orgType.getY(), 100, 24);
+		add(idLabel);
 		
 		idField=new JTextField();
+		idField.setBounds(idLabel.getX()+80, idLabel.getY(),200, 24);
+		add(idField);
 		
 		JLabel cityLabel=new JLabel("城市");
 		
@@ -257,7 +261,7 @@ public class OrgListPanel extends JPanel {
 		}
 	}
 	private void addOrg(){
-		String[] data={};
+		String[] data={"","","",""};
 		model.addRow(data);
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
 	}
