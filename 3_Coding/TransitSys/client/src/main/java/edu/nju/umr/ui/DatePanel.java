@@ -17,9 +17,10 @@ public class DatePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 93870983191916410L;
-	JComboBox<String> yearCombo;
-	JComboBox<String> monthCombo;
-	JComboBox<String> dayCombo;
+	private JComboBox<String> yearCombo;
+	private JComboBox<String> monthCombo;
+	private JComboBox<String> dayCombo;
+	
 	/**
 	 * Create the panel.
 	 */

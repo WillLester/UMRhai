@@ -27,7 +27,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	 * Create the panel.
 	 */
 	public ExpressInfoInqPanel(JFrame fr) {
-		super(fr);
+		super(fr,null);
 		logicSer = new CourierLogic();
 		checkButton = new JButton("查询");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 20));

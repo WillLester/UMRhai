@@ -7,6 +7,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.MysqlOperation;
+import edu.nju.umr.po.enums.Parse;
 
 public class ExpressPO extends PO implements Serializable{
 	/**
@@ -37,6 +38,7 @@ public class ExpressPO extends PO implements Serializable{
 	private double cost;
 	private Calendar opTime;
 	private String opName;
+	private Parse parse;
 	
 	public ExpressPO(String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
@@ -44,7 +46,7 @@ public class ExpressPO extends PO implements Serializable{
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
 			String id, Calendar arrive,Calendar createDate ,Express kind, double cost,
-			Calendar opTime, String opName) {
+			Calendar opTime, String opName,Parse parse) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -70,6 +72,7 @@ public class ExpressPO extends PO implements Serializable{
 		this.cost = cost;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.parse = parse;
 	}
 	public String getSender() {
 		return sender;
@@ -143,12 +146,15 @@ public class ExpressPO extends PO implements Serializable{
 	public String getOpName() {
 		return opName;
 	}
+	public Parse getParse() {
+		return parse;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command = null;
 		switch(op){
-		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+")";break;
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+")";break;
 		case DELETE:break;
 		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:break;

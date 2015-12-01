@@ -3,6 +3,9 @@ package edu.nju.umr.ui.orderNewUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,10 +18,17 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
+import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.utility.EnumTransFactory;
+import edu.nju.umr.vo.order.ExpressVO;
 
 public class ExpressPanel extends JPanel {
 	/**
@@ -80,13 +90,17 @@ public class ExpressPanel extends JPanel {
 	protected LocPanel senderLoc;
 	protected LocPanel receiverLoc;
 	private ExpressOrderLSer logicSer;
+	private String name;
+	private JLabel arriveLabel;
+	private JTextField arriveField;
 	/**
 	 * Create the panel.
 	 */
-	public ExpressPanel(JFrame fr) {
+	public ExpressPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
+		this.name = name;
 		
 		titleLabel = new JLabel("订单创建");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -175,7 +189,7 @@ public class ExpressPanel extends JPanel {
 		receiver.setBounds(159, 267, 120, 24);
 		add(receiver);
 		
-		senderLoc = new LocPanel();
+		senderLoc = new LocPanel(frame);
 		senderLoc.setBounds(437, 184, 600, 50);
 		add(senderLoc);
 		
@@ -227,7 +241,7 @@ public class ExpressPanel extends JPanel {
 		receiverPhoneField.setBounds(613, 342, 216, 25);
 		add(receiverPhoneField);
 		
-		receiverLoc = new LocPanel();
+		receiverLoc = new LocPanel(frame);
 		receiverLoc.setBounds(437, 292, 600,50);
 		add(receiverLoc);
 		
@@ -395,6 +409,17 @@ public class ExpressPanel extends JPanel {
 		mLabelH.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(mLabelH);
 
+		
+		arriveLabel = new JLabel("到达时间");
+		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		arriveLabel.setBounds(592, 444, 93, 22);
+		add(arriveLabel);
+		
+		arriveField = new JTextField();
+		arriveField.setEditable(false);
+		arriveField.setBounds(684, 444, 187, 25);
+		add(arriveField);
+		arriveField.setColumns(10);
 	}
 	
 	public class ConfirmListener implements ActionListener{
@@ -402,10 +427,120 @@ public class ExpressPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
-			
+			if(isLegal()){
+				Result result = logicSer.create(createVO());
+				if(result.equals(Result.SUCCESS)){
+					
+				} else {
+					DoHint.hint(result, frame);
+				}
+			}
 		}
 		
 	}
-	
+	private boolean isLegal(){
+		String barcodeRe = CheckLegal.isExpressLegal(barcodeField.getText());
+		if(barcodeRe != null){
+			DoHint.hint(barcodeRe, frame);
+			return false;
+		}
+		if(sender.getText().equals("")){
+			DoHint.hint("请填写寄件人！", frame);
+			return false;
+		}
+		if(!senderLoc.isLegal()){
+			return false;
+		}
+		if((senderMobileField.getText().equals(""))&&(senderPhoneField.getText().equals(""))){
+			DoHint.hint("请填写寄件人手机或电话！", frame);
+			return false;
+		} else {
+			if(senderMobileField.getText().length() != 11){
+				DoHint.hint("寄件人手机号长度错误！", frame);
+				return false;
+			}
+			if(!Utility.isNumberic(senderMobileField.getText())){
+				DoHint.hint("寄件人手机号格式错误！", frame);
+				return false;
+			}
+		}
+		if(receiver.getText().equals("")){
+			DoHint.hint("请填写收件人！", frame);
+			return false;
+		}
+		if(!receiverLoc.isLegal()){
+			return false;
+		}
+		if((receiverMobileField.getText().equals(""))&&(receiverPhoneField.getText().equals(""))){
+			DoHint.hint("请填写收件人手机或电话！", frame);
+			return false;
+		} else {
+			if(receiverMobileField.getText().length() != 11){
+				DoHint.hint("收件人手机号长度错误！", frame);
+				return false;
+			}
+			if(!Utility.isNumberic(receiverMobileField.getText())){
+				DoHint.hint("收件人手机号格式错误！", frame);
+				return false;
+			}
+		}
+		try {
+			Double.parseDouble(weightField.getText());
+		} catch (NumberFormatException e){
+			DoHint.hint("重量格式不正确！", frame);
+			return false;
+		}
+		if(Double.parseDouble(weightField.getText())<=0){
+			DoHint.hint("重量不能为负！", frame);
+			return false;
+		}
+		try{
+			Double.parseDouble(lengthField.getText());
+		} catch (NumberFormatException e){
+			DoHint.hint("长度格式不正确！", frame);
+			return false;
+		}
+		if(Double.parseDouble(lengthField.getText()) <= 0){
+			DoHint.hint("长度不能为负！", frame);
+			return false;
+		}
+		try {
+			Double.parseDouble(widthField.getText());
+		} catch (NumberFormatException e){
+			DoHint.hint("宽度格式不正确！", frame);
+			return false;
+		}
+		if(Double.parseDouble(widthField.getText()) <= 0){
+			DoHint.hint("宽度不能为负！", frame);
+			return false;
+		}
+		try {
+			Double.parseDouble(heightField.getText());
+		} catch (NumberFormatException e){
+			DoHint.hint("高度格式不正确！", frame);
+			return false;
+		}
+		if(Double.parseDouble(heightField.getText()) <= 0){
+			DoHint.hint("高度不能为负！", frame);
+			return false;
+		}
+		return true;
+	}
+	private ExpressVO createVO(){
+		Date date = null;
+		try {
+			date = DateFormat.DATE.parse(arriveField.getText());
+		} catch (ParseException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		Calendar arrive = Calendar.getInstance();
+		arrive.setTime(date);
+		ExpressVO vo = new ExpressVO(barcodeField.getText(), sender.getText(), senderLoc.getLoc(), receiver.getText(), receiverLoc.getLoc(), senderMobileField.getText(), receiverMobileField.getText(), senderPhoneField.getText(), receiverPhoneField.getText(), 
+				senderCompanyField.getText(), receiverCompanyField.getText(), (Integer)numSpinner.getValue(), nameField.getText(), Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), 
+				Double.parseDouble(weightField.getText()), Double.parseDouble(volumnField.getText()), arrive, datePanel.getCalendar(), EnumTransFactory.getExpress((String)expressKindCombo.getSelectedItem()), Double.parseDouble(costField.getText()), name,EnumTransFactory.getParse((String)pakKindCombo.getSelectedItem()));
+		return vo;
+		
+	}
 
 }

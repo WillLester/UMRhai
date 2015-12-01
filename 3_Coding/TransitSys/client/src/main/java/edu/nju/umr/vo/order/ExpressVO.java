@@ -3,6 +3,7 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.Parse;
 
 public class ExpressVO {
 	private String id;
@@ -29,6 +30,7 @@ public class ExpressVO {
 	private Express kind;
 	private double cost;
 	private String opName;
+	private Parse parse;
 	
 	
 	public ExpressVO(String id, String sender, String sendLoc, String receiver,
@@ -37,7 +39,7 @@ public class ExpressVO {
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
 			Calendar arrive, Calendar createDate, Express kind, double cost,
-			String opName) {
+			String opName,Parse parse) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -62,6 +64,7 @@ public class ExpressVO {
 		this.kind = kind;
 		this.cost = cost;
 		this.opName = opName;
+		this.parse = parse;
 	}
 	public String getId(){
 		return id;
@@ -131,6 +134,9 @@ public class ExpressVO {
 	}
 	public Calendar getCreateDate() {
 		return createDate;
+	}
+	public Parse getParse() {
+		return parse;
 	}
 	
 	

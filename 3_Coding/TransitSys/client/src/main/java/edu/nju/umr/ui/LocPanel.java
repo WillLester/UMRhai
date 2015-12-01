@@ -1,16 +1,17 @@
 package edu.nju.umr.ui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-
 import java.awt.Font;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.SwingConstants;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.Province;
+import edu.nju.umr.ui.utility.DoHint;
 
 public class LocPanel extends JPanel {
 	/**
@@ -20,11 +21,13 @@ public class LocPanel extends JPanel {
 	private JTextField locField;
 	private JComboBox<String> provinceCombo;
 	private JComboBox<String> cityCombo;
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public LocPanel() {
+	public LocPanel(JFrame fr) {
 		setLayout(null);
+		frame = fr;
 		
 		JLabel provinceLabel = new JLabel("省份");
 		provinceLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -67,9 +70,22 @@ public class LocPanel extends JPanel {
 		return (String) cityCombo.getSelectedItem();
 	}
 	public String getLoc(){
-		return locField.getText();
+		return getProvince()+getCity()+locField.getText();
+	}
+	public void setProvince(String province){
+		provinceCombo.setSelectedItem(province);
+	}
+	public void setCity(String city){
+		cityCombo.setSelectedItem(city);
+	}
+	public void setLoc(String loc){
+		locField.setText(loc);
 	}
 	public boolean isLegal(){
+		if(locField.getText().equals("")){
+			DoHint.hint("请输入地址！", frame);
+			return false;
+		}
 		return true;
 	}
 }

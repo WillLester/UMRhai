@@ -81,6 +81,8 @@ public class Test extends JPanel {
 	protected LocPanel senderLoc;
 	protected LocPanel receiverLoc;
 	private ExpressOrderLSer logicSer;
+	private JLabel arriveLabel;
+	private JTextField arriveField;
 	/**
 	 * Create the panel.
 	 */
@@ -176,7 +178,7 @@ public class Test extends JPanel {
 		receiver.setBounds(159, 267, 120, 24);
 		add(receiver);
 		
-		senderLoc = new LocPanel();
+		senderLoc = new LocPanel(frame);
 		senderLoc.setBounds(437, 184, 600, 50);
 		add(senderLoc);
 		
@@ -228,7 +230,7 @@ public class Test extends JPanel {
 		receiverPhoneField.setBounds(613, 342, 216, 25);
 		add(receiverPhoneField);
 		
-		receiverLoc = new LocPanel();
+		receiverLoc = new LocPanel(frame);
 		receiverLoc.setBounds(437, 292, 600,50);
 		add(receiverLoc);
 		
@@ -396,6 +398,17 @@ public class Test extends JPanel {
 		mLabelH.setBounds(711, 410, 41, 24);
 		mLabelH.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(mLabelH);
+		
+		arriveLabel = new JLabel("到达时间");
+		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		arriveLabel.setBounds(592, 444, 93, 22);
+		add(arriveLabel);
+		
+		arriveField = new JTextField();
+		arriveField.setEditable(false);
+		arriveField.setBounds(684, 444, 187, 25);
+		add(arriveField);
+		arriveField.setColumns(10);
 
 	}
 }

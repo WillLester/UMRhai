@@ -1,7 +1,9 @@
 package edu.nju.umr.utility;
 
+import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
+import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Part;
 
 public class EnumTransFactory {
@@ -61,5 +63,24 @@ public class EnumTransFactory {
 		case "机动区":pa = Part.MANEUVER;break;
 		}
 		return pa;
+	}
+	public static Parse getParse(String parse){
+		Parse par = null;
+		switch(parse){
+		case "纸箱":par = Parse.PAPER;break;
+		case "木箱":par = Parse.WOOD;break;
+		case "快递袋":par = Parse.BAG;break;
+		case "其它":par = Parse.OTHER;break;
+		}
+		return par;
+	}
+	public static Express getExpress(String express){
+		Express exp = null;
+		switch(express){
+		case "经济快递":exp = Express.ECONOMIC;break;
+		case "标准快递":exp = Express.NORMAL;break;
+		case "特快专递":exp = Express.FAST;break;
+		}
+		return exp;
 	}
 }
