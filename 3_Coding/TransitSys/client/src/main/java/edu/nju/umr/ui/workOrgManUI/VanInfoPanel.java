@@ -2,37 +2,48 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.Calendar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 
 public class VanInfoPanel extends JPanel {
 	private JTextField textFieldNum;
 	private JTextField textFieldPlate;
 	private VanListPanel fatherPanel;
-	private String imageString;
-	private Image image;
+	private String imageString=null;
+	private BufferedImage image;
 	private VanVO van;
 	private JFrame frame;
 	private DatePanel start;
 	private DatePanel end;
+	private JLabel pic;
+	private UserVO user;
 
 	/**
 	 * Create the panel.
 	 */
-	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo) {
+	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo,UserVO uservo) {
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		setLayout(null);
 		fatherPanel=father;
 		frame=fr;
 		van=vanvo;
+		user=uservo;
 		
 		JLabel nameLabel = new JLabel("车辆信息");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
@@ -82,9 +93,9 @@ public class VanInfoPanel extends JPanel {
 		picture.setBounds(vanNum.getX(), labelz.getY()+20+40, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(picture);
 		
-		JLabel pic = new JLabel("图片label");
+		pic = new JLabel("图片");
 		pic.setBounds(textFieldNum.getX(), picture.getY(), 350, 180);
-//		add(pic);
+		add(pic);
 		
 		JButton upload = new JButton("选择图片");
 		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 93, 23);
@@ -92,10 +103,20 @@ public class VanInfoPanel extends JPanel {
 		
 		JButton confirm = new JButton("确定");
 		confirm.setBounds(upload.getX()+200, upload.getY(), 93, 23);
+		confirm.addActionListener(new ActionListener(){@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			confirmChange();
+		}});
 		add(confirm);
 		
 		JButton cancel = new JButton("取消");
 		cancel.setBounds(confirm.getX()+confirm.getWidth()+50, confirm.getY(), 93, 23);
+		cancel.addActionListener(new ActionListener(){@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			frame.dispose();
+		}});
 		add(cancel);
 		
 		dataInit();
@@ -108,8 +129,39 @@ public class VanInfoPanel extends JPanel {
 		imageString=van.getPhoto();
 		if(!imageString.equals(null))
 		{
-			
+			image=baseCodeToImage(imageString);
+			pic.setIcon(new ImageIcon(image));
 		}
+	}
+	private BufferedImage baseCodeToImage(String baseCode){
+		
+		return null;
+	}
+	private String imageToBaseCode(Image im)
+	{
+		return null;
+	}
+	private void confirmChange(){
+		if(textFieldPlate.getText().isEmpty())
+		{
+			DoHint.hint("车牌号未输入",frame);
+			return;
+		}
+		Calendar startTime=start.getCalendar();
+		Calendar endTime=start.getCalendar();
+		if(startTime.after(endTime))
+		{
+			DoHint.hint("服役期限错误!",frame);
+			return;
+		}
+		if(imageString.isEmpty())
+		{
+			DoHint.hint("图片未选择!", frame);
+			return;
+		}
+		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),startTime,endTime,imageString,user.getOrgId());
+		Result result=fatherPanel.confirmed(temp);
+		
 	}
 //	public static void main(String[] args)
 //	{
