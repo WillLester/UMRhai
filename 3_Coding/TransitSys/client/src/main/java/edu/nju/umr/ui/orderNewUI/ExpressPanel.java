@@ -338,8 +338,7 @@ public class ExpressPanel extends JPanel {
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(642, 536, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
