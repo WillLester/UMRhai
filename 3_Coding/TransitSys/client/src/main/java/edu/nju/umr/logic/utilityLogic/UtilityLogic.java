@@ -246,6 +246,7 @@ public class UtilityLogic {
 			city=utilityData.getCities();
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return city;
 		}
 		return city;
 	}
@@ -260,6 +261,12 @@ public class UtilityLogic {
 		return org;
 	}
 	
+	public ArrayList<OrgPO> centers() throws RemoteException{
+		ArrayList<OrgPO> centers=null;
+		centers=utilityData.getCenters();
+		return centers;
+	}
+	 
 	public ArrayList<OrgPO> halls(){
 		ArrayList<OrgPO> hall=null;
 		try {

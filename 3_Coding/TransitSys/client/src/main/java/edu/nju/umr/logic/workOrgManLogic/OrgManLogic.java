@@ -113,7 +113,7 @@ public class OrgManLogic implements OrgManLSer{
 		ArrayList<OrgPO> ar= null;
 //		boolean isSuccessful=false;
 		try{
-			ar=orgData.findOrg("");
+			ar=orgData.findOrg(keyword);
 //			isSuccessful=true;
 		}
 		catch(RemoteException e){
