@@ -81,6 +81,11 @@ public class LocPanel extends JPanel {
 	public void setLoc(String loc){
 		locField.setText(loc);
 	}
+	public void setEnabled(boolean isEnabled){
+		provinceCombo.setEnabled(isEnabled);
+		cityCombo.setEnabled(isEnabled);
+		locField.setEnabled(isEnabled);
+	}
 	public boolean isLegal(){
 		if(locField.getText().equals("")){
 			DoHint.hint("请输入地址！", frame);

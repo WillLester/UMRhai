@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.transitInfoLogic.CourierLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
 import edu.nju.umr.po.enums.Result;
@@ -55,18 +56,59 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 						widthField.setText(vo.getWidth()+"");
 						heightField.setText(vo.getHeight()+"");
 						numSpinner.setValue(vo.getNum());
-						
+						datePanel.setDate(vo.getCreateDate());
+						pakKindCombo.setSelectedIndex(vo.getParse().ordinal());
+						expressKindCombo.setSelectedIndex(vo.getKind().ordinal());
+						arriveField.setText(DateFormat.DATE.format(vo.getArrive().getTime()));
+						senderLoc.setProvince(vo.getSendProvince());
+						senderLoc.setCity(vo.getSendCity());
+						receiverLoc.setProvince(vo.getReceiveProvince());
+						receiverLoc.setCity(vo.getReceiveCity());
+					} else {
+						DoHint.hint(message.getReInfo(), frame);
 					}
 				}
 			}
 		});
 		checkButton.setBounds(518, 66, 93, 23);
 		add(checkButton);
+		setEnabled();
 		
 		confirmButton.removeActionListener(new ConfirmListener());
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				frame.dispose();
+			}
+		});
+		remove(cancelButton);
 	}
 	protected void setEnabled(){
-		
+		barcodeField.setEnabled(false);
+		senderField.setEnabled(false);
+		senderCompanyField.setEnabled(false);
+		senderMobileField.setEnabled(false);
+		senderPhoneField.setEnabled(false);
+		receiverField.setEnabled(false);
+		receiverCompanyField.setEnabled(false);
+		receiverMobileField.setEnabled(false);
+		receiverPhoneField.setEnabled(false);
+		volumnField.setEnabled(false);
+		weightField.setEnabled(false);
+		nameField.setEnabled(false);
+		costField.setEnabled(false);
+		lengthField.setEnabled(false);
+		widthField.setEnabled(false);
+		heightField.setEnabled(false);
+		numSpinner.setEnabled(false);
+		datePanel.setEnabled(false);
+		pakKindCombo.setEnabled(false);
+		expressKindCombo.setEnabled(false);
+		senderLoc.setEnabled(false);
+		receiverLoc.setEnabled(false);
+		arriveField.setEnabled(false);
 	}
 	protected boolean isLegal(){
 		String result = CheckLegal.isExpressLegal(barcodeField.getText());

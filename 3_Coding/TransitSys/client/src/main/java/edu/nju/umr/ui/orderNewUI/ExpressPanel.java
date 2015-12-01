@@ -91,8 +91,8 @@ public class ExpressPanel extends JPanel {
 	protected LocPanel receiverLoc;
 	private ExpressOrderLSer logicSer;
 	private String name;
-	private JLabel arriveLabel;
-	private JTextField arriveField;
+	protected JLabel arriveLabel;
+	protected JTextField arriveField;
 	/**
 	 * Create the panel.
 	 */

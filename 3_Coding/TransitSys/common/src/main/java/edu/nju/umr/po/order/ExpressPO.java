@@ -36,6 +36,8 @@ public class ExpressPO extends PO implements Serializable{
 	private Calendar createDate;
 	private Express kind;
 	private double cost;
+	private String realReceiver;
+	private Calendar receiveTime;
 	private Calendar opTime;
 	private String opName;
 	private Parse parse;
@@ -44,14 +46,16 @@ public class ExpressPO extends PO implements Serializable{
 	private String receiveProvince;
 	private String receiveCity;
 	
+	
 	public ExpressPO(String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			String id, Calendar arrive,Calendar createDate ,Express kind, double cost,
-			Calendar opTime, String opName,Parse parse,String sendProvince,String sendCity,
-			String receiveProvince,String receiveCity) {
+			String id, Calendar arrive, Calendar createDate, Express kind,
+			double cost, String realReceiver, Calendar receiveTime,
+			Calendar opTime, String opName, Parse parse, String sendProvince,
+			String sendCity, String receiveProvince, String receiveCity) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -72,9 +76,11 @@ public class ExpressPO extends PO implements Serializable{
 		this.volumn = volumn;
 		this.id = id;
 		this.arrive = arrive;
-		this.createDate=createDate;
+		this.createDate = createDate;
 		this.kind = kind;
 		this.cost = cost;
+		this.realReceiver = realReceiver;
+		this.receiveTime = receiveTime;
 		this.opTime = opTime;
 		this.opName = opName;
 		this.parse = parse;
@@ -170,12 +176,18 @@ public class ExpressPO extends PO implements Serializable{
 	public String getReceiveCity() {
 		return receiveCity;
 	}
+	public String getRealReceiver() {
+		return realReceiver;
+	}
+	public Calendar getReceiveTime() {
+		return receiveTime;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command = null;
 		switch(op){
-		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+"null"+"',"+"null"+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"')";break;
+		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+realReceiver+"',"+DateFormat.TIME.format(receiveTime.getTime())+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"')";break;
 		case DELETE:break;
 		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
