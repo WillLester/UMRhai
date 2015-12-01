@@ -1,14 +1,21 @@
 package edu.nju.umr.ui.orderNewUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import edu.nju.umr.logic.orderNewLogic.ReceiveOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.order.ReceiveVO;
 
 public class ReceivePanel extends ExpressInfoInqPanel {
 	/**
@@ -18,13 +25,24 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	private JTextField receiveField;
 	private DatePanel receiveDate;
 	private JLabel timelabel;
+	private ReceiveOrderLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	public ReceivePanel(JFrame fr) {
 		super(fr);
+		logicSer = new ReceiveOrderLogic();
 		cancelButton.setLocation(642, 564);
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				frame.dispose();
+			}
+		});
 		confirmButton.setLocation(418, 564);
+		confirmButton.addActionListener(new ConfirmListener());
 		
 		receiveField = new JTextField();
 		receiveField.setBounds(370, 517, 103, 25);
@@ -46,7 +64,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		add(timelabel);
 	}
 	@SuppressWarnings("unused")
-	private boolean isIllegal(){
+	protected boolean isLegal(){
 		if(receiveField.getText().equals("")){
 			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
@@ -56,5 +74,23 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 			return false;
 		}
 		return true;
+	}
+	private class ConfirmListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO 自动生成的方法存根
+			if(isLegal()){
+				Result result = logicSer.create(createVO());
+				if(result.equals(Result.SUCCESS)){
+					
+				} else {
+					DoHint.hint(result, frame);
+				}
+			}
+		}
+	}
+	private ReceiveVO createVO(){
+		return null;
 	}
 }
