@@ -105,6 +105,25 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(re, hallList);
 	}
+	public ResultMessage getCenter(){
+		ArrayList<OrgVO> centerList=new ArrayList<OrgVO>();
+		Result re=Result.DATA_NOT_FOUND;
+		ArrayList<OrgPO> centers=new ArrayList<OrgPO>();
+		try {
+			centers=utilityData.getCenters();
+			if(centers.size()>0)
+				re=Result.SUCCESS;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		for(OrgPO po:centers){
+			OrgVO vo=VPFactory.toOrgVO(po);
+			centerList.add(vo);
+		}
+		return new ResultMessage(re,centerList);
+	}
 	public ResultMessage getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
 		Result isSuccessful=Result.NET_INTERRUPT;

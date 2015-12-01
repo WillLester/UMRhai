@@ -40,7 +40,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 			e.printStackTrace();
 		}
 	}
-
+	
 	public ResultMessage checkNow(String id) {
 		Result isSuc=Result.DATA_NOT_FOUND;		
 		try{
@@ -56,7 +56,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		ResultMessage message=new ResultMessage(isSuc,VPFactory.toStockVO(stock));
 		return message;
 	}
-
+	
 	public Result outputExcel(String location, String name) {
 		ArrayList<GoodPO> goodList=stock.getGoods();
 		String data[][]=new String[1+goodList.size()][7];

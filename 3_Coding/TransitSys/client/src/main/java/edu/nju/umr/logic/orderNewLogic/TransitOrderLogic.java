@@ -71,7 +71,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	@Override
 	public ResultMessage getCenters() {
 		
-		return null;
+		return uti.getCenter();
 	}
 
 }
