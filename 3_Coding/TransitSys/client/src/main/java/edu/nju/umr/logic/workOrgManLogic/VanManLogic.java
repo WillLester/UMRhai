@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
@@ -35,7 +36,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=vanData.addVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
+			isSuccessful=vanData.addVan(VPFactory.toVanPO(van));
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -61,7 +62,7 @@ public class VanManLogic implements VanManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=vanData.reviseVan(new VanPO(van.getId(),van.getPlateNum(),van.getServTime(),van.getPhoto(),van.getHallId()));
+			isSuccessful=vanData.reviseVan(VPFactory.toVanPO(van));
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -132,13 +133,18 @@ public class VanManLogic implements VanManLSer{
 		}
 		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
 		for(int i=0;i<ar.size();i++){
-			VanVO van=new VanVO(ar.get(i).getId(),ar.get(i).getPlateNum(),ar.get(i).getServTime(),ar.get(i).getPhoto(),ar.get(i).getHallId());
+			VanVO van=VPFactory.toVanVO(ar.get(i));
 			arVO.add(van);
 		}
 		
 		ResultMessage message = new ResultMessage(result, arVO);
 		return message;
 
+	}
+	@Override
+	public ResultMessage getNextId(String hallId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

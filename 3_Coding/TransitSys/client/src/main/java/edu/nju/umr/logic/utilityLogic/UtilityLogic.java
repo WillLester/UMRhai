@@ -148,7 +148,7 @@ public class UtilityLogic {
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
 			for(VanPO po:van){
-				VanVO vo = new VanVO(po.getId(), po.getPlateNum(), po.getServTime(), po.getPhoto(),po.getHallId());
+				VanVO vo = VPFactory.toVanVO(po);
 				vanList.add(vo);
 			}
 		} catch (RemoteException e) {

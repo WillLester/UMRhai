@@ -11,6 +11,8 @@ import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
+import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.order.ExpressVO;
@@ -33,22 +35,30 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public Result create(ExpressVO order) {
-		// TODO 自动生成的方法存根
+//	public Result create(ExpressVO order) {
+//		// TODO 自动生成的方法存根
+//		Result isSuc = Result.SUCCESS;
+//		try {
+//			isSuc=receiveData.create(VPFactory.toExpressPO(order));
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			return Result.NET_INTERRUPT;
+//		}
+//		
+//		return isSuc;
+//	}
+	@Override
+	public Result create(ReceiveVO receive,ExpressVO order) {
+		// TODO Auto-generated method stub
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc=receiveData.create(VPFactory.toExpressPO(order));
+			ExpressVO express=new ExpressVO();
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
-		
 		return isSuc;
-	}
-	@Override
-	public Result create(ReceiveVO receive) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

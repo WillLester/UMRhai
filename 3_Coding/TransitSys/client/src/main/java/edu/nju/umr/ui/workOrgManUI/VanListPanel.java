@@ -192,7 +192,7 @@ public class VanListPanel extends JPanel {
 		String id=(String)message.getMessage();
 		InfoFrame info=new InfoFrame("新增车辆");
 		VanVO temp=new VanVO(id,"",Calendar.getInstance(),Calendar.getInstance(),null,user.getOrgId());
-		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp));
+		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,user));
 	}
 	private void deleteVan(){
 		int row=table.getSelectedRow();
@@ -210,14 +210,38 @@ public class VanListPanel extends JPanel {
 		int row=table.getSelectedRow();
 		VanVO temp=vanList.get(row);
 		InfoFrame info=new InfoFrame("查看修改车辆");
-		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp));
+		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,user));
 	}
 	private void checkVan(){
 		
 	}
-	public Result confirmed(){
-		return null;
+	private void sort(){
+		for(int i=0;i<vanList.size();i++)
+		{
+			for(int j=i+1;j<vanList.size();j++)
+			{
+				VanVO left=vanList.get(i);
+				VanVO right=vanList.get(j);
+				if(left.getId().)
+			}
+		}
 	}
+	public Result confirmed(VanVO temp){
+		for(int i=0;i<vanList.size();i++)
+		{
+			if(vanList.get(i).getId().equals(temp.getId()))
+			{
+				Result result=serv.reviseVan(temp);
+				return result;
+			}
+		}
+		Result result=serv.addVan(temp);
+		if(!result.equals(Result.SUCCESS))return result;
+		vanList.add(temp);
+		sort();
+		return result;
+	}
+	
 //	public static void main(String[] args)
 //	{
 //		JFrame frame=new JFrame();

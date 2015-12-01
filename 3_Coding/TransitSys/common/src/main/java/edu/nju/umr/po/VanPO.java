@@ -15,10 +15,10 @@ public class VanPO extends PO implements Serializable{
 	private String id;
 	private String plateNum;
 	private Calendar servTime;
-	private Image photo;
+	private String photo;
 	private String hallId;
 	
-	public VanPO(String id, String plateNum, Calendar servTime, Image photo,
+	public VanPO(String id, String plateNum, Calendar servTime, String photo,
 			String hallId) {
 		super();
 		this.id = id;
@@ -36,7 +36,7 @@ public class VanPO extends PO implements Serializable{
 	public Calendar getServTime() {
 		return servTime;
 	}
-	public Image getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 	public String getHallId() {
