@@ -97,8 +97,8 @@ public class ExpressListPanel extends JPanel{
 					}
 					model.addElement(expressField.getText());
 					expressList.setModel(model);
-					toAddExpresses.remove(expressField.getText());
-					expressField.setAllItem(toAddExpresses);
+					if(toAddExpresses!=null)toAddExpresses.remove(expressField.getText());
+					if(toAddExpresses!=null)expressField.setAllItem(toAddExpresses);
 					expressField.setText("");
 					
 				}
