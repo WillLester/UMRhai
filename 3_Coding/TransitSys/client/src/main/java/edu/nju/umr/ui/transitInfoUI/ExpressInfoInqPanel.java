@@ -38,12 +38,12 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 					if(message.getReInfo().equals(Result.SUCCESS)){
 						ExpressVO vo = (ExpressVO) message.getMessage();
 						senderField.setText(vo.getSender());
-						senderLocField.setText(vo.getSendLoc());
+						senderLoc.setLoc(vo.getSendLoc());
 						senderMobileField.setText(vo.getSendMobile());
 						senderPhoneField.setText(vo.getSendPhone());
 						senderCompanyField.setText(vo.getSendUnit());
 						receiverField.setText(vo.getReceiver());
-						receiverLocField.setText(vo.getReceiveLoc());
+						receiverLoc.setLoc(vo.getReceiveLoc());
 						receiverMobileField.setText(vo.getReceiveMobile());
 						receiverCompanyField.setText(vo.getReceiveUnit());
 						receiverPhoneField.setText(vo.getReceivePhone());

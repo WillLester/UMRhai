@@ -538,7 +538,8 @@ public class ExpressPanel extends JPanel {
 		arrive.setTime(date);
 		ExpressVO vo = new ExpressVO(barcodeField.getText(), sender.getText(), senderLoc.getLoc(), receiver.getText(), receiverLoc.getLoc(), senderMobileField.getText(), receiverMobileField.getText(), senderPhoneField.getText(), receiverPhoneField.getText(), 
 				senderCompanyField.getText(), receiverCompanyField.getText(), (Integer)numSpinner.getValue(), nameField.getText(), Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), 
-				Double.parseDouble(weightField.getText()), Double.parseDouble(volumnField.getText()), arrive, datePanel.getCalendar(), EnumTransFactory.getExpress((String)expressKindCombo.getSelectedItem()), Double.parseDouble(costField.getText()), name,EnumTransFactory.getParse((String)pakKindCombo.getSelectedItem()));
+				Double.parseDouble(weightField.getText()), Double.parseDouble(volumnField.getText()), arrive, datePanel.getCalendar(), EnumTransFactory.getExpress((String)expressKindCombo.getSelectedItem()), Double.parseDouble(costField.getText()), name,EnumTransFactory.getParse((String)pakKindCombo.getSelectedItem()),
+				senderLoc.getProvince(),senderLoc.getCity(),receiverLoc.getProvince(),receiverLoc.getCity());
 		return vo;
 		
 	}

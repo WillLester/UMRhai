@@ -70,7 +70,7 @@ public class LocPanel extends JPanel {
 		return (String) cityCombo.getSelectedItem();
 	}
 	public String getLoc(){
-		return getProvince()+getCity()+locField.getText();
+		return locField.getText();
 	}
 	public void setProvince(String province){
 		provinceCombo.setSelectedItem(province);

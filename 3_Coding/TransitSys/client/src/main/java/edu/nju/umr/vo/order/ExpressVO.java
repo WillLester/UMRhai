@@ -31,6 +31,10 @@ public class ExpressVO {
 	private double cost;
 	private String opName;
 	private Parse parse;
+	private String sendProvince;
+	private String sendCity;
+	private String receiveProvince;
+	private String receiveCity;
 	
 	
 	public ExpressVO(String id, String sender, String sendLoc, String receiver,
@@ -39,7 +43,7 @@ public class ExpressVO {
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
 			Calendar arrive, Calendar createDate, Express kind, double cost,
-			String opName,Parse parse) {
+			String opName,Parse parse,String sendProvince,String sendCity,String receiveProvince,String receiveCity) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -65,6 +69,10 @@ public class ExpressVO {
 		this.cost = cost;
 		this.opName = opName;
 		this.parse = parse;
+		this.sendProvince = sendProvince;
+		this.sendCity = sendCity;
+		this.receiveProvince = receiveProvince;
+		this.receiveCity = receiveCity;
 	}
 	public String getId(){
 		return id;
@@ -137,6 +145,18 @@ public class ExpressVO {
 	}
 	public Parse getParse() {
 		return parse;
+	}
+	public String getSendProvince() {
+		return sendProvince;
+	}
+	public String getSendCity() {
+		return sendCity;
+	}
+	public String getReceiveProvince() {
+		return receiveProvince;
+	}
+	public String getReceiveCity() {
+		return receiveCity;
 	}
 	
 	
