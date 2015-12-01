@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.constants.Province;
 import edu.nju.umr.logic.cityLogic.CityLogic;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
@@ -37,7 +40,7 @@ public class CityListPanel extends JPanel{
 	private DefaultTableModel model2;
 	private JTextField nameField;
 	private JTextField idField;
-	private JTextField provinceField;
+	private JComboBox<String> provinceCombo;
 	private JTextField distanceField;
 	private JFrame frame;
 	private ArrayList<CityVO> cityList;
@@ -81,10 +84,10 @@ public class CityListPanel extends JPanel{
 		provinceLabel.setBounds(647, 473, 74, 19);
 		add(provinceLabel);
 		
-		provinceField = new JTextField();
-		provinceField.setBounds(716, 472, 106, 22);
-		add(provinceField);
-		provinceField.setColumns(10);
+		provinceCombo = new JComboBox<String>();
+		provinceCombo.setBounds(716, 472, 106, 22);
+		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
+		add(provinceCombo);
 		
 		JLabel distanceLabel = new JLabel("距离");
 		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
@@ -156,12 +159,12 @@ public class CityListPanel extends JPanel{
 					if(isCityLegal()){
 						Result result;
 						if(cityTable1.getSelectedRow() >= cityList.size()){
-							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()));
+							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()));
 						} else {
 							if(cityTable1.getSelectedRow() < 0){
-								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()), cityTable1.getSelectedRow());
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable1.getSelectedRow());
 							} else {
-								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), provinceField.getText()), cityTable2.getSelectedRow());
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable2.getSelectedRow());
 							}
 						}
 						if(result.equals(Result.SUCCESS)){
@@ -202,7 +205,7 @@ public class CityListPanel extends JPanel{
 					province = city.getProvince();
 					nameField.setText(name);
 					idField.setText(id);
-					provinceField.setText(province);
+					provinceCombo.setSelectedItem(province);;
 				}
 			}
 		});
@@ -227,18 +230,18 @@ public class CityListPanel extends JPanel{
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
 						idField.setEnabled(true);
-						provinceField.setEnabled(true);
+						provinceCombo.setEnabled(true);
 						distanceField.setEnabled(false);
 						CityVO citySelected = cityList.get(cityTable1.getSelectedRow());
 						nameField.setText(citySelected.getName());
 						idField.setText(citySelected.getId());
-						provinceField.setText(citySelected.getProvince());
+						provinceCombo.setSelectedItem(citySelected.getProvince());;
 					} else {
 						addButton.setEnabled(false);
 						deleteButton.setEnabled(false);
 						nameField.setEnabled(false);
 						idField.setEnabled(false);
-						provinceField.setEnabled(false);
+						provinceCombo.setEnabled(false);
 						distanceField.setEnabled(true);
 						getDistance();
 					}
@@ -265,18 +268,18 @@ public class CityListPanel extends JPanel{
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
 						idField.setEnabled(true);
-						provinceField.setEnabled(true);
+						provinceCombo.setEnabled(true);
 						distanceField.setEnabled(false);
 						CityVO citySelected = cityList.get(cityTable2.getSelectedRow());
 						nameField.setText(citySelected.getName());
 						idField.setText(citySelected.getId());
-						provinceField.setText(citySelected.getProvince());
+						provinceCombo.setSelectedItem(citySelected.getProvince());
 					} else {
 						addButton.setEnabled(false);
 						deleteButton.setEnabled(false);
 						nameField.setEnabled(false);
 						idField.setEnabled(false);
-						provinceField.setEnabled(false);
+						provinceCombo.setEnabled(false);
 						distanceField.setEnabled(true);
 						getDistance();
 					}
@@ -339,10 +342,6 @@ public class CityListPanel extends JPanel{
 		}
 		if((idField.getText().length() > 5)||(idField.getText().length() < 3)){
 			HintFrame hint = new HintFrame("区号位数不正确！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-			return false;
-		}
-		if(provinceField.getText().equals("")){
-			HintFrame hint = new HintFrame("省份未填写！", frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
 		return true;
