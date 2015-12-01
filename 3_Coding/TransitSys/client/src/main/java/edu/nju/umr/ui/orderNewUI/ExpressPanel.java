@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.ui.DatePanel;
 
 public class ExpressPanel extends JPanel {
@@ -25,7 +27,7 @@ public class ExpressPanel extends JPanel {
 	protected JTextField barcodeField;
 	protected JTextField senderField;
 	protected JTextField senderLocField;
-	protected JTextField sendCompanyField;
+	protected JTextField senderCompanyField;
 	protected JTextField senderMobileField;
 	protected JTextField senderPhoneField;
 	protected JTextField receiverField;
@@ -78,12 +80,14 @@ public class ExpressPanel extends JPanel {
 	protected JLabel costLabel;
 	protected JButton confirmButton;
 	protected JButton cancelButton;
+	private ExpressOrderLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	public ExpressPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new ExpressOrderLogic();
 		
 		titleLabel = new JLabel("订单创建");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -148,11 +152,11 @@ public class ExpressPanel extends JPanel {
 		senderCompanyLabel.setBounds(690, 192, 62, 24);
 		add(senderCompanyLabel);
 		
-		sendCompanyField = new JTextField();
-		sendCompanyField.setFont(new Font("宋体", Font.PLAIN, 20));
-		sendCompanyField.setColumns(10);
-		sendCompanyField.setBounds(751, 192, 165, 25);
-		add(sendCompanyField);
+		senderCompanyField = new JTextField();
+		senderCompanyField.setFont(new Font("宋体", Font.PLAIN, 20));
+		senderCompanyField.setColumns(10);
+		senderCompanyField.setBounds(751, 192, 165, 25);
+		add(senderCompanyField);
 		
 		senderMobileLabel = new JLabel("手机");
 		senderMobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -344,6 +348,7 @@ public class ExpressPanel extends JPanel {
 		confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(418, 536, 93, 23);
+		confirmButton.addActionListener(new ConfirmListener());
 		add(confirmButton);
 		
 		cancelButton = new JButton("取消");
@@ -408,6 +413,16 @@ public class ExpressPanel extends JPanel {
 		mLabelH.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(mLabelH);
 
+	}
+	
+	public class ConfirmListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO 自动生成的方法存根
+			
+		}
+		
 	}
 	
 

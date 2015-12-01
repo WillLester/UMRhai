@@ -25,18 +25,21 @@ public class ExpressVO {
 	private double volumn;
 //	private String id;
 	private Calendar arrive;
+	private Calendar createDate;
 	private Express kind;
 	private double cost;
 	private String opName;
 	
-	public ExpressVO(String id,String sender, String sendLoc, String receiver,
+	
+	public ExpressVO(String id, String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
 			String sendPhone, String receivePhone, String sendUnit,
 			String receiveUnit, int num, String name, double length,
 			double width, double height, double weight, double volumn,
-			 Calendar arrive, Express kind, double cost,String opName) {
+			Calendar arrive, Calendar createDate, Express kind, double cost,
+			String opName) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.sender = sender;
 		this.sendLoc = sendLoc;
 		this.receiver = receiver;
@@ -54,11 +57,11 @@ public class ExpressVO {
 		this.height = height;
 		this.weight = weight;
 		this.volumn = volumn;
-//		this.id = id;
 		this.arrive = arrive;
+		this.createDate = createDate;
 		this.kind = kind;
 		this.cost = cost;
-		this.opName=opName;
+		this.opName = opName;
 	}
 	public String getId(){
 		return id;
@@ -102,9 +105,6 @@ public class ExpressVO {
 	public double getVolumn() {
 		return volumn;
 	}
-//	public String getId() {
-//		return id;
-//	}
 	public Calendar getArrive() {
 		return arrive;
 	}
@@ -128,6 +128,9 @@ public class ExpressVO {
 	}
 	public String getOpName(){
 		return opName;
+	}
+	public Calendar getCreateDate() {
+		return createDate;
 	}
 	
 	
