@@ -173,11 +173,9 @@ public class VanListPanel extends JPanel {
 		for(int i=0;i<vanList.size();i++)
 		{
 			VanVO temp = vanList.get(i);
-			Calendar tempTime=temp.getStartTime();
-			String beginTime=tempTime.get(Calendar.YEAR)+"年"+(tempTime.get(Calendar.MONTH)+1)+"月"+tempTime.get(Calendar.DATE)+"日";
-			tempTime=temp.getEndTime();
-			String endTime=tempTime.get(Calendar.YEAR)+"年"+(tempTime.get(Calendar.MONTH)+1)+"月"+tempTime.get(Calendar.DATE)+"日";
-			String [] data=new String[]{temp.getId(),temp.getPlateNum(),beginTime+" 至 "+endTime};
+			Calendar tempTime=temp.getServTime();
+			String servTime=tempTime.get(Calendar.YEAR)+"年"+(tempTime.get(Calendar.MONTH)+1)+"月"+tempTime.get(Calendar.DATE)+"日";
+			String [] data=new String[]{temp.getId(),temp.getPlateNum(),servTime};
 			model.addRow(data);
 		}
 	}
@@ -191,7 +189,7 @@ public class VanListPanel extends JPanel {
 		}
 		String id=(String)message.getMessage();
 		InfoFrame info=new InfoFrame("新增车辆");
-		VanVO temp=new VanVO(id,"",Calendar.getInstance(),Calendar.getInstance(),null,user.getOrgId());
+		VanVO temp=new VanVO(id,"",Calendar.getInstance(),null,user.getOrgId());
 		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,user));
 	}
 	private void deleteVan(){
@@ -222,7 +220,6 @@ public class VanListPanel extends JPanel {
 			{
 				VanVO left=vanList.get(i);
 				VanVO right=vanList.get(j);
-				if(left.getId().)
 			}
 		}
 	}

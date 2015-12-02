@@ -54,11 +54,14 @@ public class UtilityLogic {
         }  
 	}
 	public ResultMessage getCities(){
+		Result isSuc=Result.DATA_NOT_FOUND;
 		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
 		try {
 			ArrayList<CityPO> cities = utilityData.getCities();
+			if(cities.size()>0)
+				isSuc=Result.SUCCESS;
 			for(CityPO city:cities){
-				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
+				CityVO vo = VPFactory.toCityVO(city);
 				cityList.add(vo);
 //				return new ResultMessage(Result.SUCCESS, cityList);
 			}
@@ -66,23 +69,25 @@ public class UtilityLogic {
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		return new ResultMessage(Result.SUCCESS, cityList);
+		return new ResultMessage(isSuc, cityList);
 	}
 	public ResultMessage getOrgs(){
 		ArrayList<OrgPO> ar= null;
-		Result isSuccessful=Result.NET_INTERRUPT;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			ar=utilityData.getOrgs();
-			isSuccessful=Result.SUCCESS;
+			if(ar.size()>0)
+				isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
 		for(int i=0;i<ar.size();i++)
 		{
 			OrgPO Org=ar.get(i);
-			arVO.add(new OrgVO(Org.getId(),Org.getName(),Org.getKind(),Org.getLocation(),Org.getCity(),Org.getCityId()));
+			arVO.add(VPFactory.toOrgVO(Org));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
@@ -90,18 +95,20 @@ public class UtilityLogic {
 	public ResultMessage getHall() {
 		// TODO 自动生成的方法存根
 		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
-		Result re=Result.NET_INTERRUPT;
+		Result re=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<OrgPO> halls = utilityData.getHall();
-			re=Result.SUCCESS;
+			if(halls.size()>0)
+				re=Result.SUCCESS;
 			for(OrgPO hall:halls){
 //				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
-				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), hall.getCity(), hall.getCityId());
+				OrgVO vo = VPFactory.toOrgVO(hall);
 				hallList.add(vo);
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		return new ResultMessage(re, hallList);
 	}
@@ -126,27 +133,32 @@ public class UtilityLogic {
 	}
 	public ResultMessage getWorkers(String orgId){
 		ArrayList<WorkPO> ar= null;
-		Result isSuccessful=Result.NET_INTERRUPT;
+		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			ar=utilityData.getWorkers("");
-			isSuccessful=Result.SUCCESS;
+			ar=utilityData.getWorkers(orgId);
+			if(ar.size()>0)
+				isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO Work=ar.get(i);
-			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrg(),Work.getOrgId(),Work.getJuri(),Work.getKind(),Work.getMoney(),Work.getCommission()));
+			arVO.add(VPFactory.toWorkVO(Work));
 		}
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
 	public ResultMessage getVans(String orgId){
 		ArrayList<VanVO> vanList = new ArrayList<VanVO>();
+		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
+			if(van.size()>0)
+				isSuc=Result.SUCCESS;
 			for(VanPO po:van){
 				VanVO vo = VPFactory.toVanVO(po);
 				vanList.add(vo);
@@ -154,15 +166,19 @@ public class UtilityLogic {
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 		
-		return new ResultMessage(Result.SUCCESS, vanList);
+		return new ResultMessage(isSuc, vanList);
 	}
 	public ResultMessage getStocks(){
 		ArrayList<StockVO> stockList = new ArrayList<StockVO>();
-		ArrayList<StockPO> stock;
+		ArrayList<StockPO> stock=new ArrayList<StockPO>();
+		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			stock = utilityData.getStocks();
+			if(stock.size()>0)
+				isSuc=Result.SUCCESS;
 			for(StockPO po:stock){
 				StockVO vo = VPFactory.toStockVO(po);
 				stockList.add(vo);				
@@ -172,21 +188,23 @@ public class UtilityLogic {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		return new ResultMessage(Result.SUCCESS, stockList);
+		return new ResultMessage(isSuc, stockList);
 	}
 	public ResultMessage getAccount() {
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
-		Result re=Result.NET_INTERRUPT;
+		Result re=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<AccountPO> account = utilityData.getAccount();
-			re=Result.SUCCESS;
+			if(account.size()>0)
+				re=Result.SUCCESS;
 			for(AccountPO po:account){
-				AccountVO vo = new AccountVO(po.getName(), po.getBalance());
+				AccountVO vo = VPFactory.toAccountVO(po);
 				accountList.add(vo);
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
 		return new ResultMessage(re, accountList);
@@ -194,15 +212,24 @@ public class UtilityLogic {
 
 	public static Result setRecord(Calendar cal,String op,String opt){
 		Result isSuc=Result.SUCCESS;
-		try
-		{
-			UtilityDFacSer dataFac=(UtilityDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-			UtilityDSer data=dataFac.getUtility();
-			isSuc=data.setRecord(cal, op, opt);
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
+			UtilityDFacSer dataFac;
+			try {
+				dataFac = (UtilityDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
+				UtilityDSer data=dataFac.getUtility();
+				isSuc=data.setRecord(cal, op, opt);
+			} catch (MalformedURLException e) {
+				
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return Result.NET_INTERRUPT;
+			} catch (NotBoundException e) {
+				e.printStackTrace();
+				return Result.DATA_NOT_FOUND;
+			}
+			
+		
 		return isSuc;
 	}
 	//导出excel文件
@@ -240,24 +267,15 @@ public class UtilityLogic {
 	
 	//返回po的一系列方法
 	
-	public ArrayList<CityPO> cities(){
-		ArrayList<CityPO> city=null;
-		try {
-			city=utilityData.getCities();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return city;
-		}
+	public ArrayList<CityPO> cities() throws RemoteException{
+		ArrayList<CityPO> city=new ArrayList<CityPO>();
+		city=utilityData.getCities();
 		return city;
 	}
 	
-	public ArrayList<OrgPO> orgs(){
-		ArrayList<OrgPO> org=null;
-		try {
-			org=utilityData.getOrgs();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<OrgPO> orgs() throws RemoteException{
+		ArrayList<OrgPO> org=new ArrayList<OrgPO>();
+		org=utilityData.getOrgs();
 		return org;
 	}
 	
@@ -267,57 +285,33 @@ public class UtilityLogic {
 		return centers;
 	}
 	 
-	public ArrayList<OrgPO> halls(){
-		ArrayList<OrgPO> hall=null;
-		try {
-			hall=utilityData.getHall();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<OrgPO> halls() throws RemoteException{
+		ArrayList<OrgPO> hall=new ArrayList<OrgPO>();
+		hall=utilityData.getHall();
 		return hall;
 	}
 	
-	public ArrayList<WorkPO> works(String orgId){
-		ArrayList<WorkPO> work=null;
-		try {
-			work=utilityData.getWorkers(orgId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<WorkPO> works(String orgId) throws RemoteException{
+		ArrayList<WorkPO> work=new ArrayList<WorkPO>();
+		work=utilityData.getWorkers(orgId);
 		return work;
 	}
 	
-	public ArrayList<VanPO> vans(String orId){
-		ArrayList<VanPO> van=null;
-		try {
-			van=utilityData.getVans(orId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<VanPO> vans(String orId) throws RemoteException{
+		ArrayList<VanPO> van=new ArrayList<VanPO>();
+		van=utilityData.getVans(orId);
 		return van;
 	}
 	
-	public ArrayList<StockPO> stocks(){
-		ArrayList<StockPO> stock=null;
-		try {
-			stock=utilityData.getStocks();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<StockPO> stocks() throws RemoteException{
+		ArrayList<StockPO> stock=new ArrayList<StockPO>();
+		stock=utilityData.getStocks();
 		return stock;
 	}
 	
-	public ArrayList<AccountPO> accounts(){
-		ArrayList<AccountPO> account=null;
-		try {
-			account=utilityData.getAccount();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<AccountPO> accounts() throws RemoteException{
+		ArrayList<AccountPO> account=new ArrayList<AccountPO>();
+		account=utilityData.getAccount();
 		return account;
 	}
 	

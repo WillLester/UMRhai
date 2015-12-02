@@ -7,15 +7,15 @@ import edu.nju.umr.po.enums.GoodState;
 public class ArriveVO {
 	private String centerId;
 	private Calendar date;
-//	private String id;
+	private String id;
 	private String startPlace;
 	private GoodState state;
 	private String opName;
-	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName) {
+	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName,String id) {
 		// TODO 自动生成的构造函数存根
 		this.centerId = centerId;
 		this.date = date;
-//		this.id = id;
+		this.id = id;
 		this.startPlace = startPlace;
 		this.state = state;
 		this.opName=opName;
@@ -23,9 +23,9 @@ public class ArriveVO {
 	public Calendar getDate() {
 		return date;
 	}
-//	public String getId() {
-//		return id;
-//	}
+	public String getId() {
+		return id;
+	}
 	public String getStartPlace() {
 		return startPlace;
 	}

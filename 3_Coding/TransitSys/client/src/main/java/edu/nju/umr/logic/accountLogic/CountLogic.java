@@ -41,11 +41,22 @@ public class CountLogic implements CountLSer{
         } 
 	}
 	public Result newCount() {		
-		ArrayList<OrgPO> orgList=uti.orgs() ;
-		ArrayList<WorkPO> workList = uti.works(null);
-		ArrayList<VanPO> vanList = uti.vans(null);
-		ArrayList<StockPO> stockList = uti.stocks();
-		ArrayList<AccountPO> accountList = uti.accounts();
+		ArrayList<OrgPO> orgList=null;
+		ArrayList<WorkPO> workList=null;
+		ArrayList<VanPO> vanList=null;
+		ArrayList<StockPO> stockList=null;
+		ArrayList<AccountPO> accountList=null;
+		try {
+			orgList = uti.orgs();
+			workList = uti.works(null);
+			vanList = uti.vans(null);
+			stockList = uti.stocks();
+			accountList = uti.accounts();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return Result.NET_INTERRUPT;
+		}
+		
 		CountPO count=new CountPO(0,orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
 		try {
 			Result result=countData.addCount(count);
@@ -60,7 +71,9 @@ public class CountLogic implements CountLSer{
 		
 		try {
 			countPO=countData.getCount();
-			result=Result.SUCCESS;
+			if(countPO!=null){
+				result=Result.SUCCESS;
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);

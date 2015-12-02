@@ -1,6 +1,5 @@
 package edu.nju.umr.vo;
 
-import java.awt.Image;
 import java.util.Calendar;
 
 public class VanVO {
