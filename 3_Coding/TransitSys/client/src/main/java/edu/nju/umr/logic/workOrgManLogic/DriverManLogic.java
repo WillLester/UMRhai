@@ -110,9 +110,9 @@ public class DriverManLogic implements DriverManLSer{
 //		return message;
 //	}
 
-	public ResultMessage searchDriver(String keyword,String hallId) {
+	public ResultMessage searchDriver(String hallId) {
 		// TODO 自动生成的方法存根
-		System.out.println("ADASDASDS");
+//		System.out.println("ADASDASDS");
 		ArrayList<DriverPO> ar=null;
 		Result result=Result.DATA_NOT_FOUND;
 		try{
@@ -136,16 +136,5 @@ public class DriverManLogic implements DriverManLSer{
 		return message;
 	}
 
-	@Override
-	public ResultMessage searchDriver(String hallId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-//	@Override
-//	public ResultMessage searchDriver(String hallId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

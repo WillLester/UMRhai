@@ -5,11 +5,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.po.WorkPO;
@@ -21,7 +21,7 @@ public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
 	UtilityLogic uti=new UtilityLogic();
-	ArrayList<WorkPO> ar= new ArrayList<WorkPO>();
+	ArrayList<WorkPO> ar;
 	public WorkManLogic()
 	{
 		try{
@@ -43,7 +43,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
+			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),Wage.COMMISSION,0,0));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -117,7 +117,7 @@ public class WorkManLogic implements WorkManLSer{
 
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根
-	
+		ar= new ArrayList<WorkPO>();
 //		boolean isSuccessful=false;
 		try{
 			ar=workData.findWork(keyword);
@@ -131,7 +131,7 @@ public class WorkManLogic implements WorkManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO work=ar.get(i);
-			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
+			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getJuri()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
