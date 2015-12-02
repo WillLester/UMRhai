@@ -29,7 +29,7 @@ public class VanInfoPanel extends JPanel {
 	private BufferedImage image;
 	private VanVO van;
 	private JFrame frame;
-	private DatePanel start;
+	private DatePanel servTime;
 	private DatePanel end;
 	private JLabel pic;
 	private UserVO user;
@@ -75,19 +75,19 @@ public class VanInfoPanel extends JPanel {
 		
 		JLabel labely = new JLabel("由");
 		labely.setBounds(textFieldNum.getX(), workTime.getY()+8, 19, 15);
-		add(labely);
+//		add(labely);
 		
-		start=new DatePanel();
-		start.setBounds(labely.getX()+20, workTime.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
-		add(start);
+		servTime=new DatePanel();
+		servTime.setBounds(labely.getX()+20, workTime.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
+		add(servTime);
 		
 		JLabel labelz = new JLabel("至");
 		labelz.setBounds(labely.getX(), labely.getY()+30, 19, 15);
-		add(labelz);
+//		add(labelz);
 		
 		end=new DatePanel();
 		end.setBounds(labelz.getX()+20, labelz.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
-		add(end);
+//		add(end);
 		
 		JLabel picture = new JLabel("车辆图片");
 		picture.setBounds(vanNum.getX(), labelz.getY()+20+40, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -124,8 +124,7 @@ public class VanInfoPanel extends JPanel {
 	private void dataInit(){
 		textFieldNum.setText(van.getId());
 		textFieldPlate.setText(van.getPlateNum());
-		start.setDate(van.getStartTime());
-		end.setDate(van.getEndTime());
+		servTime.setDate(van.getServTime());
 		imageString=van.getPhoto();
 		if(!imageString.equals(null))
 		{
@@ -147,19 +146,12 @@ public class VanInfoPanel extends JPanel {
 			DoHint.hint("车牌号未输入",frame);
 			return;
 		}
-		Calendar startTime=start.getCalendar();
-		Calendar endTime=start.getCalendar();
-		if(startTime.after(endTime))
-		{
-			DoHint.hint("服役期限错误!",frame);
-			return;
-		}
 		if(imageString.isEmpty())
 		{
 			DoHint.hint("图片未选择!", frame);
 			return;
 		}
-		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),startTime,endTime,imageString,user.getOrgId());
+		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,user.getOrgId());
 		Result result=fatherPanel.confirmed(temp);
 		
 	}

@@ -13,7 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.logic.orderNewLogic.ArriveOrderLogic;
+import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.vo.UserVO;
 
 public class ArrivePanel extends JPanel {
 	/**
@@ -24,12 +27,16 @@ public class ArrivePanel extends JPanel {
 	private JTextField centerField;
 	private JFrame frame;
 	private DatePanel datePanel;
+	private UserVO user;
+	private ArriveOrderLSer serv;
+	private JComboBox<String> cityCombo;
 	/**
 	 * Create the panel.
 	 */
-	public ArrivePanel(JFrame fr) {
+	public ArrivePanel(JFrame fr,UserVO uservo) {
 		setLayout(null);
 		frame=fr;
+		user=uservo;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -68,7 +75,7 @@ public class ArrivePanel extends JPanel {
 		startLabel.setBounds(342+75+25, 162, 107, 24);
 		add(startLabel);
 		
-		JComboBox<String> cityCombo = new JComboBox<String>();
+		cityCombo = new JComboBox<String>();
 		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		cityCombo.setBounds(474+75+25, 166, 193, 21);
 		add(cityCombo);
@@ -125,6 +132,11 @@ public class ArrivePanel extends JPanel {
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(364+75+25, 434, 93, 23);
+		confirmButton.addActionListener(new ActionListener(){@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			createOrder();
+		}});
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
@@ -138,13 +150,27 @@ public class ArrivePanel extends JPanel {
 		});
 		add(cancelButton);
 
+		dataInit();
 	}
-	public static void main(String[] args)
+	private void dataInit()
 	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new ArrivePanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		serv=new ArriveOrderLogic();
+		centerField.setText(user.getOrgId());
+		
+		
+		
 	}
+	private void createOrder()
+	{
+		String centerId=idField.getText();
+		
+	}
+//	public static void main(String[] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new ArrivePanel(frame));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	}
 }
