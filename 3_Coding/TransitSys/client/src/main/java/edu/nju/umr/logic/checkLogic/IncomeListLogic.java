@@ -11,6 +11,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
@@ -39,7 +40,7 @@ public class IncomeListLogic implements IncomeListLSer{
 		try {
 			ArrayList<IncomePO> income = collectData.getCollectRec(date, hallId);
 			for(IncomePO po:income){
-				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(),po.getOpName(),po.getOrgId());
+				IncomeVO vo = VPFactory.toIncomeVO(po);
 				incomeList.add(vo);
 			}
 		} catch (RemoteException e) {

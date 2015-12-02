@@ -5,15 +5,14 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
@@ -40,7 +39,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), "", order.getStartPlace(), order.getState(),Calendar.getInstance(),order.getOpName()));
+			isSuc = arriveData.create(VPFactory.toArrivePO(order, ""));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -63,9 +62,10 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		
 		ResultMessage rm=uti.getCities();
 		if(rm.getReInfo()!=Result.SUCCESS){
-			return new ResultMessage(Result.NET_INTERRUPT,null);//可能存在隐患！
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<CityVO> city=(ArrayList<CityVO>)rm.getMessage();
 		CityVO[] cityArray=new CityVO[city.size()];
 		for(int i=0;i<city.size();i++){

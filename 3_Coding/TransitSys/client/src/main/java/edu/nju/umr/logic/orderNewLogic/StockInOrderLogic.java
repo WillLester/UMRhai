@@ -3,13 +3,13 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.po.ShelfPO;
@@ -35,16 +35,17 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		}
 	}
 	public Result create(StockInVO order) {
+		Result isSuc=Result.DATABASE_ERROR;
 		try{
-			StockInPO orderPO=new StockInPO(1,order.getExpressId(),order.getDate(),order.getArrivePlace(),order.getPart(),order.getShelfId(),order.getRow(),order.getPlace(),Calendar.getInstance(),order.getOpName(),order.getStockId());
-			stockinData.create(orderPO);
+			StockInPO orderPO=VPFactory.toStockInPO(order, 0);
+			isSuc=stockinData.create(orderPO);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage getCities() {
@@ -83,9 +84,9 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		}
 		
 		for(ShelfPO po:shelfPOs){
-			ShelfVO shelf=new ShelfVO(po.getId(),po.getRow(),po.getPlace(),po.getPart());
+			ShelfVO shelf=VPFactory.toShelfVO(po);
 			shelves.add(shelf);
 		}
-		return new ResultMessage(Result.SUCCESS,null);
+		return new ResultMessage(Result.SUCCESS,shelves);
 	}
 }

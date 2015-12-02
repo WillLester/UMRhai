@@ -11,7 +11,6 @@ import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 
 public class LoginLogic implements LoginLSer{
 	LoginDFacSer dataFac;

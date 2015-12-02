@@ -20,9 +20,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
@@ -30,7 +28,6 @@ import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
@@ -58,8 +55,7 @@ public class UtilityLogic {
 		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
 		try {
 			ArrayList<CityPO> cities = utilityData.getCities();
-			if(cities.size()>0)
-				isSuc=Result.SUCCESS;
+			isSuc=Result.SUCCESS;
 			for(CityPO city:cities){
 				CityVO vo = VPFactory.toCityVO(city);
 				cityList.add(vo);
@@ -76,8 +72,7 @@ public class UtilityLogic {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			ar=utilityData.getOrgs();
-			if(ar.size()>0)
-				isSuccessful=Result.SUCCESS;
+		    isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
@@ -97,9 +92,8 @@ public class UtilityLogic {
 		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
 		Result re=Result.DATA_NOT_FOUND;
 		try {
-			ArrayList<OrgPO> halls = utilityData.getHall();
-			if(halls.size()>0)
-				re=Result.SUCCESS;
+			ArrayList<OrgPO> halls = utilityData.getHall();			
+			re=Result.SUCCESS;
 			for(OrgPO hall:halls){
 //				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
 				OrgVO vo = VPFactory.toOrgVO(hall);
@@ -118,8 +112,7 @@ public class UtilityLogic {
 		ArrayList<OrgPO> centers=new ArrayList<OrgPO>();
 		try {
 			centers=utilityData.getCenters();
-			if(centers.size()>0)
-				re=Result.SUCCESS;
+			re=Result.SUCCESS;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,8 +129,7 @@ public class UtilityLogic {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			ar=utilityData.getWorkers(orgId);
-			if(ar.size()>0)
-				isSuccessful=Result.SUCCESS;
+			isSuccessful=Result.SUCCESS;
 		}
 		catch(RemoteException e){
 			e.printStackTrace();
@@ -157,8 +149,7 @@ public class UtilityLogic {
 		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<VanPO> van = utilityData.getVans(orgId);
-			if(van.size()>0)
-				isSuc=Result.SUCCESS;
+			isSuc=Result.SUCCESS;
 			for(VanPO po:van){
 				VanVO vo = VPFactory.toVanVO(po);
 				vanList.add(vo);
@@ -177,8 +168,7 @@ public class UtilityLogic {
 		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			stock = utilityData.getStocks();
-			if(stock.size()>0)
-				isSuc=Result.SUCCESS;
+			isSuc=Result.SUCCESS;
 			for(StockPO po:stock){
 				StockVO vo = VPFactory.toStockVO(po);
 				stockList.add(vo);				
@@ -195,8 +185,7 @@ public class UtilityLogic {
 		Result re=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<AccountPO> account = utilityData.getAccount();
-			if(account.size()>0)
-				re=Result.SUCCESS;
+			re=Result.SUCCESS;
 			for(AccountPO po:account){
 				AccountVO vo = VPFactory.toAccountVO(po);
 				accountList.add(vo);
@@ -234,6 +223,7 @@ public class UtilityLogic {
 	}
 	//导出excel文件
 	public Result outputExcel(String data[][],String name, String location) {
+		@SuppressWarnings("resource")
 		HSSFWorkbook wb=new HSSFWorkbook();//创建一个workbook对应一个excel文件
 		HSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
 		
@@ -315,6 +305,7 @@ public class UtilityLogic {
 		return account;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ResultMessage getLocalHallAndAllCenter(String orgId){
 		Result isSuc=Result.DATA_NOT_FOUND;
 		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();//获取营业厅列表

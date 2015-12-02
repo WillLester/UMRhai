@@ -176,21 +176,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			}
 			return new ResultMessage(pSuc,pv);
 			
-		case RECEIVE:
-			ExpressVO rev=null;
-			Result reSuc=Result.DATA_NOT_FOUND;
-			try {
-				ExpressPO rep=(ExpressPO)approveData.getOrder(id, kind);
-				rev=VPFactory.toExpressVO(rep);
-				if(rep!=null)
-					hallSuc=Result.SUCCESS;
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return new ResultMessage(Result.NET_INTERRUPT,null);
-			}
-			return new ResultMessage(reSuc,rev);
-			
 		case RECIPIENT:
 			RecipientVO recipv=null;
 			Result recipSuc=Result.DATA_NOT_FOUND;

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.enums.Result;
@@ -37,7 +38,7 @@ public class DriverManLogic implements DriverManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try
 		{
-			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveStart(),Driver.getDriveEnd(),Driver.getHallId()));
+			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
@@ -65,7 +66,7 @@ public class DriverManLogic implements DriverManLSer{
 		Result isSuccessful=Result.SUCCESS;
 		try
 		{
-			isSuccessful=driverData.addDriver(new DriverPO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveStart(),Driver.getDriveEnd(),Driver.getHallId()));
+			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
@@ -113,7 +114,11 @@ public class DriverManLogic implements DriverManLSer{
 	public ResultMessage searchDriver(String hallId) {
 		// TODO 自动生成的方法存根
 //		System.out.println("ADASDASDS");
+<<<<<<< HEAD
+		ArrayList<DriverPO> ar=new ArrayList<DriverPO>();
+=======
 		ArrayList<DriverPO> ar=null;
+>>>>>>> origin/master
 		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=driverData.findDriver(hallId);
@@ -125,7 +130,7 @@ public class DriverManLogic implements DriverManLSer{
 		}
 		ArrayList<DriverVO> arVO=new ArrayList<DriverVO>();
 		for(int i=0;i<ar.size();i++){
-			DriverVO driver=new DriverVO(ar.get(i).getId(),ar.get(i).getName(),ar.get(i).getBirthday(),ar.get(i).getIdNum(),ar.get(i).getMobile(),ar.get(i).getSex(),ar.get(i).getDriveStart(),ar.get(i).getDriveEnd(),ar.get(i).getHallId());
+			DriverVO driver=VPFactory.toDriverVO(ar.get(i));
 			arVO.add(driver);
 		}
 		

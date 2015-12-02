@@ -1,12 +1,21 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.workOrgManLogic.VanManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
@@ -20,21 +29,12 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
-
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-
 
 public class VanListPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5807654807287399993L;
 	private JTextField textFieldSearch;
 	private JFrame frame;
 	private Table table;

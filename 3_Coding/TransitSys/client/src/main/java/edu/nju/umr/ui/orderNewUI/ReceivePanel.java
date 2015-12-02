@@ -15,6 +15,8 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
 import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.ExpressVO;
 import edu.nju.umr.vo.order.ReceiveVO;
 
 public class ReceivePanel extends ExpressInfoInqPanel {
@@ -43,6 +45,8 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		});
 		confirmButton.setLocation(418, 564);
 		confirmButton.addActionListener(new ConfirmListener());
+		
+		checkButton.removeActionListener(new InqListener());
 		
 		receiveField = new JTextField();
 		receiveField.setBounds(370, 517, 103, 25);
@@ -85,7 +89,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
 			if(isLegal()){
-				Result result = logicSer.create(createVO(),barcodeField.getText());
+				Result result = logicSer.create(createVO());
 				if(result.equals(Result.SUCCESS)){
 					
 				} else {
@@ -97,5 +101,22 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	private ReceiveVO createVO(){
 		ReceiveVO vo = new ReceiveVO(receiveField.getText(), receiveDate.getCalendar());
 		return vo;
+	}
+	protected class checkListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO 自动生成的方法存根
+			if(isLegal()){
+				ResultMessage message = logicSer.getExpress((barcodeField.getText()));
+				if(message.getReInfo().equals(Result.SUCCESS)){
+					ExpressVO vo = (ExpressVO) message.getMessage();
+					display(vo);
+				} else {
+					DoHint.hint(message.getReInfo(), frame);
+				}
+			}
+		}
+		
 	}
 }
