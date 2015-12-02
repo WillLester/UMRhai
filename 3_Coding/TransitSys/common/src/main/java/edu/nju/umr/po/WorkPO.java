@@ -14,20 +14,18 @@ public class WorkPO extends PO implements Serializable{
 	private String name;
 	private String mobile;
 	private String org;
-	private String orgId;
 	private int id;
 	private Jurisdiction juri;
 	private Wage kind;
 	private int money;
 	private int commission;
 
-	public WorkPO(String name, String mobile, String org, String orgId, int id,
+	public WorkPO(String name, String mobile, String org, int id,
 			Jurisdiction juri, Wage kind, int money, int commission) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
 		this.org = org;
-		this.orgId = orgId;
 		this.id = id;
 		this.juri = juri;
 		this.kind = kind;
@@ -61,16 +59,12 @@ public class WorkPO extends PO implements Serializable{
 	public int getCommission() {
 		return commission;
 	}
-
-	public String getOrgId() {
-		return orgId;
-	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into user values"+"(null,null,null,null,0,0,'"+orgId+"','"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
+		case INSERT:command="insert into user values"+"(null,null,null,null,0,0,null,'"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
 		case DELETE:command="delete from user where id='"+id+"'";break;
 		case FIND:
 			if(juri == null){
