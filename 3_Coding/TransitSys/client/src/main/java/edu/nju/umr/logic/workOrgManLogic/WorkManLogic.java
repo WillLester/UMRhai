@@ -10,6 +10,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.po.WorkPO;
@@ -43,7 +44,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0,null,0,0));
+			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0,Wage.MONTH,0,0));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
