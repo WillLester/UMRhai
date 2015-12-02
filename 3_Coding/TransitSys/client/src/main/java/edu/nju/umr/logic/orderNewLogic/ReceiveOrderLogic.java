@@ -47,7 +47,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 //		
 //		return isSuc;
 //	}
-	@Override
+
 	public Result create(ReceiveVO receive,ExpressVO order) {
 		// TODO Auto-generated method stub
 		Result isSuc = Result.SUCCESS;

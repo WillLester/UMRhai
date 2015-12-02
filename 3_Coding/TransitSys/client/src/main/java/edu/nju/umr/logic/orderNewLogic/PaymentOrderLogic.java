@@ -10,6 +10,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.PaymentPO;
@@ -37,7 +38,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = paymentData.create(new PaymentPO(1, order.getDate(), order.getPayer(), order.getAccount(), order.getKind(), order.getAmount(), order.getRemarks(),Calendar.getInstance(),order.getOpName()));
+			isSuc = paymentData.create(VPFactory.toPaymentPO(order, 0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return Result.NET_INTERRUPT;

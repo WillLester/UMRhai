@@ -333,11 +333,11 @@ public class VPFactory {
 	}
 	
 	//架
-	public ShelfVO toShelfVO(ShelfPO po){
+	public static ShelfVO toShelfVO(ShelfPO po){
 		ShelfVO vo=new ShelfVO(po.getId(), po.getRow(), po.getPlace(), po.getPart());
 		return vo;
 	}
-	public ShelfPO toShelfPO(ShelfVO vo,String stockId){
+	public static ShelfPO toShelfPO(ShelfVO vo,String stockId){
 		ShelfPO po=new ShelfPO(vo.getId(),stockId , vo.getRow(), vo.getPlace(), vo.getPart());
 		return po;
 	}

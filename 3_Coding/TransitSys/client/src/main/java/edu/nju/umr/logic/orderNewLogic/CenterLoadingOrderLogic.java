@@ -11,6 +11,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
@@ -39,7 +40,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = centerData.create(new CenterLoadingPO(order.getDate(), "s", order.getTarget(), order.getVanId(), order.getSupervision(), order.getEscort(), order.getExpress(),Calendar.getInstance(),order.getOpName(),order.getCost()));
+			isSuc = centerData.create(VPFactory.toCenterLoadPO(order, ""));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
