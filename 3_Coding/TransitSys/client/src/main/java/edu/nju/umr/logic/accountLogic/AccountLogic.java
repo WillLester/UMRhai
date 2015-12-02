@@ -99,8 +99,11 @@ public class AccountLogic implements AccountLSer{
 //	}
 
 	public ResultMessage searchAccount(String keyword) {
+		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			accountPOs = accountData.findAccount(keyword);
+			if(accountPOs.size()>0)
+				isSuc=Result.SUCCESS;
 		} catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
@@ -109,7 +112,7 @@ public class AccountLogic implements AccountLSer{
 			AccountVO vo = new AccountVO(accountPOs.get(i).getName(), accountPOs.get(i).getBalance());
 			accountVOs.add(vo);
 		}
-		ResultMessage message = new ResultMessage(Result.SUCCESS, accountVOs);
+		ResultMessage message = new ResultMessage(isSuc, accountVOs);
 		return message;
 	}
 

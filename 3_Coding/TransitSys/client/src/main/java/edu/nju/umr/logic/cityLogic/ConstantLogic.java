@@ -47,11 +47,13 @@ public class ConstantLogic implements ConstantLSer{
 		return isSuc;
 	}
 	public ResultMessage getConstant(){
-		Result isSuc = Result.SUCCESS;
+		Result isSuc = Result.DATA_NOT_FOUND;
 		ConstantVO vo=null;
 			ConstantPO po=null;
 			try {
 				po = constantData.getConstant();
+				if(po!=null)
+					isSuc=Result.SUCCESS;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
