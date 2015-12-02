@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
@@ -20,6 +21,7 @@ public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
 	UtilityLogic uti=new UtilityLogic();
+	ArrayList<WorkPO> ar= new ArrayList<WorkPO>();
 	public WorkManLogic()
 	{
 		try{
@@ -63,11 +65,12 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseWork(WorkVO work) {
+	public Result reviseWork(WorkVO work, int index) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
+		WorkPO po=ar.get(index);
 		try{
-			isSuccessful=workData.reviseWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),work.getKind(),work.getMoney(),work.getCommission()));
+			isSuccessful=workData.reviseWork(VPFactory.toWorkPO(work, po.getId()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
@@ -114,7 +117,7 @@ public class WorkManLogic implements WorkManLSer{
 
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根
-		ArrayList<WorkPO> ar= null;
+	
 //		boolean isSuccessful=false;
 		try{
 			ar=workData.findWork(keyword);
