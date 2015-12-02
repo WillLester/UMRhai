@@ -267,24 +267,15 @@ public class UtilityLogic {
 	
 	//返回po的一系列方法
 	
-	public ArrayList<CityPO> cities(){
-		ArrayList<CityPO> city=null;
-		try {
-			city=utilityData.getCities();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return city;
-		}
+	public ArrayList<CityPO> cities() throws RemoteException{
+		ArrayList<CityPO> city=new ArrayList<CityPO>();
+		city=utilityData.getCities();
 		return city;
 	}
 	
-	public ArrayList<OrgPO> orgs(){
-		ArrayList<OrgPO> org=null;
-		try {
-			org=utilityData.getOrgs();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<OrgPO> orgs() throws RemoteException{
+		ArrayList<OrgPO> org=new ArrayList<OrgPO>();
+		org=utilityData.getOrgs();
 		return org;
 	}
 	
@@ -294,57 +285,33 @@ public class UtilityLogic {
 		return centers;
 	}
 	 
-	public ArrayList<OrgPO> halls(){
-		ArrayList<OrgPO> hall=null;
-		try {
-			hall=utilityData.getHall();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	public ArrayList<OrgPO> halls() throws RemoteException{
+		ArrayList<OrgPO> hall=new ArrayList<OrgPO>();
+		hall=utilityData.getHall();
 		return hall;
 	}
 	
-	public ArrayList<WorkPO> works(String orgId){
-		ArrayList<WorkPO> work=null;
-		try {
-			work=utilityData.getWorkers(orgId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<WorkPO> works(String orgId) throws RemoteException{
+		ArrayList<WorkPO> work=new ArrayList<WorkPO>();
+		work=utilityData.getWorkers(orgId);
 		return work;
 	}
 	
-	public ArrayList<VanPO> vans(String orId){
-		ArrayList<VanPO> van=null;
-		try {
-			van=utilityData.getVans(orId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<VanPO> vans(String orId) throws RemoteException{
+		ArrayList<VanPO> van=new ArrayList<VanPO>();
+		van=utilityData.getVans(orId);
 		return van;
 	}
 	
-	public ArrayList<StockPO> stocks(){
-		ArrayList<StockPO> stock=null;
-		try {
-			stock=utilityData.getStocks();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<StockPO> stocks() throws RemoteException{
+		ArrayList<StockPO> stock=new ArrayList<StockPO>();
+		stock=utilityData.getStocks();
 		return stock;
 	}
 	
-	public ArrayList<AccountPO> accounts(){
-		ArrayList<AccountPO> account=null;
-		try {
-			account=utilityData.getAccount();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ArrayList<AccountPO> accounts() throws RemoteException{
+		ArrayList<AccountPO> account=new ArrayList<AccountPO>();
+		account=utilityData.getAccount();
 		return account;
 	}
 	

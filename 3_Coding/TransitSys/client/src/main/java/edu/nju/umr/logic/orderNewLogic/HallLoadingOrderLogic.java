@@ -30,7 +30,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	CityDSer cityData;
 	ConstantDSer constantData;
 	UtilityLogic uti=new UtilityLogic();
-	ArrayList<OrgPO> orgs=uti.orgs();
+	ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -123,7 +123,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		try {
 			constant=constantData.getConstant();
 			if(constant==null)
-				return new ResultMessage(Result.DATA_NOT_FOUND,null);
+				return new ResultMessage(Result.DATA_NOT_FOUND,0);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,7 +134,14 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {
-		ArrayList<OrgPO> halls=uti.halls();
+		Result isSuc=Result.DATA_NOT_FOUND;
+		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();
+		try {
+			halls = uti.halls();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 		ArrayList<OrgVO> localHalls=new ArrayList<OrgVO>();
 		if(halls==null)
 			return new ResultMessage(Result.NET_INTERRUPT,null);
@@ -151,8 +158,15 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			}		
 		}
 		ArrayList<OrgVO> centers=new ArrayList<OrgVO>();
-		centers=(ArrayList<OrgVO>)uti.getCenter().getMessage();
-		return new ResultMessage(Result.SUCCESS,localHalls.addAll(centers));
+		Object temp=uti.getCenter().getMessage();
+		if(temp==null){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}else{
+			centers=(ArrayList<OrgVO>)temp;
+		}
+		if(centers.size()!=0||localHalls.size()!=0)
+			isSuc=Result.SUCCESS;
+		return new ResultMessage(isSuc,localHalls.addAll(centers));
 	}
 
 }
