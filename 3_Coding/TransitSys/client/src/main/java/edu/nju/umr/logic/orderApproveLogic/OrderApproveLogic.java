@@ -39,6 +39,7 @@ import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;
 import edu.nju.umr.vo.order.TransitVO;
 
+
 public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDFacSer dataFac;
 	OrderApproveDSer approveData;

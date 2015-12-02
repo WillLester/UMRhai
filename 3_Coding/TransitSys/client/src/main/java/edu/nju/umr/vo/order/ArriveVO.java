@@ -11,7 +11,7 @@ public class ArriveVO {
 	private String startPlace;
 	private GoodState state;
 	private String opName;
-	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName,String id) {
+	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName, String id) {
 		// TODO 自动生成的构造函数存根
 		this.centerId = centerId;
 		this.date = date;

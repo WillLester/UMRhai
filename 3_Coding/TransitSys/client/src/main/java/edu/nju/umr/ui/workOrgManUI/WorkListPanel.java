@@ -23,10 +23,10 @@ import edu.nju.umr.logic.workOrgManLogic.WorkManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
+import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 
@@ -39,9 +39,6 @@ public class WorkListPanel extends JPanel {
 	private JTable listTable;
 	private JTextField textFieldName;
 	private JTextField textFieldMobile;
-	private JTextField textFieldWage;
-	private JTextField textFieldWageNum;
-	private JTextField textFieldWageCom;
 	private JComboBox<String> orgCombo;
 	private JComboBox<String> juriCombo;
 	private ArrayList<WorkVO> workList;
@@ -107,15 +104,6 @@ public class WorkListPanel extends JPanel {
 		textFieldName.setEnabled(false);
 		add(textFieldName);
 		
-		JLabel wage = new JLabel("薪水策略");
-		wage.setBounds(700, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20,60,24);
-		add(wage);
-		
-		textFieldWage = new JTextField();
-		textFieldWage.setBounds(760, workName.getY(),150, 24);
-		textFieldWage.setEnabled(false);
-		add(textFieldWage);
-		
 		JLabel type = new JLabel("所属机构");
 		type.setBounds(380, workName.getY(),60,24);
 		add(type);
@@ -138,24 +126,6 @@ public class WorkListPanel extends JPanel {
 		textFieldMobile.setBounds(textFieldName.getX(), mobile.getY(), 150, 24);
 		textFieldMobile.setEnabled(false);
 		add(textFieldMobile);
-		
-		JLabel wageNum1 = new JLabel("薪水数额");
-		wageNum1.setBounds(700,mobile.getY(),60,24);
-		add(wageNum1);
-		
-		textFieldWageNum = new JTextField();
-		textFieldWageNum.setBounds(760,mobile.getY(),80, 24);
-		textFieldWageNum.setEnabled(false);
-		add(textFieldWageNum);
-		
-		JLabel wageNum2 = new JLabel("提成");
-		wageNum2.setBounds(840,mobile.getY(),60,24);
-		add(wageNum2);
-		
-		textFieldWageCom = new JTextField();
-		textFieldWageCom.setBounds(870,mobile.getY(),40, 24);
-		textFieldWageCom.setEnabled(false);
-		add(textFieldWageCom);
 		
 		JLabel position = new JLabel("职位");
 		position.setBounds(type.getX(), type.getY()+type.getHeight()+20,60,24);
@@ -233,23 +203,14 @@ public class WorkListPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				
+				WorkVO work = workList.get(table.getSelectedRow());
+				textFieldName.setText(work.getName());
+				textFieldMobile.setText(work.getMobile());
+				juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
+				orgCombo.setSelectedItem(work.getOrg());
 			}
 		});
 		add(cancelMod);
-		
-		JButton wageMan = new JButton("薪水制定");
-		wageMan.setBounds(cancelMod.getX()+cancelMod.getWidth()+50, add.getY(), 93, 23);
-		wageMan.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				InfoFrame inFr = new InfoFrame("薪水制定");
-				inFr.setContentPane(new WageDraftPanel(inFr));
-			}
-		});
-		add(wageMan);
 		
 		JButton out = new JButton("退出");
 		out.setBounds(cancelMod.getX()+cancelMod.getWidth()+50+cancelMod.getWidth()+50, add.getY(), 93, 23);
@@ -278,12 +239,20 @@ public class WorkListPanel extends JPanel {
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"名称","余额"};
+		String[] columnNames={"姓名","手机号","职务","机构"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
 	private void displayTable(){
-		
+		model.setRowCount(0);
+		for(WorkVO work:workList){
+			String[] info = new String[4];
+			info[0] = work.getName();
+			info[1] = work.getMobile();
+			info[2] = EnumTransFactory.checkJuri(work.getJuri());
+			info[3] = work.getOrg();
+			model.addRow(info);
+		}
 	}
 	private WorkVO createVO(){
 		return null;
