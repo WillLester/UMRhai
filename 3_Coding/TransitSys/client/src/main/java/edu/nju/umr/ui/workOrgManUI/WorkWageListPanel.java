@@ -242,7 +242,19 @@ public class WorkWageListPanel extends JPanel {
 		}
 	}
 	void setWage(Wage kind,int money,int commission){
-		
+		ArrayList<WageVO> temp = new ArrayList<WageVO>();
+		int[] selected = table.getSelectedRows();
+		for(int i = 0;i < selected.length;i++){
+			WageVO wage = wageList.get(selected[i]);
+			WageVO vo = new WageVO(wage.getName(), wage.getJuri(), kind, money, commission);
+			temp.add(vo);
+		}
+		Result result = logicSer.setWage(wageList, selected);
+		if(result.equals(Result.SUCCESS)){
+			fresh();
+		} else {
+			DoHint.hint(result, frame);
+		}
 	}
 	private WorkWageListPanel getSelf(){
 		return this;

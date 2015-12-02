@@ -16,7 +16,7 @@ public class WageManLogic implements WageManLSer{
 	}
 
 	@Override
-	public Result setWage(List<WageVO> wageList) {
+	public Result setWage(List<WageVO> wageList,int[] index) {
 		// TODO 自动生成的方法存根
 		return null;
 	}

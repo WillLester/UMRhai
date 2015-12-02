@@ -7,8 +7,9 @@ import java.util.Calendar;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
+import edu.nju.umr.po.enums.Order;
 
-public class HallLoadingPO extends PO implements Serializable{
+public class HallLoadingPO extends PO implements Serializable,KindGetter{
 	/**
 	 * 
 	 */
@@ -90,6 +91,11 @@ public class HallLoadingPO extends PO implements Serializable{
 		case UPDATE:break;
 		}
 		return command;
+	}
+	@Override
+	public Order getOrderKind() {
+		// TODO 自动生成的方法存根
+		return Order.HALLLOADING;
 	}
 	
 }

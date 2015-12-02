@@ -231,7 +231,6 @@ public class OrderApprovePanel extends JPanel{
 		case HALLLOADING:break;
 		case INCOME:break;
 		case PAYMENT:break;
-		case RECEIVE:break;
 		case RECIPIENT:break;
 		case SEND:break;
 		case STOCKIN:break;

@@ -61,7 +61,6 @@ public class WorkPO extends PO implements Serializable{
 	public int getCommission() {
 		return commission;
 	}
-
 	public String getOrgId() {
 		return orgId;
 	}

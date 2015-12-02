@@ -73,6 +73,10 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 			HintFrame hint = new HintFrame("收件编号未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
+		if(senderField.getText().equals("")){
+			DoHint.hint("订单还未获得！", frame);
+			return false;
+		}
 		return true;
 	}
 	private class ConfirmListener implements ActionListener{
