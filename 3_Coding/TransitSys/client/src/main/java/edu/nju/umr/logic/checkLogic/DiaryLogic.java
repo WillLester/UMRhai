@@ -11,6 +11,7 @@ import java.util.Date;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.dataFactory.DiaryDFacSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.enums.Result;
@@ -39,7 +40,7 @@ public class DiaryLogic implements DiaryLSer{
 		try {
 			ArrayList<DiaryPO> diary = diaryData.seeDiary(start, end);
 			for(DiaryPO po:diary){
-				DiaryVO vo = new DiaryVO(po.getOperator(),po.getOperation(), po.getTime());
+				DiaryVO vo =VPFactory.toDiaryVO(po);
 				diaryList.add(vo);
 			}
 

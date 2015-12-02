@@ -46,8 +46,10 @@ public class CostBeneLogic implements CostBeneLSer{
 		}
 		
 		double total=0;
-		for(IncomePO income:incomeList){
-			total+=income.getCost();
+		if(incomeList.size()>0){
+			for(IncomePO income:incomeList){
+				total+=income.getCost();
+			}
 		}
 		return new ResultMessage(Result.SUCCESS,total);
 	}
@@ -63,6 +65,7 @@ public class CostBeneLogic implements CostBeneLSer{
 		}
 		
 		double total=0;
+		if(paymentList.size()>0)
 		for(PaymentPO payment:paymentList){
 			total+=payment.getAmount();
 		}

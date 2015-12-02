@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.enums.Result;
@@ -109,7 +110,7 @@ public class AccountLogic implements AccountLSer{
 		}
 		ArrayList<AccountVO> accountVOs=new ArrayList<AccountVO>();
 		for(int i = 0;i < accountPOs.size();i++){
-			AccountVO vo = new AccountVO(accountPOs.get(i).getName(), accountPOs.get(i).getBalance());
+			AccountVO vo = VPFactory.toAccountVO(accountPOs.get(i));
 			accountVOs.add(vo);
 		}
 		ResultMessage message = new ResultMessage(isSuc, accountVOs);

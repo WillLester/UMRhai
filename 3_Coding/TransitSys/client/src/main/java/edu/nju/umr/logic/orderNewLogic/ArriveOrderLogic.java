@@ -11,6 +11,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
@@ -40,7 +41,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = arriveData.create(new ArrivePO(order.getCenterId(), order.getDate(), "", order.getStartPlace(), order.getState(),Calendar.getInstance(),order.getOpName()));
+			isSuc = arriveData.create(VPFactory.toArrivePO(order, ""));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		
 		ResultMessage rm=uti.getCities();
 		if(rm.getReInfo()!=Result.SUCCESS){
-			return new ResultMessage(Result.NET_INTERRUPT,null);//可能存在隐患！
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
 		ArrayList<CityVO> city=(ArrayList<CityVO>)rm.getMessage();

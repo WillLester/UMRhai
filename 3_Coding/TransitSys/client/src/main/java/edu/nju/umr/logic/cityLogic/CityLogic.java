@@ -10,6 +10,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.dataFactory.CityDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
@@ -41,7 +42,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		Result result = Result.SUCCESS;
 		try {
-			result = cityData.addCity(new CityPO(city.getName(), city.getId(),city.getProvince(),0));
+			result = cityData.addCity(VPFactory.toCityPO(city, 0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -55,7 +56,7 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = cityData.reviseCities(new CitiesPO(cities.getCity1(), cities.getCity2(), cities.getDistance()));
+			isSuc = cityData.reviseCities(VPFactory.toCitiesPO(cities));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -68,7 +69,7 @@ public class CityLogic implements CityLSer{
 		CityPO po=cityPOs.get(index);
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = cityData.reviseCity(new CityPO(city.getName(), city.getId(),city.getProvince(),po.getKey()));
+			isSuc = cityData.reviseCity(VPFactory.toCityPO(city, po.getKey()));
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();

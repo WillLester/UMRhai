@@ -11,6 +11,7 @@ import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.enums.Result;
 
@@ -34,8 +35,7 @@ public class ConstantLogic implements ConstantLSer{
 	{
 		Result isSuc=Result.SUCCESS;
 		
-		ConstantPO po=new ConstantPO(constant.getMaxLoadPlane(), constant.getMaxLoadTrain(), constant.getMaxLoadVan(), 
-					constant.getPricePlane(), constant.getPriceTrain(), constant.getPriceVan(), constant.getLvEco(), constant.getLvStd(), constant.getLvVip());
+		ConstantPO po=VPFactory.toConstantPO(constant);
 			try {
 				isSuc=constantData.setConstant(po);
 			} catch (RemoteException e) {
@@ -49,7 +49,7 @@ public class ConstantLogic implements ConstantLSer{
 	public ResultMessage getConstant(){
 		Result isSuc = Result.DATA_NOT_FOUND;
 		ConstantVO vo=null;
-			ConstantPO po=null;
+		ConstantPO po=null;
 			try {
 				po = constantData.getConstant();
 				if(po!=null)
@@ -59,8 +59,7 @@ public class ConstantLogic implements ConstantLSer{
 				e.printStackTrace();
 				return new ResultMessage(Result.NET_INTERRUPT,null);
 			}
-			vo=new ConstantVO(po.getMaxLoadPlane(),po.getMaxLoadTrain(),po.getMaxLoadVan(),
-					po.getPricePlane(),po.getPriceTrain(),po.getPriceVan(),po.getLvEco(),po.getLvStd(),po.getLvVip());
+			vo=VPFactory.toConstantVO(po);
 			
 			return new ResultMessage(isSuc,vo);
 	}

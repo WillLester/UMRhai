@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Calendar;
 
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
@@ -32,9 +33,10 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	public Result create(RecipientVO order) {
 		// TODO 自动生成的方法存根
 //		boolean isSuccessful=false;
+		Result isSuc=Result.SUCCESS;
 		try{
-			RecipientPO orderPO=new RecipientPO(order.getDate(),"",order.getTransitId(),order.getStartPlace(),order.getState(),Calendar.getInstance(),order.getOpName());
-			recipientData.create(orderPO);
+			RecipientPO orderPO=VPFactory.toRecipientPO(order, "");
+			isSuc=recipientData.create(orderPO);
 //			isSuccessful=true;
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -42,7 +44,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		return Result.SUCCESS;
+		return isSuc;
 	}
 
 	public ResultMessage getCities() {
