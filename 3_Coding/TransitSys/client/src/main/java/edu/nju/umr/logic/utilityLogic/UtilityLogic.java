@@ -20,9 +20,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
@@ -30,7 +28,6 @@ import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
@@ -234,6 +231,7 @@ public class UtilityLogic {
 	}
 	//导出excel文件
 	public Result outputExcel(String data[][],String name, String location) {
+		@SuppressWarnings("resource")
 		HSSFWorkbook wb=new HSSFWorkbook();//创建一个workbook对应一个excel文件
 		HSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
 		
@@ -315,6 +313,7 @@ public class UtilityLogic {
 		return account;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ResultMessage getLocalHallAndAllCenter(String orgId){
 		Result isSuc=Result.DATA_NOT_FOUND;
 		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();//获取营业厅列表
