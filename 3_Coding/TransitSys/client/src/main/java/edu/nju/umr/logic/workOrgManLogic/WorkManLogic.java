@@ -43,7 +43,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0));
+			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0,null,0,0));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -70,7 +70,7 @@ public class WorkManLogic implements WorkManLSer{
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		WorkPO po=ar.get(index);
 		try{
-			isSuccessful=workData.reviseWork(VPFactory.toWorkPO(work, po.getId()));
+			isSuccessful=workData.reviseWork(VPFactory.toWorkPO(work, po.getId(),po.getKind(),po.getMoney(),po.getCommission()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){

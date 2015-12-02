@@ -73,5 +73,10 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		}
 		return new ResultMessage(Result.SUCCESS,cityArray);
 	}
+	@Override
+	public ResultMessage getLocalHallsAndAllCenter(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
