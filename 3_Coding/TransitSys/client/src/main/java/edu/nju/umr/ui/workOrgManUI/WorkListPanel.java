@@ -52,7 +52,6 @@ public class WorkListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings("unchecked")
 	public WorkListPanel(JFrame fr) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
@@ -227,12 +226,20 @@ public class WorkListPanel extends JPanel {
 		});
 		add(modify);
 		
-		JButton confirmMod = new JButton("取消修改");
-		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
-		add(confirmMod);
+		JButton cancelMod = new JButton("取消修改");
+		cancelMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
+		cancelMod.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		add(cancelMod);
 		
 		JButton wageMan = new JButton("薪水制定");
-		wageMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		wageMan.setBounds(cancelMod.getX()+cancelMod.getWidth()+50, add.getY(), 93, 23);
 		wageMan.addActionListener(new ActionListener() {
 			
 			@Override
@@ -245,7 +252,7 @@ public class WorkListPanel extends JPanel {
 		add(wageMan);
 		
 		JButton out = new JButton("退出");
-		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		out.setBounds(cancelMod.getX()+cancelMod.getWidth()+50+cancelMod.getWidth()+50, add.getY(), 93, 23);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

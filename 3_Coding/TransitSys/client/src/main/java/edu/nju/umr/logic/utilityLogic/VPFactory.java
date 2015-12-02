@@ -385,11 +385,11 @@ public class VPFactory {
 	
 	//工作人员
 	public static WorkVO toWorkVOCommit(WorkPO po){
-		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri(), po.getKind(), po.getMoney(), po.getCommission());
+		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
 		return vo;
 	}
 	public static WorkVO toWorkVO(WorkPO po){
-		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri(), po.getKind(), po.getMoney());
+		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
 		return vo;
 	}
 	public static WorkPO toWorkPO(WorkVO vo,int id){

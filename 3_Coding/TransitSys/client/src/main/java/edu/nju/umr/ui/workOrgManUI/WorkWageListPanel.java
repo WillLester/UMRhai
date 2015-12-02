@@ -1,33 +1,29 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import javax.swing.JPanel;
-
-import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.FunctionFrame;
-import edu.nju.umr.ui.Table;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.Table;
 
 public class WorkWageListPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7764066933710729156L;
-	private JTable listTable;
 	private JTextField textFieldSearch;
 	private JTextField textFieldwt;
 	private JTextField textFieldwc;
