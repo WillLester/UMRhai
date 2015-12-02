@@ -242,7 +242,11 @@ public class WorkWageListPanel extends JPanel {
 		}
 	}
 	void setWage(Wage kind,int money,int commission){
-		
+		ArrayList<WageVO> temp = new ArrayList<WageVO>();
+		int[] selected = table.getSelectedRows();
+		for(int i = 0;i < selected.length;i++){
+			
+		}
 	}
 	private WorkWageListPanel getSelf(){
 		return this;
