@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
@@ -12,7 +11,6 @@ import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.order.ExpressVO;
 
 public class ExpressOrderLogic implements ExpressOrderLSer{

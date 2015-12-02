@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +21,10 @@ import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 
 public class VanInfoPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6047938368654645426L;
 	private JTextField textFieldNum;
 	private JTextField textFieldPlate;
 	private VanListPanel fatherPanel;

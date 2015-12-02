@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
@@ -14,7 +13,6 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -64,6 +62,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		if(rm.getReInfo()!=Result.SUCCESS){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+		@SuppressWarnings("unchecked")
 		ArrayList<OrgVO> halls=(ArrayList<OrgVO>)rm.getMessage();
 		OrgVO hallArray[]=new OrgVO[halls.size()];
 		for(int i=0;i<halls.size();i++){

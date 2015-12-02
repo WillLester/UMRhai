@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
@@ -14,7 +13,6 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
@@ -67,6 +65,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<CityVO> city=(ArrayList<CityVO>)rm.getMessage();
 		CityVO[] cityArray=new CityVO[city.size()];
 		for(int i=0;i<city.size();i++){

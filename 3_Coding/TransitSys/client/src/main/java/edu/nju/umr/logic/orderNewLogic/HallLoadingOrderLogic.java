@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
@@ -19,8 +18,6 @@ import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.HallLoadingPO;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
