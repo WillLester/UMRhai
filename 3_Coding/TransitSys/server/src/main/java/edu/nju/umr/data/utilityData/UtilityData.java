@@ -97,4 +97,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return (ArrayList<AccountPO>) mysqlSer.checkAll(POKind.ACCOUNT);
 	}
 
+	@Override
+	public ArrayList<OrgPO> getCenters() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }
