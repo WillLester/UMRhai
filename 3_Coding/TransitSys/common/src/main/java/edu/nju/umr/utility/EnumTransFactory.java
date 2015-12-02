@@ -5,6 +5,7 @@ import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Wage;
 
 public class EnumTransFactory {
 	public static String checkJuri(Jurisdiction juri){
@@ -82,5 +83,14 @@ public class EnumTransFactory {
 		case "特快专递":exp = Express.FAST;break;
 		}
 		return exp;
+	}
+	public static String checkWage(Wage wage){
+		String wag = null;
+		switch(wage){
+		case MONTH:wag = "按月发薪";break;
+		case TIME:wag = "按次发薪";break;
+		case COMMISSION:wag = "提成发薪";break;
+		}
+		return wag;
 	}
 }
