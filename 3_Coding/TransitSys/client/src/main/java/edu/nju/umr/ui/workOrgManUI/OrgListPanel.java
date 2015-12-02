@@ -185,18 +185,22 @@ public class OrgListPanel extends JPanel {
 		add(idField);
 		
 		JLabel cityLabel=new JLabel("城市");
+		cityLabel.setBounds(address.getX()+120, address.getY(),  Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		add(cityLabel);
 		
-//		String []cityListString=new String[cityList.size()];
-//		for(int i=0;i<cityList.size();i++)
-//		{
-//			cityListString[i]=cityList.get(i).getName();
-//		}
-//		cityComboBox =new JComboBox(new DefaultComboBoxModel(cityListString));
-		
+		cityList=getCities();
+		String []cityListString=new String[cityList.size()];
+		for(int i=0;i<cityList.size();i++)
+		{
+			cityListString[i]=cityList.get(i).getName();
+		}
+		cityComboBox =new JComboBox<String>(new DefaultComboBoxModel<String>(cityListString));
+		cityComboBox.setBounds(cityLabel.getX()+50, cityLabel.getY(),  Constants.LABEL_WIDTH, 24);
+		add(cityComboBox);
 		
 		tableInit();
-//		orgList=getOrgs("");
-//		displayOrgs();
+		orgList=getOrgs("");
+		displayOrgs();
 		
 	}
 	private void tableInit(){

@@ -97,7 +97,7 @@ public class CountInfoPanel extends JPanel{
 					OrgVO org = orgList.get(orgCombo.getSelectedIndex());
 					workerPresented = new ArrayList<WorkVO>();
 					for(WorkVO worker:workerList){
-						if(worker.getOrgId().equals(org.getId())){
+						if(worker.getOrg().equals(org.getName())){
 							workerPresented.add(worker);
 						}
 					}

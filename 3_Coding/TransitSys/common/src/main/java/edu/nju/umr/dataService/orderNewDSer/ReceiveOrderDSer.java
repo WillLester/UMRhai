@@ -8,4 +8,6 @@ import edu.nju.umr.po.order.ExpressPO;
 
 public interface ReceiveOrderDSer extends Remote {
 	public Result create(ExpressPO order) throws RemoteException;
+
+	public ExpressPO getExpress(String barcode);
 }

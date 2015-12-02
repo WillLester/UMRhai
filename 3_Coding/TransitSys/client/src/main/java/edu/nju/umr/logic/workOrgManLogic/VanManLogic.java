@@ -19,7 +19,7 @@ import edu.nju.umr.vo.VanVO;
 public class VanManLogic implements VanManLSer{
 	VanManDFacSer dataFac;
 	VanManDSer vanData;
-	
+	ArrayList<VanPO> ar;
 	public VanManLogic(){
 		try{
 			dataFac= (VanManDFacSer)Naming.lookup(Url.URL);
@@ -121,7 +121,7 @@ public class VanManLogic implements VanManLSer{
 //		}
 //		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
 //		return message;
-		ArrayList<VanPO> ar=null;
+	
 		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=vanData.findVan(keyword,hallId);
@@ -144,7 +144,14 @@ public class VanManLogic implements VanManLSer{
 	@Override
 	public ResultMessage getNextId(String hallId) {
 		// TODO Auto-generated method stub
-		return null;
+		for(int i=0;i<ar.size()-1;i++){
+			int x1=Integer.parseInt(ar.get(i).getId());
+			int x2=Integer.parseInt(ar.get(i+1).getId());
+			if(x2-x1>1)
+				return new ResultMessage(Result.SUCCESS,x1+1+"");
+		}
+		int x=Integer.parseInt(ar.get(ar.size()-1).getId());
+		return new ResultMessage(Result.SUCCESS,x+1+"");
 	}
 
 }

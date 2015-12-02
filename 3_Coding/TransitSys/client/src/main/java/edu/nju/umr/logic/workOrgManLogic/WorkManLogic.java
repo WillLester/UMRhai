@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
@@ -22,7 +21,7 @@ public class WorkManLogic implements WorkManLSer{
 	WorkManDFacSer dataFac;
 	WorkManDSer workData;
 	UtilityLogic uti=new UtilityLogic();
-	ArrayList<WorkPO> ar= new ArrayList<WorkPO>();
+	ArrayList<WorkPO> ar;
 	public WorkManLogic()
 	{
 		try{
@@ -44,6 +43,7 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
+			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),Wage.COMMISSION,0,0));
 			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0,Wage.MONTH,0,0));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
@@ -118,7 +118,7 @@ public class WorkManLogic implements WorkManLSer{
 
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根
-	
+		ar= new ArrayList<WorkPO>();
 //		boolean isSuccessful=false;
 		try{
 			ar=workData.findWork(keyword);
@@ -132,6 +132,7 @@ public class WorkManLogic implements WorkManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO work=ar.get(i);
+			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getJuri()));
 			arVO.add(VPFactory.toWorkVO(work));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);

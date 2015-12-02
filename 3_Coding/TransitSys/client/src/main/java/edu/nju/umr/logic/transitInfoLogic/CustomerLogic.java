@@ -35,7 +35,7 @@ public class CustomerLogic implements CustomerLogicSer{
 	public ResultMessage enterBarcodeCustomer(String barcode) {
 		// TODO 自动生成的方法存根
 //		boolean isSuccessful=false;
-		ArrayList<String> ar=null;
+		ArrayList<String> ar=new ArrayList<String>();
 		try{
 			ar=transitData.findTransit(barcode);
 //			isSuccessful=true;

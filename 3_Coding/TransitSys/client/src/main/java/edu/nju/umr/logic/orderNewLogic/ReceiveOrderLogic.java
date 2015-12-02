@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
@@ -15,6 +16,7 @@ import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ExpressVO;
 import edu.nju.umr.vo.order.ReceiveVO;
 
@@ -47,17 +49,30 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 //		
 //		return isSuc;
 //	}
+<<<<<<< HEAD
 
 	public Result create(ReceiveVO receive,ExpressVO order) {
+=======
+	
+	public Result create(ReceiveVO receive,String barcode) {
+>>>>>>> origin/master
 		// TODO Auto-generated method stub
 		Result isSuc = Result.SUCCESS;
-		try {
-			ExpressVO express=new ExpressVO();
-			
-		} catch (RemoteException e) {
+		ExpressPO express = null;
+		try{
+			express=receiveData.getExpress(barcode);
+		}catch(Exception e){
 			e.printStackTrace();
-			return Result.NET_INTERRUPT;
 		}
+		express.setRealReceiver(receive.getRealReceiver());
+		express.setReceiveTime(receive.getReceiveTime());
+		try {
+			receiveData.create(express);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return isSuc;
 	}
 

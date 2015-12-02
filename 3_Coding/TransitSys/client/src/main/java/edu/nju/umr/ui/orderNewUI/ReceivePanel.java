@@ -81,7 +81,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
 			if(isLegal()){
-				Result result = logicSer.create(createVO());
+				Result result = logicSer.create(createVO(),barcodeField.getText());
 				if(result.equals(Result.SUCCESS)){
 					
 				} else {

@@ -1,9 +1,9 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -20,9 +20,8 @@ import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.utility.DoHint;
-import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.OrgVO;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
 
 public class ArrivePanel extends JPanel {
@@ -34,17 +33,19 @@ public class ArrivePanel extends JPanel {
 	private JTextField centerField;
 	private JFrame frame;
 	private DatePanel datePanel;
-	private UserVO user;
+	private String name;
+	private String orgId;
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
 	/**
 	 * Create the panel.
 	 */
-	public ArrivePanel(JFrame fr,UserVO uservo) {
+	public ArrivePanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
-		user=uservo;
+		this.name = name;
+		this.orgId = orgId;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -163,8 +164,8 @@ public class ArrivePanel extends JPanel {
 	private void dataInit()
 	{
 		serv=new ArriveOrderLogic();
-		centerField.setText(user.getOrgId());
-		ResultMessage message = serv.getLocalHallsAndAllCenter(user.getOrgId());
+		centerField.setText(orgId);
+		ResultMessage message = serv.getLocalHallsAndAllCenter(orgId);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -192,7 +193,7 @@ public class ArrivePanel extends JPanel {
 		}
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
-		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),(String)startCombo.getSelectedItem(),state,user.getName(),id));
+		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),(String)startCombo.getSelectedItem(),state,name,id));
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);
@@ -202,12 +203,4 @@ public class ArrivePanel extends JPanel {
 			frame.dispose();
 		}
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new ArrivePanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	}
 }

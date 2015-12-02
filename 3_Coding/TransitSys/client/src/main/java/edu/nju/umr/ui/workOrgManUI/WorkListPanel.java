@@ -175,21 +175,19 @@ public class WorkListPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(isLegal()){
-					if(table.getSelectedRow() >= workList.size()){
-						Result result = logicSer.addWork(createVO());
-						if(result.equals(Result.SUCCESS)){
-							fresh();
-						} else {
-							DoHint.hint(result, frame);
-						}
+				if(table.getSelectedRow() >= workList.size()){
+					Result result = logicSer.addWork(createVO());
+					if(result.equals(Result.SUCCESS)){
+						fresh();
 					} else {
-						Result result = logicSer.reviseWork(createVO(),table.getSelectedRow());
-						if(result.equals(Result.SUCCESS)){
-							fresh();
-						} else {
-							DoHint.hint(result, frame);
-						}
+						DoHint.hint(result, frame);
+					}
+				} else {
+					Result result = logicSer.reviseWork(createVO(),table.getSelectedRow());
+					if(result.equals(Result.SUCCESS)){
+						fresh();
+					} else {
+						DoHint.hint(result, frame);
 					}
 				}
 			}
@@ -230,7 +228,13 @@ public class WorkListPanel extends JPanel {
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
+				if(e.getValueIsAdjusting()==false){
+					if(table.getSelectedRow() > 0){
+						orgCombo.setEnabled(true);
+					} else {
+						orgCombo.setEnabled(false);
+					}
+				}
 			}
 		});
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
@@ -255,10 +259,8 @@ public class WorkListPanel extends JPanel {
 		}
 	}
 	private WorkVO createVO(){
-		return null;
-	}
-	private boolean isLegal(){
-		return true;
+		WorkVO vo = new WorkVO(textFieldName.getText(), textFieldMobile.getText(), (String)orgCombo.getSelectedItem(), EnumTransFactory.getJuri((String)juriCombo.getSelectedItem()));
+		return vo;
 	}
 	@SuppressWarnings("unchecked")
 	private void getAll(){

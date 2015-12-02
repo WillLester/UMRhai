@@ -78,7 +78,7 @@ public class VanInfoPanel extends JPanel {
 //		add(labely);
 		
 		servTime=new DatePanel();
-		servTime.setBounds(labely.getX()+20, workTime.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
+		servTime.setBounds(labely.getX(), workTime.getY()+5, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
 		add(servTime);
 		
 		JLabel labelz = new JLabel("至");
@@ -158,7 +158,7 @@ public class VanInfoPanel extends JPanel {
 //	public static void main(String[] args)
 //	{
 //		JFrame frame=new JFrame();
-//		frame.setContentPane(new VanInfoPanel());
+//		frame.setContentPane(new VanInfoPanel(frame,null,null,null));
 //		frame.setSize(1200,800);
 //		frame.setVisible(true);
 //	}
