@@ -43,11 +43,8 @@ public class WorkManLogic implements WorkManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-<<<<<<< HEAD
 			isSuccessful=workData.addWork(new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),1,work.getJuri(),Wage.COMMISSION,0,0));
-=======
 			isSuccessful=workData.addWork(VPFactory.toWorkPO(work, 0,Wage.MONTH,0,0));
->>>>>>> origin/master
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -135,11 +132,8 @@ public class WorkManLogic implements WorkManLSer{
 		for(int i=0;i<ar.size();i++)
 		{
 			WorkPO work=ar.get(i);
-<<<<<<< HEAD
 			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getJuri()));
-=======
 			arVO.add(VPFactory.toWorkVO(work));
->>>>>>> origin/master
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;

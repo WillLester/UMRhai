@@ -139,7 +139,7 @@ public class WorkWageListPanel extends JPanel {
 		make.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("制定薪水策略");
-				ffr.setContentPane(new WageDraftPanel(ffr));
+				ffr.setContentPane(new WageDraftPanel(ffr,getSelf()));
 			}
 		});
 		add(make);
@@ -213,7 +213,7 @@ public class WorkWageListPanel extends JPanel {
 		ResultMessage message = logicSer.searchWorks(textFieldSearch.getText());
 		executeMessage(message);
 	}
-	void fresh(){
+	private void fresh(){
 		if(textFieldSearch.getText().equals("")){
 			getAll();
 		} else {
@@ -243,5 +243,8 @@ public class WorkWageListPanel extends JPanel {
 	}
 	void setWage(Wage kind,int money,int commission){
 		
+	}
+	private WorkWageListPanel getSelf(){
+		return this;
 	}
 }

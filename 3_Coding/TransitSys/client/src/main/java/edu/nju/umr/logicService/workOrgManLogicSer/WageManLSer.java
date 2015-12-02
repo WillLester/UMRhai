@@ -8,6 +8,6 @@ import edu.nju.umr.vo.WageVO;
 
 public interface WageManLSer {
 	public ResultMessage searchWorks(String keyword);
-	public Result setWage(List<WageVO> wageList);
+	public Result setWage(List<WageVO> wageList,int[] index);
 	
 }
