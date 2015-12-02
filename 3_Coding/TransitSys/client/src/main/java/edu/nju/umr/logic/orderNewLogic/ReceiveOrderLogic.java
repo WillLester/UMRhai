@@ -53,23 +53,20 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 	public Result create(ReceiveVO receive,String barcode) {
 		// TODO Auto-generated method stub
 		Result isSuc = Result.SUCCESS;
-//		ArrayList<ExpressPO> ar=new ArrayList<ExpressPO>();
-		ExpressPO express;
+		ExpressPO express = null;
 		try{
 			express=receiveData.getExpress(barcode);
-//			int i=1;
-//			while(!ar.get(i).getId().equals(barcode))
-//				i++;
-//			express=ar.get(i);
-		}catch (RemoteException e) {
-			e.printStackTrace();
-			return Result.NET_INTERRUPT;
-		} catch(Exception e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		express.setRealReceiver(receive.getRealReceiver());
 		express.setReceiveTime(receive.getReceiveTime());
-		receiveData.create(express);
+		try {
+			receiveData.create(express);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return isSuc;
 	}
