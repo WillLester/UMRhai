@@ -30,13 +30,11 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	CityDSer cityData;
 	ConstantDSer constantData;
 	UtilityLogic uti=new UtilityLogic();
-	ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			hallData = dataFac.getHallLoadingOrder();
-			uti=new UtilityLogic();
-			orgs=uti.orgs();
+			uti=new UtilityLogic();			
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -84,89 +82,57 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	
 	@Override
-	public ResultMessage getPrice(String org1, String org2) {		
-		if(orgs==null)
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		if(orgs.size()==0)
-			return new ResultMessage(Result.DATA_NOT_FOUND,null);
+	public ResultMessage getPrice(String org1, String org2) {
 		String city1=null;
-		String city2=null;
-		for(OrgPO po:orgs){
-			if(po.getName()==org1)
-				city1=po.getCity();
-			break;
-		}
-		for(OrgPO po:orgs){
-			if(po.getName()==org2)
-				city2=po.getCity();
-			break;
-		}
-		if(city1.equals(city2))
-			return new ResultMessage(Result.SUCCESS,100);//固定值暂定为100
-		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();
+		String city2=null;//两个机构所属城市名称
+		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取机构列表
+		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();//所属城市
+		double distance=0;//城市间距离
+		double price=0;//城市间价格
+		ConstantPO constant=null;//常量po
+		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
+			orgs=uti.orgs();
 			citiespo=cityData.getCitiesInfo();
-			if(citiespo.size()==0)
-				return new ResultMessage(Result.DATA_NOT_FOUND, null);
+			constant=constantData.getConstant();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		double distance=0;
+		
+		if(orgs.size()>0&&citiespo.size()>0&&constant!=null){
+			isSuc=Result.SUCCESS;
+		}
+		//获得两个机构所在城市名称
+		for(OrgPO po:orgs){
+			if(po.getName()==org1){
+				city1=po.getCity();
+				break;
+			}
+		}
+		for(OrgPO po:orgs){
+			if(po.getName()==org2){
+				city2=po.getCity();
+			    break;
+			}
+		}
+		//两机构在同一城市
+		if(city1.equals(city2))
+			return new ResultMessage(Result.SUCCESS,100);//固定值暂定为100
+		//不在同一城市
 		for(CitiesPO po:citiespo){
 			if((po.getCity1().equals(city1)&&po.getCity2().equals(city2))||(po.getCity1().equals(city2)&&po.getCity2().equals(city1))){
 				distance=po.getDistance();
+				break;
 			}
-			break;
+			
 		}
-		ConstantPO constant=null;
-		try {
-			constant=constantData.getConstant();
-			if(constant==null)
-				return new ResultMessage(Result.DATA_NOT_FOUND,0);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
-		double price=constant.getPriceVan();
-		return new ResultMessage(Result.SUCCESS,price*distance);
+		price=constant.getPriceVan();
+		return new ResultMessage(isSuc,price*distance);
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {
-		Result isSuc=Result.DATA_NOT_FOUND;
-		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();
-		try {
-			halls = uti.halls();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
-		ArrayList<OrgVO> localHalls=new ArrayList<OrgVO>();
-		if(halls==null)
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		String city=null;
-		for(OrgPO po:orgs){
-			if(po.getId().equals(orgId))
-				city=po.getCity();
-			break;
-		}
-		for(OrgPO hall:halls){
-			if(hall.getCity().equals(city)){
-				OrgVO vo=VPFactory.toOrgVO(hall);
-				localHalls.add(vo);
-			}		
-		}
-		ArrayList<OrgVO> centers=new ArrayList<OrgVO>();
-		Object temp=uti.getCenter().getMessage();
-		if(temp==null){
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}else{
-			centers=(ArrayList<OrgVO>)temp;
-		}
-		if(centers.size()!=0||localHalls.size()!=0)
-			isSuc=Result.SUCCESS;
-		return new ResultMessage(isSuc,localHalls.addAll(centers));
+		return uti.getLocalHallAndAllCenter(orgId);
 	}
 
 }
