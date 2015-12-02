@@ -38,6 +38,7 @@ import edu.nju.umr.data.utilityData.UtilityData;
 import edu.nju.umr.data.workOrgManData.DriverManData;
 import edu.nju.umr.data.workOrgManData.OrgManData;
 import edu.nju.umr.data.workOrgManData.VanManData;
+import edu.nju.umr.data.workOrgManData.WageManData;
 import edu.nju.umr.data.workOrgManData.WorkManData;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
@@ -46,11 +47,13 @@ import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
 import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
+import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.CityDFacSer;
 import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
+import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
 import edu.nju.umr.dataService.dataFactory.CostBeneDFacSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
@@ -76,12 +79,12 @@ import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockOutOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
 import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
+import edu.nju.umr.dataService.dataFactory.WageManDFacSer;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
-import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
-import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -109,13 +112,13 @@ import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
+import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
-import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,StatementSheetDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
-StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer{
+StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer,WageManDFacSer{
 
 	/**
 	 * 
@@ -304,6 +307,12 @@ StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFac
 	
 	public UpdateTransitInfoDSer getUpdateTransitInfoDSer() throws RemoteException{
 		return new UpdateTransitInfoData();
+	}
+
+	@Override
+	public WageManDSer getWageMan() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new WageManData();
 	}
 
 }

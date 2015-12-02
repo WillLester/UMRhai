@@ -15,6 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.workOrgManLogic.WageManLogic;
+import edu.nju.umr.logicService.workOrgManLogicSer.WageManLSer;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
@@ -33,6 +35,7 @@ public class WorkWageListPanel extends JPanel {
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
+	private WageManLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
@@ -40,6 +43,7 @@ public class WorkWageListPanel extends JPanel {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
+		logicSer = new WageManLogic();
 		
 		JLabel nameLabel = new JLabel("人员薪水信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
