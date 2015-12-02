@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +16,14 @@ import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.orderNewLogic.ArriveOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
+import edu.nju.umr.po.enums.GoodState;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.vo.OrgVO;
+import edu.nju.umr.vo.order.ArriveVO;
 
 public class ArrivePanel extends JPanel {
 	/**
@@ -29,7 +36,8 @@ public class ArrivePanel extends JPanel {
 	private DatePanel datePanel;
 	private UserVO user;
 	private ArriveOrderLSer serv;
-	private JComboBox<String> cityCombo;
+	private JComboBox<String> startCombo;
+	private JComboBox<String> stateCombo;
 	/**
 	 * Create the panel.
 	 */
@@ -67,6 +75,7 @@ public class ArrivePanel extends JPanel {
 		
 		centerField = new JTextField();
 		centerField.setBounds(474+75+25, 110, 193, 24);
+		centerField.setEnabled(false);
 		add(centerField);
 		centerField.setColumns(10);
 		
@@ -75,10 +84,10 @@ public class ArrivePanel extends JPanel {
 		startLabel.setBounds(342+75+25, 162, 107, 24);
 		add(startLabel);
 		
-		cityCombo = new JComboBox<String>();
-		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		cityCombo.setBounds(474+75+25, 166, 193, 21);
-		add(cityCombo);
+		startCombo = new JComboBox<String>();
+		startCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		startCombo.setBounds(474+75+25, 166, 193, 21);
+		add(startCombo);
 		
 //		JSpinner spinner = new JSpinner();
 //		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
@@ -123,7 +132,7 @@ public class ArrivePanel extends JPanel {
 		stateLabel.setBounds(329+75+25, 327, 120, 45);
 		add(stateLabel);
 		
-		JComboBox<String> stateCombo = new JComboBox<String>();
+		stateCombo = new JComboBox<String>();
 		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
 		stateCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		stateCombo.setBounds(474+75+25, 338, 193, 24);
@@ -145,8 +154,7 @@ public class ArrivePanel extends JPanel {
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				frame.dispose();
-			}
+				frame.dispose();			}
 		});
 		add(cancelButton);
 
@@ -156,14 +164,43 @@ public class ArrivePanel extends JPanel {
 	{
 		serv=new ArriveOrderLogic();
 		centerField.setText(user.getOrgId());
-		
-		
+		ResultMessage message = serv.getLocalHallsAndAllCenter(user.getOrgId());
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		@SuppressWarnings("unchecked")
+		ArrayList<OrgVO> orgList=(ArrayList<OrgVO>)message.getMessage();
+		String []orgs=new String[orgList.size()];
+		for(int i=0;i<orgList.size();i++)
+		{
+			orgs[i]=orgList.get(i).getName();
+		}
+		startCombo.setModel(new DefaultComboBoxModel<String>(orgs));
 		
 	}
 	private void createOrder()
 	{
-		String centerId=idField.getText();
-		
+		String id=idField.getText();
+		String centerId=centerField.getText();
+		if(idField.getText().isEmpty())
+		{
+			DoHint.hint("中转单编号未输入!", frame);
+			return;
+		}
+		GoodState state;
+		state=GoodState.values()[stateCombo.getSelectedIndex()];
+		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),(String)startCombo.getSelectedItem(),state,user.getName(),id));
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+		}
+		else
+		{
+			frame.dispose();
+		}
 	}
 //	public static void main(String[] args)
 //	{
