@@ -222,40 +222,40 @@ public class VPFactory {
 	}
 	
 	//账  
-	public static CountVO toCountVO(CountPO po){
-		ArrayList<OrgPO> orgp=po.getOrganizations();
-		ArrayList<OrgVO> orgv=new ArrayList<OrgVO>();
-		for(OrgPO op:orgp){
-			OrgVO ov=VPFactory.toOrgVO(op);
-			orgv.add(ov);
-		}
-		ArrayList<WorkPO> workp=po.getWorkers();
-		ArrayList<WorkVO> workv=new ArrayList<WorkVO>();
-		for(WorkPO wp:workp){
-			WorkVO wv=VPFactory.toWorkVO(wp);
-			workv.add(wv);
-		}
-		ArrayList<VanPO> vanp=po.getVans();
-		ArrayList<VanVO> vanv=new ArrayList<VanVO>();
-		for(VanPO vp:vanp){
-			VanVO vv=VPFactory.toVanVO(vp);
-			vanv.add(vv);
-		}
-		ArrayList<StockPO> stockp=po.getStocks();
-		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
-		for(StockPO sp:stockp){
-			StockVO sv=VPFactory.toStockVO(sp);
-			stockv.add(sv);
-		}
-		ArrayList<AccountPO> accountp=po.getAccounts();
-		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
-		for(AccountPO ap:accountp){
-			AccountVO av=VPFactory.toAccountVO(ap);
-			accountv.add(av);
-		}
-		CountVO vo=new CountVO(po.getId(), orgv, workv, vanv, stockv, accountv, po.getOpTime());//
-		return vo;	
-	}
+//	public static CountVO toCountVO(CountPO po){
+//		ArrayList<OrgPO> orgp=po.getOrganizations();
+//		ArrayList<OrgVO> orgv=new ArrayList<OrgVO>();
+//		for(OrgPO op:orgp){
+//			OrgVO ov=VPFactory.toOrgVO(op);
+//			orgv.add(ov);
+//		}
+//		ArrayList<WorkPO> workp=po.getWorkers();
+//		ArrayList<WorkVO> workv=new ArrayList<WorkVO>();
+//		for(WorkPO wp:workp){
+//			WorkVO wv=VPFactory.toWorkVO(wp);
+//			workv.add(wv);
+//		}
+//		ArrayList<VanPO> vanp=po.getVans();
+//		ArrayList<VanVO> vanv=new ArrayList<VanVO>();
+//		for(VanPO vp:vanp){
+//			VanVO vv=VPFactory.toVanVO(vp);
+//			vanv.add(vv);
+//		}
+//		ArrayList<StockPO> stockp=po.getStocks();
+//		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
+//		for(StockPO sp:stockp){
+//			StockVO sv=VPFactory.toStockVO(sp);
+//			stockv.add(sv);
+//		}
+//		ArrayList<AccountPO> accountp=po.getAccounts();
+//		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
+//		for(AccountPO ap:accountp){
+//			AccountVO av=VPFactory.toAccountVO(ap);
+//			accountv.add(av);
+//		}
+//		CountVO vo=new CountVO(po.getId(), orgv, workv, vanv, stockv, accountv, po.getOpTime());//
+//		return vo;	
+//	}
 //	public static CountPO toCountPO(CountVO vo,String id){
 //		ArrayList<OrgPO> orgp=new ArrayList<OrgPO>();
 //		ArrayList<OrgVO> orgv=vo.getOrganizations();
@@ -385,16 +385,16 @@ public class VPFactory {
 	}
 	
 	//工作人员
-	public static WorkVO toWorkVOCommit(WorkPO po){
-		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
-		return vo;
-	}
 	public static WorkVO toWorkVO(WorkPO po){
-		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
+		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getJuri());
 		return vo;
 	}
-	public static WorkPO toWorkPO(WorkVO vo,int id,Wage kind,int money,int commission){
-		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), vo.getOrgId(), id, vo.getJuri(), kind, money, commission);
+//	public static WorkVO toWorkVO(WorkPO po){
+//		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
+//		return vo;
+//	}
+	public static WorkPO toWorkPO(WorkVO vo,String orgId,int id,Wage kind,int money,int commission){
+		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), orgId, id, vo.getJuri(), kind, money, commission);
 		return po;
 	}
 }
