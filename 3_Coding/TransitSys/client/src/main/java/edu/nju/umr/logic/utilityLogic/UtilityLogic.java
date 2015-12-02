@@ -315,4 +315,40 @@ public class UtilityLogic {
 		return account;
 	}
 	
+	public ResultMessage getLocalHallAndAllCenter(String orgId){
+		Result isSuc=Result.DATA_NOT_FOUND;
+		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();//获取营业厅列表
+		ArrayList<OrgVO> localHalls=new ArrayList<OrgVO>();//用来存储本城市营业厅列表
+		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取总的机构列表
+		String city=null;//存储本地营业厅所在的城市名称
+		ArrayList<OrgVO> centers=new ArrayList<OrgVO>();//获取所有的中转中心列表
+		try {
+			halls = halls();
+			orgs=orgs();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		for(OrgPO po:orgs){
+			if(po.getId().equals(orgId)){
+				city=po.getCity();
+				break;
+			}
+		}
+		for(OrgPO hall:halls){
+			if(hall.getCity().equals(city)){
+				OrgVO vo=VPFactory.toOrgVO(hall);
+				localHalls.add(vo);
+			}		
+		}
+		Object temp=getCenter().getMessage();
+		if(temp==null){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}else{
+			centers=(ArrayList<OrgVO>)temp;
+		}
+		if(centers.size()!=0||localHalls.size()!=0)
+			isSuc=Result.SUCCESS;
+		return new ResultMessage(isSuc,localHalls.addAll(centers));
+	}
 }

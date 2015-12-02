@@ -17,6 +17,7 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
@@ -255,41 +256,41 @@ public class VPFactory {
 		CountVO vo=new CountVO(po.getId(), orgv, workv, vanv, stockv, accountv, po.getOpTime());//
 		return vo;	
 	}
-	public static CountPO toCountPO(CountVO vo,String id){
-		ArrayList<OrgPO> orgp=new ArrayList<OrgPO>();
-		ArrayList<OrgVO> orgv=vo.getOrganizations();
-		for(OrgVO ov:orgv){
-			OrgPO op=VPFactory.toOrgPO(ov);
-			orgp.add(op);
-		}
-		ArrayList<WorkPO> workp=new ArrayList<WorkPO>();
-		ArrayList<WorkVO> workv=vo.getWorkers();
-		for(WorkVO wv:workv){
-			WorkPO wp=VPFactory.toWorkPO(wv,0);
-			workp.add(wp);
-		}
-		ArrayList<VanPO> vanp=new ArrayList<VanPO>();
-		ArrayList<VanVO> vanv=vo.getVans();
-		for(VanVO vv:vanv){
-			VanPO vp=VPFactory.toVanPO(vv);
-			vanp.add(vp);
-		}
-		ArrayList<StockPO> stockp=new ArrayList<StockPO>();
-		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
-		for(StockVO sv:stockv){
-			StockPO sp=VPFactory.toStockPO(sv);
-			stockp.add(sp);
-		}
-		ArrayList<AccountPO> accountp=new ArrayList<AccountPO>();
-		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
-		for(AccountVO av:accountv){
-			AccountPO ap=VPFactory.toAccountPO(av, 0);
-			accountp.add(ap);
-		}
-		
-		CountPO po=new CountPO(vo.getId(), orgp, workp, vanp, stockp, accountp, Calendar.getInstance());
-		return po;
-	}
+//	public static CountPO toCountPO(CountVO vo,String id){
+//		ArrayList<OrgPO> orgp=new ArrayList<OrgPO>();
+//		ArrayList<OrgVO> orgv=vo.getOrganizations();
+//		for(OrgVO ov:orgv){
+//			OrgPO op=VPFactory.toOrgPO(ov);
+//			orgp.add(op);
+//		}
+//		ArrayList<WorkPO> workp=new ArrayList<WorkPO>();
+//		ArrayList<WorkVO> workv=vo.getWorkers();
+//		for(WorkVO wv:workv){
+//			WorkPO wp=VPFactory.toWorkPO(wv,0);
+//			workp.add(wp);
+//		}
+//		ArrayList<VanPO> vanp=new ArrayList<VanPO>();
+//		ArrayList<VanVO> vanv=vo.getVans();
+//		for(VanVO vv:vanv){
+//			VanPO vp=VPFactory.toVanPO(vv);
+//			vanp.add(vp);
+//		}
+//		ArrayList<StockPO> stockp=new ArrayList<StockPO>();
+//		ArrayList<StockVO> stockv=new ArrayList<StockVO>();
+//		for(StockVO sv:stockv){
+//			StockPO sp=VPFactory.toStockPO(sv);
+//			stockp.add(sp);
+//		}
+//		ArrayList<AccountPO> accountp=new ArrayList<AccountPO>();
+//		ArrayList<AccountVO> accountv=new ArrayList<AccountVO>();
+//		for(AccountVO av:accountv){
+//			AccountPO ap=VPFactory.toAccountPO(av, 0);
+//			accountp.add(ap);
+//		}
+//		
+//		CountPO po=new CountPO(vo.getId(), orgp, workp, vanp, stockp, accountp, Calendar.getInstance());
+//		return po;
+//	}
 	
 	//日志
 	public static DiaryVO toDiaryVO(DiaryPO po){
@@ -392,8 +393,8 @@ public class VPFactory {
 		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
 		return vo;
 	}
-	public static WorkPO toWorkPO(WorkVO vo,int id){
-		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), vo.getOrgId(), id, vo.getJuri(), vo.getKind(), vo.getMoney(), vo.getCommission());
+	public static WorkPO toWorkPO(WorkVO vo,int id,Wage kind,int money,int commission){
+		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), vo.getOrgId(), id, vo.getJuri(), kind, money, commission);
 		return po;
 	}
 }
