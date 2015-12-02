@@ -61,6 +61,9 @@ public class WorkPO extends PO implements Serializable{
 	public int getCommission() {
 		return commission;
 	}
+	public String getOrgId() {
+		return orgId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根

@@ -7,9 +7,10 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.MysqlOperation;
+import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Parse;
 
-public class ExpressPO extends PO implements Serializable{
+public class ExpressPO extends PO implements Serializable,KindGetter{
 	/**
 	 * 
 	 */
@@ -196,5 +197,10 @@ public class ExpressPO extends PO implements Serializable{
 		case UPDATE:break;
 		}
 		return command;
+	}
+	@Override
+	public Order getOrderKind() {
+		// TODO 自动生成的方法存根
+		return Order.EXPRESS;
 	}
 }

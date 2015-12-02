@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.orderApproveDSer.OrderResubmitDSer;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.KindGetter;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.ResultMessage;
@@ -19,8 +20,8 @@ import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class OrderResubmitLogic implements OrderResubmitLSer{
-	OrderResubmitDFacSer dataFac;
-	OrderResubmitDSer resubmitData;
+	private OrderResubmitDFacSer dataFac;
+	private OrderResubmitDSer resubmitData;
 	public OrderResubmitLogic() {
 		try{
 			dataFac = (OrderResubmitDFacSer)Naming.lookup(Url.URL);
@@ -55,8 +56,8 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	
 	public ResultMessage getOrders(String id) {
 		// TODO 自动生成的方法存根
-		ArrayList<Object> orders = null;
-		ArrayList<Object> newOrders = new ArrayList<Object>();
+		ArrayList<KindGetter> orders = null;
+		ArrayList<KindGetter> newOrders = new ArrayList<KindGetter>();
 		try {
 			orders = resubmitData.getOrders(id);
 
