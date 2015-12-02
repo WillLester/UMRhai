@@ -32,7 +32,11 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 		try {
 			if(result.next()){
 				UserPO user = new UserPO(result.getString(1), result.getString(2), juris[result.getInt(5)], result.getString(3), result.getString(4), result.getString(8),result.getInt(6),result.getString(7));
-				return user;
+				if(user.getPassword().equals(password)){
+					return user;
+				} else {
+					return null;
+				}
 			} else {
 				return null;
 			}

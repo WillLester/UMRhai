@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.nju.umr.logic.stockLogic.StockWarningLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
@@ -36,6 +37,7 @@ public class StockWarningPanel extends JPanel{
 	public StockWarningPanel(JFrame fr,String orgId) {
 		setLayout(null);
 		frame=fr;
+		logicSer = new StockWarningLogic();
 		
 		JLabel warningLabel = new JLabel("库存报警设置");
 		warningLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
