@@ -4,14 +4,21 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
@@ -19,6 +26,8 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
+import sun.misc.BASE64Decoder;  
+import sun.misc.BASE64Encoder;  
 
 public class VanInfoPanel extends JPanel {
 	/**
@@ -29,7 +38,6 @@ public class VanInfoPanel extends JPanel {
 	private JTextField textFieldPlate;
 	private VanListPanel fatherPanel;
 	private String imageString=null;
-	private BufferedImage image;
 	private VanVO van;
 	private JFrame frame;
 	private DatePanel servTime;
@@ -102,6 +110,19 @@ public class VanInfoPanel extends JPanel {
 		
 		JButton upload = new JButton("选择图片");
 		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 93, 23);
+		upload.addActionListener(new ActionListener(){@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			JFileChooser chooser = new javax.swing.JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("图片","jpg","png");
+			chooser.setFileFilter(filter);
+			chooser.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY); 
+			int returnVal = chooser.showOpenDialog(null);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				 File file = chooser.getSelectedFile();
+				 readAndDisplayImage(file.getPath());
+			}
+		}});
 		add(upload);
 		
 		JButton confirm = new JButton("确定");
@@ -131,17 +152,54 @@ public class VanInfoPanel extends JPanel {
 		imageString=van.getPhoto();
 		if(!imageString.equals(null))
 		{
-			image=baseCodeToImage(imageString);
-			pic.setIcon(new ImageIcon(image));
+			baseCodeToImage(imageString);
+			showpic();
 		}
 	}
-	private BufferedImage baseCodeToImage(String baseCode){
-		
-		return null;
+	private void showpic(){
+		pic.setIcon(new ImageIcon("test.jpg"));
 	}
-	private String imageToBaseCode(Image im)
+	private void baseCodeToImage(String baseCode){
+		if(baseCode.isEmpty())return;
+		BASE64Decoder decoder = new BASE64Decoder();
+		try
+		{
+			byte[] bytes = decoder.decodeBuffer(baseCode);
+			for(int i=0;i<bytes.length;i++)
+			{
+				if(bytes[i]<0)
+				{
+					bytes[i]+=256;
+				}
+			}
+			OutputStream out = new FileOutputStream("test.jpg");
+			out.write(bytes);
+			out.flush();
+			out.close();
+		}catch(Exception e)
+		{
+			return;
+		}
+	}
+	private void readAndDisplayImage(String path)
 	{
-		return null;
+		byte[] data = null;  
+		try {  
+		InputStream in = new FileInputStream(path);  
+		data = new byte[in.available()];  
+		in.read(data);  
+		in.close();
+		Image bufferedImage = ImageIO.read(new File(path)); 
+		int width = pic.getWidth();
+		int height = bufferedImage.getHeight(null)*width/bufferedImage.getWidth(null);
+		bufferedImage=bufferedImage.getScaledInstance(width, height,  Image.SCALE_SMOOTH);
+		pic.setBounds(pic.getX(), pic.getY(), width, height);
+		pic.setIcon(new ImageIcon(bufferedImage));
+		} catch (Exception e) {  
+		e.printStackTrace();  
+		}  
+		BASE64Encoder encoder = new BASE64Encoder();  
+		imageString=encoder.encode(data);
 	}
 	private void confirmChange(){
 		if(textFieldPlate.getText().isEmpty())
@@ -156,13 +214,20 @@ public class VanInfoPanel extends JPanel {
 		}
 		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,user.getOrgId());
 		Result result=fatherPanel.confirmed(temp);
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		frame.dispose();
+		
 		
 	}
 //	public static void main(String[] args)
 //	{
 //		JFrame frame=new JFrame();
 //		frame.setContentPane(new VanInfoPanel(frame,null,null,null));
-//		frame.setSize(1200,800);
+//		frame.setSize(995,558);
 //		frame.setVisible(true);
 //	}
 
