@@ -342,4 +342,13 @@ public class UtilityLogic {
 			isSuc=Result.SUCCESS;
 		return new ResultMessage(isSuc,localHalls.addAll(centers));
 	}
+	
+	public ArrayList<String> getCouriers(String id) throws RemoteException{
+		ArrayList<WorkPO> couriers=utilityData.getCouriers(id);
+		ArrayList<String> cour=new ArrayList<String>();
+		for(WorkPO c:couriers){
+			cour.add(c.getName());
+		}
+		return cour;
+	}
 }

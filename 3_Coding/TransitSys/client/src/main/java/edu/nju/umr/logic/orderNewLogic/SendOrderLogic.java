@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -17,6 +18,7 @@ import edu.nju.umr.vo.order.SendVO;
 public class SendOrderLogic implements SendOrderLSer{
 	SendOrderDFacSer dataFac;
 	SendOrderDSer sendData;
+	UtilityLogic uti=new UtilityLogic();
 	public SendOrderLogic(){
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
@@ -45,10 +47,10 @@ public class SendOrderLogic implements SendOrderLSer{
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		ArrayList<String> ar= null;
 		try{
-			ar=sendData.getCouriers();
+			ar=uti.getCouriers(id);
 			isSuccessful=Result.SUCCESS;
 		}catch(RemoteException e){
-			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
+			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
