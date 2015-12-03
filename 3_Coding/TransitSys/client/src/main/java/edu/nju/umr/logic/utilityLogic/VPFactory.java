@@ -7,7 +7,6 @@ import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.ConstantPO;
-import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
