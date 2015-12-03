@@ -34,7 +34,6 @@ import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CitiesVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ConstantVO;
-import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.GoodVO;
