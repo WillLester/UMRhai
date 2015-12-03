@@ -43,6 +43,7 @@ import edu.nju.umr.vo.order.TransitVO;
 public class OrderApproveLogic implements OrderApproveLSer{
 	OrderApproveDFacSer dataFac;
 	OrderApproveDSer approveData;
+	ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -60,7 +61,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		
 		ArrayList<OrderVO> orders = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderList = approveData.getExamine();
+			 orderList= approveData.getExamine();
 			for(OrderPO order:orderList){
 				OrderVO vo = new OrderVO(order.getId(), order.getKind(), order.getOperator(), order.getTime());
 				orders.add(vo);
@@ -72,17 +73,31 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return new ResultMessage(Result.SUCCESS, orders);
 	}
 
-	public Result examine(boolean approve, ArrayList<String> id) {
-		
-		Result isSuc = Result.DATA_NOT_FOUND;
-		try {
-			isSuc = approveData.update(approve,id,Order.ARRIVE);
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-			return Result.NET_INTERRUPT;
+	public Result examine(boolean approve, ArrayList<Integer> indexs) {
+		ArrayList<Result> results=new ArrayList<Result>();
+		for(int i=0;i<indexs.size();i++){
+			OrderPO order=orderList.get(indexs.get(i));
+			ArrayList<String> ids=new ArrayList<String>();
+			for(int j=1;j<indexs.size();j++){
+				OrderPO sameKind=orderList.get(indexs.get(j));
+				if(sameKind.getKind()==order.getKind()){
+					ids.add(sameKind.getId());
+					indexs.remove(j);
+					j--;
+				}					
+			}
+			try {
+				results.set(i,approveData.update(approve, ids, order.getKind()));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return Result.NET_INTERRUPT;
+			}
 		}
-		return isSuc;
+		for(Result isSuc:results){
+			if(isSuc!=Result.SUCCESS)
+				return Result.DATA_NOT_FOUND;
+		}
+		return Result.SUCCESS;
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {
@@ -271,5 +286,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 //			return new ResultMessage(Result.NET_INTERRUPT,null);
 //		}
 	}
+	
 	
 }
