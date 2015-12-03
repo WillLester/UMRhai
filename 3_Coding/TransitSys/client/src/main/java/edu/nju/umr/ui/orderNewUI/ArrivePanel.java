@@ -36,6 +36,7 @@ public class ArrivePanel extends JPanel {
 	private DatePanel datePanel;
 	private String name;
 	private String orgId;
+	private String userId;
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
@@ -44,7 +45,7 @@ public class ArrivePanel extends JPanel {
 	 */
 	public ArrivePanel(JFrame fr,ArriveVO arrive)
 	{
-		this(fr,arrive.getOpName(),arrive.getCenterId());
+		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId());
 		for(Component co:this.getComponents())
 		{
 			co.setEnabled(false);
@@ -56,11 +57,12 @@ public class ArrivePanel extends JPanel {
 		stateCombo.setSelectedItem(arrive.getState().toString());
 		
 	}
-	public ArrivePanel(JFrame fr,String name,String orgId) {
+	public ArrivePanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.orgId = orgId;
+		this.userId=userId;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -208,7 +210,7 @@ public class ArrivePanel extends JPanel {
 		}
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
-		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),(String)startCombo.getSelectedItem(),state,name,id));
+		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,userId));
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);

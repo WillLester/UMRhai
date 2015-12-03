@@ -13,8 +13,12 @@ public class CenterLoadingVO {
 	private ArrayList<String> express;
 	private double cost;
 	private String opName;
-	public CenterLoadingVO(Calendar date,String target,String vanId,String supervision,String escort,ArrayList<String> express,double cost,String opName,String transitId) {
-		// TODO 自动生成的构造函数存根
+	private String userId;
+	
+	public CenterLoadingVO(Calendar date, String transitId, String target,
+			String vanId, String supervision, String escort,
+			ArrayList<String> express, double cost, String opName, String userId) {
+		super();
 		this.date = date;
 		this.transitId = transitId;
 		this.target = target;
@@ -22,8 +26,9 @@ public class CenterLoadingVO {
 		this.supervision = supervision;
 		this.escort = escort;
 		this.express = express;
-		this.cost=cost;
-		this.opName=opName;
+		this.cost = cost;
+		this.opName = opName;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -51,6 +56,9 @@ public class CenterLoadingVO {
 	}
 	public String getTransitId() {
 		return transitId;
+	}
+	public String getUserId() {
+		return userId;
 	}
 	
 }
