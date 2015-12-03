@@ -68,11 +68,11 @@ public class VPFactory {
      
      //中转中心装车单
      public static CenterLoadingVO toCenterLoadVO(CenterLoadingPO po){
-    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getId());
+    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(),po.getId(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getUserId());
     	 return vo;
      }
      public static CenterLoadingPO toCenterLoadPO(CenterLoadingVO vo,String id){
-    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), id, vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost());
+    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), id, vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getUserId());
     	 return po;
      }
      
@@ -81,34 +81,34 @@ public class VPFactory {
     	 ExpressVO vo=new ExpressVO(po.getId(), po.getSender(), po.getSendLoc(), po.getReceiver(), po.getReceiveLoc(), po.getSendMobile(), po.getReceiveMobile(), 
     			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(),
     			 po.getHeight(), po.getWeight(), po.getVolumn(), po.getArrive(),po.getCreateDate(), po.getKind(), po.getCost(), po.getOpName(),po.getParse(),
-    			 po.getSendProvince(),po.getSendCity(),po.getReceiveProvince(),po.getReceiveCity());
+    			 po.getSendProvince(),po.getSendCity(),po.getReceiveProvince(),po.getReceiveCity(),po.getUserId());
     	 return vo;
      }
      public static ExpressPO toExpressPO(ExpressVO vo){
     	 ExpressPO po=new ExpressPO(vo.getSender(), vo.getSendLoc(), vo.getReceiver(), vo.getReceiveLoc(),vo.getSendMobile(), vo.getReceiveMobile(),
     			 vo.getSendPhone(), vo.getReceivePhone(), vo.getSendUnit(),vo.getReceiveUnit(), vo.getNum(), vo.getName(),vo.getLength(),vo.getWidth(), vo.getHeight(), vo.getWeight(), vo.getVolumn(), 
     			 vo.getId(), vo.getArrive(), vo.getCreateDate(),vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName(),vo.getParse(),
-    			 vo.getSendProvince(),vo.getSendCity(),vo.getReceiveProvince(),vo.getReceiveCity());
+    			 vo.getSendProvince(),vo.getSendCity(),vo.getReceiveProvince(),vo.getReceiveCity(),vo.getUserId());
     	 return po;
      }
      
      //营业厅装车单
      public static HallLoadingVO toHallLoadingVO(HallLoadingPO po){
-    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName());
+    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName(),po.getUserId());
     	 return vo;
      }
      public static HallLoadingPO toHallLoadingPO(HallLoadingVO vo,String id){
-    	 HallLoadingPO po=new HallLoadingPO(id,vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost());
+    	 HallLoadingPO po=new HallLoadingPO(id,vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost(),vo.getUserId());
     	 return po;
      }
      
      //入款单
      public static IncomeVO toIncomeVO(IncomePO po){
-    	 IncomeVO vo=new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getOpName(), po.getOrgId());
+    	 IncomeVO vo=new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getOpName(), po.getOrgId(),po.getUserId());
     	 return vo;
      }
 	public static IncomePO toIncomePO(IncomeVO vo,int id){
-		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), id,Calendar.getInstance(),vo.getOpName(),vo.getOrgId());
+		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), id,Calendar.getInstance(),vo.getOpName(),vo.getOrgId(),vo.getUserId());
 		return po;
 	}
 	
