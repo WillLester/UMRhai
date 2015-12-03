@@ -24,10 +24,11 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	private Calendar opTime;
 	private String opName;
 	private double cost;
+	private String userId;
 	
 	public CenterLoadingPO(Calendar date, String id, String target,
 			String vanId, String supervision, String escort,
-			ArrayList<String> express, Calendar opTime, String opName,double cost) {
+			ArrayList<String> express, Calendar opTime, String opName,double cost,String userId) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -39,6 +40,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		this.opTime = opTime;
 		this.opName = opName;
 		this.cost=cost;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -70,12 +72,16 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	public double getCost(){
 		return cost;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+")";break;
+		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+
+		DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

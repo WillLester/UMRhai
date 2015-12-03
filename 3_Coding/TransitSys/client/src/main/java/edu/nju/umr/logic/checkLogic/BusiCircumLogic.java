@@ -15,8 +15,8 @@ import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.vo.BusiCircumVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.BusiCircumVO;
 
 public class BusiCircumLogic implements BusiCircumLSer{
 	private StatementSheetDFacSer dataFac;

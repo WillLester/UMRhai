@@ -27,8 +27,8 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.BusiCircumVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.BusiCircumVO;
 /*
  * yyy
  * 20151029
