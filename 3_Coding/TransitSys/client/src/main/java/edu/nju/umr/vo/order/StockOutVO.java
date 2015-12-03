@@ -13,9 +13,10 @@ public class StockOutVO {
 	private String transitId;
 	private String opName;
 	private String stockId;
+	private String userId;
 	
 	public StockOutVO(String expressId, Calendar date, Transit kind,
-			String arrivePlace, String transitId, String opName, String stockId) {
+			String arrivePlace, String transitId, String opName, String stockId,String userId) {
 		super();
 		this.expressId = expressId;
 		this.date = date;
@@ -24,6 +25,7 @@ public class StockOutVO {
 		this.transitId = transitId;
 		this.opName = opName;
 		this.stockId = stockId;
+		this.userId = userId;
 	}
 	public String getStockId() {
 		return stockId;
@@ -45,5 +47,8 @@ public class StockOutVO {
 	}
 	public String getArrivePlace() {
 		return arrivePlace;
+	}
+	public String getUserId() {
+		return userId;
 	}
 }

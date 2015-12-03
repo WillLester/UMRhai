@@ -23,9 +23,10 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	private Calendar opTime;
 	private String opName;
 	private String stockId;
+	private String userId;
 	
 	public StockOutPO(int id, String expressId, Calendar date, Transit kind,String arrivePlace,
-			String transitId, Calendar opTime, String opName, String stockId) {
+			String transitId, Calendar opTime, String opName, String stockId,String userId) {
 		super();
 		this.id = id;
 		this.expressId = expressId;
@@ -36,7 +37,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.opTime = opTime;
 		this.opName = opName;
 		this.stockId = stockId;
-		
+		this.userId = userId;
 	}
 	public int getId() {
 		return id;
@@ -65,12 +66,17 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getStockId() {
 		return stockId;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockoutwaiting values"+"("+id+",'"+expressId+"',"+kind.ordinal()+",'"+transitId+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"')";break;
+		case INSERT:command="insert into stockoutwaiting values"+"("+id+",'"+expressId+"',"+
+		kind.ordinal()+",'"+transitId+"','"+DateFormat.DATE.format(date.getTime())+"','"+
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

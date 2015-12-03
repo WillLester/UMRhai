@@ -341,7 +341,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case STOCKOUT:
 			for(String i:id){
-				order = new StockOutPO(Integer.parseInt(i), null, null, null, null, null, null, null, null);
+				order = new StockOutPO(Integer.parseInt(i), null, null, null, null, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
