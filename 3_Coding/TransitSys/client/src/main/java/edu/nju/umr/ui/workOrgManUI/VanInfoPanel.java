@@ -20,14 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
-import sun.misc.BASE64Decoder;  
-import sun.misc.BASE64Encoder;  
 
 public class VanInfoPanel extends JPanel {
 	/**

@@ -70,4 +70,19 @@ public class ArrivePO extends PO implements Serializable,OrderOper{
 		// TODO 自动生成的方法存根
 		return Order.ARRIVE;
 	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }
