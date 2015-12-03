@@ -8,7 +8,7 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 
-public class SendPO extends PO implements Serializable,OrderOper{
+public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 	/**
 	 * 
 	 */
@@ -64,5 +64,23 @@ public class SendPO extends PO implements Serializable,OrderOper{
 	public Order getOrderKind() {
 		// TODO 自动生成的方法存根
 		return Order.SEND;
+	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		if(isPassed){
+			
+		}
+		return null;
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 }

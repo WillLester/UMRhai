@@ -9,7 +9,7 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
 
-public class PaymentPO extends PO implements Serializable,OrderOper{
+public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	/**
 	 * 
 	 */
@@ -81,6 +81,25 @@ public class PaymentPO extends PO implements Serializable,OrderOper{
 	public Order getOrderKind() {
 		// TODO 自动生成的方法存根
 		return Order.PAYMENT;
+	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		if(isPassed){
+			return "insert into paymentorderpassed from paymentorderwaiting where id="+id;
+		} else {
+			return "insert into paymentorderunpassed from paymentorderwaiting where id="+id;
+		}
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return "delete from paymentorderwaiting where id="+id;
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return "delete from paymentorderunpassed where id="+id;
 	}
 	
 }

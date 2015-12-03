@@ -9,7 +9,7 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Transit;
 
-public class StockOutPO extends PO implements Serializable,OrderOper{
+public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	/**
 	 * 
 	 */
@@ -81,5 +81,24 @@ public class StockOutPO extends PO implements Serializable,OrderOper{
 	public Order getOrderKind() {
 		// TODO 自动生成的方法存根
 		return Order.STOCKOUT;
+	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		if(isPassed){
+			return "insert into stockoutorderpassed from stockoutorderwaiting where id="+id;
+		} else {
+			return "insert into stockoutorderunpassed from stockoutorderwaiting where id="+id;
+		}
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return "delete from stockoutorderwaiting where id="+id;
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return "delete from stockoutorderwaiting where id="+id;
 	}
 }
