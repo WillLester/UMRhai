@@ -174,7 +174,7 @@ public class VPFactory {
 	
 	//中转单
 	public static TransitVO toTransitVO(TransitPO po){
-		TransitVO vo=new TransitVO(po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(),po.getDate(), po.getOpName(), po.getCost());
+		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(),po.getDate(), po.getOpName(), po.getCost());
 		return vo;
 	}
 	public static TransitPO toTransitPO(TransitVO vo,String id){

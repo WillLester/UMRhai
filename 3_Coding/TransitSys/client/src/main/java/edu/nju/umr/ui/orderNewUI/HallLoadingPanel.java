@@ -32,7 +32,6 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
@@ -55,16 +54,20 @@ public class HallLoadingPanel extends JPanel {
 	private JComboBox<String> comboBoxDestination;
 	private ArrayList<VanVO> vanList;
 	private JComboBox<String> comboBoxVan;
-	private UserVO user;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
 	private double cost;
+	private String name;
+	private String userId;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
-	public HallLoadingPanel(JFrame fr,UserVO uservo) {
+	public HallLoadingPanel(JFrame fr,String name,String userId,String orgId) {
 		frame=fr;
-		user=uservo;
 		setLayout(null);
+		this.name = name;
+		this.userId = userId;
+		this.orgId = orgId;
 		
 		JLabel themeLabel = new JLabel("营业厅装车单");
 		themeLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,39 +92,6 @@ public class HallLoadingPanel extends JPanel {
 		loadDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		loadDateLabel.setBounds(297+75, 121, 120, 24);
 		add(loadDateLabel);
-		
-//		JSpinner spinner = new JSpinner();
-//		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-//		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner.setBounds(411+75, 121, 85, 26);
-//		add(spinner);
-//		
-//		JLabel label = new JLabel("年");
-//		label.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label.setBounds(506+75, 122, 25, 22);
-//		add(label);
-//		
-//		JSpinner spinner_1 = new JSpinner();
-//		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-//		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_1.setBounds(541+75, 122, 48, 26);
-//		add(spinner_1);
-//		
-//		JLabel label_1 = new JLabel("月");
-//		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_1.setBounds(599+75, 122, 25, 22);
-//		add(label_1);
-//		
-//		JSpinner spinner_2 = new JSpinner();
-//		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-//		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_2.setBounds(634+75, 122, 48, 26);
-//		add(spinner_2);
-//		
-//		JLabel label_2 = new JLabel("日");
-//		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_2.setBounds(692+75, 122, 25, 22);
-//		add(label_2);
 		
 		datePanel=new DatePanel();
 		datePanel.setDate(Calendar.getInstance());
@@ -165,12 +135,6 @@ public class HallLoadingPanel extends JPanel {
 		vanIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		vanIdLabel.setBounds(220+75, 204, 120, 24);
 		add(vanIdLabel);
-		
-//		textField = new JTextField();
-//		textField.setFont(new Font("宋体", Font.PLAIN, 20));
-//		textField.setColumns(10);
-//		textField.setBounds(328+75, 203, 165, 25);
-//		add(textField);
 		
 		comboBoxVan=new JComboBox<String>();
 		comboBoxVan.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -230,12 +194,6 @@ public class HallLoadingPanel extends JPanel {
 		tableHeadLabel.setBounds(401+75, 289, 130, 24);
 		add(tableHeadLabel);
 		
-//		table = new JTable();
-//		table.setFont(new Font("宋体", Font.PLAIN, 20));
-//		table.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-//		table.setBounds(220+75, 313, 529, 176);
-//		add(table);
-		
 		JButton confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+75, 499, 93, 23);
@@ -263,8 +221,8 @@ public class HallLoadingPanel extends JPanel {
 	protected void createOrder() {
 		// TODO Auto-generated method stub
 //		String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost
-		HallLoadingVO vo=new HallLoadingVO(user.getOrgId(),transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),user.getName());
+		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
+				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),name,userId);
 		Result result=serv.create(vo);
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -298,7 +256,7 @@ public class HallLoadingPanel extends JPanel {
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
-		ResultMessage message=serv.getLocalHallAndAllCenter(user.getOrgId());
+		ResultMessage message=serv.getLocalHallAndAllCenter(orgId);
 		Result result = message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -317,7 +275,7 @@ public class HallLoadingPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				ResultMessage message=serv.getPrice(user.getOrgId(),destinationList.get(comboBoxDestination.getSelectedIndex()).getId());
+				ResultMessage message=serv.getPrice(orgId,destinationList.get(comboBoxDestination.getSelectedIndex()).getId());
 				Result result=message.getReInfo();
 				if(!result.equals(Result.SUCCESS))
 				{
@@ -331,7 +289,7 @@ public class HallLoadingPanel extends JPanel {
 			}
 		});
 		
-		message=serv.getVans(user.getOrgId());
+		message=serv.getVans(orgId);
 		result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -350,11 +308,5 @@ public class HallLoadingPanel extends JPanel {
 		
 		
 		
-	}
-	public static void main(String[] args){
-		JFrame frame=new JFrame();
-		frame.setContentPane(new HallLoadingPanel(frame,null));
-		frame.setSize(1200, 800);
-		frame.setVisible(true);
 	}
 }

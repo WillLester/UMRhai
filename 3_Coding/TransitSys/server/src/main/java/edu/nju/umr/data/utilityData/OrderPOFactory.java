@@ -103,7 +103,8 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(9));
 				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(3), result.getString(5), 
-						result.getString(4), result.getString(6), result.getString(7), express, date, opTime, result.getString(11), result.getDouble(12));
+						result.getString(4), result.getString(6), result.getString(7), express, date, opTime, 
+						result.getString(11), result.getDouble(12),result.getString(13));
 			} else {
 				return null;
 			}

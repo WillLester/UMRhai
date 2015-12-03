@@ -92,7 +92,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new HallLoadingPanel(ffr,user));
+				ffr.setContentPane(new HallLoadingPanel(ffr,user.getName(),user.getId(),user.getOrgId()));
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
