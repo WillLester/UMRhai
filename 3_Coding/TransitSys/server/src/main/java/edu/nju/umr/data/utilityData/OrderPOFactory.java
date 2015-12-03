@@ -80,7 +80,8 @@ public class OrderPOFactory {
 						result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getInt(12),
 						result.getString(13), result.getDouble(14), result.getDouble(15), result.getDouble(16), result.getDouble(25), 
 						result.getDouble(17), result.getString(1), arrive, date,expresses[result.getInt(19)], result.getDouble(20), 
-						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),result.getString(29),result.getString(30));
+						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),
+						result.getString(29),result.getString(30),result.getString(32));
 			} else {
 				return null;
 			}

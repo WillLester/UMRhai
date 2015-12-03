@@ -278,7 +278,7 @@ public class MysqlImpl implements MysqlService{
 		case EXPRESS:
 			for(String i:id){
 				order = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 
-						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null);
+						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
