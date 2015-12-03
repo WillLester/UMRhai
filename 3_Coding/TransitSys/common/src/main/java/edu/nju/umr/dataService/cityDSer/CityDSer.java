@@ -12,6 +12,7 @@ public interface CityDSer extends Remote{
 	public Result addCity(CityPO city) throws RemoteException;
 	public Result reviseCity(CityPO city) throws RemoteException;
 	public Result deleteCity(String cityName) throws RemoteException;
+	public Result addCities(CitiesPO cities) throws RemoteException;
 	public Result reviseCities(CitiesPO cities) throws RemoteException;
 	public ArrayList<CitiesPO> getCitiesInfo() throws RemoteException;
 }
