@@ -43,7 +43,9 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 					date.setTime(result.getDate(8));
 					Calendar opTime = Calendar.getInstance();
 					opTime.setTime(result.getDate(10));
-					StockInPO stockIn = new StockInPO(result.getInt(1), result.getString(2), date, result.getString(3), parts[result.getInt(4)], result.getString(5), result.getInt(6), result.getInt(7), opTime, result.getString(10), result.getString(11));
+					StockInPO stockIn = new StockInPO(result.getInt(1), result.getString(2), date, result.getString(3),
+							parts[result.getInt(4)], result.getString(5), result.getInt(6), result.getInt(7), opTime, 
+							result.getString(10), result.getString(11),result.getString(12));
 					stockInList.add(stockIn);
 				}
 			}

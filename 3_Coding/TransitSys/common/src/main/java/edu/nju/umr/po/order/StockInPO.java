@@ -25,10 +25,11 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 	private Calendar opTime;
 	private String opName;
 	private String stockId;
+	private String userId;
 	
 	public StockInPO(int id, String expressId, Calendar date,
 			String arrivePlace, Part part, String shelfId, int row, int place,
-			Calendar opTime, String opName, String stockId) {
+			Calendar opTime, String opName, String stockId,String userId) {
 		super();
 		this.id = id;
 		this.expressId = expressId;
@@ -41,6 +42,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.opTime = opTime;
 		this.opName = opName;
 		this.stockId = stockId;
+		this.userId = userId;
 	}
 	public int getId() {
 		return id;
@@ -76,12 +78,17 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getStockId() {
 		return stockId;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockinorderwaiting values"+"("+id+",'"+expressId+"','"+arrivePlace+"',"+part.ordinal()+","+shelfId+","+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"')";break;
+		case INSERT:command="insert into stockinorderwaiting values"+"("+id+",'"+expressId+"','"+arrivePlace+"',"+
+		part.ordinal()+","+shelfId+","+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"','"+
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;

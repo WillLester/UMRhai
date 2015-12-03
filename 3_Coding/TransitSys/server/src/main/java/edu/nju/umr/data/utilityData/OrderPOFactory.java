@@ -198,7 +198,8 @@ public class OrderPOFactory {
 				opTime.setTime(result.getDate(9));
 				Part parts[] = Part.values();
 				return new StockInPO(result.getInt(1), result.getString(2), date, result.getString(3), parts[result.getInt(4)], 
-						result.getString(5), result.getInt(6), result.getInt(7), opTime, result.getString(10), result.getString(11));
+						result.getString(5), result.getInt(6), result.getInt(7), opTime,
+						result.getString(10), result.getString(11),result.getString(12));
 			} else {
 				return null;
 			}
