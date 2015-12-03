@@ -14,11 +14,11 @@ public class TransitVO {
 	private String opName;
 	private double cost;
 	private Calendar date;
-	
+	private String userId;
 
 	public TransitVO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
-			ArrayList<String> express, String opName, double cost, Calendar date) {
+			ArrayList<String> express, String opName, double cost, Calendar date,String userId) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -30,6 +30,7 @@ public class TransitVO {
 		this.opName = opName;
 		this.cost = cost;
 		this.date = date;
+		this.userId = userId;
 	}
 
 	public String getId() {
@@ -63,6 +64,10 @@ public class TransitVO {
 	}
 	public Calendar getDate(){
 		return date;
+	}
+
+	public String getUserId() {
+		return userId;
 	}
 	
 }

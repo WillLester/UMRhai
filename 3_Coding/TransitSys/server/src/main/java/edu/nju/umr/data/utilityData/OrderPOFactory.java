@@ -239,7 +239,8 @@ public class OrderPOFactory {
 					express.add(text[i]);
 				}
 				return new TransitPO(result.getString(1), result.getString(2), result.getString(3), result.getString(4), 
-						result.getString(5), result.getString(6), express, date, opTime, result.getString(9), result.getDouble(10));
+						result.getString(5), result.getString(6), express, date, opTime, result.getString(9), 
+						result.getDouble(10),result.getString(12));
 			} else {
 				return null;
 			}
