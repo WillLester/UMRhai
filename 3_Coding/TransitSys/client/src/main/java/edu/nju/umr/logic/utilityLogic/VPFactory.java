@@ -68,11 +68,11 @@ public class VPFactory {
      
      //中转中心装车单
      public static CenterLoadingVO toCenterLoadVO(CenterLoadingPO po){
-    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getTransitId());
+    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getId());
     	 return vo;
      }
      public static CenterLoadingPO toCenterLoadPO(CenterLoadingVO vo,String id){
-    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), id, vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getTransitId());
+    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), id, vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost());
     	 return po;
      }
      
