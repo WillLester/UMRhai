@@ -227,4 +227,9 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return "select * from expressorderwaiting where id = '"+id+"'";
 	}
+	@Override
+	public String getUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }
