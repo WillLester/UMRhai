@@ -106,7 +106,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("收款单生成");
-				ffr.setContentPane(new IncomePanel(ffr,user.getOrgId(),user.getName()));
+				ffr.setContentPane(new IncomePanel(ffr,user.getOrgId(),user.getName(),user.getId()));
 			}
 		});
 		this.add(income);
