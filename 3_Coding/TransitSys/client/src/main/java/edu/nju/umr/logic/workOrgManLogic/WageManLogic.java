@@ -20,10 +20,10 @@ import edu.nju.umr.vo.WageVO;
 import edu.nju.umr.vo.WorkVO;
 
 public class WageManLogic implements WageManLSer{
-	WageManDFacSer dataFac;
-	WageManDSer wageData;
-	UtilityLogic uti=new UtilityLogic();
-	List<WorkPO> ar;
+	private WageManDFacSer dataFac;
+	private WageManDSer wageData;
+	private UtilityLogic uti=new UtilityLogic();
+	private List<WorkPO> ar;
 	public WageManLogic()
 	{
 		try{

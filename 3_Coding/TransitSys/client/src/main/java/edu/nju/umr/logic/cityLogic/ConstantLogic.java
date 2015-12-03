@@ -16,8 +16,8 @@ import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.enums.Result;
 
 public class ConstantLogic implements ConstantLSer{
-	ConstantDFacSer dataFac;
-	ConstantDSer constantData;
+	private ConstantDFacSer dataFac;
+	private ConstantDSer constantData;
 	public ConstantLogic()
 	{
 		try{

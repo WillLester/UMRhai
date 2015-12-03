@@ -18,8 +18,8 @@ import edu.nju.umr.vo.ResultMessage;
 
 
 public class StockCheckWarnLogic implements StockCheckWarnLSer{
-	StockCheckWarnDFacSer dataFac;
-	StockCheckWarnDSer checkData;
+	private StockCheckWarnDFacSer dataFac;
+	private StockCheckWarnDSer checkData;
 	
 	public StockCheckWarnLogic(){
 		try{

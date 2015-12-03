@@ -19,9 +19,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
 public class IncomeListLogic implements IncomeListLSer{
-	CollectFormDFacSer dataFac;
-	CollectRecordDSer collectData;
-	UtilityLogic uti=new UtilityLogic();
+	private CollectFormDFacSer dataFac;
+	private CollectRecordDSer collectData;
+	private UtilityLogic uti=new UtilityLogic();
 	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

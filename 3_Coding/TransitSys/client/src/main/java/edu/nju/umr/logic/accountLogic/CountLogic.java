@@ -22,10 +22,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public class CountLogic implements CountLSer{
-	CountDFacSer countFac;
-	CountDSer countData;
-	UtilityLogic uti=new UtilityLogic();
-	ArrayList<CountPO> countPO=new ArrayList<CountPO>();
+	private CountDFacSer countFac;
+	private CountDSer countData;
+	private UtilityLogic uti=new UtilityLogic();
+	private ArrayList<CountPO> countPO=new ArrayList<CountPO>();
 //	ArrayList<CountPO> countPOs;
 	public CountLogic() {
 		try{

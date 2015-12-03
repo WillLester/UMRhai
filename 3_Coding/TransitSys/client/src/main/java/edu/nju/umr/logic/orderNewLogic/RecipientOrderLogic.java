@@ -15,9 +15,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
 public class RecipientOrderLogic implements RecipientOrderLSer{
-	RecipientOrderDFacSer dataFac;
-	RecipientOrderDSer recipientData;
-	UtilityLogic uti=new UtilityLogic();
+	private RecipientOrderDFacSer dataFac;
+	private RecipientOrderDSer recipientData;
+	private UtilityLogic uti=new UtilityLogic();
 	public RecipientOrderLogic(){
 		try{
 		dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);

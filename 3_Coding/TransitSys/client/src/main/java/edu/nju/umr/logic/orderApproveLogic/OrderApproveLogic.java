@@ -41,9 +41,9 @@ import edu.nju.umr.vo.order.TransitVO;
 
 
 public class OrderApproveLogic implements OrderApproveLSer{
-	OrderApproveDFacSer dataFac;
-	OrderApproveDSer approveData;
-	ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
+	private OrderApproveDFacSer dataFac;
+	private OrderApproveDSer approveData;
+	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

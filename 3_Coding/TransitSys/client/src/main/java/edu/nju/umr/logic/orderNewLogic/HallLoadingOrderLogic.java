@@ -22,11 +22,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
-	HallLoadingOrderDFacSer dataFac;
-	HallLoadingOrderDSer hallData;
-	CityDSer cityData;
-	ConstantDSer constantData;
-	UtilityLogic uti=new UtilityLogic();
+	private HallLoadingOrderDFacSer dataFac;
+	private HallLoadingOrderDSer hallData;
+	private CityDSer cityData;
+	private ConstantDSer constantData;
+	private UtilityLogic uti=new UtilityLogic();
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);

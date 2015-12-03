@@ -14,9 +14,9 @@ import edu.nju.umr.dataService.dataFactory.UserManDFacSer;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
 
 public class UserManLogic implements UserManLSer{
-	UserManDFacSer dataFac;
-	UserManDSer userData;
-	ArrayList<UserPO> users;
+	private UserManDFacSer dataFac;
+	private UserManDSer userData;
+	private ArrayList<UserPO> users;
 	public UserManLogic(){
 		try{
 		dataFac=(UserManDFacSer)Naming.lookup(Url.URL);

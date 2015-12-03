@@ -15,8 +15,8 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningLogic implements StockWarningLSer{
-	StockWarningDFacSer dataFac;
-	StockWarningDSer checkData;
+	private StockWarningDFacSer dataFac;
+	private StockWarningDSer checkData;
 	public StockWarningLogic(){
 		try{
 			dataFac=(StockWarningDFacSer)Naming.lookup(Url.URL);

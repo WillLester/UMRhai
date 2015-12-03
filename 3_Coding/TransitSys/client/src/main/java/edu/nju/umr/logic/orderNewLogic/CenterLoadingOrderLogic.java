@@ -18,9 +18,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
 public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
-	CenterLoadingOrderDFacSer dataFac;
-	CenterLoadingOrderDSer centerData;
-	UtilityLogic uti=new UtilityLogic();
+	private CenterLoadingOrderDFacSer dataFac;
+	private CenterLoadingOrderDSer centerData;
+	private UtilityLogic uti=new UtilityLogic();
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);

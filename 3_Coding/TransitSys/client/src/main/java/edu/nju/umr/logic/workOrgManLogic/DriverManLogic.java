@@ -17,8 +17,8 @@ import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class DriverManLogic implements DriverManLSer{
-	DriverManDFacSer dataFac;
-	DriverManDSer driverData;
+	private DriverManDFacSer dataFac;
+	private DriverManDSer driverData;
 
 	public DriverManLogic(){
 		try{

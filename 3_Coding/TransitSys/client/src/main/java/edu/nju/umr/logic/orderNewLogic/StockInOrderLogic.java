@@ -20,9 +20,9 @@ import edu.nju.umr.vo.ShelfVO;
 import edu.nju.umr.vo.order.StockInVO;
 
 public class StockInOrderLogic implements StockInOrderLSer{
-	StockInOrderDFacSer dataFac;
-	StockInOrderDSer stockinData;
-	UtilityLogic uti=new UtilityLogic();
+	private StockInOrderDFacSer dataFac;
+	private StockInOrderDSer stockinData;
+	private UtilityLogic uti=new UtilityLogic();
 
 	public StockInOrderLogic(){
 		try{

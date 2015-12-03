@@ -20,10 +20,10 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 
 public class WorkManLogic implements WorkManLSer{
-	WorkManDFacSer dataFac;
-	WorkManDSer workData;
-	UtilityLogic uti=new UtilityLogic();
-	ArrayList<WorkPO> ar;
+	private WorkManDFacSer dataFac;
+	private WorkManDSer workData;
+	private UtilityLogic uti=new UtilityLogic();
+	private ArrayList<WorkPO> ar;
 	public WorkManLogic()
 	{
 		try{

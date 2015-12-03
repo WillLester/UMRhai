@@ -15,9 +15,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
 
 public class TransitOrderLogic implements TransitOrderLSer{
-	TransitOrderDFacSer dataFac;
-	TransitOrderDSer transitData;
-	UtilityLogic uti=new UtilityLogic();
+	private TransitOrderDFacSer dataFac;
+	private TransitOrderDSer transitData;
+	private UtilityLogic uti=new UtilityLogic();
 	
 	public TransitOrderLogic(){
 		try{

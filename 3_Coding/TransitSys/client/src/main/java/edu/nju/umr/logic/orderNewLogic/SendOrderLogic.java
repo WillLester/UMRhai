@@ -16,9 +16,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
 
 public class SendOrderLogic implements SendOrderLSer{
-	SendOrderDFacSer dataFac;
-	SendOrderDSer sendData;
-	UtilityLogic uti=new UtilityLogic();
+	private SendOrderDFacSer dataFac;
+	private SendOrderDSer sendData;
+	private UtilityLogic uti=new UtilityLogic();
 	public SendOrderLogic(){
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);

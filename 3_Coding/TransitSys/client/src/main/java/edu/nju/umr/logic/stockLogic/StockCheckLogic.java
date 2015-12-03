@@ -20,8 +20,8 @@ import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockCheckLogic implements StockCheckLSer{
-	StockCheckDFacSer dataFac;
-	StockCheckDSer checkData;
+	private StockCheckDFacSer dataFac;
+	private StockCheckDSer checkData;
 	
 	public StockCheckLogic(){
 		try {

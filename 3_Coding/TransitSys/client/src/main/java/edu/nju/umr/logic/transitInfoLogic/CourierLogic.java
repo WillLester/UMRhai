@@ -15,8 +15,8 @@ import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class CourierLogic implements CourierLSer{
-	CourierDFacSer dataFac;
-	CourierDSer CourierData;
+	private CourierDFacSer dataFac;
+	private CourierDSer CourierData;
 
 	public CourierLogic(){
 		try{

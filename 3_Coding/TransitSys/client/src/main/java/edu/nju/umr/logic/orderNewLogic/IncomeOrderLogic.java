@@ -17,9 +17,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
 public class IncomeOrderLogic implements IncomeOrderLSer{
-	IncomeOrderDFacSer dataFac;
-	IncomeOrderDSer incomeData;
-	UtilityLogic uti=new UtilityLogic();
+	private IncomeOrderDFacSer dataFac;
+	private IncomeOrderDSer incomeData;
+	private UtilityLogic uti=new UtilityLogic();
 	public IncomeOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

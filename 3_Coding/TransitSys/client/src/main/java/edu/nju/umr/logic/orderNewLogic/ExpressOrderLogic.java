@@ -14,8 +14,8 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.order.ExpressVO;
 
 public class ExpressOrderLogic implements ExpressOrderLSer{
-	ExpressOrderDFacSer dataFac;
-	ExpressOrderDSer expressData;
+	private ExpressOrderDFacSer dataFac;
+	private ExpressOrderDSer expressData;
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

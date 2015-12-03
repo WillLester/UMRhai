@@ -14,8 +14,8 @@ import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 
 public class CustomerLogic implements CustomerLogicSer{
-	CustomerDFacSer dataFac;
-	CustomerDSer transitData;
+	private CustomerDFacSer dataFac;
+	private CustomerDSer transitData;
 	
 	public CustomerLogic(){
 		try{

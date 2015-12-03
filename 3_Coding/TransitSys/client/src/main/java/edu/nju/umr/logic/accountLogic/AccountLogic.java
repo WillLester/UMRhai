@@ -17,9 +17,9 @@ import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class AccountLogic implements AccountLSer{
-	AccountDFacSer dataFac;
-	AccountDSer accountData;
-	ArrayList<AccountPO> accountPOs;//从数据层拿到的po的列表排序要与界面层显示的vo列表排序一致
+	private AccountDFacSer dataFac;
+	private AccountDSer accountData;
+	private ArrayList<AccountPO> accountPOs;//从数据层拿到的po的列表排序要与界面层显示的vo列表排序一致
 	public AccountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

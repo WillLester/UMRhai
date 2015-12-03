@@ -13,8 +13,8 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public class LoginLogic implements LoginLSer{
-	LoginDFacSer dataFac;
-	LoginDSer loginData;
+	private LoginDFacSer dataFac;
+	private LoginDSer loginData;
 	public LoginLogic() throws Exception{
 		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
 		loginData=dataFac.getLogin();

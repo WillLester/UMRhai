@@ -19,10 +19,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockCheckNowLogic implements StockCheckNowLSer{
-	StockCheckNowDFacSer dataFac;
-	StockCheckNowDSer checkData;
-	UtilityLogic uti=new UtilityLogic();
-	StockPO stock=null;
+	private StockCheckNowDFacSer dataFac;
+	private StockCheckNowDSer checkData;
+	private UtilityLogic uti=new UtilityLogic();
+	private StockPO stock=null;
 	
 	public StockCheckNowLogic(){
 		try

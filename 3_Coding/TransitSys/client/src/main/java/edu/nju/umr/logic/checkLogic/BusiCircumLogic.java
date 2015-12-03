@@ -19,10 +19,10 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.BusiCircumVO;
 
 public class BusiCircumLogic implements BusiCircumLSer{
-	StatementSheetDFacSer dataFac;
-	BusiCircumDSer statementData;
-	UtilityLogic uti=new UtilityLogic();
-	ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
+	private StatementSheetDFacSer dataFac;
+	private BusiCircumDSer statementData;
+	private UtilityLogic uti=new UtilityLogic();
+	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
 //	ArrayList<IncomePO> incomePOs=null;
 //	ArrayList<PaymentPO> paymentPOs=null;
 	

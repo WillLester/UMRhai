@@ -17,9 +17,9 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
 public class VanManLogic implements VanManLSer{
-	VanManDFacSer dataFac;
-	VanManDSer vanData;
-	ArrayList<VanPO> ar;
+	private VanManDFacSer dataFac;
+	private VanManDSer vanData;
+	private ArrayList<VanPO> ar;
 	public VanManLogic(){
 		try{
 			dataFac= (VanManDFacSer)Naming.lookup(Url.URL);

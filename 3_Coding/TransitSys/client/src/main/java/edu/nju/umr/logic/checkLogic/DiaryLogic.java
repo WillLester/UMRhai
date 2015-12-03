@@ -18,8 +18,8 @@ import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class DiaryLogic implements DiaryLSer{
-	DiaryDFacSer dataFac;
-	DiaryDSer diaryData;
+	private DiaryDFacSer dataFac;
+	private DiaryDSer diaryData;
 	public DiaryLogic() {
 		// TODO 自动生成的构造函数存根
 		try{

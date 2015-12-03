@@ -16,8 +16,8 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 
 public class StockDivideLogic implements StockDivideLSer{
-	StockDivideDFacSer dataFac;
-	StockDivideDSer checkData;
+	private StockDivideDFacSer dataFac;
+	private StockDivideDSer checkData;
 	
 	public StockDivideLogic(){
 		try{

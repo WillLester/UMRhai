@@ -10,8 +10,8 @@ import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.enums.Result;
 
 public class UpdateTransitInfoLogic{
-	UpdateTransitInfoDFacSer dataFac;
-	static UpdateTransitInfoDSer tInfodata;
+	private UpdateTransitInfoDFacSer dataFac;
+	private static UpdateTransitInfoDSer tInfodata;
 	public UpdateTransitInfoLogic() {
 		// TODO 自动生成的构造函数存根
 		try {
