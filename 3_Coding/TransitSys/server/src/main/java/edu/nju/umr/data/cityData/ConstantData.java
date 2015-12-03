@@ -22,7 +22,7 @@ public class ConstantData  extends UnicastRemoteObject implements ConstantDSer{
 		return SerialHelper.writeToFile(constant, "data/constant/constant.ser");
 	}
 	public ConstantPO getConstant()throws RemoteException{
-		return new ConstantPO(23333333,2,3,4,5,6,7,8,9);
+		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
 	}
 
 }
