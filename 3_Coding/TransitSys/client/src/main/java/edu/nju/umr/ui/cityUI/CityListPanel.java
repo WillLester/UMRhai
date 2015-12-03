@@ -108,13 +108,9 @@ public class CityListPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				String newInfo[] = new String[3];
-				for(int i = 0;i < 3;i++){
-					newInfo[i] = "";
-				}
-				model1.addRow(newInfo);
+				model1.setRowCount(model1.getRowCount()+1);
 				cityTable1.getSelectionModel().setSelectionInterval(model1.getRowCount()-1, model1.getRowCount()-1);
-				model2.addRow(newInfo);
+				model2.setRowCount(model2.getRowCount()+1);
 				cityTable2.getSelectionModel().setSelectionInterval(model2.getRowCount()-1, model2.getRowCount()-1);
 			}
 		});
@@ -152,6 +148,8 @@ public class CityListPanel extends JPanel{
 						Result result = logicSer.reviseCities(new CitiesVO(city1, city2, Double.parseDouble(distanceField.getText())));
 						if(result.equals(Result.SUCCESS)){
 							initialize();
+							cityTable1.clearSelection();
+							cityTable2.clearSelection();
 						} else {
 							@SuppressWarnings("unused")
 							HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
@@ -171,6 +169,8 @@ public class CityListPanel extends JPanel{
 						}
 						if(result.equals(Result.SUCCESS)){
 							initialize();
+							cityTable1.clearSelection();
+							cityTable2.clearSelection();
 						} else {
 							@SuppressWarnings("unused")
 							HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
@@ -265,7 +265,7 @@ public class CityListPanel extends JPanel{
 		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if((cityTable1.getSelectedRow() == -1)||cityTable1.getSelectedRow() == cityTable2.getSelectedRow()){
+					if(((cityTable1.getSelectedRow() == -1)||cityTable1.getSelectedRow() == cityTable2.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
@@ -276,7 +276,7 @@ public class CityListPanel extends JPanel{
 						nameField.setText(citySelected.getName());
 						idField.setText(citySelected.getId());
 						provinceCombo.setSelectedItem(citySelected.getProvince());
-					} else {
+					} else if((cityTable1.getSelectedRow() >= 0)&&(cityTable2.getSelectedRow() >= 0)){
 						addButton.setEnabled(false);
 						deleteButton.setEnabled(false);
 						nameField.setEnabled(false);
@@ -301,7 +301,7 @@ public class CityListPanel extends JPanel{
 	@SuppressWarnings("unchecked")
 	private void initialize(){
 		ResultMessage cityResult = logicSer.cityList();
-		if(cityResult.equals(Result.SUCCESS)){
+		if(cityResult.getReInfo().equals(Result.SUCCESS)){
 			cityList = (ArrayList<CityVO>) cityResult.getMessage();
 			displayTable();
 		} else {
@@ -309,7 +309,7 @@ public class CityListPanel extends JPanel{
 			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		}
 		ResultMessage citiesResult = logicSer.citiesList();
-		if(citiesResult.equals(Result.SUCCESS)){
+		if(citiesResult.getReInfo().equals(Result.SUCCESS)){
 			citiesList = (ArrayList<CitiesVO>) citiesResult.getMessage();
 		} else {
 			@SuppressWarnings("unused")

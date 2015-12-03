@@ -79,19 +79,6 @@ public class CityLogic implements CityLSer{
 	}
 
 	public ResultMessage cityList() {
-		
-//		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
-//		try {
-//			ArrayList<CityPO> cities = cityData.getCities();
-//			for(CityPO city:cities){
-//				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
-//				cityList.add(vo);
-//			}
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, cityList);
 		return utility.getCities();
 	}
 	public Result deleteCity(String cityName) {
