@@ -47,6 +47,10 @@ public class TransitPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	public TransitPanel(JFrame fr,TransitVO vo)
+	{
+		this(fr,"",vo.getOpName());
+	}
 	public TransitPanel(JFrame fr,String org,String name) {
 		setLayout(null);
 		frame = fr;
