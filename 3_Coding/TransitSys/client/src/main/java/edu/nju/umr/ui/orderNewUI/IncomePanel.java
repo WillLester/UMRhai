@@ -35,14 +35,16 @@ public class IncomePanel extends JPanel {
 	private ExpressListPanel expressList;
 	private String orgId;
 	private String name;
+	private String userId;
 	/**  
 	 * Create the panel.
 	 */
-	public IncomePanel(JFrame fr,String orgId,String name) {
+	public IncomePanel(JFrame fr,String orgId,String name,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.orgId = orgId;
 		this.name = name;
+		this.userId = userId;
 		logicSer = new IncomeOrderLogic();
 		
 		JLabel titleLabel = new JLabel("收款单");
@@ -138,7 +140,7 @@ public class IncomePanel extends JPanel {
 		return true;
 	}
 	private IncomeVO createVO(){
-		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), expressList.getExpresses(), name, orgId);
+		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), expressList.getExpresses(), name, orgId,userId);
 		return vo;
 	}
 }

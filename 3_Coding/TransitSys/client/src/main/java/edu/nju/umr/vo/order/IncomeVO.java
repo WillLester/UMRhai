@@ -8,11 +8,10 @@ public class IncomeVO {
 	private String courier;
 	private double cost;
 	private ArrayList<String> express;
-//	private String id;
-//	private Calendar opTime;
 	private String opName;
 	private String orgId;
-	public IncomeVO(Calendar date,String courier,double cost,ArrayList<String> express,String opName,String orgId) {
+	private String userId;
+	public IncomeVO(Calendar date,String courier,double cost,ArrayList<String> express,String opName,String orgId,String userId) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
 		this.courier = courier;
@@ -21,6 +20,7 @@ public class IncomeVO {
 //		this.id = id;
 		this.opName = opName;
 		this.orgId = orgId;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -43,5 +43,8 @@ public class IncomeVO {
 	
 	public String getOrgId() {
 		return orgId;
+	}
+	public String getUserId() {
+		return userId;
 	}
 }

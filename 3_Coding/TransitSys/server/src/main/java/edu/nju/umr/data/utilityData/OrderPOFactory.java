@@ -125,7 +125,8 @@ public class OrderPOFactory {
 				date.setTime(result.getDate(4));
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(5));
-				return new IncomePO(date, result.getString(2), result.getDouble(3), express, result.getInt(1), opTime, result.getString(7), result.getString(8));
+				return new IncomePO(date, result.getString(2), result.getDouble(3), express, 
+						result.getInt(1), opTime, result.getString(7), result.getString(8),result.getString(9));
 			} else {
 				return null;
 			}
