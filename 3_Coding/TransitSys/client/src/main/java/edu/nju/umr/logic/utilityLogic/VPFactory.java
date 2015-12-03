@@ -124,21 +124,21 @@ public class VPFactory {
 	
 	//付款单
 	public static PaymentVO toPaymentVO(PaymentPO po){
-		PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks(), po.getOpName());
+		PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks(), po.getOpName(),po.getUserId());
 		return vo;
 	}
 	public static PaymentPO toPaymentPO(PaymentVO vo,int id){
-		PaymentPO po=new PaymentPO(id, vo.getDate(), vo.getPayer(), vo.getAccount(), vo.getKind(), vo.getAmount(),vo.getRemarks(),Calendar.getInstance(),vo.getOpName());
+		PaymentPO po=new PaymentPO(id, vo.getDate(), vo.getPayer(), vo.getAccount(), vo.getKind(), vo.getAmount(),vo.getRemarks(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	
 	//到达单
 	public static RecipientVO toRecipientVO(RecipientPO po){
-		RecipientVO vo=new RecipientVO(po.getDate(), po.getTransitId(), po.getStartPlace(),po.getState(), po.getOpName());
+		RecipientVO vo=new RecipientVO(po.getDate(), po.getTransitId(), po.getStartPlace(),po.getState(), po.getOpName(),po.getUserId());
 		return vo;
 	}
 	public static RecipientPO toRecipientPO(RecipientVO vo,String id){
-		RecipientPO po=new RecipientPO(vo.getDate(),id,vo.getTransitId(),vo.getStartPlace(),vo.getState(),Calendar.getInstance(),vo.getOpName());
+		RecipientPO po=new RecipientPO(vo.getDate(),id,vo.getTransitId(),vo.getStartPlace(),vo.getState(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	
