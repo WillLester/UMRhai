@@ -24,6 +24,7 @@ public class ArriveVO {
 		this.opName = opName;
 		this.userId = userId;
 	}
+
 	public Calendar getDate() {
 		return date;
 	}
