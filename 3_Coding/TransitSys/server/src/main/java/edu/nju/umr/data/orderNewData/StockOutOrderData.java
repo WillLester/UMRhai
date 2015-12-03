@@ -27,14 +27,4 @@ public class StockOutOrderData extends UnicastRemoteObject implements StockOutOr
 		return mysqlSer.addInfo(order);
 	}
 
-//	public ArrayList<String> getCities() throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		String city1 = "香港";
-//		String city2 = "北京";
-//		ArrayList<String> cities = new ArrayList<String>();
-//		cities.add(city1);
-//		cities.add(city2);
-//		return cities;
-//	}
-
 }

@@ -2,6 +2,7 @@ package edu.nju.umr.data.utilityData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -16,6 +17,7 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
@@ -43,17 +45,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		// TODO 自动生成的方法存根
 		return (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
 	}
-	@SuppressWarnings("unchecked")
 	public ArrayList<OrgPO> getHall() throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> orgList = (ArrayList<OrgPO>) mysqlSer.checkAll(POKind.ORG);
-		ArrayList<OrgPO> hallList = new ArrayList<OrgPO>();
-		for(OrgPO org:orgList){
-			if(org.getKind().equals(Organization.HALL)){
-				hallList.add(org);
-			}
-		}
-		return hallList;
+		ResultSet result = mysqlSer.checkInfo(new OrgPO(null, null, Organization.HALL, null, null, null));
+		return ArrayListFactory.produceOrgList(result);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -100,13 +95,15 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	@Override
 	public ArrayList<OrgPO> getCenters() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		ResultSet result = mysqlSer.checkInfo(new OrgPO(null, null, Organization.CENTER, null, null, null));
+		return ArrayListFactory.produceOrgList(result);
 	}
 
 	@Override
 	public ArrayList<WorkPO> getCouriers() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		ResultSet result = mysqlSer.checkInfo(new WorkPO(null, null, null, null, 0, Jurisdiction.COURIER, null, 0, 0));
+		return ArrayListFactory.produceWorkList(result);
 	}
 
 }
