@@ -58,11 +58,11 @@ import edu.nju.umr.vo.order.TransitVO;
 public class VPFactory {
 	//到达单
      public static ArriveVO toArriveVO(ArrivePO po){
-    	 ArriveVO vo=new ArriveVO(po.getCenterId(), po.getDate(), po.getStartPlace(), po.getState(), po.getOpName(), po.getId());
+    	 ArriveVO vo=new ArriveVO(po.getCenterId(), po.getDate(), po.getStartPlace(), po.getState(), po.getOpName(), po.getId(),po.getUserId());
     	 return vo;
      }
      public static ArrivePO toArrivePO(ArriveVO vo,String id){
-    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), id, vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName());
+    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), id, vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName(),vo.getUserId());
     	 return po;
      }
      

@@ -259,7 +259,7 @@ public class MysqlImpl implements MysqlService{
 		switch(kind){
 		case ARRIVE:
 			for(String i:id){
-				order = new ArrivePO(null, null, i, null, null, null, null);
+				order = new ArrivePO(null, null, i, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

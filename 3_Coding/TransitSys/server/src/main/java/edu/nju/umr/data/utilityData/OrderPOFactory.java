@@ -32,7 +32,8 @@ public class OrderPOFactory {
 				GoodState[] states = GoodState.values();
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(6));
-				return new ArrivePO(result.getString(2), date, result.getString(1), result.getString(3), states[result.getInt(4)], opTime, result.getString(7));
+				return new ArrivePO(result.getString(2), date, result.getString(1), result.getString(3), 
+						states[result.getInt(4)], opTime, result.getString(7),result.getString(8));
 			} else {
 				return null;
 			}

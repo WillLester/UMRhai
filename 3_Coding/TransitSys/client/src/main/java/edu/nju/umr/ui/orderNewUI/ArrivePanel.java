@@ -35,17 +35,19 @@ public class ArrivePanel extends JPanel {
 	private DatePanel datePanel;
 	private String name;
 	private String orgId;
+	private String user;
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
 	/**
 	 * Create the panel.
 	 */
-	public ArrivePanel(JFrame fr,String name,String orgId) {
+	public ArrivePanel(JFrame fr,String name,String orgId,String user) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.orgId = orgId;
+		this.user = user;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -193,7 +195,7 @@ public class ArrivePanel extends JPanel {
 		}
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
-		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),(String)startCombo.getSelectedItem(),state,name,id));
+		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,user));
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);

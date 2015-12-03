@@ -11,14 +11,18 @@ public class ArriveVO {
 	private String startPlace;
 	private GoodState state;
 	private String opName;
-	public ArriveVO(String centerId,Calendar date,String startPlace,GoodState state, String opName, String id) {
-		// TODO 自动生成的构造函数存根
+	private String userId;
+	
+	public ArriveVO(String centerId, Calendar date, String id,
+			String startPlace, GoodState state, String opName, String userId) {
+		super();
 		this.centerId = centerId;
 		this.date = date;
 		this.id = id;
 		this.startPlace = startPlace;
 		this.state = state;
-		this.opName=opName;
+		this.opName = opName;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -37,6 +41,9 @@ public class ArriveVO {
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public String getUserId() {
+		return userId;
 	}
 	
 }

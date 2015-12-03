@@ -21,8 +21,11 @@ public class ArrivePO extends PO implements Serializable,KindGetter,OrderOper{
 	private GoodState state;
 	private Calendar opTime;
 	private String opName;
+	private String userId;
+	
 	public ArrivePO(String centerId, Calendar date, String id,
-			String startPlace, GoodState state, Calendar opTime, String opName) {
+			String startPlace, GoodState state, Calendar opTime, String opName,
+			String userId) {
 		super();
 		this.centerId = centerId;
 		this.date = date;
@@ -31,6 +34,7 @@ public class ArrivePO extends PO implements Serializable,KindGetter,OrderOper{
 		this.state = state;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -53,12 +57,16 @@ public class ArrivePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getOpName() {
 		return opName;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into arriveorderwaiting values"+"("+"'"+id+"','"+centerId+"','"+startPlace+"',"+state.ordinal()+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
+		case INSERT:command="insert into arriveorderwaiting values"+"("+"'"+id+"','"+centerId+"','"+startPlace+"',"+state.ordinal()+",'"+DateFormat.DATE.format(date.getTime())+"','"
+		+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
