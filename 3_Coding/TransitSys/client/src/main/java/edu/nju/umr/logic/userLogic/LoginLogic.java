@@ -24,11 +24,14 @@ public class LoginLogic implements LoginLSer{
 		// TODO 自动生成的方法存根
 		UserPO user;
 		Result isSuc=Result.DATA_NOT_FOUND;
+		Object message="username wrong or password wrong!";
 		try {
 			user = loginData.findUser(id, password);
-			if(user!=null)
+			if(user!=null){
 				isSuc=Result.SUCCESS;
-			return new ResultMessage(isSuc,VPFactory.toUserVO(user));
+				message=VPFactory.toUserVO(user);
+			}
+			return new ResultMessage(isSuc,message);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
