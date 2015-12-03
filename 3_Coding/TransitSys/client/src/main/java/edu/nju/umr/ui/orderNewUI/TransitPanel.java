@@ -68,6 +68,7 @@ public class TransitPanel extends JPanel {
 		idField = new JTextField();
 		idField.setFont(new Font("宋体", Font.PLAIN, 20));
 		idField.setBounds(485, 87, 165, 25);
+		idField.setEnabled(false);
 		add(idField);
 		idField.setColumns(10);
 		
@@ -251,10 +252,10 @@ public class TransitPanel extends JPanel {
 	}
 	private TransitVO createVO(){
 		if(kindCombo.getSelectedIndex() == 0){
-			TransitVO vo = new TransitVO(planeIdField.getText(), (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()));
+			TransitVO vo = new TransitVO(idField.getText(),planeIdField.getText(), (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar());
 			return vo;
 		} else {
-			TransitVO vo = new TransitVO(null, (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()));
+			TransitVO vo = new TransitVO(idField.getText(),null, (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar());
 			return vo;
 		}
 	}

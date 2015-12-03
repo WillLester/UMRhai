@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TransitVO {
-//	private String id;
+	private String id;
 	private String planeId;
 	private String startPlace;
 	private String arrivePlace;
@@ -15,10 +15,12 @@ public class TransitVO {
 	private double cost;
 	private Calendar date;
 	
-	public TransitVO(String planeId, String startPlace, String arrivePlace,
-			String containerId, String supervision, ArrayList<String> express,Calendar date,
-			String opName, double cost) {
+
+	public TransitVO(String id, String planeId, String startPlace,
+			String arrivePlace, String containerId, String supervision,
+			ArrayList<String> express, String opName, double cost, Calendar date) {
 		super();
+		this.id = id;
 		this.planeId = planeId;
 		this.startPlace = startPlace;
 		this.arrivePlace = arrivePlace;
@@ -27,7 +29,11 @@ public class TransitVO {
 		this.express = express;
 		this.opName = opName;
 		this.cost = cost;
-		this.date=date;
+		this.date = date;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public double getCost() {
