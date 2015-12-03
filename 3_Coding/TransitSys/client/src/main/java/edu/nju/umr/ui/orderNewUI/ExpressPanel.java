@@ -94,12 +94,13 @@ public class ExpressPanel extends JPanel {
 	private String name;
 	protected JLabel arriveLabel;
 	protected JTextField arriveField;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
 	public ExpressPanel(JFrame fr,ExpressVO vo)
 	{
-		this(fr,vo.getOpName());
+		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			co.setEnabled(false);
@@ -128,11 +129,12 @@ public class ExpressPanel extends JPanel {
 		
 		
 	}
-	public ExpressPanel(JFrame fr,String name) {
+	public ExpressPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
 		this.name = name;
+		this.userId = userId;
 		
 		titleLabel = new JLabel("订单创建");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -571,7 +573,7 @@ public class ExpressPanel extends JPanel {
 		ExpressVO vo = new ExpressVO(barcodeField.getText(), sender.getText(), senderLoc.getLoc(), receiver.getText(), receiverLoc.getLoc(), senderMobileField.getText(), receiverMobileField.getText(), senderPhoneField.getText(), receiverPhoneField.getText(), 
 				senderCompanyField.getText(), receiverCompanyField.getText(), (Integer)numSpinner.getValue(), nameField.getText(), Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), 
 				Double.parseDouble(weightField.getText()), Double.parseDouble(volumnField.getText()), arrive, datePanel.getCalendar(), EnumTransFactory.getExpress((String)expressKindCombo.getSelectedItem()), Double.parseDouble(costField.getText()), name,EnumTransFactory.getParse((String)pakKindCombo.getSelectedItem()),
-				senderLoc.getProvince(),senderLoc.getCity(),receiverLoc.getProvince(),receiverLoc.getCity());
+				senderLoc.getProvince(),senderLoc.getCity(),receiverLoc.getProvince(),receiverLoc.getCity(),userId);
 		return vo;
 		
 	}

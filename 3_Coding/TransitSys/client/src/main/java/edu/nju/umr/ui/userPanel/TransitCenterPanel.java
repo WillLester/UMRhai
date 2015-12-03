@@ -101,7 +101,7 @@ public class TransitCenterPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成装车单");
-				fr.setContentPane(new CenterLoadingPanel(fr,user.getName()));
+				fr.setContentPane(new CenterLoadingPanel(fr,user.getName(),user.getId()));
 			}
 		});
 		
