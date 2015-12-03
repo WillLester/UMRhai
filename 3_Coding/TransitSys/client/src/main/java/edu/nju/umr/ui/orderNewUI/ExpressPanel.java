@@ -126,6 +126,9 @@ public class ExpressPanel extends JPanel {
 		datePanel.setDate(vo.getCreateDate());
 		pakKindCombo.setSelectedItem(EnumTransFactory.checkParse(vo.getParse()));
 		expressKindCombo.setSelectedItem(EnumTransFactory.checkExpress(vo.getKind()));
+		senderLoc.setLoc(vo.getSendLoc());
+		receiverLoc.setLoc(vo.getReceiveLoc());
+		
 		
 		
 	}

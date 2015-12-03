@@ -305,7 +305,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case PAYMENT:
 			for(String i:id){
-				order = new PaymentPO(Integer.parseInt(i), null, null, null, null, 0, null, null, null);
+				order = new PaymentPO(Integer.parseInt(i), null, null, null, null, 0, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -314,7 +314,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case RECIPIENT:
 			for(String i:id){
-				order = new RecipientPO(null, i, null, null, null, null, null);
+				order = new RecipientPO(null, i, null, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -323,7 +323,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case SEND:
 			for(String i:id){
-				order = new SendPO(null, null, i, null, null, null);
+				order = new SendPO(null, null, i, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

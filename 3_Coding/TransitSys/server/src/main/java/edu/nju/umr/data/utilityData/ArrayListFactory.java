@@ -57,7 +57,9 @@ public class ArrayListFactory {
 				Pay pays[] = Pay.values();
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(8));
-				PaymentPO payment = new PaymentPO(result.getInt(1), date,result.getString(2) , result.getString(3), pays[result.getInt(4)], result.getDouble(5), result.getString(6), opTime,result.getString(9));
+				PaymentPO payment = new PaymentPO(result.getInt(1), date,result.getString(2) , result.getString(3), 
+						pays[result.getInt(4)], result.getDouble(5), result.getString(6), opTime,
+						result.getString(9),result.getString(10));
 				paymentList.add(payment);
 			}
 		} catch (SQLException e) {
