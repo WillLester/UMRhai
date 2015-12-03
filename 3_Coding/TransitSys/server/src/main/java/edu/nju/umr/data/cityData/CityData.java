@@ -52,4 +52,10 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		return (ArrayList<CitiesPO>) mysqlSer.checkAll(POKind.CITIES);
 	}
 
+	@Override
+	public Result addCities(CitiesPO cities) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return mysqlSer.addInfo(cities);
+	}
+
 }
