@@ -42,7 +42,8 @@ public class CityLogic implements CityLSer{
 		// TODO 自动生成的方法存根
 		ArrayList<CityPO> citypo=new ArrayList<CityPO>();
 		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();
-		Result result = Result.SUCCESS;
+		Result resultCity = Result.SUCCESS;
+		Result resultCities=Result.SUCCESS;
 		try {
 			citypo=utility.cities();
 		} catch (RemoteException e) {
@@ -50,7 +51,7 @@ public class CityLogic implements CityLSer{
 			return Result.NET_INTERRUPT;
 		}
 		try {
-			result = cityData.addCity(VPFactory.toCityPO(city, 0));
+			resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -59,12 +60,19 @@ public class CityLogic implements CityLSer{
 		if(citypo.size()>0){
 			for(CityPO po:citypo){
 				CitiesPO cities=new CitiesPO(city.getName(),po.getName(),0);
-			    
+			    try {
+					resultCities=cityData.addCities(cities);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+					return Result.NET_INTERRUPT;
+				}
 			}
 		}
-		
-		
-		return result;
+		if(resultCity==Result.SUCCESS&&resultCities==Result.SUCCESS){
+		    return Result.SUCCESS;
+		}else{
+			return Result.DATABASE_ERROR;
+		}
 	}
 	
     //制定距离和价格常量
