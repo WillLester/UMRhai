@@ -350,7 +350,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case TRANSIT:
 			for(String i:id){
-				order = new TransitPO(i, null, null, null, null, null, null, null, null, 0);
+				order = new TransitPO(i, null, null, null, null, null, null, null, null, null, 0);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

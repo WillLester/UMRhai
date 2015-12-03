@@ -21,13 +21,15 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String containerId;
 	private String supervision;
 	private ArrayList<String> express;
+	private Calendar date;
 	private Calendar opTime;
 	private String opName;
 	private double cost;
 	
 	public TransitPO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
-			ArrayList<String> express, Calendar opTime, String opName,double cost) {
+			ArrayList<String> express, Calendar date, Calendar opTime,
+			String opName, double cost) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -36,9 +38,10 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.containerId = containerId;
 		this.supervision = supervision;
 		this.express = express;
+		this.date = date;
 		this.opTime = opTime;
 		this.opName = opName;
-		this.cost=cost;
+		this.cost = cost;
 	}
 	public String getId() {
 		return id;
@@ -70,12 +73,20 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 	public double getCost(){
 		return cost;
 	}
+	public Calendar getDate() {
+		return date;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
+		String text = "";
+		for(String ex:express){
+			text = text + ex + " ";
+		}
 		switch(op){
-		case INSERT:command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"+arrivePlace+"','"+containerId+"','"+supervision+"'"+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
+		case INSERT:command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"
+		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date)+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
