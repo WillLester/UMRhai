@@ -39,7 +39,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 
 	public Result update(boolean isPassed,ArrayList<String> id,Order kind) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return Result.SUCCESS;
+		return mysqlSer.updateOrder(isPassed, id, kind);
 	}
 
 	public Object getOrder(String id,Order kind) throws RemoteException {

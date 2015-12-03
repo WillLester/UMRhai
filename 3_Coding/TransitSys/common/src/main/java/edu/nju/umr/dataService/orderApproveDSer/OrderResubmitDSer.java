@@ -4,8 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.umr.po.order.KindGetter;
+import edu.nju.umr.po.order.OrderOper;
 
 public interface OrderResubmitDSer extends Remote{
-	public ArrayList<KindGetter> getOrders(String id) throws RemoteException;
+	public ArrayList<OrderOper> getOrders(String id) throws RemoteException;
 }

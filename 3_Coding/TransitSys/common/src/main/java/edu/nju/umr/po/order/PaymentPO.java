@@ -9,7 +9,7 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
 
-public class PaymentPO extends PO implements Serializable,KindGetter{
+public class PaymentPO extends PO implements Serializable,OrderOper{
 	/**
 	 * 
 	 */

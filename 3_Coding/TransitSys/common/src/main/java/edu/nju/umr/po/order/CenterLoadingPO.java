@@ -9,7 +9,7 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 
-public class CenterLoadingPO extends PO implements Serializable,KindGetter{
+public class CenterLoadingPO extends PO implements Serializable,OrderOper{
 	/**
 	 * 
 	 */

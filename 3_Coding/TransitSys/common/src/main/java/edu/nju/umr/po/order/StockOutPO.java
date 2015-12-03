@@ -9,7 +9,7 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Transit;
 
-public class StockOutPO extends PO implements Serializable,KindGetter{
+public class StockOutPO extends PO implements Serializable,OrderOper{
 	/**
 	 * 
 	 */
