@@ -34,9 +34,12 @@ public class HintFrame extends JDialog{
 		case OUT_OF_STOCK_TRAIN:txt="火车区库存剩余空间不足";break;
 		case OUT_OF_STOCK_VAN:txt="汽运库存剩余空间不足件";break;
 		case PASSWORD_WRONG:txt="密码错误";break;
-		case PO_NOT_FOUND:txt="未找到对应文件";break;
+		case PO_NOT_FOUND:txt="未知类型";break;
+		case PO_KIND_ERROR:txt = "类型错误";break;
 		case SERIAL_FAIL:txt="序列化失败";break;
 		case DATABASE_ERROR:txt = "数据库发生错误";break;
+		case DATA_NOT_FOUND:txt = "未找到数据";break;
+		case ID_IS_USED:txt = "用户名重复";break;
 		default:
 			break;
 		}

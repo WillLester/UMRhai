@@ -303,11 +303,11 @@ public class CityListPanel extends JPanel{
 		ResultMessage cityResult = logicSer.cityList();
 		if(cityResult.equals(Result.SUCCESS)){
 			cityList = (ArrayList<CityVO>) cityResult.getMessage();
+			displayTable();
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		}
-		displayTable();
 		ResultMessage citiesResult = logicSer.citiesList();
 		if(citiesResult.equals(Result.SUCCESS)){
 			citiesList = (ArrayList<CitiesVO>) citiesResult.getMessage();

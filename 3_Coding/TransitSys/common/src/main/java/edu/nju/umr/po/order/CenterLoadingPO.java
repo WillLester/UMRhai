@@ -24,11 +24,10 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	private Calendar opTime;
 	private String opName;
 	private double cost;
-	private String transitId;
 	
 	public CenterLoadingPO(Calendar date, String id, String target,
 			String vanId, String supervision, String escort,
-			ArrayList<String> express, Calendar opTime, String opName,double cost,String transitId) {
+			ArrayList<String> express, Calendar opTime, String opName,double cost) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -40,7 +39,6 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		this.opTime = opTime;
 		this.opName = opName;
 		this.cost=cost;
-		this.transitId=transitId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -71,9 +69,6 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	}
 	public double getCost(){
 		return cost;
-	}
-	public String getTransitId(){
-		return transitId;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {
