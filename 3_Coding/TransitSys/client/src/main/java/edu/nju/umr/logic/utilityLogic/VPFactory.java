@@ -144,11 +144,11 @@ public class VPFactory {
 	
 	//派件单
 	public static SendVO toSendVO(SendPO po){
-		SendVO vo=new SendVO(po.getDate(), po.getExpressId(), po.getCourier(), po.getOpName());
+		SendVO vo=new SendVO(po.getDate(), po.getExpressId(), po.getCourier(), po.getOpName(),po.getUserId());
 		return vo;
 	}
 	public static SendPO toSendPO(SendVO vo,String id){
-		SendPO po=new SendPO(vo.getDate(),vo.getExpressId(),id,vo.getCourier(),Calendar.getInstance(),vo.getOpName());
+		SendPO po=new SendPO(vo.getDate(),vo.getExpressId(),id,vo.getCourier(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	
@@ -164,21 +164,21 @@ public class VPFactory {
 	
 	//出库单
 	public static StockOutVO toStockOutVO(StockOutPO po){
-		StockOutVO vo=new StockOutVO(po.getExpressId(), po.getDate(), po.getKind(), po.getArrivePlace(), po.getTransitId(), po.getOpName(), po.getStockId());
+		StockOutVO vo=new StockOutVO(po.getExpressId(), po.getDate(), po.getKind(), po.getArrivePlace(), po.getTransitId(), po.getOpName(), po.getStockId(),po.getUserId());
 		return vo;
 	}
 	public static StockOutPO toStockOutPO(StockOutVO vo,int id){
-		StockOutPO po=new StockOutPO(id,vo.getExpressId(),vo.getDate(),vo.getKind(),vo.getArrivePlace(),vo.getTransitId(),Calendar.getInstance(),vo.getOpName(),vo.getStockId());
+		StockOutPO po=new StockOutPO(id,vo.getExpressId(),vo.getDate(),vo.getKind(),vo.getArrivePlace(),vo.getTransitId(),Calendar.getInstance(),vo.getOpName(),vo.getStockId(),vo.getUserId());
 		return po;
 	}
 	
 	//中转单
 	public static TransitVO toTransitVO(TransitPO po){
-		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(),po.getDate(), po.getOpName(), po.getCost());
+		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost(),po.getDate(),po.getUserId());
 		return vo;
 	}
 	public static TransitPO toTransitPO(TransitVO vo,String id){
-		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost());
+		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost(), vo.getUserId());
 		return po;
 	}
 	//账户
