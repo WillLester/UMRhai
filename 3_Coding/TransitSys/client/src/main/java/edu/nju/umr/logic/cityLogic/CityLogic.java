@@ -40,7 +40,15 @@ public class CityLogic implements CityLSer{
 	}
 	public Result addCity(CityVO city) {
 		// TODO 自动生成的方法存根
+		ArrayList<CityPO> citypo=new ArrayList<CityPO>();
+		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();
 		Result result = Result.SUCCESS;
+		try {
+			citypo=utility.cities();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return Result.NET_INTERRUPT;
+		}
 		try {
 			result = cityData.addCity(VPFactory.toCityPO(city, 0));
 		} catch (RemoteException e) {
@@ -48,6 +56,14 @@ public class CityLogic implements CityLSer{
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
+		if(citypo.size()>0){
+			for(CityPO po:citypo){
+				CitiesPO cities=new CitiesPO(city.getName(),po.getName(),0);
+			    
+			}
+		}
+		
+		
 		return result;
 	}
 	
@@ -79,19 +95,6 @@ public class CityLogic implements CityLSer{
 	}
 
 	public ResultMessage cityList() {
-		
-//		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
-//		try {
-//			ArrayList<CityPO> cities = cityData.getCities();
-//			for(CityPO city:cities){
-//				CityVO vo = new CityVO(city.getName(), city.getId(),city.getProvince());
-//				cityList.add(vo);
-//			}
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, cityList);
 		return utility.getCities();
 	}
 	public Result deleteCity(String cityName) {
