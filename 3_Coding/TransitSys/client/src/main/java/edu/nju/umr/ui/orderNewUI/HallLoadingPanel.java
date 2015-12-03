@@ -373,10 +373,4 @@ public class HallLoadingPanel extends JPanel {
 		
 		
 	}
-	public static void main(String[] args){
-		JFrame frame=new JFrame();
-		frame.setContentPane(new HallLoadingPanel(frame,null));
-		frame.setSize(1200, 800);
-		frame.setVisible(true);
-	}
 }
