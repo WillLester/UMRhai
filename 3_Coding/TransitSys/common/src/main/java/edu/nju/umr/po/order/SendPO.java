@@ -19,9 +19,10 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String courier;
 	private Calendar opTime;
 	private String opName;
+	private String userId;
 	
 	public SendPO(Calendar date, String expressId, String id, String courier,
-			Calendar opTime, String opName) {
+			Calendar opTime, String opName,String userId) {
 		super();
 		this.date = date;
 		this.expressId = expressId;
@@ -29,6 +30,7 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.courier = courier;
 		this.opTime = opTime;
 		this.opName = opName;
+		this.userId = userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -48,12 +50,17 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getOpName() {
 		return opName;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into sendorderwaiting values"+"("+id+",'"+expressId+"','"+courier+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"')";break;
+		case INSERT:command="insert into sendorderwaiting values"+"("+id+",'"+expressId+"','"+
+		courier+"','"+DateFormat.DATE.format(date.getTime())+"','"+
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
@@ -65,6 +72,7 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return Order.SEND;
 	}
+
 	@Override
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根

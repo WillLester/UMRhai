@@ -162,7 +162,8 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(6));
 				GoodState states[] = GoodState.values();
-				return new RecipientPO(date, result.getString(1), result.getString(2), result.getString(3), states[result.getInt(4)], opTime, result.getString(7));
+				return new RecipientPO(date, result.getString(1), result.getString(2), result.getString(3), 
+						states[result.getInt(4)], opTime, result.getString(7),result.getString(8));
 			} else {
 				return null;
 			}
@@ -178,7 +179,8 @@ public class OrderPOFactory {
 				date.setTime(result.getDate(4));
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(5));
-				return new SendPO(date, result.getString(2), result.getString(1), result.getString(3), opTime, result.getString(6));
+				return new SendPO(date, result.getString(2), result.getString(1), result.getString(3), 
+						opTime, result.getString(6),result.getString(7));
 			} else {
 				return null;
 			}
