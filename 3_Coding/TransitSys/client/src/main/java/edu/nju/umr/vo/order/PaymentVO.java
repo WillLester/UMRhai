@@ -13,7 +13,8 @@ public class PaymentVO {
 	private double amount;
 	private String remarks;
 	private String opName;
-	public PaymentVO(Calendar date,String payer,String account,Pay kind,double amount,String remarks,String opName) {
+	private String userId;
+	public PaymentVO(Calendar date,String payer,String account,Pay kind,double amount,String remarks,String opName,String userId) {
 		// TODO 自动生成的构造函数存根
 //		this.id = id;
 		this.date = date;
@@ -23,6 +24,7 @@ public class PaymentVO {
 		this.amount = amount;
 		this.remarks = remarks;
 		this.opName=opName;
+		this.userId = userId;
 	}
 //	public String getId() {
 //		return id;
@@ -47,5 +49,8 @@ public class PaymentVO {
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public String getUserId() {
+		return userId;
 	}
 }
