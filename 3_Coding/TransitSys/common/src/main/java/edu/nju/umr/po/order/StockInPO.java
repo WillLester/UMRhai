@@ -112,4 +112,9 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return "delete from stockinorderunpassed where id="+id;
 	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from stockinorderwaiting where id="+id;
+	}
 }

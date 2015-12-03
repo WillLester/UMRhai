@@ -87,7 +87,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		switch(op){
 		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+")";break;
 		case DELETE:break;
-		case FIND:break;
+		case FIND:command = "select * from halllorderwaiting where id='"+id+"'";break;
 		case UPDATE:break;
 		}
 		return command;
@@ -115,6 +115,11 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
 		return "delete from halllorderunpassed where id ='"+id+"'";
+	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from halllorderwaiting where id='"+id+"'";
 	}
 	
 }

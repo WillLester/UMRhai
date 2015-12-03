@@ -103,4 +103,9 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return "delete from incomeorderunpassed where id ="+id;
 	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from incomeorderwaiting where id="+id;
+	}
 }

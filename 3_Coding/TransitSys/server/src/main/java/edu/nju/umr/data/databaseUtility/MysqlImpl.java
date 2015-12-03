@@ -372,4 +372,16 @@ public class MysqlImpl implements MysqlService{
 		}
 		return Result.SUCCESS;
 	}
+	@Override
+	public ResultSet checkOrder(OrderOper order) {
+		// TODO 自动生成的方法存根
+		try {
+			ResultSet result = state.executeQuery(order.getDetail());
+			return result;
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

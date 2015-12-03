@@ -106,4 +106,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return "delete from transitorderunpassed where id='"+id+"'";
 	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from transitorderwaiting where id='"+id+"'";
+	}
 }

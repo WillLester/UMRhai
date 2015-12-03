@@ -69,18 +69,24 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			
+			return "insert into sendorderpassed from sendorderwaiting where id='"+id+"'";
+		} else {
+			return "insert into sendorderunpassed from sendorderwaiting where id='"+id+"'";
 		}
-		return null;
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from sendorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from sendorderunpassed where id ='"+id+"'";
+	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from sendorderwaiting where id='"+id+"'";
 	}
 }

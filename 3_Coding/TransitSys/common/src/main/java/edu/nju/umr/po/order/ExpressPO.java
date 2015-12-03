@@ -193,7 +193,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 		switch(op){
 		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+realReceiver+"',"+DateFormat.TIME.format(receiveTime.getTime())+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"')";break;
 		case DELETE:break;
-		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
+		case FIND:command="select * from expressorderwaiting where id='"+id+"'";break;
 		case UPDATE:command="update expressorderpassed set realReceiver = '"+realReceiver+"',receiveTime ='"+DateFormat.TIME.format(receiveTime.getTime())+"' where id ='"+id+"'";break;
 		}
 		return command;
@@ -221,5 +221,10 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
 		return "delete from expressorderunpassed where id='"+id+"'";
+	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from expressorderwaiting where id = '"+id+"'";
 	}
 }

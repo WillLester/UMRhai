@@ -106,5 +106,10 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		// TODO 自动生成的方法存根
 		return "delete from centerlorderunpassed where id='"+id+"'";
 	}
+	@Override
+	public String getDetail() {
+		// TODO 自动生成的方法存根
+		return "select * from centerlorderwaiting where id ='"+id+"'";
+	}
 	
 }
