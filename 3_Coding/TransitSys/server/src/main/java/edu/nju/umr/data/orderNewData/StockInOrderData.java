@@ -2,10 +2,14 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
+import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 /*
@@ -27,14 +31,11 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 		return mysqlSer.addInfo(order);
 	}
 
-//	public ArrayList<String> getCities() throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		String city1 = "香港";
-//		String city2 = "北京";
-//		ArrayList<String> cities = new ArrayList<String>();
-//		cities.add(city1);
-//		cities.add(city2);
-//		return cities;
-//	}
+	@Override
+	public ArrayList<ShelfPO> getShelves(String orgId) throws RemoteException {
+		// TODO 自动生成的方法存根
+		ResultSet result = mysqlSer.checkInfo(new ShelfPO(null, orgId, 0, 0, null));
+		return ArrayListFactory.produceShelfList(result);
+	}
 
 }

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
@@ -159,5 +160,19 @@ public class ArrayListFactory {
 			return null;
 		}
 		return orgList;
+	}
+	public static ArrayList<ShelfPO> produceShelfList(ResultSet result){
+		ArrayList<ShelfPO> shelfList = new ArrayList<ShelfPO>();
+		Part parts[] = Part.values();
+		try {
+			while(result.next()){
+				ShelfPO shelf = new ShelfPO(result.getString(1), result.getString(2), result.getInt(3), result.getInt(4), parts[result.getInt(5)]);
+				shelfList.add(shelf);
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
+		return shelfList;
 	}
 }

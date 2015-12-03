@@ -28,24 +28,4 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 		
 	}
 
-//	public ArrayList<String> getOrgs() throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		String org1 = "赛艇";
-//		String org2 = "乃衣服";
-//		ArrayList<String> orgs = new ArrayList<String>();
-//		orgs.add(org1);
-//		orgs.add(org2);
-//		return orgs;
-//	}
-//
-//	public ArrayList<String> getVans() throws RemoteException {
-//		// TODO 自动生成的方法存根
-//		String van1 = "00001";
-//		String van2 = "00002";
-//		ArrayList<String> vans = new ArrayList<String>();
-//		vans.add(van1);
-//		vans.add(van2);
-//		return vans;
-//	}
-
 }

@@ -3,14 +3,13 @@ package edu.nju.umr.data.stockData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
 import edu.nju.umr.po.ShelfPO;
-import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 
 public class StockDivideData extends UnicastRemoteObject implements StockDivideDSer{
@@ -33,18 +32,7 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 		} else {
 			result = mysqlSer.checkInfo(new ShelfPO(keyword, stockId, 0, 0, null));
 		}
-		ArrayList<ShelfPO> shelfList = new ArrayList<ShelfPO>();
-		Part parts[] = Part.values();
-		try {
-			while(result.next()){
-				ShelfPO shelf = new ShelfPO(result.getString(1), result.getString(2), result.getInt(3), result.getInt(4), parts[result.getInt(5)]);
-				shelfList.add(shelf);
-			}
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			return null;
-		}
-		return shelfList;
+		return ArrayListFactory.produceShelfList(result);
 	}
 
 	public Result addShelf(ShelfPO shelf) throws RemoteException {

@@ -2,7 +2,6 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
@@ -27,16 +26,6 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 	public Result create(IncomePO order) throws RemoteException {
 		return mysqlSer.addInfo(order);
 		
-	}
-
-	public ArrayList<String> getCouriers(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		String courier1 = "宝华";
-		String courier2 = "华莱士";
-		ArrayList<String> couriers = new ArrayList<String>();
-		couriers.add(courier1);
-		couriers.add(courier2);
-		return couriers;
 	}
 
 }

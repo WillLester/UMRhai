@@ -103,4 +103,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return null;
 	}
 
+	@Override
+	public ArrayList<WorkPO> getCouriers() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }
