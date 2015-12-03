@@ -22,10 +22,11 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	private Calendar opTime;
 	private String opName;
 	private String orgId;
+	private String userId;
 	
 	public IncomePO(Calendar date, String courier, double cost,
 			ArrayList<String> express, int id, Calendar opTime, String opName,
-			String orgId) {
+			String orgId,String userId) {
 		super();
 		this.date = date;
 		this.courier = courier;
@@ -35,6 +36,10 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 		this.opTime = opTime;
 		this.opName = opName;
 		this.orgId = orgId;
+		this.userId = userId;
+	}
+	public String getUserId() {
+		return userId;
 	}
 	public Calendar getDate() {
 		return date;
@@ -71,7 +76,8 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 			for(String exp:express){
 				text = text + exp + " ";
 			}
-			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"')";break;
+			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+
+			DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:
 			command = "select * from incomeorderpassed where orgId='"+orgId+"'";break;

@@ -278,7 +278,7 @@ public class MysqlImpl implements MysqlService{
 		case EXPRESS:
 			for(String i:id){
 				order = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 
-						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null);
+						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -287,7 +287,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case HALLLOADING:
 			for(String i:id){
-				order = new HallLoadingPO(i, null, null, null, null, null, null, null, null, null, null, 0);
+				order = new HallLoadingPO(i, null, null, null, null, null, null, null, null, null, null, 0,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -296,7 +296,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case INCOME:
 			for(String i:id){
-				order = new IncomePO(null, null, 0, null, Integer.parseInt(i), null, null, null);
+				order = new IncomePO(null, null, 0, null, Integer.parseInt(i), null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

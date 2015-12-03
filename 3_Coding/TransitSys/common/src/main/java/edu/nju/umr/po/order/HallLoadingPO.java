@@ -26,10 +26,11 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	private Calendar opTime;
 	private String opName;
 	private double cost;
+	private String userId;
 	public HallLoadingPO(String id, String hallId, String convertId,
 			String arriveLoc, String vanId, String supervision, String escort,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName,double cost) {
+			String opName,double cost,String userId) {
 		super();
 		this.id = id;
 		this.hallId = hallId;
@@ -43,6 +44,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		this.opTime = opTime;
 		this.opName = opName;
 		this.cost=cost;
+		this.userId=userId;
 	}
 	public String getHallId() {
 		return hallId;
@@ -80,12 +82,15 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public double getCost(){
 		return cost;
 	}
+	public String getUserId() {
+		return userId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+")";break;
+		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+userId+"')";break;
 		case DELETE:break;
 		case FIND:command = "select * from halllorderwaiting where id='"+id+"'";break;
 		case UPDATE:break;

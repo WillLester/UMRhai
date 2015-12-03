@@ -80,7 +80,8 @@ public class OrderPOFactory {
 						result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getInt(12),
 						result.getString(13), result.getDouble(14), result.getDouble(15), result.getDouble(16), result.getDouble(25), 
 						result.getDouble(17), result.getString(1), arrive, date,expresses[result.getInt(19)], result.getDouble(20), 
-						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),result.getString(29),result.getString(30));
+						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),
+						result.getString(29),result.getString(30),result.getString(32));
 			} else {
 				return null;
 			}
@@ -102,7 +103,8 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(9));
 				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(3), result.getString(5), 
-						result.getString(4), result.getString(6), result.getString(7), express, date, opTime, result.getString(11), result.getDouble(12));
+						result.getString(4), result.getString(6), result.getString(7), express, date, opTime, 
+						result.getString(11), result.getDouble(12),result.getString(13));
 			} else {
 				return null;
 			}
@@ -123,7 +125,8 @@ public class OrderPOFactory {
 				date.setTime(result.getDate(4));
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(5));
-				return new IncomePO(date, result.getString(2), result.getDouble(3), express, result.getInt(1), opTime, result.getString(7), result.getString(8));
+				return new IncomePO(date, result.getString(2), result.getDouble(3), express, 
+						result.getInt(1), opTime, result.getString(7), result.getString(8),result.getString(9));
 			} else {
 				return null;
 			}

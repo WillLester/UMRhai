@@ -41,12 +41,13 @@ public class CenterLoadingPanel extends JPanel {
 	private JComboBox<String> arriveCombo;
 	private String name;
 	private ExpressListPanel expressList;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
 	public CenterLoadingPanel(JFrame fr,CenterLoadingVO vo)
 	{
-		this(fr,vo.getOpName());
+		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			co.setEnabled(false);
@@ -60,7 +61,7 @@ public class CenterLoadingPanel extends JPanel {
 		arriveCombo.setSelectedItem((String)vo.getTarget());
 		expressList.showExpressList(vo.getExpress());
 	}
-	public CenterLoadingPanel(JFrame fr,String name) {
+	public CenterLoadingPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
 		
 		JLabel titleLabel = new JLabel("中转中心装车单");
@@ -71,6 +72,7 @@ public class CenterLoadingPanel extends JPanel {
 		frame = fr;
 		logicSer = new CenterLoadingOrderLogic();
 		this.name = name;
+		this.userId = userId;
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -209,7 +211,9 @@ public class CenterLoadingPanel extends JPanel {
 //	}
 	private CenterLoadingVO createVO(){
 		ArrayList<String> expresses = expressList.getExpresses();
-		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), (String)arriveCombo.getSelectedItem(), vanIdField.getText(), supervisionField.getText(), escortField.getText(), expresses, Double.parseDouble(costField.getText()), name,transitIdField.getText());
+		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), transitIdField.getText(),(String)arriveCombo.getSelectedItem(), vanIdField.getText(), 
+				supervisionField.getText(), escortField.getText(), 
+				expresses, Double.parseDouble(costField.getText()), name,userId);
 		return vo;
 	}
 	private boolean isLegal(){

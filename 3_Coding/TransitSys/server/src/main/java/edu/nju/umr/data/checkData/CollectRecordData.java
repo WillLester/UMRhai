@@ -32,7 +32,7 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		if(date == null){
-			ResultSet result = mysqlSer.checkInfo(new IncomePO(null, null, 0, null, 0, null, null, id));
+			ResultSet result = mysqlSer.checkInfo(new IncomePO(null, null, 0, null, 0, null, null, id,null));
 			return ArrayListFactory.produceIncomeList(result);
 		} else {
 			Calendar start = Calendar.getInstance();

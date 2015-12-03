@@ -39,7 +39,9 @@ public class AccountLogic implements AccountLSer{
 		try {
 			isSuccessful = accountData.addAccount(new AccountPO(0, account.getName(), account.getBalance()));
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			return Result.NET_INTERRUPT;
+			
 		}
 		return isSuccessful;
 	}
@@ -50,6 +52,7 @@ public class AccountLogic implements AccountLSer{
 		try {
 			isSuccessful = accountData.deleteAccount(toDelete.getId());
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
 		return isSuccessful;
@@ -61,6 +64,7 @@ public class AccountLogic implements AccountLSer{
 		try {
 			isSuccessful = accountData.reviseAccount(new AccountPO(init.getId(), account.getName(), account.getBalance()));
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
 		return isSuccessful;
@@ -106,6 +110,7 @@ public class AccountLogic implements AccountLSer{
 			if(accountPOs.size()>0)
 				isSuc=Result.SUCCESS;
 		} catch (RemoteException e) {
+			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 		ArrayList<AccountVO> accountVOs=new ArrayList<AccountVO>();

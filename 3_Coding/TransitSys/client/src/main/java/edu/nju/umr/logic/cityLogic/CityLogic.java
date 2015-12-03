@@ -40,15 +40,39 @@ public class CityLogic implements CityLSer{
 	}
 	public Result addCity(CityVO city) {
 		// TODO 自动生成的方法存根
-		Result result = Result.SUCCESS;
+		ArrayList<CityPO> citypo=new ArrayList<CityPO>();
+		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();
+		Result resultCity = Result.SUCCESS;
+		Result resultCities=Result.SUCCESS;
 		try {
-			result = cityData.addCity(VPFactory.toCityPO(city, 0));
+			citypo=utility.cities();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return Result.NET_INTERRUPT;
+		}
+		try {
+			resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
-		return result;
+		if(citypo.size()>0){
+			for(CityPO po:citypo){
+				CitiesPO cities=new CitiesPO(city.getName(),po.getName(),0);
+			    try {
+					resultCities=cityData.addCities(cities);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+					return Result.NET_INTERRUPT;
+				}
+			}
+		}
+		if(resultCity==Result.SUCCESS&&resultCities==Result.SUCCESS){
+		    return Result.SUCCESS;
+		}else{
+			return Result.DATABASE_ERROR;
+		}
 	}
 	
     //制定距离和价格常量
