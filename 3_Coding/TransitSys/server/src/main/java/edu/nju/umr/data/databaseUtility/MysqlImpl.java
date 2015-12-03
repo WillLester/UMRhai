@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
@@ -16,7 +17,19 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.po.order.CenterLoadingPO;
+import edu.nju.umr.po.order.ExpressPO;
+import edu.nju.umr.po.order.HallLoadingPO;
+import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.OrderOper;
 import edu.nju.umr.po.order.OrderPO;
+import edu.nju.umr.po.order.PaymentPO;
+import edu.nju.umr.po.order.RecipientPO;
+import edu.nju.umr.po.order.SendPO;
+import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.po.order.StockOutPO;
+import edu.nju.umr.po.order.TransitPO;
 
 
 public class MysqlImpl implements MysqlService{
@@ -238,5 +251,125 @@ public class MysqlImpl implements MysqlService{
 		} catch (SQLException e){
 			return null;
 		}
+	}
+	@Override
+	public Result updateOrder(boolean isPassed, List<String> id, Order kind) {
+		// TODO 自动生成的方法存根
+		OrderOper order;
+		switch(kind){
+		case ARRIVE:
+			for(String i:id){
+				order = new ArrivePO(null, null, i, null, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case CENTERLOADING:
+			for(String i:id){
+				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case EXPRESS:
+			for(String i:id){
+				order = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 
+						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case HALLLOADING:
+			for(String i:id){
+				order = new HallLoadingPO(i, null, null, null, null, null, null, null, null, null, null, 0);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case INCOME:
+			for(String i:id){
+				order = new IncomePO(null, null, 0, null, Integer.parseInt(i), null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case PAYMENT:
+			for(String i:id){
+				order = new PaymentPO(Integer.parseInt(i), null, null, null, null, 0, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case RECIPIENT:
+			for(String i:id){
+				order = new RecipientPO(null, i, null, null, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case SEND:
+			for(String i:id){
+				order = new SendPO(null, null, i, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case STOCKIN:
+			for(String i:id){
+				order = new StockInPO(Integer.parseInt(i), null, null, null, null, null, 0, 0, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case STOCKOUT:
+			for(String i:id){
+				order = new StockOutPO(Integer.parseInt(i), null, null, null, null, null, null, null, null);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		case TRANSIT:
+			for(String i:id){
+				order = new TransitPO(i, null, null, null, null, null, null, null, null, 0);
+				Result re = changeOrder(isPassed, order);
+				if(!re.equals(Result.SUCCESS)){
+					return re;
+				}
+			}
+			return Result.SUCCESS;
+		default:
+			break;
+		}
+		return Result.PO_NOT_FOUND;
+	}
+	private Result changeOrder(boolean isPassed,OrderOper order){
+		try {
+			state.executeUpdate(order.getApprove(isPassed));
+			state.executeUpdate(order.getDeleteWaiting());
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return Result.DATABASE_ERROR;
+		}
+		return Result.SUCCESS;
 	}
 }

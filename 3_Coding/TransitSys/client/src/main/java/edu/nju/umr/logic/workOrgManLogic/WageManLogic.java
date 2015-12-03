@@ -13,8 +13,6 @@ import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WageManLSer;
-import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;

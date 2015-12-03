@@ -220,6 +220,11 @@ public class VanListPanel extends JPanel {
 			{
 				VanVO left=vanList.get(i);
 				VanVO right=vanList.get(j);
+				if(left.getId().compareTo(right.getId())>0)
+				{
+					vanList.set(i,right);
+					vanList.set(j, left);
+				}
 			}
 		}
 	}
@@ -236,6 +241,7 @@ public class VanListPanel extends JPanel {
 		if(!result.equals(Result.SUCCESS))return result;
 		vanList.add(temp);
 		sort();
+		displayVans();
 		return result;
 	}
 	

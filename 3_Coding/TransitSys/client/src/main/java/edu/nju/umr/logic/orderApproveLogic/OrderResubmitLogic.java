@@ -19,7 +19,7 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.IncomePO;
-import edu.nju.umr.po.order.KindGetter;
+import edu.nju.umr.po.order.OrderOper;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.po.order.RecipientPO;
 import edu.nju.umr.po.order.SendPO;
@@ -32,7 +32,7 @@ import edu.nju.umr.vo.order.OrderVO;
 public class OrderResubmitLogic implements OrderResubmitLSer{
 	private OrderResubmitDFacSer dataFac;
 	private OrderResubmitDSer resubmitData;
-	private List<KindGetter> orderList;
+	private List<OrderOper> orderList;
 	public OrderResubmitLogic() {
 		try{
 			dataFac = (OrderResubmitDFacSer)Naming.lookup(Url.URL);
@@ -62,7 +62,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	public ResultMessage getOrdersDisplay() {
 		// TODO 自动生成的方法存根
 		ArrayList<OrderVO> orderDisplay = new ArrayList<OrderVO>();
-		for(KindGetter order:orderList){
+		for(OrderOper order:orderList){
 			orderDisplay.add(getInfo(order));
 		}
 		return new ResultMessage(Result.SUCCESS, orderDisplay);
@@ -71,7 +71,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	@Override
 	public ResultMessage getOrder(int index) {
 		// TODO 自动生成的方法存根
-		KindGetter order = orderList.get(index);
+		OrderOper order = orderList.get(index);
 		Order kind = order.getOrderKind();
 		switch(kind){
 		case ARRIVE:
@@ -111,7 +111,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 		return null;
 	}
 	
-	private OrderVO getInfo(KindGetter order){
+	private OrderVO getInfo(OrderOper order){
 		Order kind = order.getOrderKind();
 		OrderVO result = null;
 		switch(kind){

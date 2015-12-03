@@ -8,7 +8,7 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 
-public class SendPO extends PO implements Serializable,KindGetter{
+public class SendPO extends PO implements Serializable,OrderOper{
 	/**
 	 * 
 	 */

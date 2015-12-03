@@ -8,6 +8,6 @@ import edu.nju.umr.vo.ResultMessage;
 
 public interface OrderApproveLSer {
 	public ResultMessage askExamine();
-	public Result examine(boolean approve,ArrayList<String> id);
+	public Result examine(boolean approve,ArrayList<Integer> indexs);
 	public ResultMessage chooseOrder(String id,Order kind);
 }	
