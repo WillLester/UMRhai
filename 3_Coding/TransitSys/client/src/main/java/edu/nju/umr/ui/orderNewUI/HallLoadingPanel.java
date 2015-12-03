@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,15 +56,34 @@ public class HallLoadingPanel extends JPanel {
 	private JComboBox<String> comboBoxDestination;
 	private ArrayList<VanVO> vanList;
 	private JComboBox<String> comboBoxVan;
-	private UserVO user;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
 	private double cost;
+	private String userName;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
-	public HallLoadingPanel(JFrame fr,UserVO uservo) {
+	public HallLoadingPanel(JFrame fr,HallLoadingVO vo)
+	{
+		this(fr,vo.getOpName(),vo.getHallId());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+		transitIdField.setText(vo.getConvertId());
+		superviseField.setText(vo.getSupervision());
+		guardField.setText(vo.getEscort());
+		model.setRowCount(0);
+		for(int i=0;i<vo.getExpress().size();i++)
+		{
+			model.addRow(new String[]{vo.getExpress().get(i)});
+		}
+		datePanel.setDate(vo.getDate());
+	}
+	public HallLoadingPanel(JFrame fr,String userName,String orgId) {
 		frame=fr;
-		user=uservo;
+		this.userName=userName;
+		this.orgId=orgId;
 		setLayout(null);
 		
 		JLabel themeLabel = new JLabel("营业厅装车单");
@@ -263,8 +283,8 @@ public class HallLoadingPanel extends JPanel {
 	protected void createOrder() {
 		// TODO Auto-generated method stub
 //		String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost
-		HallLoadingVO vo=new HallLoadingVO(user.getOrgId(),transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),user.getName());
+		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
+				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),userName);
 		Result result=serv.create(vo);
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -298,7 +318,7 @@ public class HallLoadingPanel extends JPanel {
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
-		ResultMessage message=serv.getLocalHallAndAllCenter(user.getOrgId());
+		ResultMessage message=serv.getLocalHallAndAllCenter(orgId);
 		Result result = message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -317,7 +337,7 @@ public class HallLoadingPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				ResultMessage message=serv.getPrice(user.getOrgId(),destinationList.get(comboBoxDestination.getSelectedIndex()).getId());
+				ResultMessage message=serv.getPrice(orgId,destinationList.get(comboBoxDestination.getSelectedIndex()).getId());
 				Result result=message.getReInfo();
 				if(!result.equals(Result.SUCCESS))
 				{
@@ -331,7 +351,7 @@ public class HallLoadingPanel extends JPanel {
 			}
 		});
 		
-		message=serv.getVans(user.getOrgId());
+		message=serv.getVans(orgId);
 		result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
