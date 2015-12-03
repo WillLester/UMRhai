@@ -75,12 +75,36 @@ public class EnumTransFactory {
 		}
 		return par;
 	}
+	public static String checkParse(Parse parse)
+	{
+		String par=null;
+		switch(parse)
+		{
+			case WOOD:par="木箱";break;
+			case PAPER:par="纸箱";break;
+			case BAG:par="快递袋";break;
+			default:par="其他";
+		}
+		
+		return par;
+	}
 	public static Express getExpress(String express){
 		Express exp = null;
 		switch(express){
 		case "经济快递":exp = Express.ECONOMIC;break;
 		case "标准快递":exp = Express.NORMAL;break;
 		case "特快专递":exp = Express.FAST;break;
+		}
+		return exp;
+	}
+	public static String checkExpress(Express express)
+	{
+		String exp=null;
+		switch(express)
+		{
+		case ECONOMIC:exp="经济快递";break;
+		case NORMAL:exp="标准快递";break;
+		case FAST:exp="特快专递";break;
 		}
 		return exp;
 	}

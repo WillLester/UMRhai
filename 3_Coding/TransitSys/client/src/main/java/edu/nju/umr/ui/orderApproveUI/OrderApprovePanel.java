@@ -193,13 +193,11 @@ public class OrderApprovePanel extends JPanel{
 		}
 	}
 	private void approve(boolean ispassed){
-		ArrayList<String> idList=new ArrayList<String>();
-		for(int i=0;i<orderList.size();i++)
+		ArrayList<Integer> idList=new ArrayList<Integer>();
+		int [] temp=table.getSelectedRows();
+		for(int i=0;i<temp.length;i++)
 		{
-			if((Boolean)table.getValueAt(i, 0))
-			{
-				idList.add(orderList.get(i).getId());
-			}
+			idList.add(temp[i]);
 		}
 		Result result=serv.examine(ispassed, idList);
 		if(!result.equals(Result.SUCCESS)){

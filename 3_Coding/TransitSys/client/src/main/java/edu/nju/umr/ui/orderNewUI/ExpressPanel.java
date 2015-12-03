@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,7 @@ import javax.swing.SwingConstants;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
+import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
@@ -96,6 +98,37 @@ public class ExpressPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	public ExpressPanel(JFrame fr,ExpressVO vo)
+	{
+		this(fr,vo.getOpName());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+		barcodeField.setText(vo.getId());
+		senderField.setText(vo.getSender());
+		senderCompanyField.setText(vo.getSendUnit());
+		senderMobileField.setText(vo.getSendMobile());
+		senderPhoneField.setText(vo.getSendPhone());
+		receiverField.setText(vo.getReceiver());
+		receiverCompanyField.setText(vo.getReceiveUnit());
+		receiverMobileField.setText(vo.getReceiveMobile());
+		receiverPhoneField.setText(vo.getReceivePhone());
+		volumnField.setText(Double.toString(vo.getVolumn()));
+		weightField.setText(Double.toString(vo.getWeight()));
+		nameField.setText(vo.getName());
+		costField.setText(Double.toString(vo.getCost()));
+		lengthField.setText(Double.toString(vo.getLength()));
+		widthField.setText(Double.toString(vo.getWidth()));
+		heightField.setText(Double.toString(vo.getHeight()));
+		arriveField.setText(vo.getArrive().toString());
+		numSpinner.setValue(vo.getNum());
+		datePanel.setDate(vo.getCreateDate());
+		pakKindCombo.setSelectedItem(EnumTransFactory.checkParse(vo.getParse()));
+		expressKindCombo.setSelectedItem(EnumTransFactory.checkExpress(vo.getKind()));
+		
+		
+	}
 	public ExpressPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;

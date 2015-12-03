@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,19 +34,32 @@ public class CenterLoadingPanel extends JPanel {
 	private JTextField supervisionField;
 	private JTextField escortField;
 	private JTextField vanIdField;
-//	private JTextField expressField;
-//	private JList<String> expressList;
 	private JFrame frame;
 	private CenterLoadingOrderLSer logicSer;
 	private DatePanel datePanel;
 	private JTextField costField;
 	private JComboBox<String> arriveCombo;
-//	private DefaultListModel<String> model;
 	private String name;
 	private ExpressListPanel expressList;
 	/**
 	 * Create the panel.
 	 */
+	public CenterLoadingPanel(JFrame fr,CenterLoadingVO vo)
+	{
+		this(fr,vo.getOpName());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+		transitIdField.setText(vo.getTransitId());
+		supervisionField.setText(vo.getSupervision());
+		escortField.setText(vo.getEscort());
+		vanIdField.setText(vo.getVanId());
+		datePanel.setDate(vo.getDate());
+		costField.setText(Double.toString(vo.getCost()));
+		arriveCombo.setSelectedItem((String)vo.getTarget());
+		expressList.showExpressList(vo.getExpress());
+	}
 	public CenterLoadingPanel(JFrame fr,String name) {
 		setLayout(null);
 		
@@ -195,7 +209,7 @@ public class CenterLoadingPanel extends JPanel {
 //	}
 	private CenterLoadingVO createVO(){
 		ArrayList<String> expresses = expressList.getExpresses();
-		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), (String)arriveCombo.getSelectedItem(), vanIdField.getText(), supervisionField.getText(), escortField.getText(), expresses, Double.parseDouble(costField.getText()), name);
+		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), (String)arriveCombo.getSelectedItem(), vanIdField.getText(), supervisionField.getText(), escortField.getText(), expresses, Double.parseDouble(costField.getText()), name,transitIdField.getText());
 		return vo;
 	}
 	private boolean isLegal(){

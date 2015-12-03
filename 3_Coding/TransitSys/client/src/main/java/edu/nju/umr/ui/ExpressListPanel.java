@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -145,6 +146,18 @@ public class ExpressListPanel extends JPanel{
 			return true;
 		} else {
 			return false;
+		}
+	}
+	public void setEnabled(boolean isEnabled){
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(isEnabled);
+		}
+	}
+	public void showExpressList(ArrayList<String> expressList){
+		for(int i=0;i<expressList.size();i++)
+		{
+			model.addElement(expressList.get(i));
 		}
 	}
 }

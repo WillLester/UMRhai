@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +42,20 @@ public class ArrivePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	public ArrivePanel(JFrame fr,ArriveVO arrive)
+	{
+		this(fr,arrive.getOpName(),arrive.getCenterId());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+		idField.setText(arrive.getId());
+		centerField.setText(arrive.getCenterId());
+		datePanel.setDate(arrive.getDate());
+		startCombo.setSelectedItem((String)arrive.getStartPlace());
+		stateCombo.setSelectedItem(arrive.getState().toString());
+		
+	}
 	public ArrivePanel(JFrame fr,String name,String orgId) {
 		setLayout(null);
 		frame=fr;
