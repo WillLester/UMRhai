@@ -110,7 +110,7 @@ public class OrgManLogic implements OrgManLSer{
 
 	public ResultMessage searchOrg(String keyword) {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgPO> ar= null;
+		ArrayList<OrgPO> ar= new ArrayList<OrgPO>();
 //		boolean isSuccessful=false;
 		try{
 			ar=orgData.findOrg(keyword);

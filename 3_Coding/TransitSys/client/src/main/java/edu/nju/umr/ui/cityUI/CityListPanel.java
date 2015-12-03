@@ -53,6 +53,8 @@ public class CityListPanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		logicSer = new CityLogic();
+		cityList = new ArrayList<CityVO>();
+		citiesList = new ArrayList<CitiesVO>();
 		
 		JLabel cityLabel = new JLabel("城市管理");
 		cityLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -225,7 +227,7 @@ public class CityListPanel extends JPanel{
 		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow()){
+					if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
@@ -236,7 +238,7 @@ public class CityListPanel extends JPanel{
 						nameField.setText(citySelected.getName());
 						idField.setText(citySelected.getId());
 						provinceCombo.setSelectedItem(citySelected.getProvince());;
-					} else {
+					} else if((cityTable1.getSelectedRow() >= 0)&&(cityTable2.getSelectedRow() >= 0)){
 						addButton.setEnabled(false);
 						deleteButton.setEnabled(false);
 						nameField.setEnabled(false);

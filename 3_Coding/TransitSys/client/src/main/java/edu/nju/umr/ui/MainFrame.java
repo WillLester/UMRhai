@@ -24,6 +24,5 @@ public class MainFrame extends JFrame{
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
 		this.setVisible(true);
 		this.setContentPane(new LoginPanel(this));
-		System.out.println(this.getWidth() + " " + this.getHeight());
 	}
 }

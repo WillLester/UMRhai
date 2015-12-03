@@ -38,7 +38,7 @@ public class CityPO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into city values"+"('"+id+"',"+"'"+name+"','"+province+"')";break;
+		case INSERT:command="insert into city values"+"('"+id+"',"+"'"+name+"','"+province+"',"+key+")";break;
 		case DELETE:command="delete from city where name='"+name+"'";break;
 		case FIND:break;
 		case UPDATE:command = "update city set id='"+id+"',name='"+name+"',province='"+province+"' where keyid="+key;break;

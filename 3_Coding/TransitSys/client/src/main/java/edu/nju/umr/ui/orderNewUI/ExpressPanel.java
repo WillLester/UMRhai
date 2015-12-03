@@ -22,7 +22,6 @@ import javax.swing.SwingConstants;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
-import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;

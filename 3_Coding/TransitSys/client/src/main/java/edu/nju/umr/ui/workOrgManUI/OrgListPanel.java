@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.workOrgManLogic.OrgManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
@@ -54,7 +55,7 @@ public class OrgListPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		orgList=new ArrayList<OrgVO>();
-//		serv=new OrgManLogic();
+		serv=new OrgManLogic();
 //		cityList=getCities();
 		
 		JLabel nameLabel = new JLabel("机构信息列表");
