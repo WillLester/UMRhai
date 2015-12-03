@@ -97,5 +97,24 @@ public class HallLoadingPO extends PO implements Serializable,OrderOper{
 		// TODO 自动生成的方法存根
 		return Order.HALLLOADING;
 	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		if(isPassed){
+			return "insert into halllorderpassed from halllorderwaiting where id='"+id+"'";
+		} else {
+			return "insert into halllorderunpassed from halllorderwaiting where id='"+id+"'";
+		}
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return "delete from halllorderwaiting where id='"+id+"'";
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return "delete from halllorderunpassed where id ='"+id+"'";
+	}
 	
 }

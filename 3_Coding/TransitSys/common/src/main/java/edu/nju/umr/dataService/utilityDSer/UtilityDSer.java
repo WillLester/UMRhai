@@ -23,5 +23,5 @@ public interface UtilityDSer extends Remote{
 	public ArrayList<AccountPO> getAccount() throws RemoteException;
 	public Result setRecord(Calendar time,String operation,String operator) throws RemoteException;
 	public ArrayList<OrgPO> getCenters()throws RemoteException;
-	public ArrayList<WorkPO> getCouriers() throws RemoteException;
+	public ArrayList<WorkPO> getCouriers(String hallId) throws RemoteException;
 }

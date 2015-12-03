@@ -87,5 +87,24 @@ public class CenterLoadingPO extends PO implements Serializable,OrderOper{
 		// TODO 自动生成的方法存根
 		return Order.CENTERLOADING;
 	}
+	@Override
+	public String getApprove(boolean isPassed) {
+		// TODO 自动生成的方法存根
+		if(isPassed){
+			return "insert into centerlorderpassed from centerlorderwaiting where id='"+id+"'";
+		} else {
+			return "insert into centerlorderunpassed from centerlorderwaiting where id='"+id+"'";
+		}
+	}
+	@Override
+	public String getDeleteWaiting() {
+		// TODO 自动生成的方法存根
+		return "delete from centerlorderwaiting where id='"+id+"'";
+	}
+	@Override
+	public String getDeleteUnpassed() {
+		// TODO 自动生成的方法存根
+		return "delete from centerlorderunpassed where id='"+id+"'";
+	}
 	
 }

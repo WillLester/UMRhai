@@ -34,5 +34,11 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	public ArrayList<CountPO> getCount() throws RemoteException {
 		return null;
 	}
+
+	@Override
+	public Result deleteCount(int id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 }

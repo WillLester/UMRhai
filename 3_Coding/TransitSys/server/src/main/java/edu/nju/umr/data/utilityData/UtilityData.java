@@ -100,7 +100,7 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	}
 
 	@Override
-	public ArrayList<WorkPO> getCouriers() throws RemoteException {
+	public ArrayList<WorkPO> getCouriers(String hallId) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new WorkPO(null, null, null, null, 0, Jurisdiction.COURIER, null, 0, 0));
 		return ArrayListFactory.produceWorkList(result);

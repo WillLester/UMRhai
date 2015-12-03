@@ -206,16 +206,20 @@ public class ExpressPO extends PO implements Serializable,OrderOper{
 	@Override
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
-		return null;
+		if(isPassed){
+			return "insert into expressorderpassed from expressorderwaiting where id='"+id+"'";
+		} else {
+			return "insert into expressorderunpassed from expressorderwaiting where id='"+id+"'";
+		}
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from expressorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from expressorderunpassed where id='"+id+"'";
 	}
 }

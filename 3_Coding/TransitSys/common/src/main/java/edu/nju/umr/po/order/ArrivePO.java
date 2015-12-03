@@ -73,16 +73,20 @@ public class ArrivePO extends PO implements Serializable,OrderOper{
 	@Override
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
-		return null;
+		if(isPassed){
+			return "insert into arriveorderpassed from arriveorderwaiting where id= '"+id+"'";
+		} else {
+			return "insert into arriveorderunpassed from arriveorderwaiting where id ='"+id+"'";
+		}
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from arriveorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "delete from arriveorderunpassed where id ='"+id+"'";
 	}
 }
