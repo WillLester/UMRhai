@@ -7,7 +7,6 @@ import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.ConstantPO;
-import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
@@ -59,11 +58,11 @@ import edu.nju.umr.vo.order.TransitVO;
 public class VPFactory {
 	//到达单
      public static ArriveVO toArriveVO(ArrivePO po){
-    	 ArriveVO vo=new ArriveVO(po.getCenterId(), po.getDate(), po.getStartPlace(), po.getState(), po.getOpName(), po.getId());
+    	 ArriveVO vo=new ArriveVO(po.getCenterId(), po.getDate(), po.getStartPlace(), po.getState(), po.getOpName(), po.getId(),po.getUserId());
     	 return vo;
      }
      public static ArrivePO toArrivePO(ArriveVO vo,String id){
-    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), id, vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName());
+    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), id, vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName(),vo.getUserId());
     	 return po;
      }
      

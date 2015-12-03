@@ -111,5 +111,10 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		// TODO 自动生成的方法存根
 		return "select * from centerlorderwaiting where id ='"+id+"'";
 	}
+	@Override
+	public String getUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 }

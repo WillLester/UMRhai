@@ -57,7 +57,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		PO po;
 		switch(kind){
 		case ARRIVE:
-			po = new ArrivePO(null, null, id, null, null, null, null);
+			po = new ArrivePO(null, null, id, null, null, null, null,null);
 			return OrderPOFactory.getArrive(mysqlSer.checkInfo(po));
 		case CENTERLOADING:
 			po = new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0);
@@ -87,7 +87,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 			po = new StockOutPO(Integer.parseInt(id), null, null, null, null, null, null, null, null);
 			return OrderPOFactory.getStockOut(mysqlSer.checkInfo(po));
 		case TRANSIT:
-			po = new TransitPO(id, null, null, null, null, null, null, null, null, 0);
+			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0);
 			return OrderPOFactory.getTransit(mysqlSer.checkInfo(po));
 		default:
 			return null;

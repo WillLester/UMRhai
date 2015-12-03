@@ -121,5 +121,10 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		// TODO 自动生成的方法存根
 		return "select * from halllorderwaiting where id='"+id+"'";
 	}
+	@Override
+	public String getUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 }

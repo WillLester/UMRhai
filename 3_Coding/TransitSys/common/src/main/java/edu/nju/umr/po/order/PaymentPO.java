@@ -106,5 +106,10 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		return "select * from paymentorderwaiting where id="+id;
 	}
+	@Override
+	public String getUnpassed() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 }
