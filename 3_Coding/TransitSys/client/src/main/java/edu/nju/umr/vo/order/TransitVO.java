@@ -1,6 +1,7 @@
 package edu.nju.umr.vo.order;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TransitVO {
 //	private String id;
@@ -12,9 +13,10 @@ public class TransitVO {
 	private ArrayList<String> express;
 	private String opName;
 	private double cost;
+	private Calendar date;
 	
 	public TransitVO(String planeId, String startPlace, String arrivePlace,
-			String containerId, String supervision, ArrayList<String> express,
+			String containerId, String supervision, ArrayList<String> express,Calendar date,
 			String opName, double cost) {
 		super();
 		this.planeId = planeId;
@@ -25,6 +27,7 @@ public class TransitVO {
 		this.express = express;
 		this.opName = opName;
 		this.cost = cost;
+		this.date=date;
 	}
 
 	public double getCost() {
@@ -51,6 +54,9 @@ public class TransitVO {
 	}
 	public String getOpName() {
 		return opName;
+	}
+	public Calendar getDate(){
+		return date;
 	}
 	
 }
