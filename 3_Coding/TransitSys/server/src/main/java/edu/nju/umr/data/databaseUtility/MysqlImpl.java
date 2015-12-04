@@ -384,4 +384,9 @@ public class MysqlImpl implements MysqlService{
 			return null;
 		}
 	}
+	@Override
+	public ResultSet checkUnpassed(OrderOper order) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }

@@ -27,7 +27,7 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 		
 	}
 
-	public CountPO findInitInfo(String id) throws RemoteException {
+	public CountPO findInitInfo(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return (CountPO) SerialHelper.readFromFile("data/count"+id+".ser");
 	}

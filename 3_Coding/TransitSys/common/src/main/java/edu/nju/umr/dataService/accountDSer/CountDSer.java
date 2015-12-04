@@ -6,10 +6,20 @@ import java.util.ArrayList;
 
 import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.enums.Result;
-
+/**
+ * 
+ * @author WillLester
+ * @see CountData
+ */
 public interface CountDSer extends Remote{
 	public Result addCount(CountPO count) throws RemoteException;
-	public CountPO findInitInfo(String id) throws RemoteException;
+	/**
+	 * 
+	 * @param id 账的编号
+	 * @return CountPO 账的PO
+	 * @throws RemoteException
+	 */
+	public CountPO findInitInfo(int id) throws RemoteException;
 //	public ArrayList<OrgPO> findOrg() throws RemoteException;
 //	public ArrayList<WorkPO> getWorkers() throws RemoteException;
 //	public ArrayList<VanPO> getVans() throws RemoteException;
