@@ -387,6 +387,12 @@ public class MysqlImpl implements MysqlService{
 	@Override
 	public ResultSet checkUnpassed(OrderOper order) {
 		// TODO 自动生成的方法存根
-		return null;
+		try {
+			ResultSet result = state.executeQuery(order.getUnpassed());
+			return result;
+		} catch (SQLException e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

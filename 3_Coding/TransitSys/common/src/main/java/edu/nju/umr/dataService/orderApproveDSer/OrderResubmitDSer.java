@@ -5,7 +5,17 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.po.order.KindGetter;
-
+/**
+ * 
+ * @author WillLester
+ * @see OrderResubmitData
+ */
 public interface OrderResubmitDSer extends Remote{
+	/**
+	 * 
+	 * @param id 用户名
+	 * @return 未通过单据的列表 以KindGetter接口的形式
+	 * @throws RemoteException
+	 */
 	public ArrayList<KindGetter> getOrders(String id) throws RemoteException;
 }
