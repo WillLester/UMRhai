@@ -57,8 +57,16 @@ public class StockInPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}
+		expressField.setText(vo.getExpressId());
+		partCombo.setSelectedItem(vo.getPart());
+		rowCombo.setSelectedItem(vo.getRow());
+		shelfCombo.setSelectedItem(vo.getShelfId());
+		placeCombo.setSelectedItem(vo.getPlace());
+		datePanel.setDate(vo.getDate());
+		cityCombo.setSelectedItem(vo.getArrivePlace());
 	}
 	@SuppressWarnings("unchecked")
 	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
@@ -225,6 +233,7 @@ public class StockInPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542, 453, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

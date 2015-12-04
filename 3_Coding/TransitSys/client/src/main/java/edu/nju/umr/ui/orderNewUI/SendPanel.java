@@ -45,8 +45,12 @@ public class SendPanel extends JPanel {
 	{
 		this(fr, vo.getOpName(),null, vo.getUserId());
 		for(Component co:this.getComponents()){
+			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}
+		barcodeField.setText(vo.getExpressId());
+		courierCombo.setSelectedItem(vo.getCourier());
+		datePanel.setDate(vo.getDate());
 	}
 	public SendPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
@@ -122,6 +126,7 @@ public class SendPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(548, 436, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

@@ -48,6 +48,7 @@ public class ArrivePanel extends JPanel {
 		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}
 		idField.setText(arrive.getId());
@@ -167,6 +168,7 @@ public class ArrivePanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(548+75+25, 436, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

@@ -68,6 +68,7 @@ public class HallLoadingPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId(),vo.getHallId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"));
 			co.setEnabled(false);
 		}
 		transitIdField.setText(vo.getConvertId());
@@ -79,6 +80,10 @@ public class HallLoadingPanel extends JPanel {
 			model.addRow(new String[]{vo.getExpress().get(i)});
 		}
 		datePanel.setDate(vo.getDate());
+		comboBoxDestination.setSelectedItem(vo.getArriveLoc());
+		comboBoxVan.setSelectedItem(vo.getVanId());
+		priceLabel.setText("运费："+cost);
+		
 	}
 	public HallLoadingPanel(JFrame fr,String userName,String userId,String orgId) {
 		frame=fr;
@@ -268,6 +273,7 @@ public class HallLoadingPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542+75, 499, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

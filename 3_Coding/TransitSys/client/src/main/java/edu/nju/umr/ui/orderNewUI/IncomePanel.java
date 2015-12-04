@@ -48,6 +48,11 @@ public class IncomePanel extends JPanel {
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}
+		courierCombo.setSelectedItem(vo.getCourier());
+		amountField.setText(Double.toString(vo.getCost()));
+		datePanel.setDate(vo.getDate());
+		expressList.showExpressList(vo.getExpress());
+		
 	}
 	public IncomePanel(JFrame fr,String orgId,String name,String userId) {
 		setLayout(null);

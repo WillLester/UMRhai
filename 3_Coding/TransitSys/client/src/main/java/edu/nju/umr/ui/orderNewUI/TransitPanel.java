@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +52,21 @@ public class TransitPanel extends JPanel {
 	public TransitPanel(JFrame fr,TransitVO vo)
 	{
 		this(fr,"",vo.getOpName(),vo.getUserId());
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+				co.setEnabled(false);
+		}
+		idField.setText(vo.getId());
+		supervisionField.setText(vo.getSupervision());
+		planeIdField.setText(vo.getPlaneId());
+		containerField.setText(vo.getContainerId());
+		startCombo.setSelectedItem(vo.getStartPlace());
+		arriveCombo.setSelectedItem(vo.getArrivePlace());
+//		kindCombo.setSelectedItem(vo.get);
+		expressList.showExpressList(vo.getExpress());
+		costField.setText(Double.toString(vo.getCost()));
+		datePanel.setDate(vo.getDate());
 	}
 	public TransitPanel(JFrame fr,String org,String name,String userId) {
 		setLayout(null);
@@ -173,6 +189,7 @@ public class TransitPanel extends JPanel {
 		});
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542, 499, 93, 23);
 		add(cancelButton);

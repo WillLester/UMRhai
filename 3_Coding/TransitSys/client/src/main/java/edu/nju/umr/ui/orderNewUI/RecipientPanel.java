@@ -22,6 +22,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
@@ -47,8 +48,13 @@ public class RecipientPanel extends JPanel {
 		this(fr,vo.getOpName(),null,vo.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cance"))
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getTransitId());
+		datePanel.setDate(vo.getDate());
+		cityCombo.setSelectedItem(vo.getStartPlace());
+		stateCombo.setSelectedItem(EnumTransFactory.checkGoodState(vo.getState()));
 	}
 	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
@@ -129,6 +135,7 @@ public class RecipientPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(548+40, 436, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

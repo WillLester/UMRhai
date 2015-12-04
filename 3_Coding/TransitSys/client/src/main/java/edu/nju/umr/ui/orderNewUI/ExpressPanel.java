@@ -103,6 +103,7 @@ public class ExpressPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"));
 			co.setEnabled(false);
 		}
 		barcodeField.setText(vo.getId());
@@ -386,6 +387,7 @@ public class ExpressPanel extends JPanel {
 		add(confirmButton);
 		
 		cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(642, 536, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

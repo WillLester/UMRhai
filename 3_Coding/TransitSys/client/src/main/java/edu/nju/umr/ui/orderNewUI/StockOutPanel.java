@@ -23,6 +23,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockOutVO;
 
@@ -49,8 +50,15 @@ public class StockOutPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}
+		expressField.setText(vo.getExpressId());
+		transitIdField.setText(vo.getTransitId());
+		cityCombo.setSelectedItem(vo.getArrivePlace());
+		transitCombo.setSelectedItem(EnumTransFactory.checkTransit(vo.getKind()));
+		datePanel.setDate(vo.getDate());
+		
 	}
 	public StockOutPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
@@ -153,6 +161,7 @@ public class StockOutPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(541, 434, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

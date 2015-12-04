@@ -23,6 +23,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.Utility;
+import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 
@@ -50,8 +51,15 @@ public class PaymentPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
+			if(!co.getName().equals("cancel"));
 			co.setEnabled(false);
 		}
+		payerField.setText(vo.getPayer());
+		costField.setText(Double.toString(vo.getAmount()));
+		datePanel.setDate(vo.getDate());
+		accountCombo.setSelectedItem(vo.getAccount());
+		reasonCombo.setSelectedItem(EnumTransFactory.checkPay(vo.getKind()));
+		remarkArea.setText(vo.getRemarks());
 	}
 	public PaymentPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
@@ -152,6 +160,7 @@ public class PaymentPanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542, 499, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){

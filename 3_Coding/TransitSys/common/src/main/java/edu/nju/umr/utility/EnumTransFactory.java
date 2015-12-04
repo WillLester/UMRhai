@@ -1,10 +1,13 @@
 package edu.nju.umr.utility;
 
 import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.enums.Pay;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.enums.Wage;
 
 public class EnumTransFactory {
@@ -117,4 +120,73 @@ public class EnumTransFactory {
 		}
 		return wag;
 	}
+	public static Pay getPay(String pa)
+	{
+		Pay pay=null;
+		switch(pa)
+		{
+		case "租金/年":pay=Pay.RENT;break;
+		case "运费/次":pay=Pay.FREIGHT;break;
+		case "工资/月":pay=Pay.WAGE;break;
+		case "奖励":pay=Pay.BONUS;break;
+		}
+		return pay;
+	}
+	public static String checkPay(Pay pa)
+	{
+		String pay=null;
+		switch(pa)
+		{
+		case RENT:pay="租金/年";break;
+		case FREIGHT :pay="运费/次";break;
+		case WAGE:pay="工资/月";break;
+		case BONUS:pay="奖励";break;
+		}
+		return pay;
+	}
+	public static GoodState getGoodState(String sta)
+	{
+		GoodState state=null;
+		switch(sta)
+		{
+		case "完整":state=GoodState.INTACT;break;
+		case "损坏":state=GoodState.DAMAGED;break;
+		case "丢失":state=GoodState.LOSED;break;
+		}
+		return state;
+	}
+	public static String checkGoodState(GoodState sta)
+	{
+		String state=null;
+		switch(sta)
+		{
+		case INTACT:state="完整";break;
+		case DAMAGED:state="损坏";break;
+		case LOSED:state="丢失";break;
+		}
+		return state;
+	}
+	public static Transit getTransit(String tran)
+	{
+		Transit transit=null;
+		switch(tran)
+		{
+		case "飞机":transit=Transit.PLANE;break;
+		case "铁路":transit=Transit.TRAIN;break;
+		case "公路":transit=Transit.VAN;break;
+		}
+		return transit;
+	}
+	public static String checkTransit(Transit tran)
+	{
+		String transit=null;
+		switch(tran)
+		{
+		case PLANE:transit="飞机";break;
+		case TRAIN:transit="火车";break;
+		case VAN:transit="公路";break;
+		}
+		return transit;
+	}
+	
 }
