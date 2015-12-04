@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,13 +37,22 @@ public class SendPanel extends JPanel {
 	private String name;
 	private String[] courierList;
 	private SendOrderLSer logicSer;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
-	public SendPanel(JFrame fr,String name,String orgId) {
+	public SendPanel(JFrame fr,SendVO vo)
+	{
+		this(fr, vo.getOpName(),null, vo.getUserId());
+		for(Component co:this.getComponents()){
+			co.setEnabled(false);
+		}
+	}
+	public SendPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
+		this.userId=userId;
 		logicSer = new SendOrderLogic();
 		
 		JLabel titleLabel = new JLabel("派件单");
@@ -135,7 +145,7 @@ public class SendPanel extends JPanel {
 		return true;
 	}
 	private SendVO createVO(){
-		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), name);
+		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), name,userId);
 		return vo;
 	}
 }

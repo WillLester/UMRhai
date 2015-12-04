@@ -114,7 +114,7 @@ public class TransitCenterPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成中转单");
-				fr.setContentPane(new TransitPanel(fr,user.getOrgId(),user.getName()));
+				fr.setContentPane(new TransitPanel(fr,user.getOrgId(),user.getName(),user.getId()));
 			}
 		});
 	}

@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,6 +40,15 @@ public class IncomePanel extends JPanel {
 	/**  
 	 * Create the panel.
 	 */
+	public IncomePanel(JFrame fr,IncomeVO vo)
+	{
+		this(fr,vo.getOrgId(),vo.getOpName(),vo.getUserId());
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(false);
+		}
+	}
 	public IncomePanel(JFrame fr,String orgId,String name,String userId) {
 		setLayout(null);
 		frame=fr;
@@ -116,6 +126,7 @@ public class IncomePanel extends JPanel {
 		add(confirmButton);
 		
 		JButton cancelButton = new JButton("取消");
+		cancelButton.setName("cancel");
 		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542+40, 499, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){
@@ -140,7 +151,8 @@ public class IncomePanel extends JPanel {
 		return true;
 	}
 	private IncomeVO createVO(){
-		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), expressList.getExpresses(), name, orgId,userId);
+		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), 
+				expressList.getExpresses(), name, orgId,userId);
 		return vo;
 	}
 }

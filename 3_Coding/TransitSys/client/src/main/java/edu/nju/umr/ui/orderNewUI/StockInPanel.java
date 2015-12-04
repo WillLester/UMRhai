@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,16 +48,26 @@ public class StockInPanel extends JPanel {
 	private ArrayList<ShelfVO> shelfList;
 	private ArrayList<ShelfVO> shelfPart;
 	private JComboBox<String> cityCombo;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
+	public StockInPanel(JFrame fr,StockInVO vo)
+	{
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+	}
 	@SuppressWarnings("unchecked")
-	public StockInPanel(JFrame fr,String name,String orgId) {
+	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockInOrderLogic();
 		this.name = name;
 		this.orgId = orgId;
+		this.userId=userId;
 		
 		JLabel titleLabel = new JLabel("入库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -247,7 +258,9 @@ public class StockInPanel extends JPanel {
 	}
 	private StockInVO createVO(){
 		Part parts[] = Part.values();
-		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(), parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(), rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId);
+		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(),
+				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
+				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
 		return vo;
 	}
 }

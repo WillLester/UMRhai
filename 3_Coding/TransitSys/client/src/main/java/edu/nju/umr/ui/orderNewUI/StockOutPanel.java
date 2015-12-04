@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,15 +40,25 @@ public class StockOutPanel extends JPanel {
 	private StockOutOrderLSer logicSer;
 	private String name;
 	private String orgId;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
-	public StockOutPanel(JFrame fr,String name,String orgId) {
+	public StockOutPanel(JFrame fr,StockOutVO vo)
+	{
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+	}
+	public StockOutPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockOutOrderLogic();
 		this.name = name;
 		this.orgId = orgId;
+		this.userId=userId;
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -177,7 +188,8 @@ public class StockOutPanel extends JPanel {
 	}
 	private StockOutVO createVO(){
 		Transit transits[] = Transit.values();
-		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], (String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId);
+		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], 
+				(String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId,userId);
 		return vo;
 	}
 }

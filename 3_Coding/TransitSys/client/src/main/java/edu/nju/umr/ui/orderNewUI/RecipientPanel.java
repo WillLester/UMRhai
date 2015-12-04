@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,13 +38,23 @@ public class RecipientPanel extends JPanel {
 	private RecipientOrderLSer logicSer;
 	private String[] cityList;
 	private String name;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
-	public RecipientPanel(JFrame fr,String name,String orgId) {
+	public RecipientPanel(JFrame fr,RecipientVO vo)
+	{
+		this(fr,vo.getOpName(),null,vo.getUserId());
+		for(Component co:this.getComponents())
+		{
+			co.setEnabled(false);
+		}
+	}
+	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
+		this.userId=userId;
 		
 		JLabel titleLabel = new JLabel("营业厅到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -108,7 +119,7 @@ public class RecipientPanel extends JPanel {
 					Result result = logicSer.create(createVO());
 					if(result.equals(Result.SUCCESS)){
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId));
+						frame.setContentPane(new SendPanel(frame,name,orgId,userId));
 					} else {
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
@@ -152,7 +163,7 @@ public class RecipientPanel extends JPanel {
 	}
 	private RecipientVO createVO(){
 		GoodState states[] = GoodState.values();
-		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name);
+		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
 		return vo;
 	}
 }

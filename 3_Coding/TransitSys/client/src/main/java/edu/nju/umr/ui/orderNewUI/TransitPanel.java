@@ -44,17 +44,19 @@ public class TransitPanel extends JPanel {
 	private DatePanel datePanel;
 	private TransitOrderLSer logicSer;
 	private String name;
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
 	public TransitPanel(JFrame fr,TransitVO vo)
 	{
-		this(fr,"",vo.getOpName());
+		this(fr,"",vo.getOpName(),vo.getUserId());
 	}
-	public TransitPanel(JFrame fr,String org,String name) {
+	public TransitPanel(JFrame fr,String org,String name,String userId) {
 		setLayout(null);
 		frame = fr;
 		this.name = name;
+		this.userId=userId;
 		logicSer = new TransitOrderLogic();
 		
 		JLabel titleLabel = new JLabel("生成中转单");
@@ -256,10 +258,14 @@ public class TransitPanel extends JPanel {
 	}
 	private TransitVO createVO(){
 		if(kindCombo.getSelectedIndex() == 0){
-			TransitVO vo = new TransitVO(idField.getText(),planeIdField.getText(), (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar());
+			TransitVO vo = new TransitVO(idField.getText(),planeIdField.getText(), (String)startCombo.getSelectedItem(), 
+					(String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(),
+					name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId);
 			return vo;
 		} else {
-			TransitVO vo = new TransitVO(idField.getText(),null, (String)startCombo.getSelectedItem(), (String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar());
+			TransitVO vo = new TransitVO(idField.getText(),null, (String)startCombo.getSelectedItem(), 
+					(String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(),
+					expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId);
 			return vo;
 		}
 	}
