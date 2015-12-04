@@ -33,7 +33,6 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
