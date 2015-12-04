@@ -119,7 +119,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from halllorderunpassed where id ='"+id+"'";
+		return "delete from halllorderunpassed where userId ='"+userId+"'";
 	}
 	@Override
 	public String getDetail() {
@@ -129,7 +129,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	@Override
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "select * from halllorderunpassed where userId='"+userId+"'";
 	}
 	
 }

@@ -389,6 +389,7 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		try {
 			ResultSet result = state.executeQuery(order.getUnpassed());
+			state.executeUpdate(order.getDeleteUnpassed());
 			return result;
 		} catch (SQLException e){
 			e.printStackTrace();

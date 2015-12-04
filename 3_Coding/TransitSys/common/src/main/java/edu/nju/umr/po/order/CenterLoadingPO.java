@@ -110,7 +110,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from centerlorderunpassed where id='"+id+"'";
+		return "delete from centerlorderunpassed where userId='"+userId+"'";
 	}
 	@Override
 	public String getDetail() {
@@ -120,7 +120,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	@Override
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "select * from centerlorderunpassed where userId='"+userId+"'";
 	}
 	
 }

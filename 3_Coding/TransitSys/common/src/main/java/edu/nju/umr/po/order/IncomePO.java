@@ -102,7 +102,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return "delete from incomeorderwaiting where id="+id;
+		return "delete from incomeorderwaiting where userId='"+userId+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
@@ -117,6 +117,6 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "select * from incomeorderunpassed where userId ='"+userId+"'";
 	}
 }

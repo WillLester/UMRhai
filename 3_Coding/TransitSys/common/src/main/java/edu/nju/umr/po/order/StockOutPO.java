@@ -105,7 +105,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from stockoutorderwaiting where id="+id;
+		return "delete from stockoutorderwaiting where userId='"+userId+"'";
 	}
 	@Override
 	public String getDetail() {
@@ -115,6 +115,6 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
-		return null;
+		return "select * from stockoutorderunpassed where userId ='"+userId+"'";
 	}
 }
