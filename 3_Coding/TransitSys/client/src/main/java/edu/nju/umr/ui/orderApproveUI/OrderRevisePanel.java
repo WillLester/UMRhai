@@ -45,7 +45,7 @@ public class OrderRevisePanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 
-		JLabel reviseLabel = new JLabel("单据重提交");
+		JLabel reviseLabel = new JLabel("未通过单据");
 		reviseLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
 		reviseLabel.setBounds(505, 40, 93, 24);
 		add(reviseLabel);
@@ -70,8 +70,7 @@ public class OrderRevisePanel extends JPanel{
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		exitButton.setBounds(927, 383, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		exitButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
@@ -99,18 +98,11 @@ public class OrderRevisePanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"是否选中","时间","种类","提交人"};
+		String[] columnNames={"时间","种类","提交人"};
 		model.setColumnIdentifiers(columnNames);
 		TableColumnModel tcm = table.getColumnModel();
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		add(scroll);
 	}
-	
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new OrderApprovePanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
+
 }
