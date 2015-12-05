@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.logic.workOrgManLogic.WorkManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
+import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.Table;
@@ -40,6 +41,9 @@ public class WorkListPanel extends JPanel {
 	private JComboBox<String> orgCombo;
 	private JComboBox<String> juriCombo;
 	private ArrayList<WorkVO> workList;
+	private JButton delete;
+	private JButton modify;
+	private JButton cancelMod;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -148,8 +152,9 @@ public class WorkListPanel extends JPanel {
 		});
 		add(add);
 		
-		JButton delete = new JButton("删除");
+		delete = new JButton("删除");
 		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 93, 23);
+		delete.setEnabled(false);
 		delete.addActionListener(new ActionListener() {
 			
 			@Override
@@ -165,8 +170,9 @@ public class WorkListPanel extends JPanel {
 		});
 		add(delete);
 		
-		JButton modify = new JButton("确认修改");
+		modify = new JButton("确认修改");
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 93, 23);
+		modify.setEnabled(false);
 		modify.addActionListener(new ActionListener() {
 			
 			@Override
@@ -191,8 +197,9 @@ public class WorkListPanel extends JPanel {
 		});
 		add(modify);
 		
-		JButton cancelMod = new JButton("取消修改");
+		cancelMod = new JButton("取消修改");
 		cancelMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
+		cancelMod.setEnabled(false);
 		cancelMod.addActionListener(new ActionListener() {
 			
 			@Override
@@ -226,15 +233,24 @@ public class WorkListPanel extends JPanel {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(table.getSelectedRow() > 0){
+					if(table.getSelectedRow() >= 0){
 						orgCombo.setEnabled(true);
+						delete.setEnabled(true);
+						modify.setEnabled(true);
+						cancelMod.setEnabled(true);
 						WorkVO work = workList.get(table.getSelectedRow());
 						textFieldName.setText(work.getName());
 						textFieldMobile.setText(work.getMobile());
 						orgCombo.setSelectedItem(work.getOrg());
 						juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
+						if(work.getJuri().equals(Jurisdiction.ADMIN)){
+							delete.setEnabled(false);
+						}
 					} else {
 						orgCombo.setEnabled(false);
+						delete.setEnabled(false);
+						modify.setEnabled(false);
+						cancelMod.setEnabled(false);
 					}
 				}
 			}

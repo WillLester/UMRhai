@@ -1,5 +1,6 @@
 package edu.nju.umr.data.accountData;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -23,13 +24,13 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	}
 
 	public Result addCount(CountPO count) throws RemoteException {
-		return SerialHelper.writeToFile(count, "data/count.ser");
+		return SerialHelper.writeToFile(count, "data/count/count.ser");
 		
 	}
 
 	public CountPO findInitInfo(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return (CountPO) SerialHelper.readFromFile("data/count"+id+".ser");
+		return (CountPO) SerialHelper.readFromFile("data/count/count"+id+".ser");
 	}
 	public ArrayList<CountPO> getCount() throws RemoteException {
 		return null;
@@ -39,6 +40,12 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	public Result deleteCount(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
+	}
+
+	private int countCount(){
+		File file = new File("data/count");
+		File[] fs = file.listFiles();
+		return fs.length;
 	}
 	
 }
