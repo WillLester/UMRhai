@@ -94,7 +94,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date)+"','"+
 				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"')";break;
 		case DELETE:break;
-		case FIND:break;
+		case FIND:command="select * from transitorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
 		}
 		return command;

@@ -49,7 +49,6 @@ public class StockInPanel extends JPanel {
 	private ArrayList<ShelfVO> shelfPart;
 	private JComboBox<String> cityCombo;
 	private String userId;
-	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -77,7 +76,6 @@ public class StockInPanel extends JPanel {
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
-		this.org=org;
 		
 		JLabel titleLabel = new JLabel("入库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

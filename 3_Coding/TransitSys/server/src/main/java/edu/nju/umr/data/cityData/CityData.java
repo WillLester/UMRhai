@@ -58,4 +58,10 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		return mysqlSer.addInfo(cities);
 	}
 
+	@Override
+	public Result deleteCities(CitiesPO cities) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return mysqlSer.deleteInfo(cities);
+	}
+
 }

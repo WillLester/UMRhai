@@ -5,7 +5,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -46,7 +48,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
 				for(String express:expresses)
 				{
-					UpdateTransitInfoLogic.update(express, order.getDate()+"位于"+org);
+					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()));
 				}
 			}
 		} catch (RemoteException e) {

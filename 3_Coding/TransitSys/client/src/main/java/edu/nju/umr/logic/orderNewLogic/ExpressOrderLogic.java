@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
@@ -36,7 +37,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		try {
 			isSuc=expressData.create(VPFactory.toExpressPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
-				UpdateTransitInfoLogic.addInfo(order.getId(), "快递单生成于"+Calendar.getInstance()+" "+org);
+				UpdateTransitInfoLogic.addInfo(order.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())+" " +org+"快递员 已收件");
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

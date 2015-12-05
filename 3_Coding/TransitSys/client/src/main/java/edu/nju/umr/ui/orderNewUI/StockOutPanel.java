@@ -42,7 +42,6 @@ public class StockOutPanel extends JPanel {
 	private String name;
 	private String orgId;
 	private String userId;
-	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -68,7 +67,6 @@ public class StockOutPanel extends JPanel {
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
-		this.org=org;
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
