@@ -117,7 +117,7 @@ public class UserListPanel extends JPanel {
 		
 		JButton confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(895, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.setBounds(895, 487-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -174,7 +174,7 @@ public class UserListPanel extends JPanel {
 		
 		JLabel mobileIdLabel=new JLabel("手机号");
 		mobileIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		mobileIdLabel.setBounds(805,421, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		mobileIdLabel.setBounds(805,421-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(mobileIdLabel);
 		
 		idField=new JTextField("账号");
@@ -221,7 +221,7 @@ public class UserListPanel extends JPanel {
 
 		mobileField=new JTextField("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
-		mobileField.setBounds(855,421,200,24);
+		mobileField.setBounds(855,421-100,200,24);
 		add(mobileField);
 		
 		tableInit();
@@ -242,7 +242,7 @@ public class UserListPanel extends JPanel {
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(133, 121, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"账号","密码","权限","姓名","手机号","机构"};
+		String[] columnNames={"账号","密码","权限","姓名","手机号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
@@ -256,7 +256,7 @@ public class UserListPanel extends JPanel {
 		{
 			temp=(ArrayList<UserVO>)message.getMessage();
 		}
-		else reportWrong(message.getReInfo());/*new HintFrame(message.getReInfo(),frame.getX()+frame.getWidth()/2,frame.getY()+frame.getHeight()/2);*/
+		else reportWrong(message.getReInfo());
 		return temp;
 	}
 	private void displayUsers(){
@@ -266,10 +266,9 @@ public class UserListPanel extends JPanel {
 			UserVO user=users.get(i);
 			String lv=null;
 			lv = EnumTransFactory.checkJuri(user.getJuri());
-			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile(),user.getOrg()};
+			String[] rowData={user.getId(),user.getPassword(),lv,user.getName(),user.getMobile()};
 			model.addRow(rowData);
 		}
-		
 	}
 	private void addUser(){
 		String[] rowData={"","","","","",""};
@@ -301,6 +300,10 @@ public class UserListPanel extends JPanel {
 		String password=passwordField.getText();
 		String name=nameField.getText();
 		String mobile=mobileField.getText();
+		if(id.isEmpty()){DoHint.hint("账号未输入!", frame);return;}
+		if(password.isEmpty()){DoHint.hint("密码未输入!", frame);return;}
+		if(name.isEmpty()){DoHint.hint("姓名未输入!", frame);return;}
+		if(mobile.isEmpty()){DoHint.hint("手机号未输入!", frame);return;}
 		
 		if(row<users.size()){
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
