@@ -52,14 +52,18 @@ public class ConstantLogic implements ConstantLSer{
 		ConstantPO po=null;
 			try {
 				po = constantData.getConstant();
-				if(po!=null)
+				if(po!=null){
 					isSuc=Result.SUCCESS;
+					vo=VPFactory.toConstantVO(po);
+				} else {
+					return new ResultMessage(Result.FILE_NOT_FOUND, null);
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return new ResultMessage(Result.NET_INTERRUPT,null);
 			}
-			vo=VPFactory.toConstantVO(po);
+			
 			
 			return new ResultMessage(isSuc,vo);
 	}
