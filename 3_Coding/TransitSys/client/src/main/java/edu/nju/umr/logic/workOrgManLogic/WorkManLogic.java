@@ -16,6 +16,7 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
+import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WorkVO;
 
@@ -159,25 +160,19 @@ public class WorkManLogic implements WorkManLSer{
 	}
 
 	public ResultMessage orgList() {
-		// TODO 自动生成的方法存根
-//		ArrayList<OrgPO> ar= null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=workData.getOrgs();
-//			isSuccessful=true;
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			OrgPO org=ar.get(i);
-//			arVO.add(new OrgVO(org.getId(),org.getName(),org.getKind(),org.getLocation(),new CityVO(org.getCity().getId(),org.getCity().getName(),org.getCity().getProvince())));
-//		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
-		return uti.getOrgs();
+		// TODO 自动生成的方法存根\
+		ResultMessage message = uti.getOrgs();
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			@SuppressWarnings("unchecked")
+			ArrayList<OrgVO> orgList = (ArrayList<OrgVO>) message.getMessage();
+			String[] orgs = new String[orgList.size()];
+			for(int i =0;i < orgs.length;i++){
+				orgs[i] = orgList.get(i).getName();
+			}
+			return new ResultMessage(Result.SUCCESS, orgs);
+		} else {
+			return new ResultMessage(message.getReInfo(), null);
+		}
 	}
 
 }

@@ -45,6 +45,9 @@ public class UserListPanel extends JPanel {
 	private DefaultTableModel model;
 	private JComboBox<String> juriBox;
 	
+	private JButton confirmButton;
+	private JButton addButton;
+	
 	private JFrame frame;
 	private UserManLSer serv;
 	
@@ -93,12 +96,13 @@ public class UserListPanel extends JPanel {
 		});
 		add(allButton);
 		
-		JButton addButton = new JButton("新增");
+		addButton = new JButton("新增");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(283, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
+				addButton.setEnabled(false);
 				addUser();
 			}
 		});
@@ -115,7 +119,7 @@ public class UserListPanel extends JPanel {
 		});
 		add(deleteButton);
 		
-		JButton confirmButton = new JButton("确认修改");
+		confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		confirmButton.setBounds(895, 487-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirmButton.addActionListener(new ActionListener(){
@@ -278,8 +282,8 @@ public class UserListPanel extends JPanel {
 	private void displayUser(int row)
 	{
 		if(row<0||row>=table.getRowCount())return;
-		String []data=new String[6];
-		for(int i=0;i<6;i++)
+		String []data=new String[5];
+		for(int i=0;i<5;i++)
 		{
 			data[i]=(String)table.getValueAt(row, i);
 		}
@@ -288,13 +292,16 @@ public class UserListPanel extends JPanel {
 		juriBox.getModel().setSelectedItem(data[2]);
 		nameField.setText(data[3]);
 		mobileField.setText(data[4]);
-		orgField.setText(data[5]);
 	}
 	private void confirmChange(){
 		int row=table.getSelectedRow();
 		if(row<0||row>=table.getRowCount())return;
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
+		if(temp.isEmpty())
+		{
+			DoHint.hint("权限未选择!", frame);return;
+		}
 		jur = EnumTransFactory.getJuri(temp);
 		String id=idField.getText();
 		String password=passwordField.getText();
@@ -323,6 +330,7 @@ public class UserListPanel extends JPanel {
 			if(result.equals(Result.SUCCESS)){
 			users.add(now);
 			displayUsers();
+			addButton.setEnabled(true);
 			}
 			else {
 				reportWrong(result);
@@ -331,6 +339,7 @@ public class UserListPanel extends JPanel {
 	}
 	private void deleteUser(){
 		int row=table.getSelectedRow();
+		if(row<0||row>=users.size())return;
 		Result result=serv.deleteUser(users.get(row).getId());
 		if(result.equals(Result.SUCCESS)){
 		users.remove(row);

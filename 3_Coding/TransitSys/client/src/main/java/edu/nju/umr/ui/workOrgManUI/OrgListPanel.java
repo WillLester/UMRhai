@@ -226,6 +226,7 @@ public class OrgListPanel extends JPanel {
 	@SuppressWarnings("unchecked")
 	private ArrayList<OrgVO> getOrgs(String keyword){
 		ArrayList<OrgVO> temp=new ArrayList<OrgVO>();
+		if(keyword.isEmpty())keyword=null;
 		ResultMessage message=serv.searchOrg(keyword);
 		if(message.getReInfo()!=Result.SUCCESS)
 		{
@@ -346,14 +347,5 @@ public class OrgListPanel extends JPanel {
 		}
 		return temp;
 	}
-	public static void main(String[] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new OrgListPanel(frame));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
 
 }
