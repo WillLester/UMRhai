@@ -46,6 +46,8 @@ public class CityListPanel extends JPanel{
 	private ArrayList<CityVO> cityList;
 	private ArrayList<CitiesVO> citiesList;
 	private CityLSer logicSer;
+	private JButton cancelButton;
+	private JButton confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -134,7 +136,7 @@ public class CityListPanel extends JPanel{
 		});
 		add(deleteButton);
 		
-		JButton confirmButton = new JButton("确认修改");
+		confirmButton = new JButton("确认修改");
 		confirmButton.setBounds(567, 566, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -162,9 +164,9 @@ public class CityListPanel extends JPanel{
 							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()));
 						} else {
 							if(cityTable1.getSelectedRow() < 0){
-								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable1.getSelectedRow());
-							} else {
 								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable2.getSelectedRow());
+							} else {
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable1.getSelectedRow());
 							}
 						}
 						if(result.equals(Result.SUCCESS)){
@@ -181,7 +183,7 @@ public class CityListPanel extends JPanel{
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消修改");
+		cancelButton = new JButton("取消修改");
 		cancelButton.setBounds(683, 566, 93, 23);
 		cancelButton.addActionListener(new ActionListener() {
 			
@@ -227,7 +229,20 @@ public class CityListPanel extends JPanel{
 		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
+					if(cityTable1.getSelectedRow()==-1&&cityTable2.getSelectedRow()==-1)
+					{
+						confirmButton.setEnabled(false);
+						cancelButton.setEnabled(false);
+					}
+					else
+					{
+						confirmButton.setEnabled(true);
+						cancelButton.setEnabled(true);
+					}
+					if(cityTable1.getSelectedRow()>=cityList.size()||cityTable2.getSelectedRow()>=cityList.size())
+					{
+						
+					}else if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
@@ -265,7 +280,10 @@ public class CityListPanel extends JPanel{
 		cityTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(((cityTable1.getSelectedRow() == -1)||cityTable1.getSelectedRow() == cityTable2.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
+					if(cityTable1.getSelectedRow()>=cityList.size()||cityTable2.getSelectedRow()>=cityList.size())
+					{
+						
+					}else if(((cityTable1.getSelectedRow() == -1)||cityTable1.getSelectedRow() == cityTable2.getSelectedRow())&&(cityTable2.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
@@ -297,6 +315,7 @@ public class CityListPanel extends JPanel{
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
 		initialize();
+		
 	}
 	@SuppressWarnings("unchecked")
 	private void initialize(){
@@ -304,6 +323,8 @@ public class CityListPanel extends JPanel{
 		if(cityResult.getReInfo().equals(Result.SUCCESS)){
 			cityList = (ArrayList<CityVO>) cityResult.getMessage();
 			displayTable();
+			confirmButton.setEnabled(false);
+			cancelButton.setEnabled(false);
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());

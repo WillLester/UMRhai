@@ -22,8 +22,8 @@ import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
@@ -165,12 +165,12 @@ public class UserListPanel extends JPanel {
 		JLabel orgLabel=new JLabel("机构");
 		orgLabel.setFont(new Font("宋体", Font.PLAIN, 12));
 		orgLabel.setBounds(805,321, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(orgLabel);
+//		add(orgLabel);
 		
 		JLabel orgIdLabel=new JLabel("机构编号");
 		orgIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
 		orgIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-		add(orgIdLabel);
+//		add(orgIdLabel);
 		
 		JLabel mobileIdLabel=new JLabel("手机号");
 		mobileIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -206,7 +206,7 @@ public class UserListPanel extends JPanel {
 		orgField=new JTextField("机构");
 		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
 		orgField.setBounds(855,321,200,24);
-		add(orgField);
+//		add(orgField);
 		
 //		JComboBox comboBox_2 = new JComboBox();
 //		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
@@ -217,7 +217,7 @@ public class UserListPanel extends JPanel {
 		orgIdField=new JTextField("机构编号");
 		orgIdField.setFont(new Font("宋体", Font.PLAIN, 12));
 		orgIdField.setBounds(855,371,200,24);
-		add(orgIdField);
+//		add(orgIdField);
 
 		mobileField=new JTextField("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -297,6 +297,11 @@ public class UserListPanel extends JPanel {
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
 		jur = EnumTransFactory.getJuri(temp);
+		String id=idField.getText();
+		String password=passwordField.getText();
+		String name=nameField.getText();
+		String mobile=mobileField.getText();
+		
 		if(row<users.size()){
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
 			Result result=serv.reviseUser(now,row);
@@ -332,7 +337,7 @@ public class UserListPanel extends JPanel {
 		else reportWrong(result);
 	}
 	private void reportWrong(Result result){
-		new HintFrame(result,frame.getX(),frame.getWidth(),frame.getY(),frame.getHeight());
+		DoHint.hint(result, frame);
 	}
 	
 	

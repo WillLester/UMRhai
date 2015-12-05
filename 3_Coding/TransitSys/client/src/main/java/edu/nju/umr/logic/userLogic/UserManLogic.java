@@ -33,6 +33,7 @@ public class UserManLogic implements UserManLSer{
 			try {
 				if(userData.checkIsUsed(user.getId())==Result.SUCCESS)
 					isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
+				else return Result.ID_IS_USED;
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;

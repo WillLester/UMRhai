@@ -29,7 +29,6 @@ public class CityLogic implements CityLSer{
 		try{
 			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
 			cityData = dataFac.getCity();
-			cityPOs=utility.cities();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -103,7 +102,13 @@ public class CityLogic implements CityLSer{
 	}
 
 	public ResultMessage cityList() {
-		return utility.getCities();
+		try {
+			cityPOs = utility.cities();
+			return utility.getCities();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			return new ResultMessage(Result.NET_INTERRUPT, null);
+		}
 	}
 	public Result deleteCity(String cityName) {
 		Result isSuc=null;
@@ -126,7 +131,12 @@ public class CityLogic implements CityLSer{
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		return new ResultMessage(Result.SUCCESS,city);
+		ArrayList<CitiesVO> citiesVO=new ArrayList<CitiesVO>();
+		for(CitiesPO po:city)
+		{
+			citiesVO.add(VPFactory.toCitiesVO(po));
+		}
+		return new ResultMessage(Result.SUCCESS,citiesVO);
 	}
 
 }
