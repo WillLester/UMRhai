@@ -34,16 +34,13 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc=expressData.create(VPFactory.toExpressPO(order));
+			if(isSuc.equals(Result.SUCCESS)){
+				UpdateTransitInfoLogic.addInfo(order.getId(), "");
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
-//		try {
-//			isSuc = expressData.create(new ExpressPO(order.getSender(), order.getSendLoc(), order.getReceiver(), order.getReceiveLoc(), order.getSendMobile(), order.getReceiveMobile(), order.getNum(), order.getName(), order.getLength(), order.getWidth(), order.getHeight(), order.getWeight(), order.getVolumn(), order.getId(), order.getArrive(), order.getKind(), order.getCost()));
-//		} catch (RemoteException e) {
-//		// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//	}
 		return isSuc;
 	}
 
