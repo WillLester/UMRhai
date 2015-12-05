@@ -3,7 +3,9 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
@@ -28,7 +30,7 @@ public class SendOrderLogic implements SendOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(SendVO order) {
+	public Result create(SendVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
@@ -36,7 +38,8 @@ public class SendOrderLogic implements SendOrderLSer{
 			isSuccessful=sendData.create(orderPO);
 			if(isSuccessful.equals(Result.SUCCESS))
 			{
-				UpdateTransitInfoLogic.update(order.getExpressId(), order.getDate()+"由"+order.getCourier()+"派送中");
+				UpdateTransitInfoLogic.update(order.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+"派件员 "+order.getCourier()+"正在派件");
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;

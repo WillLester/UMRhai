@@ -46,7 +46,6 @@ public class TransitPanel extends JPanel {
 	private TransitOrderLSer logicSer;
 	private String name;
 	private String userId;
-	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -73,7 +72,6 @@ public class TransitPanel extends JPanel {
 		setLayout(null);
 		frame = fr;
 		this.name = name;
-		this.org=org;
 		this.userId=userId;
 		logicSer = new TransitOrderLogic();
 		

@@ -2,7 +2,9 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
@@ -39,7 +41,8 @@ public class TransitOrderLogic implements TransitOrderLSer{
 			if(result.equals(Result.SUCCESS))
 			{
 				for(String express:order.getExpress())
-				UpdateTransitInfoLogic.update(express,order.getDate()+"于"+org+"发往"+order.getArrivePlace());
+				UpdateTransitInfoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+" 已发出 下一站 "+order.getArrivePlace());
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;

@@ -5,6 +5,6 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
 
 public interface SendOrderLSer {
-	public Result create(SendVO order);
+	public Result create(SendVO order,String org);
 	public ResultMessage getCouriers(String id);
 }

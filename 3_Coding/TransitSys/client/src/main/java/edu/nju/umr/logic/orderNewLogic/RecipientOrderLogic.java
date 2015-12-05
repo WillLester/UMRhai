@@ -2,7 +2,9 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
@@ -40,7 +42,8 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			{
 				for(String express:recipientData.getExpressList(order.getTransitId()))
 				{
-					UpdateTransitInfoLogic.update(express, order.getDate()+"到达"+org);
+					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()
+							+" "+org+" 已收入"));
 				}
 			}
 		}catch(RemoteException e){

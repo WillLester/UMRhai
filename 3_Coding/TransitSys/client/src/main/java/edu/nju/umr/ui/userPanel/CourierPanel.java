@@ -32,7 +32,7 @@ public class CourierPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("收件信息输入");
-				ffr.setContentPane(new ReceivePanel(ffr));
+				ffr.setContentPane(new ReceivePanel(ffr,user.getOrg()));
 			}
 		});
 		this.add(receive);

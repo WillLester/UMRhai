@@ -40,7 +40,6 @@ public class RecipientPanel extends JPanel {
 	private String[] cityList;
 	private String name;
 	private String userId;
-	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -62,7 +61,6 @@ public class RecipientPanel extends JPanel {
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
-		this.org=org;
 		
 		JLabel titleLabel = new JLabel("营业厅到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -127,7 +125,7 @@ public class RecipientPanel extends JPanel {
 					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId,userId));
+						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org));
 					} else {
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}

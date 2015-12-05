@@ -43,7 +43,7 @@ public class SendPanel extends JPanel {
 	 */
 	public SendPanel(JFrame fr,SendVO vo)
 	{
-		this(fr, vo.getOpName(),null, vo.getUserId());
+		this(fr, vo.getOpName(),null, vo.getUserId(),null);
 		for(Component co:this.getComponents()){
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
@@ -52,7 +52,7 @@ public class SendPanel extends JPanel {
 		courierCombo.setSelectedItem(vo.getCourier());
 		datePanel.setDate(vo.getDate());
 	}
-	public SendPanel(JFrame fr,String name,String orgId,String userId) {
+	public SendPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -113,7 +113,7 @@ public class SendPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO());
+					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {

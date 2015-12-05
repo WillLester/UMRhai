@@ -28,11 +28,13 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	private DatePanel receiveDate;
 	private JLabel timelabel;
 	private ReceiveOrderLSer logicSer;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
-	public ReceivePanel(JFrame fr) {
+	public ReceivePanel(JFrame fr,String org) {
 		super(fr);
+		this.org = org;
 		logicSer = new ReceiveOrderLogic();
 		cancelButton.setLocation(642, 564);
 		cancelButton.addActionListener(new ActionListener() {
@@ -89,7 +91,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
 			if(isLegal()){
-				Result result = logicSer.create(createVO());
+				Result result = logicSer.create(createVO(),org);
 				if(result.equals(Result.SUCCESS)){
 					
 				} else {
