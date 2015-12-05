@@ -231,6 +231,11 @@ public class WorkListPanel extends JPanel {
 				if(e.getValueIsAdjusting()==false){
 					if(table.getSelectedRow() > 0){
 						orgCombo.setEnabled(true);
+						WorkVO work = workList.get(table.getSelectedRow());
+						textFieldName.setText(work.getName());
+						textFieldMobile.setText(work.getMobile());
+						orgCombo.setSelectedItem(work.getOrg());
+						juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
 					} else {
 						orgCombo.setEnabled(false);
 					}
