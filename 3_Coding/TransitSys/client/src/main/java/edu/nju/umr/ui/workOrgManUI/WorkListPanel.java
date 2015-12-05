@@ -36,7 +36,6 @@ public class WorkListPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6812540125291862768L;
 	private JTextField textFieldSearch;
-	private JTable listTable;
 	private JTextField textFieldName;
 	private JTextField textFieldMobile;
 	private JComboBox<String> orgCombo;
@@ -139,7 +138,7 @@ public class WorkListPanel extends JPanel {
 		add(juriCombo);
 		
 		JButton add = new JButton("新增");
-		add.setBounds(listTable.getX(), textFieldMobile.getY()+textFieldMobile.getHeight()+30, 93, 23);
+		add.setBounds(Constants.TABLE_X, textFieldMobile.getY()+textFieldMobile.getHeight()+30, 93, 23);
 		add.addActionListener(new ActionListener() {
 			
 			@Override
