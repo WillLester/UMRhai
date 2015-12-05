@@ -48,7 +48,8 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
 				for(String express:expresses)
 				{
-					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()));
+					UpdateTransitInfoLogic.update(express, 
+							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
 				}
 			}
 		} catch (RemoteException e) {

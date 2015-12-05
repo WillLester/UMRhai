@@ -4,7 +4,9 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
@@ -40,14 +42,15 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
         } 
 	}
 	
-	public Result create(ReceiveVO receive) {
+	public Result create(ReceiveVO receive,String org) {
 		// TODO Auto-generated method stub
 		express.setRealReceiver(receive.getRealReceiver());
 		express.setReceiveTime(receive.getReceiveTime());
 		try {
 			Result result =  receiveData.create(express);
 			if(result.equals(Result.SUCCESS))
-				UpdateTransitInfoLogic.update("", "");
+				UpdateTransitInfoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+" 已签收 签收人 "+receive.getRealReceiver());
 			return result;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

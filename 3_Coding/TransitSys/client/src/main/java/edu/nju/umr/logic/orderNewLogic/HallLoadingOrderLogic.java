@@ -5,7 +5,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
@@ -48,7 +50,8 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			isSuc=hallData.create(VPFactory.toHallLoadingPO(order, ""));
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:order.getExpress())
-				UpdateTransitInfoLogic.update(express,order.getDate()+"位于"+org+"装车");
+				UpdateTransitInfoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+"已发出 下一站"+order.getArriveLoc());
 			}
 		} catch (RemoteException e) { 
             return Result.NET_INTERRUPT;
