@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
@@ -29,13 +30,13 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public Result create(ExpressVO order) {
+	public Result create(ExpressVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc=expressData.create(VPFactory.toExpressPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
-				UpdateTransitInfoLogic.addInfo(order.getId(), "");
+				UpdateTransitInfoLogic.addInfo(order.getId(), "快递单生成于"+Calendar.getInstance()+" "+org);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

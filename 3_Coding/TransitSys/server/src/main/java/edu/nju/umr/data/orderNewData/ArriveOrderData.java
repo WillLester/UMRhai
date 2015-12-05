@@ -8,6 +8,7 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.po.order.TransitPO;
 /*
  * 到达单数据
  */
@@ -26,5 +27,4 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	public Result create(ArrivePO order) throws RemoteException {
 		return mysqlSer.addInfo(order);
 	}
-
 }

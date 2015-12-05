@@ -34,11 +34,15 @@ public class StockInOrderLogic implements StockInOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(StockInVO order) {
+	public Result create(StockInVO order,String org) {
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
 			StockInPO orderPO=VPFactory.toStockInPO(order, 0);
 			isSuc=stockinData.create(orderPO);
+			if(isSuc.equals(Result.SUCCESS))
+			{
+				UpdateTransitInfoLogic.update(order.getExpressId(),order.getDate()+"于"+org+"入库");
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)

@@ -95,12 +95,14 @@ public class ExpressPanel extends JPanel {
 	protected JLabel arriveLabel;
 	protected JTextField arriveField;
 	private String userId;
+	
+	private String org;
 	/**
 	 * Create the panel.
 	 */
 	public ExpressPanel(JFrame fr,ExpressVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"));
@@ -133,12 +135,13 @@ public class ExpressPanel extends JPanel {
 		
 		
 	}
-	public ExpressPanel(JFrame fr,String name,String userId) {
+	public ExpressPanel(JFrame fr,String name,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
 		this.name = name;
 		this.userId = userId;
+		this.org=org;
 		
 		titleLabel = new JLabel("订单创建");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -467,7 +470,7 @@ public class ExpressPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
 			if(isLegal()){
-				Result result = logicSer.create(createVO());
+				Result result = logicSer.create(createVO(),org);
 				if(result.equals(Result.SUCCESS)){
 					
 				} else {

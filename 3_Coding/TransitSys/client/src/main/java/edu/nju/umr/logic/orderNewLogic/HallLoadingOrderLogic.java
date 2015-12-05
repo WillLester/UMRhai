@@ -41,11 +41,15 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
         } 
 		// TODO 自动生成的构造函数存根
 	}
-	public Result create(HallLoadingVO order) {
+	public Result create(HallLoadingVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
 			isSuc=hallData.create(VPFactory.toHallLoadingPO(order, ""));
+			if(isSuc.equals(Result.SUCCESS)){
+				for(String express:order.getExpress())
+				UpdateTransitInfoLogic.update(express,order.getDate()+"位于"+org+"装车");
+			}
 		} catch (RemoteException e) { 
             return Result.NET_INTERRUPT;
         } catch(Exception e){

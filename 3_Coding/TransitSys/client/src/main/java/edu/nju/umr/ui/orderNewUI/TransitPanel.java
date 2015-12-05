@@ -46,6 +46,7 @@ public class TransitPanel extends JPanel {
 	private TransitOrderLSer logicSer;
 	private String name;
 	private String userId;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -72,6 +73,7 @@ public class TransitPanel extends JPanel {
 		setLayout(null);
 		frame = fr;
 		this.name = name;
+		this.org=org;
 		this.userId=userId;
 		logicSer = new TransitOrderLogic();
 		
@@ -178,7 +180,7 @@ public class TransitPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO());
+					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {

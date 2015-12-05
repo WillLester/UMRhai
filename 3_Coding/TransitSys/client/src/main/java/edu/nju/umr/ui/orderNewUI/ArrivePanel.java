@@ -35,6 +35,7 @@ public class ArrivePanel extends JPanel {
 	private JFrame frame;
 	private DatePanel datePanel;
 	private String name;
+	private String org;
 	private String orgId;
 	private String userId;
 	private ArriveOrderLSer serv;
@@ -45,7 +46,7 @@ public class ArrivePanel extends JPanel {
 	 */
 	public ArrivePanel(JFrame fr,ArriveVO arrive)
 	{
-		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId());
+		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"))
@@ -56,13 +57,13 @@ public class ArrivePanel extends JPanel {
 		datePanel.setDate(arrive.getDate());
 		startCombo.setSelectedItem((String)arrive.getStartPlace());
 		stateCombo.setSelectedItem(arrive.getState().toString());
-		
 	}
-	public ArrivePanel(JFrame fr,String name,String orgId,String userId) {
+	public ArrivePanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.orgId = orgId;
+		this.org=org;
 		this.userId=userId;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
@@ -108,39 +109,6 @@ public class ArrivePanel extends JPanel {
 		startCombo.setBounds(474+75+25, 166, 193, 21);
 		add(startCombo);
 		
-//		JSpinner spinner = new JSpinner();
-//		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-//		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner.setBounds(474+75+25, 268, 85, 26);
-//		add(spinner);
-//		
-//		JLabel lblNewLabel_5 = new JLabel("年");
-//		lblNewLabel_5.setFont(new Font("宋体", Font.PLAIN, 20));
-//		lblNewLabel_5.setBounds(569+75+25, 269, 25, 22);
-//		add(lblNewLabel_5);
-//		
-//		JSpinner spinner_1 = new JSpinner();
-//		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-//		spinner_1.setBounds(597+75+25, 268, 48, 26);
-//		add(spinner_1);
-//		
-//		JLabel lblNewLabel_6 = new JLabel("月");
-//		lblNewLabel_6.setFont(new Font("宋体", Font.PLAIN, 20));
-//		lblNewLabel_6.setBounds(655+75+25, 268, 25, 22);
-//		add(lblNewLabel_6);
-//		
-//		JSpinner spinner_2 = new JSpinner();
-//		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-//		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_2.setBounds(679+75+25, 268, 48, 26);
-//		add(spinner_2);
-//		
-//		JLabel lblNewLabel_7 = new JLabel("日");
-//		lblNewLabel_7.setFont(new Font("宋体", Font.PLAIN, 20));
-//		lblNewLabel_7.setBounds(737+75+25, 269, 25, 22);
-//		add(lblNewLabel_7);
-		
 		datePanel=new DatePanel();
 		datePanel.setBounds(474+75+25, 268, 285, 26);
 		add(datePanel);
@@ -174,7 +142,8 @@ public class ArrivePanel extends JPanel {
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				frame.dispose();			}
+				frame.dispose();
+			}
 		});
 		add(cancelButton);
 
@@ -212,7 +181,7 @@ public class ArrivePanel extends JPanel {
 		}
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
-		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,userId));
+		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,userId),org);
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);

@@ -34,6 +34,10 @@ public class SendOrderLogic implements SendOrderLSer{
 		try{
 			SendPO orderPO=VPFactory.toSendPO(order, "");
 			isSuccessful=sendData.create(orderPO);
+			if(isSuccessful.equals(Result.SUCCESS))
+			{
+				UpdateTransitInfoLogic.update(order.getExpressId(), order.getDate()+"由"+order.getCourier()+"派送中");
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){

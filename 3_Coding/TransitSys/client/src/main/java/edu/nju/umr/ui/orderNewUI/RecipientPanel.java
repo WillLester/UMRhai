@@ -40,12 +40,13 @@ public class RecipientPanel extends JPanel {
 	private String[] cityList;
 	private String name;
 	private String userId;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
 	public RecipientPanel(JFrame fr,RecipientVO vo)
 	{
-		this(fr,vo.getOpName(),null,vo.getUserId());
+		this(fr,vo.getOpName(),null,vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cance"))
@@ -56,11 +57,12 @@ public class RecipientPanel extends JPanel {
 		cityCombo.setSelectedItem(vo.getStartPlace());
 		stateCombo.setSelectedItem(EnumTransFactory.checkGoodState(vo.getState()));
 	}
-	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
+	public RecipientPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
+		this.org=org;
 		
 		JLabel titleLabel = new JLabel("营业厅到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -122,7 +124,7 @@ public class RecipientPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO());
+					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						frame.setTitle("派件单生成");
 						frame.setContentPane(new SendPanel(frame,name,orgId,userId));

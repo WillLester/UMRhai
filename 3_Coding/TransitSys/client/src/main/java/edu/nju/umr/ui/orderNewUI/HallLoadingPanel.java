@@ -60,12 +60,13 @@ public class HallLoadingPanel extends JPanel {
 	private String userName;
 	private String orgId;
 	private String userId;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
 	public HallLoadingPanel(JFrame fr,HallLoadingVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId(),vo.getHallId());
+		this(fr,vo.getOpName(),vo.getUserId(),vo.getHallId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"));
@@ -85,11 +86,12 @@ public class HallLoadingPanel extends JPanel {
 		priceLabel.setText("运费："+cost);
 		
 	}
-	public HallLoadingPanel(JFrame fr,String userName,String userId,String orgId) {
+	public HallLoadingPanel(JFrame fr,String userName,String userId,String orgId,String org) {
 		frame=fr;
 		this.userName=userName;
 		this.orgId=orgId;
 		this.userId=userId;
+		this.org=org;
 		setLayout(null);
 		
 		JLabel themeLabel = new JLabel("营业厅装车单");
@@ -292,7 +294,7 @@ public class HallLoadingPanel extends JPanel {
 //		String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
 				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),userName,userId);
-		Result result=serv.create(vo);
+		Result result=serv.create(vo,org);
 		if(!result.equals(Result.SUCCESS))
 		{
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());

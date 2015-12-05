@@ -6,6 +6,6 @@ import edu.nju.umr.vo.order.CenterLoadingVO;
 
 
 public interface CenterLoadingOrderLSer {
-	public Result create(CenterLoadingVO order);
+	public Result create(CenterLoadingVO order,String org);
 	public ResultMessage getHalls();
 }

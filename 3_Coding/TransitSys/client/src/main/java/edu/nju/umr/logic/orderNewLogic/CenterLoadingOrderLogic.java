@@ -34,11 +34,18 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
             e.printStackTrace();   
         } 
 	}
-	public Result create(CenterLoadingVO order) {
+	public Result create(CenterLoadingVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = centerData.create(VPFactory.toCenterLoadPO(order, ""));
+			if(isSuc.equals(Result.SUCCESS))
+			{
+				for(String express:order.getExpress())
+				{
+					UpdateTransitInfoLogic.update(express, order.getDate()+"位于"+org);
+				}
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -49,12 +49,13 @@ public class StockInPanel extends JPanel {
 	private ArrayList<ShelfVO> shelfPart;
 	private JComboBox<String> cityCombo;
 	private String userId;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
 	public StockInPanel(JFrame fr,StockInVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"))
@@ -69,13 +70,14 @@ public class StockInPanel extends JPanel {
 		cityCombo.setSelectedItem(vo.getArrivePlace());
 	}
 	@SuppressWarnings("unchecked")
-	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
+	public StockInPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockInOrderLogic();
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
+		this.org=org;
 		
 		JLabel titleLabel = new JLabel("入库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -220,7 +222,7 @@ public class StockInPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO());
+					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {

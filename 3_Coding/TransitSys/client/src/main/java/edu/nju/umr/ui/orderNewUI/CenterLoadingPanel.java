@@ -47,7 +47,7 @@ public class CenterLoadingPanel extends JPanel {
 	 */
 	public CenterLoadingPanel(JFrame fr,CenterLoadingVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"));
@@ -62,7 +62,7 @@ public class CenterLoadingPanel extends JPanel {
 		arriveCombo.setSelectedItem((String)vo.getTarget());
 		expressList.showExpressList(vo.getExpress());
 	}
-	public CenterLoadingPanel(JFrame fr,String name,String userId) {
+	public CenterLoadingPanel(JFrame fr,String name,String userId,String org) {
 		setLayout(null);
 		
 		JLabel titleLabel = new JLabel("中转中心装车单");
@@ -112,6 +112,7 @@ public class CenterLoadingPanel extends JPanel {
 		} else {
 			hint(message.getReInfo());
 		}
+		
 		add(arriveCombo);
 		
 		JLabel supervisionLabel = new JLabel("监装员");
@@ -162,7 +163,7 @@ public class CenterLoadingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO());
+					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {

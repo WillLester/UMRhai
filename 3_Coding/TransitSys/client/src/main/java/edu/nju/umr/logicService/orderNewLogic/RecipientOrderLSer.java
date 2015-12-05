@@ -5,6 +5,6 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
 public interface RecipientOrderLSer {
-	public Result create(RecipientVO order);
+	public Result create(RecipientVO order,String org);
 	public ResultMessage getCities();
 }

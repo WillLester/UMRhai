@@ -30,13 +30,17 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		}
 	}
 
-	public Result create(TransitVO order) {
+	public Result create(TransitVO order,String org) {
 		// TODO 自动生成的方法存根
 //		boolean isSuccessful=false;
 		try{
 			TransitPO orderPO=VPFactory.toTransitPO(order, "");
-			transitData.create(orderPO);
-//			isSuccessful=true;
+			Result result=transitData.create(orderPO);
+			if(result.equals(Result.SUCCESS))
+			{
+				for(String express:order.getExpress())
+				UpdateTransitInfoLogic.update(express,order.getDate()+"于"+org+"发往"+order.getArrivePlace());
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)

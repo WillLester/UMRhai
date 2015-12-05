@@ -45,7 +45,10 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 		express.setRealReceiver(receive.getRealReceiver());
 		express.setReceiveTime(receive.getReceiveTime());
 		try {
-			return receiveData.create(express);
+			Result result =  receiveData.create(express);
+			if(result.equals(Result.SUCCESS))
+				UpdateTransitInfoLogic.update("", "");
+			return result;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			return Result.NET_INTERRUPT;

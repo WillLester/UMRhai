@@ -29,14 +29,20 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(RecipientVO order) {
+	public Result create(RecipientVO order,String org) {
 		// TODO 自动生成的方法存根
 //		boolean isSuccessful=false;
 		Result isSuc=Result.SUCCESS;
 		try{
 			RecipientPO orderPO=VPFactory.toRecipientPO(order, "");
 			isSuc=recipientData.create(orderPO);
-//			isSuccessful=true;
+			if(isSuc.equals(Result.SUCCESS))
+			{
+				for(String express:recipientData.getExpressList(order.getTransitId()))
+				{
+					UpdateTransitInfoLogic.update(express, order.getDate()+"到达"+org);
+				}
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)

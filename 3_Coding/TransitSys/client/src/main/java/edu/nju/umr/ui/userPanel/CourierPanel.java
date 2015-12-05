@@ -56,7 +56,7 @@ public class CourierPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("订单创建");
-				ffr.setContentPane(new ExpressPanel(ffr,user.getName(),user.getId()));
+				ffr.setContentPane(new ExpressPanel(ffr,user.getName(),user.getId(),user.getOrg()));
 			}
 		});
 		this.add(button_1);

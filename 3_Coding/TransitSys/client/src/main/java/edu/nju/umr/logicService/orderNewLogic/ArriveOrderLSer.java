@@ -5,6 +5,6 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
 
 public interface ArriveOrderLSer {
-	public Result create(ArriveVO order);
+	public Result create(ArriveVO order,String org);
 	public ResultMessage getLocalHallsAndAllCenter(String orgId);
 }

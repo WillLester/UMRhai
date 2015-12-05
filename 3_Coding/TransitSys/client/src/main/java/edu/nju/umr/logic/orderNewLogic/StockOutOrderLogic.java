@@ -29,11 +29,15 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(StockOutVO order) {
+	public Result create(StockOutVO order,String org) {
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
 			StockOutPO orderPO=VPFactory.toStockOutPO(order, 0);
 			isSuccessful=stockoutData.create(orderPO);
+			if(isSuccessful.equals(Result.SUCCESS))
+			{
+				UpdateTransitInfoLogic.update(order.getExpressId(), order.getDate()+"于"+org+"出库发往"+order.getArrivePlace());
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
