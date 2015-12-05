@@ -70,7 +70,7 @@ public class WorkPO extends PO implements Serializable{
 		String command=null;
 		switch(op){
 		case INSERT:command="insert into user values"+"(null,null,null,null,0,0,'"+orgId+"','"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
-		case DELETE:command="delete from user where id='"+id+"'";break;
+		case DELETE:command="delete from user where keyid="+id;break;
 		case FIND:
 			if(juri == null){
 				command = "select * from user where name like '%"+name+"%' or org like '%"+org+"%'";

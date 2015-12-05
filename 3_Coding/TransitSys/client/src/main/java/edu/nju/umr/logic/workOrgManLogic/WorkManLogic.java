@@ -24,7 +24,7 @@ public class WorkManLogic implements WorkManLSer{
 	private WorkManDFacSer dataFac;
 	private WorkManDSer workData;
 	private UtilityLogic uti=new UtilityLogic();
-	private ArrayList<WorkPO> ar;
+	private ArrayList<WorkPO> workList;
 	public WorkManLogic()
 	{
 		try{
@@ -57,11 +57,11 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteWork(int id) {
+	public Result deleteWork(int index) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=workData.deleteWork(id);
+			isSuccessful=workData.deleteWork(workList.get(index).getId());
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
@@ -73,7 +73,7 @@ public class WorkManLogic implements WorkManLSer{
 	public Result reviseWork(WorkVO work, int index) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
-		WorkPO po=ar.get(index);
+		WorkPO po=workList.get(index);
 		try{
 			String orgId=getOrgId(work.getOrg());
 			isSuccessful=workData.reviseWork(VPFactory.toWorkPO(work, orgId,po.getId(),po.getKind(),po.getMoney(),po.getCommission()));
@@ -101,44 +101,20 @@ public class WorkManLogic implements WorkManLSer{
 		return null;
 	}
 
-//	public ResultMessage WorkList() {
-//		// TODO 自动生成的方法存根
-//		ArrayList<WorkPO> ar= null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=workData.findWork("");
-//			isSuccessful=true;
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			WorkPO Work=ar.get(i);
-//			arVO.add(new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
-//		}
-//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-//		return message;
-//	}
-
 	public ResultMessage searchWork(String keyword) {
 		// TODO 自动生成的方法存根
-		ar= new ArrayList<WorkPO>();
-//		boolean isSuccessful=false;
+		workList= new ArrayList<WorkPO>();
 		try{
-			ar=workData.findWork(keyword);
-//			isSuccessful=true;
+			workList=workData.findWork(keyword);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		ArrayList<WorkVO> arVO=new ArrayList<WorkVO>();
-		for(int i=0;i<ar.size();i++)
+		for(int i=0;i<workList.size();i++)
 		{
-			WorkPO work=ar.get(i);
-//			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getJuri()));
+			WorkPO work = workList.get(i);
 			arVO.add(VPFactory.toWorkVO(work));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);

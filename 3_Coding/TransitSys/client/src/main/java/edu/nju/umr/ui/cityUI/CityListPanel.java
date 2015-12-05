@@ -338,6 +338,8 @@ public class CityListPanel extends JPanel{
 		}
 	}
 	private void displayTable(){
+		cityTable1.clearSelection();
+		cityTable2.clearSelection();
 		model1.setRowCount(0);
 		model2.setRowCount(0);
 		for(CityVO city:cityList){

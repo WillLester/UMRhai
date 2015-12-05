@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -61,7 +60,6 @@ public class WorkListPanel extends JPanel {
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setText("请输入关键字");
 		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
