@@ -19,7 +19,6 @@ public interface CountDSer extends Remote{
 	 * @return CountPO 账的PO
 	 * @throws RemoteException
 	 */
-	public CountPO findInitInfo(int id) throws RemoteException;
 //	public ArrayList<OrgPO> findOrg() throws RemoteException;
 //	public ArrayList<WorkPO> getWorkers() throws RemoteException;
 //	public ArrayList<VanPO> getVans() throws RemoteException;

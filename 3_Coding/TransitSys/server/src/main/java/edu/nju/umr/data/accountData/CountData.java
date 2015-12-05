@@ -18,32 +18,41 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -3199440496716511453L;
+	private static final String LOCATION = "data/count";
 	public CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
 
 	public Result addCount(CountPO count) throws RemoteException {
-		return SerialHelper.writeToFile(count, "data/count/count.ser");
+		int num = countCount();
+		return SerialHelper.writeToFile(count, LOCATION+"/count"+num+".ser");
 		
 	}
 
-	public CountPO findInitInfo(int id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return (CountPO) SerialHelper.readFromFile("data/count/count"+id+".ser");
-	}
 	public ArrayList<CountPO> getCount() throws RemoteException {
-		return null;
+		ArrayList<CountPO> countList = new ArrayList<CountPO>();
+		for(int i = 0;i < countCount();i++){
+			CountPO count = (CountPO) SerialHelper.readFromFile(LOCATION+"/count"+i+".ser");
+			countList.add(count);
+		}
+		return countList;
 	}
 
 	@Override
 	public Result deleteCount(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return null;
+		File file = new File(LOCATION+"/count"+id+".ser");
+		boolean isSuc = file.delete();
+		if(isSuc){
+			return Result.SUCCESS;
+		} else {
+			return Result.FILE_NOT_FOUND;
+		}
 	}
 
 	private int countCount(){
-		File file = new File("data/count");
+		File file = new File(LOCATION);
 		File[] fs = file.listFiles();
 		return fs.length;
 	}
