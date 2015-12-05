@@ -100,20 +100,6 @@ public class WorkManLogic implements WorkManLSer{
 		}
 		return null;
 	}
-//	public ResultMessage checkWork(String id) {
-//		// TODO 自动生成的方法存根
-//		WorkPO Work=null;
-//		boolean isSuccessful=false;
-//		try{
-//			Work=workData.checkWork(id);
-//			isSuccessful=true;
-//		}catch(RemoteException e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ResultMessage message=new ResultMessage(isSuccessful,new WorkVO(Work.getName(),Work.getMobile(),Work.getOrgId(),Work.getId(),Work.getJuri()));
-//		return null;
-//	}
 
 //	public ResultMessage WorkList() {
 //		// TODO 自动生成的方法存根
