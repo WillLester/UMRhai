@@ -47,6 +47,10 @@ public class OrgListPanel extends JPanel {
 	private JComboBox<String> orgType;
 	private OrgManLSer serv;
 	private JComboBox<String> cityComboBox;
+	private JButton modify;
+	private JButton workMan;
+	private JButton confirmMod;
+	private JButton delete;
 	/**
 	 * Create the panel.
 	 */
@@ -128,7 +132,7 @@ public class OrgListPanel extends JPanel {
 		});
 		add(add);
 		
-		JButton delete = new JButton("删除");
+		delete = new JButton("删除");
 		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 93, 23);
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -138,7 +142,7 @@ public class OrgListPanel extends JPanel {
 		});
 		add(delete);
 		
-		JButton modify = new JButton("确认修改");
+		modify = new JButton("确认修改");
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 93, 23);
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -148,7 +152,7 @@ public class OrgListPanel extends JPanel {
 		});
 		add(modify);
 		
-		JButton confirmMod = new JButton("取消修改");
+		confirmMod = new JButton("取消修改");
 		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
 		add(confirmMod);
 		
@@ -166,7 +170,7 @@ public class OrgListPanel extends JPanel {
 		});
 		add(out);
 		
-		JButton workMan = new JButton("人员管理");
+		workMan = new JButton("人员管理");
 		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
 		workMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -202,6 +206,10 @@ public class OrgListPanel extends JPanel {
 		tableInit();
 		orgList=getOrgs("");
 		displayOrgs();
+		modify.setEnabled(false);
+		workMan.setEnabled(false);
+		confirmMod.setEnabled(false);
+		delete.setEnabled(false);
 		
 	}
 	private void tableInit(){
@@ -211,6 +219,20 @@ public class OrgListPanel extends JPanel {
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false)
 					displayOrg(table.getSelectedRow());
+				if(table.getSelectedRow()<0)
+				{
+					modify.setEnabled(false);
+					workMan.setEnabled(false);
+					confirmMod.setEnabled(false);
+					delete.setEnabled(false);
+				}
+				else
+				{
+					modify.setEnabled(true);
+					workMan.setEnabled(true);
+					confirmMod.setEnabled(true);
+					delete.setEnabled(true);
+				}
 			}
 		});
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
@@ -241,7 +263,13 @@ public class OrgListPanel extends JPanel {
 		for(int i=0;i<orgList.size();i++)
 		{
 			OrgVO temp=orgList.get(i);
-			String[] data={temp.getId(),temp.getName(),temp.getKind().toString(),temp.getLocation()};
+			String kind=null;
+			switch(temp.getKind()){
+			case HALL:kind="营业厅";break;
+			case CENTER:kind="中转中心";break;
+			case HEADQUARTER:kind="总部";break;
+			}
+			String[] data={temp.getId(),temp.getName(),kind,temp.getCity()+temp.getLocation()};
 			model.addRow(data);
 		}
 	}
@@ -272,6 +300,7 @@ public class OrgListPanel extends JPanel {
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
 	}
 	private void deleteOrg(int row){
+		if(row<0||row>=orgList.size())return;
 		OrgVO temp=orgList.get(row);
 		Result result=serv.deleteOrg(temp.getId());
 		if(!result.equals(Result.SUCCESS)){
