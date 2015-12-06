@@ -100,7 +100,7 @@ public class CityListPanel extends JPanel{
 		
 		JLabel distanceLabel = new JLabel("距离km");
 		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		distanceLabel.setBounds(567, 525, 54, 19);
+		distanceLabel.setBounds(540, 525, 54, 19);
 		add(distanceLabel);
 		
 		distanceField = new JTextField();
