@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -114,7 +115,12 @@ public class UserListPanel extends JPanel {
 		deleteButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				deleteUser();
+				int n = JOptionPane.showConfirmDialog(null, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION) {  
+		        	deleteUser();
+		        } else if (n == JOptionPane.NO_OPTION) {  
+		            // ......  
+		        }  
 			}
 		});
 		add(deleteButton);
