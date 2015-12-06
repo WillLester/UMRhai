@@ -59,7 +59,7 @@ public class StockCheckPanel extends JPanel{
 		add(startLabel);
 		
 		dateTimeS = new DateTimePanel();
-		dateTimeS.setBounds(281, 71, 450, 24);
+		dateTimeS.setBounds(281, 71, 750, 25);
 		add(dateTimeS);
 		
 		JLabel endLabel = new JLabel("结束时间");
@@ -68,12 +68,12 @@ public class StockCheckPanel extends JPanel{
 		add(endLabel);
 		
 		dateTimeE = new DateTimePanel();
-		dateTimeE.setBounds(281, 116, 71, 19);
+		dateTimeE.setBounds(281, 116, 750, 25);
 		add(dateTimeE);
 		
 		JButton confirmButton = new JButton("查看");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(736, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton.setBounds(700, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirmButton.addActionListener(new ActionListener(){
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {

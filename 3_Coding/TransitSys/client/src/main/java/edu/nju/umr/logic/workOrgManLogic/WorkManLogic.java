@@ -95,7 +95,7 @@ public class WorkManLogic implements WorkManLSer{
 		}
 		
 		for(OrgPO po:orgs){
-			if(po.getName()==orgName)
+			if(po.getName().equals(orgName))
 				return po.getId();
 		}
 		return null;

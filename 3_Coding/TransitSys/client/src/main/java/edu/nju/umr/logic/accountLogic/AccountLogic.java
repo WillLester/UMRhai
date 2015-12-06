@@ -69,45 +69,12 @@ public class AccountLogic implements AccountLSer{
 		}
 		return isSuccessful;
 	}
-	
-	
-//	public ResultMessage checkAccount(String id) {
-//		// TODO 自动生成的方法存根
-//		AccountPO accountPo = null;
-//		try {
-//			accountPo = accountData.checkAccount(id);
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		AccountVO account = new AccountVO(accountPo.getId(), accountPo.getName(), accountPo.getBalance());
-//		ResultMessage message = new ResultMessage(true, account);
-//		return message;
-//	}
-
-//	public ResultMessage accountList() {
-//		// TODO 自动生成的方法存根
-//		ArrayList<AccountPO> arPo = null;
-//		try {
-//			arPo = accountData.findAccount(null);
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		ArrayList<AccountVO> ar=new ArrayList<AccountVO>();
-//		for(int i = 0;i < arPo.size();i++){
-//			AccountVO vo = new AccountVO(arPo.get(i).getId(), arPo.get(i).getName(), arPo.get(i).getBalance());
-//			ar.add(vo);
-//		}
-//		ResultMessage message = new ResultMessage(true, ar);
-//		return message;
-//	}
 
 	public ResultMessage searchAccount(String keyword) {
 		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			accountPOs = accountData.findAccount(keyword);
-			if(accountPOs.size()>0)
+			if(accountPOs.size()>=0)
 				isSuc=Result.SUCCESS;
 		} catch (RemoteException e) {
 			e.printStackTrace();
