@@ -7,26 +7,36 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class SuccessPanel extends JPanel{
-	private JFrame frame;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7114950449550231951L;
+	private JPanel fa;
 	private int x,y;
-	public SuccessPanel(JFrame fr){
-		frame=fr;
+	private int locx,locy;
+	public SuccessPanel(JPanel panel){
+		System.out.println(panel.getWidth()+" "+panel.getHeight());
+		fa=panel;
+		x=fa.getWidth()*5/6;
+		y=fa.getHeight()*5/6-50;
+		setBounds(x,y,fa.getWidth()/6,fa.getHeight()/6);
+		
 	}
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		g.setColor(Color.blue);
-		g.fillRect(x, y-16, frame.getWidth()/6, frame.getHeight()/6);
+		g.fillRect(locx, locy-16, fa.getWidth()/6, fa.getHeight()/6);
 		g.setColor(Color.white);
-		g.drawString("操作成功!", x, y);
+		g.drawString("操作成功!", locx,locy+60);
 	}
 	public void show()
 	{
-		y=frame.getY()+frame.getHeight()-50-frame.getHeight()/6;
-		x=frame.getX()+frame.getWidth();
+		locx=getWidth();
+		locy=0;
 		for(int i=0;i<=30;i++)
 		{
-			x=x-frame.getWidth()/6/30;
+			locx=locx-fa.getWidth()/6/30;
 			try
 			{
 				Thread.sleep(50);
@@ -39,7 +49,7 @@ public class SuccessPanel extends JPanel{
 		
 		for(int i=0;i<=30;i++)
 		{
-			x=x+frame.getWidth()/6/30;
+			locx=locx+fa.getWidth()/6/30;
 			try
 			{
 				Thread.sleep(50);
@@ -50,16 +60,19 @@ public class SuccessPanel extends JPanel{
 			repaint();
 		}
 	}
-	public static void main(String[] args)
+	public static void main(String [] args)
 	{
-		JFrame frame = new JFrame();
+		JFrame frame=new JFrame();
 		frame.setSize(1200,800);
-		frame.setLayout(null);
-		SuccessPanel panel= new SuccessPanel(frame);
+		frame.setLocation(10, 10);
+		JPanel panel=new JPanel();
 		frame.setContentPane(panel);
 		frame.setVisible(true);
-		panel.show();
-		frame.remove(panel);
+		SuccessPanel suc=new SuccessPanel(panel);
+		panel.setLayout(null);
+		panel.add(suc);
+		suc.show();
+		panel.remove(suc);
 	}
 
 }
