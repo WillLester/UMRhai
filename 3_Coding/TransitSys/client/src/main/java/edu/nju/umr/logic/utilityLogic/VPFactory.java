@@ -41,6 +41,7 @@ import edu.nju.umr.vo.ShelfVO;
 import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
+import edu.nju.umr.vo.WageVO;
 import edu.nju.umr.vo.WorkVO;
 import edu.nju.umr.vo.order.ArriveVO;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -387,12 +388,20 @@ public class VPFactory {
 		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getJuri());
 		return vo;
 	}
-//	public static WorkVO toWorkVO(WorkPO po){
-//		WorkVO vo=new WorkVO(po.getName(), po.getMobile(), po.getOrg(), po.getOrgId(), po.getJuri());
-//		return vo;
-//	}
+
 	public static WorkPO toWorkPO(WorkVO vo,String orgId,int id,Wage kind,int money,int commission){
 		WorkPO po=new WorkPO(vo.getName(), vo.getMobile(), vo.getOrg(), orgId, id, vo.getJuri(), kind, money, commission);
 		return po;
+	}
+	
+	/**
+	 * 
+	 * @param po WorkPO 人员的持久化信息
+	 * @return 用于薪水制定界面的WageVO
+	 * @see WageVO WorkPO
+	 */
+	public static WageVO toWageVO(WorkPO po){
+		WageVO vo = new WageVO(po.getName(), po.getJuri(), po.getKind(), po.getMoney(), po.getCommission());
+		return vo;
 	}
 }

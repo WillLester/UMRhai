@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.utility.DoHint;
@@ -165,12 +166,16 @@ public class WageDraftPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
+					Result result;
 					if(rbMonth.isSelected()){
-						panel.setWage(Wage.MONTH, Integer.parseInt(textFieldwm.getText()), 0);
+						result = panel.setWage(Wage.MONTH, Integer.parseInt(textFieldwm.getText()), 0);
 					} else if(rbCount.isSelected()){
-						panel.setWage(Wage.TIME, Integer.parseInt(textFieldwc.getText()), 0);
+						result = panel.setWage(Wage.TIME, Integer.parseInt(textFieldwc.getText()), 0);
 					} else {
-						panel.setWage(Wage.COMMISSION, Integer.parseInt(textFieldwi.getText()), Integer.parseInt(textFieldbound.getText()));
+						result = panel.setWage(Wage.COMMISSION, Integer.parseInt(textFieldwi.getText()), Integer.parseInt(textFieldbound.getText()));
+					}
+					if(result.equals(Result.SUCCESS)){
+						frame.dispose();
 					}
 				}
 			}

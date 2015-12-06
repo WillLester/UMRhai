@@ -30,7 +30,7 @@ public class WageManData extends UnicastRemoteObject implements WageManDSer{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<WorkPO> searchWork(String keyword) {
+	public List<WorkPO> searchWork(String keyword) throws RemoteException{
 		// TODO 自动生成的方法存根
 		if(keyword == null){
 			return (ArrayList<WorkPO>) mysqlSer.checkAll(POKind.WORK);
@@ -41,7 +41,7 @@ public class WageManData extends UnicastRemoteObject implements WageManDSer{
 	}
 
 	@Override
-	public Result updateWork(WorkPO work) {
+	public Result updateWork(WorkPO work) throws RemoteException{
 		// TODO 自动生成的方法存根
 		return mysqlSer.reviseInfo(work);
 	}

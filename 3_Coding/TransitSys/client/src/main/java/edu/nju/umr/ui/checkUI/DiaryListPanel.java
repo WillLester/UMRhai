@@ -3,6 +3,7 @@ package edu.nju.umr.ui.checkUI;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
+import edu.nju.umr.logic.checkLogic.DiaryLogic;
 import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
@@ -48,6 +49,7 @@ public class DiaryListPanel extends JPanel {
 	public DiaryListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		serv = new DiaryLogic();
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		

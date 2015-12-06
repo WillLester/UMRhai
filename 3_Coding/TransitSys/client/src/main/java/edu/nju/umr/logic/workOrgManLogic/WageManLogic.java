@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WageManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
@@ -15,19 +16,16 @@ import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.WageVO;
-import edu.nju.umr.vo.WorkVO;
 
 public class WageManLogic implements WageManLSer{
 	private WageManDFacSer dataFac;
 	private WageManDSer wageData;
-//	private UtilityLogic uti=new UtilityLogic();
-	private List<WorkPO> ar;
+	private List<WorkPO> workList;
 	public WageManLogic()
 	{
 		try{
 			dataFac=(WageManDFacSer)Naming.lookup(Url.URL);
 			wageData=dataFac.getWageMan();
-//			uti=new UtilityLogic();
 		}catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -42,20 +40,19 @@ public class WageManLogic implements WageManLSer{
 	@Override
 	public ResultMessage searchWorks(String keyword) {
 		// TODO 自动生成的方法存根
-		ar= new ArrayList<WorkPO>();
+		workList= new ArrayList<WorkPO>();
 //		boolean isSuccessful=false;
 		try{
-			ar=wageData.searchWork(keyword);
+			workList=wageData.searchWork(keyword);
 //			isSuccessful=true;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		List<WorkVO> arVO = new ArrayList<WorkVO>();
-		for(int i=0;i<ar.size();i++)
+		List<WageVO> arVO = new ArrayList<WageVO>();
+		for(int i=0;i<workList.size();i++)
 		{
-			WorkPO work=ar.get(i);
-//			arVO.add(new WorkVO(work.getName(),work.getMobile(),work.getOrg(),work.getJuri()));
-			arVO.add(VPFactory.toWorkVO(work));
+			WorkPO work=workList.get(i);
+			arVO.add(VPFactory.toWageVO(work));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
 		return message;
@@ -67,10 +64,15 @@ public class WageManLogic implements WageManLSer{
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		
 		for(int i=0;i<index.length;i++){
-			WorkPO work=ar.get(index[i]);
+			WorkPO work=workList.get(index[i]);
 			WageVO wage=wageList.get(i);
 			WorkPO w=new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getId(),wage.getJuri(),wage.getKind(),wage.getWage(),wage.getCommission());
-			isSuccessful=wageData.updateWork(w);
+			try {
+				isSuccessful=wageData.updateWork(w);
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				return Result.NET_INTERRUPT;
+			}
 		}
 		
 		return isSuccessful;

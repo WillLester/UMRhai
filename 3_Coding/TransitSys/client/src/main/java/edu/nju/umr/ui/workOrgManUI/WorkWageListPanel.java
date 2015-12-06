@@ -61,7 +61,6 @@ public class WorkWageListPanel extends JPanel {
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setText("请输入关键字");
 		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 300, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
@@ -241,7 +240,7 @@ public class WorkWageListPanel extends JPanel {
 			DoHint.hint(message.getReInfo(), frame);
 		}
 	}
-	void setWage(Wage kind,int money,int commission){
+	Result setWage(Wage kind,int money,int commission){
 		ArrayList<WageVO> temp = new ArrayList<WageVO>();
 		int[] selected = table.getSelectedRows();
 		for(int i = 0;i < selected.length;i++){
@@ -255,6 +254,7 @@ public class WorkWageListPanel extends JPanel {
 		} else {
 			DoHint.hint(result, frame);
 		}
+		return result;
 	}
 	private WorkWageListPanel getSelf(){
 		return this;
