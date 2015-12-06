@@ -79,6 +79,7 @@ public class VanManLogic implements VanManLSer{
 			ar=vanData.findVan(keyword,hallId);
 			result=Result.SUCCESS;
 		}catch (RemoteException e) {
+			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e){
 			e.printStackTrace();

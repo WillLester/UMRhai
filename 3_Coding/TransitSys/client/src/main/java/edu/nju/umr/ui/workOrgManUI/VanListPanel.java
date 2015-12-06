@@ -62,7 +62,6 @@ public class VanListPanel extends JPanel {
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
-		textFieldSearch.setText("请输入关键字或车辆代号");
 		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
