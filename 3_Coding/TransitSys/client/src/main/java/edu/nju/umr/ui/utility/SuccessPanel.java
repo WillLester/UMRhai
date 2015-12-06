@@ -26,7 +26,7 @@ public class SuccessPanel extends JPanel{
 		x=frame.getX()+frame.getWidth();
 		for(int i=0;i<=30;i++)
 		{
-			x=x-7;
+			x=x-frame.getWidth()/6/30;
 			try
 			{
 				Thread.sleep(50);
@@ -39,7 +39,7 @@ public class SuccessPanel extends JPanel{
 		
 		for(int i=0;i<=30;i++)
 		{
-			x=x+7;
+			x=x+frame.getWidth()/6/30;
 			try
 			{
 				Thread.sleep(50);
