@@ -227,6 +227,18 @@ public class WorkListPanel extends JPanel {
 		getAll();
 		
 	}
+	@SuppressWarnings("unchecked")
+	public WorkListPanel(JFrame fr,String org) {
+		// TODO 自动生成的构造函数存根
+		this(fr);
+		ResultMessage message = logicSer.searchWork(org);
+		if(message.getReInfo().equals(Result.SUCCESS)){
+			workList = (ArrayList<WorkVO>) message.getMessage();
+			displayTable();
+		} else {
+			DoHint.hint("未能获得该机构人员！", fr);
+		}
+	}
 	private void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();

@@ -37,7 +37,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		add(checkButton);
 		setEnabled();
 		
-		confirmButton.removeActionListener(new ConfirmListener());
+		confirmButton.removeActionListener(conListener);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override

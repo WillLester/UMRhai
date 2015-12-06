@@ -36,6 +36,7 @@ import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.GoodVO;
+import edu.nju.umr.vo.LocVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ShelfVO;
 import edu.nju.umr.vo.StockVO;
@@ -402,6 +403,17 @@ public class VPFactory {
 	 */
 	public static WageVO toWageVO(WorkPO po){
 		WageVO vo = new WageVO(po.getName(), po.getJuri(), po.getKind(), po.getMoney(), po.getCommission());
+		return vo;
+	}
+	
+	/**
+	 * 
+	 * @param po 城市PO
+	 * @return 地址Panel所需的信息，包括城市名和省份
+	 * @see LocVO CityPO
+	 */
+	public static LocVO toLocVO(CityPO po){
+		LocVO vo = new LocVO(po.getName(), po.getProvince());
 		return vo;
 	}
 }

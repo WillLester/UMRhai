@@ -125,9 +125,13 @@ public class OrgListPanel extends JPanel {
 		JButton add = new JButton("新增");
 		add.setBounds(Constants.TABLE_X+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 93, 23);
 		add.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				addOrg();
+				textFieldAddr.setText("");
+				textFieldName.setText("");
+				idField.setText("");
+				orgType.setSelectedIndex(0);
+				cityComboBox.setSelectedIndex(0);
 			}
 		});
 		add(add);
@@ -173,10 +177,10 @@ public class OrgListPanel extends JPanel {
 		workMan = new JButton("人员管理");
 		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
 		workMan.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("人员管理");
-				ffr.setContentPane(new WorkListPanel(ffr));
+				OrgVO org = orgList.get(table.getSelectedRow());
+				ffr.setContentPane(new WorkListPanel(ffr,org.getName()));
 			}
 		});
 		add(workMan);

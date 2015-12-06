@@ -95,8 +95,8 @@ public class ExpressPanel extends JPanel {
 	protected JLabel arriveLabel;
 	protected JTextField arriveField;
 	private String userId;
-	
 	private String org;
+	protected ConfirmListener conListener;
 	/**
 	 * Create the panel.
 	 */
@@ -386,7 +386,8 @@ public class ExpressPanel extends JPanel {
 		confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(418, 536, 93, 23);
-		confirmButton.addActionListener(new ConfirmListener());
+		conListener = new ConfirmListener();
+		confirmButton.addActionListener(conListener);
 		add(confirmButton);
 		
 		cancelButton = new JButton("取消");
