@@ -118,9 +118,7 @@ public class UserListPanel extends JPanel {
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
 		        	deleteUser();
-		        } else if (n == JOptionPane.NO_OPTION) {  
-		            // ......  
-		        }  
+		        }
 			}
 		});
 		add(deleteButton);
