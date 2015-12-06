@@ -221,10 +221,21 @@ public class WorkWageListPanel extends JPanel {
 	}
 	private void displayWage(WageVO vo){
 		switch(vo.getKind()){
-		case MONTH:textFieldwMonth.setText(vo.getWage()+"");break;
-		case TIME:textFieldwCount.setText(vo.getWage()+"");break;
+		case MONTH:textFieldwMonth.setText(vo.getWage()+"");
+		textFieldwCount.setText("");
+		textFieldwInit.setText("");
+		textFieldBound.setText("");
+		break;
+		case TIME:textFieldwCount.setText(vo.getWage()+"");
+		textFieldwMonth.setText("");
+		textFieldwInit.setText("");
+		textFieldBound.setText("");
+		break;
 		case COMMISSION:textFieldwInit.setText(vo.getWage()+"");
-		textFieldBound.setText(vo.getCommission()+"");break;
+		textFieldBound.setText(vo.getCommission()+"");
+		textFieldwMonth.setText("");
+		textFieldwCount.setText("");
+		break;
 		}
 	}
 	private void getAll(){
@@ -240,6 +251,7 @@ public class WorkWageListPanel extends JPanel {
 			DoHint.hint(message.getReInfo(), frame);
 		}
 	}
+	
 	Result setWage(Wage kind,int money,int commission){
 		ArrayList<WageVO> temp = new ArrayList<WageVO>();
 		int[] selected = table.getSelectedRows();
@@ -248,7 +260,7 @@ public class WorkWageListPanel extends JPanel {
 			WageVO vo = new WageVO(wage.getName(), wage.getJuri(), kind, money, commission);
 			temp.add(vo);
 		}
-		Result result = logicSer.setWage(wageList, selected);
+		Result result = logicSer.setWage(temp, selected);
 		if(result.equals(Result.SUCCESS)){
 			fresh();
 		} else {
@@ -256,6 +268,7 @@ public class WorkWageListPanel extends JPanel {
 		}
 		return result;
 	}
+	
 	private WorkWageListPanel getSelf(){
 		return this;
 	}

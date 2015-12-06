@@ -71,56 +71,8 @@ public class VanManLogic implements VanManLSer{
 		return isSuccessful;
 	}
 
-//	public ResultMessage checkVan(String id) {
-//		// TODO 自动生成的方法存根
-//		VanPO Van=null;
-//		Result isSuccessful=Result.SUCCESS;
-//		try{
-//			Van=vanData.checkVan(id);
-//			isSuccessful=Result.SUCCESS;
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
-//		return message;
-//	}
-
-//	public ResultMessage VanList() {
-//		// TODO 自动生成的方法存根
-//		ArrayList<VanPO> ar=null;
-//		boolean isSuccessful=false;
-//		try
-//		{
-//			ar=vanData.findVan("");
-//			isSuccessful=true;
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ArrayList<VanVO> arVO=new ArrayList<VanVO>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			VanPO Van=ar.get(i);
-//			arVO.add(new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto(),Van.getOrgId()));
-//		}
-//		ResultMessage message = new ResultMessage(isSuccessful, arVO);
-//		return message;
-//	}
-
 	public ResultMessage searchVan(String keyword,String hallId) {
 		// TODO 自动生成的方法存根
-//		ArrayList<VanPO> van=null;
-//		Result isSuccessful=Result.SUCCESS;
-//		try{
-//			Van=vanData.findVan(keyword,hallId);
-//			isSuccessful=Result.SUCCESS;
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ResultMessage message=new ResultMessage(isSuccessful,new VanVO(Van.getId(),Van.getPlateNum(),Van.getServTime(),Van.getPhoto()));
-//		return message;
 	
 		Result result=Result.DATA_NOT_FOUND;
 		try{

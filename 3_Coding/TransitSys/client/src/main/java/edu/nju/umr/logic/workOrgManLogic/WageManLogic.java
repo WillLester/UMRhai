@@ -41,10 +41,8 @@ public class WageManLogic implements WageManLSer{
 	public ResultMessage searchWorks(String keyword) {
 		// TODO 自动生成的方法存根
 		workList= new ArrayList<WorkPO>();
-//		boolean isSuccessful=false;
 		try{
 			workList=wageData.searchWork(keyword);
-//			isSuccessful=true;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -63,12 +61,12 @@ public class WageManLogic implements WageManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		
-		for(int i=0;i<index.length;i++){
-			WorkPO work=workList.get(index[i]);
-			WageVO wage=wageList.get(i);
-			WorkPO w=new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getId(),wage.getJuri(),wage.getKind(),wage.getWage(),wage.getCommission());
+		for(int i = 0;i < index.length;i++){
+			WorkPO work = workList.get(index[i]);
+			WageVO wage = wageList.get(i);
+			WorkPO w = new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getId(),wage.getJuri(),wage.getKind(),wage.getWage(),wage.getCommission());
 			try {
-				isSuccessful=wageData.updateWork(w);
+				isSuccessful = wageData.updateWork(w);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				return Result.NET_INTERRUPT;

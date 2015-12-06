@@ -53,6 +53,7 @@ public class VanListPanel extends JPanel {
 		frame=fr;
 		user=uservo;
 		vanListPanel=this;
+		vanList = new ArrayList<VanVO>();
 		
 		JLabel nameLabel = new JLabel("车辆信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -159,8 +160,7 @@ public class VanListPanel extends JPanel {
 	{
 		ResultMessage message=serv.searchVan(keyword, user.getOrgId());
 		Result result=message.getReInfo();
-		if(!result.equals(Result.SUCCESS))
-		{
+		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
@@ -170,8 +170,7 @@ public class VanListPanel extends JPanel {
 	}
 	private void displayVans(){
 		model.setRowCount(0);
-		for(int i=0;i<vanList.size();i++)
-		{
+		for(int i=0;i<vanList.size();i++){
 			VanVO temp = vanList.get(i);
 			Calendar tempTime=temp.getServTime();
 			String servTime=tempTime.get(Calendar.YEAR)+"年"+(tempTime.get(Calendar.MONTH)+1)+"月"+tempTime.get(Calendar.DATE)+"日";
@@ -244,13 +243,4 @@ public class VanListPanel extends JPanel {
 		displayVans();
 		return result;
 	}
-	
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new VanListPanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
-
 }

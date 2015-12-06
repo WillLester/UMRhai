@@ -24,6 +24,7 @@ public class CityLogic implements CityLSer{
 	private CityDSer cityData;
 	private UtilityLogic utility=new UtilityLogic();
 	private ArrayList<CityPO> cityPOs;
+	private ArrayList<CitiesPO> citiesPOs;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -40,9 +41,8 @@ public class CityLogic implements CityLSer{
 	public Result addCity(CityVO city) {
 		// TODO 自动生成的方法存根
 		ArrayList<CityPO> citypo=new ArrayList<CityPO>();
-		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();
 		Result resultCity = Result.SUCCESS;
-		Result resultCities=Result.SUCCESS;
+		Result resultCities = Result.SUCCESS;
 		try {
 			citypo=utility.cities();
 		} catch (RemoteException e) {
@@ -111,7 +111,7 @@ public class CityLogic implements CityLSer{
 		}
 	}
 	public Result deleteCity(String cityName) {
-		Result isSuc=null;
+		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			isSuc=cityData.deleteCity(cityName);
 		} catch (RemoteException e) {
@@ -119,20 +119,32 @@ public class CityLogic implements CityLSer{
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
 		}
+		if(isSuc.equals(Result.SUCCESS)){
+			for(CitiesPO cities:citiesPOs){
+				if((cities.getCity1().equals(cityName))||(cities.getCity2().equals(cityName))){
+					try {
+						cityData.deleteCities(cities);
+					} catch (RemoteException e) {
+						// TODO 自动生成的 catch 块
+						return Result.NET_INTERRUPT;
+					}
+				}
+			}
+		} 
 		return isSuc;
 	}
 
 	public ResultMessage citiesList() {
-		ArrayList<CitiesPO> city=null;
+		citiesPOs=null;
 		try {
-			city=cityData.getCitiesInfo();
+			citiesPOs=cityData.getCitiesInfo();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		ArrayList<CitiesVO> citiesVO=new ArrayList<CitiesVO>();
-		for(CitiesPO po:city)
+		for(CitiesPO po:citiesPOs)
 		{
 			citiesVO.add(VPFactory.toCitiesVO(po));
 		}

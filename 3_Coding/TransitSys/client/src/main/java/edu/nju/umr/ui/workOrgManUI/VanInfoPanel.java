@@ -162,13 +162,10 @@ public class VanInfoPanel extends JPanel {
 	private void baseCodeToImage(String baseCode){
 		if(baseCode.isEmpty())return;
 		BASE64Decoder decoder = new BASE64Decoder();
-		try
-		{
+		try{
 			byte[] bytes = decoder.decodeBuffer(baseCode);
-			for(int i=0;i<bytes.length;i++)
-			{
-				if(bytes[i]<0)
-				{
+			for(int i=0;i<bytes.length;i++){
+				if(bytes[i]<0){
 					bytes[i]+=256;
 				}
 			}
@@ -176,27 +173,25 @@ public class VanInfoPanel extends JPanel {
 			out.write(bytes);
 			out.flush();
 			out.close();
-		}catch(Exception e)
-		{
+		} catch(Exception e){
 			return;
 		}
 	}
-	private void readAndDisplayImage(String path)
-	{
+	private void readAndDisplayImage(String path){
 		byte[] data = null;  
 		try {  
-		InputStream in = new FileInputStream(path);  
-		data = new byte[in.available()];  
-		in.read(data);  
-		in.close();
-		Image bufferedImage = ImageIO.read(new File(path)); 
-		int width = pic.getWidth();
-		int height = bufferedImage.getHeight(null)*width/bufferedImage.getWidth(null);
-		bufferedImage=bufferedImage.getScaledInstance(width, height,  Image.SCALE_SMOOTH);
-		pic.setBounds(pic.getX(), pic.getY(), width, height);
-		pic.setIcon(new ImageIcon(bufferedImage));
+			InputStream in = new FileInputStream(path);  
+			data = new byte[in.available()];  
+			in.read(data);  
+			in.close();
+			Image bufferedImage = ImageIO.read(new File(path)); 
+			int width = pic.getWidth();
+			int height = bufferedImage.getHeight(null)*width/bufferedImage.getWidth(null);
+			bufferedImage=bufferedImage.getScaledInstance(width, height,  Image.SCALE_SMOOTH);
+			pic.setBounds(pic.getX(), pic.getY(), width, height);
+			pic.setIcon(new ImageIcon(bufferedImage));
 		} catch (Exception e) {  
-		e.printStackTrace();  
+			e.printStackTrace();  
 		}  
 		BASE64Encoder encoder = new BASE64Encoder();  
 		imageString=encoder.encode(data);
