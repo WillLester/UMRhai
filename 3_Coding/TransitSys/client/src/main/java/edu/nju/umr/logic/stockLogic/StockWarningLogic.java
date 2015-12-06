@@ -10,7 +10,6 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockWarningDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
-import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -36,15 +35,8 @@ public class StockWarningLogic implements StockWarningLSer{
 	public Result setWarning(ArrayList<Integer> warnings, String id) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
-		Part part=Part.MANEUVER;
-		int w=-1;
-		if(warnings.get(0)!=null) {part=Part.MANEUVER;w=warnings.get(0);}
-		else if(warnings.get(1)!=null) {part=Part.PLANE;w=warnings.get(1);}
-		else if(warnings.get(2)!=null) {part=Part.PLANE;w=warnings.get(2);}
-		else if(warnings.get(3)!=null) {part=Part.PLANE;w=warnings.get(3);}
-		else{return Result.DATA_NOT_FOUND;	}
 		try{
-			isSuccessful=checkData.setWarning(w,part, id);
+			isSuccessful=checkData.setWarning(warnings, id);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
@@ -56,17 +48,20 @@ public class StockWarningLogic implements StockWarningLSer{
 
 	public ResultMessage getWarning(String id) {
 		// TODO 自动生成的方法存根
-		Result isSuccessful=Result.DATA_NOT_FOUND;
-		ArrayList<Integer> ar=new ArrayList<Integer>();
+		Result isSuccessful=Result.FILE_NOT_FOUND;
+		ArrayList<Integer> warnings=new ArrayList<Integer>();
 		try{
-			ar=checkData.getWarning(id);
-			isSuccessful=Result.SUCCESS;
+			warnings=checkData.getWarning(id);
+			if(warnings != null){
+				isSuccessful=Result.SUCCESS;
+			}
+
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}catch(Exception e)	{
 			e.printStackTrace();
 		}
-		ResultMessage message=new ResultMessage(isSuccessful,ar);
+		ResultMessage message=new ResultMessage(isSuccessful,warnings);
 		return message;
 	}
 

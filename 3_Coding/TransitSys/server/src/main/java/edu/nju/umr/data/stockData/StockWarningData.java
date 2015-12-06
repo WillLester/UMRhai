@@ -3,9 +3,10 @@ package edu.nju.umr.data.stockData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
+import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.stockDSer.StockWarningDSer;
-import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 
 public class StockWarningData extends UnicastRemoteObject implements StockWarningDSer{
@@ -22,16 +23,15 @@ public class StockWarningData extends UnicastRemoteObject implements StockWarnin
 
 	public ArrayList<Integer> getWarning(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<Integer> ar=new ArrayList<Integer>();
-		ar.add(1);
-		ar.add(2);
-		return ar;
+		@SuppressWarnings("unchecked")
+		ArrayList<Integer> warnings = (ArrayList<Integer>) SerialHelper.readFromFile("data/stockWarning/"+id+".ser");
+		return warnings;
 	}
 
-	public Result setWarning(int w, Part part, String id)
+	public Result setWarning(List<Integer> warnings, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return Result.SUCCESS;
+		return SerialHelper.writeToFile(warnings, "data/stockWarning/"+id+".ser");
 	}
 
 }

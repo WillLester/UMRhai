@@ -27,7 +27,7 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 
 	public UserPO findUser(String id,String password) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new UserPO(id, password, null, null, null, null, 0, null));
+		ResultSet result = mysqlSer.checkInfo(new UserPO(id, null, null, null, null, null, 0, null));
 		Jurisdiction juris[] = Jurisdiction.values();
 		try {
 			if(result.next()){
@@ -35,7 +35,7 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 				if(user.getPassword().equals(password)){
 					return user;
 				} else {
-					return null;
+					return new UserPO(id, null, null, null, null, null, 0, null);
 				}
 			} else {
 				return null;

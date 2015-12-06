@@ -11,6 +11,7 @@ import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.UserVO;
 
 public class LoginLogic implements LoginLSer{
 	private LoginDFacSer dataFac;
@@ -23,15 +24,20 @@ public class LoginLogic implements LoginLSer{
 	public ResultMessage login(String id, String password) {
 		// TODO 自动生成的方法存根
 		UserPO user;
-		Result isSuc=Result.DATA_NOT_FOUND;
-		Object message="username wrong or password wrong!";
+		UserVO message = null;
 		try {
 			user = loginData.findUser(id, password);
 			if(user!=null){
-				isSuc=Result.SUCCESS;
-				message=VPFactory.toUserVO(user);
+				if(user.getPassword() == null){
+					return new ResultMessage(Result.PASSWORD_WRONG, null);
+				} else {
+					message=VPFactory.toUserVO(user);
+					return new ResultMessage(Result.SUCCESS,message);
+				}
+			} else {
+				return new ResultMessage(Result.ID_WRONG, null);
 			}
-			return new ResultMessage(isSuc,message);
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);

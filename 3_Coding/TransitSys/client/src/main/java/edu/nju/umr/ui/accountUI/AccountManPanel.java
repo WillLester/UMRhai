@@ -53,7 +53,6 @@ public class AccountManPanel extends JPanel{
 		frame = fr;
 		
 		searchField = new JTextField();
-		searchField.setText("请输入关键字");
 		searchField.setBounds(233, 67, 442, 24);
 		add(searchField);
 		searchField.setColumns(10);
@@ -146,7 +145,7 @@ public class AccountManPanel extends JPanel{
 				if(isModifyLegal()){
 					Result result;
 					if(table.getSelectedRow() >= accountList.size()){
-						result = logicSer.addAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())));
+						result = logicSer.addAccount(new AccountVO(nameField.getText(), 0));
 					} else {
 						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())), table.getSelectedRow());
 					}
@@ -224,6 +223,9 @@ public class AccountManPanel extends JPanel{
 	}
 	private void displayAccounts(){
 		model.setRowCount(0);
+		table.clearSelection();
+		nameField.setText("");
+		balanceField.setText("");
 		for(int i=0;i<accountList.size();i++){
 			AccountVO account=accountList.get(i);
 			String[] data={account.getName(),""+account.getBalance()};

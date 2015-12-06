@@ -186,11 +186,19 @@ public class StockDividePanel extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				ShelfVO shelf = shelfList.get(table.getSelectedRow());
-				idField.setText(shelf.getId());
-				partCombo.setSelectedIndex(shelf.getPart().ordinal());
-				rowField.setText(""+shelf.getRow());
-				placeField.setText(""+shelf.getPlace());
+				if(table.getSelectedRow() < shelfList.size()){
+					ShelfVO shelf = shelfList.get(table.getSelectedRow());
+					idField.setText(shelf.getId());
+					partCombo.setSelectedIndex(shelf.getPart().ordinal());
+					rowField.setText(""+shelf.getRow());
+					placeField.setText(""+shelf.getPlace());
+				} else {
+					model.setRowCount(model.getRowCount() - 1);
+					idField.setText("");
+					rowField.setText("");
+					placeField.setText("");
+					partCombo.setSelectedIndex(0);
+				}
 			}
 		});
 		add(cancelButton);
