@@ -98,7 +98,7 @@ public class CityListPanel extends JPanel{
 		provinceCombo.setEnabled(false);
 		add(provinceCombo);
 		
-		JLabel distanceLabel = new JLabel("距离");
+		JLabel distanceLabel = new JLabel("距离km");
 		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
 		distanceLabel.setBounds(567, 525, 54, 19);
 		add(distanceLabel);
@@ -159,8 +159,8 @@ public class CityListPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				if((cityTable1.getSelectedRow() > 0)&&(cityTable2.getSelectedRow() > 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
-					if(isCitiesLegal()){
+				if((cityTable1.getSelectedRow() >= 0)&&(cityTable2.getSelectedRow() >= 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
+					if(isCitiesLegal()){;
 						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
 						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
 						Result result = logicSer.reviseCities(new CitiesVO(city1, city2, Double.parseDouble(distanceField.getText())));

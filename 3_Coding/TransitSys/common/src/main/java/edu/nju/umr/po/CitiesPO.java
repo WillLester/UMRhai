@@ -40,7 +40,7 @@ public class CitiesPO extends PO implements Serializable{
 				command = "delete from citiesInfo where city2='" + city2+"'";
 			break;
 		case FIND:break;
-		case UPDATE:command = "update citiesInfo set distance ="+distance+" where city1 = '"+city1+"' and city2 = '"+city2+"'";break;
+		case UPDATE:command = "update citiesInfo set distance ="+distance+" where (city1 = '"+city1+"' and city2 = '"+city2+"') or (city1 = '"+city2+"' and city2 = '"+city1+"')";break;
 		}
 		return command;
 	}
