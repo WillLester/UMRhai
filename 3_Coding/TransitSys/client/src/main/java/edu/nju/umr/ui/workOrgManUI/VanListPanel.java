@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -99,7 +100,11 @@ public class VanListPanel extends JPanel {
 		delete.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			deleteVan();
+			int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+	        if (n == JOptionPane.YES_OPTION)
+	        {
+	        	deleteVan();
+	        }
 		}});
 		add(delete);
 		
