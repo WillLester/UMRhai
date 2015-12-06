@@ -40,12 +40,10 @@ public class UserListPanel extends JPanel {
 	private JTextField passwordField;
 	private JTextField nameField;
 	private JTextField mobileField;
-	private JTextField orgIdField;
-	private JTextField orgField;
 	private Table table;
 	private DefaultTableModel model;
 	private JComboBox<String> juriBox;
-	
+	private JButton deleteButton;
 	private JButton confirmButton;
 	private JButton addButton;
 	
@@ -89,8 +87,7 @@ public class UserListPanel extends JPanel {
 		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		allButton.setBounds(577+100, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		allButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				users=getUsers(null);
 				displayUsers();
 			}
@@ -101,43 +98,37 @@ public class UserListPanel extends JPanel {
 		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		addButton.setBounds(283, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		addButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				addButton.setEnabled(false);
 				addUser();
 			}
 		});
 		add(addButton);
 		
-		JButton deleteButton = new JButton("删除");
+		deleteButton = new JButton("删除");
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		deleteButton.setBounds(525, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		deleteButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
 		        	deleteUser();
 		        }
 			}
 		});
+		deleteButton.setEnabled(false);
 		add(deleteButton);
 		
 		confirmButton = new JButton("确认修改");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		confirmButton.setBounds(895, 487-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirmButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				confirmChange();
 			}
 		});
+		confirmButton.setEnabled(false);
 		add(confirmButton);
-//		
-//		JButton cancelButton = new JButton("查看");
-//		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-//		cancelButton.setBounds(626, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-//		add(cancelButton);
 		
 		JButton exitButton = new JButton("退出");
 		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -195,11 +186,6 @@ public class UserListPanel extends JPanel {
 		passwordField.setBounds(855,171,200,24);
 		add(passwordField);
 		
-//		JTextField juriField=new JTextField("权限");
-//		juriField.setFont(new Font("宋体", Font.PLAIN, 12));
-//		juriField.setBounds(855,221,200,24);
-//		add(juriField);
-		
 		juriBox = new JComboBox<String>();
 		juriBox.setModel(new DefaultComboBoxModel<String>(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","中转中心仓库管理人员"}));
 		juriBox.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -210,22 +196,6 @@ public class UserListPanel extends JPanel {
 		nameField.setFont(new Font("宋体", Font.PLAIN, 12));
 		nameField.setBounds(855,271,200,24);
 		add(nameField);
-		
-		orgField=new JTextField("机构");
-		orgField.setFont(new Font("宋体", Font.PLAIN, 12));
-		orgField.setBounds(855,321,200,24);
-//		add(orgField);
-		
-//		JComboBox comboBox_2 = new JComboBox();
-//		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {}));
-//		comboBox_2.setFont(new Font("宋体", Font.PLAIN, 12));
-//		comboBox_2.setBounds(855, 321, 200, 24);
-//		add(comboBox_2);
-		
-		orgIdField=new JTextField("机构编号");
-		orgIdField.setFont(new Font("宋体", Font.PLAIN, 12));
-		orgIdField.setBounds(855,371,200,24);
-//		add(orgIdField);
 
 		mobileField=new JTextField("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -236,13 +206,26 @@ public class UserListPanel extends JPanel {
 		users=getUsers(null);
 		displayUsers();
 	}
+	
 	private void tableInit(){
 		table = new Table(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false)
-				displayUser(table.getSelectedRow());
+				if(e.getValueIsAdjusting()==false){
+					if(table.getSelectedRow() >= 0){
+						displayUser(table.getSelectedRow());
+						deleteButton.setEnabled(true);
+						confirmButton.setEnabled(true);
+						UserVO user = users.get(table.getSelectedRow());
+						if(user.getJuri().equals(Jurisdiction.ADMIN)){
+							deleteButton.setEnabled(false);
+						}
+					} else {
+						deleteButton.setEnabled(false);
+						confirmButton.setEnabled(false);
+					}
+				}
 			}
 		});
 		table.setBounds(133, 121, 637, 335);
@@ -254,23 +237,23 @@ public class UserListPanel extends JPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
+	
 	@SuppressWarnings("unchecked")
-	private ArrayList<UserVO> getUsers(String keyword)
-	{
+	private ArrayList<UserVO> getUsers(String keyword){
 		ArrayList<UserVO> temp=new ArrayList<UserVO>();
 		ResultMessage message;
-		message=serv.findUser(keyword);
-		if(message.getReInfo().equals(Result.SUCCESS))
-		{
+		message = serv.findUser(keyword);
+		if(message.getReInfo().equals(Result.SUCCESS)){
 			temp=(ArrayList<UserVO>)message.getMessage();
+		} else {
+			reportWrong(message.getReInfo());
 		}
-		else reportWrong(message.getReInfo());
 		return temp;
 	}
+	
 	private void displayUsers(){
 		model.setRowCount(0);
-		for(int i=0;i<users.size();i++)
-		{
+		for(int i=0;i<users.size();i++){
 			UserVO user=users.get(i);
 			String lv=null;
 			lv = EnumTransFactory.checkJuri(user.getJuri());
@@ -285,10 +268,11 @@ public class UserListPanel extends JPanel {
 	}
 	private void displayUser(int row)
 	{
-		if(row<0||row>=table.getRowCount())return;
+		if(row<0||row>=table.getRowCount()){
+			return;
+		}
 		String []data=new String[5];
-		for(int i=0;i<5;i++)
-		{
+		for(int i=0;i<5;i++){
 			data[i]=(String)table.getValueAt(row, i);
 		}
 		idField.setText(data[0]);
@@ -299,11 +283,12 @@ public class UserListPanel extends JPanel {
 	}
 	private void confirmChange(){
 		int row=table.getSelectedRow();
-		if(row<0||row>=table.getRowCount())return;
+		if(row<0||row>=table.getRowCount()){
+			return;
+		}
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
-		if(temp.isEmpty())
-		{
+		if(temp.isEmpty()){
 			DoHint.hint("权限未选择!", frame);return;
 		}
 		jur = EnumTransFactory.getJuri(temp);
@@ -315,40 +300,39 @@ public class UserListPanel extends JPanel {
 		if(password.isEmpty()){DoHint.hint("密码未输入!", frame);return;}
 		if(name.isEmpty()){DoHint.hint("姓名未输入!", frame);return;}
 		if(mobile.isEmpty()){DoHint.hint("手机号未输入!", frame);return;}
-		
+		UserVO user = users.get(table.getSelectedRow());
 		if(row<users.size()){
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
 			Result result=serv.reviseUser(now,row);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
-			}
-			else {
+			} else {
 				reportWrong(result);
 			}
-		}
-		else
-		{
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),orgField.getText(),orgIdField.getText());
+		} else {
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
 			Result result=serv.newUser(now);
 			if(result.equals(Result.SUCCESS)){
-			users.add(now);
-			displayUsers();
-			addButton.setEnabled(true);
-			}
-			else {
+				users.add(now);
+				displayUsers();
+				addButton.setEnabled(true);
+			} else {
 				reportWrong(result);
 			}
 		}
 	}
+	
 	private void deleteUser(){
 		int row=table.getSelectedRow();
-		if(row<0||row>=users.size())return;
+		if(row<0||row>=users.size()){
+			return;
+		}
 		Result result=serv.deleteUser(users.get(row).getId());
 		if(result.equals(Result.SUCCESS)){
-		users.remove(row);
-		table.getSelectionModel().setSelectionInterval(row-1, row-1);
-		displayUsers();
+			users.remove(row);
+			table.getSelectionModel().setSelectionInterval(row-1, row-1);
+			displayUsers();
 		}
 		else reportWrong(result);
 	}

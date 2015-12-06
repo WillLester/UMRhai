@@ -36,13 +36,11 @@ public class DriverManLogic implements DriverManLSer{
 	public Result addDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
-		try
-		{
+		try{
 			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -54,8 +52,7 @@ public class DriverManLogic implements DriverManLSer{
 			isSuccessful=driverData.deleteDriver(id);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
@@ -64,52 +61,15 @@ public class DriverManLogic implements DriverManLSer{
 	public Result reviseDriver(DriverVO Driver) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
-		try
-		{
+		try{
 			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuccessful;
 	}
-
-//	public ResultMessage checkDriver(String id) {
-//		// TODO 自动生成的方法存根
-//		DriverPO Driver=null;
-//		Result isSuccessful=Result.SUCCESS;
-//		try{
-//			Driver=driverData.checkDriver(id);
-//			isSuccessful=Result.SUCCESS;
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		ResultMessage message = new ResultMessage(isSuccessful,new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveStart(),Driver.getDriveEnd()));
-//		return message;
-//	}
-
-//	public ResultMessage driverList() {
-//		// TODO 自动生成的方法存根
-//		ArrayList<DriverPO> ar=null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=driverData.driverList();
-//			isSuccessful=true;
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ArrayList<DriverVO> arVO=new ArrayList<DriverVO>();
-////		for(int i=0;i<ar.size();i++)
-////		{
-////			DriverPO Driver = ar.get(i);
-////			arVO.add(new DriverVO(Driver.getId(),Driver.getIdNum(),Driver.getBirthday(),Driver.getIdNum(),Driver.getMobile(),Driver.getSex(),Driver.getDriveLimit()));
-////		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
-//	}
 
 	public ResultMessage searchDriver(String hallId) {
 		// TODO 自动生成的方法存根
@@ -128,9 +88,6 @@ public class DriverManLogic implements DriverManLSer{
 			DriverVO driver=VPFactory.toDriverVO(ar.get(i));
 			arVO.add(driver);
 		}
-		
-//		arVO.add(new DriverVO("1","制杖",Calendar.getInstance(),"111","321312312312",Gender.WOMAN,Calendar.getInstance(),Calendar.getInstance()));
-//		arVO.add(new DriverVO("2","蠢苍",Calendar.getInstance(),"222","321312312312",Gender.MAN,Calendar.getInstance(),Calendar.getInstance()));
 		
 		ResultMessage message = new ResultMessage(result, arVO);
 		return message;
