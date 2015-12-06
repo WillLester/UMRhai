@@ -256,7 +256,11 @@ public class CityListPanel extends JPanel{
 					}
 					
 					if(cityTable1.getSelectedRow()>=cityList.size()||cityTable2.getSelectedRow()>=cityList.size()){
-						
+						addButton.setEnabled(true);
+						deleteButton.setEnabled(true);
+						nameField.setEnabled(true);
+						idField.setEnabled(true);
+						provinceCombo.setEnabled(true);
 					} else if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
