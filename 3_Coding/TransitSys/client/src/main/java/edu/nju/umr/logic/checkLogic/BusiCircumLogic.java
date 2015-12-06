@@ -23,8 +23,6 @@ public class BusiCircumLogic implements BusiCircumLSer{
 	private BusiCircumDSer statementData;
 	private UtilityLogic uti=new UtilityLogic();
 	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
-//	ArrayList<IncomePO> incomePOs=null;
-//	ArrayList<PaymentPO> paymentPOs=null;
 	
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
@@ -92,64 +90,4 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		
 		return uti.outputExcel(data, name, location);
 	}
-//	//返回收款单list
-//	public ResultMessage seeIncome(Calendar start, Calendar end) {
-//		// TODO 自动生成的方法存根
-//		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
-//		try {
-//			incomePOs = statementData.findIncome(start, end);
-//			for(IncomePO po:incomePOs){
-//				IncomeVO vo = new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress());
-//				incomeList.add(vo);
-//			}
-//		} catch (RemoteException e) {
-//			return new ResultMessage(Result.NET_INTERRUPT,null);
-//		} catch (NullPointerException e){
-//			return new ResultMessage(Result.Data_Not_Found,null);
-//		}
-//		
-//		return new ResultMessage(Result.SUCCESS, incomeList);
-//	}
-//	//返回付款单list
-//	public ResultMessage seePayment(Calendar start, Calendar end){
-//		ArrayList<PaymentVO> paymentList=new ArrayList<PaymentVO>();
-//		try {
-//			paymentPOs=statementData.findPayment(start, end);
-//			for(PaymentPO po:paymentPOs){
-//				PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks());
-//				paymentList.add(vo);
-//			}
-//		} catch (RemoteException e) {
-//			return new ResultMessage(Result.NET_INTERRUPT,null);
-//		} catch(NullPointerException e){
-//			return new ResultMessage(Result.Data_Not_Found,null);
-//		}
-//		
-//		return new ResultMessage(Result.SUCCESS,paymentList);
-//		
-//	}
-
-//	public ResultMessage getHall() {
-		// TODO 自动生成的方法存根
-//		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
-//		try {
-//			ArrayList<OrgPO> halls = statementData.getHall();
-//			for(OrgPO hall:halls){
-//				CityVO city = new CityVO(hall.getCity().getName(), hall.getCity().getId(),hall.getCity().getProvince());
-//				OrgVO vo = new OrgVO(hall.getId(), hall.getName(), hall.getKind(), hall.getLocation(), city);
-//				hallList.add(vo);
-//			}
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, hallList);
-//		return uti.getHall();
-//	}
-
-	
-
-	
-	
-
 }
