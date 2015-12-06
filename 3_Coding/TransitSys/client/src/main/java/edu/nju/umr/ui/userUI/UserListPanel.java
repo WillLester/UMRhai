@@ -115,7 +115,7 @@ public class UserListPanel extends JPanel {
 		deleteButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				int n = JOptionPane.showConfirmDialog(null, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
 		        	deleteUser();
 		        } else if (n == JOptionPane.NO_OPTION) {  
