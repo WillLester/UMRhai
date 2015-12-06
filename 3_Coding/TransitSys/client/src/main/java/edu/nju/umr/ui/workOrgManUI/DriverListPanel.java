@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -96,14 +97,21 @@ public class DriverListPanel extends JPanel {
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				Result result;
-				result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
-				if(result.equals(Result.SUCCESS))
-				{
-				driverList.remove(table.getSelectedRow());
-				displayDrivers();
-				}
-				else new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION)
+		        {
+		        	Result result;
+		        	result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
+		        	if(result.equals(Result.SUCCESS))
+		        	{
+		        		driverList.remove(table.getSelectedRow());
+		        		displayDrivers();
+		        	}
+		        	else
+		        	{
+		        		new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+		        	}
+		        }
 			}
 		});
 		add(delete);

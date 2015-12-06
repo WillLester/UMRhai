@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -123,15 +124,23 @@ public class CityListPanel extends JPanel{
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				// TODO 自动生成的方法存根
-				Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName());
-				if(result.equals(Result.SUCCESS)){
-					initialize();
-				} else {
-					@SuppressWarnings("unused")
-					HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-				}
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION) 
+		        {  
+		        	Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName());
+		        	if(result.equals(Result.SUCCESS))
+		        	{
+		        		initialize();
+					}
+		        	else
+		        	{
+		        		@SuppressWarnings("unused")
+		        		HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		        	}
+		        }
 			}
 		});
 		add(deleteButton);

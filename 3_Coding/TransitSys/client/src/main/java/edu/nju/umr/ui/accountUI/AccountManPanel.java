@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -124,13 +125,19 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				Result result = accountLSer.deleteAccount(table.getSelectedRow());
-				if(result.equals(Result.SUCCESS)){
-					fresh();
-				} else {
-					@SuppressWarnings("unused")
-					HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-				}
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION) {  
+		        	Result result = accountLSer.deleteAccount(table.getSelectedRow());
+		        	if(result.equals(Result.SUCCESS))
+		        	{
+		        		fresh();
+		        	}
+		        	else 
+		        	{
+		        		@SuppressWarnings("unused")
+		        		HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		        	}
+		        }
 			}
 		});
 		

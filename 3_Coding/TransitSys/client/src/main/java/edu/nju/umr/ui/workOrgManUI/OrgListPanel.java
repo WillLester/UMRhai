@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -141,7 +142,11 @@ public class OrgListPanel extends JPanel {
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				deleteOrg(table.getSelectedRow());
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION)
+		        {
+		        	deleteOrg(table.getSelectedRow());
+		        }
 			}
 		});
 		add(delete);

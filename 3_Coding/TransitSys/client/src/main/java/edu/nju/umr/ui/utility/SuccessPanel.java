@@ -60,19 +60,19 @@ public class SuccessPanel extends JPanel{
 			repaint();
 		}
 	}
-	public static void main(String [] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setSize(1200,800);
-		frame.setLocation(10, 10);
-		JPanel panel=new JPanel();
-		frame.setContentPane(panel);
-		frame.setVisible(true);
-		SuccessPanel suc=new SuccessPanel(panel);
-		panel.setLayout(null);
-		panel.add(suc);
-		suc.show();
-		panel.remove(suc);
-	}
+//	public static void main(String [] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setSize(1200,800);
+//		frame.setLocation(10, 10);
+//		JPanel panel=new JPanel();
+//		frame.setContentPane(panel);
+//		frame.setVisible(true);
+//		SuccessPanel suc=new SuccessPanel(panel);
+//		panel.setLayout(null);
+//		panel.add(suc);
+//		suc.show();
+//		panel.remove(suc);
+//	}
 
 }

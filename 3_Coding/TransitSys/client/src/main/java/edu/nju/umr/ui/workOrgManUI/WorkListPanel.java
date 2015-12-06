@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -160,12 +161,19 @@ public class WorkListPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				Result result = logicSer.deleteWork(table.getSelectedRow());
-				if(result.equals(Result.SUCCESS)){
-					fresh();
-				} else {
-					DoHint.hint(result, frame);
-				}
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION)
+		        {  
+		        	Result result = logicSer.deleteWork(table.getSelectedRow());
+		        	if(result.equals(Result.SUCCESS))
+		        	{
+		        		fresh();
+					}
+		        	else
+		        	{
+		        		DoHint.hint(result, frame);
+		        	}
+		        }
 			}
 		});
 		add(delete);
