@@ -98,11 +98,18 @@ public class OrderRevisePanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"时间","种类","提交人"};
+		String[] columnNames={"时间","种类"};
 		model.setColumnIdentifiers(columnNames);
 		TableColumnModel tcm = table.getColumnModel();
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		add(scroll);
+	}
+	public static void main(String[] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setSize(1200,800);
+		frame.setContentPane(new OrderRevisePanel(frame));
+		frame.setVisible(true);
 	}
 
 }
