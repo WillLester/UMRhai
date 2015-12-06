@@ -41,7 +41,6 @@ public class VanInfoPanel extends JPanel {
 	private VanVO van;
 	private JFrame frame;
 	private DatePanel servTime;
-	private DatePanel end;
 	private JLabel pic;
 	private UserVO user;
 
@@ -86,7 +85,6 @@ public class VanInfoPanel extends JPanel {
 		
 		JLabel labely = new JLabel("由");
 		labely.setBounds(textFieldNum.getX(), workTime.getY()+8, 19, 15);
-//		add(labely);
 		
 		servTime=new DatePanel();
 		servTime.setBounds(labely.getX(), workTime.getY()+5, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
@@ -94,11 +92,6 @@ public class VanInfoPanel extends JPanel {
 		
 		JLabel labelz = new JLabel("至");
 		labelz.setBounds(labely.getX(), labely.getY()+30, 19, 15);
-//		add(labelz);
-		
-		end=new DatePanel();
-		end.setBounds(labelz.getX()+20, labelz.getY()+3, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
-//		add(end);
 		
 		JLabel picture = new JLabel("车辆图片");
 		picture.setBounds(vanNum.getX(), labelz.getY()+20+40, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -150,8 +143,7 @@ public class VanInfoPanel extends JPanel {
 		textFieldPlate.setText(van.getPlateNum());
 		servTime.setDate(van.getServTime());
 		imageString=van.getPhoto();
-		if(!imageString.equals(null))
-		{
+		if(!imageString.equals(null)){
 			baseCodeToImage(imageString);
 			showpic();
 		}
@@ -181,7 +173,7 @@ public class VanInfoPanel extends JPanel {
 		byte[] data = null;  
 		try {  
 			InputStream in = new FileInputStream(path);  
-			data = new byte[in.available()];  
+			data = new byte[in.available()];
 			in.read(data);  
 			in.close();
 			Image bufferedImage = ImageIO.read(new File(path)); 
@@ -197,20 +189,17 @@ public class VanInfoPanel extends JPanel {
 		imageString=encoder.encode(data);
 	}
 	private void confirmChange(){
-		if(textFieldPlate.getText().isEmpty())
-		{
+		if(textFieldPlate.getText().isEmpty()){
 			DoHint.hint("车牌号未输入",frame);
 			return;
 		}
-		if(imageString.isEmpty())
-		{
+		if(imageString.isEmpty()){
 			DoHint.hint("图片未选择!", frame);
 			return;
 		}
 		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,user.getOrgId());
 		Result result=fatherPanel.confirmed(temp);
-		if(!result.equals(Result.SUCCESS))
-		{
+		if(!result.equals(Result.SUCCESS)){
 			DoHint.hint(result, frame);
 			return;
 		}
@@ -218,12 +207,5 @@ public class VanInfoPanel extends JPanel {
 		
 		
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new VanInfoPanel(frame,null,null,null));
-//		frame.setSize(995,558);
-//		frame.setVisible(true);
-//	}
 
 }

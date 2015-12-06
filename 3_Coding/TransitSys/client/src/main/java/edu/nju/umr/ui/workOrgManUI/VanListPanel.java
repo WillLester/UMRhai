@@ -151,13 +151,12 @@ public class VanListPanel extends JPanel {
 		add(scroll);
 	}
 	private void dataInit(){
-		serv=new VanManLogic();
+		serv = new VanManLogic();
 		getVans(null);
 		displayVans();
 	}
 	@SuppressWarnings("unchecked")
-	private void getVans(String keyword)
-	{
+	private void getVans(String keyword){
 		ResultMessage message=serv.searchVan(keyword, user.getOrgId());
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
@@ -227,17 +226,17 @@ public class VanListPanel extends JPanel {
 			}
 		}
 	}
-	public Result confirmed(VanVO temp){
-		for(int i=0;i<vanList.size();i++)
-		{
-			if(vanList.get(i).getId().equals(temp.getId()))
-			{
+	Result confirmed(VanVO temp){
+		for(int i=0;i<vanList.size();i++){
+			if(vanList.get(i).getId().equals(temp.getId())){
 				Result result=serv.reviseVan(temp);
 				return result;
 			}
 		}
-		Result result=serv.addVan(temp);
-		if(!result.equals(Result.SUCCESS))return result;
+		Result result = serv.addVan(temp);
+		if(!result.equals(Result.SUCCESS)){
+			return result;
+		}
 		vanList.add(temp);
 		sort();
 		displayVans();

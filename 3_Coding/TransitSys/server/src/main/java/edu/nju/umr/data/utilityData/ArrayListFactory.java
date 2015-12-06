@@ -1,13 +1,14 @@
 package edu.nju.umr.data.utilityData;
 
-import java.awt.Image;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.ImageIcon;
-
+import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -24,6 +25,7 @@ import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 
+@SuppressWarnings("restriction")
 public class ArrayListFactory {
 	public static ArrayList<IncomePO> produceIncomeList(ResultSet result){
 		ArrayList<IncomePO> incomeList = new ArrayList<IncomePO>();
@@ -117,14 +119,31 @@ public class ArrayListFactory {
 		ArrayList<VanPO> vanList = new ArrayList<VanPO>();
 		try {
 			while(result.next()){
-				ImageIcon icon = new ImageIcon(result.getString(4));
-				Image photo = icon.getImage();
+				String path = result.getString(4);
+				InputStream in = new FileInputStream(path);  
+				byte[] data = new byte[in.available()];
+				try {
+					in.read(data);
+				} catch (IOException e) {
+					// TODO 自动生成的 catch 块
+					in.close();
+					return null;
+				}  
+				in.close();
+				BASE64Encoder encoder = new BASE64Encoder();  
+				String photo =encoder.encode(data);
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(3));
 				VanPO van = new VanPO(result.getString(1), result.getString(2), date, photo,result.getString(5));
 				vanList.add(van);
 			}
 		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		} catch (FileNotFoundException e1) {
+			// TODO 自动生成的 catch 块
+			return null;
+		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			return null;
 		}

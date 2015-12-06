@@ -27,7 +27,6 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 
 public class DriverListPanel extends JPanel {
 	/**
@@ -41,18 +40,15 @@ public class DriverListPanel extends JPanel {
 	private DefaultTableModel model;
 	private DriverManLSer serv;
 	private ArrayList<DriverVO> driverList;
-	private UserVO user;
-	
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unchecked")
-	public DriverListPanel(JFrame fr,UserVO uservo) {
+	public DriverListPanel(JFrame fr,String orgId) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
 		panel=this;
-		user=uservo;
 		serv=new DriverManLogic();
 		
 		JLabel nameLabel = new JLabel("司机信息列表");
@@ -70,7 +66,7 @@ public class DriverListPanel extends JPanel {
 		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 90, 21);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				ResultMessage message=serv.searchDriver(user.getOrgId());
+				ResultMessage message=serv.searchDriver(orgId);
 				Result result=message.getReInfo();
 				if(!result.equals(Result.SUCCESS))
 				{
@@ -88,10 +84,9 @@ public class DriverListPanel extends JPanel {
 		JButton add = new JButton("新增");
 		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
 		add.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-			{
+			public void actionPerformed(ActionEvent e){
 				InfoFrame fr=new InfoFrame("新增司机信息输入");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),user.getOrgId()),user));
+				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),orgId),orgId));
 			}
 		});
 		add(add);
@@ -119,7 +114,7 @@ public class DriverListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				InfoFrame fr=new InfoFrame("修改司机信息");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow()),user));
+				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow()),orgId));
 			}
 		});
 		add(modify);
@@ -139,7 +134,7 @@ public class DriverListPanel extends JPanel {
 		add(out);
 		
 		tableInit();
-		driverList=(ArrayList<DriverVO>)serv.searchDriver(user.getOrgId()).getMessage();
+		driverList=(ArrayList<DriverVO>)serv.searchDriver(orgId).getMessage();
 		displayDrivers();
 		
 	}
