@@ -47,6 +47,7 @@ public class CityListPanel extends JPanel{
 	private ArrayList<CityVO> cityList;
 	private ArrayList<CitiesVO> citiesList;
 	private CityLSer logicSer;
+	private JButton deleteButton;
 	private JButton cancelButton;
 	private JButton confirmButton;
 	/**
@@ -72,6 +73,7 @@ public class CityListPanel extends JPanel{
 		nameField = new JTextField();
 		nameField.setBounds(377, 472, 106, 22);
 		add(nameField);
+		nameField.setEnabled(false);;
 		nameField.setColumns(10);
 		
 		JLabel idLabel = new JLabel("区号");
@@ -82,6 +84,7 @@ public class CityListPanel extends JPanel{
 		idField = new JTextField();
 		idField.setBounds(531, 471, 106, 23);
 		add(idField);
+		idField.setEnabled(false);
 		idField.setColumns(10);
 		
 		JLabel provinceLabel = new JLabel("所属省份");
@@ -92,6 +95,7 @@ public class CityListPanel extends JPanel{
 		provinceCombo = new JComboBox<String>();
 		provinceCombo.setBounds(716, 472, 106, 22);
 		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
+		provinceCombo.setEnabled(false);
 		add(provinceCombo);
 		
 		JLabel distanceLabel = new JLabel("距离");
@@ -102,6 +106,7 @@ public class CityListPanel extends JPanel{
 		distanceField = new JTextField();
 		distanceField.setBounds(606, 523, 106, 23);
 		add(distanceField);
+		distanceField.setEnabled(false);
 		distanceField.setColumns(10);
 		
 		JButton addButton = new JButton("新增城市");
@@ -115,11 +120,15 @@ public class CityListPanel extends JPanel{
 				cityTable1.getSelectionModel().setSelectionInterval(model1.getRowCount()-1, model1.getRowCount()-1);
 				model2.setRowCount(model2.getRowCount()+1);
 				cityTable2.getSelectionModel().setSelectionInterval(model2.getRowCount()-1, model2.getRowCount()-1);
+				nameField.setText("");
+				idField.setText("");
+				provinceCombo.setSelectedIndex(0);
+				distanceField.setText("");
 			}
 		});
 		add(addButton);
 		
-		JButton deleteButton = new JButton("删除城市");
+		deleteButton = new JButton("删除城市");
 		deleteButton.setBounds(450, 566, 93, 23);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -128,21 +137,19 @@ public class CityListPanel extends JPanel{
 			{
 				// TODO 自动生成的方法存根
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
-		        if (n == JOptionPane.YES_OPTION) 
-		        {  
+		        if (n == JOptionPane.YES_OPTION)  {  
 		        	Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName());
-		        	if(result.equals(Result.SUCCESS))
-		        	{
+		        	if(result.equals(Result.SUCCESS)){
 		        		initialize();
 					}
-		        	else
-		        	{
+		        	else{
 		        		@SuppressWarnings("unused")
 		        		HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		        	}
 		        }
 			}
 		});
+		deleteButton.setEnabled(false);
 		add(deleteButton);
 		
 		confirmButton = new JButton("确认修改");
@@ -238,20 +245,19 @@ public class CityListPanel extends JPanel{
 		cityTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(cityTable1.getSelectedRow()==-1&&cityTable2.getSelectedRow()==-1)
-					{
+					if(cityTable1.getSelectedRow()==-1&&cityTable2.getSelectedRow()==-1){
 						confirmButton.setEnabled(false);
 						cancelButton.setEnabled(false);
-					}
-					else
-					{
+						deleteButton.setEnabled(false);
+					} else {
 						confirmButton.setEnabled(true);
 						cancelButton.setEnabled(true);
+						deleteButton.setEnabled(true);
 					}
-					if(cityTable1.getSelectedRow()>=cityList.size()||cityTable2.getSelectedRow()>=cityList.size())
-					{
+					
+					if(cityTable1.getSelectedRow()>=cityList.size()||cityTable2.getSelectedRow()>=cityList.size()){
 						
-					}else if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
+					} else if(((cityTable2.getSelectedRow() == -1)||cityTable2.getSelectedRow() == cityTable1.getSelectedRow())&&(cityTable1.getSelectedRow() >= 0)){
 						addButton.setEnabled(true);
 						deleteButton.setEnabled(true);
 						nameField.setEnabled(true);
@@ -334,9 +340,19 @@ public class CityListPanel extends JPanel{
 			displayTable();
 			confirmButton.setEnabled(false);
 			cancelButton.setEnabled(false);
+			deleteButton.setEnabled(false);
+			nameField.setText("");
+			nameField.setEnabled(false);
+			idField.setText("");
+			idField.setEnabled(false);;
+			provinceCombo.setSelectedIndex(0);
+			provinceCombo.setEnabled(false);
+			distanceField.setText("");
+			distanceField.setEnabled(false);;
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+			return;
 		}
 		ResultMessage citiesResult = logicSer.citiesList();
 		if(citiesResult.getReInfo().equals(Result.SUCCESS)){
