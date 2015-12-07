@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -48,7 +50,7 @@ public class RecipientPanel extends JPanel {
 		this(fr,vo.getOpName(),null,vo.getUserId(),null);
 		for(Component compo:this.getComponents())
 		{
-			if(!compo.getName().equals("cance"))
+			if(!compo.getName().equals("cancel"))
 			compo.setEnabled(false);
 		}
 		idField.setText(vo.getTransitId());
@@ -125,7 +127,7 @@ public class RecipientPanel extends JPanel {
 					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org));
+						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org,(LinkedList<String>) logicSer.expressList(idField.getText())));
 					} else {
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
@@ -164,6 +166,10 @@ public class RecipientPanel extends JPanel {
 		String result = CheckLegal.isTransitLegal(idField.getText());
 		if(result != null){
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(!logicSer.isTransitValid(idField.getText())){
+			DoHint.hint("中转单不存在！", frame);
 			return false;
 		}
 		return true;

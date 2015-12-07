@@ -2,7 +2,10 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
@@ -53,6 +56,31 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		// TODO 自动生成的方法存根
 		return uti.getCities();
 		
+	}
+	@Override
+	public boolean isTransitValid(String id) {
+		// TODO 自动生成的方法存根
+		try {
+			return recipientData.isTransitValid(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
+	}
+	@Override
+	public List<String> expressList(String id) {
+		// TODO 自动生成的方法存根
+		LinkedList<String> list = new LinkedList<String>();
+		try {
+			ArrayList<String> express = recipientData.getExpressList(id);
+			for(String ex:express){
+				list.add(ex);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return list;
+		}
+		return list;
 	}
 
 }
