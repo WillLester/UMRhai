@@ -22,7 +22,7 @@ public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 	public CustomerData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<String> findTransit(String barcode) throws RemoteException {

@@ -24,7 +24,7 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 	public VanManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<VanPO> findVan(String keyword,String hallId) throws RemoteException {

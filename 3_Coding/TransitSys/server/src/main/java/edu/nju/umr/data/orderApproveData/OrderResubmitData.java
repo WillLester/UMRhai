@@ -35,7 +35,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	public OrderResubmitData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<KindGetter> getOrders(String userId) throws RemoteException {

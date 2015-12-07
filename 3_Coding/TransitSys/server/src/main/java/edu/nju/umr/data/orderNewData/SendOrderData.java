@@ -20,7 +20,7 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 	public SendOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(SendPO order) throws RemoteException {

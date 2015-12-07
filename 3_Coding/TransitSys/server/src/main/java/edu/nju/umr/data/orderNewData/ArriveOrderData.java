@@ -24,7 +24,7 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	public ArriveOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(ArrivePO order) throws RemoteException {

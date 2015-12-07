@@ -20,7 +20,7 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 	public IncomeOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(IncomePO order) throws RemoteException {

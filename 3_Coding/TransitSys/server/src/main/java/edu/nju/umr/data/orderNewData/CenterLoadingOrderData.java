@@ -20,7 +20,7 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	public CenterLoadingOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(CenterLoadingPO order) throws RemoteException {

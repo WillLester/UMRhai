@@ -35,7 +35,8 @@ import edu.nju.umr.po.order.TransitPO;
 public class MysqlImpl implements MysqlService{
 	private MysqlConnector connector;
 	private Statement state;
-	public MysqlImpl() {
+	private static MysqlImpl mysql = null;
+	private MysqlImpl() {
 		// TODO 自动生成的构造函数存根
 		connector = new MysqlConnector();
 		try {
@@ -45,6 +46,13 @@ public class MysqlImpl implements MysqlService{
 			e.printStackTrace();
 		}
 	}
+	public static MysqlImpl getMysql(){
+		if(mysql == null){
+			mysql = new MysqlImpl();
+		}
+		return mysql;
+	}
+	
 	protected void finalize(){
 		try {
 			state.close();

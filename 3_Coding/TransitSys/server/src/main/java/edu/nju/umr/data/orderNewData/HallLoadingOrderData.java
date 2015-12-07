@@ -20,7 +20,7 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 	public HallLoadingOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(HallLoadingPO order) throws RemoteException {

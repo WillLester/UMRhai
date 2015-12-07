@@ -17,7 +17,7 @@ public class UpdateTransitInfoData extends UnicastRemoteObject implements Update
 	private MysqlService mysqlSer;
 	public UpdateTransitInfoData()throws RemoteException{
 		super();
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 	public Result update(TransitInfoPO info) throws RemoteException{		
 		return mysqlSer.reviseInfo(info);

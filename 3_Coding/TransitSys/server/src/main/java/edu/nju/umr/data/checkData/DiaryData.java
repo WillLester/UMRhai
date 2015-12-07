@@ -24,7 +24,7 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 	MysqlService mysqlSer;
 	public DiaryData() throws RemoteException {
 		super();
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
 	}
 

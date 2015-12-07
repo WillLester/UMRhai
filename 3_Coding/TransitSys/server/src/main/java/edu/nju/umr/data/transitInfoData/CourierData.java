@@ -21,7 +21,7 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 	public CourierData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ExpressPO find(String barcode) throws RemoteException {
