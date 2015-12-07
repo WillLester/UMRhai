@@ -47,7 +47,7 @@ public class StockOutPanel extends JPanel {
 	 */
 	public StockOutPanel(JFrame fr,StockOutVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId(),null);
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"))
@@ -60,7 +60,7 @@ public class StockOutPanel extends JPanel {
 		datePanel.setDate(vo.getDate());
 		
 	}
-	public StockOutPanel(JFrame fr,String name,String orgId,String userId,String org) {
+	public StockOutPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockOutOrderLogic();
@@ -148,7 +148,7 @@ public class StockOutPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {

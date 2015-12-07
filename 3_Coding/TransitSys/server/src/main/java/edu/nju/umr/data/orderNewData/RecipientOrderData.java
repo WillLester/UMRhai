@@ -35,4 +35,10 @@ public class RecipientOrderData extends UnicastRemoteObject implements Recipient
 		return OrderInfoData.getExpressList(id);
 	}
 
+	@Override
+	public boolean isTransitValid(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return OrderInfoData.isTransitValid(id);
+	}
+
 }

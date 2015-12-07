@@ -15,19 +15,19 @@ public class GoodPO extends PO implements Serializable{
 	private String id;
 	private String stockId;
 	private Calendar date;
-	private String city;
+	private String destination;
 	private Part part;
 	private String shelf;
 	private int row;
 	private int place;
 
-	public GoodPO(String id, String stockId, Calendar date, String city, Part part,
+	public GoodPO(String id, String stockId, Calendar date, String destination, Part part,
 			String shelf, int row, int place) {
 		super();
 		this.id = id;
 		this.stockId = stockId;
 		this.date = date;
-		this.city = city;
+		this.destination = destination;
 		this.part = part;
 		this.shelf = shelf;
 		this.row = row;
@@ -39,8 +39,8 @@ public class GoodPO extends PO implements Serializable{
 	public Calendar getDate() {
 		return date;
 	}
-	public String getCity() {
-		return city;
+	public String getDestination() {
+		return destination;
 	}
 	public Part getPart() {
 		return part;
@@ -62,10 +62,10 @@ public class GoodPO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into good values"+"("+"'"+id+"','"+stockId+"','"+city+"',"+part.ordinal()+",'"+shelf+"',"+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"')";break;
+		case INSERT:command="insert into good values"+"("+"'"+id+"','"+stockId+"','"+destination+"',"+part.ordinal()+",'"+shelf+"',"+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"')";break;
 		case DELETE:command="delete from good where id='"+id+"'";break;
 		case FIND:command="select * from good where stockId='"+stockId+"'";break;
-		case UPDATE:command="update good set stockId='"+stockId+"',city='"+city+"',part="+part.ordinal()+",shelf='"+shelf+"',row="+row+",place="+place+",date='"+DateFormat.DATE.format(date.getTime())+"' where id='"+id+"'";break;
+		case UPDATE:command="update good set stockId='"+stockId+"',destination='"+destination+"',part="+part.ordinal()+",shelf='"+shelf+"',row="+row+",place="+place+",date='"+DateFormat.DATE.format(date.getTime())+"' where id='"+id+"'";break;
 		}
 		return command;
 	}

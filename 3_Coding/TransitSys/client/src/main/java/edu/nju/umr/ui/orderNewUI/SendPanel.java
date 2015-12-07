@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -19,7 +20,6 @@ import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
@@ -43,7 +43,7 @@ public class SendPanel extends JPanel {
 	 */
 	public SendPanel(JFrame fr,SendVO vo)
 	{
-		this(fr, vo.getOpName(),null, vo.getUserId(),null);
+		this(fr, vo.getOpName(),null, vo.getUserId(),null,null);
 		for(Component co:this.getComponents()){
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
@@ -52,7 +52,7 @@ public class SendPanel extends JPanel {
 		courierCombo.setSelectedItem(vo.getCourier());
 		datePanel.setDate(vo.getDate());
 	}
-	public SendPanel(JFrame fr,String name,String orgId,String userId,String org) {
+	public SendPanel(JFrame fr,String name,String orgId,String userId,String org,LinkedList<String> express) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -73,6 +73,8 @@ public class SendPanel extends JPanel {
 		barcodeField = new JTextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setBounds(487, 216, 193, 24);
+		barcodeField.setText(express.get(0));
+		barcodeField.setEnabled(false);
 		add(barcodeField);
 		barcodeField.setColumns(10);
 		
@@ -115,7 +117,12 @@ public class SendPanel extends JPanel {
 				if(isLegal()){
 					Result result = logicSer.create(createVO(),org);
 					if(result.equals(Result.SUCCESS)){
-						
+						if(!express.isEmpty()){
+							express.removeFirst();
+							frame.setContentPane(new SendPanel(fr, name, orgId, userId, org, express));
+						} else {
+							frame.dispose();
+						}
 					} else {
 						@SuppressWarnings("unused")
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
@@ -140,11 +147,6 @@ public class SendPanel extends JPanel {
 	private boolean isLegal(){
 		if(Utility.isOutOfDate(datePanel.getCalendar())){
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
-			return false;
-		}
-		String result = CheckLegal.isExpressLegal(barcodeField.getText());
-		if(result != null){
-			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
 		return true;

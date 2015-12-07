@@ -1,6 +1,7 @@
 package edu.nju.umr.data.utilityData;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
@@ -22,5 +23,19 @@ public class OrderInfoData {
 		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null));
 		TransitPO transit = OrderPOFactory.getTransit(result);
 		return transit.getExpress();
+	}
+	
+	public static boolean isTransitValid(String id){
+		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null));
+		try {
+			if(result.next()){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
 	}
 }

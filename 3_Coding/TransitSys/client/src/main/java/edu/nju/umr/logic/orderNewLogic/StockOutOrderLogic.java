@@ -29,15 +29,12 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(StockOutVO order,String org) {
+	public Result create(StockOutVO order) {
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
-			StockOutPO orderPO=VPFactory.toStockOutPO(order, 0);
-			isSuccessful=stockoutData.create(orderPO);
-			if(isSuccessful.equals(Result.SUCCESS))
-			{
-				UpdateTransitInfoLogic.update(order.getExpressId(), order.getDate()+"于"+org+"出库发往"+order.getArrivePlace());
-			}
+			StockOutPO orderPO = VPFactory.toStockOutPO(order, 0);
+			isSuccessful = stockoutData.create(orderPO);
+			isSuccessful = stockoutData.removeGood(order.getExpressId());
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -48,22 +45,6 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> ar= null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=stockoutData.getCities();
-//			isSuccessful=true;
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<String> arVO=new ArrayList<String>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			arVO.add(ar.get(i));
-//		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
 		return uti.getCities();
 	}
 

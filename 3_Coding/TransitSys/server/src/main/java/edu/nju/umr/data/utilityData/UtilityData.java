@@ -111,4 +111,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
 	}
 
+	@Override
+	public ConstantPO getConstant() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
+	}
+
 }
