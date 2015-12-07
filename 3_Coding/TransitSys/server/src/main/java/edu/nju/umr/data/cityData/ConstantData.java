@@ -21,4 +21,10 @@ public class ConstantData  extends UnicastRemoteObject implements ConstantDSer{
 	public Result setConstant(ConstantPO constant)throws RemoteException{
 		return SerialHelper.writeToFile(constant, "data/constant/constant.ser");
 	}
+
+	@Override
+	public ConstantPO getConstant() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
+	}
 }

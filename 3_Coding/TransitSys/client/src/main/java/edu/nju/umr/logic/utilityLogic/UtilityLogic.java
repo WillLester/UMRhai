@@ -21,6 +21,7 @@ import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
@@ -358,6 +359,29 @@ public class UtilityLogic {
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return false;
+		}
+	}
+	
+	/**
+	 * 获得订单运费（经济，标准，特快）
+	 * @return 价格List，目前是Array，按经济，标准和特快的顺序排,数值是double
+	 */
+	public ResultMessage getExpressCost() {
+		// TODO 自动生成的方法存根
+		try {
+			ConstantPO constant = utilityData.getConstant();
+			if(constant == null){
+				return new ResultMessage(Result.DATA_NOT_FOUND, null);
+			} else {
+				ArrayList<Double> costs = new ArrayList<Double>();
+				costs.add(constant.getLvEco());
+				costs.add(constant.getLvStd());
+				costs.add(constant.getLvVip());
+				return new ResultMessage(Result.SUCCESS, costs);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 	}
 }

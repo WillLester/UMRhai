@@ -72,14 +72,6 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 
 	public ResultMessage getVans(String orgId) {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> vans = null;
-//		try {
-//			vans = hallData.getVans();
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, vans);
 		return uti.getVans(orgId);
 	}
 	
