@@ -211,4 +211,13 @@ public class PaymentPanel extends JPanel {
 				Double.parseDouble(costField.getText()), remarkArea.getText(), name,userId);
 		return payment;
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

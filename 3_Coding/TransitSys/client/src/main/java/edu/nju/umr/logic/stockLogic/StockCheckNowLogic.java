@@ -72,7 +72,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 			GoodPO good=goodList.get(i);
 			data[i+1][0]=good.getId();
 			data[i+1][1]=(good.getDate().get(Calendar.YEAR)+"")+"."+((good.getDate().get(Calendar.MONTH)+1)+"")+"."+(good.getDate().get(Calendar.DATE)+"");
-			data[i+1][2]=good.getCity();
+			data[i+1][2]=good.getDestination();
 			data[i+1][3]=good.getPart()+"";
 			data[i+1][4]=good.getShelf()+"";
 			data[i+1][5]=good.getRow()+"";

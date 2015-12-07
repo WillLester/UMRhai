@@ -286,4 +286,13 @@ public class TransitPanel extends JPanel {
 			return vo;
 		}
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

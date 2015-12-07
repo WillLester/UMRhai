@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,5 +121,14 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 			}
 		}
 		
+	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
 	}
 }

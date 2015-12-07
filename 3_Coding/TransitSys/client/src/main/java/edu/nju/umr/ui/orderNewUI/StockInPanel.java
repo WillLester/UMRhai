@@ -54,7 +54,7 @@ public class StockInPanel extends JPanel {
 	 */
 	public StockInPanel(JFrame fr,StockInVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId(),null);
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(!co.getName().equals("cancel"))
@@ -69,7 +69,7 @@ public class StockInPanel extends JPanel {
 		cityCombo.setSelectedItem(vo.getArrivePlace());
 	}
 	@SuppressWarnings("unchecked")
-	public StockInPanel(JFrame fr,String name,String orgId,String userId,String org) {
+	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockInOrderLogic();
@@ -220,7 +220,7 @@ public class StockInPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					if(result.equals(Result.SUCCESS)){
 						
 					} else {
@@ -271,5 +271,14 @@ public class StockInPanel extends JPanel {
 				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
 				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
 		return vo;
+	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
 	}
 }

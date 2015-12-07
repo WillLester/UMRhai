@@ -179,4 +179,13 @@ public class RecipientPanel extends JPanel {
 		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
 		return vo;
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

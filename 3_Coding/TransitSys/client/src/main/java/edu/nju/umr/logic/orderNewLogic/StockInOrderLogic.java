@@ -12,6 +12,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
@@ -34,19 +35,15 @@ public class StockInOrderLogic implements StockInOrderLSer{
 			e.printStackTrace();
 		}
 	}
-	public Result create(StockInVO order,String org) {
+	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
-			StockInPO orderPO=VPFactory.toStockInPO(order, 0);
-			isSuc=stockinData.create(orderPO);
-			if(isSuc.equals(Result.SUCCESS))
-			{
-				UpdateTransitInfoLogic.update(order.getExpressId(),order.getDate()+"于"+org+"入库");
-			}
+			StockInPO orderPO = VPFactory.toStockInPO(order, 0);
+			isSuc = stockinData.create(orderPO);
+			isSuc = stockinData.addGood(new GoodPO(order.getExpressId(), order.getStockId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuc;

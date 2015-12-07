@@ -314,7 +314,7 @@ public class VPFactory {
 	
 	//货物
 	public static GoodVO toGoodVO(GoodPO po){
-		GoodVO vo=new GoodVO(po.getId(), po.getDate(), po.getCity(), po.getPart(), po.getShelf(), po.getRow(), po.getPlace());
+		GoodVO vo=new GoodVO(po.getId(), po.getDate(), po.getDestination(), po.getPart(), po.getShelf(), po.getRow(), po.getPlace());
 		return vo;
 	}
 	public static GoodPO toGoodPO(GoodVO vo,String stockId){
