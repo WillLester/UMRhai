@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -373,7 +374,7 @@ public class UtilityLogic {
 			if(constant == null){
 				return new ResultMessage(Result.DATA_NOT_FOUND, null);
 			} else {
-				ArrayList<Double> costs = new ArrayList<Double>();
+				List<Double> costs = new ArrayList<Double>();
 				costs.add(constant.getLvEco());
 				costs.add(constant.getLvStd());
 				costs.add(constant.getLvVip());
@@ -383,5 +384,50 @@ public class UtilityLogic {
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
+	}
+	
+	/**
+	 * 获得运费额（飞机，铁路，公路）
+	 * @return List,目前是Array，按照飞机、铁路、公路排序的运费，数值是double
+	 */
+	public ResultMessage getTransitCost(){
+		try {
+			ConstantPO constant = utilityData.getConstant();
+			if(constant == null){
+				return new ResultMessage(Result.DATA_NOT_FOUND, null);
+			} else {
+				List<Double> costs = new ArrayList<Double>();
+				costs.add(constant.getPricePlane());
+				costs.add(constant.getPriceTrain());
+				costs.add(constant.getPriceVan());
+				return new ResultMessage(Result.SUCCESS, costs);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ResultMessage(Result.NET_INTERRUPT, null);
+		}
+	}
+	
+	/**
+	 * 获得满载量（飞机、铁路、公路）
+	 * @return List，目前是Array,按照飞机、铁路、公路排，数值是double
+	 */
+	public ResultMessage getFullLoad(){
+		try {
+			ConstantPO constant = utilityData.getConstant();
+			if(constant == null){
+				return new ResultMessage(Result.DATA_NOT_FOUND, null);
+			} else {
+				List<Double> load = new ArrayList<Double>();
+				load.add(constant.getMaxLoadPlane());
+				load.add(constant.getMaxLoadTrain());
+				load.add(constant.getMaxLoadVan());
+				return new ResultMessage(Result.SUCCESS, load);
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ResultMessage(Result.NET_INTERRUPT, null);
+		}
+		
 	}
 }
