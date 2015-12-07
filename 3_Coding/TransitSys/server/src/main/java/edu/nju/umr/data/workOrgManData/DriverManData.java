@@ -24,16 +24,13 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	public DriverManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<DriverPO> findDriver(String hallId)
 			throws RemoteException {
 		return ArrayListFactory.produceDriverList(mysqlSer.checkInfo(new DriverPO(null, null, null, null, null, null, null, null, hallId)));
 	}
-//	public ArrayList<DriverPO> driverList(){
-//		return null;
-//	}
 
 	public Result addDriver(DriverPO driver) throws RemoteException {
 		return mysqlSer.addInfo(driver);

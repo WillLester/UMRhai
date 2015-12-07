@@ -31,7 +31,7 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	public UtilityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	@SuppressWarnings("unchecked")

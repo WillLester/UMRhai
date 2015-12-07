@@ -46,10 +46,10 @@ public class RecipientPanel extends JPanel {
 	public RecipientPanel(JFrame fr,RecipientVO vo)
 	{
 		this(fr,vo.getOpName(),null,vo.getUserId(),null);
-		for(Component co:this.getComponents())
+		for(Component compo:this.getComponents())
 		{
-			if(!co.getName().equals("cance"))
-			co.setEnabled(false);
+			if(!compo.getName().equals("cance"))
+			compo.setEnabled(false);
 		}
 		idField.setText(vo.getTransitId());
 		datePanel.setDate(vo.getDate());

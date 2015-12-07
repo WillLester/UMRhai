@@ -20,7 +20,7 @@ public class PaymentOrderData extends UnicastRemoteObject implements PaymentOrde
 	public PaymentOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(PaymentPO order) throws RemoteException {

@@ -24,7 +24,7 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 	public StockInOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result create(StockInPO order) throws RemoteException {

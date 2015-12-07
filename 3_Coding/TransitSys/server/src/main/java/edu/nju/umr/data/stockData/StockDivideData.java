@@ -21,7 +21,7 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 	public StockDivideData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<ShelfPO> getShelves(String stockId,String keyword) throws RemoteException {

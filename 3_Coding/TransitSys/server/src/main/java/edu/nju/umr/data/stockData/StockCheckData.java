@@ -27,7 +27,7 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 	public StockCheckData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public ArrayList<StockInPO> getIn(Calendar start, Calendar end, String id)

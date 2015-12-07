@@ -23,7 +23,7 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 	public CityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	public Result addCity(CityPO city) throws RemoteException {

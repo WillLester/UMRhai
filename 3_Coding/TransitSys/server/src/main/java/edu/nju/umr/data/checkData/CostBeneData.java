@@ -21,7 +21,7 @@ public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
 	MysqlService mysqlSer;
 	public CostBeneData() throws RemoteException {
 		super();
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
 	}
 

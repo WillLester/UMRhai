@@ -22,34 +22,28 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private UtilityLogic uti=new UtilityLogic();
 	public RecipientOrderLogic(){
 		try{
-		dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
-		recipientData=dataFac.getRecipientOrder();
-		uti=new UtilityLogic();
-		}
-		catch(Exception e)
-		{
+			dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
+			recipientData=dataFac.getRecipientOrder();
+			uti=new UtilityLogic();
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public Result create(RecipientVO order,String org) {
 		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
 		Result isSuc=Result.SUCCESS;
 		try{
 			RecipientPO orderPO=VPFactory.toRecipientPO(order, "");
 			isSuc=recipientData.create(orderPO);
-			if(isSuc.equals(Result.SUCCESS))
-			{
-				for(String express:recipientData.getExpressList(order.getTransitId()))
-				{
+			if(isSuc.equals(Result.SUCCESS)){
+				for(String express:recipientData.getExpressList(order.getTransitId())){
 					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()
 							+" "+org+" 已收入"));
 				}
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return isSuc;
@@ -57,20 +51,6 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> ar= null;
-//		try{
-//			ar=recipientData.getCities();
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<String> arVO=new ArrayList<String>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			arVO.add(ar.get(i));
-//		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
 		return uti.getCities();
 		
 	}

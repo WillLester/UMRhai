@@ -38,7 +38,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 	public OrderApproveData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 	}
 
 	@SuppressWarnings("unchecked")

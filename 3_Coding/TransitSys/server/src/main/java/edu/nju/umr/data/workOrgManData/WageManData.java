@@ -24,7 +24,7 @@ public class WageManData extends UnicastRemoteObject implements WageManDSer{
 	private MysqlService mysqlSer;
 	public WageManData() throws RemoteException {
 		super();
-		mysqlSer = new MysqlImpl();
+		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
 	}
 

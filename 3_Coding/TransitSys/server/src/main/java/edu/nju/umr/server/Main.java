@@ -14,6 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
 		try{
+			Url.initialize("url.txt");
 			DataFactory dataFactory = new DataFactory();
 			LocateRegistry.createRegistry(8885);
 			Naming.bind(Url.URL, dataFactory);
