@@ -25,5 +25,17 @@ public interface UtilityDSer extends Remote{
 	public Result setRecord(Calendar time,String operation,String operator) throws RemoteException;
 	public ArrayList<OrgPO> getCenters()throws RemoteException;
 	public ArrayList<WorkPO> getCouriers(String hallId) throws RemoteException;
+	/**
+	 * 获得常量
+	 * @return 常量PO
+	 * @throws RemoteException
+	 */
 	public ConstantPO getConstant() throws RemoteException;
+	/**
+	 * 检查中转单编号是否存在
+	 * @param id 中转单编号
+	 * @return true表示合理，false表示编号不存在
+	 * @throws RemoteException
+	 */
+	public boolean isTransitValid(String id) throws RemoteException;
 }

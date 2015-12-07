@@ -90,4 +90,9 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		}
 		return new ResultMessage(Result.SUCCESS,shelves);
 	}
+	@Override
+	public boolean isExpressValid(String id) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
 }

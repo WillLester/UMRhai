@@ -60,12 +60,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	@Override
 	public boolean isTransitValid(String id) {
 		// TODO 自动生成的方法存根
-		try {
-			return recipientData.isTransitValid(id);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return false;
-		}
+		return uti.isTransitValid(id);
 	}
 	@Override
 	public List<String> expressList(String id) {

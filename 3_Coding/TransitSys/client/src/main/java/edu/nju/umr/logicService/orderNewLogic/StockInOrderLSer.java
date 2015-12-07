@@ -8,4 +8,10 @@ public interface StockInOrderLSer {
 	public Result create(StockInVO order);
 	public ResultMessage getCities();
 	public ResultMessage getShelves(String orgId);
+	/**
+	 * 入库单生成时检测订单是否存在
+	 * @param id 订单号
+	 * @return 是否存在
+	 */
+	public boolean isExpressValid(String id);
 }

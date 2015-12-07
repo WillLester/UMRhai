@@ -16,11 +16,4 @@ public interface RecipientOrderDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public ArrayList<String> getExpressList(String id) throws RemoteException;
-	/**
-	 * 检查中转单编号是否存在
-	 * @param id 中转单编号
-	 * @return true表示合理，false表示编号不存在
-	 * @throws RemoteException
-	 */
-	public boolean isTransitValid(String id) throws RemoteException;
 }

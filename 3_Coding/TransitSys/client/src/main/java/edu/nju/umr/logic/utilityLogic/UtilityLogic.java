@@ -351,4 +351,13 @@ public class UtilityLogic {
 		}
 		return cour;
 	}
+	
+	public boolean isTransitValid(String id){
+		try {
+			return utilityData.isTransitValid(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
+	}
 }

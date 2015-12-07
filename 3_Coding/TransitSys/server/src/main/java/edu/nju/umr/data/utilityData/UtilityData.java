@@ -114,4 +114,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
 	}
 
+	@Override
+	public boolean isTransitValid(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return OrderInfoData.isTransitValid(id);
+	}
+
 }
