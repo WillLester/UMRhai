@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
@@ -46,4 +47,14 @@ public interface UtilityDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean isExpressValid(String id) throws RemoteException;
+	
+	/**
+	 * 获得城市间信息
+	 * @param city1 城市1
+	 * @param city2 城市2
+	 * @return CitiesPO 如果没有获得则返回null
+	 * @see CitiesPO
+	 * @throws RemoteException
+	 */
+	public CitiesPO getCitesPO(String city1,String city2) throws RemoteException;
 }

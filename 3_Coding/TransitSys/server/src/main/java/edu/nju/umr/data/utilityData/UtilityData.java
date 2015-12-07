@@ -3,6 +3,7 @@ package edu.nju.umr.data.utilityData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -11,6 +12,7 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.DiaryPO;
@@ -122,6 +124,24 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	public boolean isExpressValid(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return OrderInfoData.isExpressValid(id);
+	}
+
+	@Override
+	public CitiesPO getCitesPO(String city1, String city2)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		ResultSet result = mysqlSer.checkInfo(new CitiesPO(city1, city2, 0));
+		try {
+			if(result.next()){
+				CitiesPO cities = new CitiesPO(result.getString(1), result.getString(2), result.getDouble(3));
+				return cities;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
 	}
 
 }

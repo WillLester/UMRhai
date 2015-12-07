@@ -3,6 +3,7 @@ package edu.nju.umr.logic.utilityLogic;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -21,6 +22,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
+import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
@@ -446,6 +448,27 @@ public class UtilityLogic {
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return false;
+		}
+	}
+	
+	/**
+	 * 获得两个城市之间的距离
+	 * @param city1 城市1
+	 * @param city2 城市2
+	 * @return 城市之间的距离 类型是BigDecimal，考虑到精度问题。如果没有，则返回。若网络错误，返回null
+	 */
+	public BigDecimal getDistance(String city1,String city2){
+		CitiesPO cities = null;
+		try {
+			cities = utilityData.getCitesPO(city1, city2);
+			if(cities == null){
+				return new BigDecimal(0);
+			} else {
+				return new BigDecimal(cities.getDistance());
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return null;
 		}
 	}
 }
