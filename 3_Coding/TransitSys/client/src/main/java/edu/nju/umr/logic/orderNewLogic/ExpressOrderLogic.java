@@ -45,7 +45,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		}
 		return isSuc;
 	}
-	public String getPriceAndTime(String city1,String city2){
+	public String getPriceAndTime(String city1,String city2,int expressKind,int pakKind){
 		
 		return null;
 	}

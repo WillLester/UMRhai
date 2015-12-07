@@ -599,7 +599,7 @@ public class ExpressPanel extends JPanel {
 	{
 		String city1=senderLoc.getCity();
 		String city2=receiverLoc.getCity();
-		String data=logicSer.getPriceAndTime(city1, city2);
+		String data=logicSer.getPriceAndTime(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex());
 		
 	}
 
