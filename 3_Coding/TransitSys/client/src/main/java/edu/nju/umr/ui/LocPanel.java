@@ -44,7 +44,7 @@ public class LocPanel extends JPanel {
 		cityCombo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				pa.getPrice();
+				pa.getPriceAndTime();
 			}
 		});
 	}

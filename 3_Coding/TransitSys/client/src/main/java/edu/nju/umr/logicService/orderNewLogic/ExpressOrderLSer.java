@@ -5,4 +5,5 @@ import edu.nju.umr.vo.order.ExpressVO;
 
 public interface ExpressOrderLSer {
 	public Result create(ExpressVO order,String org);
+	public String getPriceAndTime(String city1,String city2);
 }
