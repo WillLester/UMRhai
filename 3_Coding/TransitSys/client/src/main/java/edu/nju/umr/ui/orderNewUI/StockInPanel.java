@@ -55,8 +55,7 @@ public class StockInPanel extends JPanel {
 	public StockInPanel(JFrame fr,StockInVO vo)
 	{
 		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
-		for(Component co:this.getComponents())
-		{
+		for(Component co:this.getComponents()){
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(false);
 		}

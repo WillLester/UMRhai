@@ -8,9 +8,11 @@ import java.util.Calendar;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -104,6 +106,12 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new WorkPO(null, null, null, null, 0, Jurisdiction.COURIER, null, 0, 0));
 		return ArrayListFactory.produceWorkList(result);
+	}
+
+	@Override
+	public ConstantPO getConstant() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
 	}
 
 }
