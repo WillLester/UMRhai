@@ -21,6 +21,7 @@ import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -191,6 +192,10 @@ public class StockOutPanel extends JPanel {
 			return false;
 		} else if((transitIdField.getText().length() != 19)&&(transitIdField.getText().length() != 20)){
 			HintFrame hint = new HintFrame("中转单或汽运编号长度错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(!logicSer.isExpressValid(expressField.getText())){
+			DoHint.hint("快递单不存在！", frame);
 			return false;
 		}
 		return true;
