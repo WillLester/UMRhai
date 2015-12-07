@@ -15,13 +15,25 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
+import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
+import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.order.OrderVO;
 
 public class OrderRevisePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private ApproveTable table;
 	private DefaultTableModel model;
 	private JFrame frame;
+	private String userId;
+	private OrderResubmitLSer serv;
+	private ArrayList<OrderVO> orderList;
 
 	
 	
@@ -41,15 +53,27 @@ public class OrderRevisePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public OrderRevisePanel(JFrame fr) {
+	public OrderRevisePanel(JFrame fr,String userId) {
 		setLayout(null);
 		frame=fr;
+		this.userId=userId;
+		serv=new OrderResubmitLogic();
 
 		JLabel reviseLabel = new JLabel("未通过单据");
 		reviseLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-		reviseLabel.setBounds(505, 40, 93, 24);
+		reviseLabel.setBounds(485, 40, 120, 24);
 		add(reviseLabel);
 		
+		JButton refreshButton=new JButton("刷新");
+		refreshButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		refreshButton.setBounds(927, 159, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		refreshButton.addActionListener(new ActionListener(){@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			getOrderList();
+			displayOrders();
+		}});
+		add(refreshButton);
 	
 		JButton reviseButton = new JButton("修改");
 		reviseButton.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -58,8 +82,6 @@ public class OrderRevisePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
-
 				
 			}
 		});
@@ -75,7 +97,10 @@ public class OrderRevisePanel extends JPanel{
 			}
 		});
 		add(exitButton);
+		
 		tableInit();
+		getOrderList();
+		displayOrders();
 	
 
 	}
@@ -104,12 +129,38 @@ public class OrderRevisePanel extends JPanel{
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		add(scroll);
 	}
-	public static void main(String[] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setSize(1200,800);
-		frame.setContentPane(new OrderRevisePanel(frame));
-		frame.setVisible(true);
+	@SuppressWarnings("unchecked")
+	private void getOrderList(){
+		orderList=new ArrayList<OrderVO>();
+		try
+		{
+			ResultMessage message = serv.getUnpassed(userId);
+			Result result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS))
+			{
+				DoHint.hint(result, frame);
+				return;
+			}
+			orderList=(ArrayList<OrderVO>)message.getMessage();
+		}catch(Exception e)
+		{
+			
+		}
 	}
-
+	private void displayOrders(){
+		model.setRowCount(0);
+		String[] kind=new String[]{"中转中心到达单","中转中心装车单","快递单","营业厅装车单","入款单","付款单","收件单",
+				"营业厅到达单","派件单","入库单","出库单","中转单"};
+		for(OrderVO vo:orderList)
+		{
+			int k=0;
+			for(Order order:Order.values())
+			{
+				if(vo.getKind().equals(order))break;
+				k++;
+			}
+			String [] data=new String[]{new SimpleDateFormat("yyyy-MM-dd").format(vo.getTime().getTime()),kind[k]};
+			model.addRow(data);
+		}
+	}
 }

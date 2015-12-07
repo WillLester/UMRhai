@@ -38,7 +38,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame frame=new FunctionFrame("查看未通过单据");
-				frame.setContentPane(new OrderRevisePanel(frame));
+				frame.setContentPane(new OrderRevisePanel(frame,userId));
 			}
 		});
 		add(button);
