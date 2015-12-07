@@ -452,6 +452,34 @@ public class UtilityLogic {
 	}
 	
 	/**
+	 * 检查中转中心装车单是否存在
+	 * @param id 装车单编号
+	 * @return 结果
+	 */
+	public boolean isCenterLoadValid(String id){
+		try {
+			return utilityData.isCenterLoadValid(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
+	}
+	
+	/**
+	 * 检查订单列表中各订单号是否存在
+	 * @param expressList 订单列表，List形式
+	 * @return 有错误的第一个订单的index（0-base），如果没有错误则返回-1。
+	 */
+	public int isExpressListValid(List<String> expressList){
+		for(int i = 0;i < expressList.size();i++){
+			if(!isExpressValid(expressList.get(i))){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	/**
 	 * 获得两个城市之间的距离
 	 * @param city1 城市1
 	 * @param city2 城市2

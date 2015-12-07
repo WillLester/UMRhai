@@ -144,4 +144,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		}
 	}
 
+	@Override
+	public boolean isCenterLoadValid(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
 }

@@ -49,6 +49,14 @@ public interface UtilityDSer extends Remote{
 	public boolean isExpressValid(String id) throws RemoteException;
 	
 	/**
+	 * 检查中转中心装车单是否存在
+	 * @param id 汽运编号
+	 * @return true表示存在，false表示不存在
+	 * @throws RemoteException
+	 */
+	public boolean isCenterLoadValid(String id) throws RemoteException;
+	
+	/**
 	 * 获得城市间信息
 	 * @param city1 城市1
 	 * @param city2 城市2

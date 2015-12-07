@@ -13,4 +13,16 @@ public interface StockOutOrderLSer {
 	 * @return 结果
 	 */
 	public boolean isExpressValid(String id);
+	/**
+	 * 检测中转单是否存在
+	 * @param id 中转单编号
+	 * @return 结果
+	 */
+	public boolean isTransitValid(String id);
+	/**
+	 * 检测装车单是否存在
+	 * @param id 汽运编号
+	 * @return 结果
+	 */
+	public boolean isConveyValid(String id);
 }

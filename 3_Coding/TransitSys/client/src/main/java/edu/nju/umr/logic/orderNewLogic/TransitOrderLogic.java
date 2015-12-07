@@ -3,6 +3,7 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
@@ -78,6 +79,12 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	public ResultMessage getCenters() {
 		
 		return uti.getCenter();
+	}
+
+	@Override
+	public int isExpressValid(List<String> expressList) {
+		// TODO 自动生成的方法存根
+		return uti.isExpressListValid(expressList);
 	}
 
 }

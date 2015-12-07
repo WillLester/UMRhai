@@ -52,5 +52,15 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		// TODO 自动生成的方法存根
 		return uti.isExpressValid(id);
 	}
+	@Override
+	public boolean isTransitValid(String id) {
+		// TODO 自动生成的方法存根
+		return uti.isTransitValid(id);
+	}
+	@Override
+	public boolean isConveyValid(String id) {
+		// TODO 自动生成的方法存根
+		return uti.isCenterLoadValid(id);
+	}
 
 }

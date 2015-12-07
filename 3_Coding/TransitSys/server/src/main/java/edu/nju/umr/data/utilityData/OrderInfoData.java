@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.TransitPO;
 /**
@@ -52,6 +53,19 @@ public class OrderInfoData {
 			// TODO 自动生成的 catch 块
 			return false;
 		}
-		
+	}
+	
+	public static boolean isCenterLoadValid(String id){
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null));
+		try {
+			if(result.next()){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
 	}
 }
