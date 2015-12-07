@@ -230,7 +230,7 @@ public class ExpressPanel extends JPanel {
 		receiver.setBounds(159, 267, 120, 24);
 		add(receiver);
 		
-		senderLoc = new LocPanel(frame);
+		senderLoc = new LocPanel(frame,this);
 		senderLoc.setBounds(437, 184, 600, 50);
 		add(senderLoc);
 		
@@ -282,7 +282,7 @@ public class ExpressPanel extends JPanel {
 		receiverPhoneField.setBounds(613, 342, 216, 25);
 		add(receiverPhoneField);
 		
-		receiverLoc = new LocPanel(frame);
+		receiverLoc = new LocPanel(frame,this);
 		receiverLoc.setBounds(437, 292, 600,50);
 		add(receiverLoc);
 		
@@ -594,6 +594,10 @@ public class ExpressPanel extends JPanel {
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(enabled);
 		}
+	}
+	public void getPrice()
+	{
+		
 	}
 
 }

@@ -21,6 +21,7 @@ import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CityPO;
+import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
@@ -28,6 +29,7 @@ import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
@@ -350,5 +352,24 @@ public class UtilityLogic {
 			cour.add(c.getName());
 		}
 		return cour;
+	}
+	public ResultMessage getConstant(){
+		Result isSuc = Result.DATA_NOT_FOUND;
+		ConstantVO vo=null;
+		ConstantPO po=null;
+			try {
+				po = utilityData.getConstant();
+				if(po!=null){
+					isSuc=Result.SUCCESS;
+					vo=VPFactory.toConstantVO(po);
+				} else {
+					return new ResultMessage(Result.FILE_NOT_FOUND, null);
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
+			return new ResultMessage(isSuc,vo);
 	}
 }
