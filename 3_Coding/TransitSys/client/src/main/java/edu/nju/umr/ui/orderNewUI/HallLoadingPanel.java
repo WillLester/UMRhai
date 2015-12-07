@@ -31,6 +31,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
@@ -164,6 +165,10 @@ public class HallLoadingPanel extends JPanel {
 		comboBoxDestination = new JComboBox<String>();
 		comboBoxDestination.setFont(new Font("宋体", Font.PLAIN, 20));
 		comboBoxDestination.setBounds(307+75, 155, 87, 25);
+		comboBoxDestination.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				getPrice();
+			}});
 		add(comboBoxDestination);
 		
 		JLabel superviseLabel = new JLabel("监装员");
@@ -379,6 +384,17 @@ public class HallLoadingPanel extends JPanel {
 		
 		
 		
+	}
+	private void getPrice(){
+		ResultMessage message=serv.getPrice(orgId, (String)comboBoxDestination.getSelectedItem());
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		double price=(Double)message.getMessage();
+		priceLabel.setText("运费："+Double.toString(price)+"元");
 	}
 	public void setEnabled(boolean enabled)
 	{

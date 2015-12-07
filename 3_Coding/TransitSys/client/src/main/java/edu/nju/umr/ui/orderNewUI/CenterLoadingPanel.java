@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -16,12 +18,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.orderNewLogic.CenterLoadingOrderLogic;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
@@ -42,6 +46,8 @@ public class CenterLoadingPanel extends JPanel {
 	private String name;
 	private ExpressListPanel expressList;
 	private String userId;
+	private String org;
+	private UtilityLogic uti;
 	/**
 	 * Create the panel.
 	 */
@@ -74,6 +80,8 @@ public class CenterLoadingPanel extends JPanel {
 		logicSer = new CenterLoadingOrderLogic();
 		this.name = name;
 		this.userId = userId;
+		this.org=org;
+		uti=new UtilityLogic();
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -112,7 +120,10 @@ public class CenterLoadingPanel extends JPanel {
 		} else {
 			hint(message.getReInfo());
 		}
-		
+		arriveCombo.addItemListener(new ItemListener(){
+		public void itemStateChanged(ItemEvent e) {
+			getPrice();
+		}});
 		add(arriveCombo);
 		
 		JLabel supervisionLabel = new JLabel("监装员");
@@ -189,6 +200,7 @@ public class CenterLoadingPanel extends JPanel {
 		costField = new JTextField();
 		costField.setEditable(false);
 		costField.setBounds(731, 208, 66, 21);
+		costField.setEnabled(false);
 		add(costField);
 		costField.setColumns(10);
 		
@@ -242,6 +254,17 @@ public class CenterLoadingPanel extends JPanel {
 			return false;
 		}
 		return true;
+	}
+	private void getPrice(){
+		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem());
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		double price=(double)message.getMessage();
+		costField.setText(Double.toString(price));
 	}
 	public void setEnabled(boolean enabled)
 	{

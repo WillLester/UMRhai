@@ -499,4 +499,54 @@ public class UtilityLogic {
 			return null;
 		}
 	}
+	public ResultMessage getPrice(String org1, String org2,int transit,double weight) {
+		String city1=null;
+		String city2=null;//两个机构所属城市名称
+		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取机构列表
+		double distance=0;//城市间距离
+		double price=0;//城市间价格
+		ResultMessage costMessage = getTransitCost();
+		if(!costMessage.getReInfo().equals(Result.SUCCESS))
+		{
+			return costMessage;
+		}
+		@SuppressWarnings("unchecked")
+		ArrayList<Double> temp=(ArrayList<Double>)costMessage.getMessage();
+		double PRICE=temp.get(transit);
+		Result isSuc=Result.DATA_NOT_FOUND;
+		try {
+			orgs=orgs();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		if(orgs.size()>0){
+			isSuc=Result.SUCCESS;
+		}
+		//获得两个机构所在城市名称
+		for(OrgPO po:orgs){
+			if(po.getName()==org1){
+				city1=po.getCity();
+				break;
+			}
+		}
+		for(OrgPO po:orgs){
+			if(po.getName()==org2){
+				city2=po.getCity();
+			    break;
+			}
+		}
+		//两机构在同一城市
+		if(city1.equals(city2))
+			return new ResultMessage(Result.SUCCESS,100);//固定值暂定为100
+		//不在同一城市
+		try{
+		distance=utilityData.getCitesPO(city1,city2).getDistance();
+		}catch(Exception e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		price=PRICE;
+		return new ResultMessage(isSuc,price*distance);
+	}
 }

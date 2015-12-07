@@ -80,5 +80,9 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		}
 		return new ResultMessage(Result.SUCCESS,hallArray);
 	}
+	public ResultMessage getPrice(String org1,String org2)
+	{
+		return uti.getPrice(org1, org2, 2);
+	}
 
 }

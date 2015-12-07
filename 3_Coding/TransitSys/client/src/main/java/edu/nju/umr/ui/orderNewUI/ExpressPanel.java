@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -315,6 +317,8 @@ public class ExpressPanel extends JPanel {
 		volumnField.setFont(new Font("宋体", Font.PLAIN, 20));
 		volumnField.setColumns(10);
 		volumnField.setBounds(779, 410, 50, 25);
+		volumnField.setEnabled(false);
+		volumnField.addFocusListener(new MyFocusListener());
 		add(volumnField);
 		
 		cubeMLabel = new JLabel("m³");
@@ -333,6 +337,7 @@ public class ExpressPanel extends JPanel {
 		weightField.setFont(new Font("宋体", Font.PLAIN, 20));
 		weightField.setColumns(10);
 		weightField.setBounds(914, 410, 50, 25);
+		weightField.addFocusListener(new MyFocusListener());
 		add(weightField);
 		
 		kgLabel = new JLabel("kg");
@@ -404,6 +409,7 @@ public class ExpressPanel extends JPanel {
 		costField = new JTextField();
 		costField.setEditable(false);
 		costField.setBounds(832, 483, 66, 21);
+		costField.setEnabled(false);
 		add(costField);
 		costField.setColumns(10);
 		
@@ -415,6 +421,7 @@ public class ExpressPanel extends JPanel {
 		lengthField = new JTextField();
 		lengthField.setBounds(437, 410, 50, 25);
 		add(lengthField);
+		lengthField.addFocusListener(new MyFocusListener());
 		lengthField.setColumns(10);
 		
 		mLabelL = new JLabel("m");
@@ -429,6 +436,7 @@ public class ExpressPanel extends JPanel {
 		
 		widthField = new JTextField();
 		widthField.setBounds(549, 410, 50, 25);
+		widthField.addFocusListener(new MyFocusListener());
 		add(widthField);
 		widthField.setColumns(10);
 		
@@ -444,6 +452,7 @@ public class ExpressPanel extends JPanel {
 		
 		heightField = new JTextField();
 		heightField.setBounds(651, 410, 50, 25);
+		heightField.addFocusListener(new MyFocusListener());
 		add(heightField);
 		heightField.setColumns(10);
 		
@@ -461,6 +470,7 @@ public class ExpressPanel extends JPanel {
 		arriveField = new JTextField();
 		arriveField.setEditable(false);
 		arriveField.setBounds(684, 444, 187, 25);
+		arriveField.setEnabled(false);
 		add(arriveField);
 		arriveField.setColumns(10);
 	}
@@ -599,8 +609,30 @@ public class ExpressPanel extends JPanel {
 	{
 		String city1=senderLoc.getCity();
 		String city2=receiverLoc.getCity();
-		String data=logicSer.getPriceAndTime(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex());
-		
-	}
+		if(weightField.getText().isEmpty())return;
+		if(volumnField.getText().isEmpty())return;
 
+		double weight=Double.parseDouble(weightField.getText());
+		
+		weight=Double.max(weight, Double.parseDouble(volumnField.getText())/5000);
+		String data=logicSer.getPriceAndTime(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex(),weight);
+		costField.setText(data.split(";")[0]+"元");
+		arriveField.setText(data.split(";")[1]+"天");
+	}
+	private void getVol(){
+		if(lengthField.getText().isEmpty())return;
+		if(widthField.getText().isEmpty())return;
+		if(heightField.getText().isEmpty())return;
+		
+		double vol=Double.parseDouble(lengthField.getText())*Double.parseDouble(widthField.getText())*Double.parseDouble(heightField.getText());
+		volumnField.setText(Double.toString(vol));
+	}
+	private class MyFocusListener implements FocusListener{
+		public void focusGained(FocusEvent e) {
+		}
+		public void focusLost(FocusEvent e) {
+			getVol();
+			getPriceAndTime();
+		}
+	}
 }
