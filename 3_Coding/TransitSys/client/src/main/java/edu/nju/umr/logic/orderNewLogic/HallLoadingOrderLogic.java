@@ -10,16 +10,15 @@ import java.util.Calendar;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
-import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.CitiesPO;
-import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
@@ -27,7 +26,6 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private HallLoadingOrderDFacSer dataFac;
 	private HallLoadingOrderDSer hallData;
 	private CityDSer cityData;
-	private ConstantDSer constantData;
 	private UtilityLogic uti=new UtilityLogic();
 	public HallLoadingOrderLogic() {
 		try{
@@ -93,12 +91,12 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		ArrayList<CitiesPO> citiespo=new ArrayList<CitiesPO>();//所属城市
 		double distance=0;//城市间距离
 		double price=0;//城市间价格
-		ConstantPO constant=null;//常量po
+		ConstantVO constant=null;//常量po
 		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			orgs=uti.orgs();
 			citiespo=cityData.getCitiesInfo();
-			constant=constantData.getConstant();
+			constant=(ConstantVO)uti.getConstant().getMessage();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);

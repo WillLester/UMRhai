@@ -11,6 +11,7 @@ import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
+import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.enums.Result;
@@ -43,28 +44,26 @@ public class ConstantLogic implements ConstantLSer{
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
 			}
-		
 		return isSuc;
 	}
 	public ResultMessage getConstant(){
-		Result isSuc = Result.DATA_NOT_FOUND;
-		ConstantVO vo=null;
-		ConstantPO po=null;
-			try {
-				po = constantData.getConstant();
-				if(po!=null){
-					isSuc=Result.SUCCESS;
-					vo=VPFactory.toConstantVO(po);
-				} else {
-					return new ResultMessage(Result.FILE_NOT_FOUND, null);
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return new ResultMessage(Result.NET_INTERRUPT,null);
-			}
-			
-			
-			return new ResultMessage(isSuc,vo);
+//		Result isSuc = Result.DATA_NOT_FOUND;
+//		ConstantVO vo=null;
+//		ConstantPO po=null;
+//			try {
+//				po = constantData.getConstant();
+//				if(po!=null){
+//					isSuc=Result.SUCCESS;
+//					vo=VPFactory.toConstantVO(po);
+//				} else {
+//					return new ResultMessage(Result.FILE_NOT_FOUND, null);
+//				}
+//			} catch (RemoteException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				return new ResultMessage(Result.NET_INTERRUPT,null);
+//			}
+//			return new ResultMessage(isSuc,vo);
+		return new UtilityLogic().getConstant();
 	}
 }
