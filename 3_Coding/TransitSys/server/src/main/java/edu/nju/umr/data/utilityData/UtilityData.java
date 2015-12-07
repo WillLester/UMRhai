@@ -107,11 +107,6 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		ResultSet result = mysqlSer.checkInfo(new WorkPO(null, null, null, null, 0, Jurisdiction.COURIER, null, 0, 0));
 		return ArrayListFactory.produceWorkList(result);
 	}
-	public ConstantPO getConstant()throws RemoteException{
-		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
-	}
-
-	@Override
 	public ConstantPO getConstant() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
