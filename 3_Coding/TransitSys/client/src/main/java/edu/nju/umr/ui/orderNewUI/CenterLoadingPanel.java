@@ -243,4 +243,13 @@ public class CenterLoadingPanel extends JPanel {
 		}
 		return true;
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

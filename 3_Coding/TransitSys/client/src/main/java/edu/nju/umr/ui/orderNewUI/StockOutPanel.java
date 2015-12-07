@@ -201,4 +201,13 @@ public class StockOutPanel extends JPanel {
 				(String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId,userId);
 		return vo;
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

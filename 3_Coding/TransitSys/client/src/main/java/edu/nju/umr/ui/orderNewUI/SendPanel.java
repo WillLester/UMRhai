@@ -153,4 +153,13 @@ public class SendPanel extends JPanel {
 		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), name,userId);
 		return vo;
 	}
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"))
+			co.setEnabled(enabled);
+		}
+	}
 }

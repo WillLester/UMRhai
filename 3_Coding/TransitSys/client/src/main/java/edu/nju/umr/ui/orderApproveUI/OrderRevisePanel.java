@@ -101,8 +101,7 @@ public class OrderRevisePanel extends JPanel{
 		tableInit();
 		getOrderList();
 		displayOrders();
-	
-
+		
 	}
 	private void tableInit(){
 		table = new ApproveTable(new MyTableModel());
