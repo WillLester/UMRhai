@@ -24,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
@@ -260,6 +261,10 @@ public class StockInPanel extends JPanel {
 		String result = CheckLegal.isExpressLegal(expressField.getText());
 		if(result != null){
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			return false;
+		}
+		if(!logicSer.isExpressValid(expressField.getText())){
+			DoHint.hint("快递单不存在！", frame);
 			return false;
 		}
 		return true;

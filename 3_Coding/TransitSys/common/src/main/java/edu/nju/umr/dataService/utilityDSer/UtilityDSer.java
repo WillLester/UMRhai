@@ -38,4 +38,12 @@ public interface UtilityDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean isTransitValid(String id) throws RemoteException;
+	
+	/**
+	 * 检查订单是否存在
+	 * @param id 订单编号
+	 * @return true表示存在，false表示不存在
+	 * @throws RemoteException
+	 */
+	public boolean isExpressValid(String id) throws RemoteException;
 }

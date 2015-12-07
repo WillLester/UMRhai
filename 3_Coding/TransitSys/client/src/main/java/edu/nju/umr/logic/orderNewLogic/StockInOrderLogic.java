@@ -51,22 +51,6 @@ public class StockInOrderLogic implements StockInOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> ar= null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=stockinData.getCities();
-//			isSuccessful=true;
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<String> arVO=new ArrayList<String>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			arVO.add(ar.get(i));
-//		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
 		return uti.getCities();
 	}
 	public Result checkWarning(String id){
@@ -93,6 +77,6 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	@Override
 	public boolean isExpressValid(String id) {
 		// TODO 自动生成的方法存根
-		return false;
+		return uti.isExpressValid(id);
 	}
 }

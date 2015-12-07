@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.TransitPO;
 /**
  * 用于获得各种单据的信息
@@ -37,5 +38,20 @@ public class OrderInfoData {
 			// TODO 自动生成的 catch 块
 			return false;
 		}
+	}
+	
+	public static boolean isExpressValid(String id){
+		ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, null, null, null, null));
+		try {
+			if(result.next()){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
+		
 	}
 }

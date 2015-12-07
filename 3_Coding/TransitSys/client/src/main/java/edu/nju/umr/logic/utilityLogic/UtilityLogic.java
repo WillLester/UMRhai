@@ -354,6 +354,11 @@ public class UtilityLogic {
 		return cour;
 	}
 	
+	/**
+	 * 判断中转单是否存在
+	 * @param id 中转单的编号
+	 * @return 判断结果
+	 */
 	public boolean isTransitValid(String id){
 		try {
 			return utilityData.isTransitValid(id);
@@ -428,6 +433,19 @@ public class UtilityLogic {
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
-		
+	}
+	
+	/**
+	 * 检查订单编号是否存在
+	 * @param id 订单编号
+	 * @return 结果
+	 */
+	public boolean isExpressValid(String id){
+		try {
+			return utilityData.isExpressValid(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return false;
+		}
 	}
 }
