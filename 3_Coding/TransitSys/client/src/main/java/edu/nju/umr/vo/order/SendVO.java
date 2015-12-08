@@ -2,7 +2,10 @@ package edu.nju.umr.vo.order;
 
 import java.util.Calendar;
 
-public class SendVO {
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.SendPanel;
+
+public class SendVO implements ShowOrder{
 	private Calendar date;
 	private String expressId;
 //	private String id;
@@ -35,5 +38,9 @@ public class SendVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("派件单");
+		ffr.setContentPane(new SendPanel(ffr,this));
 	}
 }

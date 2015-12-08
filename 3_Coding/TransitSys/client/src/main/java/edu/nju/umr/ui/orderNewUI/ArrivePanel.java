@@ -47,6 +47,11 @@ public class ArrivePanel extends JPanel {
 	public ArrivePanel(JFrame fr,ArriveVO arrive)
 	{
 		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId(),null);
+		for(Component co:this.getComponents())
+		{
+			if(!co.getName().equals("cancel"));
+			co.setEnabled(false);
+		}
 		idField.setText(arrive.getId());
 		centerField.setText(arrive.getCenterId());
 		datePanel.setDate(arrive.getDate());

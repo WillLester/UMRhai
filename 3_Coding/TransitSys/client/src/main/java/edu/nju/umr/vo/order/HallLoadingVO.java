@@ -3,7 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class HallLoadingVO {
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
+
+public class HallLoadingVO implements ShowOrder{
 	private String hallId;
 	private String convertId;
 	private String arriveLoc;
@@ -61,6 +64,10 @@ public class HallLoadingVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("营业厅装车单");
+		ffr.setContentPane(new HallLoadingPanel(ffr,this));
 	}
 	
 }

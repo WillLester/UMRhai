@@ -2,7 +2,7 @@ package edu.nju.umr.vo.order;
 
 import java.util.Calendar;
 
-public class ReceiveVO {
+public class ReceiveVO{
 	private String realReceiver;
 	private Calendar receiveTime;
 	public ReceiveVO(String realReceiver,Calendar receiveTime) {

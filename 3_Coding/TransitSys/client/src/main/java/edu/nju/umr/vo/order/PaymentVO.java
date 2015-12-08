@@ -3,8 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Pay;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.PaymentPanel;
 
-public class PaymentVO {
+public class PaymentVO implements ShowOrder{
 //	private String id;
 	private Calendar date;
 	private String payer;
@@ -52,5 +54,9 @@ public class PaymentVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("付款单");
+		ffr.setContentPane(new PaymentPanel(ffr,this));
 	}
 }

@@ -3,8 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.GoodState;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.ArrivePanel;
 
-public class ArriveVO {
+public class ArriveVO implements ShowOrder{
 	private String centerId;
 	private Calendar date;
 	private String id;
@@ -45,6 +47,12 @@ public class ArriveVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+
+	@Override
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("中转中心到达单");
+		ffr.setContentPane(new ArrivePanel(ffr,this));
 	}
 	
 }

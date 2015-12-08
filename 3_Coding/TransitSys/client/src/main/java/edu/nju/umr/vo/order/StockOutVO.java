@@ -3,8 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Transit;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.StockOutPanel;
 
-public class StockOutVO {
+public class StockOutVO implements ShowOrder{
 //	private String id;
 	private String expressId;
 	private Calendar date;
@@ -50,5 +52,9 @@ public class StockOutVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("出库单");
+		ffr.setContentPane(new StockOutPanel(ffr,this));
 	}
 }

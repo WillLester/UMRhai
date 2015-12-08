@@ -3,8 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.GoodState;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 
-public class RecipientVO {
+public class RecipientVO implements ShowOrder{
 	private Calendar date;
 //	private String id;
 	private String transitId;
@@ -43,5 +45,9 @@ public class RecipientVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("营业厅到达单");
+		ffr.setContentPane(new RecipientPanel(ffr,this));
 	}
 }

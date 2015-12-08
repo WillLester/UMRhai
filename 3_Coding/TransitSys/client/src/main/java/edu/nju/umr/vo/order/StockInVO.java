@@ -3,8 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.StockInPanel;
 
-public class StockInVO {
+public class StockInVO implements ShowOrder{
 //	private String id;
 	private String expressId;
 	private Calendar date;
@@ -59,6 +61,10 @@ public class StockInVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("入库单");
+		ffr.setContentPane(new StockInPanel(ffr,this));
 	}
 	
 }

@@ -2,7 +2,7 @@ package edu.nju.umr.vo.order;
 
 import java.util.Calendar;
 
-public class StockInOutVO {
+public class StockInOutVO{
 	private Calendar time;
 	private String type;
 	private String expressId;
@@ -44,6 +44,4 @@ public class StockInOutVO {
 	public int getPlace() {
 		return place;
 	}
-
-
 }

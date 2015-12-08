@@ -3,7 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class IncomeVO {
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.IncomePanel;
+
+public class IncomeVO implements ShowOrder{
 	private Calendar date;
 	private String courier;
 	private double cost;
@@ -47,4 +50,9 @@ public class IncomeVO {
 	public String getUserId() {
 		return userId;
 	}
+	public void Show(){
+		FunctionFrame ffr=new FunctionFrame("入款单");
+		ffr.setContentPane(new IncomePanel(ffr,this));
+	}
+	
 }

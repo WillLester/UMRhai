@@ -3,7 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class TransitVO {
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.TransitPanel;
+
+public class TransitVO implements ShowOrder{
 	private String id;
 	private String planeId;
 	private String startPlace;
@@ -68,6 +71,10 @@ public class TransitVO {
 
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("中转单");
+		ffr.setContentPane(new TransitPanel(ffr,this));
 	}
 	
 }

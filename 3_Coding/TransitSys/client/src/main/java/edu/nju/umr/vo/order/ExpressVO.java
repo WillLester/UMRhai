@@ -4,8 +4,10 @@ import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Parse;
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 
-public class ExpressVO {
+public class ExpressVO implements ShowOrder{
 	protected String id;
 	protected String sender;
 	protected String sendLoc;
@@ -163,6 +165,10 @@ public class ExpressVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("订单");
+		ffr.setContentPane(new ExpressPanel(ffr,this));
 	}
 	
 	

@@ -3,7 +3,10 @@ package edu.nju.umr.vo.order;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CenterLoadingVO {
+import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.orderNewUI.CenterLoadingPanel;
+
+public class CenterLoadingVO implements ShowOrder{
 	private Calendar date;
 	private String transitId;
 	private String target;
@@ -59,6 +62,10 @@ public class CenterLoadingVO {
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public void Show() {
+		FunctionFrame ffr = new FunctionFrame("中转中心装车单");
+		ffr.setContentPane(new CenterLoadingPanel(ffr,this));
 	}
 	
 }
