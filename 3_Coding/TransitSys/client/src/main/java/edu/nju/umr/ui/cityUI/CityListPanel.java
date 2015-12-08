@@ -53,7 +53,7 @@ public class CityListPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public CityListPanel(JFrame fr) {
+	public CityListPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new CityLogic();
@@ -138,7 +138,7 @@ public class CityListPanel extends JPanel{
 				// TODO 自动生成的方法存根
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION)  {  
-		        	Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName());
+		        	Result result = logicSer.deleteCity(cityList.get(cityTable1.getSelectedRow()).getName(),name);
 		        	if(result.equals(Result.SUCCESS)){
 		        		initialize();
 					}
@@ -163,7 +163,7 @@ public class CityListPanel extends JPanel{
 					if(isCitiesLegal()){;
 						String city1 = cityList.get(cityTable1.getSelectedRow()).getName();
 						String city2 = cityList.get(cityTable2.getSelectedRow()).getName();
-						Result result = logicSer.reviseCities(new CitiesVO(city1, city2, Double.parseDouble(distanceField.getText())));
+						Result result = logicSer.reviseCities(new CitiesVO(city1, city2, Double.parseDouble(distanceField.getText())),name);
 						if(result.equals(Result.SUCCESS)){
 							initialize();
 							cityTable1.clearSelection();
@@ -177,12 +177,12 @@ public class CityListPanel extends JPanel{
 					if(isCityLegal()){
 						Result result;
 						if(cityTable1.getSelectedRow() >= cityList.size()){
-							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()));
+							result = logicSer.addCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()),name);
 						} else {
 							if(cityTable1.getSelectedRow() < 0){
-								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable2.getSelectedRow());
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable2.getSelectedRow(),name);
 							} else {
-								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable1.getSelectedRow());
+								result = logicSer.reviseCity(new CityVO(nameField.getText(), idField.getText(), (String)provinceCombo.getSelectedItem()), cityTable1.getSelectedRow(),name);
 							}
 						}
 						if(result.equals(Result.SUCCESS)){

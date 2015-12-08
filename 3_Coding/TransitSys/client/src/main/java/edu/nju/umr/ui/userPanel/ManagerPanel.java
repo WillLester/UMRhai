@@ -51,7 +51,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("城市管理");
-				fr.setContentPane(new CityListPanel(fr));
+				fr.setContentPane(new CityListPanel(fr,user.getName()));
 			}
 		});
 		

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
 import edu.nju.umr.dataService.dataFactory.CityDFacSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
@@ -25,6 +27,7 @@ public class CityLogic implements CityLSer{
 	private UtilityLogic utility=new UtilityLogic();
 	private ArrayList<CityPO> cityPOs;
 	private ArrayList<CitiesPO> citiesPOs;
+	private DiaryUpdateLSer diarySer;
 	public CityLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -37,8 +40,9 @@ public class CityLogic implements CityLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result addCity(CityVO city) {
+	public Result addCity(CityVO city,String name) {
 		// TODO 自动生成的方法存根
 		ArrayList<CityPO> citypo=new ArrayList<CityPO>();
 		Result resultCity = Result.SUCCESS;
@@ -51,6 +55,7 @@ public class CityLogic implements CityLSer{
 		}
 		try {
 			resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
+			resultCity = diarySer.addDiary("新增城市"+city.getName(), name);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -75,11 +80,12 @@ public class CityLogic implements CityLSer{
 	}
 	
     //制定距离和价格常量
-	public Result reviseCities(CitiesVO cities) {
+	public Result reviseCities(CitiesVO cities,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = cityData.reviseCities(VPFactory.toCitiesPO(cities));
+			isSuc = diarySer.addDiary("修改"+cities.getCity1()+"和"+cities.getCity2()+"间信息", name);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -88,15 +94,40 @@ public class CityLogic implements CityLSer{
 		return isSuc;
 	}
 
-	public Result reviseCity(CityVO city,int index) {
+	public Result reviseCity(CityVO city,int index,String name) {
 		CityPO po=cityPOs.get(index);
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = cityData.reviseCity(VPFactory.toCityPO(city, po.getKey()));
+			isSuc = diarySer.addDiary("修改了"+city.getName()+"的信息", name);
 		} catch (RemoteException e) {
-			
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
+		}
+		// 如果修改了城市名，则相应的城市间信息需要更新
+		if(isSuc.equals(Result.SUCCESS)){
+			if(!city.getName().equals(po.getName())){
+				for(CitiesPO cities:citiesPOs){
+					if(cities.getCity1().equals(po.getName())){//城市1是被修改的城市
+						try {
+							isSuc = cityData.reviseCities(new CitiesPO(city.getName(), cities.getCity2(), cities.getDistance()));
+						} catch (RemoteException e) {
+							// TODO 自动生成的 catch 块
+							return Result.NET_INTERRUPT;
+						}
+					} else if(cities.getCity2().equals(po.getName())){//城市2是被修改的城市
+						try {
+							isSuc = cityData.reviseCities(new CitiesPO(cities.getCity1(), city.getName(), cities.getDistance()));
+						} catch (RemoteException e) {
+							// TODO 自动生成的 catch 块
+							return Result.NET_INTERRUPT;
+						}
+					}
+					if(!isSuc.equals(Result.SUCCESS)){
+						return isSuc;
+					}
+				}
+			}
 		}
 		return isSuc;
 	}
@@ -110,10 +141,11 @@ public class CityLogic implements CityLSer{
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
 	}
-	public Result deleteCity(String cityName) {
+	public Result deleteCity(String cityName,String name) {
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			isSuc=cityData.deleteCity(cityName);
+			isSuc = diarySer.addDiary("删除城市"+cityName, name);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
