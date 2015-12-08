@@ -23,6 +23,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	private ArriveOrderDFacSer dataFac;
 	private ArriveOrderDSer arriveData;
 	private UtilityLogic uti=new UtilityLogic();
+	private UpdateTransitInfoLogic infoLogic;
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -36,6 +37,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	public Result create(ArriveVO order,String org) {
 		// TODO 自动生成的方法存根
@@ -48,7 +50,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
 				for(String express:expresses)
 				{
-					UpdateTransitInfoLogic.update(express, 
+					infoLogic.update(express, 
 							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
 				}
 			}

@@ -27,15 +27,19 @@ public class TransitInfoPO extends PO implements Serializable{
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command = null;
-		String info = "";
-		for(String inf:this.info){
-			info = info + inf + " ";
-		}
 		switch(op){
 		case INSERT:	
-			command = "insert into transitinfo values" + "(" + "'" + expressid + "','" + info +")";
+			String info = "";
+			for(String inf:this.info){
+				info = info + inf + ";";
+			}
+			command = "insert into transitinfo values" + "(" + "'" + expressid + "','" + info +"')";
 			break;
 		case UPDATE:
+			info = "";
+			for(String inf:this.info){
+				info = info + inf + " ";
+			}
 			command = "update transitinfo set info='"+info+"' where id='"+expressid+"'";break;
 		case FIND:
 			command = "select * from transitinfo where id='"+expressid+"'";

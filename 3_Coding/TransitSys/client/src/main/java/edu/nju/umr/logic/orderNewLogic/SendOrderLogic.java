@@ -21,6 +21,7 @@ public class SendOrderLogic implements SendOrderLSer{
 	private SendOrderDFacSer dataFac;
 	private SendOrderDSer sendData;
 	private UtilityLogic uti=new UtilityLogic();
+	private UpdateTransitInfoLogic infoLogic;
 	public SendOrderLogic(){
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
@@ -29,6 +30,7 @@ public class SendOrderLogic implements SendOrderLSer{
 		{
 			e.printStackTrace();
 		}
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	public Result create(SendVO order,String org) {
 		// TODO 自动生成的方法存根
@@ -38,7 +40,7 @@ public class SendOrderLogic implements SendOrderLSer{
 			isSuccessful=sendData.create(orderPO);
 			if(isSuccessful.equals(Result.SUCCESS))
 			{
-				UpdateTransitInfoLogic.update(order.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+				infoLogic.update(order.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+"派件员 "+order.getCourier()+"正在派件");
 			}
 		}catch(RemoteException e){

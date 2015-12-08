@@ -22,7 +22,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	private TransitOrderDFacSer dataFac;
 	private TransitOrderDSer transitData;
 	private UtilityLogic uti=new UtilityLogic();
-	
+	private UpdateTransitInfoLogic infoLogic;
 	public TransitOrderLogic(){
 		try{
 			dataFac=(TransitOrderDFacSer)Naming.lookup(Url.URL);
@@ -32,6 +32,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		{
 			e.printStackTrace();
 		}
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 
 	public Result create(TransitVO order,String org) {
@@ -43,7 +44,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 			if(result.equals(Result.SUCCESS))
 			{
 				for(String express:order.getExpress())
-				UpdateTransitInfoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+				infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+" 已发出 下一站 "+order.getArrivePlace());
 			}
 		}catch(RemoteException e){

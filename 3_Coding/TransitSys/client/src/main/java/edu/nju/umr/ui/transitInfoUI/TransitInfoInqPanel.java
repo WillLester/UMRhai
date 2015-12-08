@@ -60,6 +60,7 @@ public class TransitInfoInqPanel extends JPanel {
 		textArea.setEnabled(false);
 		textArea.setBounds(174, 153, 687, 374);
 		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setBounds(174, 153, 687, 374);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scroll);
@@ -71,6 +72,7 @@ public class TransitInfoInqPanel extends JPanel {
 				if(isLegal()){
 					ResultMessage message = logicSer.enterBarcodeCustomer(idField.getText());
 					if(message.getReInfo().equals(Result.SUCCESS)){
+						textArea.setText("");
 						info = (ArrayList<String>) message.getMessage();
 						for(String inf:info){
 							textArea.append(inf+'\n');

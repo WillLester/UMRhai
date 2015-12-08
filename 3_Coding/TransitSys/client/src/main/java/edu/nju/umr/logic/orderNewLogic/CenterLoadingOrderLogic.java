@@ -25,6 +25,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private CenterLoadingOrderDFacSer dataFac;
 	private CenterLoadingOrderDSer centerData;
 	private UtilityLogic uti=new UtilityLogic();
+	private UpdateTransitInfoLogic infoLogic;
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -37,6 +38,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	public Result create(CenterLoadingVO order,String org) {
 		// TODO 自动生成的方法存根
@@ -47,7 +49,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			{
 				for(String express:order.getExpress())
 				{
-					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
+					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
 							+" " +org+"已发出 下一站"+order.getTarget());
 				}
 			}

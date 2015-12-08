@@ -16,7 +16,7 @@ public class ReceiveOrderData extends UnicastRemoteObject implements ReceiveOrde
 	 */
 	private static final long serialVersionUID = -5443581465009073248L;
 	private MysqlService mysqlSer;
-	protected ReceiveOrderData() throws RemoteException {
+	public ReceiveOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();

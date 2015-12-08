@@ -14,9 +14,9 @@ import edu.nju.umr.po.enums.Result;
 
 public class UpdateTransitInfoLogic{
 	private UpdateTransitInfoDFacSer dataFac;
-	private static UpdateTransitInfoDSer tInfodata;
+	private UpdateTransitInfoDSer tInfodata;
 	private CustomerDFacSer checkFac;
-	private static CustomerDSer checkInfoData;
+	private CustomerDSer checkInfoData;
 	public UpdateTransitInfoLogic() {
 		// TODO 自动生成的构造函数存根
 		try {
@@ -28,7 +28,7 @@ public class UpdateTransitInfoLogic{
 			e.printStackTrace();
 		}
 	}
-	public static Result update(String id,String info){
+	public Result update(String id,String info){
 		Result isSuc=Result.DATABASE_ERROR;
 		try {
 			ArrayList<String> infos = checkInfoData.findTransit(id);
@@ -42,7 +42,7 @@ public class UpdateTransitInfoLogic{
 		}
 		return isSuc;
 	}
-	public static Result addInfo(String id,String info){
+	public Result addInfo(String id,String info){
 		Result isSuc=Result.DATABASE_ERROR;
 		try {
 			ArrayList<String> infos = new ArrayList<String>();

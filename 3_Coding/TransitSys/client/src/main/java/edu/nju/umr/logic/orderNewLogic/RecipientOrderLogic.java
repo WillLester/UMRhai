@@ -23,6 +23,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private RecipientOrderDFacSer dataFac;
 	private RecipientOrderDSer recipientData;
 	private UtilityLogic uti=new UtilityLogic();
+	private UpdateTransitInfoLogic infoLogic;
 	public RecipientOrderLogic(){
 		try{
 			dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
@@ -31,6 +32,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	public Result create(RecipientVO order,String org) {
 		// TODO 自动生成的方法存根
@@ -40,7 +42,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			isSuc=recipientData.create(orderPO);
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:recipientData.getExpressList(order.getTransitId())){
-					UpdateTransitInfoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()
+					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()
 							+" "+org+" 已收入"));
 				}
 			}

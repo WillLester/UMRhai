@@ -19,6 +19,7 @@ import edu.nju.umr.data.orderNewData.ExpressOrderData;
 import edu.nju.umr.data.orderNewData.HallLoadingOrderData;
 import edu.nju.umr.data.orderNewData.IncomeOrderData;
 import edu.nju.umr.data.orderNewData.PaymentOrderData;
+import edu.nju.umr.data.orderNewData.ReceiveOrderData;
 import edu.nju.umr.data.orderNewData.RecipientOrderData;
 import edu.nju.umr.data.orderNewData.SendOrderData;
 import edu.nju.umr.data.orderNewData.StockInOrderData;
@@ -70,6 +71,7 @@ import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.dataFactory.OrderResubmitDFacSer;
 import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
@@ -95,6 +97,7 @@ import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
+import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
@@ -122,7 +125,7 @@ public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,A
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer,WageManDFacSer,
-DiaryUpdateDFacSer {
+DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	/**
 	 * 
@@ -323,6 +326,12 @@ DiaryUpdateDFacSer {
 	public DiaryUpdateDSer getDiaryUpdate() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return new DiaryUpdateData();
+	}
+
+	@Override
+	public ReceiveOrderDSer getReceiveOrder() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new ReceiveOrderData();
 	}
 
 }

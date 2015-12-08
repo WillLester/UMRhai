@@ -26,6 +26,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 	private CourierDFacSer cDataFac;
 	private CourierDSer cData;
 	private ExpressPO express;
+	private UpdateTransitInfoLogic infoLogic;
 	public ReceiveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -40,6 +41,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	
 	public Result create(ReceiveVO receive,String org) {
@@ -49,7 +51,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 		try {
 			Result result =  receiveData.create(express);
 			if(result.equals(Result.SUCCESS))
-				UpdateTransitInfoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+				infoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+" 已签收 签收人 "+receive.getRealReceiver());
 			return result;
 		} catch (RemoteException e) {

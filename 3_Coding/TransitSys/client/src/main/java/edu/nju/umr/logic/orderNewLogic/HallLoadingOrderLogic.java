@@ -23,6 +23,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private HallLoadingOrderDFacSer dataFac;
 	private HallLoadingOrderDSer hallData;
 	private UtilityLogic uti=new UtilityLogic();
+	private UpdateTransitInfoLogic infoLogic;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -35,6 +36,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		infoLogic = new UpdateTransitInfoLogic();
 		// TODO 自动生成的构造函数存根
 	}
 	public Result create(HallLoadingVO order,String org) {
@@ -44,7 +46,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			isSuc=hallData.create(VPFactory.toHallLoadingPO(order, ""));
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:order.getExpress())
-				UpdateTransitInfoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+"已发出 下一站"+order.getArriveLoc());
 			}
 		} catch (RemoteException e) { 

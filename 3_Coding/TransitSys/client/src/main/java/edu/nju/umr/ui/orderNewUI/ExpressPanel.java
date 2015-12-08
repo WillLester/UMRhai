@@ -24,6 +24,8 @@ import javax.swing.SwingConstants;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.ExpressOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
+import edu.nju.umr.po.enums.Express;
+import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
@@ -382,10 +384,10 @@ public class ExpressPanel extends JPanel {
 		expressKindCombo.setBounds(629, 483, 123, 25);
 		add(expressKindCombo);
 		
-		costLabel = new JLabel("费用：");
+		costLabel = new JLabel("费用/元");
 		costLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		costLabel.setBounds(779, 483, 83, 24);
+		costLabel.setBounds(760, 483, 83, 24);
 		add(costLabel);
 		
 		confirmButton = new JButton("确定");
@@ -617,8 +619,10 @@ public class ExpressPanel extends JPanel {
 		double weight=Double.parseDouble(weightField.getText());
 		
 		weight=Double.max(weight, Double.parseDouble(volumnField.getText())/5000);
-		String data=logicSer.getPrice(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex(),weight);
-		costField.setText(data+"元");
+		Express[] expresses = Express.values();
+		Parse[] parses = Parse.values();
+ 		String data=logicSer.getPrice(city1, city2,expresses[expressKindCombo.getSelectedIndex()],parses[pakKindCombo.getSelectedIndex()],weight);
+		costField.setText(data);
 	}
 	public void getTime()
 	{
@@ -626,8 +630,10 @@ public class ExpressPanel extends JPanel {
 		String city2=receiverLoc.getCity();
 		if(city1.isEmpty())return;
 		if(city2.isEmpty())return;
-		String data=logicSer.getTime(city1, city2);
-		arriveField.setText(data+"天");
+		int day =logicSer.getTime(city1, city2);
+		Calendar arrive = Calendar.getInstance();
+		arrive.add(Calendar.DAY_OF_YEAR, day);
+		arriveField.setText(DateFormat.DATE.format(arrive.getTime()));
 	}
 	private void getVol(){
 		if(lengthField.getText().isEmpty())return;
