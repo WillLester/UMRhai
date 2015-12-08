@@ -38,7 +38,7 @@ public class OrderApprovePanel extends JPanel{
 	private JFrame frame;
 	private OrderApproveLSer serv;
 	private ArrayList<OrderVO> orderList;
-
+	private String name;
 	
 	
 	class MyTableModel extends DefaultTableModel {
@@ -57,10 +57,11 @@ public class OrderApprovePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public OrderApprovePanel(JFrame fr) {
+	public OrderApprovePanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		serv=new OrderApproveLogic();
+		this.name = name;
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -199,7 +200,7 @@ public class OrderApprovePanel extends JPanel{
 		{
 			idList.add(temp[i]);
 		}
-		Result result=serv.examine(ispassed, idList);
+		Result result=serv.examine(ispassed, idList,name);
 		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}

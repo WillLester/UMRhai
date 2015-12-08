@@ -38,7 +38,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("单据审批");
-				fr.setContentPane(new OrderApprovePanel(fr));
+				fr.setContentPane(new OrderApprovePanel(fr,user.getName()));
 			}
 		});
 		

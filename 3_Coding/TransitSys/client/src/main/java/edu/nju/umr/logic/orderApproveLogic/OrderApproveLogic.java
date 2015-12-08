@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
@@ -44,6 +46,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private OrderApproveDFacSer dataFac;
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
+	private DiaryUpdateLSer diarySer;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -56,6 +59,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
 	public ResultMessage askExamine() {
 		
@@ -73,7 +77,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return new ResultMessage(Result.SUCCESS, orders);
 	}
 
-	public Result examine(boolean approve, ArrayList<Integer> indexs) {
+	public Result examine(boolean approve, ArrayList<Integer> indexs,String name) {
 		ArrayList<Result> results=new ArrayList<Result>();
 		for(int i=0;i<indexs.size();i++){
 			OrderPO order=orderList.get(indexs.get(i));
@@ -97,7 +101,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			if(isSuc!=Result.SUCCESS)
 				return Result.DATA_NOT_FOUND;
 		}
-		return Result.SUCCESS;
+		return diarySer.addDiary("审批了单据", name);
 	}
 
 	public ResultMessage chooseOrder(String id,Order kind) {
