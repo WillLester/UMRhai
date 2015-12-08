@@ -15,4 +15,5 @@ public interface TransitOrderLSer {
 	 * @return 若-1，表示正常，否则表示某一位发生错误，只返回发生错误的第一个编号(0-base)
 	 */
 	public int isExpressValid(List<String> expressList);
+	public ResultMessage getPrice(String org1,String org2,int tran,List<String> expressList);
 }

@@ -4,8 +4,11 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -27,7 +30,7 @@ import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
 
-public class TransitPanel extends JPanel {
+public class TransitPanel extends JPanel implements PriceCount{
 	/**
 	 * 
 	 */
@@ -46,6 +49,7 @@ public class TransitPanel extends JPanel {
 	private TransitOrderLSer logicSer;
 	private String name;
 	private String userId;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -73,6 +77,7 @@ public class TransitPanel extends JPanel {
 		frame = fr;
 		this.name = name;
 		this.userId=userId;
+		this.org=org;
 		logicSer = new TransitOrderLogic();
 		
 		JLabel titleLabel = new JLabel("生成中转单");
@@ -112,6 +117,11 @@ public class TransitPanel extends JPanel {
 		arriveCombo = new JComboBox<String>();
 		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		arriveCombo.setBounds(485, 157, 87, 25);
+		arriveCombo.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				getPrice();
+			}
+		});
 		add(arriveCombo);
 		
 		startCombo = new JComboBox<String>();
@@ -133,6 +143,11 @@ public class TransitPanel extends JPanel {
 		} else {
 			DoHint.hint(message.getReInfo(), frame);
 		}
+		startCombo.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				getPrice();
+			}
+		});
 		add(startCombo);
 		
 		JLabel supervisionLabel = new JLabel("监装员");
@@ -223,7 +238,7 @@ public class TransitPanel extends JPanel {
 		containerField.setBounds(609, 203, 69, 25);
 		add(containerField);
 		
-		expressList = new ExpressListPanel(frame);
+		expressList = new ExpressListPanel(frame,this);
 		expressList.setBounds(206, 212, 683, 297);
 		add(expressList);
 		
@@ -243,6 +258,7 @@ public class TransitPanel extends JPanel {
 						planeIdField.setEnabled(false);
 					}
 				}
+				getPrice();
 			}
 		});
 		add(kindCombo);
@@ -299,5 +315,23 @@ public class TransitPanel extends JPanel {
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(enabled);
 		}
+	}
+	@Override
+	public void getPrice() {
+		String start=(String)startCombo.getSelectedItem();
+		String des=(String)arriveCombo.getSelectedItem();
+		int tran=kindCombo.getSelectedIndex();
+		if(tran<0)return;
+		if(start.isEmpty())return;
+		if(des.isEmpty())return;
+		ResultMessage message=logicSer.getPrice(start, des, tran, expressList.getExpresses());
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		BigDecimal price=(BigDecimal)message.getMessage();
+		costField.setText(price.toString()+"元");
 	}
 }

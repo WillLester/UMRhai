@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -93,6 +94,7 @@ public class HallLoadingPanel extends JPanel {
 		this.orgId=orgId;
 		this.userId=userId;
 		this.org=org;
+		serv=new HallLoadingOrderLogic();
 		setLayout(null);
 		
 		JLabel themeLabel = new JLabel("营业厅装车单");
@@ -234,10 +236,24 @@ public class HallLoadingPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				model.addRow(new String[]{expressIdField.getText()});
-				expressIdList.add(expressIdField.getText());
-				expressIdField.setText("");
+				if(serv.isLegal(expressIdField.getText()))
+				{
+					model.addRow(new String[]{expressIdField.getText()});
+					expressIdList.add(expressIdField.getText());
+					expressIdField.setText("");
+					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
+					if(!getPrice());
+					{
+						int row=table.getSelectedRow();
+						model.removeRow(row);
+						expressIdList.remove(row);
+						expressIdField.setText("");
+					}
+				}
+				else
+				{
+					DoHint.hint("订单号非法!", frame);
+				}
 			}
 		});
 		add(btnNewButton);
@@ -250,7 +266,6 @@ public class HallLoadingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int row=table.getSelectedRow();
-				
 				model.removeRow(row);
 				expressIdList.remove(row);
 				expressIdField.setText("");
@@ -351,18 +366,7 @@ public class HallLoadingPanel extends JPanel {
 		comboBoxDestination.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				ResultMessage message=serv.getPrice(orgId,destinationList.get(comboBoxDestination.getSelectedIndex()).getId());
-				Result result=message.getReInfo();
-				if(!result.equals(Result.SUCCESS))
-				{
-					new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-				}
-				else
-				{
-					cost=(double)message.getMessage();
-					priceLabel.setText("运费："+cost);
-				}
+				getPrice();
 			}
 		});
 		
@@ -386,16 +390,19 @@ public class HallLoadingPanel extends JPanel {
 		
 		
 	}
-	private void getPrice(){
-		ResultMessage message=serv.getPrice(orgId, (String)comboBoxDestination.getSelectedItem());
+	private boolean getPrice(){
+		String des=(String)comboBoxDestination.getSelectedItem();
+		if(des.isEmpty())return false;
+		ResultMessage message=serv.getPrice(orgId, des,expressIdList);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);
-			return;
+			return false;
 		}
-		double price=(Double)message.getMessage();
-		priceLabel.setText("运费："+Double.toString(price)+"元");
+		BigDecimal price=(BigDecimal)message.getMessage();
+		priceLabel.setText("运费："+price.toString()+"元");
+		return true;
 	}
 	public void setEnabled(boolean enabled)
 	{

@@ -13,6 +13,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
@@ -85,6 +86,12 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	public int isExpressValid(List<String> expressList) {
 		// TODO 自动生成的方法存根
 		return uti.isExpressListValid(expressList);
+	}
+
+	@Override
+	public ResultMessage getPrice(String org1, String org2, int tran,
+			List<String> expressList) {
+		return uti.getPrice(org1, org2, Transit.values()[tran], expressList);
 	}
 
 }

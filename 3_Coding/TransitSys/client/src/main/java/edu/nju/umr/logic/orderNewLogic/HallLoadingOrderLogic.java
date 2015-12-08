@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
@@ -71,12 +72,16 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	
 	@Override
-	public ResultMessage getPrice(String org1, String org2) {
-		return uti.getPrice(org1, org2,Transit.VAN,null);
+	public ResultMessage getPrice(String org1, String org2,List<String> expressList) {
+		return uti.getPrice(org1, org2,Transit.VAN,expressList);
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {
 		return uti.getLocalHallAndAllCenter(orgId);
+	}
+	@Override
+	public boolean isLegal(String id) {
+		return uti.isExpressValid(id);
 	}
 
 }
