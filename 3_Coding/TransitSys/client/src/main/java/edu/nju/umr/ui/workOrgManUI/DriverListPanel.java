@@ -41,15 +41,17 @@ public class DriverListPanel extends JPanel {
 	private DefaultTableModel model;
 	private DriverManLSer serv;
 	private ArrayList<DriverVO> driverList;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unchecked")
-	public DriverListPanel(JFrame fr,String orgId) {
+	public DriverListPanel(JFrame fr,String orgId,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
 		panel=this;
+		this.name = name;
 		serv=new DriverManLogic();
 		
 		JLabel nameLabel = new JLabel("司机信息列表");
@@ -101,7 +103,7 @@ public class DriverListPanel extends JPanel {
 		        if (n == JOptionPane.YES_OPTION)
 		        {
 		        	Result result;
-		        	result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId());
+		        	result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId(),name);
 		        	if(result.equals(Result.SUCCESS))
 		        	{
 		        		driverList.remove(table.getSelectedRow());
@@ -184,7 +186,7 @@ public class DriverListPanel extends JPanel {
 			DriverVO dr=driverList.get(index);
 			if(dr.getId().equals(driver.getId()))
 			{
-				result=serv.reviseDriver(driver);
+				result=serv.reviseDriver(driver,name);
 				if(!result.equals(Result.SUCCESS))
 					return result;
 				driverList.remove(index);
@@ -194,7 +196,7 @@ public class DriverListPanel extends JPanel {
 		}
 		if(index==driverList.size())
 		{
-			result=serv.addDriver(driver);
+			result=serv.addDriver(driver,name);
 			if(!result.equals(Result.SUCCESS))
 				return result;
 			driverList.add(driver);

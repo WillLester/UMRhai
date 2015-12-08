@@ -69,7 +69,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("司机管理 ");
-				ffr.setContentPane(new DriverListPanel(ffr,user.getOrgId()));
+				ffr.setContentPane(new DriverListPanel(ffr,user.getOrgId(),user.getName()));
 			}
 		});
 		this.add(driverMan);

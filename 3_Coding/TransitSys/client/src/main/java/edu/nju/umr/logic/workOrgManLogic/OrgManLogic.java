@@ -5,6 +5,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
 import edu.nju.umr.vo.OrgVO;
@@ -19,7 +22,7 @@ public class OrgManLogic implements OrgManLSer{
 	private OrgManDFacSer dataFac;
 	private OrgManDSer orgData;
 	private UtilityLogic uti=new UtilityLogic();
-
+	private DiaryUpdateLSer diarySer;
 	public OrgManLogic(){
 		try{
 			dataFac=(OrgManDFacSer)Naming.lookup(Url.URL);
@@ -34,11 +37,13 @@ public class OrgManLogic implements OrgManLSer{
         } catch(Exception e){
 			e.printStackTrace();
 		}
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result addOrg(OrgVO org) {
+	public Result addOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.SUCCESS;
 		try{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
+			isSuccessful = diarySer.addDiary("新增机构"+org.getId(), name);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
@@ -47,10 +52,11 @@ public class OrgManLogic implements OrgManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteOrg(String id) {
+	public Result deleteOrg(String id,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=orgData.deleteOrg(id);
+			isSuccessful = diarySer.addDiary("删除机构"+id, name);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -60,10 +66,11 @@ public class OrgManLogic implements OrgManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseOrg(OrgVO org) {
+	public Result reviseOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
+			isSuccessful = diarySer.addDiary("修改机构"+org.getId(), name);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
@@ -97,23 +104,6 @@ public class OrgManLogic implements OrgManLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-//		ArrayList<CityPO> ar= null;
-//		boolean isSuccessful=false;
-//		try{
-//			ar=orgData.getCities();
-//			isSuccessful=true;
-//		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}
-//		ArrayList<CityVO> arVO=new ArrayList<CityVO>();
-//		for(int i=0;i<ar.size();i++)
-//		{
-//			CityPO city=ar.get(i);
-//			arVO.add(new CityVO(city.getId(),city.getName(),city.getProvince()));
-//		}
-//		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
-//		return message;
 		return uti.getCities();
 	}
 

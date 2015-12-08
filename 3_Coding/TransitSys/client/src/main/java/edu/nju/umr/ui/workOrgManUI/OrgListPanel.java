@@ -52,16 +52,17 @@ public class OrgListPanel extends JPanel {
 	private JButton workMan;
 	private JButton confirmMod;
 	private JButton delete;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public OrgListPanel(JFrame fr) {
+	public OrgListPanel(JFrame fr,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
 		orgList=new ArrayList<OrgVO>();
 		serv=new OrgManLogic();
-//		cityList=getCities();
+		this.name = name;
 		
 		JLabel nameLabel = new JLabel("机构信息列表");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
@@ -311,7 +312,7 @@ public class OrgListPanel extends JPanel {
 	private void deleteOrg(int row){
 		if(row<0||row>=orgList.size())return;
 		OrgVO temp=orgList.get(row);
-		Result result=serv.deleteOrg(temp.getId());
+		Result result=serv.deleteOrg(temp.getId(),name);
 		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
@@ -346,7 +347,7 @@ public class OrgListPanel extends JPanel {
 		OrgVO temp=new OrgVO(id,name,kind,location,city,cityId);
 		if(table.getSelectedRow()==orgList.size())
 		{
-			Result result=serv.addOrg(temp);
+			Result result=serv.addOrg(temp,this.name);
 			if(!result.equals(Result.SUCCESS))
 			{
 				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
@@ -359,7 +360,7 @@ public class OrgListPanel extends JPanel {
 		}
 		else
 		{
-			Result result=serv.reviseOrg(temp);
+			Result result=serv.reviseOrg(temp,this.name);
 			if(!result.equals(Result.SUCCESS))
 			{
 				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());

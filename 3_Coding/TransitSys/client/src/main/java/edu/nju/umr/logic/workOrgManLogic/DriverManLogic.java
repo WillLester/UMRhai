@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.DriverManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.DriverManDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.DriverPO;
@@ -19,7 +21,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class DriverManLogic implements DriverManLSer{
 	private DriverManDFacSer dataFac;
 	private DriverManDSer driverData;
-
+	private DiaryUpdateLSer diarySer;
 	public DriverManLogic(){
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup(Url.URL);
@@ -31,13 +33,15 @@ public class DriverManLogic implements DriverManLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
 
-	public Result addDriver(DriverVO Driver) {
+	public Result addDriver(DriverVO driver,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
+			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(driver));
+			isSuccessful = diarySer.addDiary("新增司机"+driver.getId(), name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -45,11 +49,12 @@ public class DriverManLogic implements DriverManLSer{
 		}
 		return isSuccessful;
 	}
-	public Result deleteDriver(String id) {
+	public Result deleteDriver(String id,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try {
 			isSuccessful=driverData.deleteDriver(id);
+			isSuccessful = diarySer.addDiary("删除司机"+id, name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -58,11 +63,12 @@ public class DriverManLogic implements DriverManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseDriver(DriverVO Driver) {
+	public Result reviseDriver(DriverVO driver,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(Driver));
+			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(driver));
+			isSuccessful = diarySer.addDiary("修改司机"+driver.getId(), name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
