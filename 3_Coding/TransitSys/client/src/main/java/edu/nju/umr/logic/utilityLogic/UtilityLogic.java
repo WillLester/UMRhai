@@ -510,7 +510,7 @@ public class UtilityLogic {
 	 * @see edu.nju.umr.po.enums.Transit
 	 * @return
 	 */
-	public ResultMessage getPrice(String org1, String org2,Transit transit,BigDecimal weight) {
+	public ResultMessage getPrice(String org1, String org2,Transit transit,List<String> expressList) {
 		String city1=null;
 		String city2=null;//两个机构所属城市名称
 		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取机构列表

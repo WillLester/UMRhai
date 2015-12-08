@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.orderNewLogic.CenterLoadingOrderLogic;
-import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
@@ -47,7 +46,6 @@ public class CenterLoadingPanel extends JPanel {
 	private ExpressListPanel expressList;
 	private String userId;
 	private String org;
-	private UtilityLogic uti;
 	/**
 	 * Create the panel.
 	 */
@@ -81,7 +79,6 @@ public class CenterLoadingPanel extends JPanel {
 		this.name = name;
 		this.userId = userId;
 		this.org=org;
-		uti=new UtilityLogic();
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -256,7 +253,7 @@ public class CenterLoadingPanel extends JPanel {
 		return true;
 	}
 	private void getPrice(){
-		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem());
+		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem(),null);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
