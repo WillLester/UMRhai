@@ -305,7 +305,7 @@ public class UserListPanel extends JPanel {
 		UserVO user = users.get(table.getSelectedRow());
 		if(row<users.size()){
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
-			Result result=serv.reviseUser(now,row,name);
+			Result result=serv.reviseUser(now,row,this.name);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
@@ -314,7 +314,7 @@ public class UserListPanel extends JPanel {
 			}
 		} else {
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
-			Result result=serv.newUser(now,name);
+			Result result=serv.newUser(now,this.name);
 			if(result.equals(Result.SUCCESS)){
 				users.add(now);
 				displayUsers();

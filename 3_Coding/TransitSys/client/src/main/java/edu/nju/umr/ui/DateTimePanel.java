@@ -53,8 +53,8 @@ public class DateTimePanel extends DatePanel {
 		secondCombo.setModel(new DefaultComboBoxModel<String>(seconds));
 		add(secondCombo);
 		
-		JLabel secondLabel = new JLabel("分");
-		secondLabel.setBounds(420, 3, 19, 15);
+		JLabel secondLabel = new JLabel("秒");
+		secondLabel.setBounds(508, 3, 19, 15);
 		add(secondLabel);
 	}
 	public Calendar getCalendar(){

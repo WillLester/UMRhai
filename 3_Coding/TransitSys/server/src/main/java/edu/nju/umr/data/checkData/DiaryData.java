@@ -4,9 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
@@ -36,11 +39,13 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 		try {
 			while(result.next()){
 				Calendar time = Calendar.getInstance();
-				time.setTime(result.getDate(1));
+				String dateTime = result.getString(1);
+				Date date = DateFormat.TIME.parse(dateTime);
+				time.setTime(date);
 				DiaryPO diary = new DiaryPO(result.getString(2), time, result.getString(3));
 				diaryList.add(diary);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO 自动生成的 catch 块
 			return null;
 		}

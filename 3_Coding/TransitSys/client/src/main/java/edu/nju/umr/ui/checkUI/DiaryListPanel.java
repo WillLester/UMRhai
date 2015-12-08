@@ -1,33 +1,31 @@
 package edu.nju.umr.ui.checkUI;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-
-import edu.nju.umr.logic.checkLogic.DiaryLogic;
-import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
-import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.DatePanel;
-import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.Table;
-import edu.nju.umr.vo.DiaryVO;
-import edu.nju.umr.vo.ResultMessage;
-
-import javax.swing.JLabel;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Calendar;
+import edu.nju.umr.constants.DateFormat;
+import edu.nju.umr.logic.checkLogic.DiaryLogic;
+import edu.nju.umr.logicService.checkLogicSer.DiaryLSer;
+import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.DateTimePanel;
+import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.Table;
+import edu.nju.umr.vo.DiaryVO;
+import edu.nju.umr.vo.ResultMessage;
 /*
  * yyy
  * 20151028
@@ -57,20 +55,20 @@ public class DiaryListPanel extends JPanel {
 		start.setBounds(Constants.TABLE_X, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
-		DatePanel startDate=new DatePanel();
-		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+4, 267, 21);
+		DateTimePanel startDate=new DateTimePanel();
+		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+4, 530, 21);
 		add(startDate);
 		
 		JLabel end = new JLabel("结束日期");
 		end.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
-		DatePanel endDate=new DatePanel();
-		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 267, 21);
+		DateTimePanel endDate=new DateTimePanel();
+		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 530, 21);
 		add(endDate);
 		
 		JButton cancel = new JButton("取消");
-		cancel.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		cancel.setBounds(Constants.PANEL_WIDTH/10*8+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		cancel.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -80,7 +78,7 @@ public class DiaryListPanel extends JPanel {
 		add(cancel);
 		
 		JButton confirm = new JButton("确认");
-		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirm.setBounds(Constants.PANEL_WIDTH/10*7+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -159,7 +157,7 @@ public class DiaryListPanel extends JPanel {
 		for(int i=0;i<diaryList.size();i++)
 		{
 			DiaryVO temp=diaryList.get(i);
-			String [] data=new String[]{temp.getOperator(),temp.getOperation(),temp.getTime().get(Calendar.YEAR)+"年"+(temp.getTime().get(Calendar.MONTH)+1)+"月"+temp.getTime().get(Calendar.DATE)+"日"};
+			String [] data=new String[]{temp.getOperator(),temp.getOperation(),DateFormat.TIME.format(temp.getTime().getTime())};
 			model.addRow(data);
 		}
 	}
