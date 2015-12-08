@@ -14,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
@@ -123,7 +124,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 //		}
 //		price=PRICE;
 //		return new ResultMessage(isSuc,price*distance);
-		return uti.getPrice(org1, org2,2);
+		return uti.getPrice(org1, org2,Transit.VAN,null);
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {
