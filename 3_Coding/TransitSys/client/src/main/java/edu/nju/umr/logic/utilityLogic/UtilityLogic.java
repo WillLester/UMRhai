@@ -31,6 +31,7 @@ import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
+import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -506,7 +507,7 @@ public class UtilityLogic {
 	 * @param org1 机构1
 	 * @param org2 机构2
 	 * @param transit Transit类型，飞机，铁路，公路
-	 * @param weight 总重量 BigDecimal
+	 * @param expressList 订单号列表
 	 * @see edu.nju.umr.po.enums.Transit
 	 * @return
 	 */
@@ -523,25 +524,24 @@ public class UtilityLogic {
 		@SuppressWarnings("unchecked")
 		ArrayList<Double> temp=(ArrayList<Double>)costMessage.getMessage();
 		double cost = temp.get(transit.ordinal());
-		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
 			orgs = orgs();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		if(orgs.size()>0){
-			isSuc=Result.SUCCESS;
+		if(orgs == null){
+			return new ResultMessage(Result.DATA_NOT_FOUND, null);
 		}
 		//获得两个机构所在城市名称
 		for(OrgPO po:orgs){
-			if(po.getName()==org1){
+			if(po.getName().equals(org1)){
 				city1=po.getCity();
 				break;
 			}
 		}
 		for(OrgPO po:orgs){
-			if(po.getName()==org2){
+			if(po.getName().equals(org2)){
 				city2=po.getCity();
 			    break;
 			}
@@ -556,15 +556,16 @@ public class UtilityLogic {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		price= new BigDecimal(cost);
-		return new ResultMessage(isSuc,distance.multiply(price));
-	}
-	
-	/**
-	 * 根据订单列表获得总重量
-	 * @param expressList List<String>形式的订单号列表
-	 * @return ResultMessage，包含了一个BigDecimal形式的总重量
-	 */
-	public ResultMessage getTotalWeight(List<String> expressList){
-		return null;
+		try {
+			List<ExpressPO> expresses = utilityData.getExpresses(expressList);
+			BigDecimal weight = new BigDecimal(0);
+			for(ExpressPO express:expresses){
+				weight = weight.add(new BigDecimal(express.getWeight()));
+			}
+			return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ResultMessage(Result.NET_INTERRUPT, null);
+		}
 	}
 }

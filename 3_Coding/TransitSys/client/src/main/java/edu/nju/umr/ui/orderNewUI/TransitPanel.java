@@ -271,11 +271,11 @@ public class TransitPanel extends JPanel {
 			DoHint.hint("请输入货柜号！", frame);
 			return false;
 		}
-		int index = logicSer.isExpressValid(expressList.getExpresses());
-		if(index != -1){
-			DoHint.hint("第"+(index+1)+"个订单号不存在！", frame);
-			return false;
-		}
+//		int index = logicSer.isExpressValid(expressList.getExpresses());
+//		if(index != -1){
+//			DoHint.hint("第"+(index+1)+"个订单号不存在！", frame);
+//			return false;
+//		}
 		return true;
 	}
 	private TransitVO createVO(){

@@ -40,6 +40,8 @@ public class HintFrame extends JDialog{
 		case DATABASE_ERROR:txt = "数据库发生错误";break;
 		case DATA_NOT_FOUND:txt = "未找到数据";break;
 		case ID_IS_USED:txt = "用户名重复";break;
+		case EXPRESS_NOT_FOUND:txt = "订单号有错误！";break;
+		case OUT_OF_LOAD:txt = "超出满载量！";break;
 		default:
 			break;
 		}

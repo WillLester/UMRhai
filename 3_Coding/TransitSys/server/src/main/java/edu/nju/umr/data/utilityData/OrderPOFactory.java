@@ -22,7 +22,11 @@ import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
-
+/**
+ * 制造单据PO的工厂
+ * @author Lester
+ * <p>有就是有，没有就返回null，数据库炸了也返回null
+ */
 public class OrderPOFactory {
 	public static ArrivePO getArrive(ResultSet result){
 		try {

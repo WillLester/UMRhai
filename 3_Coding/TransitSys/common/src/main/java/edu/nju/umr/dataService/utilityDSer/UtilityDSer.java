@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
@@ -14,6 +15,7 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.ExpressPO;
 
 public interface UtilityDSer extends Remote{
 	public ArrayList<CityPO> getCities() throws RemoteException;
@@ -65,4 +67,12 @@ public interface UtilityDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public CitiesPO getCitesPO(String city1,String city2) throws RemoteException;
+	
+	/**
+	 * 获得快递单列表
+	 * @param expressIds 快递单编号列表
+	 * @return ExpressPO的List,如果有订单号错了，返回null
+	 * @throws RemoteException
+	 */
+	public List<ExpressPO> getExpresses(List<String> expressIds) throws RemoteException;
 }
