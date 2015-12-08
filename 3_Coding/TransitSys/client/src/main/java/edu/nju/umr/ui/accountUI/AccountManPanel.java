@@ -43,7 +43,7 @@ public class AccountManPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public AccountManPanel(JFrame fr) {
+	public AccountManPanel(JFrame fr,String name) {
 		setLayout(null);
 		logicSer=new AccountLogic();
 		
@@ -127,7 +127,7 @@ public class AccountManPanel extends JPanel{
 				// TODO 自动生成的方法存根
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
-		        	Result result = accountLSer.deleteAccount(table.getSelectedRow());
+		        	Result result = accountLSer.deleteAccount(table.getSelectedRow(),name);
 		        	if(result.equals(Result.SUCCESS))
 		        	{
 		        		fresh();
@@ -152,9 +152,9 @@ public class AccountManPanel extends JPanel{
 				if(isModifyLegal()){
 					Result result;
 					if(table.getSelectedRow() >= accountList.size()){
-						result = logicSer.addAccount(new AccountVO(nameField.getText(), 0));
+						result = logicSer.addAccount(new AccountVO(nameField.getText(), 0),name);
 					} else {
-						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())), table.getSelectedRow());
+						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())), table.getSelectedRow(),name);
 					}
 					if(result.equals(Result.SUCCESS)){
 						fresh();

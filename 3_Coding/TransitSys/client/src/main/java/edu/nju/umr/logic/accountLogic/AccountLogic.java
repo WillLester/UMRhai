@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.dataFactory.AccountDFacSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.accountLogicSer.AccountLSer;
 import edu.nju.umr.po.AccountPO;
@@ -20,6 +22,7 @@ public class AccountLogic implements AccountLSer{
 	private AccountDFacSer dataFac;
 	private AccountDSer accountData;
 	private ArrayList<AccountPO> accountPOs;//从数据层拿到的po的列表排序要与界面层显示的vo列表排序一致
+	private DiaryUpdateLSer diarySer;//更新日志的逻辑接口
 	public AccountLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -33,11 +36,13 @@ public class AccountLogic implements AccountLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result addAccount(AccountVO account) {
+	public Result addAccount(AccountVO account,String opName) {
 		Result isSuccessful = Result.SUCCESS;
 		try {
 			isSuccessful = accountData.addAccount(new AccountPO(0, account.getName(), account.getBalance()));
+			isSuccessful = diarySer.addDiary("添加账户"+account.getName(), opName);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
@@ -46,11 +51,12 @@ public class AccountLogic implements AccountLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteAccount(int index) {
+	public Result deleteAccount(int index,String opName) {
 		Result isSuccessful = Result.SUCCESS;
 		AccountPO toDelete=accountPOs.get(index);//获得待删除账户项在po的list中的位置
 		try {
 			isSuccessful = accountData.deleteAccount(toDelete.getId());
+			isSuccessful = diarySer.addDiary("删除账户"+toDelete.getName(), opName);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
@@ -58,11 +64,12 @@ public class AccountLogic implements AccountLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseAccount(AccountVO account,int index) {
+	public Result reviseAccount(AccountVO account,int index,String opName) {
 		Result isSuccessful = Result.SUCCESS;
 		AccountPO init=accountPOs.get(index);
 		try {
 			isSuccessful = accountData.reviseAccount(new AccountPO(init.getId(), account.getName(), account.getBalance()));
+			isSuccessful = diarySer.addDiary("修改账户"+account.getName(), opName);	
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
