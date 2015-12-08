@@ -562,6 +562,17 @@ public class UtilityLogic {
 			for(ExpressPO express:expresses){
 				weight = weight.add(new BigDecimal(express.getWeight()));
 			}
+			ResultMessage load = getFullLoad();
+			if(load.getReInfo().equals(Result.SUCCESS)){
+				@SuppressWarnings("unchecked")
+				List<Double> loads = (List<Double>) load.getMessage();
+				BigDecimal fullLoad = new BigDecimal(loads.get(transit.ordinal()));
+				if(weight.compareTo(fullLoad) == 1){
+					return new ResultMessage(Result.OUT_OF_LOAD, null);
+				}
+			} else {
+				return new ResultMessage(Result.NET_INTERRUPT, null);
+			}
 			return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

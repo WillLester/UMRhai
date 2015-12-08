@@ -34,7 +34,7 @@ public class StockWarningPanel extends JPanel{
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unchecked")
-	public StockWarningPanel(JFrame fr,String orgId) {
+	public StockWarningPanel(JFrame fr,String orgId,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockWarningLogic();
@@ -110,7 +110,7 @@ public class StockWarningPanel extends JPanel{
 					newWarn.add(Integer.parseInt(trainField.getText()));
 					newWarn.add(Integer.parseInt(vanField.getText()));
 					newWarn.add(Integer.parseInt(maneuverField.getText()));
-					Result result = logicSer.setWarning(newWarn, orgId);
+					Result result = logicSer.setWarning(newWarn, orgId,name);
 					if(result.equals(Result.SUCCESS)){
 						frame.dispose();
 					} else {

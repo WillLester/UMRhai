@@ -115,7 +115,7 @@ public class StockManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("设置警戒线");
-				fr.setContentPane(new StockWarningPanel(fr,user.getOrgId()));
+				fr.setContentPane(new StockWarningPanel(fr,user.getOrgId(),user.getName()));
 			}
 		});
 		
