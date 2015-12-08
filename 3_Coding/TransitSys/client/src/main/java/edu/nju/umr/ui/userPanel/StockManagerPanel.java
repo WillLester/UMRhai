@@ -156,6 +156,10 @@ public class StockManagerPanel extends UserPanel{
 				fr.setContentPane(new StockInPanel(fr,user.getName(),user.getOrgId(),user.getId()));
 			}
 		});
+		
+		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
+		upo.setBounds(700, 400, 200, 30);
+		add(upo);
 	}
 
 }

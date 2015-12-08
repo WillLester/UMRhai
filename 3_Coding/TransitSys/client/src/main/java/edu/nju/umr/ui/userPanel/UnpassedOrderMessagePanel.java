@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
@@ -33,7 +34,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 		
 		this.setLayout(null);
 		JButton button = new JButton("查看未通过单据");
-		button.setBounds(0, 0, 100, 100);
+		button.setBounds(0, 0, 150, 30);
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -66,9 +67,16 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawString(Integer.toString(x), 100, 50);
+		g.drawString(Integer.toString(x), 150, 20);
 	}
 	public void stop(){
 		thread.interrupt();
+	}
+	public static void main(String [] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setContentPane(new UnpassedOrderMessagePanel(null));
+		frame.setSize(1200,800);
+		frame.setVisible(true);
 	}
 }

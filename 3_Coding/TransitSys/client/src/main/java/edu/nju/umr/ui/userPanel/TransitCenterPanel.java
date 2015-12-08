@@ -117,6 +117,10 @@ public class TransitCenterPanel extends UserPanel{
 				fr.setContentPane(new TransitPanel(fr,user.getOrgId(),user.getName(),user.getId()));
 			}
 		});
+		
+		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
+		upo.setBounds(700, 400, 200, 30);
+		add(upo);
 	}
 
 }

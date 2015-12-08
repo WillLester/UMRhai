@@ -61,6 +61,9 @@ public class CourierPanel extends UserPanel {
 		});
 		this.add(button_1);
 		
+		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
+		upo.setBounds(700, 400, 200, 30);
+		add(upo);
 	}
 
 }

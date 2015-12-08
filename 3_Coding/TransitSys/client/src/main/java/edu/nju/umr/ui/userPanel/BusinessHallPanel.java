@@ -86,6 +86,10 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(vanMan);
 		
+		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
+		upo.setBounds(700, 400, 200, 30);
+		add(upo);
+		
 
 	
 	
