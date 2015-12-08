@@ -166,9 +166,11 @@ public class ExpressVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("订单");
-		ffr.setContentPane(new ExpressPanel(ffr,this));
+		ExpressPanel panel=new ExpressPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 	

@@ -63,9 +63,11 @@ public class CenterLoadingVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("中转中心装车单");
-		ffr.setContentPane(new CenterLoadingPanel(ffr,this));
+		CenterLoadingPanel panel=new CenterLoadingPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 }

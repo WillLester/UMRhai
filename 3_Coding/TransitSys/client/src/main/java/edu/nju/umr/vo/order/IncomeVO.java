@@ -50,9 +50,11 @@ public class IncomeVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show(){
+	public void Show(boolean isEnabled){
 		FunctionFrame ffr=new FunctionFrame("入款单");
-		ffr.setContentPane(new IncomePanel(ffr,this));
+		IncomePanel panel=new IncomePanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 }

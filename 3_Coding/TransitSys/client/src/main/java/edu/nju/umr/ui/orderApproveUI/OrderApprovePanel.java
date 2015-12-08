@@ -27,6 +27,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
+import edu.nju.umr.vo.order.ShowOrder;
 
 public class OrderApprovePanel extends JPanel{
 	/**
@@ -222,27 +223,7 @@ public class OrderApprovePanel extends JPanel{
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
-		switch(kind)
-		{
-		case ARRIVE:break;
-		case CENTERLOADING:break;
-		case EXPRESS:break;
-		case HALLLOADING:break;
-		case INCOME:break;
-		case PAYMENT:break;
-		case RECIPIENT:break;
-		case SEND:break;
-		case STOCKIN:break;
-		case STOCKOUT:break;
-		case TRANSIT:break;
-		}
-		
+		ShowOrder orderToShow=(ShowOrder)message.getMessage();
+		orderToShow.Show(false);
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new OrderApprovePanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
 }

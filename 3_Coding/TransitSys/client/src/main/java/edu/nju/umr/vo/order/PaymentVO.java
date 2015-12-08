@@ -55,8 +55,10 @@ public class PaymentVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("付款单");
-		ffr.setContentPane(new PaymentPanel(ffr,this));
+		PaymentPanel panel=new PaymentPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 }

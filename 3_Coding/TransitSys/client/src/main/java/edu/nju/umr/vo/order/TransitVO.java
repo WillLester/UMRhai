@@ -72,9 +72,11 @@ public class TransitVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("中转单");
-		ffr.setContentPane(new TransitPanel(ffr,this));
+		TransitPanel panel=new TransitPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 }

@@ -53,8 +53,10 @@ public class StockOutVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("出库单");
-		ffr.setContentPane(new StockOutPanel(ffr,this));
+		StockOutPanel panel=new StockOutPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 }

@@ -62,9 +62,11 @@ public class StockInVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("入库单");
-		ffr.setContentPane(new StockInPanel(ffr,this));
+		StockInPanel panel=new StockInPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 }

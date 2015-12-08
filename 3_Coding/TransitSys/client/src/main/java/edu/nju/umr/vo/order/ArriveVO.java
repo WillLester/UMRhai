@@ -50,9 +50,11 @@ public class ArriveVO implements ShowOrder{
 	}
 
 	@Override
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("中转中心到达单");
-		ffr.setContentPane(new ArrivePanel(ffr,this));
+		ArrivePanel panel=new ArrivePanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 	
 }

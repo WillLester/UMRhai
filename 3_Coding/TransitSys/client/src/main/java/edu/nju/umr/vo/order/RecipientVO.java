@@ -46,8 +46,10 @@ public class RecipientVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("营业厅到达单");
-		ffr.setContentPane(new RecipientPanel(ffr,this));
+		RecipientPanel panel=new RecipientPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 }

@@ -39,8 +39,10 @@ public class SendVO implements ShowOrder{
 	public String getUserId() {
 		return userId;
 	}
-	public void Show() {
+	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("派件单");
-		ffr.setContentPane(new SendPanel(ffr,this));
+		SendPanel panel=new SendPanel(ffr,this);
+		panel.setEnabled(isEnabled);
+		ffr.setContentPane(panel);
 	}
 }
