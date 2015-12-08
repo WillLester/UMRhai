@@ -10,6 +10,8 @@ import java.util.List;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WageManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.WageManDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WageManLSer;
 import edu.nju.umr.po.WorkPO;
@@ -21,6 +23,7 @@ public class WageManLogic implements WageManLSer{
 	private WageManDFacSer dataFac;
 	private WageManDSer wageData;
 	private List<WorkPO> workList;
+	private DiaryUpdateLSer diarySer;
 	public WageManLogic()
 	{
 		try{
@@ -35,6 +38,7 @@ public class WageManLogic implements WageManLSer{
         } catch(Exception e){
 			e.printStackTrace();
 		}
+		diarySer = new DiaryUpdateLogic();
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class WageManLogic implements WageManLSer{
 	}
 
 	@Override
-	public Result setWage(List<WageVO> wageList,int[] index) {
+	public Result setWage(List<WageVO> wageList,int[] index,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		
@@ -67,6 +71,7 @@ public class WageManLogic implements WageManLSer{
 			WorkPO w = new WorkPO(work.getName(),work.getMobile(),work.getOrg(),work.getOrgId(),work.getId(),wage.getJuri(),wage.getKind(),wage.getWage(),wage.getCommission());
 			try {
 				isSuccessful = wageData.updateWork(w);
+				isSuccessful = diarySer.addDiary("修改了人员的薪水", name);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				return Result.NET_INTERRUPT;

@@ -52,7 +52,7 @@ public class WorkListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public WorkListPanel(JFrame fr) {
+	public WorkListPanel(JFrame fr,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
@@ -164,7 +164,7 @@ public class WorkListPanel extends JPanel {
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION)
 		        {  
-		        	Result result = logicSer.deleteWork(table.getSelectedRow());
+		        	Result result = logicSer.deleteWork(table.getSelectedRow(),name);
 		        	if(result.equals(Result.SUCCESS))
 		        	{
 		        		fresh();
@@ -187,14 +187,14 @@ public class WorkListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if(table.getSelectedRow() >= workList.size()){
-					Result result = logicSer.addWork(createVO());
+					Result result = logicSer.addWork(createVO(),name);
 					if(result.equals(Result.SUCCESS)){
 						fresh();
 					} else {
 						DoHint.hint(result, frame);
 					}
 				} else {
-					Result result = logicSer.reviseWork(createVO(),table.getSelectedRow());
+					Result result = logicSer.reviseWork(createVO(),table.getSelectedRow(),name);
 					if(result.equals(Result.SUCCESS)){
 						fresh();
 					} else {
@@ -236,9 +236,9 @@ public class WorkListPanel extends JPanel {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public WorkListPanel(JFrame fr,String org) {
+	public WorkListPanel(JFrame fr,String org,String name) {
 		// TODO 自动生成的构造函数存根
-		this(fr);
+		this(fr,name);
 		ResultMessage message = logicSer.searchWork(org);
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			workList = (ArrayList<WorkVO>) message.getMessage();

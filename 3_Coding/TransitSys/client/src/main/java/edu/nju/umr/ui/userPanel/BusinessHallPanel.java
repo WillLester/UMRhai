@@ -81,7 +81,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("车辆管理 ");
-				ffr.setContentPane(new VanListPanel(ffr,user));
+				ffr.setContentPane(new VanListPanel(ffr,user.getOrgId(),user.getName()));
 			}
 		});
 		this.add(vanMan);

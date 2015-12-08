@@ -45,13 +45,15 @@ public class WorkWageListPanel extends JPanel {
 	private DefaultTableModel model;
 	private WageManLSer logicSer;
 	private ArrayList<WageVO> wageList;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public WorkWageListPanel(JFrame fr) {
+	public WorkWageListPanel(JFrame fr,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
+		this.name = name;
 		logicSer = new WageManLogic();
 		wageList = new ArrayList<WageVO>();
 		
@@ -260,7 +262,7 @@ public class WorkWageListPanel extends JPanel {
 			WageVO vo = new WageVO(wage.getName(), wage.getJuri(), kind, money, commission);
 			temp.add(vo);
 		}
-		Result result = logicSer.setWage(temp, selected);
+		Result result = logicSer.setWage(temp, selected,name);
 		if(result.equals(Result.SUCCESS)){
 			fresh();
 		} else {

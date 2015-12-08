@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.VanManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.VanManDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.VanPO;
@@ -20,6 +22,7 @@ public class VanManLogic implements VanManLSer{
 	private VanManDFacSer dataFac;
 	private VanManDSer vanData;
 	private ArrayList<VanPO> ar;
+	private DiaryUpdateLSer diarySer;
 	public VanManLogic(){
 		try{
 			dataFac= (VanManDFacSer)Naming.lookup(Url.URL);
@@ -31,12 +34,14 @@ public class VanManLogic implements VanManLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result addVan(VanVO van) {
+	public Result addVan(VanVO van,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.addVan(VPFactory.toVanPO(van));
+			isSuccessful = diarySer.addDiary("添加车辆"+van.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -45,11 +50,12 @@ public class VanManLogic implements VanManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteVan(String id) {
+	public Result deleteVan(String id,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.deleteVan(id);
+			isSuccessful = diarySer.addDiary("删除车辆"+id, name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -58,11 +64,12 @@ public class VanManLogic implements VanManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseVan(VanVO van) {
+	public Result reviseVan(VanVO van,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=vanData.reviseVan(VPFactory.toVanPO(van));
+			isSuccessful = diarySer.addDiary("修改车辆"+van.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){

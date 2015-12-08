@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
 import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
@@ -25,6 +27,7 @@ public class WorkManLogic implements WorkManLSer{
 	private WorkManDSer workData;
 	private UtilityLogic uti=new UtilityLogic();
 	private ArrayList<WorkPO> workList;
+	private DiaryUpdateLSer diarySer;
 	public WorkManLogic()
 	{
 		try{
@@ -40,15 +43,18 @@ public class WorkManLogic implements WorkManLSer{
         } catch(Exception e){
 			e.printStackTrace();
 		}
+		diarySer = new DiaryUpdateLogic();
 	}
 
-	public Result addWork(WorkVO work) {
+	@Override
+	public Result addWork(WorkVO work,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		
 		try{
 			String orgId=getOrgId(work.getOrg());
 			isSuccessful=workData.addWork(VPFactory.toWorkPO(work,orgId,0,Wage.MONTH,0,0));
+			isSuccessful = diarySer.addDiary("新增人员"+work.getName(), name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -57,11 +63,14 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteWork(int index) {
+	@Override
+	public Result deleteWork(int index,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
-			isSuccessful=workData.deleteWork(workList.get(index).getId());
+			WorkPO po = workList.get(index);
+			isSuccessful=workData.deleteWork(po.getId());
+			isSuccessful = diarySer.addDiary("删除人员"+po.getName(), name);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){
@@ -70,13 +79,14 @@ public class WorkManLogic implements WorkManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseWork(WorkVO work, int index) {
+	public Result reviseWork(WorkVO work, int index,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		WorkPO po=workList.get(index);
 		try{
 			String orgId=getOrgId(work.getOrg());
 			isSuccessful=workData.reviseWork(VPFactory.toWorkPO(work, orgId,po.getId(),po.getKind(),po.getMoney(),po.getCommission()));
+			isSuccessful = diarySer.addDiary("修改人员"+work.getName(), name);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}catch(Exception e){

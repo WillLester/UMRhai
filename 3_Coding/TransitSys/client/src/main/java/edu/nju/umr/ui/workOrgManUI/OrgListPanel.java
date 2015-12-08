@@ -166,10 +166,6 @@ public class OrgListPanel extends JPanel {
 		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
 		add(confirmMod);
 		
-//		JButton forDetail = new JButton("查看详细");
-//		forDetail.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
-//		add(forDetail);
-		
 		JButton out = new JButton("退出");
 		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 93, 23);
 		out.addActionListener(new ActionListener(){
@@ -186,7 +182,7 @@ public class OrgListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("人员管理");
 				OrgVO org = orgList.get(table.getSelectedRow());
-				ffr.setContentPane(new WorkListPanel(ffr,org.getName()));
+				ffr.setContentPane(new WorkListPanel(ffr,org.getName(),name));
 			}
 		});
 		add(workMan);

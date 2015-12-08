@@ -77,7 +77,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("人员管理");
-				fr.setContentPane(new WorkListPanel(fr));
+				fr.setContentPane(new WorkListPanel(fr,user.getName()));
 			}
 		});
 		
@@ -103,7 +103,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("薪水管理");
-				fr.setContentPane(new WorkWageListPanel(fr));
+				fr.setContentPane(new WorkWageListPanel(fr,user.getName()));
 			}
 		});
 		

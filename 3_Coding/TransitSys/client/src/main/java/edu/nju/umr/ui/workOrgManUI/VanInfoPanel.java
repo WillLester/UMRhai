@@ -26,7 +26,6 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.utility.DoHint;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 
 public class VanInfoPanel extends JPanel {
@@ -42,18 +41,18 @@ public class VanInfoPanel extends JPanel {
 	private JFrame frame;
 	private DatePanel servTime;
 	private JLabel pic;
-	private UserVO user;
+	private String orgId;
 
 	/**
 	 * Create the panel.
 	 */
-	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo,UserVO uservo) {
+	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo,String orgId) {
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		setLayout(null);
 		fatherPanel=father;
 		frame=fr;
 		van=vanvo;
-		user=uservo;
+		this.orgId = orgId;
 		
 		JLabel nameLabel = new JLabel("车辆信息");
 		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
@@ -197,7 +196,7 @@ public class VanInfoPanel extends JPanel {
 			DoHint.hint("图片未选择!", frame);
 			return;
 		}
-		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,user.getOrgId());
+		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,orgId);
 		Result result=fatherPanel.confirmed(temp);
 		if(!result.equals(Result.SUCCESS)){
 			DoHint.hint(result, frame);

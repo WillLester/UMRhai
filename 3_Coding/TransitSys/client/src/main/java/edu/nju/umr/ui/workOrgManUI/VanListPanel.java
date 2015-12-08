@@ -27,7 +27,6 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.VanVO;
 
 
@@ -41,18 +40,19 @@ public class VanListPanel extends JPanel {
 	private Table table;
 	private DefaultTableModel model;
 	private VanManLSer serv;
-	private UserVO user;
+	private String orgId;
 	private ArrayList<VanVO> vanList;
 	private VanListPanel vanListPanel;
-
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public VanListPanel(JFrame fr,UserVO uservo) {
+	public VanListPanel(JFrame fr,String orgId,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
-		user=uservo;
+		this.orgId = orgId;
+		this.name = name;
 		vanListPanel=this;
 		vanList = new ArrayList<VanVO>();
 		
@@ -161,7 +161,7 @@ public class VanListPanel extends JPanel {
 	}
 	@SuppressWarnings("unchecked")
 	private void getVans(String keyword){
-		ResultMessage message=serv.searchVan(keyword, user.getOrgId());
+		ResultMessage message=serv.searchVan(keyword, orgId);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
@@ -183,7 +183,7 @@ public class VanListPanel extends JPanel {
 	}
 	
 	private void addVan(){
-		ResultMessage message=serv.getNextId(user.getOrgId());
+		ResultMessage message=serv.getNextId(orgId);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
 			DoHint.hint(result, frame);
@@ -191,13 +191,13 @@ public class VanListPanel extends JPanel {
 		}
 		String id=(String)message.getMessage();
 		InfoFrame info=new InfoFrame("新增车辆");
-		VanVO temp=new VanVO(id,"",Calendar.getInstance(),null,user.getOrgId());
-		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,user));
+		VanVO temp=new VanVO(id,"",Calendar.getInstance(),null,orgId);
+		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,orgId));
 	}
 	private void deleteVan(){
 		int row=table.getSelectedRow();
 		String id=vanList.get(row).getId();
-		Result result = serv.deleteVan(id);
+		Result result = serv.deleteVan(id,name);
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);
@@ -210,7 +210,7 @@ public class VanListPanel extends JPanel {
 		int row=table.getSelectedRow();
 		VanVO temp=vanList.get(row);
 		InfoFrame info=new InfoFrame("查看修改车辆");
-		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,user));
+		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,orgId));
 	}
 	private void checkVan(){
 		
@@ -233,11 +233,11 @@ public class VanListPanel extends JPanel {
 	Result confirmed(VanVO temp){
 		for(int i=0;i<vanList.size();i++){
 			if(vanList.get(i).getId().equals(temp.getId())){
-				Result result=serv.reviseVan(temp);
+				Result result=serv.reviseVan(temp,name);
 				return result;
 			}
 		}
-		Result result = serv.addVan(temp);
+		Result result = serv.addVan(temp,name);
 		if(!result.equals(Result.SUCCESS)){
 			return result;
 		}
