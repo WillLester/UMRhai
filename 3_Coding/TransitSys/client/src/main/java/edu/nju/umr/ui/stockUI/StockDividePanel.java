@@ -46,7 +46,7 @@ public class StockDividePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public StockDividePanel(JFrame fr,String orgId) {
+	public StockDividePanel(JFrame fr,String orgId,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockDivideLogic();
@@ -150,7 +150,7 @@ public class StockDividePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				Result result = logicSer.deleteShelf(shelfList.get(table.getSelectedRow()).getId());
+				Result result = logicSer.deleteShelf(shelfList.get(table.getSelectedRow()).getId(),name);
 				fresh(result);
 			}
 		});
@@ -167,10 +167,10 @@ public class StockDividePanel extends JPanel{
 				if(isLegal()){
 					ShelfVO shelf = new ShelfVO(idField.getText(), Integer.parseInt(rowField.getText()), Integer.parseInt(placeField.getText()), EnumTransFactory.getPart((String)partCombo.getSelectedItem()));
 					if(table.getSelectedRow() >= shelfList.size()){				
-						Result result = logicSer.addShelf(shelf);
+						Result result = logicSer.addShelf(shelf,name);
 						fresh(result);
 					} else {
-						Result result = logicSer.reviseShelf(shelf);
+						Result result = logicSer.reviseShelf(shelf,name);
 						fresh(result);
 					}
 				}

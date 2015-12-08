@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockDivideDFacSer;
 import edu.nju.umr.dataService.stockDSer.StockDivideDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
@@ -18,7 +20,7 @@ import edu.nju.umr.vo.ShelfVO;
 public class StockDivideLogic implements StockDivideLSer{
 	private StockDivideDFacSer dataFac;
 	private StockDivideDSer checkData;
-	
+	private DiaryUpdateLSer diarySer;
 	public StockDivideLogic(){
 		try{
 		dataFac=(StockDivideDFacSer)Naming.lookup(Url.URL);
@@ -33,6 +35,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		{
 			e.printStackTrace();
 		}
+		diarySer = new DiaryUpdateLogic();
 	}
 
 	public ResultMessage searchShelf(String id,String keyword) {
@@ -57,11 +60,12 @@ public class StockDivideLogic implements StockDivideLSer{
 		return message;
 	}
 
-	public Result addShelf(ShelfVO shelf) {
+	public Result addShelf(ShelfVO shelf,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try {
 			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful = diarySer.addDiary("添加了架"+shelf.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
@@ -71,12 +75,13 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteShelf(String id) {
+	public Result deleteShelf(String id,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try
 		{
 			isSuccessful=checkData.deleteShelf(id);
+			isSuccessful = diarySer.addDiary("删除了架"+id, name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -85,12 +90,13 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseShelf(ShelfVO shelf) {
+	public Result reviseShelf(ShelfVO shelf,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try
 		{
 			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful = diarySer.addDiary("修改了架"+shelf.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e)
@@ -99,20 +105,5 @@ public class StockDivideLogic implements StockDivideLSer{
 		}
 		return isSuccessful;
 	}
-
-//	public ResultMessage checkShelf(String id) {
-//		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
-//		ShelfPO shelf=null;
-//		try{
-//			shelf=checkData.getShelf(id);
-//			isSuccessful=true;
-//		}catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		ResultMessage message = new ResultMessage(isSuccessful, new ShelfVO(shelf.getId(),shelf.getRow(),shelf.getPlace(),shelf.getPart()));
-//		return message;
-//	}
 
 }
