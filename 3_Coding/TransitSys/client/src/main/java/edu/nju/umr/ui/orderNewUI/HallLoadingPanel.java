@@ -234,6 +234,7 @@ public class HallLoadingPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
 				model.addRow(new String[]{expressIdField.getText()});
 				expressIdList.add(expressIdField.getText());
 				expressIdField.setText("");
@@ -404,5 +405,12 @@ public class HallLoadingPanel extends JPanel {
 			if(!co.getName().equals("cancel"))
 			co.setEnabled(enabled);
 		}
+	}
+	public static void main(String [] args)
+	{
+		JFrame frame=new JFrame();
+		frame.setContentPane(new HallLoadingPanel(frame,null,null,null,null));
+		frame.setSize(1200,800);
+		frame.setVisible(true);
 	}
 }

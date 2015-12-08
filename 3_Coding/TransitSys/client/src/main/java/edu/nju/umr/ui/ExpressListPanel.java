@@ -16,9 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import edu.nju.umr.ui.orderNewUI.PriceCount;
 import edu.nju.umr.ui.utility.CheckLegal;
 
 public class ExpressListPanel extends JPanel{
@@ -30,6 +33,29 @@ public class ExpressListPanel extends JPanel{
 	private JList<String> expressList;
 	private DefaultListModel<String> model;
 	private JFrame frame;
+	private PriceCount faPanel;
+	public ExpressListPanel(JFrame fr,PriceCount fa)
+	{
+		this(fr);
+		faPanel=fa;
+		model.addListDataListener(new ListDataListener(){@Override
+		public void contentsChanged(ListDataEvent e) {
+			// TODO Auto-generated method stub
+			faPanel.getPrice();
+		}
+
+		@Override
+		public void intervalAdded(ListDataEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void intervalRemoved(ListDataEvent e) {
+			// TODO Auto-generated method stub
+			
+		}});
+	}
 	public ExpressListPanel(JFrame fr) {
 		// TODO 自动生成的构造函数存根
 		frame = fr;

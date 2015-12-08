@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -28,7 +29,7 @@ import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
-public class CenterLoadingPanel extends JPanel {
+public class CenterLoadingPanel extends JPanel implements PriceCount{
 	/**
 	 * 
 	 */
@@ -201,7 +202,7 @@ public class CenterLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 		
-		expressList = new ExpressListPanel(frame);
+		expressList = new ExpressListPanel(frame,this);
 		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		add(expressList);
 	}
@@ -252,16 +253,16 @@ public class CenterLoadingPanel extends JPanel {
 		}
 		return true;
 	}
-	private void getPrice(){
-		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem(),null);
+	public void getPrice(){
+		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem(),expressList.getExpresses());
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 		{
 			DoHint.hint(result, frame);
 			return;
 		}
-		double price=(double)message.getMessage();
-		costField.setText(Double.toString(price));
+		BigDecimal price=(BigDecimal)message.getMessage();
+		costField.setText(price.toString());
 	}
 	public void setEnabled(boolean enabled)
 	{

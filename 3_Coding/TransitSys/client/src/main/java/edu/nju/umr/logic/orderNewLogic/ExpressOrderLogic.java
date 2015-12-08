@@ -1,5 +1,6 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -50,29 +51,36 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		}
 		return isSuc;
 	}
-	public String getPriceAndTime(String city1,String city2,int expressKind,int pakKind,double weight){
-		String distance=uti.getDistance(city1, city2).toString();
-		double dis=Double.parseDouble(distance);
-		double wei=weight;
+	public String getPrice(String city1,String city2,int expressKind,int pakKind,double weight){
+		BigDecimal distance=uti.getDistance(city1, city2);
 		ResultMessage message=uti.getExpressCost();
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 			return null;
 		@SuppressWarnings("unchecked")
 		ArrayList<Integer> pri= (ArrayList<Integer>)message.getMessage();
-		double price=dis*(dis/1000*(pri.get(expressKind)))*wei;
+//		double price=dis*(dis/1000*(pri.get(expressKind)))*weight;
+		BigDecimal price=distance.multiply(distance);
+		price=price.divide(new BigDecimal(1000));
+		price=price.multiply(new BigDecimal(pri.get(expressKind)));
+		price=price.multiply(new BigDecimal(weight));
 		double []pakp=new double[]{5,10,1};
-		price+=pakp[pakKind];
+		price.add(new BigDecimal(pakp[pakKind]));
+		return price.toString();
+	}
+	public String getTime(String city1,String city2)
+	{
+		BigDecimal distance=uti.getDistance(city1, city2);
 		int [][]timeCount=new int[][]{{0,100,1},{100,400,2},{400,900,3},{900,0x7fffffff,4}};
-		double time=-1;
+		int time=-1;
 		for(int i=0;i<4;i++)
 		{
-			if(dis>timeCount[i][0]&&dis<=timeCount[i][1])
+			if(distance.compareTo(new BigDecimal(timeCount[i][0]))>0&&distance.compareTo(new BigDecimal(timeCount[i][1]))<=0)
 			{
 				time=timeCount[i][2];
 				break;
 			}
 		}
-		return price+";"+time;
+		return Integer.toString(time);
 	}
 }

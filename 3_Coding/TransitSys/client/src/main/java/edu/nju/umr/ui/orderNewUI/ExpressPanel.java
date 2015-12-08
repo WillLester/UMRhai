@@ -605,19 +605,29 @@ public class ExpressPanel extends JPanel {
 			co.setEnabled(enabled);
 		}
 	}
-	public void getPriceAndTime()
+	public void getPrice()
 	{
 		String city1=senderLoc.getCity();
 		String city2=receiverLoc.getCity();
+		if(city1.isEmpty())return;
+		if(city2.isEmpty())return;
 		if(weightField.getText().isEmpty())return;
 		if(volumnField.getText().isEmpty())return;
 
 		double weight=Double.parseDouble(weightField.getText());
 		
 		weight=Double.max(weight, Double.parseDouble(volumnField.getText())/5000);
-		String data=logicSer.getPriceAndTime(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex(),weight);
-		costField.setText(data.split(";")[0]+"元");
-		arriveField.setText(data.split(";")[1]+"天");
+		String data=logicSer.getPrice(city1, city2,expressKindCombo.getSelectedIndex(),pakKindCombo.getSelectedIndex(),weight);
+		costField.setText(data+"元");
+	}
+	public void getTime()
+	{
+		String city1=senderLoc.getCity();
+		String city2=receiverLoc.getCity();
+		if(city1.isEmpty())return;
+		if(city2.isEmpty())return;
+		String data=logicSer.getTime(city1, city2);
+		arriveField.setText(data+"天");
 	}
 	private void getVol(){
 		if(lengthField.getText().isEmpty())return;
@@ -632,7 +642,8 @@ public class ExpressPanel extends JPanel {
 		}
 		public void focusLost(FocusEvent e) {
 			getVol();
-			getPriceAndTime();
+			getPrice();
+			getTime();
 		}
 	}
 }
