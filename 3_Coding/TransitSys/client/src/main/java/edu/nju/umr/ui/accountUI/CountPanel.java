@@ -39,7 +39,7 @@ public class CountPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public CountPanel(JFrame fr) {
+	public CountPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer=new CountLogic();
@@ -57,7 +57,7 @@ public class CountPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				Result result = logicSer.newCount();
+				Result result = logicSer.newCount(name);
 				if(result.equals(Result.SUCCESS)){
 					fresh();
 				} else {
@@ -74,7 +74,7 @@ public class CountPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				Result result = logicSer.deleteCount(table.getSelectedRow());
+				Result result = logicSer.deleteCount(table.getSelectedRow(),name);
 				if(result.equals(Result.SUCCESS)){
 					fresh();
 				} else {

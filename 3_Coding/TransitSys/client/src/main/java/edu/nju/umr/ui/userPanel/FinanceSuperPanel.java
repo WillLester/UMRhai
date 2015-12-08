@@ -128,7 +128,7 @@ public class FinanceSuperPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("期初建账");
-				fr.setContentPane(new CountPanel(fr));
+				fr.setContentPane(new CountPanel(fr,user.getName()));
 			}
 		});
 		

@@ -10,6 +10,8 @@ import java.util.Calendar;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.dataFactory.CountDFacSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.AccountPO;
@@ -26,6 +28,7 @@ public class CountLogic implements CountLSer{
 	private CountDSer countData;
 	private UtilityLogic uti=new UtilityLogic();
 	private ArrayList<CountPO> countPO=new ArrayList<CountPO>();
+	private DiaryUpdateLSer diarySer;
 	public CountLogic() {
 		try{
 			countFac = (CountDFacSer)Naming.lookup(Url.URL);
@@ -38,8 +41,9 @@ public class CountLogic implements CountLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result newCount() {		
+	public Result newCount(String name) {		
 		ArrayList<OrgPO> orgList=null;
 		ArrayList<WorkPO> workList=null;
 		ArrayList<VanPO> vanList=null;
@@ -59,6 +63,7 @@ public class CountLogic implements CountLSer{
 		CountPO count=new CountPO(0,orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
 		try {
 			Result result=countData.addCount(count);
+			result = diarySer.addDiary("新增账", name);
 			return result;
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -80,11 +85,12 @@ public class CountLogic implements CountLSer{
 		return new ResultMessage(result,countPO);
 	}
 	@Override
-	public Result deleteCount(int index) {
+	public Result deleteCount(int index,String name) {
 		CountPO cp=countPO.get(index);
 		Result result=Result.DATA_NOT_FOUND;
 		try {
 			result=countData.deleteCount(cp.getId());
+			result = diarySer.addDiary("删除账"+cp.getId(), name);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
