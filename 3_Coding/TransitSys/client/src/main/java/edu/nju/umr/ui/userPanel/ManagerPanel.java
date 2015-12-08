@@ -64,7 +64,7 @@ public class ManagerPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("常量制定");
-				fr.setContentPane(new ConstantPanel(fr));
+				fr.setContentPane(new ConstantPanel(fr,user.getName()));
 			}
 		});
 		

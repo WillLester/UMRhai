@@ -8,6 +8,8 @@ import java.rmi.RemoteException;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.cityDSer.ConstantDSer;
 import edu.nju.umr.dataService.dataFactory.ConstantDFacSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.ConstantPO;
@@ -18,6 +20,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class ConstantLogic implements ConstantLSer{
 	private ConstantDFacSer dataFac;
 	private ConstantDSer constantData;
+	private DiaryUpdateLSer diarySer;
 	public ConstantLogic()
 	{
 		try{
@@ -30,14 +33,15 @@ public class ConstantLogic implements ConstantLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result setConstant(ConstantVO constant)
+	public Result setConstant(ConstantVO constant,String name)
 	{
 		Result isSuc=Result.SUCCESS;
-		
 		ConstantPO po=VPFactory.toConstantPO(constant);
 			try {
 				isSuc=constantData.setConstant(po);
+				isSuc = diarySer.addDiary("设置了常量",name);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -38,7 +38,7 @@ public class ConstantPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ConstantPanel(JFrame fr) {
+	public ConstantPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ConstantLogic();
@@ -203,7 +203,7 @@ public class ConstantPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.setConstant(createConstant());
+					Result result = logicSer.setConstant(createConstant(),name);
 					if(result.equals(Result.SUCCESS)){
 						frame.dispose();
 					} else {
