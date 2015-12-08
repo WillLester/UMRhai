@@ -517,8 +517,7 @@ public class UtilityLogic {
 		BigDecimal distance= new BigDecimal(0);//城市间距离
 		BigDecimal price = new BigDecimal(0);//城市间价格
 		ResultMessage costMessage = getTransitCost();
-		if(!costMessage.getReInfo().equals(Result.SUCCESS))
-		{
+		if(!costMessage.getReInfo().equals(Result.SUCCESS)){
 			return costMessage;
 		}
 		@SuppressWarnings("unchecked")
@@ -553,11 +552,19 @@ public class UtilityLogic {
 		//不在同一城市
 		try{
 			distance= getDistance(city1, city2);
-		}catch(Exception e)
-		{
+		}catch(Exception e){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		price= new BigDecimal(cost);
 		return new ResultMessage(isSuc,distance.multiply(price));
+	}
+	
+	/**
+	 * 根据订单列表获得总重量
+	 * @param expressList List<String>形式的订单号列表
+	 * @return ResultMessage，包含了一个BigDecimal形式的总重量
+	 */
+	public ResultMessage getTotalWeight(List<String> expressList){
+		return null;
 	}
 }
