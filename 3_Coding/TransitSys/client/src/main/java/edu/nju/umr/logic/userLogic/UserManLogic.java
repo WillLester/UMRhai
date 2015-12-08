@@ -4,6 +4,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
@@ -17,23 +19,28 @@ public class UserManLogic implements UserManLSer{
 	private UserManDFacSer dataFac;
 	private UserManDSer userData;
 	private ArrayList<UserPO> users;
+	private DiaryUpdateLSer diarySer;
 	public UserManLogic(){
 		try{
-		dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
-		userData=dataFac.getUserMan();
-		users=userData.findUser(null);
+			dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
+			userData=dataFac.getUserMan();
+			users=userData.findUser(null);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		diarySer = new DiaryUpdateLogic();
 	}
 	
-	public Result newUser(UserVO user) {
+	public Result newUser(UserVO user,String name) {
 		Result isSuccessful=Result.DATABASE_ERROR;
 			try {
-				if(userData.checkIsUsed(user.getId())==Result.SUCCESS)
+				if(userData.checkIsUsed(user.getId())==Result.SUCCESS){
 					isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
-				else return Result.ID_IS_USED;
+					isSuccessful = diarySer.addDiary("新增用户"+user.getId(), name);
+				} else {
+					return Result.ID_IS_USED;
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
@@ -42,10 +49,11 @@ public class UserManLogic implements UserManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteUser(String id) {
+	public Result deleteUser(String id,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=userData.deleteUser(id);
+			isSuccessful = diarySer.addDiary("删除用户"+id, name);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
@@ -54,11 +62,12 @@ public class UserManLogic implements UserManLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseUser(UserVO user,int index) {
+	public Result reviseUser(UserVO user,int index,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		UserPO userpo=users.get(index);
 		try{
 			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),userpo.getKey(),user.getOrgId()));
+			isSuccessful = diarySer.addDiary("修改了用户"+user.getId(), name);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();

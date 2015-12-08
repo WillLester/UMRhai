@@ -27,7 +27,7 @@ public class AdministerPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("用户管理");
-				ffr.setContentPane(new UserListPanel(ffr));
+				ffr.setContentPane(new UserListPanel(ffr,user.getName()));
 			}
 		});
 		this.add(userMangButton);

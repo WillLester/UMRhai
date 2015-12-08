@@ -51,13 +51,15 @@ public class UserListPanel extends JPanel {
 	private UserManLSer serv;
 	
 	private ArrayList<UserVO> users;
+	private String name;
 	/**
 	 * Create the panel.
 	 */
-	public UserListPanel(JFrame fr) {
+	public UserListPanel(JFrame fr,String name) {
 		serv=new UserManLogic();
 		frame=fr;
 		setLayout(null);
+		this.name = name;
 		
 		JLabel accountLabel = new JLabel("用户管理");
 		accountLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -303,7 +305,7 @@ public class UserListPanel extends JPanel {
 		UserVO user = users.get(table.getSelectedRow());
 		if(row<users.size()){
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
-			Result result=serv.reviseUser(now,row);
+			Result result=serv.reviseUser(now,row,name);
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
@@ -312,7 +314,7 @@ public class UserListPanel extends JPanel {
 			}
 		} else {
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
-			Result result=serv.newUser(now);
+			Result result=serv.newUser(now,name);
 			if(result.equals(Result.SUCCESS)){
 				users.add(now);
 				displayUsers();
@@ -328,7 +330,7 @@ public class UserListPanel extends JPanel {
 		if(row<0||row>=users.size()){
 			return;
 		}
-		Result result=serv.deleteUser(users.get(row).getId());
+		Result result=serv.deleteUser(users.get(row).getId(),name);
 		if(result.equals(Result.SUCCESS)){
 			users.remove(row);
 			table.getSelectionModel().setSelectionInterval(row-1, row-1);
