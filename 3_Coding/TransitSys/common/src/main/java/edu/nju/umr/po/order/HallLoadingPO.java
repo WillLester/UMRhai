@@ -92,7 +92,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		switch(op){
 		case INSERT:command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+userId+"')";break;
 		case DELETE:break;
-		case FIND:command = "select * from halllorderwaiting where id='"+id+"'";break;
+		case FIND:command = "select * from halllorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
 		}
 		return command;

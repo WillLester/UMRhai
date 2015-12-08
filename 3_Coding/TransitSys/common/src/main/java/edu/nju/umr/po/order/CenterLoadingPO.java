@@ -83,7 +83,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+
 		DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+userId+"')";break;
 		case DELETE:break;
-		case FIND:break;
+		case FIND:command="select * from centerlorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
 		}
 		return command;

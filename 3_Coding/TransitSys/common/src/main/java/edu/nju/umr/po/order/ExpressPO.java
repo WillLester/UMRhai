@@ -200,7 +200,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"+kind.ordinal()+","+cost+",'"+realReceiver+"',"+DateFormat.TIME.format(receiveTime.getTime())+",'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+
 				",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"','"+userId+"')";break;
 		case DELETE:break;
-		case FIND:command="select * from expressorderwaiting where id='"+id+"'";break;
+		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:command="update expressorderpassed set realReceiver = '"+realReceiver+"',receiveTime ='"+DateFormat.TIME.format(receiveTime.getTime())+"' where id ='"+id+"'";break;
 		}
 		return command;
