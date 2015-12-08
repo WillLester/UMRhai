@@ -60,14 +60,6 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 
 	public ResultMessage getHalls() {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> halls = null;
-//		try {
-//			halls = centerData.getHalls();
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, halls);
 		ResultMessage rm=uti.getHall();
 		if(rm.getReInfo()!=Result.SUCCESS){
 			return new ResultMessage(Result.NET_INTERRUPT,null);

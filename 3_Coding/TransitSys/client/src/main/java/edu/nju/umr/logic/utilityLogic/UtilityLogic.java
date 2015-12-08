@@ -30,6 +30,7 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -499,12 +500,22 @@ public class UtilityLogic {
 			return null;
 		}
 	}
-	public ResultMessage getPrice(String org1, String org2,int transit,double weight) {
+	
+	/**
+	 * 获得机构之间的运费
+	 * @param org1 机构1
+	 * @param org2 机构2
+	 * @param transit Transit类型，飞机，铁路，公路
+	 * @param weight 总重量 BigDecimal
+	 * @see edu.nju.umr.po.enums.Transit
+	 * @return
+	 */
+	public ResultMessage getPrice(String org1, String org2,Transit transit,BigDecimal weight) {
 		String city1=null;
 		String city2=null;//两个机构所属城市名称
 		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取机构列表
-		double distance=0;//城市间距离
-		double price=0;//城市间价格
+		BigDecimal distance= new BigDecimal(0);//城市间距离
+		BigDecimal price = new BigDecimal(0);//城市间价格
 		ResultMessage costMessage = getTransitCost();
 		if(!costMessage.getReInfo().equals(Result.SUCCESS))
 		{
@@ -512,10 +523,10 @@ public class UtilityLogic {
 		}
 		@SuppressWarnings("unchecked")
 		ArrayList<Double> temp=(ArrayList<Double>)costMessage.getMessage();
-		double PRICE=temp.get(transit);
+		double cost = temp.get(transit.ordinal());
 		Result isSuc=Result.DATA_NOT_FOUND;
 		try {
-			orgs=orgs();
+			orgs = orgs();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
@@ -541,12 +552,12 @@ public class UtilityLogic {
 			return new ResultMessage(Result.SUCCESS,100);//固定值暂定为100
 		//不在同一城市
 		try{
-		distance=utilityData.getCitesPO(city1,city2).getDistance();
+			distance= getDistance(city1, city2);
 		}catch(Exception e)
 		{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		price=PRICE;
-		return new ResultMessage(isSuc,price*distance);
+		price= new BigDecimal(cost);
+		return new ResultMessage(isSuc,distance.multiply(price));
 	}
 }
