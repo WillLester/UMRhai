@@ -59,7 +59,12 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			couriers = uti.getCouriers(id);
+			String[] cour= new String[couriers.size()];
+			for(int i = 0;i < cour.length;i++){
+				cour[i] = couriers.get(i);
+			}
 			isSuc=Result.SUCCESS;
+			return new ResultMessage(isSuc, cour);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);

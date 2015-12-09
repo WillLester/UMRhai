@@ -95,9 +95,9 @@ public class IncomePanel extends JPanel {
 		}
 		add(courierCombo);
 		
-		JLabel amountLabel = new JLabel("金额");
+		JLabel amountLabel = new JLabel("金额/元");
 		amountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		amountLabel.setBounds(560+40, 175, 85, 24);
+		amountLabel.setBounds(560, 175, 85, 24);
 		add(amountLabel);
 		
 		amountField = new JTextField();
@@ -107,7 +107,7 @@ public class IncomePanel extends JPanel {
 		add(amountField);
 
 		expressList = new ExpressListPanel(frame);
-		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		expressList.setBounds(280, 200, 700, 350);
 		add(expressList);
 		
 		JButton confirmButton = new JButton("确定");
