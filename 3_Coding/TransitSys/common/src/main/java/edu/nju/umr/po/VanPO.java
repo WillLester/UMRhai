@@ -1,11 +1,16 @@
 package edu.nju.umr.po;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import sun.misc.BASE64Decoder;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.MysqlOperation;
 
+@SuppressWarnings("restriction")
 public class VanPO extends PO implements Serializable{
 	/**
 	 * 
@@ -47,6 +52,7 @@ public class VanPO extends PO implements Serializable{
 		String command=null;
 		switch(op){
 		case INSERT:
+			savePic();
 			command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+"vanImage/"+hallId+"/"+id+".jpg"+"','"+hallId+"')";break;
 		case DELETE:command="delete from van where id='"+id+"'";break;
 		case FIND:
@@ -59,5 +65,26 @@ public class VanPO extends PO implements Serializable{
 		case UPDATE:command="update van set plateNum='"+plateNum+"',servTime='"+DateFormat.DATE.format(servTime.getTime())+"',photo = 'vanImage/"+hallId+"/"+id+".jpg"+"',hallId = '"+hallId+"' where id='"+id+"'";break;
 		}
 		return command;
+	}
+	
+	private void savePic(){
+		BASE64Decoder decoder = new BASE64Decoder();
+		byte[] bytes;
+		try {
+			bytes = decoder.decodeBuffer(photo);
+			for(int i=0;i<bytes.length;i++){
+				if(bytes[i]<0){
+					bytes[i]+=256;
+				}
+			}
+			OutputStream out = new FileOutputStream("vanImage/"+hallId+"/"+id+".jpg");
+			out.write(bytes);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
 	}
 }

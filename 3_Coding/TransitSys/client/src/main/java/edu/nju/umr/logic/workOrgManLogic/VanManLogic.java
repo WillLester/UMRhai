@@ -85,7 +85,7 @@ public class VanManLogic implements VanManLSer{
 		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=vanData.findVan(keyword,hallId);
-			if(result != null){
+			if(ar != null){
 				result=Result.SUCCESS;
 			} else {
 				return new ResultMessage(Result.DATA_NOT_FOUND, null);

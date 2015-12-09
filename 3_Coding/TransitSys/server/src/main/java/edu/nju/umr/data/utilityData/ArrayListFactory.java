@@ -127,6 +127,7 @@ public class ArrayListFactory {
 				} catch (IOException e) {
 					// TODO 自动生成的 catch 块
 					in.close();
+					e.printStackTrace();
 					return null;
 				}  
 				in.close();
@@ -139,12 +140,15 @@ public class ArrayListFactory {
 			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return null;
 		} catch (FileNotFoundException e1) {
 			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
 			return null;
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return null;
 		}
 		return vanList;
