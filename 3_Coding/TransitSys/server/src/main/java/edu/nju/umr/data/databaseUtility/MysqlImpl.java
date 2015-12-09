@@ -401,12 +401,21 @@ public class MysqlImpl implements MysqlService{
 	public ResultSet checkUnpassed(OrderOper order) {
 		// TODO 自动生成的方法存根
 		try {
-			ResultSet result = state.executeQuery(order.getUnpassed());
-			state.executeUpdate(order.getDeleteUnpassed());
+			ResultSet result = state.executeQuery(order.getUnpassed());	
 			return result;
 		} catch (SQLException e){
 			e.printStackTrace();
 			return null;
+		}
+	}
+	@Override
+	public void deleteUnpassed(OrderOper order) {
+		// TODO 自动生成的方法存根
+		try {
+			state.executeUpdate(order.getDeleteUnpassed());
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 		}
 	}
 }
