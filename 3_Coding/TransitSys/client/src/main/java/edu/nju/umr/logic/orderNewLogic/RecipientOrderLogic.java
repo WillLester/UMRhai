@@ -61,7 +61,18 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-		return uti.getCities();
+		ResultMessage message = uti.getCities();
+		if(message.getReInfo() == Result.SUCCESS){
+			@SuppressWarnings("unchecked")
+			List<String> list = (List<String>) message.getMessage();
+			String[] cityList = new String[list.size()];
+			for(int i = 0;i < list.size();i++){
+				cityList[i] = list.get(i);
+			}
+			return new ResultMessage(Result.SUCCESS, cityList);
+		} else {
+			return new ResultMessage(message.getReInfo(), null);
+		}
 		
 	}
 	@Override

@@ -106,12 +106,12 @@ public class HallLoadingPanel extends JPanel {
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitIdLabel.setBounds(355+75, 87, 120, 24);
+		transitIdLabel.setBounds(355, 87, 120, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new JTextField();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitIdField.setBounds(485+75, 87, 165, 25);
+		transitIdField.setBounds(485, 87, 250, 25);
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		
