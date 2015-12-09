@@ -138,6 +138,11 @@ public class HallLoadingPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				getPrice();
 			}});
+		ResultMessage message = serv.getLocalHallAndAllCenter(orgId);
+		if(message.getReInfo() == Result.SUCCESS){
+			String[] orgs = (String[]) message.getMessage();
+			comboBoxDestination.setModel(new DefaultComboBoxModel<String>(orgs));
+		}
 		add(comboBoxDestination);
 		
 		JLabel superviseLabel = new JLabel("监装员");
