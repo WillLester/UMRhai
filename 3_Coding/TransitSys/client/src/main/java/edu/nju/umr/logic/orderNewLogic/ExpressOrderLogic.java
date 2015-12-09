@@ -13,6 +13,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
@@ -42,6 +43,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
             e.printStackTrace();   
         } 
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(ExpressVO order,String org) {
 		// TODO 自动生成的方法存根
