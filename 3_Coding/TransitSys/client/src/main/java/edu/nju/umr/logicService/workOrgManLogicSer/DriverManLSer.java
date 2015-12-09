@@ -38,4 +38,9 @@ public interface DriverManLSer {
 	 * @see DriverVO
 	 */
 	public ResultMessage searchDriver(String hallId);//司机没有关键词搜索，所以只有机构
+	/**
+	 * 获得新增司机的编号
+	 * @return String 司机编号
+	 */
+	public ResultMessage getNextDriver(String hallId);
 }

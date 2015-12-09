@@ -99,5 +99,46 @@ public class DriverManLogic implements DriverManLSer{
 		return message;
 	}
 
+	@Override
+	public ResultMessage getNextDriver(String hallId) {
+		ArrayList<DriverPO> ar = new ArrayList<DriverPO>();
+		Result result=Result.SUCCESS;
+		try
+		{
+			ar=driverData.findDriver(hallId);
+			result=Result.SUCCESS;
+		}catch(Exception e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		for(int i=0;i<ar.size();i++){
+			for(int j=i+1;j<ar.size();j++)
+			{
+				DriverPO left=ar.get(i);
+				DriverPO right=ar.get(j);
+				if(left.getId().compareTo(right.getId())>0)
+				{
+					ar.set(i, right);
+					ar.set(j, left);
+				}
+			}
+		}
+		String id=null;
+		for(int i=0;i<ar.size();i++)
+		{
+			int nowId=Integer.parseInt(ar.get(i).getId().substring(5,9));
+			if(nowId>i)
+			{
+				id=Integer.toString(i);
+				break;
+			}
+		}
+		while(id.length()<3)
+		{
+			id="0"+id;
+		}
+		return new ResultMessage(result,id);
+	}
+
 
 }

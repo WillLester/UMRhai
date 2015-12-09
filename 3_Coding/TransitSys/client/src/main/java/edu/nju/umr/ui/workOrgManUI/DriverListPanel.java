@@ -26,6 +26,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -87,9 +88,21 @@ public class DriverListPanel extends JPanel {
 		JButton add = new JButton("新增");
 		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
 		add.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				InfoFrame fr=new InfoFrame("新增司机信息输入");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO("","",Calendar.getInstance(),"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),orgId),orgId));
+			public void actionPerformed(ActionEvent e)
+			{
+				ResultMessage message = serv.getNextDriver(orgId);
+				Result result = message.getReInfo();
+				if(!result.equals(Result.SUCCESS))
+				{
+					DoHint.hint(result, frame);
+				}
+				else
+				{
+					String nextId=orgId+(String)message.getMessage();
+					InfoFrame fr=new InfoFrame("新增司机信息输入");
+					fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO(nextId,"",Calendar.getInstance(),
+						"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),orgId),orgId));
+				}
 			}
 		});
 		add(add);
