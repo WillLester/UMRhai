@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
@@ -79,18 +77,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {
-		ResultMessage message = uti.getLocalHallAndAllCenter(orgId);
-		if(message.getReInfo() == Result.SUCCESS){
-			@SuppressWarnings("unchecked")
-			ArrayList<OrgVO> orgList = (ArrayList<OrgVO>) message.getMessage();
-			String[] orgs = new String[orgList.size()];
-			for(int i = 0;i < orgs.length;i++){
-				orgs[i] = orgList.get(i).getName();
-			}
-			return new ResultMessage(Result.SUCCESS, orgs);
-		} else {
-			return new ResultMessage(message.getReInfo(), null);
-		}
+		return uti.getLocalHallAndAllCenter(orgId);
 	}
 	@Override
 	public boolean isLegal(String id) {

@@ -136,11 +136,6 @@ public class HallLoadingPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				getPrice();
 			}});
-		ResultMessage message = serv.getLocalHallAndAllCenter(orgId);
-		if(message.getReInfo() == Result.SUCCESS){
-			String[] orgs = (String[]) message.getMessage();
-			comboBoxDestination.setModel(new DefaultComboBoxModel<String>(orgs));
-		}
 		add(comboBoxDestination);
 		
 		JLabel superviseLabel = new JLabel("监装员");
@@ -206,8 +201,9 @@ public class HallLoadingPanel extends JPanel {
 					expressIdList.add(expressIdField.getText());
 					expressIdField.setText("");
 					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
-					if(!getPrice());
+					if(!getPrice())
 					{
+						System.out.println("Invalid!");
 						int row=table.getSelectedRow();
 						model.removeRow(row);
 						expressIdList.remove(row);
@@ -228,11 +224,7 @@ public class HallLoadingPanel extends JPanel {
 		deleteButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				int row=table.getSelectedRow();
-				model.removeRow(row);
-				expressIdList.remove(row);
-				expressIdField.setText("");
+				deleteExpress();
 			}
 		});
 		add(deleteButton);
@@ -265,8 +257,7 @@ public class HallLoadingPanel extends JPanel {
 		});
 		add(cancelButton);
 		tableInit();
-//		dataInit();
-
+		dataInit();
 	}
 	protected void createOrder() {
 		// TODO Auto-generated method stub
@@ -292,10 +283,10 @@ public class HallLoadingPanel extends JPanel {
 				};
 			}
 		});
-		table.setBounds(220+75, 313, 529, 176);
 		table.setFont(new Font("宋体", Font.PLAIN, 20));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
+		
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(220+75, 313, 529, 176);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -309,7 +300,7 @@ public class HallLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 	}
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings("unchecked")
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
@@ -349,13 +340,18 @@ public class HallLoadingPanel extends JPanel {
 			vanListString[i]=vanList.get(i).getId();
 		}
 		comboBoxVan.setModel(new DefaultComboBoxModel<String>(vanListString));
-		
-		
-		
+	}
+	private void deleteExpress(){
+		int row=table.getSelectedRow();
+		if(row<0||row>=table.getRowCount())return;
+		model.removeRow(row);
+		expressIdList.remove(row);
+		expressIdField.setText("");
+		getPrice();
 	}
 	private boolean getPrice(){
 		String des=(String)comboBoxDestination.getSelectedItem();
-		if(des.isEmpty())return false;
+		if(des==null||des.isEmpty())return false;
 		ResultMessage message=serv.getPrice(org, des,expressIdList);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
