@@ -35,7 +35,7 @@ public class OrderRevisePanel extends JPanel{
 	private JFrame frame;
 	private OrderResubmitLSer serv;
 	private ArrayList<OrderVO> orderList;
-
+	private String userId;
 	/**
 	 * Create the panel.
 	 */
@@ -43,6 +43,7 @@ public class OrderRevisePanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		serv=new OrderResubmitLogic();
+		this.userId = userId;
 
 		JLabel reviseLabel = new JLabel("未通过单据");
 		reviseLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -91,16 +92,6 @@ public class OrderRevisePanel extends JPanel{
 	private void tableInit(){
 		table = new ApproveTable(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
-//		table.addMouseListener(new MouseAdapter(){
-//			public void mouseClicked(MouseEvent e){
-//				if(e.getClickCount()>= 1&&table.columnAtPoint(e.getPoint())==0){
-//				int row = table.rowAtPoint(e.getPoint()); 
-//					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
-//						table.setValueAt(false,row, 0);
-//					}
-//					else
-//						table.setValueAt(true,row, 0);
-//			}}});
 		table.setBounds(193, 71, 717, 421);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
