@@ -350,9 +350,11 @@ public class UtilityLogic {
 		}else{
 			centers=(ArrayList<OrgVO>)temp;
 		}
-		if(centers.size()!=0||localHalls.size()!=0)
+		if(centers.size()!=0||localHalls.size()!=0){
 			isSuc=Result.SUCCESS;
-		return new ResultMessage(isSuc,localHalls.addAll(centers));
+		}
+		localHalls.addAll(centers);
+		return new ResultMessage(isSuc,localHalls);
 	}
 	
 	public ArrayList<String> getCouriers(String id) throws RemoteException{
@@ -515,7 +517,7 @@ public class UtilityLogic {
 	 * @param transit Transit类型，飞机，铁路，公路
 	 * @param expressList 订单号列表
 	 * @see edu.nju.umr.po.enums.Transit
-	 * @return
+	 * @return BigDecimal
 	 */
 	public ResultMessage getPrice(String org1, String org2,Transit transit,List<String> expressList) {
 		String city1=null;
@@ -553,13 +555,15 @@ public class UtilityLogic {
 			}
 		}
 		//两机构在同一城市
-		if(city1.equals(city2))
-			return new ResultMessage(Result.SUCCESS,100);//固定值暂定为100
+		if(city1.equals(city2)){
+			distance = new BigDecimal(100);//固定值暂定为100
+		} else {
 		//不在同一城市
-		try{
-			distance= getDistance(city1, city2);
-		}catch(Exception e){
-			return new ResultMessage(Result.NET_INTERRUPT,null);
+			try{
+				distance= getDistance(city1, city2);
+			}catch(Exception e){
+				return new ResultMessage(Result.NET_INTERRUPT,null);
+			}
 		}
 		price= new BigDecimal(cost);
 		try {

@@ -36,11 +36,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
-public class HallLoadingPanel extends JPanel {
+public class Test extends JPanel {
+
 	/**
-	 * 
+	 * Create the panel.
 	 */
-	private static final long serialVersionUID = 165564419345172819L;
 	private JTextField transitIdField;
 	private JTextField superviseField;
 	private JTextField guardField;
@@ -56,6 +56,7 @@ public class HallLoadingPanel extends JPanel {
 	private ArrayList<VanVO> vanList;
 	private JComboBox<String> comboBoxVan;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
+	private double cost;
 	private String userName;
 	private String orgId;
 	private String userId;
@@ -64,7 +65,7 @@ public class HallLoadingPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HallLoadingPanel(JFrame fr,HallLoadingVO vo)
+	public Test(JFrame fr,HallLoadingVO vo)
 	{
 		this(fr,vo.getOpName(),vo.getUserId(),vo.getHallId(),null);
 		for(Component co:this.getComponents())
@@ -83,10 +84,13 @@ public class HallLoadingPanel extends JPanel {
 		datePanel.setDate(vo.getDate());
 		comboBoxDestination.setSelectedItem(vo.getArriveLoc());
 		comboBoxVan.setSelectedItem(vo.getVanId());
-		costField.setText(vo.getCost()+"");
+		priceLabel.setText("运费："+cost);
 		
 	}
-	public HallLoadingPanel(JFrame fr,String userName,String userId,String orgId,String org) {
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public Test(JFrame fr,String userName,String userId,String orgId,String org) {
 		frame=fr;
 		this.userName=userName;
 		this.orgId=orgId;
@@ -271,7 +275,7 @@ public class HallLoadingPanel extends JPanel {
 	protected void createOrder() {
 		// TODO Auto-generated method stub
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId);
+				superviseField.getText(),guardField.getText(),expressIdList,cost,datePanel.getCalendar(),userName,userId);
 		Result result=serv.create(vo,org);
 		if(!result.equals(Result.SUCCESS))
 		{
@@ -363,7 +367,7 @@ public class HallLoadingPanel extends JPanel {
 			return false;
 		}
 		BigDecimal price=(BigDecimal)message.getMessage();
-		costField.setText(price.toString());
+		priceLabel.setText("运费/元"+price.toString());
 		return true;
 	}
 	public void setEnabled(boolean enabled)

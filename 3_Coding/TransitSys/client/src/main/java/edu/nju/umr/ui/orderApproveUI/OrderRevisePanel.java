@@ -33,7 +33,6 @@ public class OrderRevisePanel extends JPanel{
 	private ApproveTable table;
 	private DefaultTableModel model;
 	private JFrame frame;
-	private String userId;
 	private OrderResubmitLSer serv;
 	private ArrayList<OrderVO> orderList;
 
@@ -43,7 +42,6 @@ public class OrderRevisePanel extends JPanel{
 	public OrderRevisePanel(JFrame fr,String userId) {
 		setLayout(null);
 		frame=fr;
-		this.userId=userId;
 		serv=new OrderResubmitLogic();
 
 		JLabel reviseLabel = new JLabel("未通过单据");
