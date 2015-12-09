@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.logic.orderNewLogic.RecipientOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
@@ -63,6 +64,7 @@ public class RecipientPanel extends JPanel {
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
+		logicSer = new RecipientOrderLogic();
 		
 		JLabel titleLabel = new JLabel("营业厅到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
