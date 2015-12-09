@@ -38,26 +38,18 @@ public class ExpressListPanel extends JPanel{
 	{
 		this(fr);
 		faPanel=fa;
-		model.addListDataListener(new ListDataListener(){@Override
+		model.addListDataListener(new ListDataListener(){
 		public void contentsChanged(ListDataEvent e) {
-			// TODO Auto-generated method stub
 			faPanel.getPrice();
 		}
-
-		@Override
 		public void intervalAdded(ListDataEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
-
-		@Override
 		public void intervalRemoved(ListDataEvent e) {
-			// TODO Auto-generated method stub
 			
 		}});
 	}
 	public ExpressListPanel(JFrame fr) {
-		// TODO 自动生成的构造函数存根
 		frame = fr;
 		setLayout(null);
 		
@@ -80,9 +72,9 @@ public class ExpressListPanel extends JPanel{
 		newExpButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
 				if(isExpressLegal()){
 					model.addElement(expressField.getText());
+					expressList.setModel(model);
 				}
 			}
 		});
@@ -101,7 +93,6 @@ public class ExpressListPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
 				model.remove(expressList.getSelectedIndex());
 			}
 		});
@@ -115,7 +106,6 @@ public class ExpressListPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
 				if(isExpressLegal()){
 					model.set(expressList.getSelectedIndex(), expressField.getText());
 				}
@@ -123,17 +113,15 @@ public class ExpressListPanel extends JPanel{
 		});
 		add(modifyButton);
 		
-		JScrollPane scroll = new JScrollPane();
-		expressList = new JList<String>();
-		expressList.setBounds(306, 320, 489, 165);
 		model = new DefaultListModel<String>();
+		expressList = new JList<String>(model);
+		JScrollPane scroll = new JScrollPane(expressList);
 		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		expressList.setModel(model);
+		
 		expressList.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				// TODO 自动生成的方法存根
 				if(arg0.getValueIsAdjusting() == false){
 					if(expressList.getSelectedIndex() == -1){
 						deleteButton.setEnabled(false);
@@ -153,7 +141,7 @@ public class ExpressListPanel extends JPanel{
 	}
 	private boolean isExpressLegal(){
 		String info = CheckLegal.isExpressLegal(expressField.getText());
-		if(!info.equals(null)){
+		if(info!=null){
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(info, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
