@@ -55,7 +55,6 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, 0);
 		}
-		System.out.println(orderList.size());
 		return new ResultMessage(Result.SUCCESS, orderList.size());
 	}
 

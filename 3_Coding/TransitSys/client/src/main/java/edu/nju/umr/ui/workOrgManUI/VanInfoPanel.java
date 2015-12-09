@@ -142,7 +142,7 @@ public class VanInfoPanel extends JPanel {
 		textFieldPlate.setText(van.getPlateNum());
 		servTime.setDate(van.getServTime());
 		imageString=van.getPhoto();
-		if(!imageString.equals(null)){
+		if(imageString!=null){
 			baseCodeToImage(imageString);
 			showpic();
 		}

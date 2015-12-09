@@ -110,8 +110,16 @@ public class VanManLogic implements VanManLSer{
 			if(x2-x1>1)
 				return new ResultMessage(Result.SUCCESS,x1+1+"");
 		}
-		int x=Integer.parseInt(ar.get(ar.size()-1).getId());
-		return new ResultMessage(Result.SUCCESS,x+1+"");
+		int x=-1;
+		if(ar.size()>0)
+		{
+			x=Integer.parseInt(ar.get(ar.size()-1).getId());
+			return new ResultMessage(Result.SUCCESS,x+1+"");
+		}
+		else
+		{
+			return new ResultMessage(Result.SUCCESS,hallId+"001");
+		}
 	}
 
 }
