@@ -173,7 +173,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 				IncomePO ip=(IncomePO)approveData.getOrder(id, kind);
 				iv=VPFactory.toIncomeVO(ip);
 				if(ip!=null)
-					hallSuc=Result.SUCCESS;
+					iSuc=Result.SUCCESS;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
