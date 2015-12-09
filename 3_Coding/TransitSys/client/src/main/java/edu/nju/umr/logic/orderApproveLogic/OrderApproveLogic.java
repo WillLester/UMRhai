@@ -172,11 +172,12 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			try {
 				IncomePO ip=(IncomePO)approveData.getOrder(id, kind);
 				iv=VPFactory.toIncomeVO(ip);
-				if(ip!=null)
-					hallSuc=Result.SUCCESS;
+				if(iv!=null)
+				{
+					iSuc=Result.SUCCESS;
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				return new ResultMessage(Result.NET_INTERRUPT,null);
 			}
 			return new ResultMessage(iSuc,iv);

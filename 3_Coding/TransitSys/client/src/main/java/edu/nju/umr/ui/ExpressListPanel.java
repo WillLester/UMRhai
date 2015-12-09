@@ -126,7 +126,7 @@ public class ExpressListPanel extends JPanel{
 					if(expressList.getSelectedIndex() == -1){
 						deleteButton.setEnabled(false);
 						modifyButton.setEnabled(false);
-					} else {
+					} else if(newExpButton.isEnabled()){
 						deleteButton.setEnabled(true);
 						modifyButton.setEnabled(true);
 						expressField.setText(model.get(expressList.getSelectedIndex()));
