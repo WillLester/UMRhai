@@ -145,7 +145,7 @@ public class OrderApprovePanel extends JPanel{
 		model=(MyTableModel)table.getModel();
 		table.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				if(e.getClickCount()>= 1&&table.columnAtPoint(e.getPoint())==0){
+				if(e.getClickCount()>= 1){
 				int row = table.rowAtPoint(e.getPoint()); 
 					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
 						table.setValueAt(false,row, 0);
