@@ -92,9 +92,9 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into stockoutorderpassed from stockoutorderwaiting where id="+id;
+			return "insert into stockoutorderpassed select * from stockoutorderwaiting where id="+id;
 		} else {
-			return "insert into stockoutorderunpassed from stockoutorderwaiting where id="+id;
+			return "insert into stockoutorderunpassed select * from stockoutorderwaiting where id="+id;
 		}
 	}
 	@Override

@@ -11,6 +11,8 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
@@ -24,6 +26,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private RecipientOrderDSer recipientData;
 	private UtilityLogic uti=new UtilityLogic();
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public RecipientOrderLogic(){
 		try{
 			dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
@@ -33,6 +36,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			e.printStackTrace();
 		}
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(RecipientVO order,String org) {
 		// TODO 自动生成的方法存根
@@ -46,6 +50,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 							+" "+org+" 已收入"));
 				}
 			}
+			isSuc = diarySer.addDiary("接收了中转单"+order.getTransitId(), order.getOpName());
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){

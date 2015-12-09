@@ -94,9 +94,9 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into incomeorderpassed from incomeorderwaiting where id="+id;
+			return "insert into incomeorderpassed select * from incomeorderwaiting where id="+id;
 		} else {
-			return "insert into incomeorderunpassed from incomeorderwaiting where id="+id;
+			return "insert into incomeorderunpassed select * from incomeorderwaiting where id="+id;
 		}
 	}
 	@Override

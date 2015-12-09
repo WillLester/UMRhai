@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
@@ -20,6 +22,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	private IncomeOrderDFacSer dataFac;
 	private IncomeOrderDSer incomeData;
 	private UtilityLogic uti=new UtilityLogic();
+	private DiaryUpdateLSer diarySer;
 	public IncomeOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -32,12 +35,14 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(IncomeVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			isSuc = incomeData.create(VPFactory.toIncomePO(order, 0));
+			isSuc = diarySer.addDiary("生成了收款单", order.getOpName());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;

@@ -8,6 +8,8 @@ import java.rmi.RemoteException;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
@@ -19,6 +21,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 	private PaymentOrderDFacSer dataFac;
 	private PaymentOrderDSer paymentData;
 	private UtilityLogic uti=new UtilityLogic();
+	private DiaryUpdateLSer diarySer;
 	public PaymentOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -31,12 +34,14 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(PaymentVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = paymentData.create(VPFactory.toPaymentPO(order, 0));
+			isSuc = diarySer.addDiary("生成了付款单", order.getOpName());
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return Result.NET_INTERRUPT;

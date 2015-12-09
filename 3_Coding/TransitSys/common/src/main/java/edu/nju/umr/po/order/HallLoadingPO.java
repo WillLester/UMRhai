@@ -106,9 +106,9 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into halllorderpassed from halllorderwaiting where id='"+id+"'";
+			return "insert into halllorderpassed select * from halllorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into halllorderunpassed from halllorderwaiting where id='"+id+"'";
+			return "insert into halllorderunpassed select * from halllorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override

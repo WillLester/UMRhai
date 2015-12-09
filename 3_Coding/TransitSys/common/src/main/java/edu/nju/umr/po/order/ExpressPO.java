@@ -216,9 +216,9 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into expressorderpassed from expressorderwaiting where id='"+id+"'";
+			return "insert into expressorderpassed select * from expressorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into expressorderunpassed from expressorderwaiting where id='"+id+"'";
+			return "insert into expressorderunpassed select * from expressorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override

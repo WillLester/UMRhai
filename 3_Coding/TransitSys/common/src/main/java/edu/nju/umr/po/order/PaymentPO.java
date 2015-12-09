@@ -92,9 +92,9 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into paymentorderpassed from paymentorderwaiting where id="+id;
+			return "insert into paymentorderpassed select * from paymentorderwaiting where id="+id;
 		} else {
-			return "insert into paymentorderunpassed from paymentorderwaiting where id="+id;
+			return "insert into paymentorderunpassed select * from paymentorderwaiting where id="+id;
 		}
 	}
 	@Override

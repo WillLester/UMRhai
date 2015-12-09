@@ -380,6 +380,7 @@ public class MysqlImpl implements MysqlService{
 			state.executeUpdate(order.getDeleteWaiting());
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return Result.DATABASE_ERROR;
 		}
 		return Result.SUCCESS;

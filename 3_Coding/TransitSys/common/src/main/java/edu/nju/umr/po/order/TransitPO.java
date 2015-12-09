@@ -108,9 +108,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into transitorderpassed from transitorderwaiting where id='"+id+"'";
+			return "insert into transitorderpassed select * from transitorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into transitorderunpassed from transitorderwaiting where id='"+id+"'";
+			return "insert into transitorderunpassed select * from transitorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override

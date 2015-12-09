@@ -97,9 +97,9 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into centerlorderpassed from centerlorderwaiting where id='"+id+"'";
+			return "insert into centerlorderpassed select * from centerlorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into centerlorderunpassed from centerlorderwaiting where id='"+id+"'";
+			return "insert into centerlorderunpassed select * from centerlorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override

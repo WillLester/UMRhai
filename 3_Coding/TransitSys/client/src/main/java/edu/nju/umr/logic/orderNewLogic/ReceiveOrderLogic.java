@@ -12,6 +12,8 @@ import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -27,6 +29,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 	private CourierDSer cData;
 	private ExpressPO express;
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public ReceiveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -42,9 +45,10 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
             e.printStackTrace();   
         } 
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	
-	public Result create(ReceiveVO receive,String org) {
+	public Result create(ReceiveVO receive,String org,String name) {
 		// TODO Auto-generated method stub
 		express.setRealReceiver(receive.getRealReceiver());
 		express.setReceiveTime(receive.getReceiveTime());
@@ -53,6 +57,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 			if(result.equals(Result.SUCCESS))
 				infoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+" 已签收 签收人 "+receive.getRealReceiver());
+			result = diarySer.addDiary(express.getId()+"收件", name);
 			return result;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
