@@ -572,6 +572,7 @@ public class UtilityLogic {
 			for(ExpressPO express:expresses){
 				weight = weight.add(new BigDecimal(express.getWeight()));
 			}
+			weight = weight.divide(new BigDecimal(1000));
 			ResultMessage load = getFullLoad();
 			if(load.getReInfo().equals(Result.SUCCESS)){
 				@SuppressWarnings("unchecked")
