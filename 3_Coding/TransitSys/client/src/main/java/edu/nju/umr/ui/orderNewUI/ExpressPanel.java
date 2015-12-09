@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -370,6 +372,11 @@ public class ExpressPanel extends JPanel {
 		pakKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"纸箱", "木箱", "快递袋"}));
 		pakKindCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		pakKindCombo.setBounds(389, 483, 103, 25);
+		pakKindCombo.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				getPrice();
+			}
+		});
 		add(pakKindCombo);
 		
 		expressKindLabel = new JLabel("快递种类");
@@ -382,6 +389,11 @@ public class ExpressPanel extends JPanel {
 		expressKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"经济快递", "标准快递", "特快专递"}));
 		expressKindCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressKindCombo.setBounds(629, 483, 123, 25);
+		expressKindCombo.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				getPrice();
+			}
+		});
 		add(expressKindCombo);
 		
 		costLabel = new JLabel("费用/元");
