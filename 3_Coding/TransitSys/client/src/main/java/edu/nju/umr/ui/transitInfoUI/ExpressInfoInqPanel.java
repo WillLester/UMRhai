@@ -30,6 +30,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	public ExpressInfoInqPanel(JFrame fr) {
 		super(fr,"","",null);
 		logicSer = new CourierLogic();
+		titleLabel.setText("订单查询");
 		checkButton = new JButton("查询");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		checkButton.addActionListener(new InqListener());
@@ -49,7 +50,6 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		remove(cancelButton);
 	}
 	protected void setEnabled(){
-		barcodeField.setEnabled(false);
 		senderField.setEnabled(false);
 		senderCompanyField.setEnabled(false);
 		senderMobileField.setEnabled(false);

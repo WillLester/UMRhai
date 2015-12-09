@@ -42,6 +42,10 @@ public class CourierLogic implements CourierLSer{
 		}catch(Exception e)	{
 			e.printStackTrace();
 		}
+		if(express==null)
+		{
+			return new ResultMessage(Result.DATA_NOT_FOUND,null);
+		}
 		ResultMessage message=new ResultMessage(Result.SUCCESS,VPFactory.toExpressVO(express));
 		return message;
 	}
