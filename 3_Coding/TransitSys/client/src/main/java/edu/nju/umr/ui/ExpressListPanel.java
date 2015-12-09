@@ -150,7 +150,7 @@ public class ExpressListPanel extends JPanel{
 	}
 	public ArrayList<String> getExpresses(){
 		ArrayList<String> expresses = new ArrayList<String>();
-		for(int i = 0;i < expressList.getVisibleRowCount();i++){
+		for(int i = 0;i < model.getSize();i++){
 			expresses.add(model.get(i));
 		}
 		return expresses;

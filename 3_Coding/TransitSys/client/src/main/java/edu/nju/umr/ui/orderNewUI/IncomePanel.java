@@ -107,7 +107,7 @@ public class IncomePanel extends JPanel {
 		add(amountField);
 
 		expressList = new ExpressListPanel(frame);
-		expressList.setBounds(280, 200, 700, 350);
+		expressList.setBounds(280, 200, 700, 290);
 		add(expressList);
 		
 		JButton confirmButton = new JButton("确定");
