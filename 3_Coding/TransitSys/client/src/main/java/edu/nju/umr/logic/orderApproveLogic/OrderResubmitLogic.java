@@ -43,7 +43,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
             e.printStackTrace(); 
         } catch (RemoteException e) { 
             e.printStackTrace();   
-        } 
+        }
 	}
 
 	@Override
@@ -55,6 +55,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, 0);
 		}
+		System.out.println(orderList.size());
 		return new ResultMessage(Result.SUCCESS, orderList.size());
 	}
 
@@ -110,7 +111,6 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 		}
 		return null;
 	}
-	
 	private OrderVO getInfo(KindGetter order){
 		Order kind = order.getOrderKind();
 		OrderVO result = null;

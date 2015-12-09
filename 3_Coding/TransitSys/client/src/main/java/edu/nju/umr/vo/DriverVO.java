@@ -1,5 +1,6 @@
 package edu.nju.umr.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Gender;
@@ -58,7 +59,8 @@ public class DriverVO {
 		if(sex.equals(Gender.MAN))
 			gen="男";
 		else gen="女";
-		String [] data={id,name,birthday.getTime().toString(),idNum,mobile,gen,driveStart.getTime().toString(),driveEnd.getTime().toString(),hallId};
+		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 ");
+		String [] data={id,name,myFmt.format(birthday.getTime()),idNum,mobile,gen,myFmt.format(driveStart.getTime()),myFmt.format(driveEnd.getTime()),hallId};
 		return data;
 	}
 	

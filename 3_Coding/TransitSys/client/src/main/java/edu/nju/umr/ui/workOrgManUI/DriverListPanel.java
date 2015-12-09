@@ -175,7 +175,7 @@ public class DriverListPanel extends JPanel {
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"编号","姓名","出生日期","身份证号","手机号","性别","行驶证期限"};
+		String[] columnNames={"编号","姓名","出生日期","身份证号","手机号","性别","行驶证有效期限","行驶证失效期限"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}

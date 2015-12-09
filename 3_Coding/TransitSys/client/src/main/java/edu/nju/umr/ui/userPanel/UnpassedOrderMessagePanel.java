@@ -44,7 +44,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 		add(button);
 		
 		thread=new Thread(this);
-//		thread.start();
+		thread.start();
 	}
 	public void run(){
 		while(true)

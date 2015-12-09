@@ -154,9 +154,9 @@ public class DriverInfoPanel extends JPanel {
 					Result result=panel.Modify(newDriver);
 					if(!result.equals(Result.SUCCESS)){
 						new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+					}else { 
+						frame.dispose();
 					}
-				} else { 
-					frame.dispose();
 				}
 			}
 		});
