@@ -311,6 +311,12 @@ public class UtilityLogic {
 		return account;
 	}
 	
+	/**
+	 * 获得本地营业厅和所有中转中心
+	 * @param orgId 机构编号
+	 * @return ArrayList<OrgVO>
+	 * @see edu.nju.umr.vo.OrgVO
+	 */
 	@SuppressWarnings("unchecked")
 	public ResultMessage getLocalHallAndAllCenter(String orgId){
 		Result isSuc=Result.DATA_NOT_FOUND;

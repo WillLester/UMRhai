@@ -18,6 +18,7 @@ import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
@@ -64,10 +65,10 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		ResultMessage message = uti.getCities();
 		if(message.getReInfo() == Result.SUCCESS){
 			@SuppressWarnings("unchecked")
-			List<String> list = (List<String>) message.getMessage();
+			List<CityVO> list = (List<CityVO>) message.getMessage();
 			String[] cityList = new String[list.size()];
 			for(int i = 0;i < list.size();i++){
-				cityList[i] = list.get(i);
+				cityList[i] = list.get(i).getName();
 			}
 			return new ResultMessage(Result.SUCCESS, cityList);
 		} else {

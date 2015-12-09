@@ -63,13 +63,6 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 
 	public ResultMessage getOrgs() {
-//		ArrayList<String> orgs = null;
-//		try {
-//			orgs = hallData.getOrgs();
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, orgs);
 		return uti.getOrgs();
 	}
 

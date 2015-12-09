@@ -53,7 +53,7 @@ public class VanPO extends PO implements Serializable{
 		switch(op){
 		case INSERT:
 			savePic();
-			command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+"vanImage/"+hallId+"/"+id+".jpg"+"','"+hallId+"')";break;
+			command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+"vanImage/"+id+".jpg"+"','"+hallId+"')";break;
 		case DELETE:command="delete from van where id='"+id+"'";break;
 		case FIND:
 			if(id == null){
@@ -77,7 +77,7 @@ public class VanPO extends PO implements Serializable{
 					bytes[i]+=256;
 				}
 			}
-			OutputStream out = new FileOutputStream("vanImage/"+hallId+"/"+id+".jpg");
+			OutputStream out = new FileOutputStream("vanImage/"+id+".jpg");
 			out.write(bytes);
 			out.flush();
 			out.close();

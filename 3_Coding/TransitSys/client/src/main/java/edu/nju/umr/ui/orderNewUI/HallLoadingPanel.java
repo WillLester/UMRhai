@@ -121,39 +121,6 @@ public class HallLoadingPanel extends JPanel {
 		loadDateLabel.setBounds(297+75, 121, 120, 24);
 		add(loadDateLabel);
 		
-//		JSpinner spinner = new JSpinner();
-//		spinner.setModel(new SpinnerNumberModel(new Integer(2015), new Integer(0), null, new Integer(1)));
-//		spinner.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner.setBounds(411+75, 121, 85, 26);
-//		add(spinner);
-//		
-//		JLabel label = new JLabel("年");
-//		label.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label.setBounds(506+75, 122, 25, 22);
-//		add(label);
-//		
-//		JSpinner spinner_1 = new JSpinner();
-//		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-//		spinner_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_1.setBounds(541+75, 122, 48, 26);
-//		add(spinner_1);
-//		
-//		JLabel label_1 = new JLabel("月");
-//		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_1.setBounds(599+75, 122, 25, 22);
-//		add(label_1);
-//		
-//		JSpinner spinner_2 = new JSpinner();
-//		spinner_2.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-//		spinner_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		spinner_2.setBounds(634+75, 122, 48, 26);
-//		add(spinner_2);
-//		
-//		JLabel label_2 = new JLabel("日");
-//		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
-//		label_2.setBounds(692+75, 122, 25, 22);
-//		add(label_2);
-		
 		datePanel=new DatePanel();
 		datePanel.setDate(Calendar.getInstance());
 		datePanel.setBounds(411+75,121, 275, 26);
