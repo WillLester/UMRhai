@@ -84,14 +84,14 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			ArrayList<String> ids=new ArrayList<String>();
 			for(int j=1;j<indexs.size();j++){
 				OrderPO sameKind=orderList.get(indexs.get(j));
-				if(sameKind.getKind()==order.getKind()){
+				if(sameKind.getKind().equals(order.getKind())){
 					ids.add(sameKind.getId());
 					indexs.remove(j);
 					j--;
 				}					
 			}
 			try {
-				results.set(i,approveData.update(approve, ids, order.getKind()));
+				results.add(approveData.update(approve, ids, order.getKind()));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
@@ -275,20 +275,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			
 		}
 		return null;
-		
-		
-		
-		
-//		PaymentVO order = null;
-//		try {
-//			PaymentPO orderpo = (PaymentPO) approveData.getOrder(id,kind);
-//			System.out.println(orderpo.getId());
-//			order = new PaymentVO( orderpo.getDate(), orderpo.getPayer(), orderpo.getAccount(), orderpo.getKind(), orderpo.getAmount(), orderpo.getRemarks(),order.getOpName());
-//			
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//			return new ResultMessage(Result.NET_INTERRUPT,null);
-//		}
 	}
 	
 	
