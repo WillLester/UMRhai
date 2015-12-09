@@ -129,7 +129,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

@@ -45,7 +45,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 		add(button);
 		
 		thread=new Thread(this);
-		thread.start();
+//		thread.start();
 	}
 	public void run(){
 		while(true)
@@ -72,11 +72,11 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	public void stop(){
 		thread.interrupt();
 	}
-	public static void main(String [] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new UnpassedOrderMessagePanel(null));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
-	}
+//	public static void main(String [] args)
+//	{
+//		JFrame frame=new JFrame();
+//		frame.setContentPane(new UnpassedOrderMessagePanel(null));
+//		frame.setSize(1200,800);
+//		frame.setVisible(true);
+//	}
 }

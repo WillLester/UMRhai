@@ -45,7 +45,7 @@ public class IncomePanel extends JPanel {
 		this(fr,vo.getOrgId(),vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		courierCombo.setSelectedItem(vo.getCourier());
@@ -165,7 +165,7 @@ public class IncomePanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

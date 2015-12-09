@@ -48,10 +48,10 @@ public class RecipientPanel extends JPanel {
 	public RecipientPanel(JFrame fr,RecipientVO vo)
 	{
 		this(fr,vo.getOpName(),null,vo.getUserId(),null);
-		for(Component compo:this.getComponents())
+		for(Component co:this.getComponents())
 		{
-			if(!compo.getName().equals("cancel"))
-			compo.setEnabled(false);
+			if(co.getName()==null)
+			co.setEnabled(false);
 		}
 		idField.setText(vo.getTransitId());
 		datePanel.setDate(vo.getDate());
@@ -184,7 +184,7 @@ public class RecipientPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

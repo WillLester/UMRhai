@@ -55,8 +55,8 @@ public class TransitPanel extends JPanel implements PriceCount{
 		this(fr,"",vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
-				co.setEnabled(false);
+			if(co.getName()==null)
+			co.setEnabled(false);
 		}
 		idField.setText(vo.getId());
 		supervisionField.setText(vo.getSupervision());
@@ -308,7 +308,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

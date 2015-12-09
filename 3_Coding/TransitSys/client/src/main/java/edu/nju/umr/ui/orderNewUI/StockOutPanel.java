@@ -51,7 +51,7 @@ public class StockOutPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		expressField.setText(vo.getExpressId());
@@ -211,7 +211,7 @@ public class StockOutPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

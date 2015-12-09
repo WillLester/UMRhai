@@ -51,7 +51,7 @@ public class PaymentPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"));
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		payerField.setText(vo.getPayer());
@@ -216,7 +216,7 @@ public class PaymentPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

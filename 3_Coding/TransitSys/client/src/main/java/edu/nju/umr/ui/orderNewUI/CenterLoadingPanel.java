@@ -55,7 +55,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		this(fr,vo.getOpName(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"));
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		transitIdField.setText(vo.getTransitId());
@@ -269,7 +269,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

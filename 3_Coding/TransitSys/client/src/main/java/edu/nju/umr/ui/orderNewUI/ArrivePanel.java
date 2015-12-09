@@ -49,7 +49,7 @@ public class ArrivePanel extends JPanel {
 		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"));
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		idField.setText(arrive.getId());
@@ -196,7 +196,7 @@ public class ArrivePanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

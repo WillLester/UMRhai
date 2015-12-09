@@ -44,8 +44,9 @@ public class SendPanel extends JPanel {
 	public SendPanel(JFrame fr,SendVO vo)
 	{
 		this(fr, vo.getOpName(),null, vo.getUserId(),null,null);
-		for(Component co:this.getComponents()){
-			if(!co.getName().equals("cancel"))
+		for(Component co:this.getComponents())
+		{
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		barcodeField.setText(vo.getExpressId());
@@ -160,7 +161,7 @@ public class SendPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

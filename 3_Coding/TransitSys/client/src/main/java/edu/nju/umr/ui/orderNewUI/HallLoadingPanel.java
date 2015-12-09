@@ -71,7 +71,7 @@ public class HallLoadingPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId(),vo.getHallId(),null);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"));
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		transitIdField.setText(vo.getConvertId());
@@ -409,15 +409,8 @@ public class HallLoadingPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
-	}
-	public static void main(String [] args)
-	{
-		JFrame frame=new JFrame();
-		frame.setContentPane(new HallLoadingPanel(frame,null,null,null,null));
-		frame.setSize(1200,800);
-		frame.setVisible(true);
 	}
 }

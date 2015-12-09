@@ -56,8 +56,9 @@ public class StockInPanel extends JPanel {
 	public StockInPanel(JFrame fr,StockInVO vo)
 	{
 		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
-		for(Component co:this.getComponents()){
-			if(!co.getName().equals("cancel"))
+		for(Component co:this.getComponents())
+		{
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
 		expressField.setText(vo.getExpressId());
@@ -276,10 +277,12 @@ public class StockInPanel extends JPanel {
 				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
 		return vo;
 	}
-	public void setEnabled(boolean enabled){
+	public void setEnabled(boolean enabled)
+	{
 		super.setEnabled(enabled);
-		for(Component co:this.getComponents()){
-			if(!co.getName().equals("cancel"))
+		for(Component co:this.getComponents())
+		{
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}

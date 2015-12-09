@@ -111,9 +111,10 @@ public class ExpressPanel extends JPanel {
 		this(fr,vo.getOpName(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"));
+			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		titleLabel.setText("订单查看");
 		barcodeField.setText(vo.getId());
 		senderField.setText(vo.getSender());
 		senderCompanyField.setText(vo.getSendUnit());
@@ -497,7 +498,7 @@ public class ExpressPanel extends JPanel {
 			if(isLegal()){
 				Result result = logicSer.create(createVO(),org);
 				if(result.equals(Result.SUCCESS)){
-					
+					frame.dispose();
 				} else {
 					DoHint.hint(result, frame);
 				}
@@ -615,7 +616,7 @@ public class ExpressPanel extends JPanel {
 		super.setEnabled(enabled);
 		for(Component co:this.getComponents())
 		{
-			if(!co.getName().equals("cancel"))
+			if(co.getName()==null)
 			co.setEnabled(enabled);
 		}
 	}
