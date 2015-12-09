@@ -99,7 +99,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			}
 		}
 		for(Result isSuc:results){
-			System.out.println(isSuc);
 			if(!isSuc.equals(Result.SUCCESS))
 				return Result.DATA_NOT_FOUND;
 		}
@@ -141,7 +140,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			ExpressVO ev=null;
 			Result expressSuc=Result.DATA_NOT_FOUND;
 			try {
-				ExpressPO ep=(ExpressPO)approveData.getOrder(id, kind);
+				ExpressPO ep=(ExpressPO)approveData.getOrder(id, kind);	
 				ev=VPFactory.toExpressVO(ep);
 				if(ep!=null)
 					expressSuc=Result.SUCCESS;
