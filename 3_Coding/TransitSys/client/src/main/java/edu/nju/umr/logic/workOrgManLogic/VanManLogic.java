@@ -123,7 +123,7 @@ public class VanManLogic implements VanManLSer{
 		}
 		else
 		{
-			return new ResultMessage(Result.SUCCESS,hallId+"001");
+			return new ResultMessage(Result.SUCCESS,hallId+"000");
 		}
 	}
 
