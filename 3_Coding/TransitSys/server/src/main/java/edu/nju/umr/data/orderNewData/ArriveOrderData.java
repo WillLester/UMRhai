@@ -28,7 +28,11 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	}
 
 	public Result create(ArrivePO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 	}
 
 	@Override

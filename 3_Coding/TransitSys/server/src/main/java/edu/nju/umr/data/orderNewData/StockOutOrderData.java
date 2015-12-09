@@ -25,7 +25,11 @@ public class StockOutOrderData extends UnicastRemoteObject implements StockOutOr
 	}
 
 	public Result create(StockOutPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 	}
 
 	@Override

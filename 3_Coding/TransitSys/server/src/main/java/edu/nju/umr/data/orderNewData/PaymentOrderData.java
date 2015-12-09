@@ -24,7 +24,11 @@ public class PaymentOrderData extends UnicastRemoteObject implements PaymentOrde
 	}
 
 	public Result create(PaymentPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 		
 	}
 

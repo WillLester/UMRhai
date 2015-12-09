@@ -24,7 +24,11 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 	}
 
 	public Result create(IncomePO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 		
 	}
 

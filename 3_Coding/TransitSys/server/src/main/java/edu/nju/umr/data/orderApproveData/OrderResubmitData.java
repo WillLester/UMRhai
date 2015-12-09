@@ -60,8 +60,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new ArrivePO(null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceArrive(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceArrive(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -71,8 +71,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceCenterLoad(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceCenterLoad(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -83,8 +83,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 				null, null, null, null, 0, null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceExpress(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceExpress(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -95,8 +95,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 				null, null, null, null, null, 0, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceHallLoad(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceHallLoad(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -106,8 +106,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new IncomePO(null, null, 0, null, 0, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceIncome(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceIncome(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -117,7 +117,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new PaymentPO(0, null, null, null, null, 0, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			return OrderListFactory.producePayment(result);
+			ArrayList<KindGetter> list = OrderListFactory.producePayment(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -127,8 +128,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new RecipientPO(null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceRecipient(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceRecipient(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -138,8 +139,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new SendPO(null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceSend(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceSend(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -149,8 +150,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new StockInPO(0, null, null, null, null, null, 0, 0, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceStockIn(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceStockIn(result); 
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -160,8 +161,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new StockOutPO(0, null, null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceStockOut(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceStockOut(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}
@@ -171,8 +172,8 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 		OrderOper po = new TransitPO(null, null, null, null, null, null, null, null, null, null, 0, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
-			mysqlSer.deleteUnpassed(po);
-			return OrderListFactory.produceTransit(result);
+			ArrayList<KindGetter> list = OrderListFactory.produceTransit(result);
+			return list;
 		} else {
 			return new ArrayList<KindGetter>();
 		}

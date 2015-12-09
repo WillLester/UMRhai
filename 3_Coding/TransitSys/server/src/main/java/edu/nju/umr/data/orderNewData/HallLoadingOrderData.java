@@ -24,7 +24,11 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 	}
 
 	public Result create(HallLoadingPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 		
 	}
 

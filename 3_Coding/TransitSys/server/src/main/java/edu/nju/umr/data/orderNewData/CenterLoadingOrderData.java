@@ -24,7 +24,11 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	}
 
 	public Result create(CenterLoadingPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 		
 	}
 

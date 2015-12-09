@@ -24,7 +24,11 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 	}
 
 	public Result create(SendPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 	}
 
 }

@@ -24,7 +24,11 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 	}
 
 	public Result create(TransitPO order) throws RemoteException {
-		return mysqlSer.addInfo(order);
+		Result result = mysqlSer.addInfo(order);
+		if(result == Result.SUCCESS){
+			mysqlSer.deleteUnpassed(order);
+		}
+		return result;
 		
 	}
 
