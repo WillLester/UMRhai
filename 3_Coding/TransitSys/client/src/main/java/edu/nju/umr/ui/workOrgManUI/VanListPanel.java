@@ -208,6 +208,7 @@ public class VanListPanel extends JPanel {
 	}
 	private void modify(){
 		int row=table.getSelectedRow();
+		if(row<0||row>=vanList.size())return;
 		VanVO temp=vanList.get(row);
 		InfoFrame info=new InfoFrame("查看修改车辆");
 		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,orgId));

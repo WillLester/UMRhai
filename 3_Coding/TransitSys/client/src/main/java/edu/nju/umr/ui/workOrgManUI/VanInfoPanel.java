@@ -192,7 +192,7 @@ public class VanInfoPanel extends JPanel {
 			DoHint.hint("车牌号未输入",frame);
 			return;
 		}
-		if(imageString.isEmpty()){
+		if(imageString==null||imageString.isEmpty()){
 			DoHint.hint("图片未选择!", frame);
 			return;
 		}

@@ -133,7 +133,7 @@ public class OrderRevisePanel extends JPanel{
 		orderList=new ArrayList<OrderVO>();
 		try
 		{
-			ResultMessage message = serv.getUnpassed(userId);
+			ResultMessage message = serv.getOrdersDisplay();
 			Result result=message.getReInfo();
 			if(!result.equals(Result.SUCCESS))
 			{
@@ -141,9 +141,10 @@ public class OrderRevisePanel extends JPanel{
 				return;
 			}
 			orderList=(ArrayList<OrderVO>)message.getMessage();
+			System.out.println(orderList.size());
 		}catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 	private void displayOrders(){
