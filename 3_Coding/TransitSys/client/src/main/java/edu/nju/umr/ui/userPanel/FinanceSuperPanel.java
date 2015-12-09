@@ -159,7 +159,7 @@ public class FinanceSuperPanel extends UserPanel{
 		});
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(700, 400, 200, 30);
+		upo.setBounds(853, 10, 200, 30);
 		add(upo);
 	}
 
