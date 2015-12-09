@@ -17,6 +17,7 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.OrderOper;
 import edu.nju.umr.po.order.OrderPO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.po.order.RecipientPO;
@@ -54,42 +55,42 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 
 	public PO getOrder(String id,Order kind) throws RemoteException {
 		// TODO 自动生成的方法存根
-		PO po;
+		OrderOper po;
 		switch(kind){
 		case ARRIVE:
 			po = new ArrivePO(null, null, id, null, null, null, null,null);
-			return OrderPOFactory.getArrive(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getArrive(mysqlSer.checkOrder(po));
 		case CENTERLOADING:
 			po = new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0,null);
-			return OrderPOFactory.getCenterLoad(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getCenterLoad(mysqlSer.checkOrder(po));
 		case EXPRESS:
 			po = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, id,
 					null, null, null, 0, null, null, null, null, null, null, null,null);
-			return OrderPOFactory.getExpress(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getExpress(mysqlSer.checkOrder(po));
 		case HALLLOADING:
 			po = new HallLoadingPO(id, null, null, null, null, null, null, null, null, null, null, 0,null);
-			return OrderPOFactory.getHallLoad(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getHallLoad(mysqlSer.checkOrder(po));
 		case INCOME:
 			po = new IncomePO(null, null, 0, null, Integer.parseInt(id), null, null, null,null);
-			return OrderPOFactory.getIncome(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getIncome(mysqlSer.checkOrder(po));
 		case PAYMENT:
 			po = new PaymentPO(Integer.parseInt(id), null, null, null, null, 0, null, null, null,null);
-			return OrderPOFactory.getPayment(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getPayment(mysqlSer.checkOrder(po));
 		case RECIPIENT:
 			po = new RecipientPO(null, id, null, null, null, null, null,null);
-			return OrderPOFactory.getRecipient(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getRecipient(mysqlSer.checkOrder(po));
 		case SEND:
 			po = new SendPO(null, null, id, null, null, null,null);
-			return OrderPOFactory.getSend(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getSend(mysqlSer.checkOrder(po));
 		case STOCKIN:
 			po = new StockInPO(Integer.parseInt(id), null, null, null, null, null, 0, 0, null, null, null,null);
-			return OrderPOFactory.getStockIn(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getStockIn(mysqlSer.checkOrder(po));
 		case STOCKOUT:
 			po = new StockOutPO(Integer.parseInt(id), null, null, null, null, null, null, null, null,null);
-			return OrderPOFactory.getStockOut(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getStockOut(mysqlSer.checkOrder(po));
 		case TRANSIT:
 			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0,null);
-			return OrderPOFactory.getTransit(mysqlSer.checkInfo(po));
+			return OrderPOFactory.getTransit(mysqlSer.checkOrder(po));
 		default:
 			return null;
 		}
