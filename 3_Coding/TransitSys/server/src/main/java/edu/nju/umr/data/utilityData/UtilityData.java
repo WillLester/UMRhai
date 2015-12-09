@@ -84,9 +84,14 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		return mysqlSer.addInfo(diary);
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<WorkPO> getWorkers(String orgID) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return ArrayListFactory.produceWorkList(mysqlSer.checkInfo(new WorkPO(null, null, null, orgID, 0, null, null, 0, 0)));
+		if(orgID == null){
+			return (ArrayList<WorkPO>) mysqlSer.checkAll(POKind.WORK);
+		} else {
+			return ArrayListFactory.produceWorkList(mysqlSer.checkInfo(new WorkPO(null, null, null, orgID, 0, null, null, 0, 0)));
+		}
 	}
 
 	public ArrayList<VanPO> getVans(String orgId) throws RemoteException {

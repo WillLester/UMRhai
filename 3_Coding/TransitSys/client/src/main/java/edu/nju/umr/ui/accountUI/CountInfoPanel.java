@@ -197,7 +197,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					WorkVO worker = workerList.get(workerCombo.getSelectedIndex());
+					WorkVO worker = workerPresented.get(workerCombo.getSelectedIndex());
 					mobileField.setText(worker.getMobile());
 					dutyField.setText(EnumTransFactory.checkJuri(worker.getJuri()));
 				}

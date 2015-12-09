@@ -126,7 +126,7 @@ public class CountPanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"名称","余额"};
+		String[] columnNames={"编号","生成时间"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}

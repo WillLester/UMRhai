@@ -13,6 +13,7 @@ import edu.nju.umr.dataService.dataFactory.CountDFacSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CountPO;
@@ -21,6 +22,7 @@ import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class CountLogic implements CountLSer{
@@ -74,7 +76,7 @@ public class CountLogic implements CountLSer{
 		Result result=Result.DATA_NOT_FOUND;
 		
 		try {
-			countPO=countData.getCount();
+			countPO = countData.getCount();
 			if(countPO!=null){
 				result=Result.SUCCESS;
 			}
@@ -82,7 +84,12 @@ public class CountLogic implements CountLSer{
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
-		return new ResultMessage(result,countPO);
+		ArrayList<CountVO> list = new ArrayList<CountVO>();
+		for(CountPO po:countPO){
+			CountVO count = VPFactory.toCountVO(po);
+			list.add(count);
+		}
+		return new ResultMessage(result,list);
 	}
 	@Override
 	public Result deleteCount(int index,String name) {
