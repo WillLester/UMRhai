@@ -46,6 +46,7 @@ public class HintFrame extends JDialog{
 			break;
 		}
 		textAndButton(txt);
+		repaint();
 
 	}
 	public HintFrame(String error,int x,int y,int width,int height){

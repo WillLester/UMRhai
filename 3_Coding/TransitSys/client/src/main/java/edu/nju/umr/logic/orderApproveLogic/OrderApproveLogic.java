@@ -83,7 +83,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		for(int i=0;i<indexs.size();i++){
 			OrderPO order=orderList.get(indexs.get(i));
 			ArrayList<String> ids=new ArrayList<String>();
-			for(int j=1;j<indexs.size();j++){
+			for(int j=0;j<indexs.size();j++){
 				OrderPO sameKind=orderList.get(indexs.get(j));
 				if(sameKind.getKind().equals(order.getKind())){
 					ids.add(sameKind.getId());
@@ -99,7 +99,8 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			}
 		}
 		for(Result isSuc:results){
-			if(isSuc!=Result.SUCCESS)
+			System.out.println(isSuc);
+			if(!isSuc.equals(Result.SUCCESS))
 				return Result.DATA_NOT_FOUND;
 		}
 		return diarySer.addDiary("审批了单据", name);
