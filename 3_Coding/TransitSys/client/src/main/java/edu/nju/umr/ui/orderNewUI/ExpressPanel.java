@@ -130,7 +130,8 @@ public class ExpressPanel extends JPanel {
 		lengthField.setText(Double.toString(vo.getLength()));
 		widthField.setText(Double.toString(vo.getWidth()));
 		heightField.setText(Double.toString(vo.getHeight()));
-		arriveField.setText(vo.getArrive().toString());
+		
+		arriveField.setText(DateFormat.DATE.format(vo.getArrive().getTime()));
 		numSpinner.setValue(vo.getNum());
 		datePanel.setDate(vo.getCreateDate());
 		pakKindCombo.setSelectedItem(EnumTransFactory.checkParse(vo.getParse()));

@@ -17,6 +17,7 @@ import javax.swing.table.TableColumnModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Order;
@@ -25,6 +26,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
+import edu.nju.umr.vo.order.ShowOrder;
 
 public class OrderRevisePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -35,21 +37,6 @@ public class OrderRevisePanel extends JPanel{
 	private OrderResubmitLSer serv;
 	private ArrayList<OrderVO> orderList;
 
-	
-	
-	class MyTableModel extends DefaultTableModel {
-	    /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		public Class getColumnClass(int c) {
-	        if(c==0)return new Boolean(true).getClass();
-	        return new String().getClass();
-	        
-	    }
-	}
 	/**
 	 * Create the panel.
 	 */
@@ -82,7 +69,7 @@ public class OrderRevisePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				displayOrder();
 			}
 		});
 		add(reviseButton);
@@ -104,8 +91,8 @@ public class OrderRevisePanel extends JPanel{
 		
 	}
 	private void tableInit(){
-		table = new ApproveTable(new MyTableModel());
-		model=(MyTableModel)table.getModel();
+		table = new ApproveTable(new DefaultTableModel());
+		model=(DefaultTableModel)table.getModel();
 //		table.addMouseListener(new MouseAdapter(){
 //			public void mouseClicked(MouseEvent e){
 //				if(e.getClickCount()>= 1&&table.columnAtPoint(e.getPoint())==0){
@@ -133,15 +120,21 @@ public class OrderRevisePanel extends JPanel{
 		orderList=new ArrayList<OrderVO>();
 		try
 		{
-			ResultMessage message = serv.getOrdersDisplay();
+			ResultMessage message = serv.getUnpassed(userId);
 			Result result=message.getReInfo();
 			if(!result.equals(Result.SUCCESS))
 			{
 				DoHint.hint(result, frame);
 				return;
 			}
+			message= serv.getOrdersDisplay();
+			result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS))
+			{
+				DoHint.hint(result, frame);
+				return;
+			}
 			orderList=(ArrayList<OrderVO>)message.getMessage();
-			System.out.println(orderList.size());
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -162,5 +155,18 @@ public class OrderRevisePanel extends JPanel{
 			String [] data=new String[]{new SimpleDateFormat("yyyy-MM-dd").format(vo.getTime().getTime()),kind[k]};
 			model.addRow(data);
 		}
+	}
+	private void displayOrder(){
+		int row=table.getSelectedRow();
+		if(row<0||row>=orderList.size())return;
+		ResultMessage message=serv.getOrder(row);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+			return;
+		}
+		ShowOrder order=(ShowOrder)message.getMessage();
+		order.Show(true);
 	}
 }
