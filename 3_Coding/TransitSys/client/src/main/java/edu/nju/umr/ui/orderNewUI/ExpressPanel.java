@@ -114,7 +114,6 @@ public class ExpressPanel extends JPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
-		titleLabel.setText("订单查看");
 		barcodeField.setText(vo.getId());
 		senderField.setText(vo.getSender());
 		senderCompanyField.setText(vo.getSendUnit());
@@ -150,7 +149,7 @@ public class ExpressPanel extends JPanel {
 		this.userId = userId;
 		this.org=org;
 		
-		titleLabel = new JLabel("订单创建");
+		titleLabel = new JLabel("订单");
 		titleLabel.setBounds(437, 21, 120, 35);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));

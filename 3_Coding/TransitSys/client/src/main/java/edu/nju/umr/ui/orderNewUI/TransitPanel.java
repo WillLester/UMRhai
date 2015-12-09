@@ -76,7 +76,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		this.userId=userId;
 		logicSer = new TransitOrderLogic();
 		
-		JLabel titleLabel = new JLabel("生成中转单");
+		JLabel titleLabel = new JLabel("中转单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
