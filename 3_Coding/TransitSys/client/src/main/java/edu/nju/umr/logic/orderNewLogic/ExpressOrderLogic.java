@@ -12,6 +12,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
@@ -26,6 +27,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	private ExpressOrderDSer expressData;
 	private UtilityLogic uti;
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -49,6 +51,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 			if(isSuc.equals(Result.SUCCESS)){
 				infoLogic.addInfo(order.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())+" " +org+"快递员 已收件");
 			}
+			isSuc = diarySer.addDiary("生成快递单"+order.getId(), order.getOpName());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;

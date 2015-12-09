@@ -78,6 +78,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	}
 
 	public Result examine(boolean approve, ArrayList<Integer> indexs,String name) {
+		//每次更新的结果
 		ArrayList<Result> results=new ArrayList<Result>();
 		for(int i=0;i<indexs.size();i++){
 			OrderPO order=orderList.get(indexs.get(i));

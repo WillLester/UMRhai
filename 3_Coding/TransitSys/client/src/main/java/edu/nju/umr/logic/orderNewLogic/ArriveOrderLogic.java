@@ -11,6 +11,8 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
@@ -24,6 +26,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	private ArriveOrderDSer arriveData;
 	private UtilityLogic uti=new UtilityLogic();
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -38,21 +41,20 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
             e.printStackTrace();   
         } 
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(ArriveVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = arriveData.create(VPFactory.toArrivePO(order, ""));
-			if(isSuc.equals(Result.SUCCESS))
-			{
-				
+			if(isSuc.equals(Result.SUCCESS)){
 				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
-				for(String express:expresses)
-				{
+				for(String express:expresses){
 					infoLogic.update(express, 
 							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
 				}
+				isSuc = diarySer.addDiary("生成了到达单"+order.getId(), order.getOpName());
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

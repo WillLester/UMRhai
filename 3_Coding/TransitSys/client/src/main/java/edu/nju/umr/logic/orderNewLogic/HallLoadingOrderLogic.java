@@ -11,6 +11,8 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
@@ -24,6 +26,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private HallLoadingOrderDSer hallData;
 	private UtilityLogic uti=new UtilityLogic();
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -37,6 +40,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
             e.printStackTrace();   
         } 
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 		// TODO 自动生成的构造函数存根
 	}
 	public Result create(HallLoadingVO order,String org) {
@@ -49,6 +53,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+"已发出 下一站"+order.getArriveLoc());
 			}
+			isSuc = diarySer.addDiary("生成了营业厅装车单", order.getOpName());
 		} catch (RemoteException e) { 
             return Result.NET_INTERRUPT;
         } catch(Exception e){

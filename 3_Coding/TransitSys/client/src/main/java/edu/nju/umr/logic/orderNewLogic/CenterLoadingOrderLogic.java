@@ -12,6 +12,8 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
@@ -26,6 +28,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private CenterLoadingOrderDSer centerData;
 	private UtilityLogic uti=new UtilityLogic();
 	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -39,20 +42,20 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
             e.printStackTrace();   
         } 
 		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(CenterLoadingVO order,String org) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = centerData.create(VPFactory.toCenterLoadPO(order, ""));
-			if(isSuc.equals(Result.SUCCESS))
-			{
-				for(String express:order.getExpress())
-				{
+			if(isSuc.equals(Result.SUCCESS)){
+				for(String express:order.getExpress()){
 					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
 							+" " +org+"已发出 下一站"+order.getTarget());
 				}
 			}
+			isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
