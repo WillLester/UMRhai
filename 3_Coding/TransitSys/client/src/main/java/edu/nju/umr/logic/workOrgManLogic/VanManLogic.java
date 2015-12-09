@@ -34,6 +34,7 @@ public class VanManLogic implements VanManLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		ar = new ArrayList<VanPO>();
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result addVan(VanVO van,String name) {
@@ -84,7 +85,11 @@ public class VanManLogic implements VanManLSer{
 		Result result=Result.DATA_NOT_FOUND;
 		try{
 			ar=vanData.findVan(keyword,hallId);
-			result=Result.SUCCESS;
+			if(result != null){
+				result=Result.SUCCESS;
+			} else {
+				return new ResultMessage(Result.DATA_NOT_FOUND, null);
+			}
 		}catch (RemoteException e) {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT,null);
