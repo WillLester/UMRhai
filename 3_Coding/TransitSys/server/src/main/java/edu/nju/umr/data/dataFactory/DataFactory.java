@@ -194,7 +194,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public CollectRecordDSer getCollectForm() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CollectRecordData();
+		return CollectRecordData.getCollectRecord();
 	}
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
@@ -239,7 +239,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public DiaryDSer getDiary() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new DiaryData();
+		return DiaryData.getDiary();
 	}
 
 	public CustomerDSer getCustomer() throws RemoteException {
@@ -254,12 +254,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public CountDSer getCountData() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CountData();
+		return CountData.getCountData();
 	}
 
 	public BusiCircumDSer getStatement() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new BusiCircumData();
+		return BusiCircumData.getBusiCircumData();
 	}
 
 	public CityDSer getCity() throws RemoteException {
@@ -280,7 +280,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public AccountDSer getAccountData() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new AccountData();
+		return AccountData.getAccountData();
 	}
 
 	public OrderResubmitDSer getOrderResubmit() throws RemoteException {
@@ -305,7 +305,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public CostBeneDSer getCostBene() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CostBeneData();
+		return CostBeneData.getCostBene();
 	}
 	
 	public ConstantDSer getConstant() throws RemoteException {

@@ -22,10 +22,18 @@ public class BusiCircumData extends UnicastRemoteObject implements BusiCircumDSe
 	 */
 	private static final long serialVersionUID = -4682435735979107069L;
 	private MysqlService mysqlSer;
-	public BusiCircumData() throws RemoteException {
+	private static BusiCircumData data = null;
+	private BusiCircumData() throws RemoteException {
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static BusiCircumData getBusiCircumData() throws RemoteException{
+		if(data == null){
+			data = new BusiCircumData();
+		} 
+		return data;
 	}
 
 	public ArrayList<IncomePO> findIncome(Calendar start, Calendar end)//时间参数与findPayment相同

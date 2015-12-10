@@ -21,10 +21,18 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 	 */
 	private static final long serialVersionUID = -2546029703937491602L;
 	private MysqlService mysqlSer;
-	public CollectRecordData() throws RemoteException {
+	private static CollectRecordData data = null;
+	private CollectRecordData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static CollectRecordData getCollectRecord() throws RemoteException{
+		if(data == null){
+			data = new CollectRecordData();
+		} 
+		return data;
 	}
 
 	@SuppressWarnings("deprecation")

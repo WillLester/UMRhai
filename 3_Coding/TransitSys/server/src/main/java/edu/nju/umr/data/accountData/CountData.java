@@ -19,9 +19,17 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	 */
 	private static final long serialVersionUID = -3199440496716511453L;
 	private static final String LOCATION = "data/count";
-	public CountData() throws RemoteException {
+	private static CountData count = null;
+	private CountData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static CountData getCountData() throws RemoteException{
+		if(count == null){
+			count = new CountData();
+		}
+		return count;
 	}
 
 	public Result addCount(CountPO count) throws RemoteException {

@@ -23,11 +23,19 @@ public class AccountData extends UnicastRemoteObject implements AccountDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -2848922847340119380L;
-	MysqlService mysqlSer;
-	public AccountData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static AccountData account= null;
+	private AccountData() throws RemoteException {
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static AccountData getAccountData() throws RemoteException{
+		if(account == null){
+			account = new AccountData();
+		}
+		return account;
 	}
 
 	@SuppressWarnings("unchecked")

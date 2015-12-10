@@ -24,11 +24,19 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 7861281030978291919L;
-	MysqlService mysqlSer;
-	public DiaryData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static DiaryData data = null;
+	private DiaryData() throws RemoteException {
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static DiaryData getDiary() throws RemoteException{
+		if(data == null){
+			data = new DiaryData();
+		}
+		return data;
 	}
 
 	public ArrayList<DiaryPO> seeDiary(Calendar start, Calendar end)

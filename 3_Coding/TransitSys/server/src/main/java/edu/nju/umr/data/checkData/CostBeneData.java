@@ -18,11 +18,19 @@ public class CostBeneData extends UnicastRemoteObject implements CostBeneDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 2305024712720635004L;
-	MysqlService mysqlSer;
-	public CostBeneData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static CostBeneData data = null;
+	private CostBeneData() throws RemoteException {
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static CostBeneData getCostBene() throws RemoteException{
+		if(data == null){
+			data = new CostBeneData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")
