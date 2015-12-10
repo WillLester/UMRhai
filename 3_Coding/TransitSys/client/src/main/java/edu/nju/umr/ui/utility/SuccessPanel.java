@@ -33,7 +33,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 	public void run()
 	{
 		int changeX=x/100;
-		for(int i=0;i<=150;i++)
+		for(int i=0;i<=100;i++)
 		{
 			try
 			{
