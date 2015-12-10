@@ -55,7 +55,7 @@ public class UserListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public UserListPanel(JFrame fr,String name) {
+	public UserListPanel(JFrame fr,String name){
 		serv=new UserManLogic();
 		frame=fr;
 		setLayout(null);
@@ -309,6 +309,8 @@ public class UserListPanel extends JPanel {
 			if(result.equals(Result.SUCCESS)){
 			    users.set(row, now);
 			    displayUsers();
+			    DoHint.hint(result, frame);
+//			    frame.setVisible(true);
 			} else {
 				reportWrong(result);
 			}
@@ -341,7 +343,4 @@ public class UserListPanel extends JPanel {
 	private void reportWrong(Result result){
 		DoHint.hint(result, frame);
 	}
-	
-	
-	
 }

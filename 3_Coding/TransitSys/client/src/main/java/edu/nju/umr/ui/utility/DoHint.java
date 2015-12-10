@@ -10,9 +10,8 @@ public class DoHint {
 		if(result.equals(Result.SUCCESS))
 		{
 			SuccessPanel suc=new SuccessPanel(fr);
-			fr.getContentPane().add(suc);
-			suc.show();
-			fr.remove(suc);
+			fr.add(suc);
+			fr.setVisible(true);
 			return;
 		}
 		@SuppressWarnings("unused")

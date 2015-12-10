@@ -6,52 +6,52 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class SuccessPanel extends JPanel{
+public class SuccessPanel extends JPanel implements Runnable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7114950449550231951L;
 	private int x,y;
-	private int locx,locy;
-	public SuccessPanel(JPanel panel){
-		x=panel.getWidth()/6;
-		y=panel.getHeight()/6;
-		setBounds(x,y,x*5,y*5-50);
-		
-	}
+	private Thread thread;
+	private JFrame frame;
 	public SuccessPanel(JFrame frame){
+		this.frame=frame;
 		x=frame.getWidth()/6;
 		y=frame.getHeight()/6;
-		setBounds(x,y,x*5,y*5-50);
+		setBounds(x*6,y*5-50,x,y);
+		thread=new Thread(this);
+		thread.start();
 	}
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		g.setColor(Color.blue);
-		g.fillRect(locx, locy-16, x, y);
+		g.fillRect(0,0, x, y);
 		g.setColor(Color.white);
-		g.drawString("操作成功!", locx,locy+60);
+		g.drawString("操作成功!", 0,60);
 	}
-	public void show()
+	public void run()
 	{
-		locx=getWidth();
-		locy=0;
+		int changeX=x/30;
 		for(int i=0;i<=30;i++)
 		{
-			locx=locx-x/30;
 			try
 			{
 				Thread.sleep(50);
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+			}
+			this.setBounds(this.getX()-changeX,this.getY(), x, y);
+			if(frame.isVisible())
+			{
+				frame.setVisible(true);
 			}
 			repaint();
 		}
 		
 		for(int i=0;i<=30;i++)
 		{
-			locx=locx+x/30;
 			try
 			{
 				Thread.sleep(50);
@@ -59,22 +59,13 @@ public class SuccessPanel extends JPanel{
 			{
 				e.printStackTrace();
 			}
+			this.setBounds(this.getX()+changeX,this.getY(), x, y);
+			if(frame.isVisible())
+			{
+				frame.setVisible(true);
+			}
 			repaint();
 		}
+		frame.remove(this);
 	}
-//	public static void main(String [] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setSize(1200,800);
-//		frame.setLocation(10, 10);
-//		JPanel panel=new JPanel();
-//		frame.setContentPane(panel);
-//		frame.setVisible(true);
-//		SuccessPanel suc=new SuccessPanel(panel);
-//		panel.setLayout(null);
-//		panel.add(suc);
-//		suc.show();
-//		panel.remove(suc);
-//	}
-
 }

@@ -13,9 +13,10 @@ public class FunctionFrame extends JFrame{
 	static final int FRAME_HEIGHT = (int)(MainFrame.FRAME_HEIGHT*0.9);
 	public FunctionFrame(String title) {
 		setTitle(title);
+		setLayout(null);
 		setResizable(false);
 		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
-		this.setVisible(true);
+		setVisible(true);
 		
 	}
 }
