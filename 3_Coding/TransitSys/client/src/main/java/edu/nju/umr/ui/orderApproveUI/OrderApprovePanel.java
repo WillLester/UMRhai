@@ -19,6 +19,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
@@ -160,7 +161,7 @@ public class OrderApprovePanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"是否选中","时间","种类","提交人"};
+		String[] columnNames={"是否选中","时间","种类","编号","提交人"};
 		model.setColumnIdentifiers(columnNames);
 		TableColumnModel tcm = table.getColumnModel();
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
@@ -191,8 +192,7 @@ public class OrderApprovePanel extends JPanel{
 				k++;
 			}
 			Calendar time=temp.getTime();
-			String timeString=time.get(Calendar.YEAR)+"年"+(time.get(Calendar.MONTH)+1)+"月"+time.get(Calendar.DATE)+"日";
-			model.addRow(new Object[]{new Boolean(false),timeString,kind[k],temp.getOperator()});
+			model.addRow(new Object[]{new Boolean(false),DateFormat.TIME.format(time.getTime()),kind[k],temp.getId(),temp.getOperator()});
 		}
 	}
 	private void approve(boolean ispassed){
