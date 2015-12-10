@@ -31,12 +31,19 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	 * 
 	 */
 	private static final long serialVersionUID = 5947380830581319837L;
-	MysqlService mysqlSer;
-
-	public OrderResubmitData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static OrderResubmitData data = null;
+	private OrderResubmitData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+
+	public static OrderResubmitData getOrderResubmit() throws RemoteException{
+		if(data == null){
+			data = new OrderResubmitData();
+		}
+		return data;
 	}
 
 	public ArrayList<KindGetter> getOrders(String userId) throws RemoteException {

@@ -9,7 +9,7 @@ import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.enums.Result;
 
 public class ConstantData  extends UnicastRemoteObject implements ConstantDSer{
-	public ConstantData() throws RemoteException {
+	private ConstantData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
@@ -17,7 +17,13 @@ public class ConstantData  extends UnicastRemoteObject implements ConstantDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 4333792722404056865L;
-	
+	private static ConstantData data = null;
+	public static ConstantData getConstantData() throws RemoteException{
+		if(data == null){
+			data = new ConstantData();
+		}
+		return data;
+	}
 	public Result setConstant(ConstantPO constant)throws RemoteException{
 		return SerialHelper.writeToFile(constant, "data/constant/constant.ser");
 	}

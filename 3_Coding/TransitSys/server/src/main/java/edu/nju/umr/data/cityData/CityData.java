@@ -19,11 +19,19 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 702208404557174194L;
-	MysqlService mysqlSer;
-	public CityData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static CityData data = null;
+	private CityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static CityData getCity() throws RemoteException{
+		if(data == null){
+			data = new CityData();
+		}
+		return data;
 	}
 
 	public Result addCity(CityPO city) throws RemoteException {

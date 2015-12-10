@@ -219,7 +219,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public OrderApproveDSer getOrderApprove() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new OrderApproveData();
+		return OrderApproveData.getOrderApprove();
 	}
 
 	public LoginDSer getLogin() throws RemoteException {
@@ -264,7 +264,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public CityDSer getCity() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CityData();
+		return CityData.getCity();
 	}
 
 	public CenterLoadingOrderDSer getCenterLoadingOrder()
@@ -285,7 +285,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public OrderResubmitDSer getOrderResubmit() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new OrderResubmitData();
+		return OrderResubmitData.getOrderResubmit();
 	}
 
 	public ExpressOrderDSer getExpressOrder() throws RemoteException {
@@ -309,7 +309,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 	}
 	
 	public ConstantDSer getConstant() throws RemoteException {
-		return new ConstantData();
+		return ConstantData.getConstantData();
 	}
 	
 	public UpdateTransitInfoDSer getUpdateTransitInfoDSer() throws RemoteException{

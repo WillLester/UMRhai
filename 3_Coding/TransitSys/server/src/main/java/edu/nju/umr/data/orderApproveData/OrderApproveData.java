@@ -35,11 +35,18 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 	 */
 	private static final long serialVersionUID = -3649658232155573648L;
 	private MysqlService mysqlSer;
-
-	public OrderApproveData() throws RemoteException {
+	private static OrderApproveData data = null;
+	private OrderApproveData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static OrderApproveData getOrderApprove() throws RemoteException{
+		if(data == null){
+			data = new OrderApproveData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")
