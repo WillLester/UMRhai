@@ -153,16 +153,9 @@ public class DriverInfoPanel extends JPanel {
 					DriverVO newDriver=new DriverVO(textFieldNum.getText(),textFieldName.getText(),born.getCalendar(),textFieldIden.getText(),
 						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar(),orgId);
 					Result result=panel.Modify(newDriver);
-					DoHint.hint(result, frame);
+					DoHint.hint(result, frame,true);
 					if(result.equals(Result.SUCCESS)){
 						confirm.setEnabled(false);
-						try{
-							Thread.sleep(300);
-						}catch(Exception ex)
-						{
-							ex.printStackTrace();
-						}
-						frame.dispose();
 					}
 				}
 			}

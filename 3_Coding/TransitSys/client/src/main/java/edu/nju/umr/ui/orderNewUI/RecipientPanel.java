@@ -128,12 +128,9 @@ public class RecipientPanel extends JPanel {
 					Result result = logicSer.create(createVO(),org);
 					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
-						confirmButton.setEnabled(false);
-						try{
-							Thread.sleep(300);
-						}catch(Exception ex)
-						{
-							ex.printStackTrace();
+						DoHint.hint(result, frame);
+						if(result.equals(Result.SUCCESS)){
+							confirmButton.setEnabled(false);
 						}
 						frame.setTitle("派件单生成");
 						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org,(LinkedList<String>) logicSer.expressList(idField.getText())));

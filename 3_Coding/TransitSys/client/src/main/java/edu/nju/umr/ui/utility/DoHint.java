@@ -25,6 +25,10 @@ public class DoHint {
 			fr.setVisible(true);
 			return;
 		}
+		else
+		{
+			hint(result,fr);
+		}
 	}
 	public static void hint(String content,JFrame fr){
 		@SuppressWarnings("unused")

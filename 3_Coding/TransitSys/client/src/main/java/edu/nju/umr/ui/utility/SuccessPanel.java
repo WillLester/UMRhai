@@ -42,7 +42,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		{
 			try
 			{
-				thread.sleep(10);
+				thread.sleep(2);
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -55,7 +55,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 			repaint();
 		}
 		try{
-			thread.sleep(1000);
+			thread.sleep(200);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		{
 			try
 			{
-				thread.sleep(10);
+				thread.sleep(2);
 			}catch(Exception e)
 			{
 				e.printStackTrace();

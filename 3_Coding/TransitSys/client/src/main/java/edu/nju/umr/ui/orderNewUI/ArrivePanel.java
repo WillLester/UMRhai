@@ -183,16 +183,9 @@ public class ArrivePanel extends JPanel {
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
 		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,userId),org);
-		DoHint.hint(result, frame);
+		DoHint.hint(result, frame,true);
 		if(result.equals(Result.SUCCESS)){
 			confirmButton.setEnabled(false);
-			try{
-				Thread.sleep(300);
-			}catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			frame.dispose();
 		}
 	}
 	public void setEnabled(boolean enabled)

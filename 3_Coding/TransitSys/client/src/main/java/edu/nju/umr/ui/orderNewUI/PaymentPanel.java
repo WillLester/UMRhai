@@ -149,16 +149,9 @@ public class PaymentPanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
-					DoHint.hint(result, frame);
+					DoHint.hint(result, frame,true);
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);
-						try{
-							Thread.sleep(300);
-						}catch(Exception ex)
-						{
-							ex.printStackTrace();
-						}
-						frame.dispose();
 					}
 				}
 			}

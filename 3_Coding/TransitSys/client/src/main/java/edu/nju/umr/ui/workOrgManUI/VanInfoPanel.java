@@ -200,16 +200,9 @@ public class VanInfoPanel extends JPanel {
 		}
 		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,orgId);
 		Result result=fatherPanel.confirmed(temp);
-		DoHint.hint(result, frame);
+		DoHint.hint(result, frame,true);
 		if(result.equals(Result.SUCCESS)){
 			confirm.setEnabled(false);
-			try{
-				Thread.sleep(300);
-			}catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			frame.dispose();
 		}
 		
 		

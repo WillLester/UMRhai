@@ -496,7 +496,7 @@ public class ExpressPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if(isLegal()){
 				Result result = logicSer.create(createVO(),org);
-				DoHint.hint(Result.SUCCESS, frame,true);
+				DoHint.hint(result, frame,true);
 				if(result.equals(Result.SUCCESS)){
 					confirmButton.setEnabled(false);
 				}
