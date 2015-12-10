@@ -69,7 +69,6 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 	}
 	public CenterLoadingPanel(JFrame fr,String name,String userId,String org) {
 		setLayout(null);
-		
 		JLabel titleLabel = new JLabel("中转中心装车单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));

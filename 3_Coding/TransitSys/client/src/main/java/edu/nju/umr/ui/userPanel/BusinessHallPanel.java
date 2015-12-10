@@ -26,7 +26,7 @@ public class BusinessHallPanel extends UserPanel {
 		
 		super(user,fr);
 		
-		JButton recipient = new JButton("到达单");
+		JButton recipient = new JButton("接收单");
 		recipient.setBounds(269, 192, 112, 83);
 		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
 		recipient.addActionListener(new ActionListener(){
