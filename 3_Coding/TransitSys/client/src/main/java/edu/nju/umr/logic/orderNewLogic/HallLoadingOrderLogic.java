@@ -47,7 +47,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
-			isSuc=hallData.create(VPFactory.toHallLoadingPO(order, ""));
+			isSuc=hallData.create(VPFactory.toHallLoadingPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:order.getExpress())
 					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())

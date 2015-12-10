@@ -14,7 +14,6 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	 * 
 	 */
 	private static final long serialVersionUID = -2792959549903355429L;
-	private String id;
 	private String hallId;
 	private String convertId;
 	private String arriveLoc;
@@ -27,12 +26,11 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	private String opName;
 	private double cost;
 	private String userId;
-	public HallLoadingPO(String id, String hallId, String convertId,
+	public HallLoadingPO(String hallId, String convertId,
 			String arriveLoc, String vanId, String supervision, String escort,
 			ArrayList<String> express, Calendar date, Calendar opTime,
 			String opName,double cost,String userId) {
 		super();
-		this.id = id;
 		this.hallId = hallId;
 		this.convertId = convertId;
 		this.arriveLoc = arriveLoc;
@@ -73,9 +71,6 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public Calendar getDate() {
 		return date;
 	}
-	public String getId() {
-		return id;
-	}
 	public String getOpName() {
 		return opName;
 	}
@@ -95,9 +90,9 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 			for(String e:express){
 				text = text + e + " ";
 			}
-			command="insert into halllorderwaiting values"+"("+"'"+id+"','"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"',"+cost+",'"+userId+"')";break;
+			command="insert into halllorderwaiting values"+"("+"'"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"',"+cost+",'"+userId+"')";break;
 		case DELETE:break;
-		case FIND:command = "select * from halllorderpassed where id='"+id+"'";break;
+		case FIND:command = "select * from halllorderpassed where convertId='"+convertId+"'";break;
 		case UPDATE:break;
 		}
 		return command;
@@ -111,15 +106,15 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into halllorderpassed select * from halllorderwaiting where id='"+id+"'";
+			return "insert into halllorderpassed select * from halllorderwaiting where convertId='"+convertId+"'";
 		} else {
-			return "insert into halllorderunpassed select * from halllorderwaiting where id='"+id+"'";
+			return "insert into halllorderunpassed select * from halllorderwaiting where convertId='"+convertId+"'";
 		}
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return "delete from halllorderwaiting where id='"+id+"'";
+		return "delete from halllorderwaiting where convertId='"+convertId+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
@@ -129,7 +124,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	@Override
 	public String getDetail() {
 		// TODO 自动生成的方法存根
-		return "select * from halllorderwaiting where id='"+id+"'";
+		return "select * from halllorderwaiting where convertId='"+convertId+"'";
 	}
 	@Override
 	public String getUnpassed() {

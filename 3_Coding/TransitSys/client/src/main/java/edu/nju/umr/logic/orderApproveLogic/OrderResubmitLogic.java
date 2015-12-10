@@ -128,7 +128,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 			break;
 		case HALLLOADING:
 			HallLoadingPO poH = (HallLoadingPO) order;
-			result = new OrderVO(poH.getId(), kind, poH.getOpName(), poH.getOpTime());
+			result = new OrderVO(poH.getConvertId(), kind, poH.getOpName(), poH.getOpTime());
 			break;
 		case INCOME:
 			IncomePO poI = (IncomePO) order;

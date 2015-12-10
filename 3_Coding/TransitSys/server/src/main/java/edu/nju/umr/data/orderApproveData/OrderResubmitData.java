@@ -98,7 +98,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getHallLoad(String userId){
-		OrderOper po = new HallLoadingPO(null, null, null, null, null, null, 
+		OrderOper po = new HallLoadingPO(null, null, null, null, null, 
 				null, null, null, null, null, 0, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){

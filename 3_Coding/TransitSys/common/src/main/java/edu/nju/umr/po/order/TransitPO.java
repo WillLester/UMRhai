@@ -85,12 +85,14 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
 		String command=null;
-		String text = "";
-		for(String ex:express){
-			text = text + ex + " ";
-		}
+		
 		switch(op){
-		case INSERT:command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"
+		case INSERT:
+			String text = "";
+			for(String ex:express){
+				text = text + ex + " ";
+			}
+			command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"
 		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date)+"','"+
 				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"')";break;
 		case DELETE:break;

@@ -144,7 +144,6 @@ public class PaymentPanel extends JPanel {
 		confirmButton.setBounds(342, 499, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
 			
-			@SuppressWarnings("unused")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根

@@ -11,6 +11,7 @@ import edu.nju.umr.data.utilityData.OrderPOFactory;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
+import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.TransitPO;
 /*
  * 到达单数据
@@ -48,6 +49,12 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null));
 		TransitPO transit = OrderPOFactory.getTransit(result);
-		return transit.getExpress();
+		if(transit == null){
+			result = mysqlSer.checkInfo(new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null));
+			HallLoadingPO hall = OrderPOFactory.getHallLoad(result);
+			return hall.getExpress();
+		} else {
+			return transit.getExpress();
+		}
 	}
 }

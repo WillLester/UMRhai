@@ -98,18 +98,18 @@ public class OrderPOFactory {
 	public static HallLoadingPO getHallLoad(ResultSet result){
 		try {
 			if(result.next()){
-				String text[] = result.getString(10).split(" ");
+				String text[] = result.getString(9).split(" ");
 				ArrayList<String> express = new ArrayList<String>();
 				for(int i = 0;i < text.length;i++){
 					express.add(text[i]);
 				}
 				Calendar date = Calendar.getInstance();
-				date.setTime(result.getDate(8));
+				date.setTime(result.getDate(7));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(9));
-				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(3), result.getString(5), 
-						result.getString(4), result.getString(6), result.getString(7), express, date, opTime, 
-						result.getString(11), result.getDouble(12),result.getString(13));
+				opTime.setTime(result.getDate(8));
+				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(4), 
+						result.getString(3), result.getString(5), result.getString(6), express, date, opTime, 
+						result.getString(10), result.getDouble(11),result.getString(12));
 			} else {
 				return null;
 			}

@@ -121,7 +121,6 @@ public class RecipientPanel extends JPanel {
 		confirmButton.setBounds(364+40, 434, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
 			
-			@SuppressWarnings("unused")
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根

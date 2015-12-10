@@ -299,7 +299,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case HALLLOADING:
 			for(String i:id){
-				order = new HallLoadingPO(i, null, null, null, null, null, null, null, null, null, null, 0,null);
+				order = new HallLoadingPO(null, i, null, null, null, null, null, null, null, null, 0,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

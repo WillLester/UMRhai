@@ -101,8 +101,8 @@ public class VPFactory {
     	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName(),po.getUserId());
     	 return vo;
      }
-     public static HallLoadingPO toHallLoadingPO(HallLoadingVO vo,String id){
-    	 HallLoadingPO po=new HallLoadingPO(id,vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost(),vo.getUserId());
+     public static HallLoadingPO toHallLoadingPO(HallLoadingVO vo){
+    	 HallLoadingPO po=new HallLoadingPO(vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost(),vo.getUserId());
     	 return po;
      }
      
