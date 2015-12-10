@@ -47,7 +47,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = arriveData.create(VPFactory.toArrivePO(order, ""));
+			isSuc = arriveData.create(VPFactory.toArrivePO(order));
 			if(isSuc.equals(Result.SUCCESS)){
 				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
 				for(String express:expresses){

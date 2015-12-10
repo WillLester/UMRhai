@@ -65,8 +65,8 @@ public class VPFactory {
     	 ArriveVO vo=new ArriveVO(po.getCenterId(), po.getDate(), po.getId(), po.getStartPlace(), po.getState(), po.getOpName(),po.getUserId());
     	 return vo;
      }
-     public static ArrivePO toArrivePO(ArriveVO vo,String id){
-    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), id, vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName(),vo.getUserId());
+     public static ArrivePO toArrivePO(ArriveVO vo){
+    	 ArrivePO po=new ArrivePO(vo.getCenterId(), vo.getDate(), vo.getId(), vo.getStartPlace(), vo.getState(), Calendar.getInstance(), vo.getOpName(),vo.getUserId());
     	 return po;
      }
      
