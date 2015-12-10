@@ -175,6 +175,13 @@ public class WageDraftPanel extends JPanel {
 						result = panel.setWage(Wage.COMMISSION, Integer.parseInt(textFieldwi.getText()), Integer.parseInt(textFieldbound.getText()));
 					}
 					if(result.equals(Result.SUCCESS)){
+						DoHint.hint(Result.SUCCESS, frame);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
 						frame.dispose();
 					}
 				}

@@ -117,15 +117,16 @@ public class DriverListPanel extends JPanel {
 		        {
 		        	Result result;
 		        	result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId(),name);
-		        	if(result.equals(Result.SUCCESS))
-		        	{
-		        		driverList.remove(table.getSelectedRow());
-		        		displayDrivers();
-		        	}
-		        	else
-		        	{
-		        		new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-		        	}
+		        	DoHint.hint(result, frame);
+					if(result.equals(Result.SUCCESS)){
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
+						frame.dispose();
+					}
 		        }
 			}
 		});

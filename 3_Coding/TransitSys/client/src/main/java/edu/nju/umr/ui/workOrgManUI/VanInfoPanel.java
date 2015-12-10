@@ -42,6 +42,7 @@ public class VanInfoPanel extends JPanel {
 	private DatePanel servTime;
 	private JLabel pic;
 	private String orgId;
+	private JButton confirm;
 
 	/**
 	 * Create the panel.
@@ -117,7 +118,7 @@ public class VanInfoPanel extends JPanel {
 		}});
 		add(upload);
 		
-		JButton confirm = new JButton("确定");
+		confirm = new JButton("确定");
 		confirm.setBounds(upload.getX()+200, upload.getY(), 93, 23);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
@@ -198,11 +199,17 @@ public class VanInfoPanel extends JPanel {
 		}
 		VanVO temp=new VanVO(textFieldNum.getText(),textFieldPlate.getText(),servTime.getCalendar(),imageString,orgId);
 		Result result=fatherPanel.confirmed(temp);
-		if(!result.equals(Result.SUCCESS)){
-			DoHint.hint(result, frame);
-			return;
+		DoHint.hint(result, frame);
+		if(result.equals(Result.SUCCESS)){
+			confirm.setEnabled(false);
+			try{
+				Thread.sleep(300);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			frame.dispose();
 		}
-		frame.dispose();
 		
 		
 	}

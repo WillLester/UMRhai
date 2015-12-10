@@ -17,6 +17,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 
 public class DriverInfoPanel extends JPanel {
@@ -152,9 +153,15 @@ public class DriverInfoPanel extends JPanel {
 					DriverVO newDriver=new DriverVO(textFieldNum.getText(),textFieldName.getText(),born.getCalendar(),textFieldIden.getText(),
 						textFieldMobile.getText(),sex,start.getCalendar(),deadline.getCalendar(),orgId);
 					Result result=panel.Modify(newDriver);
-					if(!result.equals(Result.SUCCESS)){
-						new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-					}else { 
+					DoHint.hint(result, frame);
+					if(result.equals(Result.SUCCESS)){
+						confirm.setEnabled(false);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
 						frame.dispose();
 					}
 				}

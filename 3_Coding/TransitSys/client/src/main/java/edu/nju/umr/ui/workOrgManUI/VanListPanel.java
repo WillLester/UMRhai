@@ -198,13 +198,12 @@ public class VanListPanel extends JPanel {
 		int row=table.getSelectedRow();
 		String id=vanList.get(row).getId();
 		Result result = serv.deleteVan(id,name);
-		if(!result.equals(Result.SUCCESS))
+		DoHint.hint(result, frame);
+		if(result.equals(Result.SUCCESS))
 		{
-			DoHint.hint(result, frame);
-			return;
+			vanList.remove(row);
+			displayVans();
 		}
-		vanList.remove(row);
-		displayVans();
 	}
 	private void modify(){
 		int row=table.getSelectedRow();

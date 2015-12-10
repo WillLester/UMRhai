@@ -165,14 +165,11 @@ public class WorkListPanel extends JPanel {
 		        if (n == JOptionPane.YES_OPTION)
 		        {  
 		        	Result result = logicSer.deleteWork(table.getSelectedRow(),name);
+		        	DoHint.hint(result, frame);
 		        	if(result.equals(Result.SUCCESS))
 		        	{
 		        		fresh();
 					}
-		        	else
-		        	{
-		        		DoHint.hint(result, frame);
-		        	}
 		        }
 			}
 		});
@@ -188,17 +185,15 @@ public class WorkListPanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(table.getSelectedRow() >= workList.size()){
 					Result result = logicSer.addWork(createVO(),name);
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
 						fresh();
-					} else {
-						DoHint.hint(result, frame);
 					}
 				} else {
 					Result result = logicSer.reviseWork(createVO(),table.getSelectedRow(),name);
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
 						fresh();
-					} else {
-						DoHint.hint(result, frame);
 					}
 				}
 			}

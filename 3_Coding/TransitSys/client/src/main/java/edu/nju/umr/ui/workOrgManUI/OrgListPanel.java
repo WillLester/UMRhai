@@ -27,6 +27,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -309,10 +310,8 @@ public class OrgListPanel extends JPanel {
 		if(row<0||row>=orgList.size())return;
 		OrgVO temp=orgList.get(row);
 		Result result=serv.deleteOrg(temp.getId(),name);
-		if(!result.equals(Result.SUCCESS)){
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-		}
-		else{
+		DoHint.hint(result, frame);
+		if(result.equals(Result.SUCCESS)){
 			orgList.remove(row);
 			displayOrgs();
 		}
@@ -344,12 +343,8 @@ public class OrgListPanel extends JPanel {
 		if(table.getSelectedRow()==orgList.size())
 		{
 			Result result=serv.addOrg(temp,this.name);
-			if(!result.equals(Result.SUCCESS))
-			{
-				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-			}
-			else 
-			{
+			DoHint.hint(result, frame);
+			if(result.equals(Result.SUCCESS)){
 				orgList.add(temp);
 				displayOrgs();
 			}
@@ -357,12 +352,8 @@ public class OrgListPanel extends JPanel {
 		else
 		{
 			Result result=serv.reviseOrg(temp,this.name);
-			if(!result.equals(Result.SUCCESS))
-			{
-				new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-			}
-			else 
-			{
+			DoHint.hint(result, frame);
+			if(result.equals(Result.SUCCESS)){
 				orgList.set(table.getSelectedRow(), temp);
 				displayOrgs();
 			}
