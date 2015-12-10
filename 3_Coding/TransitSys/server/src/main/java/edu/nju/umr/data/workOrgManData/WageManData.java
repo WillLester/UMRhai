@@ -22,10 +22,18 @@ public class WageManData extends UnicastRemoteObject implements WageManDSer{
 	 */
 	private static final long serialVersionUID = 2101834215561188546L;
 	private MysqlService mysqlSer;
-	public WageManData() throws RemoteException {
+	private static WageManData data = null;
+	private WageManData() throws RemoteException {
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static WageManData getWageMan() throws RemoteException{
+		if(data == null){
+			data = new WageManData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -19,12 +19,19 @@ public class VanManData extends UnicastRemoteObject implements VanManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -7507578235288310599L;
-	MysqlService mysqlSer;
-
-	public VanManData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static VanManData data = null;
+	private VanManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static VanManData getVanMan() throws RemoteException{
+		if(data == null){
+			data = new VanManData();
+		}
+		return data;
 	}
 
 	public ArrayList<VanPO> findVan(String keyword,String hallId) throws RemoteException {

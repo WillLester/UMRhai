@@ -22,12 +22,19 @@ public class WorkManData extends UnicastRemoteObject implements WorkManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -6579757885515328662L;
-	MysqlService mysqlSer;
-
-	public WorkManData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static WorkManData data = null;
+	private WorkManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static WorkManData getWorkMan() throws RemoteException{
+		if(data == null){
+			data = new WorkManData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")

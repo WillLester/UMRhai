@@ -22,12 +22,19 @@ public class OrgManData extends UnicastRemoteObject implements OrgManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 6797725942565577714L;
-	MysqlService mysqlSer;
-
-	public OrgManData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static OrgManData data = null;
+	private OrgManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static OrgManData getOrgMan() throws RemoteException{
+		if(data == null){
+			data = new OrgManData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -20,11 +20,18 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	 */
 	private static final long serialVersionUID = 2621223833650333912L;
 	private MysqlService mysqlSer;
-	
-	public DriverManData() throws RemoteException {
+	private static DriverManData data = null;
+	private DriverManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static DriverManData getDriverMan() throws RemoteException{
+		if(data == null){
+			data = new DriverManData();
+		}
+		return data;
 	}
 
 	public ArrayList<DriverPO> findDriver(String hallId)
