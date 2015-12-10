@@ -5,10 +5,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
@@ -27,7 +25,6 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private CenterLoadingOrderDFacSer dataFac;
 	private CenterLoadingOrderDSer centerData;
 	private UtilityLogic uti=new UtilityLogic();
-	private UpdateTransitInfoLogic infoLogic;
 	private DiaryUpdateLSer diarySer;
 	public CenterLoadingOrderLogic() {
 		try{
@@ -41,21 +38,17 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
-		infoLogic = new UpdateTransitInfoLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
-	public Result create(CenterLoadingVO order,String org) {
+	public Result create(CenterLoadingVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = centerData.create(VPFactory.toCenterLoadPO(order, ""));
 			if(isSuc.equals(Result.SUCCESS)){
-				for(String express:order.getExpress()){
-					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
-							+" " +org+"已发出 下一站"+order.getTarget());
-				}
+				isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
 			}
-			isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
+			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

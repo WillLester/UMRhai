@@ -78,7 +78,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		logicSer = new CenterLoadingOrderLogic();
 		this.name = name;
 		this.userId = userId;
-		this.org=org;
+		this.org = org;
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,7 +171,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					DoHint.hint(result, frame,true);
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);

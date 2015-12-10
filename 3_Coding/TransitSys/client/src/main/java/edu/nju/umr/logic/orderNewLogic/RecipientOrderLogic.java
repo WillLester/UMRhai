@@ -3,11 +3,9 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
@@ -26,7 +24,6 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private RecipientOrderDFacSer dataFac;
 	private RecipientOrderDSer recipientData;
 	private UtilityLogic uti=new UtilityLogic();
-	private UpdateTransitInfoLogic infoLogic;
 	private DiaryUpdateLSer diarySer;
 	public RecipientOrderLogic(){
 		try{
@@ -36,22 +33,18 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		infoLogic = new UpdateTransitInfoLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
-	public Result create(RecipientVO order,String org) {
+	public Result create(RecipientVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc=Result.SUCCESS;
 		try{
 			RecipientPO orderPO=VPFactory.toRecipientPO(order, "");
 			isSuc=recipientData.create(orderPO);
 			if(isSuc.equals(Result.SUCCESS)){
-				for(String express:recipientData.getExpressList(order.getTransitId())){
-					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime()
-							+" "+org+" 已收入"));
-				}
+				isSuc = diarySer.addDiary("接收了中转单"+order.getTransitId(), order.getOpName());
 			}
-			isSuc = diarySer.addDiary("接收了中转单"+order.getTransitId(), order.getOpName());
+			
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){

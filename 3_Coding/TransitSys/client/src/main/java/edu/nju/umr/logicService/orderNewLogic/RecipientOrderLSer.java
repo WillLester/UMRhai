@@ -7,7 +7,7 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
 public interface RecipientOrderLSer {
-	public Result create(RecipientVO order,String org);
+	public Result create(RecipientVO order);
 	public ResultMessage getCities();
 	/**
 	 * 检查中转单编号是否存在

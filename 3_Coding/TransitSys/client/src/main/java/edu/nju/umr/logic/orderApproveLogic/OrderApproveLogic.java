@@ -5,7 +5,10 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
@@ -284,45 +287,114 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return null;
 	}
 	private Result updateTransitInfo(String id,Order kind){
-		String userId = getUserId(id, kind);
-		if(userId == null){
-			return Result.DATA_NOT_FOUND;
-		}
-		return Result.SUCCESS;
-	}
-	private String getUserId(String id,Order kind){
 		ResultMessage message = null;
 		message = chooseOrder(id, kind);
+		List<String> list;
+		String org;
 		if(isSuc(message)){
 			switch(kind){
 			case ARRIVE:
 				ArriveVO voA = (ArriveVO) message.getMessage();
-				return voA.getUserId();
+				org = getOrg(voA.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				list = getTransitExp(voA.getId());
+				if(list == null){
+					list = getHallLoadExp(voA.getId());
+				} else {
+					return Result.DATA_NOT_FOUND;
+				}
+				for(String express:list){
+					infoLogic.update(express, 
+							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
+				}
+				break;
 			case CENTERLOADING:
 				CenterLoadingVO voC = (CenterLoadingVO) message.getMessage();
+				org = getOrg(voC.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				for(String express:voC.getExpress()){
+					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
+							+" " +org+" 已发出 下一站 "+voC.getTarget());
+				}
 				break;
 			case EXPRESS:
+				ExpressVO voE = (ExpressVO) message.getMessage();
+				org = getOrg(voE.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				infoLogic.addInfo(voE.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())+" " +org+"快递员 已收件");
 				break;
 			case HALLLOADING:
-				break;
-			case INCOME:
-				break;
-			case PAYMENT:
+				HallLoadingVO voH = (HallLoadingVO) message.getMessage();
+				org = getOrg(voH.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				for(String express:voH.getExpress()){
+					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+" 已发出 下一站 "+voH.getArriveLoc());
+				}
 				break;
 			case RECIPIENT:
+				RecipientVO voR = (RecipientVO) message.getMessage();
+				org = getOrg(voR.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				list = getTransitExp(voR.getTransitId());
+				if(list == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				for(String exp:list){
+					infoLogic.update(exp, DateFormat.TIME.format(Calendar.getInstance().getTime()
+							+" "+org+" 已收入"));
+				}
 				break;
 			case SEND:
-				break;
-			case STOCKIN:
-				break;
-			case STOCKOUT:
+				SendVO voS = (SendVO) message.getMessage();
+				org = getOrg(voS.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				infoLogic.update(voS.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+"派件员 "+voS.getCourier()+"正在派件");
 				break;
 			case TRANSIT:
+				TransitVO voT = (TransitVO) message.getMessage();
+				org = getOrg(voT.getUserId());
+				if(org == null){
+					return Result.DATA_NOT_FOUND;
+				}
+				for(String express:voT.getExpress()){
+					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
+							+" "+org+" 已发出 下一站 "+voT.getArrivePlace());
+				}
 				break;
 			default:
 				break;
 			}
+		} else {
+			return message.getReInfo();
 		}
+		return Result.SUCCESS;
+	}
+	private String getOrg(String userId){
+		//TODO 
+		return null;
+	}
+	
+	private List<String> getTransitExp(String id){
+		//TODO
+		return null;
+	}
+	
+	private List<String> getHallLoadExp(String id){
+		//TODO
 		return null;
 	}
 	

@@ -189,7 +189,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					DoHint.hint(result, frame,true);
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);

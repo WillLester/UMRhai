@@ -44,7 +44,7 @@ public class SendPanel extends JPanel {
 	 */
 	public SendPanel(JFrame fr,SendVO vo)
 	{
-		this(fr, vo.getOpName(),null, vo.getUserId(),null,null);
+		this(fr, vo.getOpName(),null ,vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -54,7 +54,7 @@ public class SendPanel extends JPanel {
 		courierCombo.setSelectedItem(vo.getCourier());
 		datePanel.setDate(vo.getDate());
 	}
-	public SendPanel(JFrame fr,String name,String orgId,String userId,String org,LinkedList<String> express) {
+	public SendPanel(JFrame fr,String name,String orgId,String userId,LinkedList<String> express) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -117,7 +117,7 @@ public class SendPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					if(!result.equals(Result.SUCCESS)){
 						DoHint.hint(result, frame);
 						return;
@@ -128,7 +128,7 @@ public class SendPanel extends JPanel {
 						if(!express.isEmpty()){
 							DoHint.hint(result, frame);
 							express.removeFirst();
-							frame.setContentPane(new SendPanel(fr, name, orgId, userId, org, express));
+							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);
 							frame.dispose();

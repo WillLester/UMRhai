@@ -101,14 +101,13 @@ public class ExpressPanel extends JPanel {
 	protected JLabel arriveLabel;
 	protected JTextField arriveField;
 	private String userId;
-	private String org;
 	protected ConfirmListener conListener;
 	/**
 	 * Create the panel.
 	 */
 	public ExpressPanel(JFrame fr,ExpressVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId(),null);
+		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -142,13 +141,12 @@ public class ExpressPanel extends JPanel {
 		
 		
 	}
-	public ExpressPanel(JFrame fr,String name,String userId,String org) {
+	public ExpressPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
 		this.name = name;
 		this.userId = userId;
-		this.org=org;
 		
 		titleLabel = new JLabel("订单");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -495,7 +493,7 @@ public class ExpressPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(isLegal()){
-				Result result = logicSer.create(createVO(),org);
+				Result result = logicSer.create(createVO());
 				DoHint.hint(result, frame,true);
 				if(result.equals(Result.SUCCESS)){
 					confirmButton.setEnabled(false);

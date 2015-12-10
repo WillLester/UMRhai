@@ -264,7 +264,7 @@ public class HallLoadingPanel extends JPanel {
 		// TODO Auto-generated method stub
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
 				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId);
-		Result result=serv.create(vo,org);
+		Result result=serv.create(vo);
 		DoHint.hint(result, frame,true);
 		if(result.equals(Result.SUCCESS)){
 			confirmButton.setEnabled(false);

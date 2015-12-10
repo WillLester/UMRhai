@@ -7,7 +7,7 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
 
 public interface TransitOrderLSer {
-	public Result create(TransitVO order,String org);
+	public Result create(TransitVO order);
 	public ResultMessage getCenters();
 	/**
 	 * 检查订单列表是否存在

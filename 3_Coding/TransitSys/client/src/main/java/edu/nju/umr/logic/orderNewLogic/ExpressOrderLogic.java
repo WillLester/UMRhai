@@ -6,9 +6,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
@@ -27,7 +25,6 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	private ExpressOrderDFacSer dataFac;
 	private ExpressOrderDSer expressData;
 	private UtilityLogic uti;
-	private UpdateTransitInfoLogic infoLogic;
 	private DiaryUpdateLSer diarySer;
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
@@ -42,18 +39,16 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
-		infoLogic = new UpdateTransitInfoLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
-	public Result create(ExpressVO order,String org) {
+	public Result create(ExpressVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc=expressData.create(VPFactory.toExpressPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
-				infoLogic.addInfo(order.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())+" " +org+"快递员 已收件");
+				isSuc = diarySer.addDiary("生成快递单"+order.getId(), order.getOpName());
 			}
-			isSuc = diarySer.addDiary("生成快递单"+order.getId(), order.getOpName());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;

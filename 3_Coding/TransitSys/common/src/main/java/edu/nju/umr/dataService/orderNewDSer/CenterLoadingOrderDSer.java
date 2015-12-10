@@ -8,5 +8,4 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 
 public interface CenterLoadingOrderDSer extends Remote{
 	public Result create(CenterLoadingPO order) throws RemoteException;
-//	public ArrayList<String> getHalls() throws RemoteException;
 }

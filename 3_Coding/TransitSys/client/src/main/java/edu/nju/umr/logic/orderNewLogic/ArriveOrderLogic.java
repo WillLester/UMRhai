@@ -5,9 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
@@ -25,7 +23,6 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	private ArriveOrderDFacSer dataFac;
 	private ArriveOrderDSer arriveData;
 	private UtilityLogic uti=new UtilityLogic();
-	private UpdateTransitInfoLogic infoLogic;
 	private DiaryUpdateLSer diarySer;
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
@@ -40,20 +37,14 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
-		infoLogic = new UpdateTransitInfoLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
-	public Result create(ArriveVO order,String org) {
+	public Result create(ArriveVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = arriveData.create(VPFactory.toArrivePO(order));
 			if(isSuc.equals(Result.SUCCESS)){
-				ArrayList<String> expresses=arriveData.getExpressList(order.getId());
-				for(String express:expresses){
-					infoLogic.update(express, 
-							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
-				}
 				isSuc = diarySer.addDiary("生成了到达单"+order.getId(), order.getOpName());
 			}
 		} catch (RemoteException e) {
@@ -67,14 +58,6 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 
 	public ResultMessage getCities() {
 		// TODO 自动生成的方法存根
-//		ArrayList<String> cities = null;
-//		try {
-//			cities = arriveData.getCities();
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
-//		return new ResultMessage(Result.SUCCESS, cities);
 		
 		ResultMessage rm=uti.getCities();
 		if(rm.getReInfo()!=Result.SUCCESS){

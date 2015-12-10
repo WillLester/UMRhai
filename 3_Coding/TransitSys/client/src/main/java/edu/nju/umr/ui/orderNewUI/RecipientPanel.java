@@ -48,7 +48,7 @@ public class RecipientPanel extends JPanel {
 	 */
 	public RecipientPanel(JFrame fr,RecipientVO vo)
 	{
-		this(fr,vo.getOpName(),null,vo.getUserId(),null);
+		this(fr,vo.getOpName(),null,vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -59,7 +59,7 @@ public class RecipientPanel extends JPanel {
 		cityCombo.setSelectedItem(vo.getStartPlace());
 		stateCombo.setSelectedItem(EnumTransFactory.checkGoodState(vo.getState()));
 	}
-	public RecipientPanel(JFrame fr,String name,String orgId,String userId,String org) {
+	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -125,7 +125,7 @@ public class RecipientPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
-					Result result = logicSer.create(createVO(),org);
+					Result result = logicSer.create(createVO());
 					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
 						DoHint.hint(result, frame);
@@ -133,7 +133,7 @@ public class RecipientPanel extends JPanel {
 							confirmButton.setEnabled(false);
 						}
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org,(LinkedList<String>) logicSer.expressList(idField.getText())));
+						frame.setContentPane(new SendPanel(frame,name,orgId,userId,(LinkedList<String>) logicSer.expressList(idField.getText())));
 					}
 				} 
 			}

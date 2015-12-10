@@ -3,12 +3,12 @@ package edu.nju.umr.logic.orderNewLogic;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
@@ -21,7 +21,7 @@ public class SendOrderLogic implements SendOrderLSer{
 	private SendOrderDFacSer dataFac;
 	private SendOrderDSer sendData;
 	private UtilityLogic uti=new UtilityLogic();
-	private UpdateTransitInfoLogic infoLogic;
+	private DiaryUpdateLSer diarySer;
 	public SendOrderLogic(){
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
@@ -30,18 +30,16 @@ public class SendOrderLogic implements SendOrderLSer{
 		{
 			e.printStackTrace();
 		}
-		infoLogic = new UpdateTransitInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
-	public Result create(SendVO order,String org) {
+	public Result create(SendVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
 			SendPO orderPO=VPFactory.toSendPO(order, "");
 			isSuccessful=sendData.create(orderPO);
-			if(isSuccessful.equals(Result.SUCCESS))
-			{
-				infoLogic.update(order.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
-						+" "+org+"派件员 "+order.getCourier()+"正在派件");
+			if(isSuccessful.equals(Result.SUCCESS)){
+				isSuccessful = diarySer.addDiary("生成了派件单，派出"+order.getExpressId(), order.getOpName());
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
