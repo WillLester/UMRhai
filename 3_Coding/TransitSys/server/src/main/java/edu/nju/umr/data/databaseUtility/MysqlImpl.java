@@ -165,8 +165,8 @@ public class MysqlImpl implements MysqlService{
 				}
 				result = state.executeQuery("select * from halllorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(9));
-					OrderPO order = new OrderPO(result.getString(1), Order.HALLLOADING, result.getString(11), time, false);
+					time.setTime(result.getDate(8));
+					OrderPO order = new OrderPO(result.getString(2), Order.HALLLOADING, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from incomeorderwaiting");
