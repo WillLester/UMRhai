@@ -14,11 +14,16 @@ public class SuccessPanel extends JPanel implements Runnable{
 	private int x,y;
 	private Thread thread;
 	private JFrame frame;
+	private boolean toClose;
 	public SuccessPanel(JFrame frame){
+		this(frame,false);
+	}
+	public SuccessPanel(JFrame frame,boolean close){
 		this.frame=frame;
 		x=frame.getWidth()/6;
 		y=frame.getHeight()/6;
 		setBounds(x*6,y*5-50,x,y);
+		toClose=close;
 		thread=new Thread(this);
 		thread.start();
 	}
@@ -37,7 +42,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		{
 			try
 			{
-				Thread.sleep(1);
+				thread.sleep(10);
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -50,7 +55,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 			repaint();
 		}
 		try{
-			Thread.sleep(100);
+			thread.sleep(1000);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -59,7 +64,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		{
 			try
 			{
-				Thread.sleep(1);
+				thread.sleep(10);
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -72,5 +77,6 @@ public class SuccessPanel extends JPanel implements Runnable{
 			repaint();
 		}
 		frame.remove(this);
+		if(toClose)frame.dispose();
 	}
 }

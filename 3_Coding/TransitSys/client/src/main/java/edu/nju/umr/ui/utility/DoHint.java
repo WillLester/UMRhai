@@ -17,6 +17,15 @@ public class DoHint {
 		@SuppressWarnings("unused")
 		HintFrame hint = new HintFrame(result, fr.getX(), fr.getY(), fr.getWidth(), fr.getHeight());
 	}
+	public static void hint(Result result,JFrame fr,boolean close){
+		if(result.equals(Result.SUCCESS))
+		{
+			SuccessPanel suc=new SuccessPanel(fr,close);
+			fr.add(suc);
+			fr.setVisible(true);
+			return;
+		}
+	}
 	public static void hint(String content,JFrame fr){
 		@SuppressWarnings("unused")
 		HintFrame hint = new HintFrame(content, fr.getX(), fr.getY(), fr.getWidth(), fr.getHeight());
