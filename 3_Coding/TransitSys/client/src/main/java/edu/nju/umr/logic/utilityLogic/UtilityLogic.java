@@ -354,7 +354,12 @@ public class UtilityLogic {
 			isSuc=Result.SUCCESS;
 		}
 		localHalls.addAll(centers);
-		return new ResultMessage(isSuc,localHalls);
+		//返回名称的数组
+		String[] names=new String[localHalls.size()];
+		for(int i=0;i<localHalls.size();i++){
+			names[i]=localHalls.get(i).getName();
+		}
+		return new ResultMessage(isSuc,names);
 	}
 	
 	public ArrayList<String> getCouriers(String id) throws RemoteException{
@@ -589,5 +594,55 @@ public class UtilityLogic {
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
+	}
+	
+	//返回给界面名称数组的一系列方法
+	public ResultMessage getOrgNames(){//机构名称
+		ArrayList<OrgPO> orgList=new ArrayList<OrgPO>();
+		try {
+			orgList=orgs();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		String[] orgName=new String[orgList.size()];
+		for(int i=0;i<orgList.size();i++){
+			orgName[i]=orgList.get(i).getName();
+		}
+		return new ResultMessage(Result.SUCCESS,orgName);
+	}
+	
+	
+	public ResultMessage getVanNames(String orgId) {//车辆代号
+		ArrayList<VanPO> vanList=new ArrayList<VanPO>();
+		try {
+			vanList=vans(orgId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		String[] vanId=new String[vanList.size()];
+		for(int i=0;i<vanList.size();i++){
+			vanId[i]=vanList.get(i).getId();
+		}
+		return new ResultMessage(Result.SUCCESS,vanId);
+	}
+	
+	public ResultMessage getAccountNames() {
+		ArrayList<AccountPO> accountList=new ArrayList<AccountPO>();
+		try {
+			accountList =accounts();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		String[] accountName=new String[accountList.size()];
+		for(int i=0;i<accountList.size();i++){
+			accountName[i]=accountList.get(i).getName();
+		}
+		return new ResultMessage(Result.SUCCESS,accountName);
 	}
 }

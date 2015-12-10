@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
+import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.vo.ResultMessage;
@@ -63,12 +66,12 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 
 	public ResultMessage getOrgs() {
-		return uti.getOrgs();
+		return uti.getOrgNames();
 	}
 
 	public ResultMessage getVans(String orgId) {
-		// TODO 自动生成的方法存根
-		return uti.getVans(orgId);
+		
+		return uti.getVanNames(orgId);
 	}
 	
 	@Override

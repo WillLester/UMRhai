@@ -59,7 +59,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			couriers = uti.getCouriers(id);
-			String[] cour= new String[couriers.size()];
+			String[] cour= new String[couriers.size()];//这里代码貌似并不需要
 			for(int i = 0;i < cour.length;i++){
 				cour[i] = couriers.get(i);
 			}

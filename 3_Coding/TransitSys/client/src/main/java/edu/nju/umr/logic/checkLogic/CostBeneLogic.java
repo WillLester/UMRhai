@@ -36,7 +36,7 @@ public class CostBeneLogic implements CostBeneLSer{
 			e.printStackTrace();
 		}
 	}
-	public ResultMessage totalIncome() {
+	private ResultMessage totalIncome() {
 		ArrayList<IncomePO> incomeList=null;
 		try {
 			incomeList=costBeneDSer.getIncomes();
@@ -54,7 +54,7 @@ public class CostBeneLogic implements CostBeneLSer{
 		return new ResultMessage(Result.SUCCESS,total);
 	}
 
-	public ResultMessage totalPayment() {
+	private ResultMessage totalPayment() {
 		ArrayList<PaymentPO> paymentList=null;
 		try {
 			paymentList=costBeneDSer.getPayments();
