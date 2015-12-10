@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
+import edu.nju.umr.logic.orderNewLogic.UpdateTransitInfoLogic;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
@@ -47,6 +48,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
+	private UpdateTransitInfoLogic infoLogic;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -60,6 +62,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
             e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
+		infoLogic = new UpdateTransitInfoLogic();
 	}
 	public ResultMessage askExamine() {
 		
@@ -82,6 +85,10 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		ArrayList<Result> results=new ArrayList<Result>();
 		for(int i=0;i<indexs.size();i++){
 			OrderPO order=orderList.get(indexs.get(i));
+			Result re = updateTransitInfo(order.getId(), order.getKind());
+			if(re != Result.SUCCESS){
+				return re;
+			}
 			ArrayList<String> ids=new ArrayList<String>();
 			for(int j=0;j<indexs.size();j++){
 				OrderPO sameKind=orderList.get(indexs.get(j));
@@ -102,9 +109,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			if(!isSuc.equals(Result.SUCCESS))
 				return Result.DATA_NOT_FOUND;
 		}
-		for (int i = 0; i < indexs.size(); i++) {
-			
-		}
+		
 		return diarySer.addDiary("审批了单据", name);
 	}
 
@@ -279,7 +284,53 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return null;
 	}
 	private Result updateTransitInfo(String id,Order kind){
+		String userId = getUserId(id, kind);
+		if(userId == null){
+			return Result.DATA_NOT_FOUND;
+		}
 		return Result.SUCCESS;
 	}
+	private String getUserId(String id,Order kind){
+		ResultMessage message = null;
+		message = chooseOrder(id, kind);
+		if(isSuc(message)){
+			switch(kind){
+			case ARRIVE:
+				ArriveVO voA = (ArriveVO) message.getMessage();
+				return voA.getUserId();
+			case CENTERLOADING:
+				CenterLoadingVO voC = (CenterLoadingVO) message.getMessage();
+				break;
+			case EXPRESS:
+				break;
+			case HALLLOADING:
+				break;
+			case INCOME:
+				break;
+			case PAYMENT:
+				break;
+			case RECIPIENT:
+				break;
+			case SEND:
+				break;
+			case STOCKIN:
+				break;
+			case STOCKOUT:
+				break;
+			case TRANSIT:
+				break;
+			default:
+				break;
+			}
+		}
+		return null;
+	}
 	
+	private boolean isSuc(ResultMessage message){
+		if(message.getReInfo() == Result.SUCCESS){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
