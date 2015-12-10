@@ -149,7 +149,8 @@ public class VanInfoPanel extends JPanel {
 		}
 	}
 	private void showpic(){
-		pic.setIcon(new ImageIcon("test.jpg"));
+//		pic.setIcon(new ImageIcon("test.jpg"));
+		readAndDisplayImage("test.jpg");
 	}
 	private void baseCodeToImage(String baseCode){
 		if(baseCode.isEmpty())return;
