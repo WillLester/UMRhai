@@ -3,8 +3,6 @@ package edu.nju.umr.ui.orderApproveUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -15,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -24,14 +21,12 @@ import javax.swing.table.TableColumnModel;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
-import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.ShowOrder;
 
@@ -46,7 +41,8 @@ public class OrderApprovePanel extends JPanel{
 	private OrderApproveLSer serv;
 	private ArrayList<OrderVO> orderList;
 	private String name;
-	
+	private JButton checkButton;
+	private int count;
 	
 	class MyTableModel extends DefaultTableModel {
 	    /**
@@ -69,6 +65,7 @@ public class OrderApprovePanel extends JPanel{
 		frame=fr;
 		serv=new OrderApproveLogic();
 		this.name = name;
+		count=0;
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -109,9 +106,10 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(unpassedButton);
 		
-		JButton checkButton = new JButton("查看详细");
+		checkButton = new JButton("查看详细");
 		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		checkButton.setBounds(927, 271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		checkButton.setEnabled(false);
 		checkButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -149,41 +147,34 @@ public class OrderApprovePanel extends JPanel{
 	private void tableInit(){
 		table = new ApproveTable(new MyTableModel());
 		model=(MyTableModel)table.getModel();
-//		table.addMouseListener(new MouseAdapter(){
-//			public void mouseClicked(MouseEvent e){
-//				if(e.getClickCount()>= 1){
-//				int row = table.rowAtPoint(e.getPoint()); 
-//					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
-//						table.setValueAt(false,row, 0);
-//					}
-//					else
-//						table.setValueAt(true,row, 0);
-//			}}});
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-//					if(table.getSelectedRow() >= 0){
-//						if(((Boolean)table.getValueAt(table.getSelectedRow(),0)).booleanValue()){
-//							table.setValueAt(false,table.getSelectedRow(), 0);
-//						}
-//						else
-//							table.setValueAt(true,table.getSelectedRow(), 0);
-//						table.clearSelection();
-//					}
 					for(int row:table.getSelectedRows())
 					{
 						if(((Boolean)table.getValueAt(row,0)).booleanValue()){
 							table.setValueAt(false,row, 0);
+							count--;
 						}
 						else
+						{
 							table.setValueAt(true,row, 0);
+							count++;
+						}
+					}
+					if(count==1)
+					{
+						checkButton.setEnabled(true);
+					}
+					else
+					{
+						checkButton.setEnabled(false);
 					}
 					table.clearSelection();
 				}
 			}
 		});
 		table.setBounds(193, 71, 717, 421);
-//		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
@@ -241,7 +232,18 @@ public class OrderApprovePanel extends JPanel{
 		}
 	}
 	private void checkOrder(){
-		OrderVO order=orderList.get(table.getSelectedRow());
+		int row=-1;
+		for(int i=0;i<table.getRowCount();i++)
+		{
+			if((Boolean)table.getValueAt(i, 0))
+			{
+				row=i;
+				break;
+			}
+		}
+		if(row==-1)return;
+		
+		OrderVO order=orderList.get(row);
 		Order kind=order.getKind();
 		String id=order.getId();
 		ResultMessage message=serv.chooseOrder(id, kind);
