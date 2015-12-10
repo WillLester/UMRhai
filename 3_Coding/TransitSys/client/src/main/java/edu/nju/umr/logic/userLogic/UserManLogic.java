@@ -38,6 +38,7 @@ public class UserManLogic implements UserManLSer{
 				if(userData.checkIsUsed(user.getId())==Result.SUCCESS){
 					isSuccessful=userData.addUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
 					isSuccessful = diarySer.addDiary("新增用户"+user.getId(), name);
+					users.add(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),0,user.getOrgId()));
 				} else {
 					return Result.ID_IS_USED;
 				}
@@ -49,11 +50,12 @@ public class UserManLogic implements UserManLSer{
 		return isSuccessful;
 	}
 
-	public Result deleteUser(String id,String name) {
+	public Result deleteUser(String id,String name,int index) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try{
 			isSuccessful=userData.deleteUser(id);
 			isSuccessful = diarySer.addDiary("删除用户"+id, name);
+			users.remove(index);
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();

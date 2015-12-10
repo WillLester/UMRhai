@@ -21,9 +21,10 @@ public interface UserManLSer {
 	 * 删除用户
 	 * @param id 用户的账号
 	 * @param name 操作者姓名
+	 * @param index 用户vo的位置
 	 * @return 结果
 	 */
-	public Result deleteUser(String id,String name);
+	public Result deleteUser(String id,String name,int index);
 	/**
 	 * 修改用户
 	 * @param user UserVO

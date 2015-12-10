@@ -219,9 +219,12 @@ public class UserListPanel extends JPanel {
 						displayUser(table.getSelectedRow());
 						deleteButton.setEnabled(true);
 						confirmButton.setEnabled(true);
-						UserVO user = users.get(table.getSelectedRow());
-						if(user.getJuri().equals(Jurisdiction.ADMIN)){
-							deleteButton.setEnabled(false);
+						if(table.getSelectedRow()<users.size())
+						{
+							UserVO user = users.get(table.getSelectedRow());
+							if(user.getJuri().equals(Jurisdiction.ADMIN)){
+								deleteButton.setEnabled(false);
+							}
 						}
 					} else {
 						deleteButton.setEnabled(false);
@@ -315,7 +318,7 @@ public class UserListPanel extends JPanel {
 				reportWrong(result);
 			}
 		} else {
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),null,null);
 			Result result=serv.newUser(now,this.name);
 			if(result.equals(Result.SUCCESS)){
 				users.add(now);
@@ -333,7 +336,7 @@ public class UserListPanel extends JPanel {
 		if(row<0||row>=users.size()){
 			return;
 		}
-		Result result=serv.deleteUser(users.get(row).getId(),name);
+		Result result=serv.deleteUser(users.get(row).getId(),name,row);
 		if(result.equals(Result.SUCCESS)){
 			users.remove(row);
 			table.getSelectionModel().setSelectionInterval(row-1, row-1);
