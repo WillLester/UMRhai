@@ -32,12 +32,12 @@ public class SuccessPanel extends JPanel implements Runnable{
 	}
 	public void run()
 	{
-		int changeX=x/30;
-		for(int i=0;i<=30;i++)
+		int changeX=x/100;
+		for(int i=0;i<=150;i++)
 		{
 			try
 			{
-				Thread.sleep(50);
+				Thread.sleep(1);
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -49,12 +49,17 @@ public class SuccessPanel extends JPanel implements Runnable{
 			}
 			repaint();
 		}
-		
-		for(int i=0;i<=30;i++)
+		try{
+			Thread.sleep(100);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		for(int i=0;i<=100;i++)
 		{
 			try
 			{
-				Thread.sleep(50);
+				Thread.sleep(1);
 			}catch(Exception e)
 			{
 				e.printStackTrace();

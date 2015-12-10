@@ -310,7 +310,6 @@ public class UserListPanel extends JPanel {
 			    users.set(row, now);
 			    displayUsers();
 			    DoHint.hint(result, frame);
-//			    frame.setVisible(true);
 			} else {
 				reportWrong(result);
 			}
@@ -321,6 +320,7 @@ public class UserListPanel extends JPanel {
 				users.add(now);
 				displayUsers();
 				addButton.setEnabled(true);
+				DoHint.hint(Result.SUCCESS,frame);
 			} else {
 				reportWrong(result);
 			}
@@ -337,6 +337,7 @@ public class UserListPanel extends JPanel {
 			users.remove(row);
 			table.getSelectionModel().setSelectionInterval(row-1, row-1);
 			displayUsers();
+			DoHint.hint(Result.SUCCESS,frame);
 		}
 		else reportWrong(result);
 	}

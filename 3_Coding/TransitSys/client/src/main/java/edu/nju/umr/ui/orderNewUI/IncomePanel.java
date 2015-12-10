@@ -37,6 +37,7 @@ public class IncomePanel extends JPanel {
 	private String orgId;
 	private String name;
 	private String userId;
+	private JButton confirmButton;
 	/**  
 	 * Create the panel.
 	 */
@@ -110,7 +111,7 @@ public class IncomePanel extends JPanel {
 		expressList.setBounds(280, 200, 700, 290);
 		add(expressList);
 		
-		JButton confirmButton = new JButton("确定");
+		confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+40, 499, 93, 23);
 		confirmButton.addActionListener(new ActionListener() {
@@ -120,10 +121,16 @@ public class IncomePanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
-						
-					} else {
-						DoHint.hint(result, frame);
+						confirmButton.setEnabled(false);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
+						frame.dispose();
 					}
 				}
 			}

@@ -24,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
@@ -257,6 +258,7 @@ public class StockDividePanel extends JPanel{
 			} else {
 				search();
 			}
+			DoHint.hint(result, frame);
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());

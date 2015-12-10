@@ -23,6 +23,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -131,6 +132,7 @@ public class AccountManPanel extends JPanel{
 		        	if(result.equals(Result.SUCCESS))
 		        	{
 		        		fresh();
+		        		DoHint.hint(result, frame);
 		        	}
 		        	else 
 		        	{
@@ -158,6 +160,7 @@ public class AccountManPanel extends JPanel{
 					}
 					if(result.equals(Result.SUCCESS)){
 						fresh();
+						DoHint.hint(result, frame);
 					} else {
 						@SuppressWarnings("unused")
 						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());

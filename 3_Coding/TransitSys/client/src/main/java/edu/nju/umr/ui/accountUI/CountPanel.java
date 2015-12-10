@@ -23,6 +23,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -60,6 +61,7 @@ public class CountPanel extends JPanel{
 				Result result = logicSer.newCount(name);
 				if(result.equals(Result.SUCCESS)){
 					fresh();
+					DoHint.hint(result, frame);
 				} else {
 					hint(result);
 				}
@@ -77,6 +79,7 @@ public class CountPanel extends JPanel{
 				Result result = logicSer.deleteCount(table.getSelectedRow(),name);
 				if(result.equals(Result.SUCCESS)){
 					fresh();
+					DoHint.hint(result, frame);
 				} else {
 					hint(result);
 				}

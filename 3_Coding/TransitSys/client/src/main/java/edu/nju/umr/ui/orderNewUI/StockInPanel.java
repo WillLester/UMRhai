@@ -222,11 +222,16 @@ public class StockInPanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
-						
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+						confirmButton.setEnabled(false);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
+						frame.dispose();
 					}
 				}
 			}

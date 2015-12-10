@@ -41,6 +41,7 @@ public class ArrivePanel extends JPanel {
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
+	private JButton confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -125,7 +126,7 @@ public class ArrivePanel extends JPanel {
 		stateCombo.setBounds(474+75+25, 338, 193, 24);
 		add(stateCombo);
 		
-		JButton confirmButton = new JButton("确定");
+		confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(364+75+25, 434, 93, 23);
 		confirmButton.addActionListener(new ActionListener(){@Override
@@ -182,12 +183,15 @@ public class ArrivePanel extends JPanel {
 		GoodState state;
 		state=GoodState.values()[stateCombo.getSelectedIndex()];
 		Result result=serv.create(new ArriveVO(centerId,datePanel.getCalendar(),id,(String)startCombo.getSelectedItem(),state,name,userId),org);
-		if(!result.equals(Result.SUCCESS))
-		{
-			DoHint.hint(result, frame);
-		}
-		else
-		{
+		DoHint.hint(result, frame);
+		if(result.equals(Result.SUCCESS)){
+			confirmButton.setEnabled(false);
+			try{
+				Thread.sleep(300);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
 			frame.dispose();
 		}
 	}

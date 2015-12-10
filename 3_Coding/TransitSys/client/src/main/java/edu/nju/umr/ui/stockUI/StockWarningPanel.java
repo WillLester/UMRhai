@@ -16,6 +16,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 
 public class StockWarningPanel extends JPanel{
@@ -111,11 +112,16 @@ public class StockWarningPanel extends JPanel{
 					newWarn.add(Integer.parseInt(vanField.getText()));
 					newWarn.add(Integer.parseInt(maneuverField.getText()));
 					Result result = logicSer.setWarning(newWarn, orgId,name);
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
+						confirmButton.setEnabled(false);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
 						frame.dispose();
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 					}
 				}
 			}

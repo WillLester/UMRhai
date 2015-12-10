@@ -27,6 +27,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.BusiCircumVO;
 import edu.nju.umr.vo.ResultMessage;
 /*
@@ -193,10 +194,7 @@ public class BusiCircumPanel extends JPanel {
 			 else
 			 chooser.approveSelection();
 			 Result result= serv.outputExcel(chooser.getSelectedFile().getName(), chooser.getSelectedFile().getParent());
-			 if(!result.equals(Result.SUCCESS))
-			 {
-				 new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-			 }
+			 DoHint.hint(result, frame);
 		}
 	}
 //	public static void main(String[] args)

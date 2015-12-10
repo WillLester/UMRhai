@@ -20,6 +20,7 @@ import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
@@ -117,17 +118,33 @@ public class SendPanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.create(createVO(),org);
+					DoHint.hint(result, frame);
 					if(result.equals(Result.SUCCESS)){
+						confirmButton.setEnabled(false);
+						try{
+							Thread.sleep(300);
+						}catch(Exception ex)
+						{
+							ex.printStackTrace();
+						}
 						if(!express.isEmpty()){
 							express.removeFirst();
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId, org, express));
 						} else {
 							frame.dispose();
 						}
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 					}
+//					if(result.equals(Result.SUCCESS)){
+//						if(!express.isEmpty()){
+//							express.removeFirst();
+//							frame.setContentPane(new SendPanel(fr, name, orgId, userId, org, express));
+//						} else {
+//							frame.dispose();
+//						}
+//					} else {
+//						@SuppressWarnings("unused")
+//						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+//					}
 				}
 			}
 		});

@@ -61,6 +61,7 @@ public class HallLoadingPanel extends JPanel {
 	private String userId;
 	private String org;
 	private JTextField costField;
+	private JButton confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -235,7 +236,7 @@ public class HallLoadingPanel extends JPanel {
 		tableHeadLabel.setBounds(401+75, 289, 130, 24);
 		add(tableHeadLabel);
 		
-		JButton confirmButton = new JButton("确定");
+		confirmButton = new JButton("确定");
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		confirmButton.setBounds(342+75, 499, 93, 23);
 		confirmButton.addActionListener(new ActionListener(){@Override
@@ -264,9 +265,16 @@ public class HallLoadingPanel extends JPanel {
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
 				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId);
 		Result result=serv.create(vo,org);
-		if(!result.equals(Result.SUCCESS))
-		{
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
+		DoHint.hint(result, frame);
+		if(result.equals(Result.SUCCESS)){
+			confirmButton.setEnabled(false);
+			try{
+				Thread.sleep(300);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			frame.dispose();
 		}
 		return;
 		

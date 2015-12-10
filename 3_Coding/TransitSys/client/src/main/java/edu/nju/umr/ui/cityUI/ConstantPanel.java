@@ -15,6 +15,7 @@ import edu.nju.umr.logic.cityLogic.ConstantLogic;
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -205,6 +206,8 @@ public class ConstantPanel extends JPanel {
 				if(isLegal()){
 					Result result = logicSer.setConstant(createConstant(),name);
 					if(result.equals(Result.SUCCESS)){
+						DoHint.hint(result, frame);
+						confirmButton.setEnabled(false);
 						frame.dispose();
 					} else {
 						@SuppressWarnings("unused")

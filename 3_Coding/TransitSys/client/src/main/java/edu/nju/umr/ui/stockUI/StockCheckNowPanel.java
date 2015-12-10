@@ -27,6 +27,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.StockVO;
@@ -77,10 +78,17 @@ public class StockCheckNowPanel extends JPanel{
 					 else
 					 chooser.approveSelection();
 					 Result result= logicSer.outputExcel(chooser.getSelectedFile().getParent(), chooser.getSelectedFile().getName());
-					 if(!result.equals(Result.SUCCESS))
-					 {
-						 new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-					 }
+					 DoHint.hint(result, frame);
+						if(result.equals(Result.SUCCESS)){
+							outputButton.setEnabled(false);
+							try{
+								Thread.sleep(300);
+							}catch(Exception ex)
+							{
+								ex.printStackTrace();
+							}
+							frame.dispose();
+						}
 				}
 			}
 		});

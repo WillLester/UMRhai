@@ -25,6 +25,7 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.ShowOrder;
@@ -204,9 +205,7 @@ public class OrderApprovePanel extends JPanel{
 			}
 		}
 		Result result=serv.examine(ispassed, idList,name);
-		if(!result.equals(Result.SUCCESS)){
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-		}
+		DoHint.hint(result, frame);
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)
