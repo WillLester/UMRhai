@@ -3,6 +3,7 @@ package edu.nju.umr.data.databaseUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -146,68 +147,80 @@ public class MysqlImpl implements MysqlService{
 				ArrayList<OrderPO> orderList = new ArrayList<OrderPO>();			
 				result = state.executeQuery("select * from arriveorderwaiting");
 				Calendar time = Calendar.getInstance();
+				String datetime = null;
 				while(result.next()){
-					time.setTime(result.getDate(6));
+					datetime = result.getString(6);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.ARRIVE, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from centerlorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(7));
+					datetime = result.getString(7);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.CENTERLOADING, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from expressorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(23));
+					datetime = result.getString(23);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.EXPRESS, result.getString(24), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from halllorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(8));
+					datetime = result.getString(8);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(2), Order.HALLLOADING, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from incomeorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(5));
+					datetime = result.getString(5);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.INCOME, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from paymentorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(8));
+					datetime = result.getString(8);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.PAYMENT, result.getString(9), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from recipientorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(6));
+					datetime = result.getString(6);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.RECIPIENT, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from sendorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(5));
+					datetime = result.getString(5);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.SEND, result.getString(6), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from stockinorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(10));
+					datetime = result.getString(10);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.STOCKIN, result.getString(10), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from stockoutorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(6));
+					datetime = result.getString(6);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.STOCKOUT, result.getString(7), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from transitorderwaiting");
 				while(result.next()){
-					time.setTime(result.getDate(8));
+					datetime = result.getString(8);
+					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.TRANSIT, result.getString(9), time, false);
 					orderList.add(order);
 				}
@@ -226,7 +239,7 @@ public class MysqlImpl implements MysqlService{
 //				return ArrayListFactory.produceDriverList(result);
 			default:return null;
 			}
-		} catch(SQLException e){
+		} catch(SQLException | ParseException e){
 			return null;
 		}
 	}
