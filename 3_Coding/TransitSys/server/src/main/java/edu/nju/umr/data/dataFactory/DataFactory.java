@@ -149,7 +149,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public UserManDSer getUserMan() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new UserManData();
+		return UserManData.getUserMan();
 	}
 
 	public TransitOrderDSer getTransitOrder() throws RemoteException {
@@ -224,7 +224,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public LoginDSer getLogin() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new LoginData();
+		return LoginData.getLogin();
 	}
 
 	public IncomeOrderDSer getIncomeOrder() throws RemoteException {
@@ -300,7 +300,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public UtilityDSer getUtility() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new UtilityData();
+		return UtilityData.getUtility();
 	}
 
 	public CostBeneDSer getCostBene() throws RemoteException {
@@ -325,7 +325,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 	@Override
 	public DiaryUpdateDSer getDiaryUpdate() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new DiaryUpdateData();
+		return DiaryUpdateData.getDiaryUpdate();
 	}
 
 	@Override

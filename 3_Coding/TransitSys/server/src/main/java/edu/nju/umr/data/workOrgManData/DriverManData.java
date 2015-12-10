@@ -19,8 +19,8 @@ public class DriverManData extends UnicastRemoteObject implements DriverManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 2621223833650333912L;
-	MysqlService mysqlSer;
-
+	private MysqlService mysqlSer;
+	
 	public DriverManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根

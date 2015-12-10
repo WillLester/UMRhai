@@ -24,12 +24,19 @@ public class UserManData extends UnicastRemoteObject implements UserManDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -8342614834288983719L;
-	MysqlService mysqlSer;
-
-	public UserManData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static UserManData data = null;
+	private UserManData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static UserManData getUserMan() throws RemoteException{
+		if(data == null){
+			data = new UserManData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")

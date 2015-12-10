@@ -35,10 +35,18 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	 */
 	private static final long serialVersionUID = 6578374576722125296L;
 	private MysqlService mysqlSer;
-	public UtilityData() throws RemoteException {
+	private static UtilityData data = null;
+	private UtilityData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static UtilityData getUtility() throws RemoteException{
+		if(data == null){
+			data = new UtilityData();
+		}
+		return data;
 	}
 
 	@SuppressWarnings("unchecked")

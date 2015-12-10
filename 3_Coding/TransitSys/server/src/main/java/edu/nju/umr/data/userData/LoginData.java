@@ -17,12 +17,19 @@ public class LoginData extends UnicastRemoteObject implements LoginDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = 8520494959646688525L;
-	MysqlService mysqlSer;
-
-	public LoginData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static LoginData data = null;
+	private LoginData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static LoginData getLogin() throws RemoteException{
+		if(data == null){
+			data = new LoginData();
+		}
+		return data;
 	}
 
 	public UserPO findUser(String id,String password) throws RemoteException {

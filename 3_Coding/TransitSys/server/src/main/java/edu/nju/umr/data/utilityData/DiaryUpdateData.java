@@ -15,10 +15,18 @@ public class DiaryUpdateData extends UnicastRemoteObject implements DiaryUpdateD
 	 */
 	private static final long serialVersionUID = 769194790406389367L;
 	private MysqlService mysqlSer;
-	public DiaryUpdateData() throws RemoteException {
+	private static DiaryUpdateData data = null;
+	private DiaryUpdateData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static DiaryUpdateData getDiaryUpdate() throws RemoteException{
+		if(data == null){
+			data = new DiaryUpdateData();
+		}
+		return data;
 	}
 
 	@Override
