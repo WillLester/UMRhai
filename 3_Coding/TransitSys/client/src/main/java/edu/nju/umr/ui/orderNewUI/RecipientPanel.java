@@ -135,12 +135,6 @@ public class RecipientPanel extends JPanel {
 						frame.setTitle("派件单生成");
 						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org,(LinkedList<String>) logicSer.expressList(idField.getText())));
 					}
-//					if(result.equals(Result.SUCCESS)){
-//						frame.setTitle("派件单生成");
-//						frame.setContentPane(new SendPanel(frame,name,orgId,userId,org,(LinkedList<String>) logicSer.expressList(idField.getText())));
-//					} else {
-//						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
-//					}
 				} 
 			}
 		});

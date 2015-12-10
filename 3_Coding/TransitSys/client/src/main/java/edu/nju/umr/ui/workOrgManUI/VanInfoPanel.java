@@ -185,7 +185,7 @@ public class VanInfoPanel extends JPanel {
 			pic.setIcon(new ImageIcon(bufferedImage));
 		} catch (Exception e) {  
 			e.printStackTrace();  
-		}  
+		}
 		BASE64Encoder encoder = new BASE64Encoder();  
 		imageString=encoder.encode(data);
 	}

@@ -16,18 +16,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
+import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
+import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.ShowOrder;
 
@@ -145,18 +149,41 @@ public class OrderApprovePanel extends JPanel{
 	private void tableInit(){
 		table = new ApproveTable(new MyTableModel());
 		model=(MyTableModel)table.getModel();
-		table.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				if(e.getClickCount()>= 1){
-				int row = table.rowAtPoint(e.getPoint()); 
-					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
-						table.setValueAt(false,row, 0);
+//		table.addMouseListener(new MouseAdapter(){
+//			public void mouseClicked(MouseEvent e){
+//				if(e.getClickCount()>= 1){
+//				int row = table.rowAtPoint(e.getPoint()); 
+//					if(((Boolean)table.getValueAt(row,0)).booleanValue()){
+//						table.setValueAt(false,row, 0);
+//					}
+//					else
+//						table.setValueAt(true,row, 0);
+//			}}});
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(e.getValueIsAdjusting()==false){
+//					if(table.getSelectedRow() >= 0){
+//						if(((Boolean)table.getValueAt(table.getSelectedRow(),0)).booleanValue()){
+//							table.setValueAt(false,table.getSelectedRow(), 0);
+//						}
+//						else
+//							table.setValueAt(true,table.getSelectedRow(), 0);
+//						table.clearSelection();
+//					}
+					for(int row:table.getSelectedRows())
+					{
+						if(((Boolean)table.getValueAt(row,0)).booleanValue()){
+							table.setValueAt(false,row, 0);
+						}
+						else
+							table.setValueAt(true,row, 0);
 					}
-					else
-						table.setValueAt(true,row, 0);
-			}}});
+					table.clearSelection();
+				}
+			}
+		});
 		table.setBounds(193, 71, 717, 421);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(193, 71, 717, 421);
