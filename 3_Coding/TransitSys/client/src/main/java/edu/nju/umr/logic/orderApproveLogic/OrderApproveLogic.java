@@ -102,6 +102,9 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			if(!isSuc.equals(Result.SUCCESS))
 				return Result.DATA_NOT_FOUND;
 		}
+		for (int i = 0; i < indexs.size(); i++) {
+			
+		}
 		return diarySer.addDiary("审批了单据", name);
 	}
 
@@ -272,12 +275,11 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			}
 			return new ResultMessage(tSuc,tv);
 			
-//		default:
-//			return null;
-			
 		}
 		return null;
 	}
-	
+	private Result updateTransitInfo(String id,Order kind){
+		return Result.SUCCESS;
+	}
 	
 }
