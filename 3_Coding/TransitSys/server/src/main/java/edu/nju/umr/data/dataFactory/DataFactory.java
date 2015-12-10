@@ -154,42 +154,42 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public TransitOrderDSer getTransitOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new TransitOrderData();
+		return TransitOrderData.getTransitOrder();
 	}
 
 	public StockWarningDSer getStockWarning() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockWarningData();
+		return StockWarningData.getStockWarning();
 	}
 
 	public StockOutOrderDSer getStockOutOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockOutOrderData();
+		return StockOutOrderData.getStockOutOrder();
 	}
 
 	public StockInOrderDSer getStockInOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockInOrderData();
+		return StockInOrderData.getStockInOrder();
 	}
 
 	public StockDivideDSer getStockDivide() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockDivideData();
+		return StockDivideData.getStockDivide();
 	}
 
 	public StockCheckWarnDSer getStockCheckWarn() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockCheckWarnData();
+		return StockCheckWarnData.getStockCheckWarn();
 	}
 
 	public StockCheckNowDSer getStockCheckNow() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockCheckNowData();
+		return StockCheckNowData.getStockCheckNow();
 	}
 
 	public StockCheckDSer getStockCheck() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new StockCheckData();
+		return StockCheckData.getStockCheck();
 	}
 
 	public CollectRecordDSer getCollectForm() throws RemoteException {
@@ -199,17 +199,17 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new SendOrderData();
+		return SendOrderData.getSendOrder();
 	}
 
 	public RecipientOrderDSer getRecipientOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new RecipientOrderData();
+		return RecipientOrderData.getRecipientOrder();
 	}
 
 	public PaymentOrderDSer getPaymentOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new PaymentOrderData();
+		return PaymentOrderData.getPaymentOrder();
 	}
 
 	public OrgManDSer getOrgMan() throws RemoteException {
@@ -229,12 +229,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public IncomeOrderDSer getIncomeOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new IncomeOrderData();
+		return IncomeOrderData.getIncomeOrder();
 	}
 
 	public HallLoadingOrderDSer getHallLoadingOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new HallLoadingOrderData();
+		return HallLoadingOrderData.getHallLoading();
 	}
 
 	public DiaryDSer getDiary() throws RemoteException {
@@ -244,12 +244,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public CustomerDSer getCustomer() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CustomerData();
+		return CustomerData.getCustomerData();
 	}
 
 	public CourierDSer getCourier() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CourierData();
+		return CourierData.getCourierData();
 	}
 
 	public CountDSer getCountData() throws RemoteException {
@@ -270,12 +270,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 	public CenterLoadingOrderDSer getCenterLoadingOrder()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new CenterLoadingOrderData();
+		return CenterLoadingOrderData.getCenterLoading();
 	}
 
 	public ArriveOrderDSer getArriveOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new ArriveOrderData();
+		return ArriveOrderData.getArriveOrder();
 	}
 
 	public AccountDSer getAccountData() throws RemoteException {
@@ -290,7 +290,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 
 	public ExpressOrderDSer getExpressOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new ExpressOrderData();
+		return ExpressOrderData.getExpressOrder();
 	}
 
 	public DriverManDSer getDriverMan() throws RemoteException {
@@ -313,7 +313,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 	}
 	
 	public UpdateTransitInfoDSer getUpdateTransitInfoDSer() throws RemoteException{
-		return new UpdateTransitInfoData();
+		return UpdateTransitInfoData.getUpdateTransit();
 	}
 
 	@Override
@@ -331,7 +331,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer {
 	@Override
 	public ReceiveOrderDSer getReceiveOrder() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new ReceiveOrderData();
+		return ReceiveOrderData.getReceiveOrder();
 	}
 
 }

@@ -17,10 +17,18 @@ public class PaymentOrderData extends UnicastRemoteObject implements PaymentOrde
 	 */
 	private static final long serialVersionUID = -9162964323292140428L;
 	private MysqlService mysqlSer;
-	public PaymentOrderData() throws RemoteException {
+	private static PaymentOrderData data = null;
+	private PaymentOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static PaymentOrderData getPaymentOrder() throws RemoteException{
+		if(data == null){
+			data = new PaymentOrderData();
+		}
+		return data;
 	}
 
 	public Result create(PaymentPO order) throws RemoteException {

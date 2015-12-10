@@ -18,12 +18,19 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 	 * 
 	 */
 	private static final long serialVersionUID = 6212234457642125928L;
-	MysqlService mysqlSer;
-
-	public StockCheckNowData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static StockCheckNowData data = null;
+	private StockCheckNowData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static StockCheckNowData getStockCheckNow() throws RemoteException{
+		if(data == null){
+			data = new StockCheckNowData();
+		}
+		return data;
 	}
 
 	public StockPO getStock(String id) throws RemoteException {

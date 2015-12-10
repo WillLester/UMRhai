@@ -17,10 +17,18 @@ public class ExpressOrderData extends UnicastRemoteObject implements ExpressOrde
 	 */
 	private static final long serialVersionUID = -5500240540825186850L;
 	private MysqlService mysqlSer;
-	public ExpressOrderData() throws RemoteException {
+	private static ExpressOrderData data = null;
+	private ExpressOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static ExpressOrderData getExpressOrder() throws RemoteException{
+		if(data == null){
+			data = new ExpressOrderData();
+		}
+		return data;
 	}
 
 	public Result create(ExpressPO order) throws RemoteException {

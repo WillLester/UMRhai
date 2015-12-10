@@ -17,10 +17,18 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 	 */
 	private static final long serialVersionUID = 5351880203808666658L;
 	private MysqlService mysqlSer;
-	public TransitOrderData() throws RemoteException {
+	private static TransitOrderData data = null;
+	private TransitOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static TransitOrderData getTransitOrder() throws RemoteException{
+		if(data == null){
+			data = new TransitOrderData();
+		}
+		return data;
 	}
 
 	public Result create(TransitPO order) throws RemoteException {

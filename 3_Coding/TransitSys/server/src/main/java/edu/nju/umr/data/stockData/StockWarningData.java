@@ -15,10 +15,17 @@ public class StockWarningData extends UnicastRemoteObject implements StockWarnin
 	 * 
 	 */
 	private static final long serialVersionUID = 8891271945349984048L;
-
-	public StockWarningData() throws RemoteException {
+	private static StockWarningData data = null;
+	private StockWarningData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+	}
+	
+	public static StockWarningData getStockWarning() throws RemoteException{
+		if(data == null){
+			data = new StockWarningData();
+		}
+		return data;
 	}
 
 	public ArrayList<Integer> getWarning(String id) throws RemoteException {

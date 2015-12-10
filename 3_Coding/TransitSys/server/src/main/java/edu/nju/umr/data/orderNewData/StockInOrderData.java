@@ -22,10 +22,18 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 	 */
 	private static final long serialVersionUID = -1208410511647254989L;
 	private MysqlService mysqlSer;
-	public StockInOrderData() throws RemoteException {
+	private static StockInOrderData data = null;
+	private StockInOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static StockInOrderData getStockInOrder() throws RemoteException{
+		if(data == null){
+			 data = new StockInOrderData();
+		}
+		return data;
 	}
 
 	public Result create(StockInPO order) throws RemoteException {

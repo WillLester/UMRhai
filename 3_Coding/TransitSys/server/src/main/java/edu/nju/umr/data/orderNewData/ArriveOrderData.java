@@ -21,10 +21,18 @@ public class ArriveOrderData extends UnicastRemoteObject implements ArriveOrderD
 	 */
 	private static final long serialVersionUID = -8104606631614005305L;
 	private MysqlService mysqlSer;
-	public ArriveOrderData() throws RemoteException {
+	private static ArriveOrderData data = null;
+	private ArriveOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static ArriveOrderData getArriveOrder() throws RemoteException{
+		if(data == null){
+			data = new ArriveOrderData();
+		}
+		return data;
 	}
 
 	public Result create(ArrivePO order) throws RemoteException {

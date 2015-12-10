@@ -18,10 +18,18 @@ public class StockDivideData extends UnicastRemoteObject implements StockDivideD
 	 */
 	private static final long serialVersionUID = -6752462920843759194L;
 	private MysqlService mysqlSer;
-	public StockDivideData() throws RemoteException {
+	private static StockDivideData data = null;
+	private StockDivideData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static StockDivideData getStockDivide() throws RemoteException{
+		if(data == null){
+			data = new StockDivideData();
+		}
+		return data;
 	}
 
 	public ArrayList<ShelfPO> getShelves(String stockId,String keyword) throws RemoteException {

@@ -16,12 +16,19 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -635682282196387242L;
-	MysqlService mysqlSer;
-
-	public CourierData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static CourierData data = null;
+	private CourierData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static CourierData getCourierData() throws RemoteException{
+		if(data == null){
+			data = new CourierData();
+		}
+		return data;
 	}
 
 	public ExpressPO find(String barcode) throws RemoteException {

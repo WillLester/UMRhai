@@ -17,10 +17,18 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	 */
 	private static final long serialVersionUID = -5859251989231665786L;
 	private MysqlService mysqlSer;
-	public CenterLoadingOrderData() throws RemoteException {
+	private static CenterLoadingOrderData data = null;
+	private CenterLoadingOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static CenterLoadingOrderData getCenterLoading() throws RemoteException{
+		if(data == null){
+			data = new CenterLoadingOrderData();
+		}
+		return data;
 	}
 
 	public Result create(CenterLoadingPO order) throws RemoteException {

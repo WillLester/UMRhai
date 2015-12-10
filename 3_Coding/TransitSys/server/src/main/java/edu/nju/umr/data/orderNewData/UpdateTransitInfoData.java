@@ -15,10 +15,19 @@ public class UpdateTransitInfoData extends UnicastRemoteObject implements Update
 	 */
 	private static final long serialVersionUID = -1467130296766277284L;
 	private MysqlService mysqlSer;
-	public UpdateTransitInfoData()throws RemoteException{
+	private static UpdateTransitInfoData data = null;
+	private UpdateTransitInfoData()throws RemoteException{
 		super();
 		mysqlSer = MysqlImpl.getMysql();
 	}
+	
+	public static UpdateTransitInfoData getUpdateTransit() throws RemoteException{
+		if(data == null){
+			data = new UpdateTransitInfoData();
+		}
+		return data;
+	}
+	
 	public Result update(TransitInfoPO info) throws RemoteException{		
 		return mysqlSer.reviseInfo(info);
 	}

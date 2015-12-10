@@ -17,10 +17,18 @@ public class HallLoadingOrderData extends UnicastRemoteObject implements HallLoa
 	 */
 	private static final long serialVersionUID = -6768962889030917613L;
 	private MysqlService mysqlSer;
-	public HallLoadingOrderData() throws RemoteException {
+	private static HallLoadingOrderData data = null;
+	private HallLoadingOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static HallLoadingOrderData getHallLoading() throws RemoteException{
+		if(data == null){
+			data = new HallLoadingOrderData();
+		}
+		return data;
 	}
 
 	public Result create(HallLoadingPO order) throws RemoteException {

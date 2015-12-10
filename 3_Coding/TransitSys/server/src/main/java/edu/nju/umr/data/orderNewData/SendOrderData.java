@@ -17,10 +17,18 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 	 */
 	private static final long serialVersionUID = -5907519790330354429L;
 	private MysqlService mysqlSer;
-	public SendOrderData() throws RemoteException {
+	private static SendOrderData data;
+	private SendOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static SendOrderData getSendOrder() throws RemoteException{
+		if(data == null){
+			data = new SendOrderData();
+		}
+		return data;
 	}
 
 	public Result create(SendPO order) throws RemoteException {

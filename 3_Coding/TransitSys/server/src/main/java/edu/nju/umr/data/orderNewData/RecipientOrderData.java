@@ -19,10 +19,18 @@ public class RecipientOrderData extends UnicastRemoteObject implements Recipient
 	 */
 	private static final long serialVersionUID = 134682087211527556L;
 	private MysqlService mysqlSer;
-	public RecipientOrderData() throws RemoteException {
+	private static RecipientOrderData data = null;
+	private RecipientOrderData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static RecipientOrderData getRecipientOrder() throws RemoteException{
+		if(data == null){
+			data = new RecipientOrderData();
+		}
+		return data;
 	}
 
 	public Result create(RecipientPO order) throws RemoteException {

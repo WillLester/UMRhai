@@ -17,12 +17,19 @@ public class CustomerData extends UnicastRemoteObject implements CustomerDSer{
 	 * 
 	 */
 	private static final long serialVersionUID = -1090030972122587470L;
-	MysqlService mysqlSer;
-
-	public CustomerData() throws RemoteException {
+	private MysqlService mysqlSer;
+	private static CustomerData data = null;
+	private CustomerData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
+	}
+	
+	public static CustomerData getCustomerData() throws RemoteException{
+		if(data == null){
+			data = new CustomerData();
+		}
+		return data;
 	}
 
 	public ArrayList<String> findTransit(String barcode) throws RemoteException {
