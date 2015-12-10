@@ -7,6 +7,14 @@ import edu.nju.umr.ui.HintFrame;
 
 public class DoHint {
 	public static void hint(Result result,JFrame fr){
+		if(result.equals(Result.SUCCESS))
+		{
+			SuccessPanel suc=new SuccessPanel(fr);
+			fr.getContentPane().add(suc);
+			suc.show();
+			fr.remove(suc);
+			return;
+		}
 		@SuppressWarnings("unused")
 		HintFrame hint = new HintFrame(result, fr.getX(), fr.getY(), fr.getWidth(), fr.getHeight());
 	}
