@@ -51,7 +51,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:order.getExpress())
 					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
-						+" "+org+"已发出 下一站"+order.getArriveLoc());
+						+" "+org+" 已发出 下一站 "+order.getArriveLoc());
 			}
 			isSuc = diarySer.addDiary("生成了营业厅装车单", order.getOpName());
 		} catch (RemoteException e) { 

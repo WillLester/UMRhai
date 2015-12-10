@@ -75,7 +75,8 @@ public class TransitInfoInqPanel extends JPanel {
 						textArea.setText("");
 						info = (ArrayList<String>) message.getMessage();
 						for(String inf:info){
-							textArea.append(inf+'\n');
+							textArea.append(inf);
+							textArea.append("\n");
 						}
 					} else {
 						@SuppressWarnings("unused")

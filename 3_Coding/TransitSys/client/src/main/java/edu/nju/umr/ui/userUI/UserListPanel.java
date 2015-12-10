@@ -302,8 +302,9 @@ public class UserListPanel extends JPanel {
 		if(password.isEmpty()){DoHint.hint("密码未输入!", frame);return;}
 		if(name.isEmpty()){DoHint.hint("姓名未输入!", frame);return;}
 		if(mobile.isEmpty()){DoHint.hint("手机号未输入!", frame);return;}
-		UserVO user = users.get(table.getSelectedRow());
+		
 		if(row<users.size()){
+			UserVO user = users.get(table.getSelectedRow());
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
 			Result result=serv.reviseUser(now,row,this.name);
 			if(result.equals(Result.SUCCESS)){

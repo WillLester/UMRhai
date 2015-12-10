@@ -38,7 +38,7 @@ public class TransitInfoPO extends PO implements Serializable{
 		case UPDATE:
 			info = "";
 			for(String inf:this.info){
-				info = info + inf + " ";
+				info = info + inf + ";";
 			}
 			command = "update transitinfo set info='"+info+"' where id='"+expressid+"'";break;
 		case FIND:
