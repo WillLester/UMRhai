@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.orderNewLogic.ArriveOrderLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
@@ -176,6 +178,12 @@ public class ArrivePanel extends JPanel {
 		if(idField.getText().isEmpty())
 		{
 			DoHint.hint("中转单编号未输入!", frame);
+			return;
+		}
+		OrderInfoLSer orderServ=new OrderInfoLogic();
+		if(!orderServ.isTransitValid(idField.getText()))
+		{
+			DoHint.hint("中转单不存在!", frame);
 			return;
 		}
 		GoodState state;

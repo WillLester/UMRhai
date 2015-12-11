@@ -21,8 +21,11 @@ import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 
 public class ExpressListPanel extends JPanel{
 	/**
@@ -73,6 +76,11 @@ public class ExpressListPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				if(isExpressLegal()){
+					OrderInfoLSer orderServ=new OrderInfoLogic();
+					if(!orderServ.isExpressValid(expressField.getText()))
+					{
+						DoHint.hint("订单不存在!", frame);
+					}
 					model.addElement(expressField.getText());
 					expressList.setModel(model);
 				}
@@ -146,6 +154,7 @@ public class ExpressListPanel extends JPanel{
 			HintFrame hint = new HintFrame(info, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
+		
 		return true;
 	}
 	public ArrayList<String> getExpresses(){
