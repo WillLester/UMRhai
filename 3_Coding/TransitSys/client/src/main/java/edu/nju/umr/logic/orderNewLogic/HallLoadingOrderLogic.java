@@ -10,10 +10,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.vo.ResultMessage;
@@ -22,8 +25,9 @@ import edu.nju.umr.vo.order.HallLoadingVO;
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private HallLoadingOrderDFacSer dataFac;
 	private HallLoadingOrderDSer hallData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti=new UtilityLogic();
 	private DiaryUpdateLSer diarySer;
+	private OrderInfoLSer orderInfo;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -37,7 +41,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
             e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
-		// TODO 自动生成的构造函数存根
+		orderInfo = new OrderInfoLogic();
 	}
 	public Result create(HallLoadingVO order) {
 		// TODO 自动生成的方法存根
@@ -75,7 +79,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	@Override
 	public boolean isLegal(String id) {
-		return uti.isExpressValid(id);
+		return orderInfo.isExpressValid(id);
 	}
 
 }

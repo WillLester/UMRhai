@@ -15,6 +15,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.vo.OrgVO;
@@ -24,7 +25,7 @@ import edu.nju.umr.vo.order.CenterLoadingVO;
 public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private CenterLoadingOrderDFacSer dataFac;
 	private CenterLoadingOrderDSer centerData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public CenterLoadingOrderLogic() {
 		try{

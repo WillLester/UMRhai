@@ -21,6 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
@@ -40,7 +41,7 @@ import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
-public class UtilityLogic {
+public class UtilityLogic implements UtilityLSer{
 	private UtilityDSer utilityData;
 	private UtilityDFacSer dataFac;
 	public UtilityLogic() {
@@ -56,16 +57,17 @@ public class UtilityLogic {
             e.printStackTrace();   
         }  
 	}
+	
+	@Override
 	public ResultMessage getCities(){
 		Result isSuc=Result.DATA_NOT_FOUND;
-		ArrayList<CityVO> cityList = new ArrayList<CityVO>();
+		List<CityVO> cityList = new ArrayList<CityVO>();
 		try {
 			ArrayList<CityPO> cities = utilityData.getCities();
 			isSuc=Result.SUCCESS;
 			for(CityPO city:cities){
 				CityVO vo = VPFactory.toCityVO(city);
 				cityList.add(vo);
-//				return new ResultMessage(Result.SUCCESS, cityList);
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -84,7 +86,7 @@ public class UtilityLogic {
 			e.printStackTrace();
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
-		ArrayList<OrgVO> arVO=new ArrayList<OrgVO>();
+		List<OrgVO> arVO=new ArrayList<OrgVO>();
 		for(int i=0;i<ar.size();i++)
 		{
 			OrgPO Org=ar.get(i);
@@ -93,15 +95,16 @@ public class UtilityLogic {
 		ResultMessage message = new ResultMessage(isSuccessful, arVO);
 		return message;
 	}
+	
+	@Override
 	public ResultMessage getHall() {
 		// TODO 自动生成的方法存根
-		ArrayList<OrgVO> hallList = new ArrayList<OrgVO>();
+		List<OrgVO> hallList = new ArrayList<OrgVO>();
 		Result re=Result.DATA_NOT_FOUND;
 		try {
 			ArrayList<OrgPO> halls = utilityData.getHall();			
 			re=Result.SUCCESS;
 			for(OrgPO hall:halls){
-//				CityVO city = new CityVO(hall.getCity(), hall.getCityId(),hall.getCity().getProvince());
 				OrgVO vo = VPFactory.toOrgVO(hall);
 				hallList.add(vo);
 			}
@@ -112,6 +115,8 @@ public class UtilityLogic {
 		}
 		return new ResultMessage(re, hallList);
 	}
+	
+	@Override
 	public ResultMessage getCenter(){
 		ArrayList<OrgVO> centerList=new ArrayList<OrgVO>();
 		Result re=Result.DATA_NOT_FOUND;
@@ -241,11 +246,9 @@ public class UtilityLogic {
 			for(int j=0;j<data[0].length;j++){
 				HSSFCell cell=row.createCell(j);	
 				cell.setCellValue(data[i][j]);
-//				System.out.print(data[i][j]+" ");
 				if(i==0)
 					cell.setCellStyle(style);//表头格式居中
 			}
-//			System.out.println();
 		}
 		
 		try {
@@ -311,12 +314,7 @@ public class UtilityLogic {
 		return account;
 	}
 	
-	/**
-	 * 获得本地营业厅和所有中转中心
-	 * @param orgId 机构编号
-	 * @return ArrayList<OrgVO>
-	 * @see edu.nju.umr.vo.OrgVO
-	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public ResultMessage getLocalHallAndAllCenter(String orgId){
 		Result isSuc=Result.DATA_NOT_FOUND;
@@ -446,20 +444,6 @@ public class UtilityLogic {
 	}
 	
 	/**
-	 * 检查订单列表中各订单号是否存在
-	 * @param expressList 订单列表，List形式
-	 * @return 有错误的第一个订单的index（0-base），如果没有错误则返回-1。
-	 */
-	public int isExpressListValid(List<String> expressList){
-		for(int i = 0;i < expressList.size();i++){
-			if(!isExpressValid(expressList.get(i))){
-				return i;
-			}
-		}
-		return -1;
-	}
-	
-	/**
 	 * 获得两个城市之间的距离
 	 * @param city1 城市1
 	 * @param city2 城市2
@@ -563,6 +547,7 @@ public class UtilityLogic {
 		}
 	}
 	
+	@Override
 	//返回给界面名称数组的一系列方法
 	public ResultMessage getOrgNames(){//机构名称
 		ArrayList<OrgPO> orgList=new ArrayList<OrgPO>();
@@ -580,7 +565,7 @@ public class UtilityLogic {
 		return new ResultMessage(Result.SUCCESS,orgName);
 	}
 	
-	
+	@Override
 	public ResultMessage getVanNames(String orgId) {//车辆代号
 		ArrayList<VanPO> vanList=new ArrayList<VanPO>();
 		try {

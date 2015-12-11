@@ -8,10 +8,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.TransitPO;
@@ -21,8 +24,9 @@ import edu.nju.umr.vo.order.TransitVO;
 public class TransitOrderLogic implements TransitOrderLSer{
 	private TransitOrderDFacSer dataFac;
 	private TransitOrderDSer transitData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
+	private OrderInfoLSer orderInfo;
 	public TransitOrderLogic(){
 		try{
 			dataFac=(TransitOrderDFacSer)Naming.lookup(Url.URL);
@@ -32,12 +36,13 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		{
 			e.printStackTrace();
 		}
+		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
+		orderInfo = new OrderInfoLogic();
 	}
 
 	public Result create(TransitVO order) {
 		// TODO 自动生成的方法存根
-//		boolean isSuccessful=false;
 		try{
 			TransitPO orderPO=VPFactory.toTransitPO(order, "");
 			Result result=transitData.create(orderPO);
@@ -67,7 +72,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	@Override
 	public int isExpressValid(List<String> expressList) {
 		// TODO 自动生成的方法存根
-		return uti.isExpressListValid(expressList);
+		return orderInfo.isExpressListValid(expressList);
 	}
 
 	@Override

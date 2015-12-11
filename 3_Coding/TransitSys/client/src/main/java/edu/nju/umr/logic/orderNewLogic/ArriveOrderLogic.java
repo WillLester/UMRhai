@@ -14,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -22,7 +23,7 @@ import edu.nju.umr.vo.order.ArriveVO;
 public class ArriveOrderLogic implements ArriveOrderLSer{
 	private ArriveOrderDFacSer dataFac;
 	private ArriveOrderDSer arriveData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根

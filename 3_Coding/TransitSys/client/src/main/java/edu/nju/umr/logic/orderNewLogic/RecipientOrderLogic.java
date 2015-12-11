@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.OrderInfoDFacSer;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
@@ -82,14 +81,9 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	public List<String> expressList(String id) {
 		// TODO 自动生成的方法存根
 		List<String> list = new LinkedList<String>();
-		try {
-			List<String> express = orderInfoLogic.getTransitExp(id);
-			for(String ex:express){
-				list.add(ex);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return list;
+		List<String> express = orderInfoLogic.getTransitExp(id);
+		for(String ex:express){
+			list.add(ex);
 		}
 		return list;
 	}

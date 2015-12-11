@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderInfoDFacSer;
@@ -52,6 +54,28 @@ public class OrderInfoLogic implements OrderInfoLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return false;
+		}
+	}
+
+	@Override
+	public int isExpressListValid(List<String> expressList) {
+		// TODO 自动生成的方法存根
+		for(int i = 0;i < expressList.size();i++){
+			if(!isExpressValid(expressList.get(i))){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	public List<String> getTransitExp(String id) {
+		// TODO 自动生成的方法存根
+		try {
+			return dataSer.getTransitExp(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ArrayList<String>();
 		}
 	}
 }

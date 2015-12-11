@@ -8,10 +8,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
@@ -23,17 +26,17 @@ import edu.nju.umr.vo.order.StockInVO;
 public class StockInOrderLogic implements StockInOrderLSer{
 	private StockInOrderDFacSer dataFac;
 	private StockInOrderDSer stockinData;
-	private UtilityLogic uti=new UtilityLogic();
-
+	private OrderInfoLSer orderInfoLogic;
+	private UtilityLSer uti;
 	public StockInOrderLogic(){
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
 			stockinData=dataFac.getStockInOrder();
-			uti=new UtilityLogic();
-		}catch(Exception e)
-		{
+		} catch (Exception e){
 			e.printStackTrace();
 		}
+		uti = new UtilityLogic();
+		orderInfoLogic = new OrderInfoLogic();
 	}
 	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
@@ -77,6 +80,6 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	@Override
 	public boolean isExpressValid(String id) {
 		// TODO 自动生成的方法存根
-		return uti.isExpressValid(id);
+		return orderInfoLogic.isExpressValid(id);
 	}
 }

@@ -15,6 +15,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
@@ -24,7 +25,7 @@ import edu.nju.umr.vo.order.ExpressVO;
 public class ExpressOrderLogic implements ExpressOrderLSer{
 	private ExpressOrderDFacSer dataFac;
 	private ExpressOrderDSer expressData;
-	private UtilityLogic uti;
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
