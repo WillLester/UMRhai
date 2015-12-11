@@ -362,6 +362,13 @@ public class UtilityLogic {
 		return new ResultMessage(isSuc,names);
 	}
 	
+	
+	/**
+	 * 获得快递员列表
+	 * @param id 营业厅编号
+	 * @return ArrayList<String>表示的快递员列表
+	 * @throws RemoteException
+	 */
 	public ArrayList<String> getCouriers(String id) throws RemoteException{
 		ArrayList<WorkPO> couriers=utilityData.getCouriers(id);
 		ArrayList<String> cour=new ArrayList<String>();
@@ -369,20 +376,6 @@ public class UtilityLogic {
 			cour.add(c.getName());
 		}
 		return cour;
-	}
-	
-	/**
-	 * 判断中转单是否存在
-	 * @param id 中转单的编号
-	 * @return 判断结果
-	 */
-	public boolean isTransitValid(String id){
-		try {
-			return utilityData.isTransitValid(id);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return false;
-		}
 	}
 	
 	/**
@@ -449,34 +442,6 @@ public class UtilityLogic {
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}
-	}
-	
-	/**
-	 * 检查订单编号是否存在
-	 * @param id 订单编号
-	 * @return 结果
-	 */
-	public boolean isExpressValid(String id){
-		try {
-			return utilityData.isExpressValid(id);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return false;
-		}
-	}
-	
-	/**
-	 * 检查中转中心装车单是否存在
-	 * @param id 装车单编号
-	 * @return 结果
-	 */
-	public boolean isCenterLoadValid(String id){
-		try {
-			return utilityData.isCenterLoadValid(id);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return false;
 		}
 	}
 	
@@ -577,12 +542,14 @@ public class UtilityLogic {
 			for(ExpressPO express:expresses){
 				weight = weight.add(new BigDecimal(express.getWeight()));
 			}
+			// 划为吨计算
 			weight = weight.divide(new BigDecimal(1000));
 			ResultMessage load = getFullLoad();
 			if(load.getReInfo().equals(Result.SUCCESS)){
 				@SuppressWarnings("unchecked")
 				List<Double> loads = (List<Double>) load.getMessage();
 				BigDecimal fullLoad = new BigDecimal(loads.get(transit.ordinal()));
+				// 超出满载量，返回错误
 				if(weight.compareTo(fullLoad) == 1){
 					return new ResultMessage(Result.OUT_OF_LOAD, null);
 				}

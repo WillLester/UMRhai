@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
@@ -26,8 +25,6 @@ import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.CenterLoadingPO;
-import edu.nju.umr.po.order.ExpressPO;
 
 public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	/**
@@ -131,18 +128,6 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 	}
 
 	@Override
-	public boolean isTransitValid(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return OrderInfoData.isTransitValid(id);
-	}
-
-	@Override
-	public boolean isExpressValid(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return OrderInfoData.isExpressValid(id);
-	}
-
-	@Override
 	public CitiesPO getCitesPO(String city1, String city2)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
@@ -158,40 +143,6 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 			// TODO 自动生成的 catch 块
 			return null;
 		}
-	}
-
-	@Override
-	public boolean isCenterLoadValid(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null));
-		try {
-			if(result.next()){
-				return true;
-			} else {
-				return false;
-			}
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			return false;
-		}
-	}
-
-	@Override
-	public List<ExpressPO> getExpresses(List<String> expressIds)
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		List<ExpressPO> expresses = new ArrayList<ExpressPO>();
-		for(String id:expressIds){
-			ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, 
-					null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, null, null, null, null));
-			ExpressPO po = OrderPOFactory.getExpress(result);
-			if(po == null){
-				return null;
-			} else {
-				expresses.add(po);
-			}
-		}
-		return expresses;
 	}
 
 }

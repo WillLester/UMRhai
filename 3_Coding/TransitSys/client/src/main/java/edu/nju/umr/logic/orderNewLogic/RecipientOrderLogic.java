@@ -2,18 +2,20 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import edu.nju.umr.constants.Url;
+import edu.nju.umr.dataService.dataFactory.OrderInfoDFacSer;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
-import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
+import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
 import edu.nju.umr.vo.CityVO;
@@ -25,10 +27,12 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private RecipientOrderDSer recipientData;
 	private UtilityLogic uti=new UtilityLogic();
 	private DiaryUpdateLSer diarySer;
+	private OrderInfoLSer orderInfoLogic;
 	public RecipientOrderLogic(){
 		try{
 			dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
 			recipientData=dataFac.getRecipientOrder();
+			orderInfoLogic = new OrderInfoLogic();
 			uti=new UtilityLogic();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -72,14 +76,14 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	@Override
 	public boolean isTransitValid(String id) {
 		// TODO 自动生成的方法存根
-		return uti.isTransitValid(id);
+		return orderInfoLogic.isTransitValid(id);
 	}
 	@Override
 	public List<String> expressList(String id) {
 		// TODO 自动生成的方法存根
-		LinkedList<String> list = new LinkedList<String>();
+		List<String> list = new LinkedList<String>();
 		try {
-			ArrayList<String> express = recipientData.getExpressList(id);
+			List<String> express = orderInfoLogic.getTransitExp(id);
 			for(String ex:express){
 				list.add(ex);
 			}

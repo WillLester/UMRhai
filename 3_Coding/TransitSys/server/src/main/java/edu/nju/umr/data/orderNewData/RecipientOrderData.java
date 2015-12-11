@@ -2,11 +2,9 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
-import edu.nju.umr.data.utilityData.OrderInfoData;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
@@ -39,12 +37,6 @@ public class RecipientOrderData extends UnicastRemoteObject implements Recipient
 			mysqlSer.deleteUnpassed(order);
 		}
 		return result;
-	}
-
-	@Override
-	public ArrayList<String> getExpressList(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return OrderInfoData.getExpressList(id);
 	}
 
 }

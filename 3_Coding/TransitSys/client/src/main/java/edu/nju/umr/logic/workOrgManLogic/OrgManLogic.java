@@ -6,9 +6,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.umr.logic.utilityLogic.DiaryUpdateLSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;

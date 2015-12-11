@@ -1,4 +1,4 @@
-package edu.nju.umr.logic.utilityLogic;
+package edu.nju.umr.logicService.utilityLogicSer;
 
 import edu.nju.umr.po.enums.Result;
 /**
