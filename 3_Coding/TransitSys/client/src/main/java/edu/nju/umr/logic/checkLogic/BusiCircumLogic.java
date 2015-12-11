@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
-import edu.nju.umr.dataService.dataFactory.StatementSheetDFacSer;
+import edu.nju.umr.dataService.dataFactory.check.BusiCircumDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
 import edu.nju.umr.po.enums.Result;
@@ -19,7 +19,7 @@ import edu.nju.umr.vo.BusiCircumVO;
 import edu.nju.umr.vo.ResultMessage;
 
 public class BusiCircumLogic implements BusiCircumLSer{
-	private StatementSheetDFacSer dataFac;
+	private BusiCircumDFacSer dataFac;
 	private BusiCircumDSer statementData;
 	private UtilityLogic uti=new UtilityLogic();
 	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
@@ -27,7 +27,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (StatementSheetDFacSer)Naming.lookup(Url.URL);
+			dataFac = (BusiCircumDFacSer)Naming.lookup(Url.URL);
 			statementData = dataFac.getStatement();
 			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 

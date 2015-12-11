@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.OrderInfoDFacSer;
+import edu.nju.umr.dataService.dataFactory.utility.OrderInfoDFacSer;
 import edu.nju.umr.dataService.utilityDSer.OrderInfoDSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 
@@ -73,6 +73,17 @@ public class OrderInfoLogic implements OrderInfoLSer{
 		// TODO 自动生成的方法存根
 		try {
 			return dataSer.getTransitExp(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ArrayList<String>();
+		}
+	}
+
+	@Override
+	public List<String> getHallLoadExp(String id) {
+		// TODO 自动生成的方法存根
+		try {
+			return dataSer.getHallLoadExp(id);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return new ArrayList<String>();

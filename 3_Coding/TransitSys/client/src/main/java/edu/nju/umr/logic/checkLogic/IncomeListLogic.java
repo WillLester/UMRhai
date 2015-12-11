@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
-import edu.nju.umr.dataService.dataFactory.CollectFormDFacSer;
+import edu.nju.umr.dataService.dataFactory.check.CollectFormDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;

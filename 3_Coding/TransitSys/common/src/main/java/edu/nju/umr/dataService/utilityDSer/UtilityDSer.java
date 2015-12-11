@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
@@ -26,21 +24,4 @@ public interface UtilityDSer extends Remote{
 	public Result setRecord(Calendar time,String operation,String operator) throws RemoteException;
 	public ArrayList<OrgPO> getCenters()throws RemoteException;
 	public ArrayList<WorkPO> getCouriers(String hallId) throws RemoteException;
-	/**
-	 * 获得常量
-	 * @return 常量PO
-	 * @throws RemoteException
-	 */
-	public ConstantPO getConstant() throws RemoteException;
-	
-	
-	/**
-	 * 获得城市间信息
-	 * @param city1 城市1
-	 * @param city2 城市2
-	 * @return CitiesPO 如果没有获得则返回null
-	 * @see CitiesPO
-	 * @throws RemoteException
-	 */
-	public CitiesPO getCitesPO(String city1,String city2) throws RemoteException;
 }

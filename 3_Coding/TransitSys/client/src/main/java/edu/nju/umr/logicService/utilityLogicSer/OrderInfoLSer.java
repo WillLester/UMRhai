@@ -42,4 +42,11 @@ public interface OrderInfoLSer {
 	 * @return List<String>表示的订单编号列表
 	 */
 	public List<String> getTransitExp(String id);
+	
+	/**
+	 * 获得营业厅装车单的订单列表
+	 * @param id 营业厅装车单编号
+	 * @return List<String>表示的订单编号列表
+	 */
+	public List<String> getHallLoadExp(String id);
 }

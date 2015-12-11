@@ -3,18 +3,14 @@ package edu.nju.umr.data.utilityData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
-import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.DiaryPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -121,28 +117,6 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new WorkPO(null, null, null, null, 0, Jurisdiction.COURIER, null, 0, 0));
 		return ArrayListFactory.produceWorkList(result);
-	}
-	public ConstantPO getConstant() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return (ConstantPO) SerialHelper.readFromFile("data/constant/constant.ser");
-	}
-
-	@Override
-	public CitiesPO getCitesPO(String city1, String city2)
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new CitiesPO(city1, city2, 0));
-		try {
-			if(result.next()){
-				CitiesPO cities = new CitiesPO(result.getString(1), result.getString(2), result.getDouble(3));
-				return cities;
-			} else {
-				return null;
-			}
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			return null;
-		}
 	}
 
 }

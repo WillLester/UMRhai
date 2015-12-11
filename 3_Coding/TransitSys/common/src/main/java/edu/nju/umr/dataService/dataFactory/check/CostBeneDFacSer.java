@@ -1,4 +1,4 @@
-package edu.nju.umr.dataService.dataFactory;
+package edu.nju.umr.dataService.dataFactory.check;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
