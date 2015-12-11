@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.ExpressOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ExpressOrderDSer;
+import edu.nju.umr.logic.utilityLogic.ConstantGetLogic;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
-import edu.nju.umr.logic.utilityLogic.UtilityLogic;
+import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ExpressOrderLSer;
+import edu.nju.umr.logicService.utilityLogicSer.ConstantGetLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
-import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
@@ -25,14 +27,14 @@ import edu.nju.umr.vo.order.ExpressVO;
 public class ExpressOrderLogic implements ExpressOrderLSer{
 	private ExpressOrderDFacSer dataFac;
 	private ExpressOrderDSer expressData;
-	private UtilityLSer uti;
+	private OrderCalcuLSer orderCalcu;
+	private ConstantGetLSer constantGet;
 	private DiaryUpdateLSer diarySer;
 	public ExpressOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (ExpressOrderDFacSer)Naming.lookup(Url.URL);
-			expressData = dataFac.getExpressOrder();
-			uti=new UtilityLogic();
+			expressData = dataFac.getExpressOrder();	
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -41,6 +43,8 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
             e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
+		orderCalcu = new OrderCalcuLogic();
+		constantGet = new ConstantGetLogic();
 	}
 	public Result create(ExpressVO order) {
 		// TODO 自动生成的方法存根
@@ -62,11 +66,11 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		if(city1.equals(city2)){
 			distance = new BigDecimal(100);
 		} else {
-			distance=uti.getDistance(city1, city2);
+			distance = orderCalcu.getDistance(city1, city2);
 		}
 		//获得快递价格
-		ResultMessage message=uti.getExpressCost();
-		Result result=message.getReInfo();
+		ResultMessage message = constantGet.getExpressCost();
+		Result result = message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
 			return null;
 		@SuppressWarnings("unchecked")
@@ -84,13 +88,11 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	@Override
 	public int getTime(String city1,String city2)
 	{
-		BigDecimal distance=uti.getDistance(city1, city2);
-		int [][]timeCount=new int[][]{{0,100,1},{100,400,2},{400,900,3},{900,0x7fffffff,4}};
-		int time=0;
-		for(int i=0;i<4;i++)
-		{
-			if(distance.compareTo(new BigDecimal(timeCount[i][0]))>0&&distance.compareTo(new BigDecimal(timeCount[i][1]))<=0)
-			{
+		BigDecimal distance = orderCalcu.getDistance(city1, city2);
+		int [][]timeCount = new int[][]{{0,100,1},{100,400,2},{400,900,3},{900,0x7fffffff,4}};
+		int time = 0;
+		for(int i = 0;i < 4;i++){
+			if(distance.compareTo(new BigDecimal(timeCount[i][0]))>0&&distance.compareTo(new BigDecimal(timeCount[i][1]))<=0){
 				time=timeCount[i][2];
 				break;
 			}

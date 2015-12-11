@@ -2,6 +2,8 @@ package edu.nju.umr.logicService.utilityLogicSer;
 
 import java.util.List;
 
+import edu.nju.umr.po.order.ExpressPO;
+
 /**
  * 单据信息的逻辑接口
  * @author Lester
@@ -49,4 +51,12 @@ public interface OrderInfoLSer {
 	 * @return List<String>表示的订单编号列表
 	 */
 	public List<String> getHallLoadExp(String id);
+	
+	/**
+	 * 根据订单编号获得订单信息
+	 * @param expressList 订单编号列表
+	 * @return 订单信息列表
+	 * @see ExpressPO
+	 */
+	public List<ExpressPO> getExpresses(List<String> expressList);
 }

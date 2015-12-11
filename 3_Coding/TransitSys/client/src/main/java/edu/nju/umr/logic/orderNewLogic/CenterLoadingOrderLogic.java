@@ -15,6 +15,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
@@ -27,6 +28,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private CenterLoadingOrderDSer centerData;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
+	private OrderCalcuLSer orderCalcu;
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -49,7 +51,6 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
 			}
-			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -61,21 +62,21 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 
 	public ResultMessage getHalls() {
 		// TODO 自动生成的方法存根
-		ResultMessage rm=uti.getHall();
-		if(rm.getReInfo()!=Result.SUCCESS){
+		ResultMessage rm = uti.getHall();
+		if(rm.getReInfo() != Result.SUCCESS){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		@SuppressWarnings("unchecked")
-		ArrayList<OrgVO> halls=(ArrayList<OrgVO>)rm.getMessage();
-		OrgVO hallArray[]=new OrgVO[halls.size()];
-		for(int i=0;i<halls.size();i++){
-			hallArray[i]=halls.get(i);
+		ArrayList<OrgVO> halls = (ArrayList<OrgVO>)rm.getMessage();
+		OrgVO hallArray[] = new OrgVO[halls.size()];
+		for(int i = 0;i < halls.size();i++){
+			hallArray[i] = halls.get(i);
 		}
 		return new ResultMessage(Result.SUCCESS,hallArray);
 	}
 	public ResultMessage getPrice(String org1,String org2,List<String> expressList)
 	{
-		return uti.getPrice(org1, org2, Transit.VAN,expressList);
+		return orderCalcu.getPrice(org1, org2, Transit.VAN,expressList);
 	}
 
 }

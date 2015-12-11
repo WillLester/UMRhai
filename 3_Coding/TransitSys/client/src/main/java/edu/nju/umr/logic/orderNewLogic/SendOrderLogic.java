@@ -2,7 +2,7 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
@@ -52,12 +52,13 @@ public class SendOrderLogic implements SendOrderLSer{
 	public ResultMessage getCouriers(String id) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
-		ArrayList<String> ar= null;
+		List<String> ar= null;
 		try{
-			ar=uti.getCouriers(id);
+			ar = uti.getCouriers(id);
 			isSuccessful=Result.SUCCESS;
-		}catch(RemoteException e){
-			return new ResultMessage(Result.NET_INTERRUPT,null);
+			if(ar.isEmpty()){
+				isSuccessful = Result.NET_INTERRUPT;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

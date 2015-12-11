@@ -10,11 +10,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
@@ -25,14 +27,14 @@ import edu.nju.umr.vo.order.HallLoadingVO;
 public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private HallLoadingOrderDFacSer dataFac;
 	private HallLoadingOrderDSer hallData;
-	private UtilityLSer uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private OrderInfoLSer orderInfo;
+	private OrderCalcuLSer orderCalcu;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
-			hallData = dataFac.getHallLoadingOrder();
-			uti=new UtilityLogic();			
+			hallData = dataFac.getHallLoadingOrder();		
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -40,8 +42,10 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		uti = new UtilityLogic();	
 		diarySer = new DiaryUpdateLogic();
 		orderInfo = new OrderInfoLogic();
+		orderCalcu = new OrderCalcuLogic();
 	}
 	public Result create(HallLoadingVO order) {
 		// TODO 自动生成的方法存根
@@ -71,7 +75,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	
 	@Override
 	public ResultMessage getPrice(String org1, String org2,List<String> expressList) {
-		return uti.getPrice(org1, org2,Transit.VAN,expressList);
+		return orderCalcu.getPrice(org1, org2,Transit.VAN,expressList);
 	}
 	@Override
 	public ResultMessage getLocalHallAndAllCenter(String orgId) {

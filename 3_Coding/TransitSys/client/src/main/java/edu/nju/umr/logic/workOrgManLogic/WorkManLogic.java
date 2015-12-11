@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
@@ -96,13 +97,8 @@ public class WorkManLogic implements WorkManLSer{
 	}
 	
 	private String getOrgId(String orgName){
-		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();
-		try {
-			orgs=uti.orgs();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+		List<OrgPO> orgs=new ArrayList<OrgPO>();
+		orgs=uti.orgs();
 		
 		for(OrgPO po:orgs){
 			if(po.getName().equals(orgName))

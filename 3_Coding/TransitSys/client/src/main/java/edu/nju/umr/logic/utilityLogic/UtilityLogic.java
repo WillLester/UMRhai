@@ -3,7 +3,6 @@ package edu.nju.umr.logic.utilityLogic;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -23,16 +22,12 @@ import edu.nju.umr.dataService.dataFactory.utility.UtilityDFacSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.AccountPO;
-import edu.nju.umr.po.CitiesPO;
 import edu.nju.umr.po.CityPO;
-import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.enums.Transit;
-import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -272,15 +267,27 @@ public class UtilityLogic implements UtilityLSer{
 		return city;
 	}
 	
-	public ArrayList<OrgPO> orgs() throws RemoteException{
-		ArrayList<OrgPO> org=new ArrayList<OrgPO>();
-		org=utilityData.getOrgs();
+	public List<OrgPO> orgs(){
+		List<OrgPO> org=new ArrayList<OrgPO>();
+		try {
+			org=utilityData.getOrgs();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return org;
+		}
 		return org;
 	}
 	
-	public ArrayList<OrgPO> centers() throws RemoteException{
+	public ArrayList<OrgPO> centers(){
 		ArrayList<OrgPO> centers=null;
-		centers=utilityData.getCenters();
+		try {
+			centers=utilityData.getCenters();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return new ArrayList<OrgPO>();
+		}
 		return centers;
 	}
 	 
@@ -320,7 +327,7 @@ public class UtilityLogic implements UtilityLSer{
 		Result isSuc=Result.DATA_NOT_FOUND;
 		ArrayList<OrgPO> halls=new ArrayList<OrgPO>();//获取营业厅列表
 		ArrayList<OrgVO> localHalls=new ArrayList<OrgVO>();//用来存储本城市营业厅列表
-		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取总的机构列表
+		List<OrgPO> orgs=new ArrayList<OrgPO>();//获取总的机构列表
 		String city=null;//存储本地营业厅所在的城市名称
 		ArrayList<OrgVO> centers=new ArrayList<OrgVO>();//获取所有的中转中心列表
 		try {
@@ -360,204 +367,32 @@ public class UtilityLogic implements UtilityLSer{
 		return new ResultMessage(isSuc,names);
 	}
 	
-	
+	@Override
 	/**
 	 * 获得快递员列表
 	 * @param id 营业厅编号
 	 * @return ArrayList<String>表示的快递员列表
-	 * @throws RemoteException
 	 */
-	public ArrayList<String> getCouriers(String id) throws RemoteException{
-		ArrayList<WorkPO> couriers=utilityData.getCouriers(id);
-		ArrayList<String> cour=new ArrayList<String>();
+	public List<String> getCouriers(String id){
+		ArrayList<WorkPO> couriers;
+		try {
+			couriers = utilityData.getCouriers(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ArrayList<String>();
+		}
+		List<String> cour=new ArrayList<String>();
 		for(WorkPO c:couriers){
 			cour.add(c.getName());
 		}
 		return cour;
 	}
 	
-	/**
-	 * 获得订单运费（经济，标准，特快）
-	 * @return 价格List，目前是Array，按经济，标准和特快的顺序排,数值是double
-	 */
-	public ResultMessage getExpressCost() {
-		// TODO 自动生成的方法存根
-		try {
-			ConstantPO constant = utilityData.getConstant();
-			if(constant == null){
-				return new ResultMessage(Result.DATA_NOT_FOUND, null);
-			} else {
-				List<Double> costs = new ArrayList<Double>();
-				costs.add(constant.getLvEco());
-				costs.add(constant.getLvStd());
-				costs.add(constant.getLvVip());
-				return new ResultMessage(Result.SUCCESS, costs);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}
-	}
-	
-	/**
-	 * 获得运费额（飞机，铁路，公路）
-	 * @return List,目前是Array，按照飞机、铁路、公路排序的运费，数值是double
-	 */
-	public ResultMessage getTransitCost(){
-		try {
-			ConstantPO constant = utilityData.getConstant();
-			if(constant == null){
-				return new ResultMessage(Result.DATA_NOT_FOUND, null);
-			} else {
-				List<Double> costs = new ArrayList<Double>();
-				costs.add(constant.getPricePlane());
-				costs.add(constant.getPriceTrain());
-				costs.add(constant.getPriceVan());
-				return new ResultMessage(Result.SUCCESS, costs);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}
-	}
-	
-	/**
-	 * 获得满载量（飞机、铁路、公路）
-	 * @return List，目前是Array,按照飞机、铁路、公路排，数值是double
-	 */
-	public ResultMessage getFullLoad(){
-		try {
-			ConstantPO constant = utilityData.getConstant();
-			if(constant == null){
-				return new ResultMessage(Result.DATA_NOT_FOUND, null);
-			} else {
-				List<Double> load = new ArrayList<Double>();
-				load.add(constant.getMaxLoadPlane());
-				load.add(constant.getMaxLoadTrain());
-				load.add(constant.getMaxLoadVan());
-				return new ResultMessage(Result.SUCCESS, load);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}
-	}
-	
-	/**
-	 * 获得两个城市之间的距离
-	 * @param city1 城市1
-	 * @param city2 城市2
-	 * @return 城市之间的距离 类型是BigDecimal，考虑到精度问题。如果没有，则返回。若网络错误，返回null
-	 */
-	public BigDecimal getDistance(String city1,String city2){
-		CitiesPO cities = null;
-		try {
-			cities = utilityData.getCitesPO(city1, city2);
-			if(cities == null){
-				return new BigDecimal(0);
-			} else {
-				return new BigDecimal(cities.getDistance());
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return null;
-		}
-	}
-	
-	/**
-	 * 获得机构之间的运费
-	 * @param org1 机构1
-	 * @param org2 机构2
-	 * @param transit Transit类型，飞机，铁路，公路
-	 * @param expressList 订单号列表
-	 * @see edu.nju.umr.po.enums.Transit
-	 * @return BigDecimal
-	 */
-	public ResultMessage getPrice(String org1, String org2,Transit transit,List<String> expressList) {
-		String city1=null;
-		String city2=null;//两个机构所属城市名称
-		ArrayList<OrgPO> orgs=new ArrayList<OrgPO>();//获取机构列表
-		BigDecimal distance= new BigDecimal(0);//城市间距离
-		BigDecimal price = new BigDecimal(0);//城市间价格
-		ResultMessage costMessage = getTransitCost();
-		if(!costMessage.getReInfo().equals(Result.SUCCESS)){
-			return costMessage;
-		}
-		@SuppressWarnings("unchecked")
-		ArrayList<Double> temp=(ArrayList<Double>)costMessage.getMessage();
-		double cost = temp.get(transit.ordinal());
-		try {
-			orgs = orgs();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
-		if(orgs == null){
-			return new ResultMessage(Result.DATA_NOT_FOUND, null);
-		}
-		//获得两个机构所在城市名称
-		for(OrgPO po:orgs){
-			if(po.getName().equals(org1)){
-				city1=po.getCity();
-				break;
-			}
-		}
-		for(OrgPO po:orgs){
-			if(po.getName().equals(org2)){
-				city2=po.getCity();
-			    break;
-			}
-		}
-		//两机构在同一城市
-		if(city1.equals(city2)){
-			distance = new BigDecimal(100);//固定值暂定为100
-		} else {
-		//不在同一城市
-			try{
-				distance= getDistance(city1, city2);
-			}catch(Exception e){
-				return new ResultMessage(Result.NET_INTERRUPT,null);
-			}
-		}
-		price= new BigDecimal(cost);
-		try {
-			List<ExpressPO> expresses = utilityData.getExpresses(expressList);
-			BigDecimal weight = new BigDecimal(0);
-			for(ExpressPO express:expresses){
-				weight = weight.add(new BigDecimal(express.getWeight()));
-			}
-			// 划为吨计算
-			weight = weight.divide(new BigDecimal(1000));
-			ResultMessage load = getFullLoad();
-			if(load.getReInfo().equals(Result.SUCCESS)){
-				@SuppressWarnings("unchecked")
-				List<Double> loads = (List<Double>) load.getMessage();
-				BigDecimal fullLoad = new BigDecimal(loads.get(transit.ordinal()));
-				// 超出满载量，返回错误
-				if(weight.compareTo(fullLoad) == 1){
-					return new ResultMessage(Result.OUT_OF_LOAD, null);
-				}
-			} else {
-				return new ResultMessage(Result.NET_INTERRUPT, null);
-			}
-			return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return new ResultMessage(Result.NET_INTERRUPT, null);
-		}
-	}
-	
 	@Override
 	//返回给界面名称数组的一系列方法
 	public ResultMessage getOrgNames(){//机构名称
-		ArrayList<OrgPO> orgList=new ArrayList<OrgPO>();
-		try {
-			orgList=orgs();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
+		List<OrgPO> orgList=new ArrayList<OrgPO>();
+		orgList=orgs();
 		String[] orgName=new String[orgList.size()];
 		for(int i=0;i<orgList.size();i++){
 			orgName[i]=orgList.get(i).getName();

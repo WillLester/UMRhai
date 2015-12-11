@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
@@ -46,7 +47,7 @@ public class CountLogic implements CountLSer{
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result newCount(String name) {		
-		ArrayList<OrgPO> orgList=null;
+		List<OrgPO> orgList=null;
 		ArrayList<WorkPO> workList=null;
 		ArrayList<VanPO> vanList=null;
 		ArrayList<StockPO> stockList=null;
@@ -62,7 +63,7 @@ public class CountLogic implements CountLSer{
 			return Result.NET_INTERRUPT;
 		}
 		
-		CountPO count=new CountPO(0,orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
+		CountPO count=new CountPO(0,(ArrayList<OrgPO>) orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
 		try {
 			Result result=countData.addCount(count);
 			result = diarySer.addDiary("新增账", name);

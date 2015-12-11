@@ -11,6 +11,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.utility.OrderInfoDFacSer;
 import edu.nju.umr.dataService.utilityDSer.OrderInfoDSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.po.order.ExpressPO;
 
 public class OrderInfoLogic implements OrderInfoLSer{
 	private OrderInfoDFacSer dataFac;
@@ -87,6 +88,17 @@ public class OrderInfoLogic implements OrderInfoLSer{
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return new ArrayList<String>();
+		}
+	}
+
+	@Override
+	public List<ExpressPO> getExpresses(List<String> expressList) {
+		// TODO 自动生成的方法存根
+		try {
+			return dataSer.getExpresses(expressList);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return new ArrayList<ExpressPO>();
 		}
 	}
 }

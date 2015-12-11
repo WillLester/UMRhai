@@ -8,11 +8,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
@@ -27,32 +29,31 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private OrderInfoLSer orderInfo;
+	private OrderCalcuLSer orderCalcu;
 	public TransitOrderLogic(){
-		try{
-			dataFac=(TransitOrderDFacSer)Naming.lookup(Url.URL);
-			transitData=dataFac.getTransitOrder();
-			uti=new UtilityLogic();
-		}catch(Exception e)
-		{
+		try {
+			dataFac = (TransitOrderDFacSer)Naming.lookup(Url.URL);
+			transitData = dataFac.getTransitOrder();
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 		orderInfo = new OrderInfoLogic();
+		orderCalcu = new OrderCalcuLogic();
 	}
 
 	public Result create(TransitVO order) {
 		// TODO 自动生成的方法存根
-		try{
-			TransitPO orderPO=VPFactory.toTransitPO(order, "");
-			Result result=transitData.create(orderPO);
+		try {
+			TransitPO orderPO = VPFactory.toTransitPO(order, "");
+			Result result = transitData.create(orderPO);
 			if(result.equals(Result.SUCCESS)){
 				result = diarySer.addDiary("生成了中转单"+order.getId(), order.getOpName());
 			}
-		}catch(RemoteException e){
+		} catch (RemoteException e){
 			return Result.NET_INTERRUPT;
-		}catch(Exception e)
-		{
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		return Result.SUCCESS;
@@ -78,7 +79,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	@Override
 	public ResultMessage getPrice(String org1, String org2, int tran,
 			List<String> expressList) {
-		return uti.getPrice(org1, org2, Transit.values()[tran], expressList);
+		return orderCalcu.getPrice(org1, org2, Transit.values()[tran], expressList);
 	}
 
 }

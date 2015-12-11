@@ -1,5 +1,8 @@
 package edu.nju.umr.logicService.utilityLogicSer;
 
+import java.util.List;
+
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -46,4 +49,18 @@ public interface UtilityLSer {
 	 * @return String[] 含有车辆名称列表
 	 */
 	public ResultMessage getVanNames(String orgId);
+	
+	/**
+	 * 获得机构PO
+	 * @return List<OrgPO>形式的机构信息列表
+	 * @see OrgPO
+	 */
+	public List<OrgPO> orgs();
+	
+	/**
+	 * 获得快递员列表
+	 * @param hallId 营业厅编号
+	 * @return List<String>形式的快递员列表
+	 */
+	public List<String> getCouriers(String hallId);
 }

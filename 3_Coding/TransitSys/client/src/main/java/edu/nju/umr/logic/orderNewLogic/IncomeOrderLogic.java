@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
@@ -14,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
@@ -21,7 +22,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 public class IncomeOrderLogic implements IncomeOrderLSer{
 	private IncomeOrderDFacSer dataFac;
 	private IncomeOrderDSer incomeData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public IncomeOrderLogic() {
 		// TODO 自动生成的构造函数存根
@@ -35,6 +36,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(IncomeVO order) {
@@ -55,7 +57,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 
 	public ResultMessage getCouriers(String id) {
 		// TODO 自动生成的方法存根
-		ArrayList<String> couriers = null;
+		List<String> couriers = null;
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			couriers = uti.getCouriers(id);
@@ -65,9 +67,6 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 			}
 			isSuc=Result.SUCCESS;
 			return new ResultMessage(isSuc, cour);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
 		} catch (Exception e) { 
             e.printStackTrace();   
         } 
