@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import edu.nju.umr.po.order.KindGetter;
+import edu.nju.umr.po.order.function.KindGetter;
 /**
  * 
  * @author WillLester

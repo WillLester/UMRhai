@@ -8,7 +8,7 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.po.order.OrderOper;
+import edu.nju.umr.po.order.function.OrderOper;
 /**
  * 
  * @author WillLester

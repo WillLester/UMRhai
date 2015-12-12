@@ -9,6 +9,8 @@ import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Parse;
+import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.OrderOper;
 
 public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	/**
