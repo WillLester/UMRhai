@@ -110,7 +110,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getIncome(String userId){
-		OrderOper po = new IncomePO(null, null, 0, null, 0, null, null, null, userId);
+		OrderOper po = new IncomePO(null, null, null, null, 0, null, null, null, userId,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceIncome(result);
@@ -121,7 +121,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getPayment(String userId){
-		OrderOper po = new PaymentPO(0, null, null, null, null, 0, null, null, null, userId);
+		OrderOper po = new PaymentPO(0, null, null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.producePayment(result);

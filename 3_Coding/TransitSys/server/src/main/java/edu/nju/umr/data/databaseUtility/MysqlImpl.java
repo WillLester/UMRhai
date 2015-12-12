@@ -111,7 +111,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from account");
 				ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
 				while(result.next()){
-					AccountPO account = new AccountPO(result.getInt(1), result.getString(2), result.getDouble(3));
+					AccountPO account = new AccountPO(result.getInt(1), result.getString(2), result.getBigDecimal(3));
 					accountList.add(account);
 				}
 				return accountList;
@@ -321,7 +321,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case INCOME:
 			for(String i:id){
-				order = new IncomePO(null, null, 0, null, Integer.parseInt(i), null, null, null,null);
+				order = new IncomePO(null, null, null, null, Integer.parseInt(i), null, null, null,null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -330,7 +330,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case PAYMENT:
 			for(String i:id){
-				order = new PaymentPO(Integer.parseInt(i), null, null, null, null, 0, null, null, null,null);
+				order = new PaymentPO(Integer.parseInt(i), null, null, null, null, null, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

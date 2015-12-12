@@ -130,8 +130,9 @@ public class OrderPOFactory {
 				date.setTime(result.getDate(4));
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(5));
-				return new IncomePO(date, result.getString(2), result.getDouble(3), express, 
-						result.getInt(1), opTime, result.getString(7), result.getString(8),result.getString(9));
+				return new IncomePO(date, result.getString(2), result.getBigDecimal(3), express, 
+						result.getInt(1), opTime, result.getString(7), result.getString(8),result.getString(9)
+						,result.getString(10));
 			} else {
 				return null;
 			}
@@ -150,7 +151,7 @@ public class OrderPOFactory {
 				opTime.setTime(result.getDate(8));
 				Pay pays[] = Pay.values();
 				return new PaymentPO(result.getInt(1), date, result.getString(2), result.getString(3), 
-						pays[result.getInt(4)], result.getDouble(5), result.getString(6), 
+						pays[result.getInt(4)], result.getBigDecimal(5), result.getString(6), 
 						opTime, result.getString(9),result.getString(10));
 			} else{
 				return null;

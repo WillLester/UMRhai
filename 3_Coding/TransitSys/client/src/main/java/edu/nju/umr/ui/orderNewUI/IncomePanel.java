@@ -50,7 +50,7 @@ public class IncomePanel extends JPanel {
 			co.setEnabled(false);
 		}
 		courierCombo.setSelectedItem(vo.getCourier());
-		amountField.setText(Double.toString(vo.getCost()));
+		amountField.setText(vo.getCost().toString());
 		datePanel.setDate(vo.getDate());
 		expressList.showExpressList(vo.getExpress());
 		

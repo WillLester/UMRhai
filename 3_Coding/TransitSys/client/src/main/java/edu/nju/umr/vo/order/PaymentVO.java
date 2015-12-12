@@ -1,5 +1,6 @@
 package edu.nju.umr.vo.order;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Pay;
@@ -12,13 +13,12 @@ public class PaymentVO implements ShowOrder{
 	private String payer;
 	private String account;
 	private Pay kind;
-	private double amount;
+	private BigDecimal amount;
 	private String remarks;
 	private String opName;
 	private String userId;
-	public PaymentVO(Calendar date,String payer,String account,Pay kind,double amount,String remarks,String opName,String userId) {
+	public PaymentVO(Calendar date,String payer,String account,Pay kind,BigDecimal amount,String remarks,String opName,String userId) {
 		// TODO 自动生成的构造函数存根
-//		this.id = id;
 		this.date = date;
 		this.payer = payer;
 		this.account = account;
@@ -43,7 +43,7 @@ public class PaymentVO implements ShowOrder{
 	public Pay getKind() {
 		return kind;
 	}
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 	public String getRemarks() {

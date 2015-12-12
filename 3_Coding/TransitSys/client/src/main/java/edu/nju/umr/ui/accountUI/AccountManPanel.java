@@ -3,6 +3,7 @@ package edu.nju.umr.ui.accountUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -154,9 +155,9 @@ public class AccountManPanel extends JPanel{
 				if(isModifyLegal()){
 					Result result;
 					if(table.getSelectedRow() >= accountList.size()){
-						result = logicSer.addAccount(new AccountVO(nameField.getText(), 0),name);
+						result = logicSer.addAccount(new AccountVO(nameField.getText(), new BigDecimal(0)),name);
 					} else {
-						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), Double.parseDouble(balanceField.getText())), table.getSelectedRow(),name);
+						result = logicSer.reviseAccount(new AccountVO(nameField.getText(), new BigDecimal(balanceField.getText())), table.getSelectedRow(),name);
 					}
 					if(result.equals(Result.SUCCESS)){
 						fresh();

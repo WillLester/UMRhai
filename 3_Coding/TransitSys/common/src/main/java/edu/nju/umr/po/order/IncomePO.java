@@ -1,6 +1,7 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -16,17 +17,19 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	private static final long serialVersionUID = 1315709059088122485L;
 	private Calendar date;
 	private String courier;
-	private double cost;
+	private BigDecimal cost;
 	private ArrayList<String> express;
 	private int id;
 	private Calendar opTime;
 	private String opName;
 	private String orgId;
 	private String userId;
+	private String account;
 	
-	public IncomePO(Calendar date, String courier, double cost,
+	
+	public IncomePO(Calendar date, String courier, BigDecimal cost,
 			ArrayList<String> express, int id, Calendar opTime, String opName,
-			String orgId,String userId) {
+			String orgId, String userId, String account) {
 		super();
 		this.date = date;
 		this.courier = courier;
@@ -37,6 +40,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 		this.opName = opName;
 		this.orgId = orgId;
 		this.userId = userId;
+		this.account = account;
 	}
 	public String getUserId() {
 		return userId;
@@ -47,7 +51,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getCourier() {
 		return courier;
 	}
-	public double getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
 	public ArrayList<String> getExpress() {
@@ -66,6 +70,9 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getOrgId() {
 		return orgId;
 	}
+	public String getAccount() {
+		return account;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -77,7 +84,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 				text = text + exp + " ";
 			}
 			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+
-			DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"','"+userId+"')";break;
+			DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"','"+userId+"','"+account+"')";break;
 		case DELETE:break;
 		case FIND:
 			command = "select * from incomeorderpassed where orgId='"+orgId+"'";break;

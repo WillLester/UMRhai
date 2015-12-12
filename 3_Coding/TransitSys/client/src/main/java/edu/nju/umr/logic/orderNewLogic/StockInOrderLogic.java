@@ -8,11 +8,13 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
+import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
+import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.GoodPO;
@@ -28,6 +30,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	private StockInOrderDSer stockinData;
 	private OrderInfoLSer orderInfoLogic;
 	private UtilityLSer uti;
+	private DiaryUpdateLSer diarySer;
 	public StockInOrderLogic(){
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
@@ -37,13 +40,19 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		}
 		uti = new UtilityLogic();
 		orderInfoLogic = new OrderInfoLogic();
+		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
 			StockInPO orderPO = VPFactory.toStockInPO(order, 0);
 			isSuc = stockinData.create(orderPO);
-			isSuc = stockinData.addGood(new GoodPO(order.getExpressId(), order.getStockId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
+			if(isSuc == Result.SUCCESS){
+				isSuc = stockinData.addGood(new GoodPO(order.getExpressId(), order.getStockId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
+				if(isSuc == Result.SUCCESS){
+					diarySer.addDiary("为货物"+order.getExpressId()+"生成了入库单", order.getOpName());
+				}
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -52,9 +61,9 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		return isSuc;
 	}
 
-	public ResultMessage getCities() {
+	public ResultMessage getOrgs() {
 		// TODO 自动生成的方法存根
-		return uti.getCities();
+		return uti.getOrgNames();
 	}
 	public Result checkWarning(String id){
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();

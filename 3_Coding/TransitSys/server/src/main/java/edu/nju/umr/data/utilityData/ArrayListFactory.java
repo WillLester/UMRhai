@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import sun.misc.BASE64Encoder;
+import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.DriverPO;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.OrgPO;
@@ -40,8 +42,8 @@ public class ArrayListFactory {
 				for(int i = 0;i < ori.length;i++){
 					express.add(ori[i]);
 				}
-				IncomePO income = new IncomePO(date, result.getString(2), result.getDouble(3), express, result.getInt(1), 
-						time,result.getString(7),result.getString(8),result.getString(9));
+				IncomePO income = new IncomePO(date, result.getString(2), result.getBigDecimal(3), express, result.getInt(1), 
+						time,result.getString(7),result.getString(8),result.getString(9),result.getString(10));
 				incomeList.add(income);
 			}
 		} catch (SQLException e) {
@@ -60,7 +62,7 @@ public class ArrayListFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(8));
 				PaymentPO payment = new PaymentPO(result.getInt(1), date,result.getString(2) , result.getString(3), 
-						pays[result.getInt(4)], result.getDouble(5), result.getString(6), opTime,
+						pays[result.getInt(4)], result.getBigDecimal(5), result.getString(6), opTime,
 						result.getString(9),result.getString(10));
 				paymentList.add(payment);
 			}
@@ -187,6 +189,7 @@ public class ArrayListFactory {
 		}
 		return orgList;
 	}
+	
 	public static ArrayList<ShelfPO> produceShelfList(ResultSet result){
 		ArrayList<ShelfPO> shelfList = new ArrayList<ShelfPO>();
 		Part parts[] = Part.values();
@@ -200,5 +203,19 @@ public class ArrayListFactory {
 			return null;
 		}
 		return shelfList;
+	}
+	
+	public static ArrayList<AccountPO> produceAccountList(ResultSet result){
+		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
+		try {
+			while(result.next()){
+				AccountPO account = new AccountPO(result.getInt(1), result.getString(2), result.getBigDecimal(3));
+				accountList.add(account);
+			}
+			return accountList;
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
 	}
 }

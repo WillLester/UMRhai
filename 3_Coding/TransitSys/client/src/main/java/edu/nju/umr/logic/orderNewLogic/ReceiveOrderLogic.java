@@ -54,10 +54,13 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 		express.setReceiveTime(receive.getReceiveTime());
 		try {
 			Result result =  receiveData.create(express);
-			if(result.equals(Result.SUCCESS))
-				infoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
+			if(result == Result.SUCCESS){
+				result = infoLogic.update(express.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+" 已签收 签收人 "+receive.getRealReceiver());
-			result = diarySer.addDiary(express.getId()+"收件", name);
+				if(result == Result.SUCCESS){
+					result = diarySer.addDiary(express.getId()+"收件", name);
+				}
+			}
 			return result;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

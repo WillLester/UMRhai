@@ -1,10 +1,12 @@
 package edu.nju.umr.vo;
 
+import java.math.BigDecimal;
+
 
 public class AccountVO {
 	private String name;
-	private double balance;
-	public AccountVO(String name,double balance) {
+	private BigDecimal balance;
+	public AccountVO(String name,BigDecimal balance) {
 		// TODO 自动生成的构造函数存根
 		this.name = name;
 		this.balance = balance;
@@ -12,7 +14,7 @@ public class AccountVO {
 	public String getName() {
 		return name;
 	}
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 	
