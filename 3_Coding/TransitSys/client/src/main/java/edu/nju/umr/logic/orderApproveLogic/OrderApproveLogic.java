@@ -14,9 +14,12 @@ import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logic.orderNewLogic.UpdateTransitInfoLogic;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
@@ -52,6 +55,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
 	private UpdateTransitInfoLogic infoLogic;
+	private OrderInfoLSer orderInfo;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -66,6 +70,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
         } 
 		diarySer = new DiaryUpdateLogic();
 		infoLogic = new UpdateTransitInfoLogic();
+		orderInfo = new OrderInfoLogic();
 	}
 	public ResultMessage askExamine() {
 		
@@ -384,19 +389,22 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		return Result.SUCCESS;
 	}
 	private String getOrg(String userId){
-		//TODO 
-		return null;
+		UserPO user;
+		try {
+			user = approveData.getUser(userId);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return null;
+		}
+		return user.getOrg();
 	}
 	
 	private List<String> getTransitExp(String id){
-		//TODO
-		
-		return null;
+		return orderInfo.getTransitExp(id);
 	}
 	
 	private List<String> getHallLoadExp(String id){
-		//TODO
-		return null;
+		return orderInfo.getHallLoadExp(id);
 	}
 	
 	private boolean isSuc(ResultMessage message){

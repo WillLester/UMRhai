@@ -2,13 +2,16 @@ package edu.nju.umr.data.orderApproveData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.data.utilityData.OrderPOFactory;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.po.PO;
+import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
@@ -101,6 +104,14 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 		default:
 			return null;
 		}
+	}
+
+	@Override
+	public UserPO getUser(String userId) throws RemoteException {
+		// TODO 自动生成的方法存根
+		ResultSet result = mysqlSer.checkInfo(new UserPO(userId, null, null, null, null, null, 0, null));
+		ArrayList<UserPO> users = ArrayListFactory.produceUserList(result);		
+		return users.get(0);
 	}
 
 }
