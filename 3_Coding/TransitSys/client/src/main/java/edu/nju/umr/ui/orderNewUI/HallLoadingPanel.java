@@ -31,7 +31,6 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
@@ -50,7 +49,6 @@ public class HallLoadingPanel extends JPanel {
 	private DefaultTableModel model;
 	private JFrame frame;
 	private DatePanel datePanel;
-	private ArrayList<OrgVO> destinationList;
 	private HallLoadingOrderLSer serv;
 	private JComboBox<String> comboBoxDestination;
 	private ArrayList<VanVO> vanList;
@@ -312,12 +310,7 @@ public class HallLoadingPanel extends JPanel {
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
 		}
-		destinationList=(ArrayList<OrgVO>)message.getMessage();
-		String[] destinationListString=new String[destinationList.size()];
-		for(int i=0;i<destinationList.size();i++)
-		{
-			destinationListString[i]=destinationList.get(i).getName();
-		}
+		String[] destinationListString = (String[]) message.getMessage();
 		comboBoxDestination.setModel(new DefaultComboBoxModel<String>(destinationListString));
 		
 		comboBoxDestination.addItemListener(new ItemListener(){
