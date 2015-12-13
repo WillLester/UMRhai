@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +24,7 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -192,20 +192,13 @@ public class IncomeListPanel extends JPanel {
 		displayIncomes();
 	}
 	private void displayIncomes(){
-		double total=0;
+		BigDecimal total= new BigDecimal(0);
 		for(int i=0;i<incomeList.size();i++){
 			IncomeVO temp=incomeList.get(i);
-			total+=temp.getCost();
+			total = total.add(temp.getCost());
 			String time=temp.getDate().get(Calendar.YEAR)+"年"+(temp.getDate().get(Calendar.MONTH)+1)+"月"+temp.getDate().get(Calendar.DATE)+"日";
-			String []data=new String[]{time,Double.toString(temp.getCost()),temp.getCourier(),Double.toString(total)};
+			String []data=new String[]{time,temp.getCost().toString(),temp.getCourier(),total.toString()};
 			model.addRow(data);
 		}
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new IncomeListPanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
 }

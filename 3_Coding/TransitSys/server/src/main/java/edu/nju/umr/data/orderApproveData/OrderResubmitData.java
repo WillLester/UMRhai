@@ -14,14 +14,14 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.IncomePO;
-import edu.nju.umr.po.order.KindGetter;
-import edu.nju.umr.po.order.OrderOper;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.po.order.RecipientPO;
 import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
+import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.OrderOper;
 /*
  * 订单重提交
  */
@@ -110,7 +110,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getIncome(String userId){
-		OrderOper po = new IncomePO(null, null, 0, null, 0, null, null, null, userId);
+		OrderOper po = new IncomePO(null, null, null, null, 0, null, null, null, userId,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceIncome(result);
@@ -121,7 +121,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getPayment(String userId){
-		OrderOper po = new PaymentPO(0, null, null, null, null, 0, null, null, null, userId);
+		OrderOper po = new PaymentPO(0, null, null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.producePayment(result);

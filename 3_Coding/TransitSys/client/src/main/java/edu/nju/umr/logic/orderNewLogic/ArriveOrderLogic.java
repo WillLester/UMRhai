@@ -45,7 +45,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = arriveData.create(VPFactory.toArrivePO(order));
-			if(isSuc.equals(Result.SUCCESS)){
+			if(isSuc == Result.SUCCESS){
 				isSuc = diarySer.addDiary("生成了到达单"+order.getId(), order.getOpName());
 			}
 		} catch (RemoteException e) {

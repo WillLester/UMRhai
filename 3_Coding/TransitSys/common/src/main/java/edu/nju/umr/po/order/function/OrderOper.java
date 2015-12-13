@@ -1,4 +1,5 @@
-package edu.nju.umr.po.order;
+package edu.nju.umr.po.order.function;
+
 
 
 public interface OrderOper extends KindGetter {

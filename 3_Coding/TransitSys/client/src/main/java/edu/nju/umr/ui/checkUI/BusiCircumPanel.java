@@ -173,7 +173,7 @@ public class BusiCircumPanel extends JPanel {
 				case WAGE:reason="工资";break;
 				case BONUS:reason="奖励";break;
 				}
-			String[] data=new String[]{kind,timeString,Double.toString(temp.getAmount()),reason};
+			String[] data=new String[]{kind,timeString,temp.getAmount().toString(),reason};
 			model.addColumn(data);
 		}
 	}

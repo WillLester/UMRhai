@@ -1,5 +1,6 @@
 package edu.nju.umr.logic.checkLogic;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -45,10 +46,10 @@ public class CostBeneLogic implements CostBeneLSer{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
-		double total=0;
+		BigDecimal total= new BigDecimal(0);
 		if(incomeList.size()>0){
 			for(IncomePO income:incomeList){
-				total+=income.getCost();
+				total = total.add(income.getCost());
 			}
 		}
 		return new ResultMessage(Result.SUCCESS,total);
@@ -64,10 +65,10 @@ public class CostBeneLogic implements CostBeneLSer{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 		
-		double total=0;
+		BigDecimal total = new BigDecimal(0);
 		if(paymentList.size()>0)
 		for(PaymentPO payment:paymentList){
-			total+=payment.getAmount();
+			total = total.add(payment.getAmount());
 		}
 		return new ResultMessage(Result.SUCCESS,total);
 	}

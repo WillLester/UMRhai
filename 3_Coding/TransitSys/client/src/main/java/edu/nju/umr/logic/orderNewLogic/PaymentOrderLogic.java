@@ -41,7 +41,12 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = paymentData.create(VPFactory.toPaymentPO(order, 0));
-			isSuc = diarySer.addDiary("生成了付款单", order.getOpName());
+			if(isSuc == Result.SUCCESS){
+				isSuc = paymentData.updateAccount(order.getAccount(), order.getAmount());
+				if(isSuc == Result.SUCCESS){
+					isSuc = diarySer.addDiary("生成了付款单", order.getOpName());
+				}
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			return Result.NET_INTERRUPT;

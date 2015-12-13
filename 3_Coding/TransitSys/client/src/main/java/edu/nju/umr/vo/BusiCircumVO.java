@@ -1,5 +1,6 @@
 package edu.nju.umr.vo;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import edu.nju.umr.po.enums.Pay;
@@ -7,10 +8,17 @@ import edu.nju.umr.po.enums.Pay;
 public class BusiCircumVO {
 	private int type;//0代表收款单，1代表付款单
 	private Calendar date;
-	private double amount;
+	private BigDecimal amount;
 	private Pay kind;
 	
-	public BusiCircumVO(int kind,Calendar date,double amount,Pay remark){
+	/**
+	 * 经营情况表用的VO
+	 * @param kind 0代表收款单，1代表付款单
+	 * @param date 时间
+	 * @param amount 数额
+	 * @param remark 备注
+	 */
+	public BusiCircumVO(int kind,Calendar date,BigDecimal amount,Pay remark){
 		this.type=kind;
 		this.date=date;
 		this.amount=amount;
@@ -25,7 +33,7 @@ public class BusiCircumVO {
 		return date;
 	}
 	
-	public double getAmount(){
+	public BigDecimal getAmount(){
 		return amount;
 	}
 	

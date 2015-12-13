@@ -48,7 +48,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		try {
 			TransitPO orderPO = VPFactory.toTransitPO(order, "");
 			Result result = transitData.create(orderPO);
-			if(result.equals(Result.SUCCESS)){
+			if(result == Result.SUCCESS){
 				result = diarySer.addDiary("生成了中转单"+order.getId(), order.getOpName());
 			}
 		} catch (RemoteException e){

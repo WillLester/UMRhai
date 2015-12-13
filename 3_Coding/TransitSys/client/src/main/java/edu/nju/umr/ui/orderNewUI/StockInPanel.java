@@ -48,7 +48,7 @@ public class StockInPanel extends JPanel {
 	private StockInOrderLSer logicSer;
 	private ArrayList<ShelfVO> shelfList;
 	private ArrayList<ShelfVO> shelfPart;
-	private JComboBox<String> cityCombo;
+	private JComboBox<String> targetCombo;
 	private String userId;
 	/**
 	 * Create the panel.
@@ -67,7 +67,7 @@ public class StockInPanel extends JPanel {
 		shelfCombo.setSelectedItem(vo.getShelfId());
 		placeCombo.setSelectedItem(vo.getPlace());
 		datePanel.setDate(vo.getDate());
-		cityCombo.setSelectedItem(vo.getArrivePlace());
+		targetCombo.setSelectedItem(vo.getArrivePlace());
 	}
 	@SuppressWarnings("unchecked")
 	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
@@ -106,13 +106,13 @@ public class StockInPanel extends JPanel {
 		datePanel.setBounds(452, 134, 285, 26);
 		add(datePanel);
 		
-		String cityList[] = null;
-		ResultMessage cityResult = logicSer.getCities();
-		if(cityResult.getReInfo().equals(Result.SUCCESS)){
-			cityList = (String[]) cityResult.getMessage();
+		String orgList[] = null;
+		ResultMessage orgResult = logicSer.getOrgs();
+		if(orgResult.getReInfo().equals(Result.SUCCESS)){
+			orgList = (String[]) orgResult.getMessage();
 		} else {
 			@SuppressWarnings("unused")
-			HintFrame hint = new HintFrame(cityResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			HintFrame hint = new HintFrame(orgResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
 		JLabel destiLabel = new JLabel("目的地");
@@ -120,11 +120,11 @@ public class StockInPanel extends JPanel {
 		destiLabel.setBounds(378, 179, 85, 24);
 		add(destiLabel);
 		
-		cityCombo = new JComboBox<String>();
-		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		cityCombo.setBounds(455, 179, 87, 25);
-		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
-		add(cityCombo);
+		targetCombo = new JComboBox<String>();
+		targetCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		targetCombo.setBounds(455, 179, 87, 25);
+		targetCombo.setModel(new DefaultComboBoxModel<String>(orgList));
+		add(targetCombo);
 		
 		ResultMessage shelfResult = logicSer.getShelves(orgId);
 		if(shelfResult.getReInfo().equals(Result.SUCCESS)){
@@ -270,7 +270,7 @@ public class StockInPanel extends JPanel {
 	}
 	private StockInVO createVO(){
 		Part parts[] = Part.values();
-		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) cityCombo.getSelectedItem(),
+		StockInVO vo = new StockInVO(expressField.getText(), datePanel.getCalendar(), (String) targetCombo.getSelectedItem(),
 				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
 				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
 		return vo;

@@ -1,6 +1,7 @@
 package edu.nju.umr.po.order;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import edu.nju.umr.constants.DateFormat;
@@ -8,6 +9,8 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Pay;
+import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.OrderOper;
 
 public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	/**
@@ -19,14 +22,14 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String payer;
 	private String account;
 	private Pay kind;
-	private double amount;
+	private BigDecimal amount;
 	private String remarks;
 	private Calendar opTime;
 	private String opName;
 	private String userId;
 	
 	public PaymentPO(int id, Calendar date, String payer, String account,
-			Pay kind, double amount, String remarks, Calendar opTime,
+			Pay kind, BigDecimal amount, String remarks, Calendar opTime,
 			String opName,String userId) {
 		super();
 		this.id = id;
@@ -55,7 +58,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	public Pay getKind() {
 		return kind;
 	}
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 	public String getRemarks() {

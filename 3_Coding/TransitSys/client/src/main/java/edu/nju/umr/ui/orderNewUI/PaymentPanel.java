@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -56,7 +57,7 @@ public class PaymentPanel extends JPanel {
 			co.setEnabled(false);
 		}
 		payerField.setText(vo.getPayer());
-		costField.setText(Double.toString(vo.getAmount()));
+		costField.setText(vo.getAmount().toString());
 		datePanel.setDate(vo.getDate());
 		accountCombo.setSelectedItem(vo.getAccount());
 		reasonCombo.setSelectedItem(EnumTransFactory.checkPay(vo.getKind()));
@@ -207,7 +208,7 @@ public class PaymentPanel extends JPanel {
 		Calendar date = datePanel.getCalendar();
 		Pay pays[] = Pay.values();
 		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()],
-				Double.parseDouble(costField.getText()), remarkArea.getText(), name,userId);
+				new BigDecimal(costField.getText()), remarkArea.getText(), name,userId);
 		return payment;
 	}
 	public void setEnabled(boolean enabled)

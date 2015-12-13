@@ -8,4 +8,11 @@ import edu.nju.umr.po.order.CenterLoadingPO;
 
 public interface CenterLoadingOrderDSer extends Remote{
 	public Result create(CenterLoadingPO order) throws RemoteException;
+	/**
+	 * 获得当天已生成的单据的数量
+	 * @param partId 单据编号表示机构编号+日期的部分
+	 * @return 数量
+	 * @throws RemoteException
+	 */
+	public int getOrderSize(String partId) throws RemoteException;
 }

@@ -1,5 +1,6 @@
 package edu.nju.umr.logic.checkLogic;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -53,9 +54,9 @@ public class IncomeListLogic implements IncomeListLSer{
 
 	public ResultMessage total(ArrayList<IncomeVO> income) {
 		// TODO 自动生成的方法存根
-		double total = 0;
+		BigDecimal total = new BigDecimal(0);
 		for(IncomeVO in:income){
-			total = total + in.getCost();
+			total = total.add(in.getCost());
 		}
 		return new ResultMessage(Result.SUCCESS, total);
 	}

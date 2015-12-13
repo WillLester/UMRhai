@@ -1,6 +1,7 @@
 package edu.nju.umr.po;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import edu.nju.umr.po.enums.MysqlOperation;
 
@@ -11,9 +12,9 @@ public class AccountPO extends PO implements Serializable{
 	private static final long serialVersionUID = 6350938083073701474L;
 	private int id;
 	private String name;
-	private double balance;
+	private BigDecimal balance;
 	
-	public AccountPO(int id, String name, double balance) {
+	public AccountPO(int id, String name, BigDecimal balance) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,7 +26,7 @@ public class AccountPO extends PO implements Serializable{
 	public String getName() {
 		return name;
 	}
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 	@Override

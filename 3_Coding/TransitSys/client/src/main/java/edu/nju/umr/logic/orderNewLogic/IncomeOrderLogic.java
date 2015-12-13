@@ -44,7 +44,12 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
 			isSuc = incomeData.create(VPFactory.toIncomePO(order, 0));
-			isSuc = diarySer.addDiary("生成了收款单", order.getOpName());
+			if(isSuc == Result.SUCCESS){
+				isSuc = incomeData.updateAccount(order.getAccount(), order.getCost());
+				if(isSuc == Result.SUCCESS){
+					isSuc = diarySer.addDiary("生成了收款单", order.getOpName());
+				}
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
