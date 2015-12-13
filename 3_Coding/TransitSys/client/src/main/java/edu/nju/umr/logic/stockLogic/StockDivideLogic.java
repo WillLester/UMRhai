@@ -62,11 +62,12 @@ public class StockDivideLogic implements StockDivideLSer{
 		return message;
 	}
 
-	public Result addShelf(ShelfVO shelf,String name) {
+	@Override
+	public Result addShelf(ShelfVO shelf,String name,String orgId) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try {
-			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful=checkData.addShelf(new ShelfPO(shelf.getId(),orgId,shelf.getRow(),shelf.getPlace(),shelf.getPart()));
 			isSuccessful = diarySer.addDiary("添加了架"+shelf.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -77,6 +78,7 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
+	@Override
 	public Result deleteShelf(String id,String name) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
@@ -92,12 +94,13 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
-	public Result reviseShelf(ShelfVO shelf,String name) {
+	@Override
+	public Result reviseShelf(ShelfVO shelf,String name,String orgId) {
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		try
 		{
-			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),"00001",shelf.getRow(),shelf.getPlace(),shelf.getPart()));
+			isSuccessful=checkData.reviseShelf(new ShelfPO(shelf.getId(),orgId,shelf.getRow(),shelf.getPlace(),shelf.getPart()));
 			isSuccessful = diarySer.addDiary("修改了架"+shelf.getId(), name);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;

@@ -20,10 +20,11 @@ public interface StockDivideLSer {
 	 * 添加架
 	 * @param shelf ShelfVO
 	 * @param name 操作者姓名
+	 * @param orgId 中转中心编号
 	 * @see edu.nju.umr.vo.ShelfVO
 	 * @return 结果
 	 */
-	public Result addShelf(ShelfVO shelf,String name);
+	public Result addShelf(ShelfVO shelf,String name,String orgId);
 	/**
 	 * 删除架
 	 * @param id 架编号
@@ -35,10 +36,11 @@ public interface StockDivideLSer {
 	 * 修改架信息
 	 * @param shelf ShelfVO
 	 * @param name 操作者姓名
+	 * @param orgId 中转中心编号
 	 * @see edu.nju.umr.vo.ShelfVO
 	 * @return
 	 */
-	public Result reviseShelf(ShelfVO shelf,String name);
+	public Result reviseShelf(ShelfVO shelf,String name,String orgId);
 	
 	/**
 	 * 获得新的架的编号

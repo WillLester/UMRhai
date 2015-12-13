@@ -59,7 +59,6 @@ public class StockDividePanel extends JPanel{
 		add(divideLabel);
 		
 		searchField = new JTextField();
-		searchField.setText("请输入架的编号");
 		searchField.setBounds(233, 67, 542, 24);
 		add(searchField);
 		searchField.setColumns(10);
@@ -168,10 +167,10 @@ public class StockDividePanel extends JPanel{
 				if(isLegal()){
 					ShelfVO shelf = new ShelfVO(idField.getText(), Integer.parseInt(rowField.getText()), Integer.parseInt(placeField.getText()), EnumTransFactory.getPart((String)partCombo.getSelectedItem()));
 					if(table.getSelectedRow() >= shelfList.size()){				
-						Result result = logicSer.addShelf(shelf,name);
+						Result result = logicSer.addShelf(shelf,name,orgId);
 						fresh(result);
 					} else {
-						Result result = logicSer.reviseShelf(shelf,name);
+						Result result = logicSer.reviseShelf(shelf,name,orgId);
 						fresh(result);
 					}
 				}
