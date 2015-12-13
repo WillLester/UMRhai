@@ -35,6 +35,7 @@ import edu.nju.umr.data.transitInfoData.CourierData;
 import edu.nju.umr.data.transitInfoData.CustomerData;
 import edu.nju.umr.data.userData.LoginData;
 import edu.nju.umr.data.userData.UserManData;
+import edu.nju.umr.data.utilityData.AccountUpdateData;
 import edu.nju.umr.data.utilityData.ConstantGetData;
 import edu.nju.umr.data.utilityData.DiaryUpdateData;
 import edu.nju.umr.data.utilityData.OrderCalcuData;
@@ -90,6 +91,7 @@ import edu.nju.umr.dataService.dataFactory.check.CollectFormDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.CostBeneDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.DiaryDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.BusiCircumDFacSer;
+import edu.nju.umr.dataService.dataFactory.utility.AccountUpdateDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.ConstantGetDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.DiaryUpdateDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.OrderCalcuDFacSer;
@@ -119,6 +121,7 @@ import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.dataService.userDSer.UserManDSer;
+import edu.nju.umr.dataService.utilityDSer.AccountUpdateDSer;
 import edu.nju.umr.dataService.utilityDSer.ConstantGetDSer;
 import edu.nju.umr.dataService.utilityDSer.DiaryUpdateDSer;
 import edu.nju.umr.dataService.utilityDSer.OrderCalcuDSer;
@@ -134,7 +137,7 @@ public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,A
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer,WageManDFacSer,
-DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,OrderCalcuDFacSer {
+DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,OrderCalcuDFacSer,AccountUpdateDFacSer {
 
 	/**
 	 * 
@@ -359,6 +362,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 	public OrderCalcuDSer getOrderCalcu() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return OrderCalcuData.getOrderCalcu();
+	}
+
+	@Override
+	public AccountUpdateDSer getAccountUp() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return AccountUpdateData.getAccountUp();
 	}
 
 }

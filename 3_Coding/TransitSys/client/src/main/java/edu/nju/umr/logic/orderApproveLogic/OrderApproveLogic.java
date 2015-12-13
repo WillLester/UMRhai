@@ -5,21 +5,15 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
-import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
-import edu.nju.umr.logic.orderNewLogic.UpdateTransitInfoLogic;
+import edu.nju.umr.logic.utilityLogic.CheckUtility;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
-import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
-import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
-import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
@@ -54,8 +48,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
-	private UpdateTransitInfoLogic infoLogic;
-	private OrderInfoLSer orderInfo;
+	private OrderUpdate update;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -69,8 +62,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
             e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
-		infoLogic = new UpdateTransitInfoLogic();
-		orderInfo = new OrderInfoLogic();
+		update = new OrderUpdate();
 	}
 	public ResultMessage askExamine() {
 		
@@ -294,124 +286,12 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private Result updateTransitInfo(String id,Order kind){
 		ResultMessage message = null;
 		message = chooseOrder(id, kind);
-		List<String> list;
-		String org;
-		if(isSuc(message)){
-			switch(kind){
-			case ARRIVE:
-				ArriveVO voA = (ArriveVO) message.getMessage();
-				org = getOrg(voA.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				list = getTransitExp(voA.getId());
-				if(list == null){
-					list = getHallLoadExp(voA.getId());
-				} else {
-					return Result.DATA_NOT_FOUND;
-				}
-				for(String express:list){
-					infoLogic.update(express, 
-							DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
-				}
-				break;
-			case CENTERLOADING:
-				CenterLoadingVO voC = (CenterLoadingVO) message.getMessage();
-				org = getOrg(voC.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				for(String express:voC.getExpress()){
-					infoLogic.update(express, DateFormat.TIME.format(Calendar.getInstance().getTime())
-							+" " +org+" 已发出 下一站 "+voC.getTarget());
-				}
-				break;
-			case EXPRESS:
-				ExpressVO voE = (ExpressVO) message.getMessage();
-				org = getOrg(voE.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				infoLogic.addInfo(voE.getId(), DateFormat.TIME.format(Calendar.getInstance().getTime())+" " +org+"快递员 已收件");
-				break;
-			case HALLLOADING:
-				HallLoadingVO voH = (HallLoadingVO) message.getMessage();
-				org = getOrg(voH.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				for(String express:voH.getExpress()){
-					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
-						+" "+org+" 已发出 下一站 "+voH.getArriveLoc());
-				}
-				break;
-			case RECIPIENT:
-				RecipientVO voR = (RecipientVO) message.getMessage();
-				org = getOrg(voR.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				list = getTransitExp(voR.getTransitId());
-				if(list == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				for(String exp:list){
-					infoLogic.update(exp, DateFormat.TIME.format(Calendar.getInstance().getTime()
-							+" "+org+" 已收入"));
-				}
-				break;
-			case SEND:
-				SendVO voS = (SendVO) message.getMessage();
-				org = getOrg(voS.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				infoLogic.update(voS.getExpressId(), DateFormat.TIME.format(Calendar.getInstance().getTime())
-						+" "+org+"派件员 "+voS.getCourier()+"正在派件");
-				break;
-			case TRANSIT:
-				TransitVO voT = (TransitVO) message.getMessage();
-				org = getOrg(voT.getUserId());
-				if(org == null){
-					return Result.DATA_NOT_FOUND;
-				}
-				for(String express:voT.getExpress()){
-					infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
-							+" "+org+" 已发出 下一站 "+voT.getArrivePlace());
-				}
-				break;
-			default:
-				break;
-			}
+		
+		if(CheckUtility.isSuc(message.getReInfo())){
+			update.updateOrder(message, kind, approveData);
 		} else {
 			return message.getReInfo();
 		}
 		return Result.SUCCESS;
-	}
-	private String getOrg(String userId){
-		UserPO user;
-		try {
-			user = approveData.getUser(userId);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			return null;
-		}
-		return user.getOrg();
-	}
-	
-	private List<String> getTransitExp(String id){
-		return orderInfo.getTransitExp(id);
-	}
-	
-	private List<String> getHallLoadExp(String id){
-		return orderInfo.getHallLoadExp(id);
-	}
-	
-	private boolean isSuc(ResultMessage message){
-		if(message.getReInfo() == Result.SUCCESS){
-			return true;
-		} else {
-			return false;
-		}
 	}
 }
