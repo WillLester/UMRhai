@@ -21,30 +21,32 @@ public class StockDivideLogic implements StockDivideLSer{
 	private StockDivideDFacSer dataFac;
 	private StockDivideDSer checkData;
 	private DiaryUpdateLSer diarySer;
+	private ArrayList<ShelfPO> shelfAll;
 	public StockDivideLogic(){
 		try{
 		dataFac=(StockDivideDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockDivide();
-		}catch (NotBoundException e) { 
+		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
         } catch (RemoteException e) { 
             e.printStackTrace();   
-        } catch(Exception e)
-		{
+        } catch(Exception e){
 			e.printStackTrace();
 		}
 		diarySer = new DiaryUpdateLogic();
+		shelfAll = new ArrayList<ShelfPO>();
 	}
 
 	public ResultMessage searchShelf(String id,String keyword) {
 		// TODO 自动生成的方法存根
 		ArrayList<ShelfPO> ar=null;
-//		boolean isSuccessful=false;
 		try{
-			ar=checkData.getShelves(id,keyword);
-//			isSuccessful=true;
+			ar = checkData.getShelves(id,keyword);
+			if(keyword == null){
+				shelfAll = ar;
+			} 
 		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
 		}catch(Exception e){
@@ -106,4 +108,41 @@ public class StockDivideLogic implements StockDivideLSer{
 		return isSuccessful;
 	}
 
+	@Override
+	public String getNextId(String orgId) {
+		// TODO 自动生成的方法存根
+		int orgLength = orgId.length();
+		int preId = -1;
+		if(shelfAll.size() == 0){
+			return orgId+"00000";
+		}
+		ArrayList<ShelfPO> shelfList = bubble();
+		for(ShelfPO shelf:shelfList){
+			int id = Integer.parseInt(shelf.getId().substring(orgLength, orgLength+5));
+			if(id != preId+1){
+				break;
+			}
+			preId = id;
+		}
+		String result = orgId;
+		String back = ""+(preId+1);
+		while(back.length() < 5){
+			back = "0"+back;
+		}
+		return result+back;
+	}
+	
+	private ArrayList<ShelfPO> bubble(){
+		for(int i = 0;i < shelfAll.size();i++){
+			for(int j = shelfAll.size()-1;j > i;j--){
+				ShelfPO s1 = shelfAll.get(j);
+				ShelfPO s2 = shelfAll.get(j-1);
+				if(s1.getId().compareTo(s2.getId()) == -1){
+					shelfAll.set(j, s2);
+					shelfAll.set(j-1, s1);
+				}
+			}
+		}
+		return shelfAll;
+	}
 }

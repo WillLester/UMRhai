@@ -40,4 +40,9 @@ public interface StockDivideLSer {
 	 */
 	public Result reviseShelf(ShelfVO shelf,String name);
 	
+	/**
+	 * 获得新的架的编号
+	 * @return 架的编号
+	 */
+	public String getNextId(String orgId);
 }

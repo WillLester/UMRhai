@@ -141,7 +141,7 @@ public class StockInPanel extends JPanel {
 		
 		partCombo = new JComboBox<String>();
 		partCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		partCombo.setBounds(411, 241, 48, 25);
+		partCombo.setBounds(411, 241, 90, 25);
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
 		partCombo.addItemListener(new ItemListener() {
 			
@@ -169,7 +169,7 @@ public class StockInPanel extends JPanel {
 		
 		shelfCombo = new JComboBox<String>();
 		shelfCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		shelfCombo.setBounds(411, 292, 48, 25);
+		shelfCombo.setBounds(411, 292, 90, 25);
 		shelfCombo.addItemListener(new ItemListener() {
 			
 			@Override
@@ -199,7 +199,7 @@ public class StockInPanel extends JPanel {
 		
 		rowCombo = new JComboBox<Integer>();
 		rowCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		rowCombo.setBounds(569, 242, 48, 25);
+		rowCombo.setBounds(569, 242, 90, 25);
 		add(rowCombo);
 		
 		JLabel placeLabel = new JLabel("位号");
@@ -209,7 +209,7 @@ public class StockInPanel extends JPanel {
 		
 		placeCombo = new JComboBox<Integer>();
 		placeCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		placeCombo.setBounds(569, 292, 48, 25);
+		placeCombo.setBounds(569, 292, 90, 25);
 		add(placeCombo);
 		
 		JButton confirmButton = new JButton("确定");

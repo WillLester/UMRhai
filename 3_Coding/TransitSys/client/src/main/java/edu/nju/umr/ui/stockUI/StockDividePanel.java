@@ -138,7 +138,7 @@ public class StockDividePanel extends JPanel{
 				}
 				model.addRow(blank);
 				table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
-				idField.setText(generateId());
+				idField.setText(logicSer.getNextId(orgId));
 			}
 		});
 		add(addButton);
@@ -285,37 +285,6 @@ public class StockDividePanel extends JPanel{
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		}
-	}
-	private String generateId(){
-		int orgLength = orgId.length();
-		int preId = -1;
-		if(shelfList.size() == 0){
-			return orgId+"00000";
-		}
-		for(ShelfVO shelf:shelfList){
-			int id = Integer.parseInt(shelf.getId().substring(orgLength, orgLength+5));
-			if(id != preId+1){
-				break;
-			}
-			preId = id;
-		}
-		int intLen = integerLength(preId+1);
-		String result = orgId;
-		for(int i = 0;i < 5-intLen;i++){
-			result = result + "0";
-		}
-		result += (preId+1);
-		return result;
-	}
-	private int integerLength(int i){
-		int length = 1;
-		for(int j = 4;j >= 0;j --){
-			if(i >= Math.pow(10, j)){
-				length = j + 1;
-				return length;
-			}
-		}
-		return length;
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
