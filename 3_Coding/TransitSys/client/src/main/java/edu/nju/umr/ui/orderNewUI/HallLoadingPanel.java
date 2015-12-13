@@ -32,7 +32,6 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
 public class HallLoadingPanel extends JPanel {
@@ -51,7 +50,6 @@ public class HallLoadingPanel extends JPanel {
 	private DatePanel datePanel;
 	private HallLoadingOrderLSer serv;
 	private JComboBox<String> comboBoxDestination;
-	private ArrayList<VanVO> vanList;
 	private JComboBox<String> comboBoxVan;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
 	private String userName;
@@ -299,7 +297,6 @@ public class HallLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 	}
-	@SuppressWarnings("unchecked")
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
@@ -325,14 +322,7 @@ public class HallLoadingPanel extends JPanel {
 		if(!result.equals(Result.SUCCESS)){
 			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 		}
-		else{
-			vanList=(ArrayList<VanVO>)message.getMessage();
-		}
-		String[] vanListString=new String[vanList.size()];
-		for(int i=0;i<vanList.size();i++)
-		{
-			vanListString[i]=vanList.get(i).getId();
-		}
+		String[] vanListString = (String[]) message.getMessage();
 		comboBoxVan.setModel(new DefaultComboBoxModel<String>(vanListString));
 	}
 	private void deleteExpress(){
