@@ -78,5 +78,10 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	{
 		return orderCalcu.getPrice(org1, org2, Transit.VAN,expressList);
 	}
+	@Override
+	public ResultMessage getNextId(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -16,4 +16,5 @@ public interface TransitOrderLSer {
 	 */
 	public int isExpressValid(List<String> expressList);
 	public ResultMessage getPrice(String org1,String org2,int tran,List<String> expressList);
+	public ResultMessage getNextId(String orgId);
 }

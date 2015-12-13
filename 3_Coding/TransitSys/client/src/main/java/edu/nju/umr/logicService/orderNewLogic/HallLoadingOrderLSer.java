@@ -12,4 +12,5 @@ public interface HallLoadingOrderLSer {
 	public ResultMessage getLocalHallAndAllCenter(String orgId);
 	public ResultMessage getVans(String org);
 	public ResultMessage getPrice(String org1,String org2,List<String> expressList);
+	public ResultMessage getNextId(String orgId);
 }

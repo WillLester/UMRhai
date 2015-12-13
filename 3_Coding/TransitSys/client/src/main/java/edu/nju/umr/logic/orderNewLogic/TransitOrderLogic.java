@@ -82,4 +82,10 @@ public class TransitOrderLogic implements TransitOrderLSer{
 		return orderCalcu.getPrice(org1, org2, Transit.values()[tran], expressList);
 	}
 
+	@Override
+	public ResultMessage getNextId(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

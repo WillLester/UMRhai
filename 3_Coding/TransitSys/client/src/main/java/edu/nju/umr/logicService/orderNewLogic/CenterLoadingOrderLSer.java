@@ -11,4 +11,5 @@ public interface CenterLoadingOrderLSer {
 	public Result create(CenterLoadingVO order);
 	public ResultMessage getHalls();
 	public ResultMessage getPrice(String org1,String org2,List<String> expressList);
+	public ResultMessage getNextId(String orgId);
 }

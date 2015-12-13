@@ -85,5 +85,10 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	public boolean isLegal(String id) {
 		return orderInfo.isExpressValid(id);
 	}
+	@Override
+	public ResultMessage getNextId(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
