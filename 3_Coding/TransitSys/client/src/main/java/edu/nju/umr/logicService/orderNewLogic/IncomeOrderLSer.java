@@ -7,5 +7,9 @@ import edu.nju.umr.vo.order.IncomeVO;
 public interface IncomeOrderLSer {
 	public Result create(IncomeVO order);
 	public ResultMessage getCouriers(String id);
+	/**
+	 * 获得账户列表
+	 * @return String[]形式的账户名称列表
+	 */
 	public ResultMessage getAccount();
 }

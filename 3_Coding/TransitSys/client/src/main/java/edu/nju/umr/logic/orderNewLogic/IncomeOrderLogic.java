@@ -77,5 +77,10 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
         } 
 		return new ResultMessage(isSuc, couriers);
 	}
+	@Override
+	public ResultMessage getAccount() {
+		// TODO 自动生成的方法存根
+		return uti.getAccountNames();
+	}
 
 }

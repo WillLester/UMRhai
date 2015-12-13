@@ -13,6 +13,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -20,7 +21,7 @@ import edu.nju.umr.vo.order.PaymentVO;
 public class PaymentOrderLogic implements PaymentOrderLSer{
 	private PaymentOrderDFacSer dataFac;
 	private PaymentOrderDSer paymentData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public PaymentOrderLogic() {
 		// TODO 自动生成的构造函数存根
@@ -34,6 +35,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(PaymentVO order) {

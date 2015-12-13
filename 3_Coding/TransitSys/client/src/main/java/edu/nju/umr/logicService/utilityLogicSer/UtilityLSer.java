@@ -63,4 +63,10 @@ public interface UtilityLSer {
 	 * @return List<String>形式的快递员列表
 	 */
 	public List<String> getCouriers(String hallId);
+	
+	/**
+	 * 获得账户列表
+	 * @return String[]形式的账户列表
+	 */
+	public ResultMessage getAccountNames();
 }
