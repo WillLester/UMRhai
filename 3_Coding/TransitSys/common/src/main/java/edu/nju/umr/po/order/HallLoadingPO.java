@@ -8,10 +8,11 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper{
+public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
@@ -132,6 +133,11 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from halllorderunpassed where userId='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from halllorderwaiting,halllorderpassed,halllorderunpassed where convertId like '%"+convertId+"%'";
 	}
 	
 }

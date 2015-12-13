@@ -30,6 +30,7 @@ import edu.nju.umr.po.order.SendPO;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.OrderOper;
 
 
@@ -429,6 +430,17 @@ public class MysqlImpl implements MysqlService{
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+		}
+	}
+	@Override
+	public ResultSet checkToday(GetToday get) {
+		// TODO 自动生成的方法存根
+		try {
+			ResultSet result = state.executeQuery(get.getToday());
+			return result;
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			return null;
 		}
 	}
 }

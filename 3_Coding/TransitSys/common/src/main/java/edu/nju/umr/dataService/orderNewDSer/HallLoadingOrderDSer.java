@@ -11,7 +11,7 @@ public interface HallLoadingOrderDSer extends Remote{
 	/**
 	 * 获得当日已生成单据的数量
 	 * @param partId 单据编号中表示机构编号和日期的部分
-	 * @return 数量
+	 * @return 数量 返回-1表示数据库错误
 	 * @throws RemoteException
 	 */
 	public int getOrderSize(String partId) throws RemoteException;

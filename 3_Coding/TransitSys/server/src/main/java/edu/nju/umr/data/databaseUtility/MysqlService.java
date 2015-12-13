@@ -8,6 +8,7 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.OrderOper;
 /**
  * 
@@ -46,4 +47,12 @@ public interface MysqlService {
 	 * @param order 要删除单据的PO
 	 */
 	public void deleteUnpassed(OrderOper order);
+	/**
+	 * 获得当天的单据
+	 * @param get GetToday接口
+	 * @param partId 编号中含有机构编号和日期的部分
+	 * @return 包含当天所有单据的ResultSet
+	 * @see GetToday
+	 */
+	public ResultSet checkToday(GetToday get);
 }
