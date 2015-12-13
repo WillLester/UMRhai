@@ -150,6 +150,13 @@ public class IncomePanel extends JPanel {
 		
 		accountCombo = new JComboBox<String>();
 		accountCombo.setBounds(714, 175, 110, 25);
+		ResultMessage messageA = logicSer.getAccount();
+		if(messageA.getReInfo() == Result.SUCCESS){
+			String[] accountList = (String[]) messageA.getMessage();
+			accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
+		} else {
+			DoHint.hint(messageA.getReInfo(), fr);
+		}
 		add(accountCombo);
 	}
 	private boolean isLegal(){

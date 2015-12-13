@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.utilityDSer.OrderInfoDSer;
 import edu.nju.umr.po.order.CenterLoadingPO;
@@ -28,6 +29,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	private OrderInfoData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = MysqlImpl.getMysql();
 	}
 	
 	public static OrderInfoData getOrderInfo() throws RemoteException{

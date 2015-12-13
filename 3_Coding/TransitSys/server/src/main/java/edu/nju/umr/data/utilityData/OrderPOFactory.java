@@ -2,9 +2,11 @@ package edu.nju.umr.data.utilityData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Express;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Parse;
@@ -34,8 +36,14 @@ public class OrderPOFactory {
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(5));
 				GoodState[] states = GoodState.values();
+				String opTimeS = result.getString(6);
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(6));
+				try {
+					opTime.setTime(DateFormat.TIME.parse(opTimeS));
+				} catch (ParseException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
 				return new ArrivePO(result.getString(2), date, result.getString(1), result.getString(3), 
 						states[result.getInt(4)], opTime, result.getString(7),result.getString(8));
 			} else {
@@ -52,7 +60,13 @@ public class OrderPOFactory {
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(6));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(7));
+				String opTimeS = result.getString(7);
+				try {
+					opTime.setTime(DateFormat.TIME.parse(opTimeS));
+				} catch (ParseException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
 				String text[] = result.getString(8).split(" ");
 				ArrayList<String> express = new ArrayList<String>();
 				for(int i = 0;i < text.length;i++){
@@ -77,7 +91,13 @@ public class OrderPOFactory {
 				Calendar arrive = Calendar.getInstance();
 				arrive.setTime(result.getDate(18));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(23));
+				String opTimeS = result.getString(23);
+				try {
+					opTime.setTime(DateFormat.TIME.parse(opTimeS));
+				} catch (ParseException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(31));
 				return new ExpressPO(result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), 
