@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -27,8 +28,9 @@ public class IncomePanel extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6715113587313316552L;
+	private static final long serialVersionUID = -8051086541274712984L;
 	private JComboBox<String> courierCombo;
+	private JComboBox<String> accountCombo;
 	private JTextField amountField;
 	private IncomeOrderLSer logicSer;
 	private JFrame frame;
@@ -98,13 +100,13 @@ public class IncomePanel extends JPanel {
 		
 		JLabel amountLabel = new JLabel("金额/元");
 		amountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		amountLabel.setBounds(560, 175, 85, 24);
+		amountLabel.setBounds(490, 175, 85, 24);
 		add(amountLabel);
 		
 		amountField = new JTextField();
 		amountField.setFont(new Font("宋体", Font.PLAIN, 20));
 		amountField.setColumns(10);
-		amountField.setBounds(612+40, 174, 85, 25);
+		amountField.setBounds(569, 174, 85, 25);
 		add(amountField);
 
 		expressList = new ExpressListPanel(frame);
@@ -140,6 +142,15 @@ public class IncomePanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+		
+		JLabel accountLabel = new JLabel("账户");
+		accountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		accountLabel.setBounds(664, 175, 65, 22);
+		add(accountLabel);
+		
+		accountCombo = new JComboBox<String>();
+		accountCombo.setBounds(714, 175, 110, 25);
+		add(accountCombo);
 	}
 	private boolean isLegal(){
 		if(expressList.isEmpty()){
@@ -156,8 +167,8 @@ public class IncomePanel extends JPanel {
 		return true;
 	}
 	private IncomeVO createVO(){
-		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), Double.parseDouble(amountField.getText()), 
-				expressList.getExpresses(), name, orgId,userId);
+		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), new BigDecimal(amountField.getText()), 
+				expressList.getExpresses(), name, orgId,userId,(String)accountCombo.getSelectedItem());
 		return vo;
 	}
 	public void setEnabled(boolean enabled)

@@ -7,4 +7,5 @@ import edu.nju.umr.vo.order.IncomeVO;
 public interface IncomeOrderLSer {
 	public Result create(IncomeVO order);
 	public ResultMessage getCouriers(String id);
+	public ResultMessage getAccount();
 }
