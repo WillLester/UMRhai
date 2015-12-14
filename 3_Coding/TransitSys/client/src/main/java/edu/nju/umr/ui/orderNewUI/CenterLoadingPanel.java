@@ -52,7 +52,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 	 */
 	public CenterLoadingPanel(JFrame fr,CenterLoadingVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId(),null);
+		this(fr,vo.getOpName(),vo.getUserId(),null,null);
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -67,7 +67,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		arriveCombo.setSelectedItem((String)vo.getTarget());
 		expressList.showExpressList(vo.getExpress());
 	}
-	public CenterLoadingPanel(JFrame fr,String name,String userId,String org) {
+	public CenterLoadingPanel(JFrame fr,String name,String userId,String org,String orgId) {
 		setLayout(null);
 		JLabel titleLabel = new JLabel("中转中心装车单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -203,6 +203,29 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		expressList = new ExpressListPanel(frame,this);
 		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		add(expressList);
+		
+		if(orgId!=null){
+			message = logicSer.getNextId(orgId);
+			Result result=message.getReInfo();
+			if(result.equals(Result.SUCCESS))
+			{
+				int num=(Integer)message.getMessage();
+				if(num==-1)
+				{
+					DoHint.hint(Result.DATABASE_ERROR, frame);
+				}
+				else
+				{
+					String temp=Integer.toString(num);
+					while(temp.length()<5)
+					{
+						temp="0"+temp;
+					}
+					temp=orgId+temp;
+					transitIdField.setText(temp);
+				}
+			}
+		}
 	}
 	private void hint(Result result){
 		@SuppressWarnings("unused")
