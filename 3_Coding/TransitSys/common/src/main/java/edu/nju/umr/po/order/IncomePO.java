@@ -9,10 +9,11 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
+public class IncomePO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
@@ -127,5 +128,12 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from incomeorderunpassed where userId ='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from incomeorderwaiting,incomeorderpassed,incomeorderunpassed where "
+				+ "incomeorderwaiting.id like '%"+id+"%' or incomeorderpassed.id like '%"+id+"%' or "
+						+ "incomeorderunpassed.id like '%"+id+"%'" ;
 	}
 }

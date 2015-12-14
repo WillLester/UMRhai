@@ -2,12 +2,15 @@ package edu.nju.umr.data.orderNewData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
+import edu.nju.umr.po.order.function.GetToday;
 /*
  * 收款单数据
  */
@@ -38,6 +41,14 @@ public class IncomeOrderData extends UnicastRemoteObject implements IncomeOrderD
 		}
 		return result;
 		
+	}
+
+	@Override
+	public int getOrderSize(String partId) throws RemoteException {
+		// TODO 自动生成的方法存根
+		GetToday get = new IncomePO(null, null, null, null, partId, null, null, null, null, null);
+		ResultSet result = mysqlSer.checkToday(get);
+		return OrderCounter.count(result);
 	}
 
 }
