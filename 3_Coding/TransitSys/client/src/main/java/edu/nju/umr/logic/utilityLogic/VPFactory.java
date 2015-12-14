@@ -158,11 +158,11 @@ public class VPFactory {
 	
 	//入库单
 	public static StockInVO toStockInVO(StockInPO po){
-		StockInVO vo=new StockInVO(po.getExpressId(), po.getDate(), po.getArrivePlace(), po.getPart(), po.getShelfId(), po.getRow(), po.getPlace(), po.getOpName(), po.getStockId(),po.getUserId());
+		StockInVO vo=new StockInVO(po.getId(),po.getExpressId(), po.getDate(), po.getArrivePlace(), po.getPart(), po.getShelfId(), po.getRow(), po.getPlace(), po.getOpName(), po.getStockId(),po.getUserId());
 		return vo;
 	}
-	public static StockInPO toStockInPO(StockInVO vo,int id){
-		StockInPO po=new StockInPO(id,vo.getExpressId(),vo.getDate(),vo.getArrivePlace(),vo.getPart(),vo.getShelfId(),vo.getRow(),vo.getPlace(),Calendar.getInstance(),vo.getOpName(),vo.getStockId(),vo.getUserId());
+	public static StockInPO toStockInPO(StockInVO vo){
+		StockInPO po=new StockInPO(vo.getId(),vo.getExpressId(),vo.getDate(),vo.getArrivePlace(),vo.getPart(),vo.getShelfId(),vo.getRow(),vo.getPlace(),Calendar.getInstance(),vo.getOpName(),vo.getStockId(),vo.getUserId());
 		return po;
 	}
 	

@@ -7,7 +7,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.StockInPanel;
 
 public class StockInVO implements ShowOrder{
-//	private String id;
+	private String id;
 	private String expressId;
 	private Calendar date;
 	private String arrivePlace;
@@ -18,9 +18,9 @@ public class StockInVO implements ShowOrder{
 	private String opName;
 	private String stockId;
 	private String userId;
-	public StockInVO(String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place,String opName,String stockId,String userId) {
+	public StockInVO(String id,String expressId,Calendar date,String arrivePlace,Part part,String shelfId,int row,int place,String opName,String stockId,String userId) {
 		// TODO 自动生成的构造函数存根
-//		this.id = id;
+		this.id = id;
 		this.expressId = expressId;
 		this.date = date;
 		this.arrivePlace = arrivePlace;
@@ -31,6 +31,9 @@ public class StockInVO implements ShowOrder{
 		this.opName = opName;
 		this.stockId = stockId;
 		this.userId = userId;
+	}
+	public String getId() {
+		return id;
 	}
 	public String getStockId() {
 		return stockId;

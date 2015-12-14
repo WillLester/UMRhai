@@ -53,7 +53,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockInVO> arVO=new ArrayList<StockInVO>();
 		for(int i=0;i<ar.size();i++){
 			StockInPO order=ar.get(i);
-			arVO.add(new StockInVO(order.getExpressId(), order.getDate(), order.getArrivePlace(), 
+			arVO.add(new StockInVO(order.getId(),order.getExpressId(), order.getDate(), order.getArrivePlace(), 
 					order.getPart(), order.getShelfId(), order.getRow(), order.getPlace(),order.getOpName(),
 					order.getStockId(),order.getUserId()));
 		}

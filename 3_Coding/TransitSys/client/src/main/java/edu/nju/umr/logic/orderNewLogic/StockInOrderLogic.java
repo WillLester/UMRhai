@@ -45,7 +45,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
 		try{
-			StockInPO orderPO = VPFactory.toStockInPO(order, 0);
+			StockInPO orderPO = VPFactory.toStockInPO(order);
 			isSuc = stockinData.create(orderPO);
 			if(isSuc == Result.SUCCESS){
 				isSuc = stockinData.addGood(new GoodPO(order.getExpressId(), order.getStockId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
