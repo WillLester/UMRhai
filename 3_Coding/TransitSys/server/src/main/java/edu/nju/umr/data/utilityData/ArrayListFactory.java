@@ -42,7 +42,7 @@ public class ArrayListFactory {
 				for(int i = 0;i < ori.length;i++){
 					express.add(ori[i]);
 				}
-				IncomePO income = new IncomePO(date, result.getString(2), result.getBigDecimal(3), express, result.getInt(1), 
+				IncomePO income = new IncomePO(date, result.getString(2), result.getBigDecimal(3), express, result.getString(1), 
 						time,result.getString(7),result.getString(8),result.getString(9),result.getString(10));
 				incomeList.add(income);
 			}

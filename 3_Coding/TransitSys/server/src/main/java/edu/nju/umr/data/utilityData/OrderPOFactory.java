@@ -151,7 +151,7 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(5));
 				return new IncomePO(date, result.getString(2), result.getBigDecimal(3), express, 
-						result.getInt(1), opTime, result.getString(7), result.getString(8),result.getString(9)
+						result.getString(1), opTime, result.getString(7), result.getString(8),result.getString(9)
 						,result.getString(10));
 			} else {
 				return null;

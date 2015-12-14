@@ -108,11 +108,11 @@ public class VPFactory {
      
      //入款单
      public static IncomeVO toIncomeVO(IncomePO po){
-    	 IncomeVO vo=new IncomeVO(po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getOpName(), po.getOrgId(),po.getUserId(),po.getAccount());
+    	 IncomeVO vo=new IncomeVO(po.getId(),po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getOpName(), po.getOrgId(),po.getUserId(),po.getAccount());
     	 return vo;
      }
 	public static IncomePO toIncomePO(IncomeVO vo,int id){
-		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), id,Calendar.getInstance(),vo.getOpName(),vo.getOrgId(),vo.getUserId(),vo.getAccount());
+		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), vo.getId(),Calendar.getInstance(),vo.getOpName(),vo.getOrgId(),vo.getUserId(),vo.getAccount());
 		return po;
 	}
 	

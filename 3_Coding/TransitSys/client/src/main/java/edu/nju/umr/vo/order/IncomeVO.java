@@ -8,6 +8,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 
 public class IncomeVO implements ShowOrder{
+	private String id;
 	private Calendar date;
 	private String courier;
 	private BigDecimal cost;
@@ -16,9 +17,10 @@ public class IncomeVO implements ShowOrder{
 	private String orgId;
 	private String userId;
 	private String account;
-	public IncomeVO(Calendar date,String courier,BigDecimal cost,ArrayList<String> express,String opName,String orgId,String userId
+	public IncomeVO(String id,Calendar date,String courier,BigDecimal cost,ArrayList<String> express,String opName,String orgId,String userId
 			,String account) {
 		// TODO 自动生成的构造函数存根
+		this.id = id;
 		this.date = date;
 		this.courier = courier;
 		this.cost = cost;
@@ -27,6 +29,9 @@ public class IncomeVO implements ShowOrder{
 		this.orgId = orgId;
 		this.userId = userId;
 		this.account = account;
+	}
+	public String getId() {
+		return id;
 	}
 	public Calendar getDate() {
 		return date;

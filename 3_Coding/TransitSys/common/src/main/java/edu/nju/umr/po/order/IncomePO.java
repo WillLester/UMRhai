@@ -21,7 +21,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	private String courier;
 	private BigDecimal cost;
 	private ArrayList<String> express;
-	private int id;
+	private String id;
 	private Calendar opTime;
 	private String opName;
 	private String orgId;
@@ -30,7 +30,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	
 	
 	public IncomePO(Calendar date, String courier, BigDecimal cost,
-			ArrayList<String> express, int id, Calendar opTime, String opName,
+			ArrayList<String> express, String id, Calendar opTime, String opName,
 			String orgId, String userId, String account) {
 		super();
 		this.date = date;
@@ -59,7 +59,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public ArrayList<String> getExpress() {
 		return express;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public Calendar getOpTime() {
@@ -85,7 +85,7 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 			for(String exp:express){
 				text = text + exp + " ";
 			}
-			command="insert into incomeorderwaiting values"+"("+id+",'"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+
+			command="insert into incomeorderwaiting values"+"('"+id+"','"+courier+"',"+cost+",'"+DateFormat.DATE.format(date.getTime())+"','"+
 			DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"','"+userId+"','"+account+"')";break;
 		case DELETE:break;
 		case FIND:
@@ -103,9 +103,9 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into incomeorderpassed select * from incomeorderwaiting where id="+id;
+			return "insert into incomeorderpassed select * from incomeorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into incomeorderunpassed select * from incomeorderwaiting where id="+id;
+			return "insert into incomeorderunpassed select * from incomeorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override
@@ -116,12 +116,12 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from incomeorderunpassed where id ="+id;
+		return "delete from incomeorderunpassed where id ='"+id+"'";
 	}
 	@Override
 	public String getDetail() {
 		// TODO 自动生成的方法存根
-		return "select * from incomeorderwaiting where id="+id;
+		return "select * from incomeorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getUnpassed() {

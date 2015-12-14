@@ -25,10 +25,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 
 public class IncomePanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8051086541274712984L;
+	private static final long serialVersionUID = -5845767449951861001L;
 	private JComboBox<String> courierCombo;
 	private JComboBox<String> accountCombo;
 	private JTextField amountField;
@@ -40,6 +41,8 @@ public class IncomePanel extends JPanel {
 	private String name;
 	private String userId;
 	private JButton confirmButton;
+	private JLabel idLabel;
+	private JTextField idField;
 	/**  
 	 * Create the panel.
 	 */
@@ -73,12 +76,12 @@ public class IncomePanel extends JPanel {
 		
 		JLabel dateLabel = new JLabel("收款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(297+40, 98, 120, 24);
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		dateLabel.setBounds(338, 128, 120, 24);
 		add(dateLabel);
 		
 		datePanel=new DatePanel();
-		datePanel.setBounds(474, 98, 285, 26);
+		datePanel.setBounds(474, 128, 285, 26);
 		add(datePanel);
 		
 		JLabel courierLabel = new JLabel("快递员");
@@ -158,6 +161,17 @@ public class IncomePanel extends JPanel {
 			DoHint.hint(messageA.getReInfo(), fr);
 		}
 		add(accountCombo);
+		
+		idLabel = new JLabel("收款单编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(357, 81, 120, 24);
+		add(idLabel);
+		
+		idField = new JTextField();
+		idField.setEditable(false);
+		idField.setBounds(473, 81, 252, 25);
+		add(idField);
+		idField.setColumns(10);
 	}
 	private boolean isLegal(){
 		if(expressList.isEmpty()){
@@ -174,7 +188,7 @@ public class IncomePanel extends JPanel {
 		return true;
 	}
 	private IncomeVO createVO(){
-		IncomeVO vo = new IncomeVO(datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), new BigDecimal(amountField.getText()), 
+		IncomeVO vo = new IncomeVO(idField.getText(),datePanel.getCalendar(), (String)courierCombo.getSelectedItem(), new BigDecimal(amountField.getText()), 
 				expressList.getExpresses(), name, orgId,userId,(String)accountCombo.getSelectedItem());
 		return vo;
 	}
@@ -187,4 +201,5 @@ public class IncomePanel extends JPanel {
 			co.setEnabled(enabled);
 		}
 	}
+
 }

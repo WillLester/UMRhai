@@ -89,7 +89,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockinorderwaiting values"+"("+id+",'"+expressId+"','"+arrivePlace+"',"+
+		case INSERT:command="insert into stockinorderwaiting values"+"('"+id+"','"+expressId+"','"+arrivePlace+"',"+
 		part.ordinal()+","+shelfId+","+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"','"+
 				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+userId+"')";break;
 		case DELETE:break;
@@ -107,15 +107,15 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into stockinorderpassed select * from stockinorderwaiting where id="+id;
+			return "insert into stockinorderpassed select * from stockinorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into stockinorderunpassed select * from stockinorderwaiting where id="+id;
+			return "insert into stockinorderunpassed select * from stockinorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return "delete from stockinorderwaiting where id="+id;
+		return "delete from stockinorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
@@ -125,7 +125,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getDetail() {
 		// TODO 自动生成的方法存根
-		return "select * from stockinorderwaiting where id="+id;
+		return "select * from stockinorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getUnpassed() {

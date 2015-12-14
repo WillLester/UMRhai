@@ -328,7 +328,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case INCOME:
 			for(String i:id){
-				order = new IncomePO(null, null, null, null, Integer.parseInt(i), null, null, null,null,null);
+				order = new IncomePO(null, null, null, null, i, null, null, null,null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
