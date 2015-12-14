@@ -137,7 +137,9 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	@Override
 	public String getToday() {
 		// TODO 自动生成的方法存根
-		return "select * from halllorderwaiting,halllorderpassed,halllorderunpassed where convertId like '%"+convertId+"%'";
+		return "select * from halllorderwaiting,halllorderpassed,halllorderunpassed where halllorderwaiting.convertId "
+				+ "like '%"+convertId+"%' or halllorderpassed.convertId like '%"+convertId+"%' "
+						+ "or halllorderunpassed.convertId like '%"+convertId+"%'";
 	}
 	
 }

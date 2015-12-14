@@ -135,6 +135,8 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getToday() {
 		// TODO 自动生成的方法存根
-		return "select * from stockinorderwaiting,stockinorderpassed,stockinorderunpassed where id like '%"+id+"%'";
+		return "select * from stockinorderwaiting,stockinorderpassed,stockinorderunpassed "
+				+ "where stockinorderwaiting.id like '%"+id+"%' or stockinorderpassed.id like '%"+id+"%' "
+						+ "or stockinorderunpassed.id like '%"+id+"%'";
 	}
 }

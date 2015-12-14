@@ -29,10 +29,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockOutVO;
 
 public class StockOutPanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6797076136600769054L;
+	private static final long serialVersionUID = 4807982962712921033L;
 	private JTextField expressField;
 	private JTextField transitIdField;
 	private JComboBox<String> cityCombo;
@@ -43,6 +44,7 @@ public class StockOutPanel extends JPanel {
 	private String name;
 	private String orgId;
 	private String userId;
+	private JTextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -71,30 +73,30 @@ public class StockOutPanel extends JPanel {
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
 		JLabel expressLabel = new JLabel("快递编号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressLabel.setBounds(355, 87, 120, 24);
+		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		expressLabel.setBounds(355, 124, 120, 24);
 		add(expressLabel);
 		
 		expressField = new JTextField();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressField.setBounds(485, 87, 165, 25);
+		expressField.setBounds(485, 124, 165, 25);
 		add(expressField);
 		expressField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("出库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(297, 134, 120, 24);
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		dateLabel.setBounds(298, 170, 120, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
-		datePanel.setBounds(452, 134, 285, 26);
+		datePanel.setBounds(449, 170, 285, 26);
 		add(datePanel);
 		
 		String cityList[] = null;
@@ -108,23 +110,23 @@ public class StockOutPanel extends JPanel {
 		}
 		JLabel cityLabel = new JLabel("目的地");
 		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		cityLabel.setBounds(355, 179, 85, 24);
+		cityLabel.setBounds(355, 214, 85, 24);
 		add(cityLabel);
 		
 		cityCombo = new JComboBox<String>();
 		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
-		cityCombo.setBounds(431, 179, 87, 25);
+		cityCombo.setBounds(430, 214, 87, 25);
 		add(cityCombo);
 		
 		JLabel transitLabel = new JLabel("装运形式");
 		transitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitLabel.setBounds(541, 179, 85, 24);
+		transitLabel.setBounds(541, 214, 85, 24);
 		add(transitLabel);
 		
 		transitCombo = new JComboBox<String>();
 		transitCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitCombo.setBounds(634, 179, 87, 25);
+		transitCombo.setBounds(636, 214, 87, 25);
 		transitCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"飞机","铁路","公路"}));
 		add(transitCombo);
 		
@@ -169,6 +171,17 @@ public class StockOutPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+		
+		JLabel idLabel = new JLabel("出库单编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(355, 87, 120, 24);
+		add(idLabel);
+		
+		idField = new JTextField();
+		idField.setEditable(false);
+		idField.setBounds(485, 87, 165, 25);
+		add(idField);
+		idField.setColumns(10);
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
@@ -200,7 +213,7 @@ public class StockOutPanel extends JPanel {
 	}
 	private StockOutVO createVO(){
 		Transit transits[] = Transit.values();
-		StockOutVO vo = new StockOutVO(expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], 
+		StockOutVO vo = new StockOutVO(idField.getText(),expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], 
 				(String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId,userId);
 		return vo;
 	}
@@ -213,4 +226,5 @@ public class StockOutPanel extends JPanel {
 			co.setEnabled(enabled);
 		}
 	}
+
 }

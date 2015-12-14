@@ -129,7 +129,8 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	public String getToday() {
 		// TODO 自动生成的方法存根
 		return "select * from centerlorderwaiting, centerlorderpassed, centerlorderunpassed where"
-				+ " id like '%"+id+"%'";
+				+ " centerlorderwaiting.id like '%"+id+"%'"+" or centerlorderpassed.id like '%"+id+"%' "
+						+ "or centerlorderunpassed.id like '%"+id+"%'";
 	}
 	
 }

@@ -8,10 +8,11 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Transit;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
+public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
@@ -118,5 +119,12 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from stockoutorderunpassed where userId ='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from stockoutorderwaiting,stockoutorderpassed,stockoutorderunpassed "
+				+ "where stockoutorderwaiting.id like '%"+id+"%' or stockoutorderpassed.id like '%"+id+"%' or"
+						+ " stockoutorderunpassed.id like '%"+id+"%'";
 	}
 }
