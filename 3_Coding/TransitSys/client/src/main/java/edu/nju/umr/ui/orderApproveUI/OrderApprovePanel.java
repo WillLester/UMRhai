@@ -224,6 +224,7 @@ public class OrderApprovePanel extends JPanel{
 		}
 		Result result=serv.examine(ispassed, idList,name);
 		DoHint.hint(result, frame);
+		count=0;
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)
