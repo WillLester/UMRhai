@@ -154,7 +154,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getStockIn(String userId){
-		OrderOper po = new StockInPO(0, null, null, null, null, null, 0, 0, null, null, null, userId);
+		OrderOper po = new StockInPO(null, null, null, null, null, null, 0, 0, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceStockIn(result); 

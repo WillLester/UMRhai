@@ -93,7 +93,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 			po = new SendPO(null, null, id, null, null, null,null);
 			return OrderPOFactory.getSend(mysqlSer.checkOrder(po));
 		case STOCKIN:
-			po = new StockInPO(Integer.parseInt(id), null, null, null, null, null, 0, 0, null, null, null,null);
+			po = new StockInPO(id, null, null, null, null, null, 0, 0, null, null, null,null);
 			return OrderPOFactory.getStockIn(mysqlSer.checkOrder(po));
 		case STOCKOUT:
 			po = new StockOutPO(Integer.parseInt(id), null, null, null, null, null, null, null, null,null);

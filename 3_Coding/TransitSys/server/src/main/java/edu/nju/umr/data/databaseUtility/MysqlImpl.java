@@ -151,6 +151,7 @@ public class MysqlImpl implements MysqlService{
 				String datetime = null;
 				while(result.next()){
 					datetime = result.getString(6);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.ARRIVE, result.getString(7), time, false);
 					orderList.add(order);
@@ -158,6 +159,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from centerlorderwaiting");
 				while(result.next()){
 					datetime = result.getString(7);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.CENTERLOADING, result.getString(10), time, false);
 					orderList.add(order);
@@ -165,6 +167,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from expressorderwaiting");
 				while(result.next()){
 					datetime = result.getString(23);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.EXPRESS, result.getString(24), time, false);
 					orderList.add(order);
@@ -172,6 +175,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from halllorderwaiting");
 				while(result.next()){
 					datetime = result.getString(8);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(2), Order.HALLLOADING, result.getString(10), time, false);
 					orderList.add(order);
@@ -179,6 +183,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from incomeorderwaiting");
 				while(result.next()){
 					datetime = result.getString(5);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.INCOME, result.getString(7), time, false);
 					orderList.add(order);
@@ -186,6 +191,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from paymentorderwaiting");
 				while(result.next()){
 					datetime = result.getString(8);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.PAYMENT, result.getString(9), time, false);
 					orderList.add(order);
@@ -193,6 +199,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from recipientorderwaiting");
 				while(result.next()){
 					datetime = result.getString(6);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.RECIPIENT, result.getString(7), time, false);
 					orderList.add(order);
@@ -200,13 +207,15 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from sendorderwaiting");
 				while(result.next()){
 					datetime = result.getString(5);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.SEND, result.getString(6), time, false);
 					orderList.add(order);
 				}
 				result = state.executeQuery("select * from stockinorderwaiting");
 				while(result.next()){
-					datetime = result.getString(10);
+					datetime = result.getString(9);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.STOCKIN, result.getString(10), time, false);
 					orderList.add(order);
@@ -214,6 +223,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from stockoutorderwaiting");
 				while(result.next()){
 					datetime = result.getString(6);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.STOCKOUT, result.getString(7), time, false);
 					orderList.add(order);
@@ -221,6 +231,7 @@ public class MysqlImpl implements MysqlService{
 				result = state.executeQuery("select * from transitorderwaiting");
 				while(result.next()){
 					datetime = result.getString(8);
+					time = Calendar.getInstance();
 					time.setTime(DateFormat.TIME.parse(datetime));
 					OrderPO order = new OrderPO(result.getString(1), Order.TRANSIT, result.getString(9), time, false);
 					orderList.add(order);
@@ -232,15 +243,10 @@ public class MysqlImpl implements MysqlService{
 			case STOCK:
 				result = state.executeQuery("select * from good");
 				return ArrayListFactory.produceGoodList(result);
-//			case VAN:
-//				result = state.executeQuery("select * from van");
-//				return ArrayListFactory.produceVanList(result);
-//			case DRIVER:
-//				result = state.executeQuery("select * from driver");
-//				return ArrayListFactory.produceDriverList(result);
 			default:return null;
 			}
 		} catch(SQLException | ParseException e){
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -261,15 +267,15 @@ public class MysqlImpl implements MysqlService{
 		try{
 			switch(kind){
 			case INCOME:
-				result = state.executeQuery("select * from incomeorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+				result = state.executeQuery("select * from incomeorderpassed where opTime between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
 			case PAYMENT:
-				result = state.executeQuery("select * from paymentorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+				result = state.executeQuery("select * from paymentorderpassed where opTime between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
 			case DIARY:
 				result = state.executeQuery("select * from diary where time between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
 			case STOCKIN:
-				result = state.executeQuery("select * from stockinorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+				result = state.executeQuery("select * from stockinorderpassed where opTime between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
 			case STOCKOUT:
-				result = state.executeQuery("select * from stockoutorderpassed where comDate between '"+DateFormat.DATE.format(start.getTime())+"' and '"+DateFormat.DATE.format(end.getTime())+"'");break;
+				result = state.executeQuery("select * from stockoutorderpassed where opTime between '"+DateFormat.TIME.format(start.getTime())+"' and '"+DateFormat.TIME.format(end.getTime())+"'");break;
 			default:
 				return null;
 			}
@@ -358,7 +364,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case STOCKIN:
 			for(String i:id){
-				order = new StockInPO(Integer.parseInt(i), null, null, null, null, null, 0, 0, null, null, null,null);
+				order = new StockInPO(i, null, null, null, null, null, 0, 0, null, null, null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

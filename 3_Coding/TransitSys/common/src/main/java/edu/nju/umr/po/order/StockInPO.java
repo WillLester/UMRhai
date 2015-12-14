@@ -8,15 +8,16 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Part;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
+public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5439986688631572343L;
-	private int id;
+	private String id;
 	private String expressId;
 	private Calendar date;
 	private String arrivePlace;
@@ -29,7 +30,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String stockId;
 	private String userId;
 	
-	public StockInPO(int id, String expressId, Calendar date,
+	public StockInPO(String id, String expressId, Calendar date,
 			String arrivePlace, Part part, String shelfId, int row, int place,
 			Calendar opTime, String opName, String stockId,String userId) {
 		super();
@@ -46,7 +47,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.stockId = stockId;
 		this.userId = userId;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public String getExpressId() {
@@ -130,5 +131,10 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from stockinorderunpassed where userId='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from stockinorderwaiting,stockinorderpassed,stockinorderunpassed where id like '%"+id+"%'";
 	}
 }

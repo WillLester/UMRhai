@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -26,7 +27,6 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
-import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 import edu.nju.umr.vo.order.StockInVO;
@@ -122,7 +122,7 @@ public class StockInPanel extends JPanel {
 		
 		targetCombo = new JComboBox<String>();
 		targetCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		targetCombo.setBounds(455, 179, 87, 25);
+		targetCombo.setBounds(455, 179, 130, 25);
 		targetCombo.setModel(new DefaultComboBoxModel<String>(orgList));
 		add(targetCombo);
 		
@@ -148,15 +148,9 @@ public class StockInPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
-				Part parts[] = Part.values();
+				
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					getShelfPart(parts[partCombo.getSelectedIndex()]);
-					String shelves[] = new String[shelfPart.size()];
-					for(int i = 0;i < shelfPart.size();i++){
-						ShelfVO shelf = shelfPart.get(i);
-						shelves[i] = shelf.getId();
-					}
-					shelfCombo.setModel(new DefaultComboBoxModel<String>(shelves));
+					setShelfModel();
 				}
 			}
 		});
@@ -176,17 +170,7 @@ public class StockInPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
-					Integer rows[] = new Integer[shelf.getRow()];
-					for(int i = 1;i <= rows.length;i++){
-						rows[i] = i;
-					}
-					Integer places[] = new Integer[shelf.getPlace()];
-					for(int i = 1;i <= places.length;i++){
-						places[i] = i;
-					}
-					rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
-					placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
+					setRowAndPlaceModel();
 				}
 			}
 		});
@@ -242,6 +226,9 @@ public class StockInPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+		
+		setShelfModel();
+		
 	}
 	private void getShelfPart(Part part){
 		shelfPart = new ArrayList<ShelfVO>();
@@ -253,7 +240,7 @@ public class StockInPanel extends JPanel {
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
-		if(Utility.isOutOfDate(datePanel.getCalendar())){
+		if(datePanel.getCalendar().after(Calendar.getInstance())){
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
@@ -274,6 +261,35 @@ public class StockInPanel extends JPanel {
 				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
 				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
 		return vo;
+	}
+	
+	private void setShelfModel(){
+		Part parts[] = Part.values();
+		getShelfPart(parts[partCombo.getSelectedIndex()]);
+		String shelves[] = new String[shelfPart.size()];
+		for(int i = 0;i < shelfPart.size();i++){
+			ShelfVO shelf = shelfPart.get(i);
+			shelves[i] = shelf.getId();
+		}
+		shelfCombo.setModel(new DefaultComboBoxModel<String>(shelves));
+		setRowAndPlaceModel();
+	}
+	
+	private void setRowAndPlaceModel(){
+		if(shelfCombo.getSelectedIndex() < 0){
+			return;
+		}
+		ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
+		Integer rows[] = new Integer[shelf.getRow()];
+		for(int i = 1;i <= rows.length;i++){
+			rows[i-1] = i;
+		}
+		Integer places[] = new Integer[shelf.getPlace()];
+		for(int i = 1;i <= places.length;i++){
+			places[i-1] = i;
+		}
+		rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
+		placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
 	}
 	public void setEnabled(boolean enabled)
 	{
