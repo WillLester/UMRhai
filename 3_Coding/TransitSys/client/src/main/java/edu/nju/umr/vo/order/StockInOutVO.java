@@ -3,6 +3,7 @@ package edu.nju.umr.vo.order;
 import java.util.Calendar;
 
 public class StockInOutVO{
+	private String id;
 	private Calendar time;
 	private String type;
 	private String expressId;
@@ -11,13 +12,19 @@ public class StockInOutVO{
 	private int place;
 
 	
-	public StockInOutVO(Calendar time, String type, String expressId, String shelfId, int row, int place){
+	public StockInOutVO(String id,Calendar time, String type, String expressId, String shelfId, int row, int place){
+		this.id = id;
 		this.time = time;
 		this.type = type;
 		this.expressId = expressId;
 		this.shelfId = shelfId;
 		this.row = row;
 		this.place = place;
+	}
+
+
+	public String getId() {
+		return id;
 	}
 
 

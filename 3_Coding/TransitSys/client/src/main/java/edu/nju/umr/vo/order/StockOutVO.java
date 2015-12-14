@@ -7,7 +7,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.StockOutPanel;
 
 public class StockOutVO implements ShowOrder{
-//	private String id;
+	private String id;
 	private String expressId;
 	private Calendar date;
 	private Transit kind;
@@ -17,9 +17,10 @@ public class StockOutVO implements ShowOrder{
 	private String stockId;
 	private String userId;
 	
-	public StockOutVO(String expressId, Calendar date, Transit kind,
+	public StockOutVO(String id,String expressId, Calendar date, Transit kind,
 			String arrivePlace, String transitId, String opName, String stockId,String userId) {
 		super();
+		this.id = id;
 		this.expressId = expressId;
 		this.date = date;
 		this.kind = kind;
@@ -28,6 +29,9 @@ public class StockOutVO implements ShowOrder{
 		this.opName = opName;
 		this.stockId = stockId;
 		this.userId = userId;
+	}
+	public String getId() {
+		return id;
 	}
 	public String getStockId() {
 		return stockId;

@@ -168,11 +168,11 @@ public class VPFactory {
 	
 	//出库单
 	public static StockOutVO toStockOutVO(StockOutPO po){
-		StockOutVO vo=new StockOutVO(po.getExpressId(), po.getDate(), po.getKind(), po.getArrivePlace(), po.getTransitId(), po.getOpName(), po.getStockId(),po.getUserId());
+		StockOutVO vo=new StockOutVO(po.getId(),po.getExpressId(), po.getDate(), po.getKind(), po.getArrivePlace(), po.getTransitId(), po.getOpName(), po.getStockId(),po.getUserId());
 		return vo;
 	}
-	public static StockOutPO toStockOutPO(StockOutVO vo,int id){
-		StockOutPO po=new StockOutPO(id,vo.getExpressId(),vo.getDate(),vo.getKind(),vo.getArrivePlace(),vo.getTransitId(),Calendar.getInstance(),vo.getOpName(),vo.getStockId(),vo.getUserId());
+	public static StockOutPO toStockOutPO(StockOutVO vo){
+		StockOutPO po=new StockOutPO(vo.getId(),vo.getExpressId(),vo.getDate(),vo.getKind(),vo.getArrivePlace(),vo.getTransitId(),Calendar.getInstance(),vo.getOpName(),vo.getStockId(),vo.getUserId());
 		return po;
 	}
 	

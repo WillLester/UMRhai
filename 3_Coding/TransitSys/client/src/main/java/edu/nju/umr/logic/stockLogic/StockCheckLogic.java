@@ -76,7 +76,7 @@ public class StockCheckLogic implements StockCheckLSer{
 		ArrayList<StockOutVO> arVO=new ArrayList<StockOutVO>();
 		for(int i=0;i<ar.size();i++){
 			StockOutPO order=ar.get(i);
-			arVO.add(new StockOutVO(order.getExpressId(),order.getDate(),order.getKind(),
+			arVO.add(new StockOutVO(order.getId(),order.getExpressId(),order.getDate(),order.getKind(),
 					order.getArrivePlace(),order.getTransitId(),order.getOpName(),order.getStockId(),order.getUserId()));
 		}
 		ResultMessage message = new ResultMessage(Result.SUCCESS, arVO);
@@ -90,12 +90,12 @@ public class StockCheckLogic implements StockCheckLSer{
 			ArrayList<StockInPO> stockInPOs=checkData.getIn(start, end, id);
 			ArrayList<StockOutPO> stockOutPOs=checkData.getOut(start, end, id);
 			for(StockInPO po:stockInPOs){
-				StockInOutVO stock = new StockInOutVO(po.getDate(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
+				StockInOutVO stock = new StockInOutVO(po.getId(),po.getDate(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
 				sList.add(stock);
 			}
 			
 			for(StockOutPO po:stockOutPOs){
-				StockInOutVO stock=new StockInOutVO(po.getDate(),"出库",po.getExpressId(),"",0,0);
+				StockInOutVO stock=new StockInOutVO(po.getId(),po.getDate(),"出库",po.getExpressId(),"",0,0);
 				sList.add(stock);
 			}
 			

@@ -16,7 +16,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	 * 
 	 */
 	private static final long serialVersionUID = -2102785279404595176L;
-	private int id;
+	private String id;
 	private String expressId;
 	private Calendar date;
 	private Transit kind;
@@ -27,7 +27,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String stockId;
 	private String userId;
 	
-	public StockOutPO(int id, String expressId, Calendar date, Transit kind,String arrivePlace,
+	public StockOutPO(String id, String expressId, Calendar date, Transit kind,String arrivePlace,
 			String transitId, Calendar opTime, String opName, String stockId,String userId) {
 		super();
 		this.id = id;
@@ -41,7 +41,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.stockId = stockId;
 		this.userId = userId;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public String getExpressId() {

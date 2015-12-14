@@ -19,4 +19,12 @@ public interface StockInOrderDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public Result addGood(GoodPO good) throws RemoteException;
+	
+	/**
+	 * 获得当日已生成的入库单数量
+	 * @param partId 入库单中表示机构编号和日期的部分
+	 * @return 数量，-1表示数据库错误
+	 * @throws RemoteException
+	 */
+	public int getOrderSize(String partId) throws RemoteException;
 }

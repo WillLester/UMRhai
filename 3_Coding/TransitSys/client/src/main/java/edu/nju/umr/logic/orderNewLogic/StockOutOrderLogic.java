@@ -38,7 +38,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 	public Result create(StockOutVO order) {
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
-			StockOutPO orderPO = VPFactory.toStockOutPO(order, 0);
+			StockOutPO orderPO = VPFactory.toStockOutPO(order);
 			isSuccessful = stockoutData.create(orderPO);
 			if(isSuccessful == Result.SUCCESS){
 				isSuccessful = stockoutData.removeGood(order.getExpressId());

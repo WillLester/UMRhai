@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
+import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.po.order.function.GetToday;
 /*
  * 入库单数据
  */
@@ -55,6 +57,14 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 	public Result addGood(GoodPO good) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return mysqlSer.addInfo(good);
+	}
+
+	@Override
+	public int getOrderSize(String partId) throws RemoteException {
+		// TODO 自动生成的方法存根
+		GetToday get = new StockInPO(partId, null, null, null, null, null, 0, 0, null, null, null, null);
+		ResultSet result = mysqlSer.checkToday(get);
+		return OrderCounter.count(result);
 	}
 
 }

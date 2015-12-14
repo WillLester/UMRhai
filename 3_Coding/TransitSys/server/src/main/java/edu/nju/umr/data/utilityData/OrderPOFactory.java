@@ -243,7 +243,7 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(6));
 				Transit transits[] = Transit.values();
-				return new StockOutPO(result.getInt(1), result.getString(2), date, transits[result.getInt(3)], result.getString(9), 
+				return new StockOutPO(result.getString(1), result.getString(2), date, transits[result.getInt(3)], result.getString(9), 
 						result.getString(4), opTime, result.getString(7), result.getString(8),result.getString(10));
 			} else {
 				return null;

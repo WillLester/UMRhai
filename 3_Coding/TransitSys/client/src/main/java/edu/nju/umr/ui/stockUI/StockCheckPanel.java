@@ -119,7 +119,7 @@ public class StockCheckPanel extends JPanel{
 		JScrollPane scroll=new JScrollPane(table);
 		scroll.setBounds(219, 156, 665, 372);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"时间","操作","订单号","架号","排号","位号"};
+		String[] columnNames={"编号","时间","操作","订单号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
@@ -134,13 +134,14 @@ public class StockCheckPanel extends JPanel{
 	private void displayTable(){
 		model.setRowCount(0);
 		for(StockInOutVO inOut:stockInOutList){
-			String info[] = new String[6];
-			info[0] = DateFormat.TIME.format(inOut.getTime().getTime());
-			info[1] = inOut.getType();
-			info[2] = inOut.getExpressId();
-			info[3] = inOut.getShelfId();
-			info[4] = inOut.getRow()+"";
-			info[5] = inOut.getPlace()+"";
+			String info[] = new String[7];
+			info[0] = inOut.getId();
+			info[1] = DateFormat.TIME.format(inOut.getTime().getTime());
+			info[2] = inOut.getType();
+			info[3] = inOut.getExpressId();
+			info[4] = inOut.getShelfId();
+			info[5] = inOut.getRow()+"";
+			info[6] = inOut.getPlace()+"";
 			model.addRow(info);
 		}
 	}
