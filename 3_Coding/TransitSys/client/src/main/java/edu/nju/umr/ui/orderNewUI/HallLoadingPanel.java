@@ -324,6 +324,22 @@ public class HallLoadingPanel extends JPanel {
 		}
 		String[] vanListString = (String[]) message.getMessage();
 		comboBoxVan.setModel(new DefaultComboBoxModel<String>(vanListString));
+		
+		message = serv.getNextId(orgId);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			DoHint.hint(result, frame);
+			return;
+		}
+		int num=(Integer)message.getMessage();
+		if(num==-1)
+		{
+			DoHint.hint(Result.DATABASE_ERROR, frame);
+			return;
+		}
+		String temp=Integer.toString(num);
+		while(temp.length()<5)temp="0"+temp;
+		transitIdField.setText(orgId+temp);
 	}
 	private void deleteExpress(){
 		int row=table.getSelectedRow();

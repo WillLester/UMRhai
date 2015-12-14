@@ -4,8 +4,10 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
@@ -87,8 +89,13 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	}
 	@Override
 	public ResultMessage getNextId(String orgId) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			String date=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+			return new ResultMessage(Result.SUCCESS,hallData.getOrderSize(orgId+date));
+		}catch(RemoteException e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }
