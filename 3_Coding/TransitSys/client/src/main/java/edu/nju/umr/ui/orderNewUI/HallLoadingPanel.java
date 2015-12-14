@@ -107,6 +107,7 @@ public class HallLoadingPanel extends JPanel {
 		transitIdField = new JTextField();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
 		transitIdField.setBounds(485, 87, 250, 25);
+		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		

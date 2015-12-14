@@ -91,7 +91,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		idField = new JTextField();
 		idField.setFont(new Font("宋体", Font.PLAIN, 20));
 		idField.setBounds(485, 87, 165, 25);
-		idField.setEnabled(false);
+		idField.setEditable(false);
 		add(idField);
 		idField.setColumns(10);
 		

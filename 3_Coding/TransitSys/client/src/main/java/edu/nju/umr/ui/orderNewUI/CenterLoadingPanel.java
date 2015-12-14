@@ -89,6 +89,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		transitIdField = new JTextField();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
 		transitIdField.setBounds(485+75, 87, 165, 25);
+		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		
