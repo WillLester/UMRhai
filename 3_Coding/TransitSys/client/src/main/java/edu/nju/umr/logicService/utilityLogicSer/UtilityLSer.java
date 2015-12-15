@@ -76,4 +76,10 @@ public interface UtilityLSer {
 	 */
 	public ResultMessage getCenterNames();
 	
+	/**
+	 * 获得营业厅名称列表
+	 * @return String[]形式的账户列表
+	 */
+	public ResultMessage getHallNames();
+	
 }

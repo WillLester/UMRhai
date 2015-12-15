@@ -32,10 +32,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
 public class CenterLoadingPanel extends JPanel implements PriceCount{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7266319701610335832L;
+	private static final long serialVersionUID = 6510869696757978208L;
 	private JTextField transitIdField;
 	private JTextField supervisionField;
 	private JTextField escortField;
@@ -69,6 +70,9 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		arriveCombo.setSelectedItem((String)vo.getTarget());
 		expressList.showExpressList(vo.getExpress());
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public CenterLoadingPanel(JFrame fr,String name,String userId,String org,String orgId) {
 		setLayout(null);
 		JLabel titleLabel = new JLabel("中转中心装车单");
@@ -90,7 +94,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		
 		transitIdField = new JTextField();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitIdField.setBounds(485+75, 87, 165, 25);
+		transitIdField.setBounds(560, 87, 190, 25);
 		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
@@ -107,12 +111,12 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		
 		JLabel arriveLabel = new JLabel("到达地");
 		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveLabel.setBounds(242+75, 155, 85, 24);
+		arriveLabel.setBounds(278, 155, 85, 24);
 		add(arriveLabel);
 		
 		arriveCombo = new JComboBox<String>();
-		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveCombo.setBounds(307+75, 155, 87, 25);
+		arriveCombo.setFont(new Font("黑体", Font.PLAIN, 15));
+		arriveCombo.setBounds(342, 155, 150, 25);
 		ResultMessage message = logicSer.getHalls();
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			String halls[] = (String[]) message.getMessage();
@@ -160,9 +164,9 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		vanIdField.setBounds(328+75, 203, 165, 25);
 		add(vanIdField);
 		
-		JLabel costLabel = new JLabel("运费：");
-		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		costLabel.setBounds(674, 204, 60, 24);
+		JLabel costLabel = new JLabel("运费/元");
+		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		costLabel.setBounds(655, 204, 79, 24);
 		add(costLabel);
 		
 		JButton confirmButton = new JButton("确定");
@@ -204,7 +208,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		costField.setColumns(10);
 		
 		expressList = new ExpressListPanel(frame,this);
-		expressList.setBounds(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+		expressList.setBounds(266, 216, 677, 273);
 		add(expressList);
 		
 		if(orgId!=null){
@@ -238,14 +242,6 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		@SuppressWarnings("unused")
 		HintFrame hintF = new HintFrame(hint, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 	}
-//	private boolean isExpressLegal(){
-//		String info = CheckLegal.isExpressLegal(expressField.getText());
-//		if(!info.equals(null)){
-//			hint(info);
-//			return false;
-//		}
-//		return true;
-//	}
 	private CenterLoadingVO createVO(){
 		ArrayList<String> expresses = expressList.getExpresses();
 		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), transitIdField.getText(),(String)arriveCombo.getSelectedItem(), vanIdField.getText(), 
@@ -297,4 +293,5 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 			co.setEnabled(enabled);
 		}
 	}
+
 }
