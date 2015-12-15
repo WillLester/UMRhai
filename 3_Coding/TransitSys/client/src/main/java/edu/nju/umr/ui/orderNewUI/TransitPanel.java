@@ -139,6 +139,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 					System.arraycopy(centers, 0, arrives, 0, i);
 					System.arraycopy(centers, i+1, arrives, i, centers.length - 1 - i);
 					arriveCombo.setModel(new DefaultComboBoxModel<String>(arrives));
+					arriveCombo.setSelectedIndex(0);
 					break;
 				}
 			}
@@ -262,6 +263,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 				getPrice();
 			}
 		});
+		kindCombo.setSelectedIndex(0);
 		add(kindCombo);
 		
 		if(orgId!=null){

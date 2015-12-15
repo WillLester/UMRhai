@@ -37,20 +37,25 @@ public class ExpressListPanel extends JPanel{
 	private DefaultListModel<String> model;
 	private JFrame frame;
 	private PriceCount faPanel;
+	private JButton newExpButton;
 	public ExpressListPanel(JFrame fr,PriceCount fa)
 	{
 		this(fr);
 		faPanel=fa;
-		model.addListDataListener(new ListDataListener(){
+		model.addListDataListener(new ListDataListener(){@Override
 		public void contentsChanged(ListDataEvent e) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void intervalAdded(ListDataEvent e) {
 			faPanel.getPrice();
 		}
-		public void intervalAdded(ListDataEvent e) {
-			
-		}
+
+		@Override
 		public void intervalRemoved(ListDataEvent e) {
-			
 		}});
+		
 	}
 	public ExpressListPanel(JFrame fr) {
 		frame = fr;
@@ -68,7 +73,7 @@ public class ExpressListPanel extends JPanel{
 		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
-		JButton newExpButton = new JButton("新增");
+		newExpButton = new JButton("新增");
 		newExpButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		newExpButton.setBounds(476, 36, 93, 23);
 		add(newExpButton);
