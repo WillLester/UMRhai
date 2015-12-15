@@ -33,14 +33,4 @@ public class SerialHelper {
 		}
 		return ob;
 	}
-//	public static void main(String[] args)
-//	{
-//		AccountPO po=null;
-//		po=new AccountPO("序列化测试","蛤蛤蛤",2333333);
-//		writeToFile(po,"abcd.ser");
-//		po=null;
-//		po=(AccountPO)readFromFile("abcd.ser");
-//		System.out.println(po.getId());
-//		
-//	}
 }

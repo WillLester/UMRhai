@@ -57,6 +57,9 @@ public class ConstantLogic implements ConstantLSer{
 			// TODO 自动生成的 catch 块
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
+		if(po == null){
+			return new ResultMessage(Result.FILE_NOT_FOUND, null);
+		}
 		ConstantVO vo = VPFactory.toConstantVO(po);
 		return new ResultMessage(Result.SUCCESS, vo);
 	}
