@@ -3,6 +3,7 @@ package edu.nju.umr.ui.cityUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -324,9 +325,9 @@ public class ConstantPanel extends JPanel {
 		return true;
 	}
 	private ConstantVO createConstant(){
-		ConstantVO vo = new ConstantVO(Double.parseDouble(planeField.getText()), Double.parseDouble(trainField.getText()), Double.parseDouble(vanField.getText()), 
-				Double.parseDouble(planeCostField.getText()), Double.parseDouble(trainCostField.getText()), Double.parseDouble(vanCostField.getText()), 
-				Double.parseDouble(economicField.getText()), Double.parseDouble(normalField.getText()), Double.parseDouble(fastField.getText()));
+		ConstantVO vo = new ConstantVO(new BigDecimal(planeField.getText()), new BigDecimal(trainField.getText()), new BigDecimal(vanField.getText()), 
+				new BigDecimal(planeCostField.getText()), new BigDecimal(trainCostField.getText()), new BigDecimal(vanCostField.getText()), 
+				new BigDecimal(economicField.getText()), new BigDecimal(normalField.getText()), new BigDecimal(fastField.getText()));
 		return vo;
 	}
 }

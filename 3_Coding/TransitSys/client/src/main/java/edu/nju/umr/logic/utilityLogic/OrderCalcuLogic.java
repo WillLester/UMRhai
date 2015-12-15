@@ -77,8 +77,8 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 			return costMessage;
 		}
 		@SuppressWarnings("unchecked")
-		ArrayList<Double> temp=(ArrayList<Double>)costMessage.getMessage();
-		double cost = temp.get(transit.ordinal());
+		ArrayList<BigDecimal> temp=(ArrayList<BigDecimal>)costMessage.getMessage();
+		price = temp.get(transit.ordinal());
 		orgs = uti.orgs();
 		if(orgs == null){
 			return new ResultMessage(Result.DATA_NOT_FOUND, null);
@@ -107,7 +107,6 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 				return new ResultMessage(Result.NET_INTERRUPT,null);
 			}
 		}
-		price= new BigDecimal(cost);
 		List<ExpressPO> expresses = orderInfo.getExpresses(expressList);
 		BigDecimal weight = new BigDecimal(0);
 		for(ExpressPO express:expresses){
@@ -128,6 +127,9 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		} else {
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
+		System.out.println(distance);
+		System.out.println(price);
+		System.out.println(weight);
 		return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
 	}
 }

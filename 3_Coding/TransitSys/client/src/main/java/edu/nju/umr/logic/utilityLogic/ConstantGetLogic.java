@@ -1,5 +1,6 @@
 package edu.nju.umr.logic.utilityLogic;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -43,7 +44,7 @@ public class ConstantGetLogic implements ConstantGetLSer{
 			if(constant == null){
 				return new ResultMessage(Result.DATA_NOT_FOUND, null);
 			} else {
-				List<Double> costs = new ArrayList<Double>();
+				List<BigDecimal> costs = new ArrayList<BigDecimal>();
 				costs.add(constant.getLvEco());
 				costs.add(constant.getLvStd());
 				costs.add(constant.getLvVip());
@@ -62,7 +63,7 @@ public class ConstantGetLogic implements ConstantGetLSer{
 			if(constant == null){
 				return new ResultMessage(Result.DATA_NOT_FOUND, null);
 			} else {
-				List<Double> costs = new ArrayList<Double>();
+				List<BigDecimal> costs = new ArrayList<BigDecimal>();
 				costs.add(constant.getPricePlane());
 				costs.add(constant.getPriceTrain());
 				costs.add(constant.getPriceVan());
@@ -81,7 +82,7 @@ public class ConstantGetLogic implements ConstantGetLSer{
 			if(constant == null){
 				return new ResultMessage(Result.DATA_NOT_FOUND, null);
 			} else {
-				List<Double> load = new ArrayList<Double>();
+				List<BigDecimal> load = new ArrayList<BigDecimal>();
 				load.add(constant.getMaxLoadPlane());
 				load.add(constant.getMaxLoadTrain());
 				load.add(constant.getMaxLoadVan());

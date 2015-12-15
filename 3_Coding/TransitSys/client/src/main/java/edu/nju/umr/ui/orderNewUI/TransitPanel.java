@@ -71,6 +71,9 @@ public class TransitPanel extends JPanel implements PriceCount {
 		costField.setText(Double.toString(vo.getCost()));
 		datePanel.setDate(vo.getDate());
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public TransitPanel(JFrame fr,String org,String name,String userId,String orgId) {
 		setLayout(null);
 		frame = fr;
@@ -113,7 +116,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 		add(startLabel);
 		
 		arriveCombo = new JComboBox<String>();
-		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		arriveCombo.setFont(new Font("黑体", Font.PLAIN, 17));
 		arriveCombo.setBounds(432, 157, 140, 25);
 		arriveCombo.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e) {
@@ -123,7 +126,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 		add(arriveCombo);
 		
 		startCombo = new JComboBox<String>();
-		startCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		startCombo.setFont(new Font("黑体", Font.PLAIN, 17));
 		startCombo.setBounds(214, 157, 148, 25);
 		ResultMessage message = logicSer.getCenters();
 		if(message.getReInfo().equals(Result.SUCCESS)){
@@ -174,7 +177,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 		
 		JLabel costLabel = new JLabel("运费/元");
 		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		costLabel.setBounds(676, 204, 100, 24);
+		costLabel.setBounds(661, 204, 100, 24);
 		add(costLabel);
 		
 		costField = new JTextField();
@@ -227,13 +230,13 @@ public class TransitPanel extends JPanel implements PriceCount {
 		JLabel containerLabel = new JLabel("货柜号");
 		containerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		containerLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		containerLabel.setBounds(506, 204, 120, 24);
+		containerLabel.setBounds(485, 204, 120, 24);
 		add(containerLabel);
 		
 		containerField = new JTextField();
 		containerField.setFont(new Font("宋体", Font.PLAIN, 20));
 		containerField.setColumns(10);
-		containerField.setBounds(609, 203, 69, 25);
+		containerField.setBounds(582, 204, 69, 25);
 		add(containerField);
 		
 		expressList = new ExpressListPanel(frame,this);

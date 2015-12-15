@@ -1,13 +1,14 @@
 package edu.nju.umr.po;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class ConstantPO implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4767279044070659099L;
-	private double maxLoadPlane,maxLoadTrain,maxLoadVan,pricePlane,priceTrain,priceVan,lvEco,lvStd,lvVip;
-	public ConstantPO (double maxLoadPlane,double maxLoadTrain,double maxLoadVan,double pricePlane,double priceTrain,double priceVan,double lvEco,double lvStd,double lvVIP){	
+	private BigDecimal maxLoadPlane,maxLoadTrain,maxLoadVan,pricePlane,priceTrain,priceVan,lvEco,lvStd,lvVip;
+	public ConstantPO (BigDecimal maxLoadPlane,BigDecimal maxLoadTrain,BigDecimal maxLoadVan,BigDecimal pricePlane,BigDecimal priceTrain,BigDecimal priceVan,BigDecimal lvEco,BigDecimal lvStd,BigDecimal lvVIP){	
 		this.maxLoadPlane = maxLoadPlane;
 		this.maxLoadTrain = maxLoadTrain;
 		this.maxLoadVan = maxLoadVan;
@@ -18,31 +19,31 @@ public class ConstantPO implements Serializable{
 		this.lvStd = lvStd;
 		this.lvVip = lvVIP;
 	}
-	public double getMaxLoadPlane(){
+	public BigDecimal getMaxLoadPlane(){
 		return maxLoadPlane;
 	}
-	public double getMaxLoadTrain(){
+	public BigDecimal getMaxLoadTrain(){
 		return maxLoadTrain;
 	}
-	public double getMaxLoadVan(){
+	public BigDecimal getMaxLoadVan(){
 		return maxLoadVan;
 	}
-	public double getPricePlane(){
+	public BigDecimal getPricePlane(){
 		return pricePlane;
 	}
-	public double getPriceTrain(){
+	public BigDecimal getPriceTrain(){
 		return priceTrain;
 	}
-	public double getPriceVan(){
+	public BigDecimal getPriceVan(){
 		return priceVan;
 	}
-	public double getLvEco(){
+	public BigDecimal getLvEco(){
 		return lvEco;
 	}
-	public double getLvStd(){
+	public BigDecimal getLvStd(){
 		return lvStd;
 	}
-	public double getLvVip(){
+	public BigDecimal getLvVip(){
 		return lvVip;
 	}
 
