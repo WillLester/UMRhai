@@ -126,7 +126,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from transitorderunpassed where userId='"+userId+"'";
+		return "delete from transitorderunpassed where id='"+id+"'";
 	}
 	@Override
 	public String getDetail() {
