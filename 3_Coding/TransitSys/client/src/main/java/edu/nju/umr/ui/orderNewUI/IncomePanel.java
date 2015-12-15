@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.IncomeOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -170,8 +172,26 @@ public class IncomePanel extends JPanel {
 		idField = new JTextField();
 		idField.setEditable(false);
 		idField.setBounds(473, 81, 252, 25);
+		idField.setEnabled(false);
 		add(idField);
 		idField.setColumns(10);
+		
+		message=logicSer.getNextId(orgId);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+		}
+		else
+		{
+			int num=(Integer)message.getMessage();
+			String temp=Integer.toString(num);
+			while(temp.length()<5)
+			{
+				temp="0"+temp;
+			}
+			idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+		}
 	}
 	private boolean isLegal(){
 		if(expressList.isEmpty()){

@@ -12,4 +12,6 @@ public interface IncomeOrderLSer {
 	 * @return String[]形式的账户名称列表
 	 */
 	public ResultMessage getAccount();
+	public ResultMessage getNextId(String orgId);
+	
 }

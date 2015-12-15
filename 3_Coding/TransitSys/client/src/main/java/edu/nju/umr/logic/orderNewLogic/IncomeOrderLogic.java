@@ -4,8 +4,10 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.IncomeOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.IncomeOrderDSer;
@@ -78,6 +80,20 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	public ResultMessage getAccount() {
 		// TODO 自动生成的方法存根
 		return uti.getAccountNames();
+	}
+	public ResultMessage getNextId(String orgId){
+		String time=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+		try{
+			int num = incomeData.getOrderSize(orgId+time);
+			if(num==-1)
+			{
+				return new ResultMessage(Result.DATABASE_ERROR,null);
+			}
+			return new ResultMessage(Result.SUCCESS,num);
+		}catch(RemoteException e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }
