@@ -67,7 +67,6 @@ public class TransitPanel extends JPanel implements PriceCount {
 		containerField.setText(vo.getContainerId());
 		startCombo.setSelectedItem(vo.getStartPlace());
 		arriveCombo.setSelectedItem(vo.getArrivePlace());
-//		kindCombo.setSelectedItem(vo.get);
 		expressList.showExpressList(vo.getExpress());
 		costField.setText(Double.toString(vo.getCost()));
 		datePanel.setDate(vo.getDate());
@@ -135,8 +134,9 @@ public class TransitPanel extends JPanel implements PriceCount {
 					startCombo.setSelectedIndex(i);
 					String[] arrives = new String[centers.length - 1];
 					System.arraycopy(centers, 0, arrives, 0, i);
-					System.arraycopy(centers, i+1, arrives, i, centers.length - i);
+					System.arraycopy(centers, i+1, arrives, i, centers.length - 1 - i);
 					arriveCombo.setModel(new DefaultComboBoxModel<String>(arrives));
+					break;
 				}
 			}
 		} else {
@@ -172,9 +172,9 @@ public class TransitPanel extends JPanel implements PriceCount {
 		planeIdField.setBounds(328, 203, 165, 25);
 		add(planeIdField);
 		
-		JLabel costLabel = new JLabel("运费：");
+		JLabel costLabel = new JLabel("运费/元");
 		costLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		costLabel.setBounds(696, 204, 100, 24);
+		costLabel.setBounds(676, 204, 100, 24);
 		add(costLabel);
 		
 		costField = new JTextField();
@@ -340,7 +340,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 			return;
 		}
 		BigDecimal price=(BigDecimal)message.getMessage();
-		costField.setText(price.toString()+"元");
+		costField.setText(price.toString());
 	}
 
 }

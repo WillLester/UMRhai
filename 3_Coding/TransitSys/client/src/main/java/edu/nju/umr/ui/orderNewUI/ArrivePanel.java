@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,7 +22,6 @@ import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.utility.DoHint;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
 
@@ -156,19 +154,13 @@ public class ArrivePanel extends JPanel {
 		centerField.setText(orgId);
 		ResultMessage message = serv.getLocalHallsAndAllCenter(orgId);
 		Result result=message.getReInfo();
-		if(!result.equals(Result.SUCCESS))
-		{
+		if(result == Result.SUCCESS){
+			String []orgs=(String[]) message.getMessage();
+			startCombo.setModel(new DefaultComboBoxModel<String>(orgs));
+		} else {
 			DoHint.hint(result, frame);
-			return;
 		}
-		@SuppressWarnings("unchecked")
-		ArrayList<OrgVO> orgList=(ArrayList<OrgVO>)message.getMessage();
-		String []orgs=new String[orgList.size()];
-		for(int i=0;i<orgList.size();i++)
-		{
-			orgs[i]=orgList.get(i).getName();
-		}
-		startCombo.setModel(new DefaultComboBoxModel<String>(orgs));
+		
 		
 	}
 	private void createOrder()

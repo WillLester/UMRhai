@@ -115,6 +115,7 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		}
 		// 划为吨计算
 		weight = weight.divide(new BigDecimal(1000));
+		System.out.println(weight);
 		ResultMessage load = constantLSer.getFullLoad();
 		if(load.getReInfo().equals(Result.SUCCESS)){
 			@SuppressWarnings("unchecked")
