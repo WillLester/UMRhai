@@ -206,13 +206,9 @@ public class ConstantPanel extends JPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.setConstant(createConstant(),name);
+					DoHint.hint(result, frame, true);
 					if(result.equals(Result.SUCCESS)){
-						DoHint.hint(result, frame);
 						confirmButton.setEnabled(false);
-						frame.dispose();
-					} else {
-						@SuppressWarnings("unused")
-						HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 					}
 				}
 			}
