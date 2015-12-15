@@ -126,7 +126,6 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		} else {
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
-		System.out.println("wei"+weight);
 		return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
 	}
 }
