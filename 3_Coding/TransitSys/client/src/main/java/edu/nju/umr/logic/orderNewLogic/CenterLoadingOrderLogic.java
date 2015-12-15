@@ -47,7 +47,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = centerData.create(VPFactory.toCenterLoadPO(order, ""));
+			isSuc = centerData.create(VPFactory.toCenterLoadPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
 			}

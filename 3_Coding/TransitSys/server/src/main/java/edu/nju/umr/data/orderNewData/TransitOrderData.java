@@ -46,7 +46,7 @@ public class TransitOrderData extends UnicastRemoteObject implements TransitOrde
 	@Override
 	public int getOrderSize(String partId) throws RemoteException {
 		// TODO 自动生成的方法存根
-		GetToday get = new TransitPO(partId, null, null, null, null, null, null, null, null, null, 0, null);
+		GetToday get = new TransitPO(partId, null, null, null, null, null, null, null, null, null, 0, null,null);
 		ResultSet result = mysqlSer.checkToday(get);
 		return OrderCounter.count(result);
 	}

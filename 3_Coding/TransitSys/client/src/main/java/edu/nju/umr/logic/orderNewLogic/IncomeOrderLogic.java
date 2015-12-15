@@ -45,7 +45,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.DATA_NOT_FOUND;
 		try {
-			isSuc = incomeData.create(VPFactory.toIncomePO(order, 0));
+			isSuc = incomeData.create(VPFactory.toIncomePO(order));
 			if(isSuc == Result.SUCCESS){
 				isSuc = diarySer.addDiary("生成了收款单", order.getOpName());
 			}

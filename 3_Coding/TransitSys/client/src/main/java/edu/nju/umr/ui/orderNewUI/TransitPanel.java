@@ -22,6 +22,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
@@ -68,6 +69,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 		startCombo.setSelectedItem(vo.getStartPlace());
 		arriveCombo.setSelectedItem(vo.getArrivePlace());
 		expressList.showExpressList(vo.getExpress());
+		kindCombo.setSelectedIndex(vo.getTransit().ordinal());
 		costField.setText(Double.toString(vo.getCost()));
 		datePanel.setDate(vo.getDate());
 	}
@@ -142,6 +144,9 @@ public class TransitPanel extends JPanel implements PriceCount {
 					arriveCombo.setSelectedIndex(0);
 					break;
 				}
+			}
+			if(arriveCombo.getModel().getSize() == 0){
+				arriveCombo.setModel(new DefaultComboBoxModel<String>(centers));
 			}
 		} else {
 			DoHint.hint(message.getReInfo(), frame);
@@ -283,7 +288,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 	}
 	private boolean isLegal(){
 		String result = CheckLegal.isTransitLegal(idField.getText());
-		if(!result.equals(null)){
+		if(result != null){
 			DoHint.hint(result, frame);
 			return false;
 		}
@@ -311,12 +316,13 @@ public class TransitPanel extends JPanel implements PriceCount {
 		if(kindCombo.getSelectedIndex() == 0){
 			TransitVO vo = new TransitVO(idField.getText(),planeIdField.getText(), (String)startCombo.getSelectedItem(), 
 					(String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(), expressList.getExpresses(),
-					name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId);
+					name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId,Transit.values()[kindCombo.getSelectedIndex()]);
 			return vo;
 		} else {
 			TransitVO vo = new TransitVO(idField.getText(),null, (String)startCombo.getSelectedItem(), 
 					(String)arriveCombo.getSelectedItem(), containerField.getText(), supervisionField.getText(),
-					expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId);
+					expressList.getExpresses(), name,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userId,
+					Transit.values()[kindCombo.getSelectedIndex()]);
 			return vo;
 		}
 	}

@@ -48,7 +48,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	public Result create(TransitVO order) {
 		// TODO 自动生成的方法存根
 		try {
-			TransitPO orderPO = VPFactory.toTransitPO(order, "");
+			TransitPO orderPO = VPFactory.toTransitPO(order);
 			Result result = transitData.create(orderPO);
 			if(result == Result.SUCCESS){
 				result = diarySer.addDiary("生成了中转单"+order.getId(), order.getOpName());

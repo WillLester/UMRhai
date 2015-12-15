@@ -8,6 +8,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
@@ -29,11 +30,12 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	private String opName;
 	private double cost;
 	private String userId;
+	private Transit transit;
 	
 	public TransitPO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName, double cost,String userId) {
+			String opName, double cost,String userId,Transit transit) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -47,6 +49,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 		this.opName = opName;
 		this.cost = cost;
 		this.userId = userId;
+		this.transit = transit;
 	}
 	public String getId() {
 		return id;
@@ -84,6 +87,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	public String getUserId() {
 		return userId;
 	}
+	public Transit getTransit() {
+		return transit;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -96,8 +102,8 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 				text = text + ex + " ";
 			}
 			command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"
-		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date)+"','"+
-				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"')";break;
+		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date.getTime())+"','"+
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"',"+transit.ordinal()+")";break;
 		case DELETE:break;
 		case FIND:command="select * from transitorderpassed where id='"+id+"'";break;
 		case UPDATE:break;

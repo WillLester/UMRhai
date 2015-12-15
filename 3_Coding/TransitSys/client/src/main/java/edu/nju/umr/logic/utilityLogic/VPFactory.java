@@ -75,8 +75,8 @@ public class VPFactory {
     	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(),po.getId(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getUserId());
     	 return vo;
      }
-     public static CenterLoadingPO toCenterLoadPO(CenterLoadingVO vo,String id){
-    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), id, vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getUserId());
+     public static CenterLoadingPO toCenterLoadPO(CenterLoadingVO vo){
+    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), vo.getTransitId(), vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getUserId());
     	 return po;
      }
      
@@ -111,7 +111,7 @@ public class VPFactory {
     	 IncomeVO vo=new IncomeVO(po.getId(),po.getDate(), po.getCourier(), po.getCost(), po.getExpress(), po.getOpName(), po.getOrgId(),po.getUserId(),po.getAccount());
     	 return vo;
      }
-	public static IncomePO toIncomePO(IncomeVO vo,int id){
+	public static IncomePO toIncomePO(IncomeVO vo){
 		IncomePO po=new IncomePO(vo.getDate(), vo.getCourier(), vo.getCost(), vo.getExpress(), vo.getId(),Calendar.getInstance(),vo.getOpName(),vo.getOrgId(),vo.getUserId(),vo.getAccount());
 		return po;
 	}
@@ -178,11 +178,11 @@ public class VPFactory {
 	
 	//中转单
 	public static TransitVO toTransitVO(TransitPO po){
-		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost(),po.getDate(),po.getUserId());
+		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost(),po.getDate(),po.getUserId(),po.getTransit());
 		return vo;
 	}
-	public static TransitPO toTransitPO(TransitVO vo,String id){
-		TransitPO po=new TransitPO(id,vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost(), vo.getUserId());
+	public static TransitPO toTransitPO(TransitVO vo){
+		TransitPO po=new TransitPO(vo.getId(),vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost(), vo.getUserId(),vo.getTransit());
 		return po;
 	}
 	//账户
