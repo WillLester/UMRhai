@@ -25,4 +25,5 @@ public interface StockOutOrderLSer {
 	 * @return 结果
 	 */
 	public boolean isConveyValid(String id);
+	public ResultMessage getNextId(String orgId);
 }

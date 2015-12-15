@@ -176,21 +176,23 @@ public class IncomePanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		message=logicSer.getNextId(orgId);
-		Result result=message.getReInfo();
-		if(!result.equals(Result.SUCCESS))
-		{
-			DoHint.hint(result, frame);
-		}
-		else
-		{
-			int num=(Integer)message.getMessage();
-			String temp=Integer.toString(num);
-			while(temp.length()<5)
+		if(orgId!=null){
+			message=logicSer.getNextId(orgId);
+			Result result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS))
 			{
-				temp="0"+temp;
+				DoHint.hint(result, frame);
 			}
-			idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			else
+			{
+				int num=(Integer)message.getMessage();
+				String temp=Integer.toString(num);
+				while(temp.length()<5)
+				{
+					temp="0"+temp;
+				}
+				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
 		}
 	}
 	private boolean isLegal(){

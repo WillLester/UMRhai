@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.StockInOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.po.enums.Part;
@@ -242,6 +243,26 @@ public class StockInPanel extends JPanel {
 		idField.setColumns(10);
 		
 		setShelfModel();
+		
+		if(orgId!=null)
+		{
+			ResultMessage message=logicSer.getNextId(orgId);
+			Result result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS))
+			{
+				DoHint.hint(result, frame);
+			}
+			else
+			{
+				int num=(Integer)message.getMessage();
+				String temp=Integer.toString(num);
+				while(temp.length()<5)
+				{
+					temp="0"+temp;
+				}
+				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
+		}
 		
 	}
 	private void getShelfPart(Part part){

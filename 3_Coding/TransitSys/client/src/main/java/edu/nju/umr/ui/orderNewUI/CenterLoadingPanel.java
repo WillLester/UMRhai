@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.CenterLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -222,7 +224,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 					{
 						temp="0"+temp;
 					}
-					temp=orgId+temp;
+					temp=orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp;
 					transitIdField.setText(temp);
 				}
 			}

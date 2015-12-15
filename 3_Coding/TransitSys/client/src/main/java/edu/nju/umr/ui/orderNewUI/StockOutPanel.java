@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.StockOutOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -180,8 +182,29 @@ public class StockOutPanel extends JPanel {
 		idField = new JTextField();
 		idField.setEditable(false);
 		idField.setBounds(485, 87, 165, 25);
+		idField.setEnabled(false);
 		add(idField);
 		idField.setColumns(10);
+		
+		if(orgId!=null)
+		{
+			ResultMessage messagee=logicSer.getNextId(orgId);
+			Result resultt=messagee.getReInfo();
+			if(!resultt.equals(Result.SUCCESS))
+			{
+				DoHint.hint(resultt, frame);
+			}
+			else
+			{
+				int num=(Integer)messagee.getMessage();
+				String temp=Integer.toString(num);
+				while(temp.length()<5)
+				{
+					temp="0"+temp;
+				}
+				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
+		}
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){

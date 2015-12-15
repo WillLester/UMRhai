@@ -14,4 +14,5 @@ public interface StockInOrderLSer {
 	 * @return 是否存在
 	 */
 	public boolean isExpressValid(String id);
+	public ResultMessage getNextId(String orgId);
 }

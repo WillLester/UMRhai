@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.HallLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -326,6 +327,7 @@ public class HallLoadingPanel extends JPanel {
 		String[] vanListString = (String[]) message.getMessage();
 		comboBoxVan.setModel(new DefaultComboBoxModel<String>(vanListString));
 		
+		if(orgId==null)return;
 		message = serv.getNextId(orgId);
 		result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
@@ -340,7 +342,7 @@ public class HallLoadingPanel extends JPanel {
 		}
 		String temp=Integer.toString(num);
 		while(temp.length()<5)temp="0"+temp;
-		transitIdField.setText(orgId+temp);
+		transitIdField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
 	}
 	private void deleteExpress(){
 		int row=table.getSelectedRow();
