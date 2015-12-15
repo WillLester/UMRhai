@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +25,6 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
-import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
@@ -163,7 +163,7 @@ public class RecipientPanel extends JPanel {
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
-		if(Utility.isOutOfDate(datePanel.getCalendar())){
+		if(datePanel.getCalendar().after(Calendar.getInstance())){
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}

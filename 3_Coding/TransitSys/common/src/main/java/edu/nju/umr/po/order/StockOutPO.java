@@ -77,9 +77,11 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper,
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into stockoutwaiting values"+"('"+id+"','"+expressId+"',"+
+		case INSERT:command="insert into stockoutorderwaiting values"+"('"+id+"','"+expressId+"',"+
 		kind.ordinal()+",'"+transitId+"','"+DateFormat.DATE.format(date.getTime())+"','"+
-				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+userId+"')";break;
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+arrivePlace+"','"+userId+"')";
+		System.out.println(command);
+		break;
 		case DELETE:break;
 		case FIND:break;
 		case UPDATE:break;
@@ -108,7 +110,7 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper,
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from stockoutorderwaiting where id='"+id+"'";
+		return "delete from stockoutorderunpassed where id='"+id+"'";
 	}
 	@Override
 	public String getDetail() {

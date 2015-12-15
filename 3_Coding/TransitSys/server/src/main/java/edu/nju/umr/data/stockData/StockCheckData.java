@@ -75,11 +75,12 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 		Transit transits[] = Transit.values();
 		try {
 			while(result.next()){
-				if(result.getString(7).equals(id)){
+				if(result.getString(8).equals(id)){
 					Calendar date = Calendar.getInstance();
 					date.setTime(result.getDate(5));
 					Calendar opTime = Calendar.getInstance();
-					opTime.setTime(result.getDate(6));
+					String opTimeS = result.getString(6);
+					opTime.setTime(DateFormat.TIME.parse(opTimeS));
 					StockOutPO stockOut = new StockOutPO(result.getString(1), result.getString(2), date, transits[result.getInt(3)], 
 							result.getString(9),result.getString(4), opTime, result.getString(8), result.getString(9),result.getString(10));
 					stockOutList.add(stockOut);
@@ -89,6 +90,9 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			return null;
+		} catch (ParseException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 		}
 		return stockOutList;
 	}

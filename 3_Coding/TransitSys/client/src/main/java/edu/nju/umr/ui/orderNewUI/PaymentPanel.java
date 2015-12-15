@@ -24,7 +24,6 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.DoHint;
-import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
@@ -198,7 +197,7 @@ public class PaymentPanel extends JPanel {
 			HintFrame hint = new HintFrame("付款金额格式错误！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		if(Utility.isOutOfDate(datePanel.getCalendar())){
+		if(datePanel.getCalendar().after(Calendar.getInstance())){
 			HintFrame hint = new HintFrame("日期超出当前日期！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}

@@ -65,6 +65,9 @@ public class StockOutPanel extends JPanel {
 		datePanel.setDate(vo.getDate());
 		
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public StockOutPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
@@ -111,14 +114,14 @@ public class StockOutPanel extends JPanel {
 			
 		}
 		JLabel targetLabel = new JLabel("目的地");
-		targetLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		targetLabel.setBounds(355, 214, 85, 24);
+		targetLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		targetLabel.setBounds(251, 213, 85, 24);
 		add(targetLabel);
 		
 		targetCombo = new JComboBox<String>();
-		targetCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		targetCombo.setFont(new Font("黑体", Font.PLAIN, 15));
 		targetCombo.setModel(new DefaultComboBoxModel<String>(targetList));
-		targetCombo.setBounds(430, 214, 87, 25);
+		targetCombo.setBounds(334, 214, 183, 25);
 		add(targetCombo);
 		
 		JLabel transitLabel = new JLabel("装运形式");
@@ -134,7 +137,7 @@ public class StockOutPanel extends JPanel {
 		
 		JLabel transitIdLabel = new JLabel("中转单/汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		transitIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdLabel.setBounds(315, 282, 160, 24);
 		add(transitIdLabel);
 		
@@ -208,7 +211,7 @@ public class StockOutPanel extends JPanel {
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
-		if(Utility.isOutOfDate(datePanel.getCalendar())){
+		if(datePanel.getCalendar().after(Calendar.getInstance())){
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
