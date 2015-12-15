@@ -281,6 +281,7 @@ public class MysqlImpl implements MysqlService{
 			}
 			return result;
 		} catch (SQLException e){
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -6,7 +6,7 @@ import edu.nju.umr.vo.order.StockOutVO;
 
 public interface StockOutOrderLSer {
 	public Result create(StockOutVO order);
-	public ResultMessage getCities();
+	public ResultMessage getOrgs();
 	/**
 	 * 检测订单是否存在
 	 * @param id 订单号

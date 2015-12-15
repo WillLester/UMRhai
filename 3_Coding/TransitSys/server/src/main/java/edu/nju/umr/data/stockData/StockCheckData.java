@@ -4,9 +4,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.dataService.stockDSer.StockCheckDSer;
@@ -49,15 +51,17 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 					Calendar date = Calendar.getInstance();
 					date.setTime(result.getDate(8));
 					Calendar opTime = Calendar.getInstance();
-					opTime.setTime(result.getDate(10));
+					String opTimeS = result.getString(9);
+					opTime.setTime(DateFormat.TIME.parse(opTimeS));
 					StockInPO stockIn = new StockInPO(result.getString(1), result.getString(2), date, result.getString(3),
 							parts[result.getInt(4)], result.getString(5), result.getInt(6), result.getInt(7), opTime, 
 							result.getString(10), result.getString(11),result.getString(12));
 					stockInList.add(stockIn);
 				}
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return null;
 		}
 		return stockInList;
@@ -84,6 +88,7 @@ public class StockCheckData extends UnicastRemoteObject implements StockCheckDSe
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return null;
 		}
 		return stockOutList;
 	}

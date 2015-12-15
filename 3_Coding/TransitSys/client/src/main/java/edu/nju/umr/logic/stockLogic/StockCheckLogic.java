@@ -112,8 +112,6 @@ public class StockCheckLogic implements StockCheckLSer{
 			}
 	} catch (RemoteException e) {
 		return new ResultMessage(Result.NET_INTERRUPT,null);
-	} catch(NullPointerException e){
-		return new ResultMessage(Result.DATA_NOT_FOUND,null);
 	}
 	
 	return new ResultMessage(Result.SUCCESS,sList);

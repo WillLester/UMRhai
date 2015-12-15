@@ -210,16 +210,16 @@ public class CityListPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if((cityTable1.getSelectedRow() > 0)&&(cityTable2.getSelectedRow() > 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
+				if((cityTable1.getSelectedRow() >= 0)&&(cityTable2.getSelectedRow() >= 0)&&(cityTable1.getSelectedRow() != cityTable2.getSelectedRow())){
 					getDistance();
 				} else {
 					String name = "";
 					String id = "";
 					String province = "";
 					CityVO city = null;
-					if(cityTable1.getSelectedRow() > 0){
+					if(cityTable1.getSelectedRow() >= 0){
 						city = cityList.get(cityTable1.getSelectedRow());
-					} else if(cityTable2.getSelectedRow() > 0){
+					} else if(cityTable2.getSelectedRow() >= 0){
 						city = cityList.get(cityTable2.getSelectedRow());
 					} else {
 						return;

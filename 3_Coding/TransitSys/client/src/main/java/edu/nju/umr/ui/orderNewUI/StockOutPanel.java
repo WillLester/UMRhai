@@ -38,7 +38,7 @@ public class StockOutPanel extends JPanel {
 	private static final long serialVersionUID = 4807982962712921033L;
 	private JTextField expressField;
 	private JTextField transitIdField;
-	private JComboBox<String> cityCombo;
+	private JComboBox<String> targetCombo;
 	private JComboBox<String> transitCombo;
 	private JFrame frame;
 	private DatePanel datePanel;
@@ -60,7 +60,7 @@ public class StockOutPanel extends JPanel {
 		}
 		expressField.setText(vo.getExpressId());
 		transitIdField.setText(vo.getTransitId());
-		cityCombo.setSelectedItem(vo.getArrivePlace());
+		targetCombo.setSelectedItem(vo.getArrivePlace());
 		transitCombo.setSelectedItem(EnumTransFactory.checkTransit(vo.getKind()));
 		datePanel.setDate(vo.getDate());
 		
@@ -101,25 +101,25 @@ public class StockOutPanel extends JPanel {
 		datePanel.setBounds(449, 170, 285, 26);
 		add(datePanel);
 		
-		String cityList[] = null;
-		ResultMessage result = logicSer.getCities();
+		String targetList[] = null;
+		ResultMessage result = logicSer.getOrgs();
 		if(result.equals(Result.SUCCESS)){
-			cityList = (String[]) result.getMessage();
+			targetList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			
 		}
-		JLabel cityLabel = new JLabel("目的地");
-		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		cityLabel.setBounds(355, 214, 85, 24);
-		add(cityLabel);
+		JLabel targetLabel = new JLabel("目的地");
+		targetLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		targetLabel.setBounds(355, 214, 85, 24);
+		add(targetLabel);
 		
-		cityCombo = new JComboBox<String>();
-		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
-		cityCombo.setBounds(430, 214, 87, 25);
-		add(cityCombo);
+		targetCombo = new JComboBox<String>();
+		targetCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		targetCombo.setModel(new DefaultComboBoxModel<String>(targetList));
+		targetCombo.setBounds(430, 214, 87, 25);
+		add(targetCombo);
 		
 		JLabel transitLabel = new JLabel("装运形式");
 		transitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -237,7 +237,7 @@ public class StockOutPanel extends JPanel {
 	private StockOutVO createVO(){
 		Transit transits[] = Transit.values();
 		StockOutVO vo = new StockOutVO(idField.getText(),expressField.getText(), datePanel.getCalendar(), transits[transitCombo.getSelectedIndex()], 
-				(String) cityCombo.getSelectedItem(),transitIdField.getText(), name, orgId,userId);
+				(String) targetCombo.getSelectedItem(),transitIdField.getText(), name, orgId,userId);
 		return vo;
 	}
 	public void setEnabled(boolean enabled)

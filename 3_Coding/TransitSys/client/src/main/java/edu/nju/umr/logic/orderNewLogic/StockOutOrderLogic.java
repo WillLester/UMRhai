@@ -56,9 +56,9 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		return isSuccessful;
 	}
 
-	public ResultMessage getCities() {
+	public ResultMessage getOrgs() {
 		// TODO 自动生成的方法存根
-		return uti.getCities();
+		return uti.getOrgNames();
 	}
 	@Override
 	public boolean isExpressValid(String id) {
