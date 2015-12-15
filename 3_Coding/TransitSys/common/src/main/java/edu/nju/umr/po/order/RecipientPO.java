@@ -96,7 +96,7 @@ public class RecipientPO extends PO implements Serializable,KindGetter,OrderOper
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from recipientorderunpassed where userId='"+userId+"'";
+		return "delete from recipientorderunpassed where id='"+id+"'";
 	}
 	@Override
 	public String getDetail() {

@@ -97,7 +97,7 @@ public class ArrivePO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from arriveorderunpassed where userId ='"+userId+"'";
+		return "delete from arriveorderunpassed where id ='"+id+"'";
 	}
 	@Override
 	public String getDetail() {

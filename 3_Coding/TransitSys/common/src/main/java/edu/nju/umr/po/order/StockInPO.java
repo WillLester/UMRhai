@@ -120,7 +120,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from stockinorderunpassed where userId='"+userId+"'";
+		return "delete from stockinorderunpassed where id='"+id+"'";
 	}
 	@Override
 	public String getDetail() {
@@ -135,8 +135,8 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getToday() {
 		// TODO 自动生成的方法存根
-		return "select * from stockinorderwaiting,stockinorderpassed,stockinorderunpassed "
-				+ "where stockinorderwaiting.id like '%"+id+"%' or stockinorderpassed.id like '%"+id+"%' "
-						+ "or stockinorderunpassed.id like '%"+id+"%'";
+		return "select * from stockinorderwaiting where id like '%"+id+"%' union "
+				+ "select * from stockinorderpassed where id like '%"+id+"%' union "
+				+ "select * from stockinorderunpassed where id like '%"+id+"%'";
 	}
 }

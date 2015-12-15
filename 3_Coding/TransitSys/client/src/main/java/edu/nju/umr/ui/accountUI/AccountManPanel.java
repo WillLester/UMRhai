@@ -207,7 +207,11 @@ public class AccountManPanel extends JPanel{
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
+				if(e.getValueIsAdjusting()==false){
+					AccountVO vo = accountList.get(table.getSelectedRow());
+					nameField.setText(vo.getName());
+					balanceField.setText(vo.getBalance().toString());
+				}
 			}
 		});
 		table.setBounds(233, 101, 637, 335);

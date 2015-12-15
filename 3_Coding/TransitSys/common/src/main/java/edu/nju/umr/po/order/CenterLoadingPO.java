@@ -113,7 +113,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	@Override
 	public String getDeleteUnpassed() {
 		// TODO 自动生成的方法存根
-		return "delete from centerlorderunpassed where userId='"+userId+"'";
+		return "delete from centerlorderunpassed where id='"+id+"'";
 	}
 	@Override
 	public String getDetail() {
@@ -128,9 +128,9 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	@Override
 	public String getToday() {
 		// TODO 自动生成的方法存根
-		return "select * from centerlorderwaiting, centerlorderpassed, centerlorderunpassed where"
-				+ " centerlorderwaiting.id like '%"+id+"%'"+" or centerlorderpassed.id like '%"+id+"%' "
-						+ "or centerlorderunpassed.id like '%"+id+"%'";
+		return "select * from centerlorderwaiting where id like '%"+id+"%' union "
+				+ "select * from centerlorderpassed where id like '%"+id+"%' union "
+				+ "select * from centerlorderunpassed where id like '%"+id+"%'";
 	}
 	
 }

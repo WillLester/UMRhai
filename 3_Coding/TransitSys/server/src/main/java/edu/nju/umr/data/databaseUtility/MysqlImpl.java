@@ -446,6 +446,7 @@ public class MysqlImpl implements MysqlService{
 			return result;
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return null;
 		}
 	}
