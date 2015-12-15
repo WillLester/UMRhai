@@ -103,7 +103,7 @@ public class StockOutPanel extends JPanel {
 		
 		String targetList[] = null;
 		ResultMessage result = logicSer.getOrgs();
-		if(result.equals(Result.SUCCESS)){
+		if(result.getReInfo() == Result.SUCCESS){
 			targetList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
