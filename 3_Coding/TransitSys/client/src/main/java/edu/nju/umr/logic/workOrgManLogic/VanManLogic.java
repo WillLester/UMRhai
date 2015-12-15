@@ -113,13 +113,19 @@ public class VanManLogic implements VanManLSer{
 			int x1=Integer.parseInt(ar.get(i).getId());
 			int x2=Integer.parseInt(ar.get(i+1).getId());
 			if(x2-x1>1)
-				return new ResultMessage(Result.SUCCESS,x1+1+"");
+			{
+				String temp=Integer.toString(x1+1);
+				while(temp.length()<9)temp="0"+temp;
+				return new ResultMessage(Result.SUCCESS,temp);
+			}
 		}
 		int x=-1;
 		if(ar.size()>0)
 		{
 			x=Integer.parseInt(ar.get(ar.size()-1).getId());
-			return new ResultMessage(Result.SUCCESS,x+1+"");
+			String temp=Integer.toString(x+1);
+			while(temp.length()<9)temp="0"+temp;
+			return new ResultMessage(Result.SUCCESS,temp);
 		}
 		else
 		{
