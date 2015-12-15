@@ -69,4 +69,11 @@ public interface UtilityLSer {
 	 * @return String[]形式的账户列表
 	 */
 	public ResultMessage getAccountNames();
+	
+	/**
+	 * 获得中转中心名称列表
+	 * @return String[]形式的账户列表
+	 */
+	public ResultMessage getCenterNames();
+	
 }

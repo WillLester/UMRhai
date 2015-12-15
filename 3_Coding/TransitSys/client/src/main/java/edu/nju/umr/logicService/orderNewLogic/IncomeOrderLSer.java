@@ -12,6 +12,11 @@ public interface IncomeOrderLSer {
 	 * @return String[]形式的账户名称列表
 	 */
 	public ResultMessage getAccount();
+	/**
+	 * 获得下一个单据的编号
+	 * @param orgId 机构编号
+	 * @return int 表示数字编号
+	 */
 	public ResultMessage getNextId(String orgId);
 	
 }

@@ -113,7 +113,7 @@ public class UtilityLogic implements UtilityLSer{
 	
 	@Override
 	public ResultMessage getCenter(){
-		ArrayList<OrgVO> centerList=new ArrayList<OrgVO>();
+		List<OrgVO> centerList=new ArrayList<OrgVO>();
 		Result re=Result.DATA_NOT_FOUND;
 		ArrayList<OrgPO> centers=new ArrayList<OrgPO>();
 		try {
@@ -431,5 +431,22 @@ public class UtilityLogic implements UtilityLSer{
 			accountName[i]=accountList.get(i).getName();
 		}
 		return new ResultMessage(Result.SUCCESS,accountName);
+	}
+
+	@Override
+	public ResultMessage getCenterNames() {
+		// TODO 自动生成的方法存根
+		ResultMessage message = getCenter();
+		if(message.getReInfo() == Result.SUCCESS){
+			@SuppressWarnings("unchecked")
+			List<OrgVO> orgs = (List<OrgVO>) message.getMessage();
+			String[] orgS = new String[orgs.size()];
+			for(int i = 0;i < orgs.size();i++){
+				orgS[i] = orgs.get(i).getName();
+			}
+			return new ResultMessage(Result.SUCCESS, orgS);
+		} else {
+			return message;
+		}
 	}
 }

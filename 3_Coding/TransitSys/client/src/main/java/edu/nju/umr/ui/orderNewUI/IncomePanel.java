@@ -179,16 +179,12 @@ public class IncomePanel extends JPanel {
 		if(orgId!=null){
 			message=logicSer.getNextId(orgId);
 			Result result=message.getReInfo();
-			if(!result.equals(Result.SUCCESS))
-			{
+			if(!result.equals(Result.SUCCESS)){
 				DoHint.hint(result, frame);
-			}
-			else
-			{
+			} else{
 				int num=(Integer)message.getMessage();
 				String temp=Integer.toString(num);
-				while(temp.length()<5)
-				{
+				while(temp.length()<5){
 					temp="0"+temp;
 				}
 				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);

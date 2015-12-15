@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.TransitOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.TransitOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -28,11 +30,12 @@ import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.TransitVO;
 
-public class TransitPanel extends JPanel implements PriceCount{
+public class TransitPanel extends JPanel implements PriceCount {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7708522688857811718L;
+	private static final long serialVersionUID = 3747167346049866099L;
 	private JTextField idField;
 	private JTextField supervisionField;
 	private JTextField planeIdField;
@@ -52,7 +55,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 	 */
 	public TransitPanel(JFrame fr,TransitVO vo)
 	{
-		this(fr,"",vo.getOpName(),vo.getUserId());
+		this(fr,"",vo.getOpName(),vo.getUserId(),"");
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -69,7 +72,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		costField.setText(Double.toString(vo.getCost()));
 		datePanel.setDate(vo.getDate());
 	}
-	public TransitPanel(JFrame fr,String org,String name,String userId) {
+	public TransitPanel(JFrame fr,String org,String name,String userId,String orgId) {
 		setLayout(null);
 		frame = fr;
 		this.name = name;
@@ -107,12 +110,12 @@ public class TransitPanel extends JPanel implements PriceCount{
 		
 		JLabel startLabel = new JLabel("出发地");
 		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		startLabel.setBounds(242, 155, 85, 24);
+		startLabel.setBounds(140, 157, 85, 24);
 		add(startLabel);
 		
 		arriveCombo = new JComboBox<String>();
 		arriveCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveCombo.setBounds(485, 157, 87, 25);
+		arriveCombo.setBounds(432, 157, 140, 25);
 		arriveCombo.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e) {
 				getPrice();
@@ -122,7 +125,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		
 		startCombo = new JComboBox<String>();
 		startCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		startCombo.setBounds(307, 155, 87, 25);
+		startCombo.setBounds(214, 157, 148, 25);
 		ResultMessage message = logicSer.getCenters();
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			String[] centers = (String[]) message.getMessage();
@@ -218,7 +221,7 @@ public class TransitPanel extends JPanel implements PriceCount{
 		
 		JLabel arriveLabel = new JLabel("到达地");
 		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveLabel.setBounds(421, 155, 85, 24);
+		arriveLabel.setBounds(366, 157, 85, 24);
 		add(arriveLabel);
 		
 		JLabel containerLabel = new JLabel("货柜号");
@@ -257,6 +260,21 @@ public class TransitPanel extends JPanel implements PriceCount{
 			}
 		});
 		add(kindCombo);
+		
+		if(orgId!=null){
+			message=logicSer.getNextId(orgId);
+			Result result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS)){
+				DoHint.hint(result, frame);
+			} else{
+				int num=(Integer)message.getMessage();
+				String temp=Integer.toString(num);
+				while(temp.length()<7){
+					temp="0"+temp;
+				}
+				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
+		}
 	}
 	private boolean isLegal(){
 		String result = CheckLegal.isTransitLegal(idField.getText());
@@ -282,11 +300,6 @@ public class TransitPanel extends JPanel implements PriceCount{
 			DoHint.hint("请输入货柜号！", frame);
 			return false;
 		}
-//		int index = logicSer.isExpressValid(expressList.getExpresses());
-//		if(index != -1){
-//			DoHint.hint("第"+(index+1)+"个订单号不存在！", frame);
-//			return false;
-//		}
 		return true;
 	}
 	private TransitVO createVO(){
@@ -329,4 +342,5 @@ public class TransitPanel extends JPanel implements PriceCount{
 		BigDecimal price=(BigDecimal)message.getMessage();
 		costField.setText(price.toString()+"元");
 	}
+
 }

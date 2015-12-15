@@ -2,8 +2,10 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.TransitOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.TransitOrderDSer;
@@ -66,8 +68,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 
 	@Override
 	public ResultMessage getCenters() {
-		
-		return uti.getCenter();
+		return uti.getCenterNames();
 	}
 
 	@Override
@@ -85,7 +86,18 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	@Override
 	public ResultMessage getNextId(String orgId) {
 		// TODO Auto-generated method stub
-		return null;
+		String time=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+		try{
+			int num = transitData.getOrderSize(orgId+time);
+			if(num==-1)
+			{
+				return new ResultMessage(Result.DATABASE_ERROR,null);
+			}
+			return new ResultMessage(Result.SUCCESS,num);
+		}catch(RemoteException e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }

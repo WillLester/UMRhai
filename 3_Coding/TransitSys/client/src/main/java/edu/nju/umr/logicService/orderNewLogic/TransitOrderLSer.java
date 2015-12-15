@@ -16,5 +16,10 @@ public interface TransitOrderLSer {
 	 */
 	public int isExpressValid(List<String> expressList);
 	public ResultMessage getPrice(String org1,String org2,int tran,List<String> expressList);
+	/**
+	 * 获得下一个编号
+	 * @param orgId 机构编号
+	 * @return int 机构编号
+	 */
 	public ResultMessage getNextId(String orgId);
 }
