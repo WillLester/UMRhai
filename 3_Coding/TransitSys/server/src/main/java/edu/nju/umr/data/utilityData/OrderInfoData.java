@@ -106,6 +106,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 			ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, 
 					null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, null, null, null, null));
 			ExpressPO po = OrderPOFactory.getExpress(result);
+
 			if(po == null){
 				return null;
 			} else {

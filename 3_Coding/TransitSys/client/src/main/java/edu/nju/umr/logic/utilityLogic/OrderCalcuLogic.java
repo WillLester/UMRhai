@@ -114,12 +114,11 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		}
 		// 划为吨计算
 		weight = weight.divide(new BigDecimal(1000));
-		System.out.println(weight);
 		ResultMessage load = constantLSer.getFullLoad();
 		if(load.getReInfo().equals(Result.SUCCESS)){
 			@SuppressWarnings("unchecked")
-			List<Double> loads = (List<Double>) load.getMessage();
-			BigDecimal fullLoad = new BigDecimal(loads.get(transit.ordinal()));
+			List<BigDecimal> loads = (List<BigDecimal>) load.getMessage();
+			BigDecimal fullLoad = loads.get(transit.ordinal());
 			// 超出满载量，返回错误
 			if(weight.compareTo(fullLoad) == 1){
 				return new ResultMessage(Result.OUT_OF_LOAD, null);
@@ -127,9 +126,7 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		} else {
 			return new ResultMessage(Result.NET_INTERRUPT, null);
 		}
-		System.out.println(distance);
-		System.out.println(price);
-		System.out.println(weight);
+		System.out.println("wei"+weight);
 		return new ResultMessage(Result.SUCCESS, distance.multiply(price).multiply(weight));
 	}
 }
