@@ -249,6 +249,8 @@ public class WorkListPanel extends JPanel {
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
 					if(table.getSelectedRow() >= 0){
+						textFieldName.setEnabled(true);
+						textFieldMobile.setEnabled(true);
 						orgCombo.setEnabled(true);
 						delete.setEnabled(true);
 						modify.setEnabled(true);
@@ -262,6 +264,8 @@ public class WorkListPanel extends JPanel {
 							delete.setEnabled(false);
 						}
 					} else {
+						textFieldName.setEnabled(false);
+						textFieldMobile.setEnabled(false);
 						orgCombo.setEnabled(false);
 						delete.setEnabled(false);
 						modify.setEnabled(false);

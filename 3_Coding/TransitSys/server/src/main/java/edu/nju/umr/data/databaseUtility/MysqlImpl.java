@@ -258,6 +258,7 @@ public class MysqlImpl implements MysqlService{
 			result = state.executeQuery(po.getCommand(MysqlOperation.FIND));
 			return result;
 		} catch (SQLException e){
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -78,7 +78,7 @@ public class WorkPO extends PO implements Serializable{
 				command = "select * from user where juri="+juri.ordinal();
 			}
 			break;
-		case UPDATE:command="update user set orgId='"+orgId+"',org = '"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where keyid="+id;break;
+		case UPDATE:command="update user set name = '"+name+"',mobile = '"+mobile+"',orgId='"+orgId+"',org = '"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where keyid="+id;break;
 		}
 		return command;
 	}
