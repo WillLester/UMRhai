@@ -7,5 +7,5 @@ import edu.nju.umr.vo.order.PaymentVO;
 public interface PaymentOrderLSer {
 	public Result create(PaymentVO order);
 	public ResultMessage getAccount();
-	public ResultMessage getNextId(String orgId);
+	public ResultMessage getNextId();
 }

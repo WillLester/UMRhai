@@ -52,7 +52,7 @@ public class PaymentPanel extends JPanel {
 	 */
 	public PaymentPanel(JFrame fr,PaymentVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId(),null);
+		this(fr,vo.getOpName(),vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -68,7 +68,7 @@ public class PaymentPanel extends JPanel {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public PaymentPanel(JFrame fr,String name,String userId,String orgId) {
+	public PaymentPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -187,19 +187,19 @@ public class PaymentPanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		if(orgId!=null){
-			ResultMessage message=logicSer.getNextId(orgId);
-			Result result=message.getReInfo();
-			if(!result.equals(Result.SUCCESS)){
-				DoHint.hint(result, frame);
-			} else{
-				int num=(Integer)message.getMessage();
-				String temp=Integer.toString(num);
-				while(temp.length()<5){
-					temp="0"+temp;
-				}
-				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+		ResultMessage message=logicSer.getNextId();
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS))
+		{
+			DoHint.hint(result, frame);
+		} else
+		{
+			int num=(Integer)message.getMessage();
+			String temp=Integer.toString(num);
+			while(temp.length()<5){
+				temp="0"+temp;
 			}
+			idField.setText(DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
 		}
 		
 		

@@ -62,10 +62,10 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		return uti.getAccountNames();
 	}
 	
-	public ResultMessage getNextId(String orgId){
+	public ResultMessage getNextId(){
 		String time=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
 		try{
-			int num = paymentData.getOrderSize(orgId+time);
+			int num = paymentData.getOrderSize(time);
 			if(num==-1)
 			{
 				return new ResultMessage(Result.DATABASE_ERROR,null);
