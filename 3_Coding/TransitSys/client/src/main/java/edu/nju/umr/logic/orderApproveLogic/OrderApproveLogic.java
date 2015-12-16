@@ -197,7 +197,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 				PaymentPO pp=(PaymentPO)approveData.getOrder(id, kind);
 				pv=VPFactory.toPaymentVO(pp);
 				if(pp!=null)
-					hallSuc=Result.SUCCESS;
+					pSuc=Result.SUCCESS;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

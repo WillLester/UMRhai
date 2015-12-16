@@ -80,7 +80,6 @@ public class StockOutPO extends PO implements Serializable,KindGetter,OrderOper,
 		case INSERT:command="insert into stockoutorderwaiting values"+"('"+id+"','"+expressId+"',"+
 		kind.ordinal()+",'"+transitId+"','"+DateFormat.DATE.format(date.getTime())+"','"+
 				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+arrivePlace+"','"+userId+"')";
-		System.out.println(command);
 		break;
 		case DELETE:break;
 		case FIND:break;

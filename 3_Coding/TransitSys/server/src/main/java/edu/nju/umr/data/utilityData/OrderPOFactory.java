@@ -168,7 +168,8 @@ public class OrderPOFactory {
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(7));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(8));
+				String opTimeS = result.getString(8);
+				opTime.setTime(DateFormat.TIME.parse(opTimeS));
 				Pay pays[] = Pay.values();
 				return new PaymentPO(result.getString(1), date, result.getString(2), result.getString(3), 
 						pays[result.getInt(4)], result.getBigDecimal(5), result.getString(6), 
@@ -176,8 +177,9 @@ public class OrderPOFactory {
 			} else{
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
 			return null;
 		}
 	}

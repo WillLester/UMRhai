@@ -74,6 +74,7 @@ public class DiaryListPanel extends JPanel {
 			// TODO Auto-generated method stub
 			startDate.setDate(Calendar.getInstance());
 			endDate.setDate(Calendar.getInstance());
+			model.setRowCount(0);
 		}});
 		add(cancel);
 		
