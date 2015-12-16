@@ -90,10 +90,6 @@ public class BusiCircumPanel extends JPanel {
 		});
 		add(confirm);
 		
-//	    statementTable = new JTable();
-//		statementTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-//		add(statementTable);
-		
 		JLabel statementLabel = new JLabel("经营情况表");
 		statementLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
 		statementLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -162,8 +158,7 @@ public class BusiCircumPanel extends JPanel {
 			Calendar time=temp.getDate();
 			String timeString=time.get(Calendar.YEAR)+"年"+(time.get(Calendar.MONTH)+1)+"月"+time.get(Calendar.DATE)+"日";
 			String reason=null;
-			if(temp.getRemark().equals(null))
-			{
+			if(temp.getRemark() == null){
 				reason="运费收入";
 			}
 			else 
@@ -174,7 +169,7 @@ public class BusiCircumPanel extends JPanel {
 				case BONUS:reason="奖励";break;
 				}
 			String[] data=new String[]{kind,timeString,temp.getAmount().toString(),reason};
-			model.addColumn(data);
+			model.addRow(data);
 		}
 	}
 	private void export(){
@@ -193,16 +188,9 @@ public class BusiCircumPanel extends JPanel {
 			 }
 			 else
 			 chooser.approveSelection();
-			 Result result= serv.outputExcel(chooser.getSelectedFile().getName(), chooser.getSelectedFile().getParent());
+			 Result result= serv.outputExcel(chooser.getSelectedFile().getName(), chooser.getSelectedFile().getPath());
 			 DoHint.hint(result, frame);
 		}
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new BusiCircumPanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
 
 }

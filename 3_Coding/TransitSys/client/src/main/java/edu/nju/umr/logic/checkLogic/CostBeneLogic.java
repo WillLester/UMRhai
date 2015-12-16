@@ -85,9 +85,9 @@ public class CostBeneLogic implements CostBeneLSer{
 		if(income.getReInfo()!=Result.SUCCESS||payment.getReInfo()!=Result.SUCCESS){
 			return new ResultMessage(Result.NET_INTERRUPT,null);//可能存在隐患！
 		}else{
-			double in=(double)income.getMessage();
-			double pay=(double)payment.getMessage();
-			CostBeneVO cb=new CostBeneVO(in,pay,in-pay);
+			BigDecimal in=(BigDecimal)income.getMessage();
+			BigDecimal pay=(BigDecimal)payment.getMessage();
+			CostBeneVO cb=new CostBeneVO(in,pay,in.subtract(pay));
 			return new ResultMessage(Result.SUCCESS,cb);
 		}
 		

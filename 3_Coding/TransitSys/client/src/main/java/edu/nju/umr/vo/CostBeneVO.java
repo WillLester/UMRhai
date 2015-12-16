@@ -1,25 +1,27 @@
 package edu.nju.umr.vo;
 
+import java.math.BigDecimal;
+
 public class CostBeneVO {
-     private double income;
-     private double payment;
-     private double benefit;
+     private BigDecimal income;
+     private BigDecimal payment;
+     private BigDecimal benefit;
      
-     public CostBeneVO(double income,double payment,double benefit){
+     public CostBeneVO(BigDecimal income,BigDecimal payment,BigDecimal benefit){
     	 this.income=income;
     	 this.payment=payment;
     	 this.benefit=benefit;
      }
      
-     public double getIncome(){
+     public BigDecimal getIncome(){
     	 return income;
      }
      
-     public double getPayment(){
+     public BigDecimal getPayment(){
     	 return payment;
      }
      
-     public double getBenefit(){
+     public BigDecimal getBenefit(){
     	 return benefit;
      }
 }

@@ -1,42 +1,34 @@
 package edu.nju.umr.ui.checkUI;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.Table;
-import edu.nju.umr.vo.CostBeneVO;
-import edu.nju.umr.vo.ResultMessage;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import edu.nju.umr.logic.checkLogic.CostBeneLogic;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.vo.CostBeneVO;
+import edu.nju.umr.vo.ResultMessage;
 
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JButton;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-/*
- * yyy
- * 20151029
- * 成本收益表
- */
 public class CostBenePanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8005438231338516338L;
 	private JFrame frame;
-	private Table table;
-	private DefaultTableModel model;
 	private CostBeneLSer serv;
+	private JTextField inField;
+	private JTextField outField;
+	private JTextField profitField;
 	/**
 	 * Create the panel.
 	 */
@@ -48,18 +40,8 @@ public class CostBenePanel extends JPanel {
 		
 		JLabel nameLabel = new JLabel("成本收益");
 		nameLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-//		nameLabel.setBounds(this.getWidth()/2-this.getWidth()/14, this.getHeight()/20, this.getWidth()/7, this.getHeight()/15);
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
-		
-//		collectTable = new JTable();
-//		collectTable.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
-//		add(collectTable);
-		
-//		JButton export = new JButton("导出");
-//		export.setBounds(550-Constants.BUTTON_WIDTH/2, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-//		
-//		add(export);
 		
 		JButton out = new JButton("退出");
 		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
@@ -70,46 +52,52 @@ public class CostBenePanel extends JPanel {
 			}
 		});
 		add(out);
-		tableInit();
-		showData();
+		
+		JLabel inLabel = new JLabel("总收入");
+		inLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		inLabel.setBounds(210, 196, 106, 27);
+		add(inLabel);
+		
+		JLabel outLabel = new JLabel("总支出");
+		outLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		outLabel.setBounds(495, 196, 106, 27);
+		add(outLabel);
+		
+		JLabel profitLabel = new JLabel("总利润");
+		profitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		profitLabel.setBounds(810, 196, 106, 27);
+		add(profitLabel);
+		
+		inField = new JTextField();
+		inField.setEditable(false);
+		inField.setBounds(156, 233, 175, 27);
+		add(inField);
+		inField.setColumns(10);
+		
+		outField = new JTextField();
+		outField.setEditable(false);
+		outField.setColumns(10);
+		outField.setBounds(438, 233, 175, 27);
+		add(outField);
+		
+		profitField = new JTextField();
+		profitField.setEditable(false);
+		profitField.setColumns(10);
+		profitField.setBounds(754, 233, 175, 27);
+		add(profitField);
 
+		dataInit();
 	}
-	void tableInit(){
-		table = new Table(new DefaultTableModel());
-		model=(DefaultTableModel)table.getModel();
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
-			}
-		});
-		table.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(this.getWidth()/10, this.getHeight()/9, this.getWidth()/10*8, this.getHeight()/9*6);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"收入","支出","利润"};
-		model.setColumnIdentifiers(columnNames);
-		add(scroll);
-	}
-	private void showData(){
-		ResultMessage message=serv.getCostBene();
-		Result result=message.getReInfo();
-		if(!result.equals(Result.SUCCESS))
-		{
-			new HintFrame(result,frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
-			return;
+	
+	private void dataInit(){
+		ResultMessage message = serv.getCostBene();
+		if(message.getReInfo() == Result.SUCCESS){
+			CostBeneVO vo = (CostBeneVO) message.getMessage();
+			inField.setText(vo.getIncome().toString());
+			outField.setText(vo.getPayment().toString());
+			profitField.setText(vo.getBenefit().toString());
+		} else {
+			DoHint.hint(message.getReInfo(), frame);
 		}
-		CostBeneVO temp=(CostBeneVO)message.getMessage();
-		String[] data=new String[]{Double.toString(temp.getIncome()),Double.toString(temp.getPayment()),Double.toString(temp.getBenefit())};
-		model.setRowCount(0);
-		model.addRow(data);
 	}
-//	public static void main(String[] args)
-//	{
-//		JFrame frame=new JFrame();
-//		frame.setContentPane(new CostBenePanel(frame));
-//		frame.setSize(1200,800);
-//		frame.setVisible(true);
-//	}
 }
