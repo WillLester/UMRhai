@@ -142,7 +142,7 @@ public class FinancePanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame fr = new FunctionFrame("生成付款单");
-				fr.setContentPane(new PaymentPanel(fr,user.getName(),user.getId()));
+				fr.setContentPane(new PaymentPanel(fr,user.getName(),user.getId(),user.getOrgId()));
 			}
 		});
 		

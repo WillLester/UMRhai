@@ -59,5 +59,9 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 	public ResultMessage getAccount() {
 		return uti.getAccountNames();
 	}
+	
+	public ResultMessage getNextId(String orgId) {
+		
+	}
 
 }
