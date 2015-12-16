@@ -67,9 +67,7 @@ class OrderUpdate {
 			list = getTransitExp(voA.getId());
 			if(list == null){
 				list = getHallLoadExp(voA.getId());
-			} else {
-				return Result.DATA_NOT_FOUND;
-			}
+			} 
 			for(String express:list){
 				infoLogic.update(express, 
 						DateFormat.TIME.format(Calendar.getInstance().getTime())+" "+org+" 已收入");
