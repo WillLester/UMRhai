@@ -170,7 +170,7 @@ public class OrderPOFactory {
 				Calendar opTime = Calendar.getInstance();
 				opTime.setTime(result.getDate(8));
 				Pay pays[] = Pay.values();
-				return new PaymentPO(result.getInt(1), date, result.getString(2), result.getString(3), 
+				return new PaymentPO(result.getString(1), date, result.getString(2), result.getString(3), 
 						pays[result.getInt(4)], result.getBigDecimal(5), result.getString(6), 
 						opTime, result.getString(9),result.getString(10));
 			} else{

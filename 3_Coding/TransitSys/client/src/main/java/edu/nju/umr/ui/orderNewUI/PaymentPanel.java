@@ -29,10 +29,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 
 public class PaymentPanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3000345225479799005L;
+	private static final long serialVersionUID = 3964332892070986657L;
 	private JTextField payerField;
 	private JTextField costField;
 	private JFrame frame;
@@ -44,6 +45,7 @@ public class PaymentPanel extends JPanel {
 	private JComboBox<String> reasonCombo;
 	private JTextArea remarkArea;
 	private String userId;
+	private JTextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -62,6 +64,9 @@ public class PaymentPanel extends JPanel {
 		reasonCombo.setSelectedItem(EnumTransFactory.checkPay(vo.getKind()));
 		remarkArea.setText(vo.getRemarks());
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public PaymentPanel(JFrame fr,String name,String userId) {
 		setLayout(null);
 		frame=fr;
@@ -71,18 +76,18 @@ public class PaymentPanel extends JPanel {
 		
 		JLabel titleLabel = new JLabel("付款单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
 		JLabel dateLabel = new JLabel("付款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		dateLabel.setBounds(286, 98, 120, 24);
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		dateLabel.setBounds(286, 116, 120, 24);
 		add(dateLabel);	
 		
 		JLabel payerLabel = new JLabel("付款人");
-		payerLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		payerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		payerLabel.setBounds(235, 175, 85, 24);
 		add(payerLabel);
 		
@@ -93,7 +98,7 @@ public class PaymentPanel extends JPanel {
 		add(payerField);
 		
 		JLabel amountLabel = new JLabel("付款金额");
-		amountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		amountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		amountLabel.setBounds(397, 175, 85, 24);
 		add(amountLabel);
 		
@@ -105,12 +110,12 @@ public class PaymentPanel extends JPanel {
 		
 		JLabel remarkLabel = new JLabel("备注");
 		remarkLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		remarkLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		remarkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		remarkLabel.setBounds(429, 291, 130, 24);
 		add(remarkLabel);
 		
 		JLabel accountLabel = new JLabel("付款账号");
-		accountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		accountLabel.setBounds(597, 175, 85, 24);
 		add(accountLabel);
 		
@@ -119,18 +124,18 @@ public class PaymentPanel extends JPanel {
 		add(remarkArea);
 		
 		JLabel reasonLabel = new JLabel("条目");
-		reasonLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		reasonLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		reasonLabel.setBounds(437, 237, 59, 24);
 		add(reasonLabel);
 		
 		reasonCombo = new JComboBox<String>();
 		reasonCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		reasonCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"租金/年","运费/次","工资/月","奖励"}));
-		reasonCombo.setBounds(499, 237, 87, 25);
+		reasonCombo.setBounds(499, 237, 111, 25);
 		add(reasonCombo);
 		
 		datePanel=new DatePanel();
-		datePanel.setBounds(474, 98, 285, 26);
+		datePanel.setBounds(472, 116, 285, 26);
 		add(datePanel);
 		
 		getAccount();
@@ -169,6 +174,18 @@ public class PaymentPanel extends JPanel {
 		});
 		add(cancelButton);
 		
+		JLabel idLabel = new JLabel("单据编号");
+		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(286, 66, 120, 24);
+		add(idLabel);
+		
+		idField = new JTextField();
+		idField.setEditable(false);
+		idField.setBounds(458, 66, 251, 25);
+		add(idField);
+		idField.setColumns(10);
+		
 		
 
 	}
@@ -206,7 +223,7 @@ public class PaymentPanel extends JPanel {
 	private PaymentVO createVO(){
 		Calendar date = datePanel.getCalendar();
 		Pay pays[] = Pay.values();
-		PaymentVO payment = new PaymentVO(date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()],
+		PaymentVO payment = new PaymentVO(idField.getText(),date, payerField.getText(), (String)accountCombo.getSelectedItem(), pays[reasonCombo.getSelectedIndex()],
 				new BigDecimal(costField.getText()), remarkArea.getText(), name,userId);
 		return payment;
 	}

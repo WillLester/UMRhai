@@ -17,7 +17,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	 * 
 	 */
 	private static final long serialVersionUID = -763899204690976592L;
-	private int id;
+	private String id;
 	private Calendar date;
 	private String payer;
 	private String account;
@@ -28,7 +28,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String opName;
 	private String userId;
 	
-	public PaymentPO(int id, Calendar date, String payer, String account,
+	public PaymentPO(String id, Calendar date, String payer, String account,
 			Pay kind, BigDecimal amount, String remarks, Calendar opTime,
 			String opName,String userId) {
 		super();
@@ -43,7 +43,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.opName = opName;
 		this.userId = userId;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public Calendar getDate() {
@@ -78,7 +78,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into paymentorderwaiting values"+"("+id+",'"+payer+"','"+account+"',"+kind.ordinal()+","+amount+",'"+remarks+"','"+
+		case INSERT:command="insert into paymentorderwaiting values"+"('"+id+"','"+payer+"','"+account+"',"+kind.ordinal()+","+amount+",'"+remarks+"','"+
 		DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;
@@ -95,15 +95,15 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getApprove(boolean isPassed) {
 		// TODO 自动生成的方法存根
 		if(isPassed){
-			return "insert into paymentorderpassed select * from paymentorderwaiting where id="+id;
+			return "insert into paymentorderpassed select * from paymentorderwaiting where id='"+id+"'";
 		} else {
-			return "insert into paymentorderunpassed select * from paymentorderwaiting where id="+id;
+			return "insert into paymentorderunpassed select * from paymentorderwaiting where id='"+id+"'";
 		}
 	}
 	@Override
 	public String getDeleteWaiting() {
 		// TODO 自动生成的方法存根
-		return "delete from paymentorderwaiting where id="+id;
+		return "delete from paymentorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getDeleteUnpassed() {
@@ -113,7 +113,7 @@ public class PaymentPO extends PO implements Serializable,KindGetter,OrderOper{
 	@Override
 	public String getDetail() {
 		// TODO 自动生成的方法存根
-		return "select * from paymentorderwaiting where id="+id;
+		return "select * from paymentorderwaiting where id='"+id+"'";
 	}
 	@Override
 	public String getUnpassed() {

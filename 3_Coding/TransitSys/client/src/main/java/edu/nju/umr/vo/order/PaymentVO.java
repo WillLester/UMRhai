@@ -8,7 +8,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.PaymentPanel;
 
 public class PaymentVO implements ShowOrder{
-//	private String id;
+	private String id;
 	private Calendar date;
 	private String payer;
 	private String account;
@@ -17,8 +17,9 @@ public class PaymentVO implements ShowOrder{
 	private String remarks;
 	private String opName;
 	private String userId;
-	public PaymentVO(Calendar date,String payer,String account,Pay kind,BigDecimal amount,String remarks,String opName,String userId) {
+	public PaymentVO(String id,Calendar date,String payer,String account,Pay kind,BigDecimal amount,String remarks,String opName,String userId) {
 		// TODO 自动生成的构造函数存根
+		this.id = id;
 		this.date = date;
 		this.payer = payer;
 		this.account = account;
@@ -28,9 +29,9 @@ public class PaymentVO implements ShowOrder{
 		this.opName=opName;
 		this.userId = userId;
 	}
-//	public String getId() {
-//		return id;
-//	}
+	public String getId() {
+		return id;
+	}
 	public Calendar getDate() {
 		return date;
 	}

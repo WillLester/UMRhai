@@ -42,7 +42,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = paymentData.create(VPFactory.toPaymentPO(order, 0));
+			isSuc = paymentData.create(VPFactory.toPaymentPO(order));
 			if(isSuc == Result.SUCCESS){
 				isSuc = diarySer.addDiary("生成了付款单", order.getOpName());
 			}

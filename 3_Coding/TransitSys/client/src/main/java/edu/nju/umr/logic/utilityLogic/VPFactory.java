@@ -128,11 +128,11 @@ public class VPFactory {
 	
 	//付款单
 	public static PaymentVO toPaymentVO(PaymentPO po){
-		PaymentVO vo=new PaymentVO(po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks(), po.getOpName(),po.getUserId());
+		PaymentVO vo=new PaymentVO(po.getId(),po.getDate(), po.getPayer(), po.getAccount(), po.getKind(), po.getAmount(), po.getRemarks(), po.getOpName(),po.getUserId());
 		return vo;
 	}
-	public static PaymentPO toPaymentPO(PaymentVO vo,int id){
-		PaymentPO po=new PaymentPO(id, vo.getDate(), vo.getPayer(), vo.getAccount(), vo.getKind(), vo.getAmount(),vo.getRemarks(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
+	public static PaymentPO toPaymentPO(PaymentVO vo){
+		PaymentPO po=new PaymentPO(vo.getId(), vo.getDate(), vo.getPayer(), vo.getAccount(), vo.getKind(), vo.getAmount(),vo.getRemarks(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	

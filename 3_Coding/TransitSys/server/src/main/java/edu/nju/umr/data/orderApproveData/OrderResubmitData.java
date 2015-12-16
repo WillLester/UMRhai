@@ -121,7 +121,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getPayment(String userId){
-		OrderOper po = new PaymentPO(0, null, null, null, null, null, null, null, null, userId);
+		OrderOper po = new PaymentPO(null, null, null, null, null, null, null, null, null, userId);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.producePayment(result);
