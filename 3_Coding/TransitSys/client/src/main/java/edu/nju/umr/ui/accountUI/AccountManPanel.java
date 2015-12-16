@@ -208,9 +208,11 @@ public class AccountManPanel extends JPanel{
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					AccountVO vo = accountList.get(table.getSelectedRow());
-					nameField.setText(vo.getName());
-					balanceField.setText(vo.getBalance().toString());
+					if(table.getSelectedRow() >= 0){
+						AccountVO vo = accountList.get(table.getSelectedRow());
+						nameField.setText(vo.getName());
+						balanceField.setText(vo.getBalance().toString());
+					}
 				}
 			}
 		});
