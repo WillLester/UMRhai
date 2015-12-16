@@ -69,7 +69,7 @@ public class AccountManPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if(isSearchLegal()){
-					accountList=getAccounts(searchField.getText());
+					getAccounts(searchField.getText());
 					displayAccounts();
 				}
 			}
@@ -83,7 +83,7 @@ public class AccountManPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountList=getAccounts(null);
+				getAccounts(null);
 				displayAccounts();
 			}
 		});
@@ -130,13 +130,11 @@ public class AccountManPanel extends JPanel{
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
 		        	Result result = accountLSer.deleteAccount(table.getSelectedRow(),name);
-		        	if(result.equals(Result.SUCCESS))
-		        	{
+		        	if(result.equals(Result.SUCCESS)){
 		        		fresh();
 		        		DoHint.hint(result, frame);
 		        	}
-		        	else 
-		        	{
+		        	else {
 		        		@SuppressWarnings("unused")
 		        		HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		        	}
@@ -198,7 +196,7 @@ public class AccountManPanel extends JPanel{
 		});
 
 		tableInit();
-		accountList=getAccounts(null);
+		getAccounts(null);
 		displayAccounts();
 		
 	}
@@ -208,7 +206,7 @@ public class AccountManPanel extends JPanel{
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(table.getSelectedRow() >= 0){
+					if((table.getSelectedRow() >= 0)&&(table.getSelectedRow() < accountList.size())){
 						AccountVO vo = accountList.get(table.getSelectedRow());
 						nameField.setText(vo.getName());
 						balanceField.setText(vo.getBalance().toString());
@@ -227,14 +225,14 @@ public class AccountManPanel extends JPanel{
 		add(scroll);
 	}
 	@SuppressWarnings("unchecked")
-	private ArrayList<AccountVO> getAccounts(String keyword){
+	private void getAccounts(String keyword){
 		ResultMessage message = logicSer.searchAccount(keyword);
 		if(message.getReInfo().equals(Result.SUCCESS)){
-			return (ArrayList<AccountVO>)logicSer.searchAccount(keyword).getMessage();
+			accountList = (ArrayList<AccountVO>) logicSer.searchAccount(keyword).getMessage();
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-			return new ArrayList<AccountVO>();
+			accountList = new ArrayList<AccountVO>();
 		}
 		
 	}
@@ -253,6 +251,8 @@ public class AccountManPanel extends JPanel{
 		String info[] = {"",""};
 		model.addRow(info);
 		table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
+		nameField.setText("");
+		balanceField.setText("0");
 	}
 	private boolean isSearchLegal(){
 		if(searchField.getText().equals("")){

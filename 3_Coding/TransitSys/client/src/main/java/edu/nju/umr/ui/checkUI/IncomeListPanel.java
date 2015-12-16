@@ -1,14 +1,24 @@
 package edu.nju.umr.ui.checkUI;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import edu.nju.umr.logic.checkLogic.IncomeListLogic;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
@@ -18,18 +28,6 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
-
-import javax.swing.JRadioButton;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
 
 /*
  * yyy 
@@ -56,37 +54,15 @@ public class IncomeListPanel extends JPanel {
 	public IncomeListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
+		serv = new IncomeListLogic();
 		
 		//设置panel大小
 		this.setSize(Constants.PANEL_WIDTH, Constants.PANEL_HEIGHT);
 		
-		JRadioButton radioButtonDate = new JRadioButton("日期");
-//		JLabel radioButtonDate=new JLabel("日期");
-		radioButtonDate.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-		add(radioButtonDate);
-		
 		DatePanel date=new DatePanel();
 		date.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, 267, 21);
-		date.setEnabled(false);
 		add(date);
 		
-		radioButtonDate.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				if(date.isEnabled())
-				{
-					date.setEnabled(false);
-				}
-				else
-				{
-					date.setEnabled(true);
-				}
-			}
-		});
-		
-		
-//		JRadioButton radioButtonHall = new JRadioButton("按营业厅查看");
-//		radioButtonHall.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
-//		add(radioButtonHall);
 		
 		JLabel hallLabel = new JLabel("营业厅");
 		hallLabel.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
