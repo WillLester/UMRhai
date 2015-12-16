@@ -80,6 +80,8 @@ public class CountLogic implements CountLSer{
 			countPO = countData.getCount();
 			if(countPO!=null){
 				result=Result.SUCCESS;
+			} else {
+				return new ResultMessage(result, null);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

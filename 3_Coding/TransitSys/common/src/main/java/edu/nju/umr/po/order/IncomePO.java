@@ -90,7 +90,8 @@ public class IncomePO extends PO implements Serializable,KindGetter,OrderOper,Ge
 			DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"','"+orgId+"','"+userId+"','"+account+"')";break;
 		case DELETE:break;
 		case FIND:
-			command = "select * from incomeorderpassed where orgId='"+orgId+"'";break;
+			command = "select * from incomeorderpassed where orgId='"+orgId+"'";
+			break;
 		case UPDATE:break;
 		}
 		return command;

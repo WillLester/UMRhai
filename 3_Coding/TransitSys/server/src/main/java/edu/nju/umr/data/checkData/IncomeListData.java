@@ -15,27 +15,26 @@ import edu.nju.umr.po.order.IncomePO;
 /*
  * 收款记录数据
  */
-public class CollectRecordData extends UnicastRemoteObject implements CollectRecordDSer{
+public class IncomeListData extends UnicastRemoteObject implements CollectRecordDSer{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2546029703937491602L;
 	private MysqlService mysqlSer;
-	private static CollectRecordData data = null;
-	private CollectRecordData() throws RemoteException {
+	private static IncomeListData data = null;
+	private IncomeListData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
 		mysqlSer = MysqlImpl.getMysql();
 	}
 	
-	public static CollectRecordData getCollectRecord() throws RemoteException{
+	public static IncomeListData getCollectRecord() throws RemoteException{
 		if(data == null){
-			data = new CollectRecordData();
+			data = new IncomeListData();
 		} 
 		return data;
 	}
 
-	@SuppressWarnings("deprecation")
 	public ArrayList<IncomePO> getCollectRec(Calendar date, String id)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
@@ -45,8 +44,8 @@ public class CollectRecordData extends UnicastRemoteObject implements CollectRec
 		} else {
 			Calendar start = Calendar.getInstance();
 			Calendar end = Calendar.getInstance();
-			start.set(date.getTime().getYear()+1900, date.getTime().getMonth(), date.getTime().getDay(), 0, 0, 0);
-			end.set(date.getTime().getYear()+1900, date.getTime().getMonth(), date.getTime().getDay(), 23, 59, 59);
+			start.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DATE), 0, 0, 0);
+			end.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DATE), 23, 59, 59);
 			ResultSet result = mysqlSer.checkDate(start, end, POKind.INCOME);
 			ArrayList<IncomePO> incomeList = ArrayListFactory.produceIncomeList(result);
 			if(id == null){

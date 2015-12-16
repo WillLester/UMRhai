@@ -36,10 +36,10 @@ public class IncomeListLogic implements IncomeListLSer{
             e.printStackTrace();   
         } 
 	}
-	public ResultMessage seeIncomeList(Calendar date, String hallId) {
+	public ResultMessage seeIncomeList(Calendar date, String org) {
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();
 		try {
-			ArrayList<IncomePO> income = collectData.getCollectRec(date, hallId);
+			ArrayList<IncomePO> income = collectData.getCollectRec(date, org);
 			for(IncomePO po:income){
 				IncomeVO vo = VPFactory.toIncomeVO(po);
 				incomeList.add(vo);

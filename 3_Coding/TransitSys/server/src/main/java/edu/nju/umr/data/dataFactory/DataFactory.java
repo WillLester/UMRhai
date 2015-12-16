@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import edu.nju.umr.data.accountData.AccountData;
 import edu.nju.umr.data.accountData.CountData;
 import edu.nju.umr.data.checkData.BusiCircumData;
-import edu.nju.umr.data.checkData.CollectRecordData;
+import edu.nju.umr.data.checkData.IncomeListData;
 import edu.nju.umr.data.checkData.CostBeneData;
 import edu.nju.umr.data.checkData.DiaryData;
 import edu.nju.umr.data.cityData.CityData;
@@ -206,7 +206,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 
 	public CollectRecordDSer getCollectForm() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return CollectRecordData.getCollectRecord();
+		return IncomeListData.getCollectRecord();
 	}
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
