@@ -4,7 +4,9 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.PaymentOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.PaymentOrderDSer;
@@ -60,8 +62,19 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 		return uti.getAccountNames();
 	}
 	
-	public ResultMessage getNextId(String orgId) {
-		
+	public ResultMessage getNextId(String orgId){
+		String time=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+		try{
+			int num = paymentData.getOrderSize(orgId+time);
+			if(num==-1)
+			{
+				return new ResultMessage(Result.DATABASE_ERROR,null);
+			}
+			return new ResultMessage(Result.SUCCESS,num);
+		}catch(RemoteException e)
+		{
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }

@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.PaymentOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.PaymentOrderLSer;
 import edu.nju.umr.po.enums.Pay;
@@ -51,7 +52,7 @@ public class PaymentPanel extends JPanel {
 	 */
 	public PaymentPanel(JFrame fr,PaymentVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -67,7 +68,7 @@ public class PaymentPanel extends JPanel {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public PaymentPanel(JFrame fr,String name,String userId) {
+	public PaymentPanel(JFrame fr,String name,String userId,String orgId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -185,6 +186,21 @@ public class PaymentPanel extends JPanel {
 		idField.setBounds(458, 66, 251, 25);
 		add(idField);
 		idField.setColumns(10);
+		
+		if(orgId!=null){
+			ResultMessage message=logicSer.getNextId(orgId);
+			Result result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS)){
+				DoHint.hint(result, frame);
+			} else{
+				int num=(Integer)message.getMessage();
+				String temp=Integer.toString(num);
+				while(temp.length()<5){
+					temp="0"+temp;
+				}
+				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
+		}
 		
 		
 
