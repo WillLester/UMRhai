@@ -50,7 +50,15 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	@Override
 	public Result deleteCount(int id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		File file = new File(LOCATION+"/count"+id+".ser");
+		for(int i = id;i < countCount()-1;i++){
+			CountPO count = (CountPO) SerialHelper.readFromFile(LOCATION+"/count"+(i+1)+".ser");
+			count.setId(i);
+			Result result = SerialHelper.writeToFile(count, LOCATION+"/count"+i+".ser");
+			if(result != Result.SUCCESS){
+				return result;
+			}
+		}
+		File file = new File(LOCATION+"/count"+(countCount()-1)+".ser");
 		boolean isSuc = file.delete();
 		if(isSuc){
 			return Result.SUCCESS;

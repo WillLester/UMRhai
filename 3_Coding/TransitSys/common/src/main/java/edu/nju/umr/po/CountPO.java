@@ -33,6 +33,9 @@ public class CountPO implements Serializable{
 	public int getId() {
 		return id;
 	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public ArrayList<OrgPO> getOrganizations() {
 		return organizations;
 	}

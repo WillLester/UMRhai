@@ -63,7 +63,7 @@ public class CountLogic implements CountLSer{
 			return Result.NET_INTERRUPT;
 		}
 		
-		CountPO count=new CountPO(0,(ArrayList<OrgPO>) orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
+		CountPO count=new CountPO(countPO.size(),(ArrayList<OrgPO>) orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
 		try {
 			Result result=countData.addCount(count);
 			result = diarySer.addDiary("新增账", name);

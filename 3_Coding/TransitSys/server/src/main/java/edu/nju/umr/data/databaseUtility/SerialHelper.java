@@ -23,12 +23,12 @@ public class SerialHelper {
 	public static Object readFromFile(String loc)
 	{
 		Object ob=null;
-		try
-		{
+		try{
 			ObjectInputStream is=new ObjectInputStream(new FileInputStream(loc));
 			ob=is.readObject();
 			is.close();
 		}catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 		return ob;

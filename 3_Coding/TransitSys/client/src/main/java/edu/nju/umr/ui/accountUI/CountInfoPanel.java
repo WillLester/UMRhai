@@ -125,6 +125,7 @@ public class CountInfoPanel extends JPanel{
 			}
 		});
 		add(orgCombo);
+		orgCombo.setSelectedIndex(0);
 		
 		JLabel stockLabel = new JLabel("库存信息");
 		stockLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
@@ -157,6 +158,7 @@ public class CountInfoPanel extends JPanel{
 			}
 		});
 		add(stockCombo);
+		stockCombo.setSelectedIndex(0);
 		
 		JLabel accountLabel = new JLabel("账户信息");
 		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
@@ -183,6 +185,7 @@ public class CountInfoPanel extends JPanel{
 			}
 		});
 		add(accountCombo);
+		accountCombo.setSelectedIndex(0);
 		
 		JLabel workerLabel = new JLabel("人员信息");
 		workerLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
