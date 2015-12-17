@@ -355,6 +355,7 @@ public class HallLoadingPanel extends JPanel {
 	private boolean getPrice(){
 		String des=(String)comboBoxDestination.getSelectedItem();
 		if(des==null||des.isEmpty())return false;
+		if(org==null)return false;
 		ResultMessage message=serv.getPrice(org, des,expressIdList);
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){

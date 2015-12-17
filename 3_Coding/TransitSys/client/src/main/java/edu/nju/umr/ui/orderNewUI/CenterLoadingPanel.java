@@ -268,6 +268,8 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		return true;
 	}
 	public void getPrice(){
+		if(org==null)return;
+		if(arriveCombo.getSelectedIndex()<0)return;
 		ResultMessage message=logicSer.getPrice(org,(String)arriveCombo.getSelectedItem(),expressList.getExpresses());
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS))
