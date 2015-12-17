@@ -18,6 +18,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/poi-examples-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="F:/java-mars/poi-3.13/ooxml-lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

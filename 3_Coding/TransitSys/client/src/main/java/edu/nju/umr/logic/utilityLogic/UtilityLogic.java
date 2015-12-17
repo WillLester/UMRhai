@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.utility.UtilityDFacSer;
@@ -230,16 +230,16 @@ public class UtilityLogic implements UtilityLSer{
 	//导出excel文件
 	public Result outputExcel(String data[][],String name, String location) {
 		@SuppressWarnings("resource")
-		HSSFWorkbook wb=new HSSFWorkbook();//创建一个workbook对应一个excel文件
-		HSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
+		XSSFWorkbook wb=new XSSFWorkbook();//创建一个workbook对应一个excel文件
+		XSSFSheet sheet=wb.createSheet(name);//在wb中添加一个sheet对应excel中sheet
 		
-		HSSFCellStyle style=wb.createCellStyle();
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		XSSFCellStyle style=wb.createCellStyle();
+		style.setAlignment(XSSFCellStyle.ALIGN_CENTER);
 		
 		for(int i=0;i<data.length;i++){
-			HSSFRow row=sheet.createRow((int)i);//创建表格第i行
+			XSSFRow row=sheet.createRow((int)i);//创建表格第i行
 			for(int j=0;j<data[0].length;j++){
-				HSSFCell cell=row.createCell(j);	
+				XSSFCell cell=row.createCell(j);	
 				cell.setCellValue(data[i][j]);
 				if(i==0)
 					cell.setCellStyle(style);//表头格式居中
@@ -247,7 +247,7 @@ public class UtilityLogic implements UtilityLSer{
 		}
 		
 		try {
-			FileOutputStream fout=new FileOutputStream(location+name+".xls");
+			FileOutputStream fout=new FileOutputStream(location+".xlsx");
 			wb.write(fout);
 			fout.close();
 		} catch (FileNotFoundException e) {

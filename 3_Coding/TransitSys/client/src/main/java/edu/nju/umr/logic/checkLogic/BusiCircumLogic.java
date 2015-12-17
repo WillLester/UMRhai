@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.check.BusiCircumDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
+import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
@@ -80,11 +81,30 @@ public class BusiCircumLogic implements BusiCircumLSer{
 		data[0][3]="缘由";
 		
 		for(int i=0;i<busiList.size();i++){
-			data[i+1][0]=busiList.get(i).getAmount()+"";
+			String kind="";
+			if(busiList.get(i).getKind()==1){
+				kind="付款单";
+			}else{
+				kind="入款单";
+			}
+			data[i+1][0]=kind;
 			Calendar c=busiList.get(i).getDate();
 			data[i+1][1]=(c.get(Calendar.YEAR)+"")+"."+((c.get(Calendar.MONTH)+1)+"")+"."+(c.get(Calendar.DATE)+"");
 			data[i+1][2]=busiList.get(i).getAmount()+"";
-			data[i+1][3]=String.valueOf(busiList.get(i).getRemark());
+			
+			String reason="";
+			if(busiList.get(i).getRemark()!=null){
+				switch(busiList.get(i).getRemark()){
+				case RENT: reason="租金";break;
+				case BONUS:reason="奖金";break;
+				case FREIGHT:reason="运费";break;
+				case WAGE:reason="工资";break;
+				default: reason="未知";		
+				}
+			}else{
+				reason="收款";
+			}
+			data[i+1][3]=reason;
 		}
 		
 		
