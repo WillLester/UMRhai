@@ -68,8 +68,12 @@ public class UserManLogic implements UserManLSer{
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		UserPO userpo=users.get(index);
 		try{
-			isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),userpo.getKey(),user.getOrgId()));
-			isSuccessful = diarySer.addDiary("修改了用户"+user.getId(), name);
+			if(userData.checkIsUsed(user.getId())==Result.SUCCESS){
+				isSuccessful=userData.reviseUser(new UserPO(user.getId(),user.getPassword(),user.getJuri(),user.getName(),user.getMobile(),user.getOrg(),userpo.getKey(),user.getOrgId()));
+				isSuccessful = diarySer.addDiary("修改了用户"+user.getId(), name);
+			}else {
+				return Result.ID_IS_USED;
+			}
 		}catch(RemoteException e)
 		{
 			e.printStackTrace();
