@@ -87,5 +87,10 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		}
 		return list;
 	}
+	@Override
+	public ResultMessage getNextId(String orgId) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 
 }

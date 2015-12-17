@@ -65,5 +65,10 @@ public class SendOrderLogic implements SendOrderLSer{
 		ResultMessage message = new ResultMessage(isSuccessful, ar);
 		return message;
 	}
+	@Override
+	public ResultMessage getNextId(String orgId) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 
 }

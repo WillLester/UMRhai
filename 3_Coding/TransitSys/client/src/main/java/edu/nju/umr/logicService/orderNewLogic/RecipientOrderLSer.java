@@ -21,4 +21,11 @@ public interface RecipientOrderLSer {
 	 * @return 订单号List 目前是链表
 	 */
 	public List<String> expressList(String id);
+	
+	/**
+	 * 获得接收单编号
+	 * @param orgId 机构编号
+	 * @return
+	 */
+	public ResultMessage getNextId(String orgId);
 }
