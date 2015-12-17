@@ -30,11 +30,12 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
 public class RecipientPanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1228209298653522130L;
-	private JTextField idField;
+	private static final long serialVersionUID = -2907522992276366929L;
+	private JTextField transitIdField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private JComboBox<String> cityCombo;
@@ -43,6 +44,8 @@ public class RecipientPanel extends JPanel {
 	private String[] cityList;
 	private String name;
 	private String userId;
+	private String orgId;
+	private JTextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -54,37 +57,41 @@ public class RecipientPanel extends JPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
-		idField.setText(vo.getTransitId());
+		transitIdField.setText(vo.getTransitId());
 		datePanel.setDate(vo.getDate());
 		cityCombo.setSelectedItem(vo.getStartPlace());
 		stateCombo.setSelectedItem(EnumTransFactory.checkGoodState(vo.getState()));
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
+		this.orgId = orgId;
 		logicSer = new RecipientOrderLogic();
 		
-		JLabel titleLabel = new JLabel("营业厅到达单");
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		JLabel titleLabel = new JLabel("营业厅接收单");
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(382+40, 45, 242, 67);
 		add(titleLabel);
 		
-		JLabel idLabel = new JLabel("中转单编号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		idLabel.setBounds(342+40, 216, 107, 24);
-		add(idLabel);
+		JLabel transitIdLabel = new JLabel("装车单编号");
+		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		transitIdLabel.setBounds(342+40, 216, 107, 24);
+		add(transitIdLabel);
 		
-		idField = new JTextField();
-		idField.setFont(new Font("宋体", Font.PLAIN, 20));
-		idField.setBounds(474+40, 216, 193, 24);
-		add(idField);
-		idField.setColumns(10);
+		transitIdField = new JTextField();
+		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdField.setBounds(474+40, 216, 193, 24);
+		add(transitIdField);
+		transitIdField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("到达日期");
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342+40, 268, 107, 24);
 		add(dateLabel);
 		
@@ -93,7 +100,7 @@ public class RecipientPanel extends JPanel {
 		add(datePanel);
 		
 		JLabel startLabel = new JLabel("出发地");
-		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(342+40, 162, 107, 24);
 		add(startLabel);
 		
@@ -106,7 +113,7 @@ public class RecipientPanel extends JPanel {
 		add(cityCombo);
 		
 		JLabel stateLabel = new JLabel("货物到达状态");
-		stateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		stateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		stateLabel.setBounds(329+40, 327, 120, 45);
 		add(stateLabel);
 		
@@ -133,7 +140,7 @@ public class RecipientPanel extends JPanel {
 							confirmButton.setEnabled(false);
 						}
 						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId,userId,(LinkedList<String>) logicSer.expressList(idField.getText())));
+						frame.setContentPane(new SendPanel(frame,name,orgId,userId,(LinkedList<String>) logicSer.expressList(transitIdField.getText())));
 					}
 				} 
 			}
@@ -150,8 +157,29 @@ public class RecipientPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+		
+		JLabel idLabel = new JLabel("单据编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(382, 121, 107, 24);
+		add(idLabel);
+		
+		idField = new JTextField();
+		idField.setEditable(false);
+		idField.setBounds(505, 121, 193, 24);
+		add(idField);
+		idField.setColumns(10);
 
 	}
+	
+	private void getId(){
+		ResultMessage message = logicSer.getNextId(orgId);
+		if(message.getReInfo() == Result.SUCCESS){
+			
+		} else {
+			DoHint.hint(message.getReInfo(), frame);
+		}
+	}
+	
 	private void getCity(){
 		ResultMessage result = logicSer.getCities();
 		if(result.getReInfo().equals(Result.SUCCESS)){
@@ -167,12 +195,12 @@ public class RecipientPanel extends JPanel {
 			HintFrame hint = new HintFrame(Hints.OUT_OF_DATE, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		String result = CheckLegal.isTransitLegal(idField.getText());
+		String result = CheckLegal.isTransitLegal(transitIdField.getText());
 		if(result != null){
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		if(!logicSer.isTransitValid(idField.getText())){
+		if(!logicSer.isTransitValid(transitIdField.getText())){
 			DoHint.hint("中转单不存在！", frame);
 			return false;
 		}
@@ -180,7 +208,7 @@ public class RecipientPanel extends JPanel {
 	}
 	private RecipientVO createVO(){
 		GoodState states[] = GoodState.values();
-		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), idField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
+		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), transitIdField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
 		return vo;
 	}
 	public void setEnabled(boolean enabled)

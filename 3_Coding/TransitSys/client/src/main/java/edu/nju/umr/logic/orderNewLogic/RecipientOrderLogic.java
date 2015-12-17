@@ -2,9 +2,11 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.RecipientOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.RecipientOrderDSer;
@@ -90,7 +92,12 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	@Override
 	public ResultMessage getNextId(String orgId) {
 		// TODO 自动生成的方法存根
-		return null;
+		try{
+			String date = DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+			return new ResultMessage(Result.SUCCESS,recipientData.getOrderSize(orgId+date));
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }

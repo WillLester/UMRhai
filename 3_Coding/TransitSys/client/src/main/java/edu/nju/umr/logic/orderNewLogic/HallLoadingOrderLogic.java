@@ -92,8 +92,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		try{
 			String date=DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
 			return new ResultMessage(Result.SUCCESS,hallData.getOrderSize(orgId+date));
-		}catch(RemoteException e)
-		{
+		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 	}

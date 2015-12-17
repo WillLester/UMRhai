@@ -2,8 +2,10 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 import java.util.List;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.SendOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
@@ -68,7 +70,12 @@ public class SendOrderLogic implements SendOrderLSer{
 	@Override
 	public ResultMessage getNextId(String orgId) {
 		// TODO 自动生成的方法存根
-		return null;
+		try{
+			String date = DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+			return new ResultMessage(Result.SUCCESS,sendData.getOrderSize(orgId+date));
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
 	}
 
 }

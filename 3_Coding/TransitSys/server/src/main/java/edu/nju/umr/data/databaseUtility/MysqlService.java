@@ -16,11 +16,54 @@ import edu.nju.umr.po.order.function.OrderOper;
  * 
  */
 public interface MysqlService {
+	/**
+	 * 添加信息
+	 * @param po PO类型的类，会调用getCommand以获取sql指令
+	 * 类中应包含所有应含有的信息
+	 * @see PO
+	 * @return 添加信息的结果
+	 */
 	public Result addInfo(PO po);
+	/**
+	 * 删除信息
+	 * @param po PO类型的类，会调用getCommand以获取sql指令
+	 * 类中只需要有供检索的标记
+	 * @see PO
+	 * @return 删除信息的结果
+	 */
 	public Result deleteInfo(PO po);
+	/**
+	 * 修改信息
+	 * @param po PO类型的类，会调用getCommand以获取sql指令
+	 * 类中需要有所有应含有的信息
+	 * @see PO
+	 * @return 删除信息的结果
+	 */
 	public Result reviseInfo(PO po);
+	/**
+	 * 检索某类型的所有信息
+	 * @param kind 要检索的类型
+	 * 可检索的有账户、城市间、城市、机构、用户、人员、收款单、查看单据、付款单和库存
+	 * @see POKind
+	 * @return
+	 */
 	public Object checkAll(POKind kind);
+	/**
+	 * 检索信息
+	 * @param po PO类型的类，会调用getCommand以获取sql指令
+	 * 类中需要含有检索用的关键字
+	 * @see PO
+	 * @return 查询得到的ResultSet结果
+	 */
 	public ResultSet checkInfo(PO po);
+	/**
+	 * 根据时间检索
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @param kind PO的种类
+	 * @see POKind
+	 * @return
+	 */
 	public ResultSet checkDate(Calendar start,Calendar end,POKind kind);
 	/**
 	 * 更新单据
