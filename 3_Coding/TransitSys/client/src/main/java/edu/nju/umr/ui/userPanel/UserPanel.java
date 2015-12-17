@@ -26,7 +26,7 @@ public class UserPanel extends JPanel{
 	private JTextField nameTxt;
 	private JTextField levelTxt;
 	private UserVO user;
-	private JFrame frame;
+	private MainFrame frame;
 	public UserPanel(UserVO user,MainFrame fr) {
 		this.user=user;
 		this.frame=fr;

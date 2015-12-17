@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +17,7 @@ import edu.nju.umr.logic.transitInfoLogic.CustomerLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.vo.ResultMessage;
@@ -30,11 +30,11 @@ public class TransitInfoInqPanel extends JPanel {
 	private JTextField idField;
 	private CustomerLogicSer logicSer;
 	private ArrayList<String> info;
-	private JFrame frame;
+	private MainFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public TransitInfoInqPanel(JFrame fr) {
+	public TransitInfoInqPanel(MainFrame fr) {
 		setLayout(null);
 		logicSer = new CustomerLogic();
 		frame = fr;
