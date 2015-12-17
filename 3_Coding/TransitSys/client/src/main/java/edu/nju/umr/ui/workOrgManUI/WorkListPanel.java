@@ -255,13 +255,20 @@ public class WorkListPanel extends JPanel {
 						delete.setEnabled(true);
 						modify.setEnabled(true);
 						cancelMod.setEnabled(true);
-						WorkVO work = workList.get(table.getSelectedRow());
-						textFieldName.setText(work.getName());
-						textFieldMobile.setText(work.getMobile());
-						orgCombo.setSelectedItem(work.getOrg());
-						juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
-						if(work.getJuri().equals(Jurisdiction.ADMIN)){
-							delete.setEnabled(false);
+						if(table.getSelectedRow() >= workList.size()){
+							textFieldMobile.setText("");
+							textFieldName.setText("");
+							orgCombo.setSelectedIndex(0);
+							juriCombo.setSelectedIndex(0);
+						} else {
+							WorkVO work = workList.get(table.getSelectedRow());
+							textFieldName.setText(work.getName());
+							textFieldMobile.setText(work.getMobile());
+							orgCombo.setSelectedItem(work.getOrg());
+							juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
+							if(work.getJuri().equals(Jurisdiction.ADMIN)){
+								delete.setEnabled(false);
+							}
 						}
 					} else {
 						textFieldName.setEnabled(false);

@@ -218,7 +218,7 @@ public class RecipientPanel extends JPanel {
 	}
 	private RecipientVO createVO(){
 		GoodState states[] = GoodState.values();
-		RecipientVO vo = new RecipientVO(datePanel.getCalendar(), transitIdField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
+		RecipientVO vo = new RecipientVO(idField.getText(),datePanel.getCalendar(), transitIdField.getText(), (String)cityCombo.getSelectedItem(), states[stateCombo.getSelectedIndex()], name,userId);
 		return vo;
 	}
 	public void setEnabled(boolean enabled)

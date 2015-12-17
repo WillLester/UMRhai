@@ -216,14 +216,12 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 			if(result.equals(Result.SUCCESS))
 			{
 				int num=(Integer)message.getMessage();
-				if(num==-1)
-				{
+				if(num==-1){
 					DoHint.hint(Result.DATABASE_ERROR, frame);
 				}
-				else
-				{
+				else{
 					String temp=Integer.toString(num);
-					while(temp.length()<5)
+					while(temp.length()<7)
 					{
 						temp="0"+temp;
 					}

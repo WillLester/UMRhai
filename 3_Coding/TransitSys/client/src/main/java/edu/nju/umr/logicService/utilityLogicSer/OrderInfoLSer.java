@@ -53,6 +53,13 @@ public interface OrderInfoLSer {
 	public List<String> getHallLoadExp(String id);
 	
 	/**
+	 * 获得中转中心装车单的订单列表
+	 * @param id 中转中心装车单编号
+	 * @return List<String>表示的订单编号列表
+	 */
+	public List<String> getCenterLoadExp(String id);
+	
+	/**
 	 * 根据订单编号获得订单信息
 	 * @param expressList 订单编号列表
 	 * @return 订单信息列表

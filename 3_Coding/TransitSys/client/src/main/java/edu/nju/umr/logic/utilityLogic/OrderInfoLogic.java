@@ -101,4 +101,14 @@ public class OrderInfoLogic implements OrderInfoLSer{
 			return new ArrayList<ExpressPO>();
 		}
 	}
+
+	@Override
+	public List<String> getCenterLoadExp(String id) {
+		// TODO 自动生成的方法存根
+		try{
+			return dataSer.getCenterLoadExp(id);
+		} catch(RemoteException e){
+			return new ArrayList<String>();
+		}
+	}
 }

@@ -38,7 +38,7 @@ public class SendOrderLogic implements SendOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATABASE_ERROR;
 		try{
-			SendPO orderPO=VPFactory.toSendPO(order, "");
+			SendPO orderPO=VPFactory.toSendPO(order);
 			isSuccessful=sendData.create(orderPO);
 			if(isSuccessful.equals(Result.SUCCESS)){
 				isSuccessful = diarySer.addDiary("生成了派件单，派出"+order.getExpressId(), order.getOpName());
@@ -55,17 +55,18 @@ public class SendOrderLogic implements SendOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		List<String> ar= null;
-		try{
-			ar = uti.getCouriers(id);
-			isSuccessful=Result.SUCCESS;
-			if(ar.isEmpty()){
-				isSuccessful = Result.NET_INTERRUPT;
+		ar = uti.getCouriers(id);
+		isSuccessful=Result.SUCCESS;
+		if(ar.isEmpty()){
+			isSuccessful = Result.NET_INTERRUPT;
+			return new ResultMessage(isSuccessful, null);
+		} else {
+			String[] list = new String[ar.size()];
+			for(int i = 0;i < list.length;i++){
+				list[i] = ar.get(i);
 			}
-		}catch(Exception e){
-			e.printStackTrace();
+			return new ResultMessage(Result.SUCCESS, list);
 		}
-		ResultMessage message = new ResultMessage(isSuccessful, ar);
-		return message;
 	}
 	@Override
 	public ResultMessage getNextId(String orgId) {

@@ -67,7 +67,7 @@ public class RecipientPO extends PO implements Serializable,KindGetter,OrderOper
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into recipientorderwaiting values"+"("+id+",'"+transitId+"','"+startPlace+"',"+state.ordinal()+",'"+
+		case INSERT:command="insert into recipientorderwaiting values"+"('"+id+"','"+transitId+"','"+startPlace+"',"+state.ordinal()+",'"+
 		DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;

@@ -127,13 +127,13 @@ class OrderUpdate {
 			if(org == null){
 				return Result.DATA_NOT_FOUND;
 			}
-			list = getTransitExp(voR.getTransitId());
-			if(list == null){
-				return Result.DATA_NOT_FOUND;
+			list = getCenterLoadExp(voR.getTransitId());
+			if(list.isEmpty()){
+				list = getHallLoadExp(voR.getTransitId());
 			}
 			for(String exp:list){
-				infoLogic.update(exp, DateFormat.TIME.format(Calendar.getInstance().getTime()
-						+" "+org+" 已收入"));
+				infoLogic.update(exp, DateFormat.TIME.format(Calendar.getInstance().getTime())
+						+" "+org+" 已收入");
 			}
 			break;
 		case SEND:
@@ -178,5 +178,9 @@ class OrderUpdate {
 	
 	private List<String> getHallLoadExp(String id){
 		return orderInfo.getHallLoadExp(id);
+	}
+	
+	private List<String> getCenterLoadExp(String id){
+		return orderInfo.getCenterLoadExp(id);
 	}
 }

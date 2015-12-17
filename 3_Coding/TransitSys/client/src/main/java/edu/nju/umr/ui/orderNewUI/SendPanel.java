@@ -204,7 +204,7 @@ public class SendPanel extends JPanel {
 		return true;
 	}
 	private SendVO createVO(){
-		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), (String) courierCombo.getSelectedItem(), name,userId);
+		SendVO vo = new SendVO(datePanel.getCalendar(), barcodeField.getText(), idField.getText(),(String) courierCombo.getSelectedItem(), name,userId);
 		return vo;
 	}
 	public void setEnabled(boolean enabled)

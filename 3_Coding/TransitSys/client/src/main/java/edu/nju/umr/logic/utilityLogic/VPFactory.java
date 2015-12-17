@@ -138,21 +138,21 @@ public class VPFactory {
 	
 	//到达单
 	public static RecipientVO toRecipientVO(RecipientPO po){
-		RecipientVO vo=new RecipientVO(po.getDate(), po.getTransitId(), po.getStartPlace(),po.getState(), po.getOpName(),po.getUserId());
+		RecipientVO vo=new RecipientVO(po.getId(),po.getDate(), po.getTransitId(), po.getStartPlace(),po.getState(), po.getOpName(),po.getUserId());
 		return vo;
 	}
-	public static RecipientPO toRecipientPO(RecipientVO vo,String id){
-		RecipientPO po=new RecipientPO(vo.getDate(),id,vo.getTransitId(),vo.getStartPlace(),vo.getState(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
+	public static RecipientPO toRecipientPO(RecipientVO vo){
+		RecipientPO po=new RecipientPO(vo.getDate(),vo.getId(),vo.getTransitId(),vo.getStartPlace(),vo.getState(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	
 	//派件单
 	public static SendVO toSendVO(SendPO po){
-		SendVO vo=new SendVO(po.getDate(), po.getExpressId(), po.getCourier(), po.getOpName(),po.getUserId());
+		SendVO vo=new SendVO(po.getDate(), po.getExpressId(), po.getId(),po.getCourier(), po.getOpName(),po.getUserId());
 		return vo;
 	}
-	public static SendPO toSendPO(SendVO vo,String id){
-		SendPO po=new SendPO(vo.getDate(),vo.getExpressId(),id,vo.getCourier(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
+	public static SendPO toSendPO(SendVO vo){
+		SendPO po=new SendPO(vo.getDate(),vo.getExpressId(),vo.getId(),vo.getCourier(),Calendar.getInstance(),vo.getOpName(),vo.getUserId());
 		return po;
 	}
 	

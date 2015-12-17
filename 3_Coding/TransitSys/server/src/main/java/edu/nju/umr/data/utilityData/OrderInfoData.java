@@ -49,6 +49,9 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	public List<String> getTransitExp(String id){
 		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null));
 		TransitPO transit = OrderPOFactory.getTransit(result);
+		if(transit == null){
+			return new ArrayList<String>();
+		}
 		return transit.getExpress();
 	}
 	
@@ -121,6 +124,14 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null));
 		HallLoadingPO po = OrderPOFactory.getHallLoad(result);
+		return po.getExpress();
+	}
+
+	@Override
+	public List<String> getCenterLoadExp(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null));
+		CenterLoadingPO po = OrderPOFactory.getCenterLoad(result);
 		return po.getExpress();
 	}
 	

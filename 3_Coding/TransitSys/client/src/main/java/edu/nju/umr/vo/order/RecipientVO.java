@@ -8,17 +8,17 @@ import edu.nju.umr.ui.orderNewUI.RecipientPanel;
 
 public class RecipientVO implements ShowOrder{
 	private Calendar date;
-//	private String id;
+	private String id;
 	private String transitId;
 	private String startPlace;
 	private GoodState state;
 	private String opName;
 	private String userId;
 
-	public RecipientVO(Calendar date,String transitId,String startPlace,GoodState state,String opName,String userId) {
+	public RecipientVO(String id,Calendar date,String transitId,String startPlace,GoodState state,String opName,String userId) {
 		// TODO 自动生成的构造函数存根
 		this.date = date;
-//		this.id = id;
+		this.id = id;
 		this.transitId = transitId;
 		this.startPlace = startPlace;
 		this.state = state;
@@ -28,9 +28,9 @@ public class RecipientVO implements ShowOrder{
 	public Calendar getDate() {
 		return date;
 	}
-//	public String getId() {
-//		return id;
-//	}
+	public String getId() {
+		return id;
+	}
 	public String getTransitId() {
 		return transitId;
 	}

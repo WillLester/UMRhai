@@ -54,4 +54,12 @@ public interface OrderInfoDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<String> getHallLoadExp(String id) throws RemoteException;
+	
+	/**
+	 * 获得中转中心装车单中的快递单列表
+	 * @param id 装车单编号
+	 * @return List<String>表示的快递单列表
+	 * @throws RemoteException
+	 */
+	public List<String> getCenterLoadExp(String id) throws RemoteException;
 }

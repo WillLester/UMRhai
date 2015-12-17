@@ -43,7 +43,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		// TODO 自动生成的方法存根
 		Result isSuc=Result.SUCCESS;
 		try{
-			RecipientPO orderPO=VPFactory.toRecipientPO(order, "");
+			RecipientPO orderPO=VPFactory.toRecipientPO(order);
 			isSuc=recipientData.create(orderPO);
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("接收了中转单"+order.getTransitId(), order.getOpName());
@@ -71,7 +71,10 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	public List<String> expressList(String id) {
 		// TODO 自动生成的方法存根
 		List<String> list = new LinkedList<String>();
-		List<String> express = orderInfoLogic.getTransitExp(id);
+		List<String> express = orderInfoLogic.getCenterLoadExp(id);
+		if(express.isEmpty()){
+			express = orderInfoLogic.getHallLoadExp(id);
+		}
 		for(String ex:express){
 			list.add(ex);
 		}
