@@ -43,7 +43,7 @@ public class OrgManLogic implements OrgManLSer{
 	public Result addOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.SUCCESS;
 		
-		ResultMessage message = searchOrg(name);
+		ResultMessage message = searchOrg(org.getName());
 		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
 		ArrayList<OrgPO> ar= new ArrayList<OrgPO>();
 		ar=(ArrayList<OrgPO>)message.getMessage();
@@ -78,7 +78,7 @@ public class OrgManLogic implements OrgManLSer{
 	public Result reviseOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
 		
-		ResultMessage message = searchOrg(name);
+		ResultMessage message = searchOrg(org.getName());
 		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
 		ArrayList<OrgPO> ar= new ArrayList<OrgPO>();
 		ar=(ArrayList<OrgPO>)message.getMessage();

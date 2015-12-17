@@ -38,8 +38,16 @@ public class AccountLogic implements AccountLSer{
         } 
 		diarySer = new DiaryUpdateLogic();
 	}
+	@SuppressWarnings("unchecked")
 	public Result addAccount(AccountVO account,String opName) {
 		Result isSuccessful = Result.SUCCESS;
+		
+		ResultMessage message=searchAccount(account.getName());
+		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
+		ArrayList<AccountPO> ar=new ArrayList<AccountPO>();
+		ar=(ArrayList<AccountPO>)message.getMessage();
+		if(ar.size()>0)return Result.ACCOUNT_EXIST;
+		
 		try {
 			isSuccessful = accountData.addAccount(new AccountPO(0, account.getName(), account.getBalance()));
 			isSuccessful = diarySer.addDiary("添加账户"+account.getName(), opName);
@@ -64,8 +72,16 @@ public class AccountLogic implements AccountLSer{
 		return isSuccessful;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Result reviseAccount(AccountVO account,int index,String opName) {
 		Result isSuccessful = Result.SUCCESS;
+		
+		ResultMessage message=searchAccount(account.getName());
+		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
+		ArrayList<AccountPO> ar=new ArrayList<AccountPO>();
+		ar=(ArrayList<AccountPO>)message.getMessage();
+		if(ar.size()>0)return Result.ACCOUNT_EXIST;
+		
 		AccountPO init=accountPOs.get(index);
 		try {
 			isSuccessful = accountData.reviseAccount(new AccountPO(init.getId(), account.getName(), account.getBalance()));
