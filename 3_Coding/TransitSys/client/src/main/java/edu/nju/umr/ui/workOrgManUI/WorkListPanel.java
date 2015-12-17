@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,6 +23,7 @@ import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -45,14 +45,14 @@ public class WorkListPanel extends JPanel {
 	private JButton delete;
 	private JButton modify;
 	private JButton cancelMod;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
 	private WorkManLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
-	public WorkListPanel(JFrame fr,String name) {
+	public WorkListPanel(FunctionFrame fr,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
@@ -231,7 +231,7 @@ public class WorkListPanel extends JPanel {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public WorkListPanel(JFrame fr,String org,String name) {
+	public WorkListPanel(FunctionFrame fr,String org,String name) {
 		// TODO 自动生成的构造函数存根
 		this(fr,name);
 		ResultMessage message = logicSer.searchWork(org);

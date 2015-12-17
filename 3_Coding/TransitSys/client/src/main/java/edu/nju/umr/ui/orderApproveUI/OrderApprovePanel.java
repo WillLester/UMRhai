@@ -9,7 +9,6 @@ import java.util.Calendar;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,6 +23,7 @@ import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
@@ -37,7 +37,7 @@ public class OrderApprovePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private ApproveTable table;
 	private DefaultTableModel model;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private OrderApproveLSer serv;
 	private ArrayList<OrderVO> orderList;
 	private String name;
@@ -60,7 +60,7 @@ public class OrderApprovePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public OrderApprovePanel(JFrame fr,String name) {
+	public OrderApprovePanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		serv=new OrderApproveLogic();

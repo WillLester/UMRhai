@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +21,7 @@ import edu.nju.umr.logic.workOrgManLogic.VanManLogic;
 import edu.nju.umr.logicService.workOrgManLogicSer.VanManLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
@@ -36,7 +36,7 @@ public class VanListPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 5807654807287399993L;
 	private JTextField textFieldSearch;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
 	private VanManLSer serv;
@@ -47,7 +47,7 @@ public class VanListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public VanListPanel(JFrame fr,String orgId,String name) {
+	public VanListPanel(FunctionFrame fr,String orgId,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
@@ -193,6 +193,7 @@ public class VanListPanel extends JPanel {
 		InfoFrame info=new InfoFrame("新增车辆");
 		VanVO temp=new VanVO(id,"",Calendar.getInstance(),null,orgId);
 		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,orgId));
+		frame.sonFrames.add(info);
 	}
 	private void deleteVan(){
 		int row=table.getSelectedRow();
@@ -211,6 +212,7 @@ public class VanListPanel extends JPanel {
 		VanVO temp=vanList.get(row);
 		InfoFrame info=new InfoFrame("查看修改车辆");
 		info.setContentPane(new VanInfoPanel(info,vanListPanel,temp,orgId));
+		frame.sonFrames.add(info);
 	}
 	private void checkVan(){
 		

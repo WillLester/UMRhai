@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,7 +39,7 @@ public class WorkWageListPanel extends JPanel {
 	private JTextField textFieldwInit;
 	private JTextField textFieldBound;
 	private JTextField textFieldwMonth;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
 	private WageManLSer logicSer;
@@ -49,7 +48,7 @@ public class WorkWageListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public WorkWageListPanel(JFrame fr,String name) {
+	public WorkWageListPanel(FunctionFrame fr,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
@@ -141,6 +140,7 @@ public class WorkWageListPanel extends JPanel {
 			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("制定薪水策略");
 				ffr.setContentPane(new WageDraftPanel(ffr,getSelf()));
+				frame.sonFrames.add(ffr);
 			}
 		});
 		add(make);

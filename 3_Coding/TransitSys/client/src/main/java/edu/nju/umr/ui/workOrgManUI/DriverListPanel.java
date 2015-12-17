@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,6 +22,7 @@ import edu.nju.umr.logicService.workOrgManLogicSer.DriverManLSer;
 import edu.nju.umr.po.enums.Gender;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
@@ -36,7 +36,7 @@ public class DriverListPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 8718383258027786192L;
 	private JTextField textFieldSearch;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private DriverListPanel panel;
 	private Table table;
 	private DefaultTableModel model;
@@ -47,7 +47,7 @@ public class DriverListPanel extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unchecked")
-	public DriverListPanel(JFrame fr,String orgId,String name) {
+	public DriverListPanel(FunctionFrame fr,String orgId,String name) {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
@@ -99,9 +99,10 @@ public class DriverListPanel extends JPanel {
 				else
 				{
 					String nextId=orgId+(String)message.getMessage();
-					InfoFrame fr=new InfoFrame("新增司机信息输入");
-					fr.setContentPane(new DriverInfoPanel(fr,panel,new DriverVO(nextId,"",Calendar.getInstance(),
+					InfoFrame ffr=new InfoFrame("新增司机信息输入");
+					ffr.setContentPane(new DriverInfoPanel(ffr,panel,new DriverVO(nextId,"",Calendar.getInstance(),
 						"","",Gender.MAN,Calendar.getInstance(),Calendar.getInstance(),orgId),orgId));
+					fr.sonFrames.add(ffr);
 				}
 			}
 		});
@@ -137,8 +138,9 @@ public class DriverListPanel extends JPanel {
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				InfoFrame fr=new InfoFrame("修改司机信息");
-				fr.setContentPane(new DriverInfoPanel(fr,panel,driverList.get(table.getSelectedRow()),orgId));
+				InfoFrame ffr=new InfoFrame("修改司机信息");
+				ffr.setContentPane(new DriverInfoPanel(ffr,panel,driverList.get(table.getSelectedRow()),orgId));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		add(modify);

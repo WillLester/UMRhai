@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,6 +25,7 @@ import edu.nju.umr.logicService.userLogicSer.UserManLSer;
 import edu.nju.umr.po.enums.Jurisdiction;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -49,7 +50,7 @@ public class UserListPanel extends JPanel {
 	private JButton confirmButton;
 	private JButton addButton;
 	
-	private JFrame frame;
+	private FunctionFrame frame;
 	private UserManLSer serv;
 	
 	private ArrayList<UserVO> users;
@@ -57,7 +58,7 @@ public class UserListPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public UserListPanel(JFrame fr,String name){
+	public UserListPanel(FunctionFrame fr,String name){
 		serv=new UserManLogic();
 		frame=fr;
 		setLayout(null);

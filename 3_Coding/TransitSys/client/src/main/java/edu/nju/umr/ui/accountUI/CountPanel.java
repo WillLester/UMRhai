@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +19,7 @@ import edu.nju.umr.logic.accountLogic.CountLogic;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
@@ -35,12 +35,12 @@ public class CountPanel extends JPanel{
 	private Table table;
 	private DefaultTableModel model;
 	private ArrayList<CountVO> countList;
-	private JFrame frame;
+	private FunctionFrame frame;
 	private CountLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
-	public CountPanel(JFrame fr,String name) {
+	public CountPanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
 		logicSer=new CountLogic();
@@ -95,8 +95,9 @@ public class CountPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				InfoFrame fr = new InfoFrame("期初信息查看");
-				fr.setContentPane(new CountInfoPanel(countList.get(table.getSelectedRow()), fr));
+				InfoFrame ffr = new InfoFrame("期初信息查看");
+				ffr.setContentPane(new CountInfoPanel(countList.get(table.getSelectedRow()), ffr));
+				frame.sonFrames.add(ffr);
 			}
 		});
 		add(checkButton);
