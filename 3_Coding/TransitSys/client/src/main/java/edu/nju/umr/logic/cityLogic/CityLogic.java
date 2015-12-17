@@ -54,8 +54,15 @@ public class CityLogic implements CityLSer{
 			return Result.NET_INTERRUPT;
 		}
 		try {
-			resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
-			resultCity = diarySer.addDiary("新增城市"+city.getName(), name);
+			if(cityData.isCityUsed(city.getName(), city.getId()).equals(Result.SUCCESS))
+			{
+				resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
+				resultCity = diarySer.addDiary("新增城市"+city.getName(), name);
+			}
+			else
+			{
+				return cityData.isCityUsed(city.getName(), city.getId());
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -98,8 +105,15 @@ public class CityLogic implements CityLSer{
 		CityPO po=cityPOs.get(index);
 		Result isSuc = Result.SUCCESS;
 		try {
-			isSuc = cityData.reviseCity(VPFactory.toCityPO(city, po.getKey()));
-			isSuc = diarySer.addDiary("修改了"+city.getName()+"的信息", name);
+			if(cityData.isCityUsed(city.getName(), city.getId()).equals(Result.SUCCESS))
+			{
+				isSuc = cityData.reviseCity(VPFactory.toCityPO(city, po.getKey()));
+				isSuc = diarySer.addDiary("修改了"+city.getName()+"的信息", name);
+			}
+			else
+			{
+				return cityData.isCityUsed(city.getName(), city.getId());
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return Result.NET_INTERRUPT;
