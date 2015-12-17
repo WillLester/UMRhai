@@ -58,6 +58,7 @@ public class RecipientPanel extends JPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		transitIdField.setText(vo.getTransitId());
 		datePanel.setDate(vo.getDate());
 		cityCombo.setSelectedItem(vo.getStartPlace());

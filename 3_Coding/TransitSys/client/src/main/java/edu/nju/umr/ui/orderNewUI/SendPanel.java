@@ -55,6 +55,7 @@ public class SendPanel extends JPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		barcodeField.setText(vo.getExpressId());
 		courierCombo.setSelectedItem(vo.getCourier());
 		datePanel.setDate(vo.getDate());

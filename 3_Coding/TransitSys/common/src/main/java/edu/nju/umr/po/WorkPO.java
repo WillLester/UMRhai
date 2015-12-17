@@ -75,7 +75,11 @@ public class WorkPO extends PO implements Serializable{
 			if(juri == null){
 				command = "select * from user where name like '%"+name+"%' or org like '%"+org+"%'";
 			} else {
-				command = "select * from user where juri="+juri.ordinal();
+				if(orgId == null){
+					command = "select * from user where juri="+juri.ordinal();
+				} else {
+					command = "select * from user where juri = "+ juri.ordinal() +" and orgId = '"+orgId+"'";
+				}
 			}
 			break;
 		case UPDATE:command="update user set name = '"+name+"',mobile = '"+mobile+"',orgId='"+orgId+"',org = '"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where keyid="+id;break;
