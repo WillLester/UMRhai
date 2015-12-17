@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,6 +15,7 @@ import edu.nju.umr.logic.userLogic.LoginLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
 import edu.nju.umr.ui.userPanel.BusinessHallPanel;
@@ -35,13 +35,13 @@ public class LoginPanel extends JPanel {
 	private static final long serialVersionUID = 3358515981326880681L;
 	private JTextField idField;
 	private JPasswordField password;
-	private JFrame frame;
+	private MainFrame frame;
 	private LoginLSer logicSer;
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings("unused")
-	public LoginPanel(JFrame fr) {
+	public LoginPanel(MainFrame fr) {
 		setLayout(null);
 		frame=fr;
 		try {
