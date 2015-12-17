@@ -7,10 +7,11 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
+public class SendPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
@@ -103,5 +104,12 @@ public class SendPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from sendorderunpassed where userId='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from sendorderwaiting where id like '%"+id+"%' union "
+				+ "select * from sendorderpassed where id like '%"+id+"%' union "
+				+ "select * from sendorderunpassed where id like '%"+id+"%'";
 	}
 }

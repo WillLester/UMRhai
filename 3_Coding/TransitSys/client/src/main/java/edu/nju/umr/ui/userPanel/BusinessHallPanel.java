@@ -12,6 +12,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.orderNewUI.RecipientPanel;
+import edu.nju.umr.ui.orderNewUI.SendPanel;
 import edu.nju.umr.ui.workOrgManUI.DriverListPanel;
 import edu.nju.umr.ui.workOrgManUI.VanListPanel;
 import edu.nju.umr.vo.UserVO;
@@ -38,6 +39,18 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(recipient);
 		
+		JButton send = new JButton("接收单");
+		send.setBounds(269, 192, 112, 83);
+		send.setFont(new Font("宋体", Font.PLAIN, 12));
+		send.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				FunctionFrame ffr=new FunctionFrame("单据创建");
+				ffr.setContentPane(new SendPanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+			}
+		});
+		this.add(send);
+		
 		JButton hallLoading = new JButton("装车单");
 		hallLoading.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -47,12 +60,12 @@ public class BusinessHallPanel extends UserPanel {
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
-		hallLoading.setBounds(516, 192, 112, 83);
+		hallLoading.setBounds(760, 192, 112, 83);
 		this.add(hallLoading);
 		
 		JButton income = new JButton("收款单");
 		income.setFont(new Font("宋体", Font.PLAIN, 12));
-		income.setBounds(760, 192, 112, 83);
+		income.setBounds(269, 333, 112, 83);
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -64,7 +77,7 @@ public class BusinessHallPanel extends UserPanel {
 		
 		JButton driverMan = new JButton("司机信息管理");
 		driverMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		driverMan.setBounds(269, 333, 112, 83);
+		driverMan.setBounds(516, 333, 112, 83);
 		driverMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -76,7 +89,7 @@ public class BusinessHallPanel extends UserPanel {
 		
 		JButton vanMan = new JButton("车辆信息管理");
 		vanMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		vanMan.setBounds(516, 333, 112, 83);
+		vanMan.setBounds(760, 333, 112, 83);
 		vanMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

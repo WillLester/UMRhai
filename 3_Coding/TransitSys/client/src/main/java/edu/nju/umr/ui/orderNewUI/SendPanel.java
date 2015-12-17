@@ -39,12 +39,13 @@ public class SendPanel extends JPanel {
 	private String[] courierList;
 	private SendOrderLSer logicSer;
 	private String userId;
+	private LinkedList<String> express;
 	/**
 	 * Create the panel.
 	 */
 	public SendPanel(JFrame fr,SendVO vo)
 	{
-		this(fr, vo.getOpName(),null ,vo.getUserId(),null);
+		this(fr, vo.getOpName(),null ,vo.getUserId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -55,11 +56,17 @@ public class SendPanel extends JPanel {
 		datePanel.setDate(vo.getDate());
 	}
 	public SendPanel(JFrame fr,String name,String orgId,String userId,LinkedList<String> express) {
+		// TODO 自动生成的构造函数存根
+		this(fr,name,orgId,userId);
+		barcodeField.setText(express.get(0));
+	}
+	public SendPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
 		logicSer = new SendOrderLogic();
+		express = new LinkedList<String>();
 		
 		JLabel titleLabel = new JLabel("派件单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -75,7 +82,7 @@ public class SendPanel extends JPanel {
 		barcodeField = new JTextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setBounds(487, 216, 193, 24);
-		barcodeField.setText(express.get(0));
+		
 		barcodeField.setEnabled(false);
 		add(barcodeField);
 		barcodeField.setColumns(10);

@@ -8,10 +8,11 @@ import edu.nju.umr.po.PO;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
+import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
 
-public class RecipientPO extends PO implements Serializable,KindGetter,OrderOper{
+public class RecipientPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
 	/**
 	 * 
 	 */
@@ -107,5 +108,12 @@ public class RecipientPO extends PO implements Serializable,KindGetter,OrderOper
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from recipientorderunpassed where userId='"+userId+"'";
+	}
+	@Override
+	public String getToday() {
+		// TODO 自动生成的方法存根
+		return "select * from recipientorderwaiting where id like '%"+id+"%' union "
+				+ "select * from recipientorderpassed where id like '%"+id+"%' union "
+				+ "select * from recipientorderunpassed where id like '%"+id+"%'";
 	}
 }
