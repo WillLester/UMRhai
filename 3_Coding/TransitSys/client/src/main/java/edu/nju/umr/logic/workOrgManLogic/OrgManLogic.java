@@ -39,8 +39,16 @@ public class OrgManLogic implements OrgManLSer{
 		}
 		diarySer = new DiaryUpdateLogic();
 	}
+	@SuppressWarnings("unchecked")
 	public Result addOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.SUCCESS;
+		
+		ResultMessage message = searchOrg(name);
+		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
+		ArrayList<OrgPO> ar= new ArrayList<OrgPO>();
+		ar=(ArrayList<OrgPO>)message.getMessage();
+		if(ar.size()>0)return Result.ORG_EXIST;
+		
 		try{
 			isSuccessful=orgData.addOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
 			isSuccessful = diarySer.addDiary("新增机构"+org.getId(), name);
@@ -66,8 +74,16 @@ public class OrgManLogic implements OrgManLSer{
 		return isSuccessful;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Result reviseOrg(OrgVO org,String name) {
 		Result isSuccessful=Result.DATA_NOT_FOUND;
+		
+		ResultMessage message = searchOrg(name);
+		if(!message.getReInfo().equals(Result.SUCCESS))return message.getReInfo();
+		ArrayList<OrgPO> ar= new ArrayList<OrgPO>();
+		ar=(ArrayList<OrgPO>)message.getMessage();
+		if(ar.size()>0)return Result.ORG_EXIST;
+		
 		try{
 			isSuccessful=orgData.reviseOrg(new OrgPO(org.getId(),org.getName(),org.getKind(),org.getLocation(),org.getCity(),org.getCityId()));
 			isSuccessful = diarySer.addDiary("修改机构"+org.getId(), name);
