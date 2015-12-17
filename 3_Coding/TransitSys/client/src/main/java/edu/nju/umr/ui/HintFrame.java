@@ -45,6 +45,7 @@ public class HintFrame extends JDialog{
 		case CITY_EXIST:txt="城市已存在！";break;
 		case CITY_ID_USED:txt="区号已使用！";break;
 		case ORG_EXIST:txt="机构已存在！";break;
+		case ACCOUNT_EXIST:txt="账户已存在！";break;
 		default:
 			break;
 		}
