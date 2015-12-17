@@ -104,10 +104,10 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		pakKindCombo.setSelectedIndex(vo.getParse().ordinal());
 		expressKindCombo.setSelectedIndex(vo.getKind().ordinal());
 		arriveField.setText(DateFormat.DATE.format(vo.getArrive().getTime()));
-		senderLoc.setProvince(vo.getSendProvince());
-		senderLoc.setCity(vo.getSendCity());
-		receiverLoc.setProvince(vo.getReceiveProvince());
-		receiverLoc.setCity(vo.getReceiveCity());
+		senderLoc.setProvinceText(vo.getSendProvince());
+		senderLoc.setCityText(vo.getSendCity());
+		receiverLoc.setProvinceText(vo.getReceiveProvince());
+		receiverLoc.setCityText(vo.getReceiveCity());
 	}
 	public class InqListener implements ActionListener{
 

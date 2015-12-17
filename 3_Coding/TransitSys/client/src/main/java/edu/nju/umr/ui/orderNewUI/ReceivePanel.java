@@ -51,7 +51,22 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		confirmButton.setLocation(418, 564);
 		confirmButton.addActionListener(new ConfirmListener());
 		
-		checkButton.removeActionListener(new InqListener());
+		checkButton.removeActionListener(checkButton.getActionListeners()[0]);
+		checkButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(isLegal()){
+					ResultMessage message = logicSer.getExpress(barcodeField.getText());
+					if(message.getReInfo() == Result.SUCCESS){
+						display((ExpressVO) message.getMessage());
+					} else {
+						DoHint.hint(message.getReInfo(), fr);
+					}
+				}
+			}
+		});
 		
 		receiveField = new JTextField();
 		receiveField.setBounds(370, 517, 103, 25);
@@ -73,7 +88,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		add(timelabel);
 	}
 	@SuppressWarnings("unused")
-	protected boolean isLegal(){
+	protected boolean isReceiveLegal(){
 		if(receiveField.getText().equals("")){
 			HintFrame hint = new HintFrame("收件人未输入！", frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
@@ -93,7 +108,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
-			if(isLegal()){
+			if(isReceiveLegal()){
 				Result result = logicSer.create(createVO(),org,name);
 				DoHint.hint(result, frame,true);
 				if(result.equals(Result.SUCCESS)){

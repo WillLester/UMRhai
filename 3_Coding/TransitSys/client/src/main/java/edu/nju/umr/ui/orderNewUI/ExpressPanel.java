@@ -616,8 +616,10 @@ public class ExpressPanel extends JPanel {
 			co.setEnabled(enabled);
 		}
 	}
-	public void getPrice()
-	{
+	public void getPrice(){
+		if(name.equals("")){
+			return;
+		}
 		String city1=senderLoc.getCity();
 		String city2=receiverLoc.getCity();
 		if(city1.isEmpty())return;
@@ -633,8 +635,10 @@ public class ExpressPanel extends JPanel {
  		String data=logicSer.getPrice(city1, city2,expresses[expressKindCombo.getSelectedIndex()],parses[pakKindCombo.getSelectedIndex()],weight);
 		costField.setText(data);
 	}
-	public void getTime()
-	{
+	public void getTime(){
+		if(name.equals("")){
+			return;
+		}
 		String city1=senderLoc.getCity();
 		String city2=receiverLoc.getCity();
 		if(city1.isEmpty())return;
@@ -645,6 +649,9 @@ public class ExpressPanel extends JPanel {
 		arriveField.setText(DateFormat.DATE.format(arrive.getTime()));
 	}
 	private void getVol(){
+		if(name.equals("")){
+			return;
+		}
 		if(lengthField.getText().isEmpty())return;
 		if(widthField.getText().isEmpty())return;
 		if(heightField.getText().isEmpty())return;

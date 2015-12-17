@@ -130,6 +130,25 @@ public class LocPanel extends JPanel {
 	public void setLoc(String loc){
 		locField.setText(loc);
 	}
+	
+	/**
+	 * 以文本形式设置省份，不能进行下拉框选择
+	 * @param province
+	 */
+	public void setProvinceText(String province){
+		String[] pros = {province};
+		provinceCombo.setModel(new DefaultComboBoxModel<String>(pros));
+	}
+	
+	/**
+	 * 以文本形式设置城市，不能进行下拉框选择
+	 * @param city
+	 */
+	public void setCityText(String city){
+		String[] cities = {city};
+		cityCombo.setModel(new DefaultComboBoxModel<String>(cities));
+	}
+	
 	public void setEnabled(boolean isEnabled){
 		provinceCombo.setEnabled(isEnabled);
 		cityCombo.setEnabled(isEnabled);
