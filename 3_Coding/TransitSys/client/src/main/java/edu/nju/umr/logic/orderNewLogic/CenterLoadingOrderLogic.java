@@ -12,6 +12,7 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CenterLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.CenterLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
@@ -32,8 +33,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
-			centerData = dataFac.getCenterLoadingOrder();
-			uti=new UtilityLogic();
+			centerData = dataFac.getCenterLoadingOrder();	
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -41,6 +41,8 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		uti=new UtilityLogic();
+		orderCalcu = new OrderCalcuLogic();
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result create(CenterLoadingVO order) {

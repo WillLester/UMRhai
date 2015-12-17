@@ -83,8 +83,13 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+
-		DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+userId+"')";break;
+		case INSERT:
+			String text = "";
+			for(String exp:express){
+				text = text + exp + " ";
+			}
+			command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+
+		DateFormat.TIME.format(opTime.getTime())+"','"+text+"',"+cost+",'"+opName+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:command="select * from centerlorderpassed where id='"+id+"'";break;
 		case UPDATE:break;

@@ -26,7 +26,6 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -250,11 +249,6 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		return vo;
 	}
 	private boolean isLegal(){
-		String info = CheckLegal.isTransitLegal(transitIdField.getText());
-		if(!info.equals(null)){
-			hint(info);
-			return false;
-		}
 		if(supervisionField.getText().equals("")){
 			hint("监装员未输入！");
 			return false;
