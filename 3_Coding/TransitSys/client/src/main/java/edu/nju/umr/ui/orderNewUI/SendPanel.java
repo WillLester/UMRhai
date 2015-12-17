@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.SendOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
@@ -27,10 +28,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.SendVO;
 
 public class SendPanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2026433345972064274L;
+	private static final long serialVersionUID = 8991812902473293357L;
 	private JTextField barcodeField;
 	private JComboBox<String> courierCombo;
 	private JFrame frame;
@@ -39,7 +41,9 @@ public class SendPanel extends JPanel {
 	private String[] courierList;
 	private SendOrderLSer logicSer;
 	private String userId;
+	private String orgId;
 	private LinkedList<String> express;
+	private JTextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -59,45 +63,48 @@ public class SendPanel extends JPanel {
 		// TODO 自动生成的构造函数存根
 		this(fr,name,orgId,userId);
 		barcodeField.setText(express.get(0));
+		barcodeField.setEditable(false);
 	}
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public SendPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
+		this.orgId = orgId;
 		logicSer = new SendOrderLogic();
 		express = new LinkedList<String>();
 		
 		JLabel titleLabel = new JLabel("派件单");
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(382, 45, 242, 67);
 		add(titleLabel);
 		
 		JLabel barcodeLabel = new JLabel("托运单条形码号");
-		barcodeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		barcodeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		barcodeLabel.setBounds(342, 216, 140, 24);
 		add(barcodeLabel);
 		
 		barcodeField = new JTextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setBounds(487, 216, 193, 24);
-		
-		barcodeField.setEnabled(false);
 		add(barcodeField);
 		barcodeField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("到达日期");
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342, 268, 107, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
-		datePanel.setBounds(532, 268, 285, 26);
+		datePanel.setBounds(483, 268, 285, 26);
 		add(datePanel);
 		
 		JLabel courierLabel = new JLabel("派送员");
-		courierLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		courierLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		courierLabel.setBounds(342, 162, 107, 24);
 		add(courierLabel);
 		
@@ -155,7 +162,39 @@ public class SendPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
+		
+		JLabel idLabel = new JLabel("单据编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(342, 122, 107, 24);
+		add(idLabel);
+		
+		idField = new JTextField();
+		idField.setEditable(false);
+		idField.setBounds(487, 122, 193, 24);
+		add(idField);
+		idField.setColumns(10);
+		
+		if(orgId != null){
+			getId();
+		}
 	}
+	
+	private void getId(){
+		ResultMessage message = logicSer.getNextId(orgId);
+		if(message.getReInfo() == Result.SUCCESS){
+			String re = orgId + DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+			int size = (int) message.getMessage();
+			String id = "" + size;
+			while(id.length() < 7){
+				id = "0" + id;
+			}
+			re += id;
+			idField.setText(re);
+		} else {
+			DoHint.hint(message.getReInfo(), frame);
+		}
+	}
+	
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
 		if(datePanel.getCalendar().after(Calendar.getInstance())){
@@ -177,4 +216,5 @@ public class SendPanel extends JPanel {
 			co.setEnabled(enabled);
 		}
 	}
+
 }

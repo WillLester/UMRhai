@@ -40,8 +40,8 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(recipient);
 		
-		JButton send = new JButton("接收单");
-		send.setBounds(269, 192, 112, 83);
+		JButton send = new JButton("派件单");
+		send.setBounds(516, 192, 112, 83);
 		send.setFont(new Font("宋体", Font.PLAIN, 12));
 		send.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)

@@ -8,13 +8,13 @@ import edu.nju.umr.vo.order.RecipientVO;
 
 public interface RecipientOrderLSer {
 	public Result create(RecipientVO order);
-	public ResultMessage getCities();
+	public ResultMessage getLocalHallAndCenter(String orgId);
 	/**
-	 * 检查中转单编号是否存在
-	 * @param id 中转单编号
+	 * 检查装车单编号是否存在
+	 * @param id 装车单编号
 	 * @return 编号存在返回true，否则返回false
 	 */
-	public boolean isTransitValid(String id);
+	public boolean isLoadValid(String id);
 	/**
 	 * 获得中转单中的订单号
 	 * @param id 中转单编号

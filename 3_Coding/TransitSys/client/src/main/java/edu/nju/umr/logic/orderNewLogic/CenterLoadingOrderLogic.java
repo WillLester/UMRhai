@@ -77,7 +77,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			return new ResultMessage(Result.SUCCESS,centerData.getOrderSize(orgId+date));
 		}catch(RemoteException e)
 		{
-			return new ResultMessage(Result.NET_INTERRUPT,null);
+			return new ResultMessage(Result.DATABASE_ERROR,null);
 		}
 	}
 

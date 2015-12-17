@@ -19,7 +19,6 @@ import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.RecipientPO;
-import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.RecipientVO;
 
@@ -58,26 +57,15 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		return isSuc;
 	}
 
-	public ResultMessage getCities() {
+	public ResultMessage getLocalHallAndCenter(String orgId) {
 		// TODO 自动生成的方法存根
-		ResultMessage message = uti.getCities();
-		if(message.getReInfo() == Result.SUCCESS){
-			@SuppressWarnings("unchecked")
-			List<CityVO> list = (List<CityVO>) message.getMessage();
-			String[] cityList = new String[list.size()];
-			for(int i = 0;i < list.size();i++){
-				cityList[i] = list.get(i).getName();
-			}
-			return new ResultMessage(Result.SUCCESS, cityList);
-		} else {
-			return new ResultMessage(message.getReInfo(), null);
-		}
+		return uti.getLocalHallAndAllCenter(orgId);
 		
 	}
 	@Override
-	public boolean isTransitValid(String id) {
+	public boolean isLoadValid(String id) {
 		// TODO 自动生成的方法存根
-		return orderInfoLogic.isTransitValid(id);
+		return orderInfoLogic.isCenterLoadValid(id);
 	}
 	@Override
 	public List<String> expressList(String id) {
@@ -96,7 +84,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			String date = DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
 			return new ResultMessage(Result.SUCCESS,recipientData.getOrderSize(orgId+date));
 		}catch(RemoteException e){
-			return new ResultMessage(Result.NET_INTERRUPT,null);
+			return new ResultMessage(Result.DATABASE_ERROR,null);
 		}
 	}
 

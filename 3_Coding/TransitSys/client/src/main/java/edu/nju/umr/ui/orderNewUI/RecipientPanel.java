@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.RecipientOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.GoodState;
@@ -41,7 +42,7 @@ public class RecipientPanel extends JPanel {
 	private JComboBox<String> cityCombo;
 	private JComboBox<String> stateCombo;
 	private RecipientOrderLSer logicSer;
-	private String[] cityList;
+	private String[] orgList;
 	private String name;
 	private String userId;
 	private String orgId;
@@ -104,12 +105,12 @@ public class RecipientPanel extends JPanel {
 		startLabel.setBounds(342+40, 162, 107, 24);
 		add(startLabel);
 		
-		getCity();
+		getOrg();
 		
 		cityCombo = new JComboBox<String>();
 		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
 		cityCombo.setBounds(474+40, 166, 193, 21);
-		cityCombo.setModel(new DefaultComboBoxModel<String>(cityList));
+		cityCombo.setModel(new DefaultComboBoxModel<String>(orgList));
 		add(cityCombo);
 		
 		JLabel stateLabel = new JLabel("货物到达状态");
@@ -168,22 +169,31 @@ public class RecipientPanel extends JPanel {
 		idField.setBounds(505, 121, 193, 24);
 		add(idField);
 		idField.setColumns(10);
-
+		if(orgId != null){
+			getId();
+		}
 	}
 	
 	private void getId(){
 		ResultMessage message = logicSer.getNextId(orgId);
 		if(message.getReInfo() == Result.SUCCESS){
-			
+			String re = orgId + DateFormat.DATESTRING.format(Calendar.getInstance().getTime());
+			int size = (int) message.getMessage();
+			String id = ""+size;
+			while(id.length() < 7){
+				id = "0"+id;
+			}
+			re += id;
+			idField.setText(re);
 		} else {
 			DoHint.hint(message.getReInfo(), frame);
 		}
 	}
 	
-	private void getCity(){
-		ResultMessage result = logicSer.getCities();
+	private void getOrg(){
+		ResultMessage result = logicSer.getLocalHallAndCenter(orgId);
 		if(result.getReInfo().equals(Result.SUCCESS)){
-			cityList = (String[]) result.getMessage();
+			orgList = (String[]) result.getMessage();
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
@@ -200,7 +210,7 @@ public class RecipientPanel extends JPanel {
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		if(!logicSer.isTransitValid(transitIdField.getText())){
+		if(!logicSer.isLoadValid(transitIdField.getText())){
 			DoHint.hint("中转单不存在！", frame);
 			return false;
 		}

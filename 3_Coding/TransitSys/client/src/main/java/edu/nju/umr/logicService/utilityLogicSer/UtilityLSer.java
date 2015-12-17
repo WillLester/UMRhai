@@ -31,8 +31,7 @@ public interface UtilityLSer {
 	/**
 	 * 获得本地营业厅和所有中转中心
 	 * @param orgId 机构编号
-	 * @return ArrayList<OrgVO>
-	 * @see edu.nju.umr.vo.OrgVO
+	 * @return String[]
 	 */
 	public ResultMessage getLocalHallAndAllCenter(String id);
 	
