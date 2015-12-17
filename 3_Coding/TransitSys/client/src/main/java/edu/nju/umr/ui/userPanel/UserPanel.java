@@ -10,10 +10,12 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import edu.nju.umr.vo.UserVO;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.userUI.LoginPanel;
 
 public class UserPanel extends JPanel{
@@ -25,7 +27,7 @@ public class UserPanel extends JPanel{
 	private JTextField levelTxt;
 	private UserVO user;
 	private JFrame frame;
-	public UserPanel(UserVO user,JFrame fr) {
+	public UserPanel(UserVO user,MainFrame fr) {
 		this.user=user;
 		this.frame=fr;
 		setBounds(0, 0, 1229, 691);
@@ -92,6 +94,10 @@ public class UserPanel extends JPanel{
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.setContentPane(new LoginPanel(frame));
+				for(JFrame frr:fr.sonFrames)
+				{
+					frr.dispose();
+				}
 			}
 		});
 		logoutButton.setBounds(1083, 10, 93, 23);

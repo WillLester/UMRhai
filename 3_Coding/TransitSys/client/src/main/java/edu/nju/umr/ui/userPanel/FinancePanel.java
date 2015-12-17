@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.accountUI.CountPanel;
 import edu.nju.umr.ui.checkUI.BusiCircumPanel;
 import edu.nju.umr.ui.checkUI.CostBenePanel;
@@ -24,7 +24,7 @@ public class FinancePanel extends UserPanel{
 	 */
 	private static final long serialVersionUID = -5651667612499627695L;
 
-	public FinancePanel(UserVO user,JFrame fr) {
+	public FinancePanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
@@ -36,8 +36,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看日志");
-				fr.setContentPane(new DiaryListPanel(fr));
+				FunctionFrame ffr = new FunctionFrame("查看日志");
+				ffr.setContentPane(new DiaryListPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -49,8 +50,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看经营情况表");
-				fr.setContentPane(new BusiCircumPanel(fr));
+				FunctionFrame ffr = new FunctionFrame("查看经营情况表");
+				ffr.setContentPane(new BusiCircumPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -62,8 +64,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看成本收益表");
-				fr.setContentPane(new CostBenePanel(fr));
+				FunctionFrame ffr = new FunctionFrame("查看成本收益表");
+				ffr.setContentPane(new CostBenePanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -75,8 +78,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("查看收款记录");
-				fr.setContentPane(new IncomeListPanel(fr));
+				FunctionFrame ffr = new FunctionFrame("查看收款记录");
+				ffr.setContentPane(new IncomeListPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -88,8 +92,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("期初建账");
-				fr.setContentPane(new CountPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("期初建账");
+				ffr.setContentPane(new CountPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -101,8 +106,9 @@ public class FinancePanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成付款单");
-				fr.setContentPane(new PaymentPanel(fr,user.getName(),user.getId()));
+				FunctionFrame ffr = new FunctionFrame("生成付款单");
+				ffr.setContentPane(new PaymentPanel(ffr,user.getName(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		

@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.orderNewUI.StockInPanel;
 import edu.nju.umr.ui.orderNewUI.StockOutPanel;
 import edu.nju.umr.ui.stockUI.StockCheckNowPanel;
@@ -24,7 +24,7 @@ public class StockManagerPanel extends UserPanel{
 	 */
 	private static final long serialVersionUID = 7789564793624015310L;
 
-	public StockManagerPanel(UserVO user,JFrame fr) {
+	public StockManagerPanel(UserVO user,MainFrame fr) {
 //		this.user=user;
 //		setBounds(0, 0, 1229, 691);
 //		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,8 +88,9 @@ public class StockManagerPanel extends UserPanel{
 		this.add(stockCheckButton);
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
-				FunctionFrame fr = new FunctionFrame("库存查看");
-				fr.setContentPane(new StockCheckPanel(fr,user.getOrgId()));
+				FunctionFrame ffr = new FunctionFrame("库存查看");
+				ffr.setContentPane(new StockCheckPanel(ffr,user.getOrgId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -101,8 +102,9 @@ public class StockManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("库存分区");
-				fr.setContentPane(new StockDividePanel(fr,user.getOrgId(),user.getName()));
+				FunctionFrame ffr = new FunctionFrame("库存分区");
+				ffr.setContentPane(new StockDividePanel(ffr,user.getOrgId(),user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -114,8 +116,9 @@ public class StockManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("设置警戒线");
-				fr.setContentPane(new StockWarningPanel(fr,user.getOrgId(),user.getName()));
+				FunctionFrame ffr = new FunctionFrame("设置警戒线");
+				ffr.setContentPane(new StockWarningPanel(ffr,user.getOrgId(),user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -127,8 +130,9 @@ public class StockManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("库存盘点");
-				fr.setContentPane(new StockCheckNowPanel(fr,user.getOrgId()));
+				FunctionFrame ffr = new FunctionFrame("库存盘点");
+				ffr.setContentPane(new StockCheckNowPanel(ffr,user.getOrgId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -139,8 +143,9 @@ public class StockManagerPanel extends UserPanel{
 		stockOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成出库单");
-				fr.setContentPane(new StockOutPanel(fr,user.getName(),user.getOrgId(),user.getId()));
+				FunctionFrame ffr = new FunctionFrame("生成出库单");
+				ffr.setContentPane(new StockOutPanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -152,8 +157,9 @@ public class StockManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成入库单");
-				fr.setContentPane(new StockInPanel(fr,user.getName(),user.getOrgId(),user.getId()));
+				FunctionFrame ffr = new FunctionFrame("生成入库单");
+				ffr.setContentPane(new StockInPanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		

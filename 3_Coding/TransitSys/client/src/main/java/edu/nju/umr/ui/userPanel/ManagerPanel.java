@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.checkUI.BusiCircumPanel;
 import edu.nju.umr.ui.checkUI.CostBenePanel;
 import edu.nju.umr.ui.checkUI.DiaryListPanel;
@@ -25,7 +25,7 @@ public class ManagerPanel extends UserPanel{
 	 */
 	private static final long serialVersionUID = 2151583811822292521L;
 
-	public ManagerPanel(UserVO user,JFrame fr) {
+	public ManagerPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
@@ -37,8 +37,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("单据审批");
-				fr.setContentPane(new OrderApprovePanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("单据审批");
+				ffr.setContentPane(new OrderApprovePanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -50,8 +51,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("城市管理");
-				fr.setContentPane(new CityListPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("城市管理");
+				ffr.setContentPane(new CityListPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -63,8 +65,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("常量制定");
-				fr.setContentPane(new ConstantPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("常量制定");
+				ffr.setContentPane(new ConstantPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -76,8 +79,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("人员管理");
-				fr.setContentPane(new WorkListPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("人员管理");
+				ffr.setContentPane(new WorkListPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -89,8 +93,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("机构管理");
-				fr.setContentPane(new OrgListPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("机构管理");
+				ffr.setContentPane(new OrgListPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -102,8 +107,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("薪水管理");
-				fr.setContentPane(new WorkWageListPanel(fr,user.getName()));
+				FunctionFrame ffr = new FunctionFrame("薪水管理");
+				ffr.setContentPane(new WorkWageListPanel(ffr,user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -115,8 +121,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("经营情况表");
-				fr.setContentPane(new BusiCircumPanel(fr));
+				FunctionFrame ffr = new FunctionFrame("经营情况表");
+				ffr.setContentPane(new BusiCircumPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -128,8 +135,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("成本收益表");
-				fr.setContentPane(new CostBenePanel(fr));
+				FunctionFrame ffr = new FunctionFrame("成本收益表");
+				ffr.setContentPane(new CostBenePanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -141,8 +149,9 @@ public class ManagerPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("日志记录");
-				fr.setContentPane(new DiaryListPanel(fr));
+				FunctionFrame ffr = new FunctionFrame("日志记录");
+				ffr.setContentPane(new DiaryListPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
