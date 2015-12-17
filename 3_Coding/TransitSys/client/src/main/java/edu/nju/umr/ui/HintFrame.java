@@ -42,6 +42,9 @@ public class HintFrame extends JDialog{
 		case ID_IS_USED:txt = "用户名重复";break;
 		case EXPRESS_NOT_FOUND:txt = "订单号有错误！";break;
 		case OUT_OF_LOAD:txt = "超出满载量！";break;
+		case CITY_EXIST:txt="城市已存在！";break;
+		case CITY_ID_USED:txt="区号已使用！";break;
+		case ORG_EXIST:txt="机构已存在！";break;
 		default:
 			break;
 		}
