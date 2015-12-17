@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.orderNewUI.RecipientPanel;
@@ -22,7 +22,7 @@ public class BusinessHallPanel extends UserPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4435831268900821861L;
-	public BusinessHallPanel(UserVO user,JFrame fr) {
+	public BusinessHallPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
@@ -34,6 +34,7 @@ public class BusinessHallPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
 				ffr.setContentPane(new RecipientPanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(recipient);
@@ -44,6 +45,7 @@ public class BusinessHallPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
 				ffr.setContentPane(new HallLoadingPanel(ffr,user.getName(),user.getId(),user.getOrgId(),user.getOrg()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -58,6 +60,7 @@ public class BusinessHallPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("收款单生成");
 				ffr.setContentPane(new IncomePanel(ffr,user.getOrgId(),user.getName(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(income);
@@ -70,6 +73,7 @@ public class BusinessHallPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("司机管理 ");
 				ffr.setContentPane(new DriverListPanel(ffr,user.getOrgId(),user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(driverMan);
@@ -82,6 +86,7 @@ public class BusinessHallPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("车辆管理 ");
 				ffr.setContentPane(new VanListPanel(ffr,user.getOrgId(),user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(vanMan);

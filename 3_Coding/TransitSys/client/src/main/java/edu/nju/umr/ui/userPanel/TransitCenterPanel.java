@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.orderNewUI.ArrivePanel;
 import edu.nju.umr.ui.orderNewUI.CenterLoadingPanel;
 import edu.nju.umr.ui.orderNewUI.TransitPanel;
@@ -21,7 +21,7 @@ public class TransitCenterPanel extends UserPanel{
 	 */
 	private static final long serialVersionUID = -4764722362354952480L;
 
-	public TransitCenterPanel(UserVO user,JFrame fr) {
+	public TransitCenterPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
@@ -33,8 +33,9 @@ public class TransitCenterPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成到达单");
-				fr.setContentPane(new  ArrivePanel(fr,user.getName(),user.getOrgId(),user.getId()));
+				FunctionFrame ffr = new FunctionFrame("生成到达单");
+				ffr.setContentPane(new  ArrivePanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -46,8 +47,9 @@ public class TransitCenterPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成装车单");
-				fr.setContentPane(new CenterLoadingPanel(fr,user.getName(),user.getId(),user.getOrg(),user.getOrgId()));
+				FunctionFrame ffr = new FunctionFrame("生成装车单");
+				ffr.setContentPane(new CenterLoadingPanel(ffr,user.getName(),user.getId(),user.getOrg(),user.getOrgId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		
@@ -59,8 +61,9 @@ public class TransitCenterPanel extends UserPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				FunctionFrame fr = new FunctionFrame("生成中转单");
-				fr.setContentPane(new TransitPanel(fr,user.getOrg(),user.getName(),user.getId(),user.getOrgId()));
+				FunctionFrame ffr = new FunctionFrame("生成中转单");
+				ffr.setContentPane(new TransitPanel(ffr,user.getOrg(),user.getName(),user.getId(),user.getOrgId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		

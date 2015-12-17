@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.orderNewUI.ReceivePanel;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
@@ -21,7 +21,7 @@ public class CourierPanel extends UserPanel {
 	 */
 	private static final long serialVersionUID = 4332309242600582994L;
 
-	public CourierPanel(UserVO user,JFrame fr) {
+	public CourierPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
@@ -33,6 +33,7 @@ public class CourierPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("收件信息输入");
 				ffr.setContentPane(new ReceivePanel(ffr,user.getOrg(),user.getName()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(receive);
@@ -45,6 +46,7 @@ public class CourierPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("订单查询");
 				ffr.setContentPane(new ExpressInfoInqPanel(ffr));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(button);
@@ -57,6 +59,7 @@ public class CourierPanel extends UserPanel {
 			{
 				FunctionFrame ffr=new FunctionFrame("订单创建");
 				ffr.setContentPane(new ExpressPanel(ffr,user.getName(),user.getId()));
+				fr.sonFrames.add(ffr);
 			}
 		});
 		this.add(button_1);
