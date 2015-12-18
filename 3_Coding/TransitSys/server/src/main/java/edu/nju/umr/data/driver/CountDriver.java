@@ -69,7 +69,6 @@ public class CountDriver {
 			System.out.println(c.getId());
 			System.out.println(c.getAccounts().get(0).getName());
 			System.out.println(c.getOrganizations().get(0).getName());
-			System.out.println(c.getStocks().get(0).getStockId());
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

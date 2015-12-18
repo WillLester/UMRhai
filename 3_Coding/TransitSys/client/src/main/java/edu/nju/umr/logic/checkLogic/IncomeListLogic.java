@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
+import edu.nju.umr.dataService.checkDSer.IncomeListDSer;
 import edu.nju.umr.dataService.dataFactory.check.CollectFormDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
@@ -21,7 +21,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
 public class IncomeListLogic implements IncomeListLSer{
 	private CollectFormDFacSer dataFac;
-	private CollectRecordDSer collectData;
+	private IncomeListDSer collectData;
 	private UtilityLogic uti=new UtilityLogic();
 	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根

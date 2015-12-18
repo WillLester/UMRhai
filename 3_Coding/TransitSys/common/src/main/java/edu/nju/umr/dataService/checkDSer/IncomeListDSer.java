@@ -11,6 +11,6 @@ import edu.nju.umr.po.order.IncomePO;
  * @author Lester
  * @see CollectRecordData
  */
-public interface CollectRecordDSer extends Remote{
+public interface IncomeListDSer extends Remote{
 	public ArrayList<IncomePO> getCollectRec(Calendar date,String id) throws RemoteException;
 }

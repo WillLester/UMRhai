@@ -9,13 +9,13 @@ import java.util.Calendar;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
-import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
+import edu.nju.umr.dataService.checkDSer.IncomeListDSer;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.order.IncomePO;
 /*
  * 收款记录数据
  */
-public class IncomeListData extends UnicastRemoteObject implements CollectRecordDSer{
+public class IncomeListData extends UnicastRemoteObject implements IncomeListDSer{
 	/**
 	 * 
 	 */
@@ -28,7 +28,7 @@ public class IncomeListData extends UnicastRemoteObject implements CollectRecord
 		mysqlSer = MysqlImpl.getMysql();
 	}
 	
-	public static IncomeListData getCollectRecord() throws RemoteException{
+	public static IncomeListData getIncomeList() throws RemoteException{
 		if(data == null){
 			data = new IncomeListData();
 		} 

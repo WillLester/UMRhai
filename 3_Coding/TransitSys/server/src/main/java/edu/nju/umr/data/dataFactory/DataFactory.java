@@ -49,7 +49,7 @@ import edu.nju.umr.data.workOrgManData.WorkManData;
 import edu.nju.umr.dataService.accountDSer.AccountDSer;
 import edu.nju.umr.dataService.accountDSer.CountDSer;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
-import edu.nju.umr.dataService.checkDSer.CollectRecordDSer;
+import edu.nju.umr.dataService.checkDSer.IncomeListDSer;
 import edu.nju.umr.dataService.checkDSer.CostBeneDSer;
 import edu.nju.umr.dataService.checkDSer.DiaryDSer;
 import edu.nju.umr.dataService.cityDSer.CityDSer;
@@ -204,9 +204,9 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 		return StockCheckData.getStockCheck();
 	}
 
-	public CollectRecordDSer getCollectForm() throws RemoteException {
+	public IncomeListDSer getCollectForm() throws RemoteException {
 		// TODO 自动生成的方法存根
-		return IncomeListData.getCollectRecord();
+		return IncomeListData.getIncomeList();
 	}
 
 	public SendOrderDSer getSendOrder() throws RemoteException {
