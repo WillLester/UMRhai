@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
+import edu.nju.umr.ui.stub.OrderInfoLogicStub;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 
@@ -81,7 +82,8 @@ public class ExpressListPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				if(isExpressLegal()){
-					OrderInfoLSer orderServ=new OrderInfoLogic();
+//					OrderInfoLSer orderServ=new OrderInfoLogic();
+					OrderInfoLSer orderServ=new OrderInfoLogicStub();
 					if(!orderServ.isExpressValid(expressField.getText()))
 					{
 						DoHint.hint("订单不存在!", frame);
@@ -159,7 +161,14 @@ public class ExpressListPanel extends JPanel{
 			HintFrame hint = new HintFrame(info, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
-		
+		for(int i=0;i<expressList.getModel().getSize();i++)
+		{
+			if(expressField.getText().equals(expressList.getModel().getElementAt(i)))
+			{
+				DoHint.hint("单据已输入！", frame);
+				return false;
+			}
+		}
 		return true;
 	}
 	public ArrayList<String> getExpresses(){
