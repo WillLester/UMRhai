@@ -16,5 +16,7 @@ public class Driver {
 		orD.drive();
 		CenterLoadDriver clD = new CenterLoadDriver();
 		clD.drive();
+		UpdateTransInfoDriver utD = new UpdateTransInfoDriver();
+		utD.drive();
 	}
 }
