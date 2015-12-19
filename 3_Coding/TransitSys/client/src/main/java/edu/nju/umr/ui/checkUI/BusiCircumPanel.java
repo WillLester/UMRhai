@@ -9,11 +9,11 @@ import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -53,6 +53,7 @@ public class BusiCircumPanel extends JPanel {
         setLayout(null);
         frame=fr;
 		serv = new BusiCircumLogic();
+//        serv = new BusiCircumPanelStub();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
 		JLabel start = new JLabel("开始日期");

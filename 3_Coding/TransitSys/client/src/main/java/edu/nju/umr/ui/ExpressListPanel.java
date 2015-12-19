@@ -58,6 +58,7 @@ public class ExpressListPanel extends JPanel{
 		
 	}
 	public ExpressListPanel(JFrame fr) {
+		System.out.println("Ccc");
 		frame = fr;
 		setLayout(null);
 		
@@ -80,8 +81,11 @@ public class ExpressListPanel extends JPanel{
 		newExpButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("BBB");
 				if(isExpressLegal()){
 					OrderInfoLSer orderServ=new OrderInfoLogic();
+					System.out.println("AAA");
+//					OrderInfoLSer orderServ=new OrderInfoLogicStub();
 					if(!orderServ.isExpressValid(expressField.getText()))
 					{
 						DoHint.hint("订单不存在!", frame);
@@ -159,7 +163,14 @@ public class ExpressListPanel extends JPanel{
 			HintFrame hint = new HintFrame(info, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 			return false;
 		}
-		
+		for(int i=0;i<expressList.getModel().getSize();i++)
+		{
+			if(expressField.getText().equals(expressList.getModel().getElementAt(i)))
+			{
+				DoHint.hint("单据已输入！", frame);
+				return false;
+			}
+		}
 		return true;
 	}
 	public ArrayList<String> getExpresses(){

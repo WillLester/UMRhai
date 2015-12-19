@@ -2,14 +2,18 @@ package edu.nju.umr.data.stockData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Calendar;
 
+import edu.nju.umr.data.databaseUtility.MysqlImpl;
+import edu.nju.umr.data.databaseUtility.MysqlService;
+import edu.nju.umr.data.databaseUtility.SerialHelper;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.StockPO;
-import edu.nju.umr.po.enums.Part;
 
 public class StockCheckWarnData extends UnicastRemoteObject implements StockCheckWarnDSer{
 	/**
@@ -17,9 +21,11 @@ public class StockCheckWarnData extends UnicastRemoteObject implements StockChec
 	 */
 	private static final long serialVersionUID = -2620162538190055811L;
 	private static StockCheckWarnData data = null;
+	private MysqlService mysqlSer;
 	private StockCheckWarnData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		mysqlSer = MysqlImpl.getMysql();
 	}
 	
 	public static StockCheckWarnData getStockCheckWarn() throws RemoteException{
@@ -31,26 +37,26 @@ public class StockCheckWarnData extends UnicastRemoteObject implements StockChec
 
 	public ArrayList<Integer> getWarning(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<Integer> ar=new ArrayList<Integer>();
-		ar.add(1);
-		ar.add(2);
-		return ar;
+		@SuppressWarnings("unchecked")
+		ArrayList<Integer> warnings = (ArrayList<Integer>) SerialHelper.readFromFile("data/stockWarning/"+id+".ser");
+		return warnings;
 	}
 
 	public StockPO getStock(String stockId) throws RemoteException {
 		// TODO 自动生成的方法存根
-		GoodPO good = new GoodPO("00001", "00001", Calendar.getInstance(), "北京", Part.TRAIN, "T00001", 3, 5);
-		ArrayList<GoodPO> goodList = new ArrayList<GoodPO>();
-		goodList.add(good);
-		StockPO stock = new StockPO("00001",goodList);
+		ResultSet result = mysqlSer.checkInfo(new GoodPO(null, stockId, null, null, null, null, 0, 0));
+		ArrayList<GoodPO> goods = ArrayListFactory.produceGoodList(result);
+		ResultSet orgRe = mysqlSer.checkInfo(new OrgPO(stockId, null, null, null, null, null));
+		ArrayList<OrgPO> orgList = ArrayListFactory.produceOrgList(orgRe);
+		OrgPO org = orgList.get(0);
+		StockPO stock = new StockPO(stockId, org.getName(),goods);
 		return stock;
 	}
 
 	public ArrayList<ShelfPO> getShelves(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ArrayList<ShelfPO> ar=new ArrayList<ShelfPO>();
-		ar.add(new ShelfPO("1","00001",1,1,Part.PLANE));
-		ar.add(new ShelfPO("2","00001",3,4,Part.TRAIN));
+		ResultSet result = mysqlSer.checkInfo(new ShelfPO(null, id, 0, 0, null));
+		ArrayList<ShelfPO> ar = ArrayListFactory.produceShelfList(result);
 		return ar;
 	}
 

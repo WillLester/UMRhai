@@ -55,7 +55,11 @@ public class OrgPO extends PO implements Serializable{
 		case DELETE:command="delete from org where id='"+id+"'";break;
 		case FIND:
 			if(kind == null){
-				command="select * from org where id like '%"+id+"%' or name like '%"+name+"%' or city like '%"+city+"%'";
+				if(name != null){
+					command="select * from org where id like '%"+id+"%' or name like '%"+name+"%' or city like '%"+city+"%'";
+				} else {
+					command = "select * from org where id = '"+id+"'";
+				}
 			} else {
 				command="select * from org where kind = "+kind.ordinal();
 			}

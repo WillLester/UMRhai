@@ -20,15 +20,15 @@ import edu.nju.umr.vo.ResultMessage;
 
 public class BusiCircumLogic implements BusiCircumLSer{
 	private BusiCircumDFacSer dataFac;
-	private BusiCircumDSer statementData;
-	private UtilityLogic uti=new UtilityLogic();
+	private BusiCircumDSer busiCircumData;
+	private UtilityLogic uti;
 	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
 	
 	public BusiCircumLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (BusiCircumDFacSer)Naming.lookup(Url.URL);
-			statementData = dataFac.getStatement();
+			busiCircumData = dataFac.getBusiCircum();
 			uti=new UtilityLogic();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
@@ -41,8 +41,8 @@ public class BusiCircumLogic implements BusiCircumLSer{
 	public ResultMessage getBusiCircum(Calendar start, Calendar end) {
 		
 		try {
-			ArrayList<IncomePO> incomePOs=statementData.findIncome(start, end);
-			ArrayList<PaymentPO> paymentPOs=statementData.findPayment(start, end);
+			ArrayList<IncomePO> incomePOs=busiCircumData.findIncome(start, end);
+			ArrayList<PaymentPO> paymentPOs=busiCircumData.findPayment(start, end);
 			
 			for(IncomePO po:incomePOs){
 				BusiCircumVO bc=new BusiCircumVO(0,po.getDate(),po.getCost(),null);

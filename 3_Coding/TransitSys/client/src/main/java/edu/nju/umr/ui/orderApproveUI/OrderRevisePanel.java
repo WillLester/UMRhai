@@ -23,6 +23,7 @@ import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.stub.OrderRevisePanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
@@ -43,6 +44,7 @@ public class OrderRevisePanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		serv=new OrderResubmitLogic();
+//		serv=new OrderRevisePanelStub();
 		this.userId = userId;
 
 		JLabel reviseLabel = new JLabel("未通过单据");

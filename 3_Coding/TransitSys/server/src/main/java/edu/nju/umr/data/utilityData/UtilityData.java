@@ -75,7 +75,10 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 				}
 			}
 			goodList.removeAll(removeList);
-			StockPO stock = new StockPO(stockId, stockGood);
+			ResultSet orgRe = mysqlSer.checkInfo(new OrgPO(stockId, null, null, null, null, null));
+			ArrayList<OrgPO> orgList = ArrayListFactory.produceOrgList(orgRe);
+			OrgPO org = orgList.get(0);
+			StockPO stock = new StockPO(stockId, org.getName(),stockGood);
 			stockList.add(stock);
 		}
 		return stockList;

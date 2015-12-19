@@ -352,7 +352,7 @@ public class VPFactory {
 			GoodVO gd=VPFactory.toGoodVO(good);
 			goodv.add(gd);
 		}
-		StockVO vo=new StockVO(goodv, po.getStockId());
+		StockVO vo=new StockVO(goodv, po.getStockId(),po.getStock());
 		return vo;
 	}
 	public static StockPO toStockPO(StockVO vo){
@@ -362,7 +362,7 @@ public class VPFactory {
 			GoodPO gp=VPFactory.toGoodPO(gv, vo.getStockId());
 			goodp.add(gp);
 		}
-		StockPO po=new StockPO(vo.getStockId(), goodp);
+		StockPO po=new StockPO(vo.getStockId(), vo.getName(),goodp);
 		return po;
 	}
 	

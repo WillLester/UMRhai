@@ -110,7 +110,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 	public UserPO getUser(String userId) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new UserPO(userId, null, null, null, null, null, 0, null));
-		ArrayList<UserPO> users = ArrayListFactory.produceUserList(result);		
+		ArrayList<UserPO> users = ArrayListFactory.produceUserList(result);	
 		return users.get(0);
 	}
 
