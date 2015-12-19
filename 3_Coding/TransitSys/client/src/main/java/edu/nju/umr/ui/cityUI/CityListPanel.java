@@ -25,6 +25,7 @@ import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.stub.CityListPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.CitiesVO;
@@ -58,6 +59,7 @@ public class CityListPanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		logicSer = new CityLogic();
+//		logicSer = new CityListPanelStub();
 		cityList = new ArrayList<CityVO>();
 		citiesList = new ArrayList<CitiesVO>();
 		
@@ -170,7 +172,7 @@ public class CityListPanel extends JPanel{
 							initialize();
 							cityTable1.clearSelection();
 							cityTable2.clearSelection();
-							DoHint.hint(result, frame);
+							DoHint.hint(result, frame,false);
 						} else {
 							@SuppressWarnings("unused")
 							HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
