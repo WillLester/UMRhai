@@ -11,6 +11,7 @@ import edu.nju.umr.data.databaseUtility.SerialHelper;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.stockDSer.StockCheckWarnDSer;
 import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.StockPO;
 
@@ -45,7 +46,10 @@ public class StockCheckWarnData extends UnicastRemoteObject implements StockChec
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new GoodPO(null, stockId, null, null, null, null, 0, 0));
 		ArrayList<GoodPO> goods = ArrayListFactory.produceGoodList(result);
-		StockPO stock = new StockPO(stockId, goods);
+		ResultSet orgRe = mysqlSer.checkInfo(new OrgPO(stockId, null, null, null, null, null));
+		ArrayList<OrgPO> orgList = ArrayListFactory.produceOrgList(orgRe);
+		OrgPO org = orgList.get(0);
+		StockPO stock = new StockPO(stockId, org.getName(),goods);
 		return stock;
 	}
 

@@ -10,6 +10,7 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.dataService.stockDSer.StockCheckNowDSer;
 import edu.nju.umr.po.GoodPO;
+import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 
 public class StockCheckNowData extends UnicastRemoteObject implements StockCheckNowDSer{
@@ -37,7 +38,10 @@ public class StockCheckNowData extends UnicastRemoteObject implements StockCheck
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new GoodPO(null, id, null, null, null, null, 0, 0));
 		ArrayList<GoodPO> goodList = ArrayListFactory.produceGoodList(result);
-		StockPO stock = new StockPO(id, goodList);
+		ResultSet orgRe = mysqlSer.checkInfo(new OrgPO(id, null, null, null, null, null));
+		ArrayList<OrgPO> orgList = ArrayListFactory.produceOrgList(orgRe);
+		OrgPO org = orgList.get(0);
+		StockPO stock = new StockPO(id, org.getName(),goodList);
 		return stock;
 	}
 }

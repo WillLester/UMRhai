@@ -18,5 +18,23 @@ public class Driver {
 		clD.drive();
 		UpdateTransInfoDriver utD = new UpdateTransInfoDriver();
 		utD.drive();
+		StockCheckNowDriver scnD = new StockCheckNowDriver();
+		scnD.drive();
+		CustomerDriver cusD = new CustomerDriver();
+		cusD.drive();
+		UserManDriver umD = new UserManDriver();
+		umD.drive();
+		AccountUpdateDriver auD = new AccountUpdateDriver();
+		auD.drive();
+		DiaryUpdateDriver duD = new DiaryUpdateDriver();
+		duD.drive();
+		OrderCalcuDriver ocD = new OrderCalcuDriver();
+		ocD.drive();
+		OrderInfoDriver oiD = new OrderInfoDriver();
+		oiD.drive();
+		UtilityDriver uD = new UtilityDriver();
+		uD.drive();
+		VanManDriver vmD = new VanManDriver();
+		vmD.drive();
 	}
 }

@@ -46,7 +46,7 @@ public class CountDriver {
 		GoodPO good = new GoodPO("1111111111", "0210", Calendar.getInstance(), "赛艇", Part.PLANE, "021000000", 3, 6);
 		ArrayList<GoodPO> goods = new ArrayList<GoodPO>();
 		goods.add(good);
-		StockPO stock = new StockPO("0210", goods);
+		StockPO stock = new StockPO("0210", "上海市中转中心",goods);
 		ArrayList<StockPO> stocks = new ArrayList<StockPO>();
 		stocks.add(stock);
 		AccountPO account = new AccountPO(6, "批判一番", new BigDecimal(300));
