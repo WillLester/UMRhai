@@ -16,6 +16,7 @@ import edu.nju.umr.logic.cityLogic.ConstantLogic;
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.stub.ConstantPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -44,6 +45,7 @@ public class ConstantPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ConstantLogic();
+//		logicSer = new ConstantPanelStub();
 		
 		
 		JLabel titleLabel = new JLabel("常量制定");
