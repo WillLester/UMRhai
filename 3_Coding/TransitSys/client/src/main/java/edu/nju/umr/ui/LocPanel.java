@@ -53,6 +53,7 @@ public class LocPanel extends JPanel {
 		setLayout(null);
 		frame = fr;
 		logicSer = new LocLogic();
+//		logicSer = new LocLogicStub();
 		cities = new ArrayList<LocVO>();
 		
 		JLabel provinceLabel = new JLabel("省份");
