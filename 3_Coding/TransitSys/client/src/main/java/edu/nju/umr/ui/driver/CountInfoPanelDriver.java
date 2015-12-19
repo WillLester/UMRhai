@@ -33,7 +33,7 @@ public class CountInfoPanelDriver {
 		GoodVO good = new GoodVO("1111111111", Calendar.getInstance(), "赛艇", Part.PLANE, "021000000", 3, 6);
 		ArrayList<GoodVO> goods = new ArrayList<GoodVO>();
 		goods.add(good);
-		StockVO stock = new StockVO(goods,"0210");
+		StockVO stock = new StockVO(goods,"0210","上海市中转中心");
 		ArrayList<StockVO> stocks = new ArrayList<StockVO>();
 		stocks.add(stock);
 		AccountVO account = new AccountVO("批判一番", new BigDecimal(300));
