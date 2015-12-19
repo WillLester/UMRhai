@@ -269,7 +269,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 		return CountData.getCountData();
 	}
 
-	public BusiCircumDSer getStatement() throws RemoteException {
+	public BusiCircumDSer getBusiCircum() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return BusiCircumData.getBusiCircumData();
 	}

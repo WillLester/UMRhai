@@ -16,7 +16,7 @@ public class BusiCircumDriver {
 		// TODO 自动生成的构造函数存根
 		try {
 			DataFactory fac = new DataFactory();
-			serv = fac.getStatement();
+			serv = fac.getBusiCircum();
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

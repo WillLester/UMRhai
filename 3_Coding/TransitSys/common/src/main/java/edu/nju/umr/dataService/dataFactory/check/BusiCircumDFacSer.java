@@ -6,5 +6,5 @@ import java.rmi.RemoteException;
 import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 
 public interface BusiCircumDFacSer extends Remote{
-	public BusiCircumDSer getStatement() throws RemoteException;
+	public BusiCircumDSer getBusiCircum() throws RemoteException;
 }
