@@ -1,22 +1,24 @@
 package edu.nju.umr.ui.userPanel;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import edu.nju.umr.vo.UserVO;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.userUI.LoginPanel;
+import edu.nju.umr.vo.UserVO;
 
 public class UserPanel extends JPanel{
 	/**
@@ -116,5 +118,9 @@ public class UserPanel extends JPanel{
 	}
 	public UserVO getUser(){
 		return user;
+	}
+	protected void paintComponent(Graphics g){
+		Image background = new ImageIcon("ui/frame/user.png").getImage();
+		g.drawImage(background, 0, 0, null);
 	}
 }
