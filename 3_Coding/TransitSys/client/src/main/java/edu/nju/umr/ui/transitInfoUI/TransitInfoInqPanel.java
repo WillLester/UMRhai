@@ -18,6 +18,7 @@ import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.stub.TransitInfoInqPanelStub;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.vo.ResultMessage;
@@ -37,6 +38,7 @@ public class TransitInfoInqPanel extends JPanel {
 	public TransitInfoInqPanel(MainFrame fr) {
 		setLayout(null);
 		logicSer = new CustomerLogic();
+//		logicSer = new TransitInfoInqPanelStub();
 		frame = fr;
 		this.setBounds(150, 0, 1229, 691);
 		
