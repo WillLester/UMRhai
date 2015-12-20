@@ -18,8 +18,8 @@ import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.LoginButton;
-import edu.nju.umr.ui.component.ParentButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
 import edu.nju.umr.ui.userPanel.BusinessHallPanel;
@@ -67,7 +67,7 @@ public class LoginPanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		ParentButton loginButton = new LoginButton();
+		Button loginButton = new LoginButton();
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultMessage re=logicSer.login(idField.getText(), new String(password.getPassword()));
@@ -92,8 +92,7 @@ public class LoginPanel extends JPanel {
 				
 			}
 		});
-		loginButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		loginButton.setBounds(464, 295, 93, 23);
+		loginButton.setBounds(464, 295, 150, 45);
 		add(loginButton);
 		
 		JButton closeButton = new JButton("关闭");
@@ -117,7 +116,10 @@ public class LoginPanel extends JPanel {
 		password.setBounds(525, 162, 193, 24);
 		add(password);
 		
-		JButton inquiryButton = new JButton("物流信息查询");
+		Button inquiryButton = new Button();
+		inquiryButton.setIcon(new ImageIcon("ui/button/buttonTrInfo.png"));
+		inquiryButton.setRolloverIcon(new ImageIcon("ui/button/buttonTrInfoSt.png"));
+		inquiryButton.setPressedIcon(new ImageIcon("ui/button/buttonTrInfoP.png"));
 		inquiryButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
@@ -125,7 +127,7 @@ public class LoginPanel extends JPanel {
 		}
 		});
 		inquiryButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		inquiryButton.setBounds(493, 233, 199, 24);
+		inquiryButton.setBounds(493, 233, 280, 45);
 		add(inquiryButton);
 
 	}
