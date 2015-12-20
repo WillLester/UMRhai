@@ -2,13 +2,11 @@ package edu.nju.umr.ui.component;
 
 import java.awt.Cursor;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class ExcitedFrame extends JFrame {
@@ -27,46 +25,81 @@ public class ExcitedFrame extends JFrame {
 	
 	public ExcitedFrame(int width,int height){
 		setLayout(null);
-		setUndecorated(true);
+//		setUndecorated(true);
 		setSize(width,height);
-		close.setNewImages("close", "closeSt", "closeP");
-		toMin.setNewImages("mini", "miniSt", "miniP");
-		toMax.setIcon(new ImageIcon("ui/button/maxP.png"));
-		
-		getContentPane().add(close);
-		getContentPane().add(toMin);
-		getContentPane().add(toMax);
-		
-		close.setBounds(width-50, 0, 50, 50);
-		toMax.setBounds(width-50*2, 0, 50, 50);
-		toMin.setBounds(width-50*3, 0, 50, 50);
+//		close.setNewImages("close", "closeSt", "closeP");
+//		toMin.setNewImages("mini", "miniSt", "miniP");
+//		toMax.setIcon(new ImageIcon("ui/button/maxP.png"));
+//		
+//		getContentPane().add(close);
+//		getContentPane().add(toMin);
+//		getContentPane().add(toMax);
+//		
+//		close.setBounds(width-50, 0, 50, 50);
+//		toMax.setBounds(width-50*2, 0, 50, 50);
+//		toMin.setBounds(width-50*3, 0, 50, 50);
+//		setVisible(true);
+//		setDragable(this);
+//		close.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//				System.exit(0);	
+//			}
+//			
+//		});
+//		
+//		toMin.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//				setExtendedState(ICONIFIED);	
+//			}	
+//		});
 		setVisible(true);
-		setDragable(this);
-		close.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);	
+		requestFocus();
+		this.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("AA");
 			}
-			
-		});
-		
-		toMin.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				setExtendedState(ICONIFIED);	
-			}	
-		});
-			
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
 	}
 	
 	protected void setDragable(final ExcitedFrame ef){
-		this.addMouseListener(new MouseAdapter(){
+		System.out.println("Setted");
+		ef.addMouseListener(new MouseAdapter(){
 			@SuppressWarnings("unused")
 			public void MouseReleased(MouseEvent e){
+				System.out.println("Released");
 				isMoved=false;//鼠标释放后不能进行拖拽
 				ef.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 			@SuppressWarnings("unused")
 			public void MousePressed(MouseEvent e){
 				isMoved=true;
+				System.out.println("pressed");
 				pre=new Point(e.getX(),e.getY());//得到鼠标按下的位置
 				ef.setCursor(new Cursor(Cursor.MOVE_CURSOR));
 			}
@@ -75,6 +108,7 @@ public class ExcitedFrame extends JFrame {
 		this.addMouseMotionListener(new MouseMotionAdapter(){
 			@SuppressWarnings("unused")
 			public void MouseDragged(MouseEvent e){
+				System.out.println("Dragged");
 				if(isMoved){
 					end=new Point(ef.getLocation().x+e.getX()-pre.x,ef.getLocation().y+e.getY()-pre.y);
 					ef.setLocation(end);
@@ -85,5 +119,6 @@ public class ExcitedFrame extends JFrame {
 	
 	public static void main(String[] args){
 		ExcitedFrame frame=new ExcitedFrame(1000,700);
+
 	}
 }
