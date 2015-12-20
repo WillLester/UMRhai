@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.LogoutButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.vo.UserVO;
 
@@ -25,8 +25,8 @@ public class UserPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -1833841005604801589L;
-	private JTextField nameTxt;
-	private JTextField levelTxt;
+	private JLabel nameTxt;
+	private JLabel levelTxt;
 	private UserVO user;
 	private MainFrame frame;
 	public UserPanel(UserVO user,MainFrame fr) {
@@ -37,7 +37,7 @@ public class UserPanel extends JPanel{
 		this.setLayout(null);
 		
 		JLabel title = new JLabel("快递物流管理系统");
-		title.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		title.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		title.setBounds(29, 10, 250, 38);
 		this.add(title);
 		
@@ -51,25 +51,23 @@ public class UserPanel extends JPanel{
 		this.add(vertical);
 		
 		JLabel nameLabel = new JLabel("姓名");
-		nameLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		nameLabel.setBounds(18, 120, 54, 15);
 		this.add(nameLabel);
 		
-		nameTxt = new JTextField();
+		nameTxt = new JLabel();
 		nameTxt.setText(user.getName());
-		nameTxt.setFont(new Font("宋体", Font.PLAIN, 15));
-		nameTxt.setEditable(false);
+		nameTxt.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		nameTxt.setBounds(66, 116, user.getName().length()*16, 21);
 		this.add(nameTxt);
-		nameTxt.setColumns(10);
+	
 		
 		JLabel levelLabel = new JLabel("身份");
-		levelLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		levelLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		levelLabel.setBounds(18, 160, 54, 15);
 		this.add(levelLabel);
 		
-		levelTxt = new JTextField();
-		levelTxt.setEditable(false);
+		levelTxt = new JLabel();
 		String lv=null;
 		switch(user.getJuri())
 		{
@@ -83,15 +81,14 @@ public class UserPanel extends JPanel{
 		case ADMIN:lv="管理员";break;
 		}
 		levelTxt.setText(lv);
-		levelTxt.setFont(new Font("宋体", Font.PLAIN, 15));
+		levelTxt.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		levelTxt.setBounds(66, 156, lv.length()*16, 21);
 		this.add(levelTxt);
-		levelTxt.setColumns(10);
 		
 		
 		
-		JButton logoutButton = new JButton("注销");
-		logoutButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		JButton logoutButton = new LogoutButton();
+		logoutButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		logoutButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
