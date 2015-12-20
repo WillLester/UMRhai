@@ -1,4 +1,4 @@
-package edu.nju.umr.data.stub;
+package edu.nju.umr.logic.stub;
 
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
@@ -10,7 +10,7 @@ import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 
-public class BusiCircumDataStub implements BusiCircumDSer{
+public class BusiCircumLogicStub implements BusiCircumDSer{
 
 	@Override
 	public ArrayList<IncomePO> findIncome(Calendar start, Calendar end)
