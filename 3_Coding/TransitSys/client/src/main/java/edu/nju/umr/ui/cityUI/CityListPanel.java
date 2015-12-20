@@ -25,7 +25,6 @@ import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
-import edu.nju.umr.ui.stub.CityListPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.CitiesVO;

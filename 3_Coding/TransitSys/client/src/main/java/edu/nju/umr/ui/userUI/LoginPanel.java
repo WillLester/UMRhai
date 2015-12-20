@@ -16,7 +16,6 @@ import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
-import edu.nju.umr.ui.stub.LoginPanelStub;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
 import edu.nju.umr.ui.userPanel.BusinessHallPanel;

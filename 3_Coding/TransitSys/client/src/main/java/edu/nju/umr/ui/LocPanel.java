@@ -20,7 +20,6 @@ import edu.nju.umr.logic.cityLogic.LocLogic;
 import edu.nju.umr.logicService.cityLogicSer.LocLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
-import edu.nju.umr.ui.stub.LocLogicStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.LocVO;
 import edu.nju.umr.vo.ResultMessage;

@@ -1,6 +1,4 @@
 package edu.nju.umr.ui.driver;
-import javax.swing.JFrame;
-
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 public class TransitInfoPanelDriver {

@@ -18,7 +18,6 @@ import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
-import edu.nju.umr.ui.stub.TransitInfoInqPanelStub;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.vo.ResultMessage;
