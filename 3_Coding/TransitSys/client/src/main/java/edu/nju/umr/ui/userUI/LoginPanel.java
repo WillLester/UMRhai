@@ -1,21 +1,25 @@
 package edu.nju.umr.ui.userUI;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.userLogic.LoginLogic;
 import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.LoginButton;
+import edu.nju.umr.ui.component.ParentButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
 import edu.nju.umr.ui.userPanel.BusinessHallPanel;
@@ -29,10 +33,11 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
 
 public class LoginPanel extends JPanel {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3358515981326880681L;
+	private static final long serialVersionUID = -1627754805290859013L;
 	private JTextField idField;
 	private JPasswordField password;
 	private MainFrame frame;
@@ -46,18 +51,11 @@ public class LoginPanel extends JPanel {
 		frame=fr;
 		try {
 			logicSer = new LoginLogic();
-//			logicSer = new LoginPanelStub();
 		} catch (Exception e1) {
 			// TODO 自动生成的 catch 块
 			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-		
-		JLabel titleLabel = new JLabel("快递物流系统");
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(464, 10, 242, 67);
-		add(titleLabel);
 		
 		JLabel idLabel = new JLabel("账号");
 		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -69,7 +67,7 @@ public class LoginPanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		JButton loginButton = new JButton("登陆");
+		ParentButton loginButton = new LoginButton();
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultMessage re=logicSer.login(idField.getText(), new String(password.getPassword()));
@@ -131,4 +129,9 @@ public class LoginPanel extends JPanel {
 		add(inquiryButton);
 
 	}
+	protected void paintComponent(Graphics g){
+		Image backGround = new ImageIcon("ui/frame/main.png").getImage();
+		g.drawImage(backGround, 0,0,null);
+	}
+
 }
