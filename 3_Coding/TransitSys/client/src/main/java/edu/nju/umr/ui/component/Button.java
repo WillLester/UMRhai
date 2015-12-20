@@ -16,7 +16,7 @@ public class Button extends JButton{
 		setFocusPainted(false);
 			
 	}
-	protected void setNewImages(String before,String on,String after){
+	public void setNewImages(String before,String on,String after){
 		
 		setIcon(new ImageIcon(path+before+".png"));
 		setRolloverIcon(new ImageIcon(path+on+".png"));
