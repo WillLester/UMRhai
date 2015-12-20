@@ -27,6 +27,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.stub.StockCheckNowPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -48,6 +49,7 @@ public class StockCheckNowPanel extends JPanel{
 		frame=fr;
 		this.orgId = orgId;
 		logicSer = new StockCheckNowLogic();
+//		logicSer = new StockCheckNowPanelStub();
 		
 		JLabel checkLabel = new JLabel("库存盘点");
 		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
