@@ -8,7 +8,7 @@ public class ParentButton extends JButton{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String path="";//待确定！
+	private String path="ui/button/";//待确定！
 
 	public ParentButton(){
 		setBorderPainted(false);
