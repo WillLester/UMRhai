@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.userUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -7,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -19,6 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.component.LoginButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
@@ -56,18 +57,48 @@ public class LoginPanel extends JPanel {
 			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		this.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+	
+		Button inquiryButton = new Button();
+		inquiryButton.setIcon(new ImageIcon("ui/button/buttonTrInfo.png"));
+		inquiryButton.setRolloverIcon(new ImageIcon("ui/button/buttonTrInfoSt.png"));
+		inquiryButton.setPressedIcon(new ImageIcon("ui/button/buttonTrInfoP.png"));
+		inquiryButton.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e)
+		{
+			frame.setContentPane(new TransitInfoInqPanel(frame));
+		}
+		});
+		inquiryButton.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		inquiryButton.setBounds(464, 233, 280, 45);
+		add(inquiryButton);
 		
 		JLabel idLabel = new JLabel("账号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		idLabel.setBounds(464, 104, 40, 24);
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(469, 340, 40, 24);
+		Color color = new Color(57, 152,214);
+		idLabel.setForeground(color);
 		add(idLabel);
 		
 		idField = new JTextField();
-		idField.setBounds(525, 107, 193, 24);
+		idField.setBounds(530, 340, 210, 24);
 		add(idField);
 		idField.setColumns(10);
 		
+		JLabel passwordLabel = new JLabel("密码");
+		passwordLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		passwordLabel.setForeground(color);
+		passwordLabel.setBounds(469, 385, 40, 24);
+		add(passwordLabel);
+		
+		password = new JPasswordField();
+		password.setColumns(10);
+		password.setBounds(530, 385,210, 24);
+		add(password);
+	
 		Button loginButton = new LoginButton();
+		loginButton.setIcon(new ImageIcon("ui/button/buttonLogin.png"));
+		loginButton.setRolloverIcon(new ImageIcon("ui/button/buttonLoginSt.png"));
+		loginButton.setPressedIcon(new ImageIcon("ui/button/buttonLoginP.png"));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultMessage re=logicSer.login(idField.getText(), new String(password.getPassword()));
@@ -92,43 +123,25 @@ public class LoginPanel extends JPanel {
 				
 			}
 		});
-		loginButton.setBounds(464, 295, 150, 45);
+		loginButton.setBounds(452, 450, 150, 45);
 		add(loginButton);
 		
-		JButton closeButton = new JButton("关闭");
+		Button closeButton = new ExitButton();
+		closeButton.setIcon(new ImageIcon("ui/button/buttonExit.png"));
+		closeButton.setRolloverIcon(new ImageIcon("ui/button/buttonExitSt.png"));
+		closeButton.setPressedIcon(new ImageIcon("ui/button/buttonExitP.png"));
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
 				
 			}
 		});
-		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		closeButton.setBounds(625, 295, 93, 23);
+		closeButton.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		closeButton.setBounds(625, 450, 150, 45);
 		add(closeButton);
 		
-		JLabel passwordLabel = new JLabel("密码");
-		passwordLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		passwordLabel.setBounds(464, 162, 40, 24);
-		add(passwordLabel);
 		
-		password = new JPasswordField();
-		password.setColumns(10);
-		password.setBounds(525, 162, 193, 24);
-		add(password);
-		
-		Button inquiryButton = new Button();
-		inquiryButton.setIcon(new ImageIcon("ui/button/buttonTrInfo.png"));
-		inquiryButton.setRolloverIcon(new ImageIcon("ui/button/buttonTrInfoSt.png"));
-		inquiryButton.setPressedIcon(new ImageIcon("ui/button/buttonTrInfoP.png"));
-		inquiryButton.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent e)
-		{
-			frame.setContentPane(new TransitInfoInqPanel(frame));
-		}
-		});
-		inquiryButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		inquiryButton.setBounds(493, 233, 280, 45);
-		add(inquiryButton);
+	
 
 	}
 	protected void paintComponent(Graphics g){
