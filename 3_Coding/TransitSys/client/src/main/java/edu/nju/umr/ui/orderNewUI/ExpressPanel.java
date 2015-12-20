@@ -31,6 +31,7 @@ import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
+import edu.nju.umr.ui.stub.ExpressPanelStub;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
@@ -145,6 +146,7 @@ public class ExpressPanel extends JPanel {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
+//		logicSer = new ExpressPanelStub();
 		this.name = name;
 		this.userId = userId;
 		
