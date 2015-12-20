@@ -24,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.stub.StockDividePanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -51,6 +52,7 @@ public class StockDividePanel extends JPanel{
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockDivideLogic();
+//		logicSer = new StockDividePanelStub();
 		this.orgId = orgId;
 		
 		JLabel divideLabel = new JLabel("库存分区");
