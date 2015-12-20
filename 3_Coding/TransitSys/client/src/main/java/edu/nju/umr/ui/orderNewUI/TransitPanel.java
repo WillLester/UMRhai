@@ -25,6 +25,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
+import edu.nju.umr.ui.stub.TransitPanelStub;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -82,6 +83,7 @@ public class TransitPanel extends JPanel implements PriceCount {
 		this.name = name;
 		this.userId=userId;
 		logicSer = new TransitOrderLogic();
+//		logicSer = new TransitPanelStub(); 
 		
 		JLabel titleLabel = new JLabel("中转单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

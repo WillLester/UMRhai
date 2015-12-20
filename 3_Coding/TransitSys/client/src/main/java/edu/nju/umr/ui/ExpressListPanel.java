@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
+import edu.nju.umr.ui.stub.OrderInfoLogicStub;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 
@@ -58,7 +59,6 @@ public class ExpressListPanel extends JPanel{
 		
 	}
 	public ExpressListPanel(JFrame fr) {
-		System.out.println("Ccc");
 		frame = fr;
 		setLayout(null);
 		
@@ -81,10 +81,8 @@ public class ExpressListPanel extends JPanel{
 		newExpButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("BBB");
 				if(isExpressLegal()){
 					OrderInfoLSer orderServ=new OrderInfoLogic();
-					System.out.println("AAA");
 //					OrderInfoLSer orderServ=new OrderInfoLogicStub();
 					if(!orderServ.isExpressValid(expressField.getText()))
 					{
