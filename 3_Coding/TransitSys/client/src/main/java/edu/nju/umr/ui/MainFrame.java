@@ -4,9 +4,10 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
+import edu.nju.umr.ui.component.EFrame;
 import edu.nju.umr.ui.userUI.LoginPanel;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends EFrame{
 	/**
 	 * 
 	 */
@@ -21,6 +22,7 @@ public class MainFrame extends JFrame{
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		super(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setResizable(false);
 		setTitle("快递物流系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

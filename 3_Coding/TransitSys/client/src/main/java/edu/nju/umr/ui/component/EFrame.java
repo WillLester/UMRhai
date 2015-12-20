@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class ExcitedFrame extends JFrame {
+public class EFrame extends JFrame {
 
 	/**
 	 * 
@@ -25,10 +25,12 @@ public class ExcitedFrame extends JFrame {
 	private Point pre=null;
 	private Point end=null;
 	
-	public ExcitedFrame(int width,int height){
+	public EFrame(int width,int height){
 		setLayout(null);
 		setUndecorated(true);
 		setSize(width,height);
+//		setAlwaysOnTop(true);
+		
 		close.setNewImages("close", "closeSt", "closeP");
 		toMin.setNewImages("mini", "miniSt", "miniP");
 		toMax.setIcon(new ImageIcon("ui/button/maxP.png"));
@@ -57,7 +59,7 @@ public class ExcitedFrame extends JFrame {
 		
 	}
 	
-	protected void setDragable(ExcitedFrame ef){
+	protected void setDragable(EFrame ef){
 		ef.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e) {  
                 isMoved = false;// 鼠标释放了以后，是不能再拖拽的了  
