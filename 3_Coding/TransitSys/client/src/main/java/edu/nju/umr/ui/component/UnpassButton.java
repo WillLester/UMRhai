@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class UnpassButton extends ParentButton {
+public class UnpassButton extends Button {
 
 	/**
 	 * 

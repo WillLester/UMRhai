@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class DelButton extends ParentButton{
+public class DelButton extends Button{
 
 	/**
 	 * 

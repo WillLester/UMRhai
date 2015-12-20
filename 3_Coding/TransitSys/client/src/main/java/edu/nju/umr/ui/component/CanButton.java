@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class CanButton extends ParentButton {
+public class CanButton extends Button {
 
 	/**
 	 * 取消按钮

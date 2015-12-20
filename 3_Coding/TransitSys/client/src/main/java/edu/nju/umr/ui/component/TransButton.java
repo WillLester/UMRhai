@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class TransButton extends ParentButton {
+public class TransButton extends Button {
 
 	/**
 	 * 

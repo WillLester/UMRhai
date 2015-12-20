@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class ConfirmModButton extends ParentButton {
+public class ConfirmModButton extends Button {
 
 	/**
 	 * 确认修改按钮

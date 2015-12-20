@@ -3,14 +3,14 @@ package edu.nju.umr.ui.component;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class ParentButton extends JButton{
+public class Button extends JButton{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String path="ui/button/";//待确定！
+	static final String path="ui/button/";//待确定！
 
-	public ParentButton(){
+	public Button(){
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);

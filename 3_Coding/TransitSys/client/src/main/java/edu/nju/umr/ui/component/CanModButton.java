@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class CanModButton extends ParentButton {
+public class CanModButton extends Button {
 
 	/**
 	 * 取消修改按钮

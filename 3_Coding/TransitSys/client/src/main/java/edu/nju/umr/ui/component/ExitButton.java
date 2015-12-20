@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.component;
 
-public class ExitButton extends ParentButton {
+public class ExitButton extends Button {
 
 	/**
 	 * 
