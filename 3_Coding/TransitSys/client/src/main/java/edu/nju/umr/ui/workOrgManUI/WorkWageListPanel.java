@@ -22,6 +22,7 @@ import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.stub.WorkWageListPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -54,6 +55,7 @@ public class WorkWageListPanel extends JPanel {
 		frame=fr;
 		this.name = name;
 		logicSer = new WageManLogic();
+//		logicSer = new WorkWageListPanelStub();
 		wageList = new ArrayList<WageVO>();
 		
 		JLabel nameLabel = new JLabel("人员薪水信息列表");
