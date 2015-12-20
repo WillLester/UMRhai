@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,6 +28,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.stub.UserListPanelStub;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -60,6 +62,7 @@ public class UserListPanel extends JPanel {
 	 */
 	public UserListPanel(FunctionFrame fr,String name){
 		serv=new UserManLogic();
+//		serv=new UserListPanelStub();
 		frame=fr;
 		setLayout(null);
 		this.name = name;
