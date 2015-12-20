@@ -16,6 +16,7 @@ import edu.nju.umr.logicService.userLogicSer.LoginLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.stub.LoginPanelStub;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
 import edu.nju.umr.ui.userPanel.BusinessHallPanel;
@@ -46,6 +47,7 @@ public class LoginPanel extends JPanel {
 		frame=fr;
 		try {
 			logicSer = new LoginLogic();
+//			logicSer = new LoginPanelStub();
 		} catch (Exception e1) {
 			// TODO 自动生成的 catch 块
 			HintFrame hint = new HintFrame(Result.NET_INTERRUPT, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
