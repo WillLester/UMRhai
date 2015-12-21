@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.userPanel;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,11 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.component.LogoutButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.vo.UserVO;
@@ -36,35 +36,25 @@ public class UserPanel extends JPanel{
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 		
-		JLabel title = new JLabel("快递物流管理系统");
-		title.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		title.setBounds(29, 10, 250, 38);
-		this.add(title);
-		
-		JSeparator horizen = new JSeparator();
-		horizen.setBounds(18, 78, 1158, 2);
-		this.add(horizen);
-		
-		JSeparator vertical = new JSeparator();
-		vertical.setOrientation(SwingConstants.VERTICAL);
-		vertical.setBounds(240, 78, 9, 545);
-		this.add(vertical);
-		
+	
 		JLabel nameLabel = new JLabel("姓名");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		nameLabel.setBounds(18, 120, 54, 15);
+		nameLabel.setForeground(Color.WHITE);
+		nameLabel.setBounds(18, 119, 54, 15);
 		this.add(nameLabel);
 		
 		nameTxt = new JLabel();
 		nameTxt.setText(user.getName());
 		nameTxt.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		nameTxt.setForeground(Color.WHITE);
 		nameTxt.setBounds(66, 116, user.getName().length()*16, 21);
 		this.add(nameTxt);
 	
 		
 		JLabel levelLabel = new JLabel("身份");
 		levelLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		levelLabel.setBounds(18, 160, 54, 15);
+		levelLabel.setForeground(Color.WHITE);
+		levelLabel.setBounds(18, 159, 54, 15);
 		this.add(levelLabel);
 		
 		levelTxt = new JLabel();
@@ -82,10 +72,23 @@ public class UserPanel extends JPanel{
 		}
 		levelTxt.setText(lv);
 		levelTxt.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		levelTxt.setForeground(Color.WHITE);
 		levelTxt.setBounds(66, 156, lv.length()*16, 21);
 		this.add(levelTxt);
 		
+		JLabel orgLabel = new JLabel("机构");
+		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		orgLabel.setForeground(Color.WHITE);
+		orgLabel.setBounds(18, 192, 54, 15);
+		this.add(orgLabel);
 		
+		JLabel orgTxt=new JLabel();
+		String orgl=user.getOrg();
+		orgTxt.setText(orgl);
+		orgTxt.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		orgTxt.setForeground(Color.WHITE);
+		orgTxt.setBounds(66, 189, orgl.length()*16, 21);
+		this.add(orgTxt);
 		
 		JButton logoutButton = new LogoutButton();
 		logoutButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
@@ -99,20 +102,20 @@ public class UserPanel extends JPanel{
 				}
 			}
 		});
-		logoutButton.setBounds(1083, 10, 93, 23);
+		logoutButton.setBounds(1121, 85, 100, 30);
 		this.add(logoutButton);
 		
-		JButton existButton = new JButton("退出");
-		existButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		JButton existButton = new ExitButton();
 		existButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				System.exit(0);
 			}
 		});
-		existButton.setBounds(1083, 603, 93, 23);
+		existButton.setBounds(1070, 606, 150, 45);
 		this.add(existButton);
 	}
+
 	public UserVO getUser(){
 		return user;
 	}
