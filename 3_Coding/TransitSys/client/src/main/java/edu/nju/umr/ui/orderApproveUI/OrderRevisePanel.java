@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -62,8 +63,10 @@ public class OrderRevisePanel extends JPanel{
 		}});
 		add(refreshButton);
 	
-		JButton reviseButton = new JButton("修改");
-		reviseButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		Button reviseButton = new Button();
+		reviseButton.setIcon(new ImageIcon("ui/button/buttonRev.png"));
+		reviseButton.setRolloverIcon(new ImageIcon("ui/button/buttonRevSt.png"));
+		reviseButton.setPressedIcon(new ImageIcon("ui/button/buttonRevP.png"));
 		reviseButton.setBounds(927, 271, 100, 30);
 		reviseButton.addActionListener(new ActionListener(){
 			@Override

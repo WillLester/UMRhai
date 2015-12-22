@@ -25,6 +25,12 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.AddButton;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ConfirmModButton;
+import edu.nju.umr.ui.component.DelButton;
+import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -44,9 +50,9 @@ public class UserListPanel extends JPanel {
 	private Table table;
 	private DefaultTableModel model;
 	private JComboBox<String> juriBox;
-	private JButton deleteButton;
-	private JButton confirmButton;
-	private JButton addButton;
+	private Button deleteButton;
+	private Button confirmButton;
+	private Button addButton;
 	
 	private FunctionFrame frame;
 	private UserManLSer serv;
@@ -75,9 +81,8 @@ public class UserListPanel extends JPanel {
 		textField.setColumns(10);
 		
 		
-		JButton searchButton = new JButton("搜索");
-		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(577, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button searchButton = new SearchButton();
+		searchButton.setBounds(577, 66, 100, 30);
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -98,9 +103,8 @@ public class UserListPanel extends JPanel {
 		});
 		add(allButton);
 		
-		addButton = new JButton("新增");
-		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(283, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		addButton = new AddButton();
+		addButton.setBounds(283, 487,100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addButton.setEnabled(false);
@@ -109,9 +113,8 @@ public class UserListPanel extends JPanel {
 		});
 		add(addButton);
 		
-		deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(525, 487, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		deleteButton = new DelButton();
+		deleteButton.setBounds(525, 487, 100,30);
 		deleteButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
@@ -123,9 +126,8 @@ public class UserListPanel extends JPanel {
 		deleteButton.setEnabled(false);
 		add(deleteButton);
 		
-		confirmButton = new JButton("确认修改");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(895, 487-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		confirmButton = new ConfirmModButton();
+		confirmButton.setBounds(895, 487-100, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				confirmChange();
@@ -134,9 +136,8 @@ public class UserListPanel extends JPanel {
 		confirmButton.setEnabled(false);
 		add(confirmButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(895, 537, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(895, 537, 100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
