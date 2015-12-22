@@ -87,9 +87,10 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton stockOutButton = new JButton("生成出库单");
+		Button stockOutButton = new Button();
+		stockOutButton.setNewImages("stockmanager/stockOut", "stockmanager/stockOutSt", "stockmanager/stockOutP");
 		stockOutButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockOutButton.setBounds(516, 333, 112, 83);
+		stockOutButton.setBounds(516, 333, 95, 95);
 		this.add(stockOutButton);
 		stockOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
