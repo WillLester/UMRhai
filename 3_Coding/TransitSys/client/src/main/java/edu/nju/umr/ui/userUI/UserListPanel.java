@@ -107,7 +107,6 @@ public class UserListPanel extends JPanel {
 		addButton.setBounds(283, 487,100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				addButton.setEnabled(false);
 				addUser();
 			}
 		});
@@ -219,6 +218,11 @@ public class UserListPanel extends JPanel {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
+					if(table.getModel().getRowCount()==users.size()){
+						addButton.setEnabled(false);
+					}else{
+						addButton.setEnabled(true);
+					}
 					if(table.getSelectedRow() >= 0){
 						displayUser(table.getSelectedRow());
 						deleteButton.setEnabled(true);
