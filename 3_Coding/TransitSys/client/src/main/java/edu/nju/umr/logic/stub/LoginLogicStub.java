@@ -3,7 +3,6 @@ import java.rmi.RemoteException;
 
 import edu.nju.umr.dataService.userDSer.LoginDSer;
 import edu.nju.umr.po.UserPO;
-import edu.nju.umr.po.enums.Jurisdiction;
 public class LoginLogicStub implements LoginDSer{
 
 	@Override

@@ -1,8 +1,5 @@
 package edu.nju.umr.logic.driver;
-import java.util.ArrayList;
-
 import edu.nju.umr.logic.cityLogic.CityLogic;
-import edu.nju.umr.vo.CitiesVO;
 import edu.nju.umr.vo.CityVO;
 public class CityLogicDriver {
 	public void drive(){

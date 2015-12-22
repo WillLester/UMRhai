@@ -1,5 +1,4 @@
 package edu.nju.umr.logic.stub;
-import java.math.BigDecimal;
 import java.rmi.RemoteException;
 
 import edu.nju.umr.dataService.utilityDSer.OrderCalcuDSer;

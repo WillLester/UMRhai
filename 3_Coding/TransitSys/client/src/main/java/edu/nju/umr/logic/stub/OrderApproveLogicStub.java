@@ -11,7 +11,6 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
 import edu.nju.umr.po.order.OrderPO;
-import edu.nju.umr.vo.ResultMessage;
 public class OrderApproveLogicStub implements OrderApproveDSer{
 
 	@Override

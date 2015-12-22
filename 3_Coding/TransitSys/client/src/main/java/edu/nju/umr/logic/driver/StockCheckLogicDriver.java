@@ -5,6 +5,7 @@ import java.util.Calendar;
 import edu.nju.umr.logic.stockLogic.StockCheckLogic;
 import edu.nju.umr.vo.order.StockInOutVO;
 public class StockCheckLogicDriver {
+	@SuppressWarnings("unchecked")
 	public void drive(){
 		StockCheckLogic l =new StockCheckLogic();
 		ArrayList<StockInOutVO> sList =new ArrayList<StockInOutVO>();
