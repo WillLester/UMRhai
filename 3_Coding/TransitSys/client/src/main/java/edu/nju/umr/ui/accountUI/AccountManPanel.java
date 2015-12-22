@@ -24,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -61,9 +62,8 @@ public class AccountManPanel extends JPanel{
 		searchField.setColumns(10);
 		accountLSer = new AccountLogic();
 		
-		JButton searchButton = new JButton("搜索");
-		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(233+442, 65, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button searchButton = new SearchButton();
+		searchButton.setBounds(233+442, 65,100, 30);
 		add(searchButton);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,9 +109,8 @@ public class AccountManPanel extends JPanel{
 		add(balanceField);
 		balanceField.setColumns(10);
 		
-		JButton addButton = new JButton("新增");
-		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(326, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button addButton = new AddButton();
+		addButton.setBounds(326, 525, 100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addAccount();
@@ -119,9 +118,8 @@ public class AccountManPanel extends JPanel{
 		});
 		add(addButton);
 		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(435, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button deleteButton = new DelButton();
+		deleteButton.setBounds(435, 525,100,30);
 		add(deleteButton);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -142,9 +140,8 @@ public class AccountManPanel extends JPanel{
 			}
 		});
 		
-		JButton confirmButton = new JButton("确认修改");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(546, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirmButton = new ConfirmModButton();
+		confirmButton.setBounds(546, 525,100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -168,9 +165,8 @@ public class AccountManPanel extends JPanel{
 			}
 		});
 		
-		JButton cancelButton = new JButton("取消修改");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cancelButton.setBounds(656, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button cancelButton = new CanModButton();
+		cancelButton.setBounds(656, 525,100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,9 +179,8 @@ public class AccountManPanel extends JPanel{
 		});
 		add(cancelButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(798, 525, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(798, 525, 100, 30);
 		add(exitButton);
 		exitButton.addActionListener(new ActionListener() {
 			

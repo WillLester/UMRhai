@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -34,6 +33,7 @@ import edu.nju.umr.ui.component.CanModButton;
 import edu.nju.umr.ui.component.ConfirmModButton;
 import edu.nju.umr.ui.component.DelButton;
 import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -82,11 +82,7 @@ public class OrgListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		Button search = new Button();
-		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
-		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
-		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
-
+		Button search = new SearchButton();
 		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)

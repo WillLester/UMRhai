@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +28,7 @@ import edu.nju.umr.ui.component.AddButton;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.DelButton;
 import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
@@ -71,10 +70,7 @@ public class VanListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		Button search = new Button();
-		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
-		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
-		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
+		Button search = new SearchButton();
 		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

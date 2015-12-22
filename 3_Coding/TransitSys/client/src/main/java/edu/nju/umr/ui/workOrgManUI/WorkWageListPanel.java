@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +24,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -70,11 +70,8 @@ public class WorkWageListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		Button search = new Button();
-		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
-		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
-		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
-		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
+		Button search = new SearchButton();
+		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener() {
 			
 			@Override

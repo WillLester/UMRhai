@@ -23,6 +23,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -50,9 +51,8 @@ public class CountPanel extends JPanel{
 		countLabel.setBounds(6*Constants.WIDTH_DIV_15, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(countLabel);
 		
-		JButton addButton = new JButton("新增");
-		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button addButton = new AddButton();
+		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		add(addButton);
 		addButton.addActionListener(new ActionListener() {
 			
@@ -68,9 +68,8 @@ public class CountPanel extends JPanel{
 			}
 		});
 		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(Constants.WIDTH_DIV_9*27/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button deleteButton = new DelButton();
+		deleteButton.setBounds(Constants.WIDTH_DIV_9*27/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -102,9 +101,8 @@ public class CountPanel extends JPanel{
 		});
 		add(checkButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
