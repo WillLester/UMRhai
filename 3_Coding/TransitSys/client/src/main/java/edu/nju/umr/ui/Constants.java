@@ -41,5 +41,15 @@ public class Constants {
 		//日期面板的宽和高
 		public static final int DATE_WIDTH=267;
 		public static final int DATE_HEIGHT=21;
-	
+		//功能界面常量
+		public static final int FIRST_X=430;
+		public static final int SINGLE_Y=250;
+		public static final int DOUBLE_Y=220;
+		public static final int SECOND_X=660;
+		public static final int THIRD_X=890;
+		public static final int SECOND_Y=DOUBLE_Y+144;
+		public static final int UNPASSED_X=921;
+		public static final int UNPASSED_Y=85;
+		
+		//
 }

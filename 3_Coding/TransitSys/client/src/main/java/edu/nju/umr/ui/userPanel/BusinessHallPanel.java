@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
@@ -24,13 +25,14 @@ public class BusinessHallPanel extends UserPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4435831268900821861L;
+	
 	public BusinessHallPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
 		Button recipient = new Button();
 		recipient.setNewImages("businesshall/recipient", "businesshall/recipientSt", "businesshall/recipientP");
-		recipient.setBounds(280, 192, 95, 95);
+		recipient.setBounds(Constants.FIRST_X, Constants.DOUBLE_Y, 95, 95);
 		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
 		recipient.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -44,7 +46,7 @@ public class BusinessHallPanel extends UserPanel {
 		
 		Button send = new Button();
 		send.setNewImages("businesshall/send", "businesshall/sendSt", "businesshall/sendP");
-		send.setBounds(527, 192, 95, 95);
+		send.setBounds(Constants.SECOND_X, Constants.DOUBLE_Y, 95, 95);
 		send.setFont(new Font("宋体", Font.PLAIN, 12));
 		send.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -66,13 +68,13 @@ public class BusinessHallPanel extends UserPanel {
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
-		hallLoading.setBounds(771, 192, 95, 95);
+		hallLoading.setBounds(Constants.THIRD_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(hallLoading);
 		
 		Button income = new Button();
 		income.setNewImages("businesshall/income", "businesshall/incomeSt", "businesshall/incomeP");
 		income.setFont(new Font("宋体", Font.PLAIN, 12));
-		income.setBounds(280, 333, 95, 95);
+		income.setBounds(Constants.FIRST_X, Constants.SECOND_Y, 95, 95);
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -86,7 +88,7 @@ public class BusinessHallPanel extends UserPanel {
 		Button driverMan = new Button();
 		driverMan.setNewImages("businesshall/driverMan", "businesshall/driverManSt", "businesshall/driverManP");
 		driverMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		driverMan.setBounds(527, 333, 95, 95);
+		driverMan.setBounds(Constants.SECOND_X, Constants.SECOND_Y, 95, 95);
 		driverMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -100,7 +102,7 @@ public class BusinessHallPanel extends UserPanel {
 		Button vanMan = new Button();
 		vanMan.setNewImages("businesshall/vanMan", "businesshall/vanManSt", "businesshall/vanManP");
 		vanMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		vanMan.setBounds(771, 333, 95,95);
+		vanMan.setBounds(Constants.THIRD_X, Constants.SECOND_Y, 95,95);
 		vanMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -112,7 +114,7 @@ public class BusinessHallPanel extends UserPanel {
 		this.add(vanMan);
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 		
 

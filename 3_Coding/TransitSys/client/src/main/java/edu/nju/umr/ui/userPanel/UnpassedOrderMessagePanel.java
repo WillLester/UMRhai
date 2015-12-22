@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderApproveUI.OrderRevisePanel;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -32,7 +32,8 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 		serv=new OrderResubmitLogic();
 		
 		this.setLayout(null);
-		JButton button = new JButton("查看未通过单据");
+		Button button = new Button();
+		button.setNewImages("buttonUnpassed", "buttonUnpassedSt", "buttonUnpassedP");
 		button.setBounds(0, 0, 150, 30);
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)

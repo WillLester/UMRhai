@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
@@ -25,7 +26,7 @@ public class AdministerPanel extends UserPanel {
 		userMangButton.setNewImages("Administer/userMan", "Administer/userManSt", "Administer/userManP");
 //		JButton userMangButton = new JButton("用户管理");
 		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(369, 250, 95, 95);
+		userMangButton.setBounds(Constants.FIRST_X, Constants.SINGLE_Y, 95, 95);
 		userMangButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
