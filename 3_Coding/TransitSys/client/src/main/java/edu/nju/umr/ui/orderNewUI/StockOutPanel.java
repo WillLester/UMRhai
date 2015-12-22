@@ -22,6 +22,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -166,10 +167,9 @@ public class StockOutPanel extends JPanel {
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(541, 434, 93, 23);
+		cancelButton.setBounds(541, 434, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

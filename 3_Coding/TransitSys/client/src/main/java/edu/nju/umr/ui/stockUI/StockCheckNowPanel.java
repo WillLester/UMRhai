@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,9 +23,11 @@ import edu.nju.umr.logic.stockLogic.StockCheckNowLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.OutputButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -55,9 +56,8 @@ public class StockCheckNowPanel extends JPanel{
 		checkLabel.setBounds(504, 31, 95, 24);
 		add(checkLabel);
 		
-		JButton outputButton = new JButton("导出为Excel");
-		outputButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		outputButton.setBounds(947, 150, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button outputButton = new OutputButton();
+		outputButton.setBounds(947, 150, 100, 30);
 		outputButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -95,9 +95,8 @@ public class StockCheckNowPanel extends JPanel{
 		});
 		add(outputButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(947, 276, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(947, 276, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

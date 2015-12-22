@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +21,7 @@ import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.vo.ResultMessage;
@@ -123,9 +123,8 @@ public class SendPanel extends JPanel {
 		courierCombo.setModel(new DefaultComboBoxModel<String>(courierList));
 		add(courierCombo);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(364, 434, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(364, 434, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -153,10 +152,9 @@ public class SendPanel extends JPanel {
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(548, 436, 93, 23);
+		cancelButton.setBounds(548, 436, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

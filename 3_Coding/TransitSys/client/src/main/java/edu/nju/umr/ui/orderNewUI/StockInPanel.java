@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +24,7 @@ import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -200,9 +200,8 @@ public class StockInPanel extends JPanel {
 		placeCombo.setBounds(587, 326, 90, 25);
 		add(placeCombo);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(347, 453, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(347, 453, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -219,10 +218,9 @@ public class StockInPanel extends JPanel {
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(542, 453, 93, 23);
+		cancelButton.setBounds(542, 453, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

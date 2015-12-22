@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +30,7 @@ import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
@@ -92,8 +92,8 @@ public class ExpressPanel extends JPanel {
 	protected JComboBox<String> pakKindCombo;
 	protected JComboBox<String> expressKindCombo;
 	protected JLabel costLabel;
-	protected JButton confirmButton;
-	protected JButton cancelButton;
+	protected Button confirmButton;
+	protected Button cancelButton;
 	protected LocPanel senderLoc;
 	protected LocPanel receiverLoc;
 	private ExpressOrderLSer logicSer;
@@ -402,17 +402,15 @@ public class ExpressPanel extends JPanel {
 		costLabel.setBounds(760, 483, 83, 24);
 		add(costLabel);
 		
-		confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(418, 536, 93, 23);
+		confirmButton = new ConfirmButton();
+		confirmButton.setBounds(418, 536, 100, 30);
 		conListener = new ConfirmListener();
 		confirmButton.addActionListener(conListener);
 		add(confirmButton);
 		
-		cancelButton = new JButton("取消");
+		cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(642, 536, 93, 23);
+		cancelButton.setBounds(642, 536,100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

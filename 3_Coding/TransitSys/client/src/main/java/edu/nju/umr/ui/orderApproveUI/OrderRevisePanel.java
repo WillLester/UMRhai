@@ -22,6 +22,7 @@ import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
@@ -63,7 +64,7 @@ public class OrderRevisePanel extends JPanel{
 	
 		JButton reviseButton = new JButton("修改");
 		reviseButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		reviseButton.setBounds(927, 271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		reviseButton.setBounds(927, 271, 100, 30);
 		reviseButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,9 +75,8 @@ public class OrderRevisePanel extends JPanel{
 		add(reviseButton);
 		
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(927, 383, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(927, 383, 100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

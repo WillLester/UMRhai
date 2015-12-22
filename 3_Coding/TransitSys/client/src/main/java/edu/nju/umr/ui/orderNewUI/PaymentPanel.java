@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +23,7 @@ import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -145,9 +145,8 @@ public class PaymentPanel extends JPanel {
 		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
 		add(accountCombo);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(342, 499, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(342, 499, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -164,9 +163,8 @@ public class PaymentPanel extends JPanel {
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		cancelButton.setBounds(542, 499, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

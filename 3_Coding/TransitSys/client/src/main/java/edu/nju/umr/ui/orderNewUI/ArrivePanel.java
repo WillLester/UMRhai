@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +20,7 @@ import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
@@ -40,7 +40,7 @@ public class ArrivePanel extends JPanel {
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
-	private JButton confirmButton;
+	private Button confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -124,9 +124,8 @@ public class ArrivePanel extends JPanel {
 		stateCombo.setBounds(474+75+25, 338, 193, 24);
 		add(stateCombo);
 		
-		confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(364+75+25, 434, 93, 23);
+		confirmButton = new ConfirmButton();
+		confirmButton.setBounds(364+75+25, 434, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -134,10 +133,9 @@ public class ArrivePanel extends JPanel {
 		}});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(548+75+25, 436, 93, 23);
+		cancelButton.setBounds(548+75+25, 436, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

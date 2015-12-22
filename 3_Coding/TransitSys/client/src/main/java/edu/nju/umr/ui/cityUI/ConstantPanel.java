@@ -4,8 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +14,7 @@ import edu.nju.umr.logic.cityLogic.ConstantLogic;
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ConstantVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -197,9 +196,8 @@ public class ConstantPanel extends JPanel {
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		}
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(312, 425, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(312, 425, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -216,9 +214,8 @@ public class ConstantPanel extends JPanel {
 		});		
 		add(confirmButton);
 		
-		JButton exitButton = new JButton("取消");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		exitButton.setBounds(519, 427, 93, 23);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(519, 427, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

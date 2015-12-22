@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +25,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.BusiCircumVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -72,8 +71,8 @@ public class BusiCircumPanel extends JPanel {
 		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 267, 21);
 		add(endDate);
 		
-		JButton exportButton = new JButton("导出");
-		exportButton.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exportButton = new OutputButton();
+		exportButton.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 100, 30);
 		exportButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -81,8 +80,8 @@ public class BusiCircumPanel extends JPanel {
 		}});
 		add(exportButton);
 		
-		JButton confirm = new JButton("确认");
-		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirm = new ConfirmButton();
+		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100, 30);
 		confirm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -101,8 +100,8 @@ public class BusiCircumPanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
-		JButton button = new JButton("退出");
-		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button button = new ExitButton();
+		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, 100,30);
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -103,13 +103,13 @@ public class IncomeListPanel extends JPanel {
 		cbHall.setBounds(hallLabel.getX()+hallLabel.getWidth()/2,Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, Constants.LABEL_WIDTH-10, Constants.LABEL_HEIGHT_S-10);
 		cbHall.setEnabled(false);
 		add(cbHall);
-		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(this.getWidth()/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+
+		Button cancel = new CanButton();
+		cancel.setBounds(this.getWidth()/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*3-5,100,30);
 //		add(cancel);
 		
-		JButton confirm = new JButton("确认");
-		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirm = new ConfirmButton();
+		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5,100,30);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -131,8 +131,8 @@ public class IncomeListPanel extends JPanel {
 		
 		
 		
-		JButton out = new JButton("退出");
-		out.setBounds(500, IncomeTable.getY()+IncomeTable.getHeight()+20, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button out = new ExitButton();
+		out.setBounds(500, IncomeTable.getY()+IncomeTable.getHeight()+20, 100,30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

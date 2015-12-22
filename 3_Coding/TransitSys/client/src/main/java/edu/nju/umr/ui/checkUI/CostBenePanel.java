@@ -3,8 +3,6 @@ package edu.nju.umr.ui.checkUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,6 +12,7 @@ import edu.nju.umr.logic.checkLogic.CostBeneLogic;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CostBeneVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -43,8 +42,8 @@ public class CostBenePanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button out = new ExitButton();
+		out.setBounds(this.getWidth()/10*9-Constants.BUTTON_WIDTH, this.getHeight()/10*8, 100, 30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

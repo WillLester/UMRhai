@@ -25,6 +25,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
@@ -41,7 +42,7 @@ public class OrderApprovePanel extends JPanel{
 	private OrderApproveLSer serv;
 	private ArrayList<OrderVO> orderList;
 	private String name;
-	private JButton checkButton;
+	private Button checkButton;
 	private int count;
 	
 	class MyTableModel extends DefaultTableModel {
@@ -107,9 +108,8 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(unpassedButton);
 		
-		checkButton = new JButton("查看详细");
-		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkButton.setBounds(927, 271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		checkButton = new CheckButton();
+		checkButton.setBounds(927, 271,100, 30);
 		checkButton.setEnabled(false);
 		checkButton.addActionListener(new ActionListener(){
 			@Override
@@ -131,9 +131,8 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(refreshButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(927, 383, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(927, 383,100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

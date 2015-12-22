@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +25,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -168,9 +168,8 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		costLabel.setBounds(655, 204, 79, 24);
 		add(costLabel);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(342+75, 499, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(342+75, 499, 100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -186,10 +185,9 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 			}
 		});
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(542+75, 499, 93, 23);
+		cancelButton.setBounds(542+75, 499, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

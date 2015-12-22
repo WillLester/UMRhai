@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +30,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
@@ -58,7 +58,7 @@ public class HallLoadingPanel extends JPanel {
 	private String userId;
 	private String org;
 	private JTextField costField;
-	private JButton confirmButton;
+	private Button confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -187,9 +187,8 @@ public class HallLoadingPanel extends JPanel {
 		expressIdField.setBounds(355+75, 254, 280, 25);
 		add(expressIdField);
 		
-		JButton btnNewButton = new JButton("新增");
-		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		btnNewButton.setBounds(656+75, 256, 93, 23);
+		Button btnNewButton = new AddButton();
+		btnNewButton.setBounds(656+75, 256, 100, 30);
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -217,9 +216,8 @@ public class HallLoadingPanel extends JPanel {
 		});
 		add(btnNewButton);
 		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(656+75+93, 256, 93, 23);
+		Button deleteButton = new DelButton();
+		deleteButton.setBounds(656+75+93, 256, 100, 30);
 		deleteButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -234,9 +232,8 @@ public class HallLoadingPanel extends JPanel {
 		tableHeadLabel.setBounds(401+75, 289, 130, 24);
 		add(tableHeadLabel);
 		
-		confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(342+75, 499, 93, 23);
+		confirmButton = new ConfirmButton();
+		confirmButton.setBounds(342+75, 499, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -244,10 +241,9 @@ public class HallLoadingPanel extends JPanel {
 		}});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(542+75, 499, 93, 23);
+		cancelButton.setBounds(542+75, 499, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

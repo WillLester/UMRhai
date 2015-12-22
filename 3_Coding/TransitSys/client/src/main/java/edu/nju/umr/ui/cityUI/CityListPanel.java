@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +24,7 @@ import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.CitiesVO;
@@ -48,9 +48,9 @@ public class CityListPanel extends JPanel{
 	private ArrayList<CityVO> cityList;
 	private ArrayList<CitiesVO> citiesList;
 	private CityLSer logicSer;
-	private JButton deleteButton;
-	private JButton cancelButton;
-	private JButton confirmButton;
+	private Button deleteButton;
+	private Button cancelButton;
+	private Button confirmButton;
 	/**
 	 * Create the panel.
 	 */
@@ -111,8 +111,8 @@ public class CityListPanel extends JPanel{
 		distanceField.setEnabled(false);
 		distanceField.setColumns(10);
 		
-		JButton addButton = new JButton("新增城市");
-		addButton.setBounds(334, 566, 93, 23);
+		Button addButton = new AddButton();
+		addButton.setBounds(334, 566, 100, 30);
 		addButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -130,8 +130,8 @@ public class CityListPanel extends JPanel{
 		});
 		add(addButton);
 		
-		deleteButton = new JButton("删除城市");
-		deleteButton.setBounds(450, 566, 93, 23);
+		deleteButton = new DelButton();
+		deleteButton.setBounds(450, 566, 100, 30);
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -155,8 +155,8 @@ public class CityListPanel extends JPanel{
 		deleteButton.setEnabled(false);
 		add(deleteButton);
 		
-		confirmButton = new JButton("确认修改");
-		confirmButton.setBounds(567, 566, 93, 23);
+		confirmButton = new ConfirmModButton();
+		confirmButton.setBounds(567, 566, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -204,8 +204,8 @@ public class CityListPanel extends JPanel{
 		});
 		add(confirmButton);
 		
-		cancelButton = new JButton("取消修改");
-		cancelButton.setBounds(683, 566, 93, 23);
+		cancelButton = new CanModButton();
+		cancelButton.setBounds(683, 566, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -236,8 +236,8 @@ public class CityListPanel extends JPanel{
 		});
 		add(cancelButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setBounds(871, 566, 93, 23);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(871, 566, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

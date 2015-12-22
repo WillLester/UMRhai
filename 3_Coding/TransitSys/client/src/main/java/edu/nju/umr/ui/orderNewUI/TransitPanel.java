@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +24,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -193,9 +193,8 @@ public class TransitPanel extends JPanel implements PriceCount {
 		costField.setEditable(false);
 		add(costField);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(342, 499, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(342, 499, 100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -211,10 +210,9 @@ public class TransitPanel extends JPanel implements PriceCount {
 			}
 		});
 		
-		JButton cancelButton = new JButton("取消");
+		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(542, 499, 93, 23);
+		cancelButton.setBounds(542, 499, 100, 30);
 		add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			
