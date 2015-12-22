@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.orderNewUI.ReceivePanel;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
@@ -25,9 +26,10 @@ public class CourierPanel extends UserPanel {
 		
 		super(user,fr);
 		
-		JButton receive = new JButton("收件");
+		Button receive = new Button();
+		receive.setNewImages("courier/receive","courier/receiveSt", "courier/receiveP");
 		receive.setFont(new Font("宋体", Font.PLAIN, 12));
-		receive.setBounds(314, 227, 93, 83);
+		receive.setBounds(314, 227, 95, 95);
 		receive.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -38,10 +40,11 @@ public class CourierPanel extends UserPanel {
 		});
 		this.add(receive);
 		
-		JButton button = new JButton("订单查询");
-		button.setFont(new Font("宋体", Font.PLAIN, 12));
-		button.setBounds(505, 227, 93, 83);
-		button.addActionListener(new ActionListener(){
+		Button expressInq = new Button();//订单查询
+		expressInq.setNewImages("courier/expressNewInq", "courier/expressNewInqSt", "courier/expressNewInqP");
+		expressInq.setFont(new Font("宋体", Font.PLAIN, 12));
+		expressInq.setBounds(505, 227, 95, 95);
+		expressInq.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("订单查询");
@@ -49,12 +52,13 @@ public class CourierPanel extends UserPanel {
 				fr.sonFrames.add(ffr);
 			}
 		});
-		this.add(button);
+		this.add(expressInq);
 		
-		JButton button_1 = new JButton("订单创建");
-		button_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		button_1.setBounds(695, 227, 93, 83);
-		button_1.addActionListener(new ActionListener(){
+		Button expressNew = new Button();
+		expressNew.setNewImages("courier/expressNew", "courier/expressNewSt", "courier/expressNewP");
+		expressNew.setFont(new Font("宋体", Font.PLAIN, 12));
+		expressNew.setBounds(695, 227, 95, 95);
+		expressNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("订单创建");
@@ -62,7 +66,7 @@ public class CourierPanel extends UserPanel {
 				fr.sonFrames.add(ffr);
 			}
 		});
-		this.add(button_1);
+		this.add(expressNew);
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
 		upo.setBounds(853, 10, 200, 30);

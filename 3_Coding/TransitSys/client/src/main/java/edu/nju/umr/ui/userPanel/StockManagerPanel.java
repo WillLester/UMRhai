@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderNewUI.StockInPanel;
 import edu.nju.umr.ui.orderNewUI.StockOutPanel;
 import edu.nju.umr.ui.stockUI.StockCheckNowPanel;
@@ -28,9 +29,10 @@ public class StockManagerPanel extends UserPanel{
 		
 		super(user,fr);
 		
-		JButton stockCheckButton = new JButton("库存查看");
+		Button stockCheckButton = new Button();
+		stockCheckButton.setNewImages("stockmanager/stockCheck", "stockmanager/stockCheckSt", "stockmanager/stockCheckP");
 		stockCheckButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockCheckButton.setBounds(269, 192, 112, 83);
+		stockCheckButton.setBounds(269, 192, 95, 95);
 		this.add(stockCheckButton);
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
@@ -40,9 +42,10 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton divideButton = new JButton("库存分区");
+		Button divideButton = new Button();
+		divideButton.setNewImages("stockmanager/stockDivide", "stockmanager/stockDivideSt", "stockmanager/stockDivideP");
 		divideButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		divideButton.setBounds(516, 192, 112, 83);
+		divideButton.setBounds(516, 192, 95, 95);
 		this.add(divideButton);
 		divideButton.addActionListener(new ActionListener() {
 			
@@ -54,9 +57,10 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton warnButton = new JButton("设置警戒线");
+		Button warnButton = new Button();
+		warnButton.setNewImages("stockmanager/stockWarn", "stockmanager/stockWarnSt", "stockmanager/stockWarnP");
 		warnButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		warnButton.setBounds(760, 192, 112, 83);
+		warnButton.setBounds(760, 192, 95, 95);
 		this.add(warnButton);
 		warnButton.addActionListener(new ActionListener() {
 			
@@ -68,9 +72,10 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton checkNowButton = new JButton("库存盘点");
+		Button checkNowButton = new Button();
+		checkNowButton.setNewImages("stockmanager/stockCheckNow", "stockmanager/stockCheckNowSt", "stockmanager/stockCheckNowP");
 		checkNowButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkNowButton.setBounds(269, 333, 112, 83);
+		checkNowButton.setBounds(269, 333, 95, 95);
 		this.add(checkNowButton);
 		checkNowButton.addActionListener(new ActionListener() {
 			
@@ -95,9 +100,10 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton stockInButton = new JButton("生成入库单");
+		Button stockInButton = new Button();
+		stockInButton.setNewImages("stockmanager/stockIn", "stockmanager/stockInSt", "stockmanager/stockInP");
 		stockInButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockInButton.setBounds(760, 333, 112, 83);
+		stockInButton.setBounds(760, 333, 95, 95);
 		this.add(stockInButton);
 		stockInButton.addActionListener(new ActionListener() {
 			
