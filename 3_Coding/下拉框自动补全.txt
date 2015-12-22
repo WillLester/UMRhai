@@ -1,0 +1,6 @@
+ArrivePanel 中转单
+RecipientPanel 装车单
+ExpressListPanel 相应订单
+SendPanel 订单
+StockInPanel 订单
+StockOutPanel
