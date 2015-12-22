@@ -1,7 +1,9 @@
 package edu.nju.umr.ui;
 
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -29,6 +31,19 @@ public class AutoCompPanel extends JPanel{
 		add(jt);
 		add(jc);
 		
+		jt.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				getToDisplayItem();
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
 		jt.getDocument().addDocumentListener(new DocumentListener(){@Override
 		public void changedUpdate(DocumentEvent e) {
 			// TODO Auto-generated method stub
