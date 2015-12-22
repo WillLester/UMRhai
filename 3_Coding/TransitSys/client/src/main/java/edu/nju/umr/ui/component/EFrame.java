@@ -35,10 +35,6 @@ public class EFrame extends JFrame {
 		toMin.setNewImages("mini", "miniSt", "miniP");
 		toMax.setIcon(new ImageIcon("ui/button/maxP.png"));
 		
-		getContentPane().add(close);
-		getContentPane().add(toMin);
-		getContentPane().add(toMax);
-		
 		close.setBounds(width-30, 0, 30, 30);
 		toMax.setBounds(width-30*2, 0, 30, 30);
 		toMin.setBounds(width-30*3, 0, 30, 30);
@@ -81,6 +77,11 @@ public class EFrame extends JFrame {
 				}
 			}
 		});
+	}
+	public void setAttach(){
+		getContentPane().add(close);
+		getContentPane().add(toMin);
+		getContentPane().add(toMax);
 	}
 //	public static void main(String[] args){
 //		ExcitedFrame ef=new ExcitedFrame(1200,700);
