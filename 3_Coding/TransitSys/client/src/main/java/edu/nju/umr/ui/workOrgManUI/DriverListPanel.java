@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,8 +67,8 @@ public class DriverListPanel extends JPanel {
 //		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		JButton search = new JButton("搜索");
-		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 90, 21);
+		Button search = new SearchButton();
+		search.setBounds(textFieldSearch.getX()+300+20, textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				ResultMessage message=serv.searchDriver(orgId);
@@ -152,8 +151,8 @@ public class DriverListPanel extends JPanel {
 		});
 		add(modify);
 		
-		JButton forDetail = new JButton("查看详细");
-		forDetail.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 90, 21);
+		Button forDetail = new CheckButton();
+		forDetail.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 100, 30);
 //		add(forDetail);
 		
 		Button out = new ExitButton();

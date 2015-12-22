@@ -4,8 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -86,9 +84,8 @@ public class CountPanel extends JPanel{
 		});
 		add(deleteButton);
 		
-		JButton checkButton = new JButton("查看");
-		checkButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkButton.setBounds(Constants.WIDTH_DIV_9*37/10, Constants.HEIGHT_DIV_10*74/10, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button checkButton = new CheckButton();
+		checkButton.setBounds(Constants.WIDTH_DIV_9*37/10, Constants.HEIGHT_DIV_10*74/10, 100,30);
 		checkButton.addActionListener(new ActionListener() {
 			
 			@Override

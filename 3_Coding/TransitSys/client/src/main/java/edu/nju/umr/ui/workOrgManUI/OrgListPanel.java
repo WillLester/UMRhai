@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -93,8 +94,11 @@ public class OrgListPanel extends JPanel {
 		});
 		add(search);
 		
-		JButton all = new JButton("显示全部");
-		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+120,textFieldSearch.getY(), 90, 21);
+		Button all = new Button();
+		all.setIcon(new ImageIcon("ui/button/buttonAll.png"));
+		all.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
+		all.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
+		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+120,textFieldSearch.getY(), 100, 30);
 		all.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

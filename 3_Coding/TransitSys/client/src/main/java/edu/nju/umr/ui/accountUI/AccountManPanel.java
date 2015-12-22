@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -75,9 +75,12 @@ public class AccountManPanel extends JPanel{
 			}
 		});
 		
-		JButton allButton = new JButton("显示全部");
-		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		allButton.setBounds(233+442+100, 65, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button allButton = new Button();
+		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
+		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
+		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
+		
+		allButton.setBounds(233+442+100, 65, 100, 30);
 		add(allButton);
 		allButton.addActionListener(new ActionListener() {
 			

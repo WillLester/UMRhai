@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,7 +21,6 @@ import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
@@ -52,9 +50,10 @@ public class OrderRevisePanel extends JPanel{
 		reviseLabel.setBounds(485, 40, 120, 24);
 		add(reviseLabel);
 		
-		JButton refreshButton=new JButton("刷新");
-		refreshButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		refreshButton.setBounds(927, 159, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button refreshButton = new Button();
+		refreshButton.setIcon(new ImageIcon("ui/button/buttonFresh.png"));
+		refreshButton.setRolloverIcon(new ImageIcon("ui/button/buttonFreshSt.png"));
+		refreshButton.setPressedIcon(new ImageIcon("ui/button/buttonFreshP.png"));
 		refreshButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

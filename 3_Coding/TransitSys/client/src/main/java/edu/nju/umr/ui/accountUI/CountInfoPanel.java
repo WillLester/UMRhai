@@ -8,7 +8,6 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +17,8 @@ import javax.swing.JTextField;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ConfirmButton;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CountVO;
@@ -376,9 +377,8 @@ public class CountInfoPanel extends JPanel{
 		add(balanceField);
 		balanceField.setColumns(10);
 		
-		JButton confirmButton = new JButton("确认查看");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(854, 432, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(854, 432,100,30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override

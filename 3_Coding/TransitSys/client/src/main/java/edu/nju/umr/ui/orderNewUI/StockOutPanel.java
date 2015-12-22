@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -148,9 +147,8 @@ public class StockOutPanel extends JPanel {
 		transitIdField.setBounds(485, 281, 233, 25);
 		add(transitIdField);
 		
-		JButton confirmButton = new JButton("确定");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(347, 434, 93, 23);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(347, 434, 100,30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,8 +67,8 @@ public class DiaryListPanel extends JPanel {
 		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 530, 21);
 		add(endDate);
 		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(Constants.PANEL_WIDTH/10*8+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button cancel = new CanButton();
+		cancel.setBounds(Constants.PANEL_WIDTH/10*8+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100,30);
 		cancel.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

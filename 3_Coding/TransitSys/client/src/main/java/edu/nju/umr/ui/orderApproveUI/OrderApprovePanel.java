@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -120,9 +121,11 @@ public class OrderApprovePanel extends JPanel{
 		});
 		add(checkButton);
 		
-		JButton refreshButton = new JButton("刷新");
-		refreshButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		refreshButton.setBounds(927, 327, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button refreshButton = new Button();
+		refreshButton.setIcon(new ImageIcon("ui/button/buttonFresh.png"));
+		refreshButton.setRolloverIcon(new ImageIcon("ui/button/buttonFreshSt.png"));
+		refreshButton.setPressedIcon(new ImageIcon("ui/button/buttonFreshP.png"));
+		refreshButton.setBounds(927, 327, 100, 30);
 		refreshButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
