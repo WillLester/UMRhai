@@ -9,6 +9,7 @@ import javax.swing.JButton;
 
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.userUI.UserListPanel;
 import edu.nju.umr.vo.UserVO;
 
@@ -20,9 +21,11 @@ public class AdministerPanel extends UserPanel {
 	private static final long serialVersionUID = 4725198975118222690L;
 	public AdministerPanel(UserVO user,MainFrame fr) {
 		super(user,fr);
-		JButton userMangButton = new JButton("用户管理");
+		Button userMangButton=new Button();
+		userMangButton.setNewImages("Administer/userMan", "Administer/userManSt", "Administer/userManP");
+//		JButton userMangButton = new JButton("用户管理");
 		userMangButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		userMangButton.setBounds(369, 250, 93, 83);
+		userMangButton.setBounds(369, 250, 95, 95);
 		userMangButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

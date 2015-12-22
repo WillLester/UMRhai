@@ -9,6 +9,7 @@ import javax.swing.JButton;
 
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderNewUI.HallLoadingPanel;
 import edu.nju.umr.ui.orderNewUI.IncomePanel;
 import edu.nju.umr.ui.orderNewUI.RecipientPanel;
@@ -27,8 +28,9 @@ public class BusinessHallPanel extends UserPanel {
 		
 		super(user,fr);
 		
-		JButton recipient = new JButton("接收单");
-		recipient.setBounds(269, 192, 112, 83);
+		Button recipient = new Button();
+		recipient.setNewImages("businesshall/recipient", "businesshall/recipientSt", "businesshall/recipientP");
+		recipient.setBounds(280, 192, 95, 95);
 		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
 		recipient.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -40,8 +42,9 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(recipient);
 		
-		JButton send = new JButton("派件单");
-		send.setBounds(516, 192, 112, 83);
+		Button send = new Button();
+		send.setNewImages("businesshall/send", "businesshall/sendSt", "businesshall/sendP");
+		send.setBounds(527, 192, 95, 95);
 		send.setFont(new Font("宋体", Font.PLAIN, 12));
 		send.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -52,7 +55,8 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(send);
 		
-		JButton hallLoading = new JButton("装车单");
+		Button hallLoading = new Button();
+		hallLoading.setNewImages("businesshall/hallloading", "businesshall/hallloadingSt", "businesshall/hallloadingP");
 		hallLoading.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -62,12 +66,13 @@ public class BusinessHallPanel extends UserPanel {
 			}
 		});
 		hallLoading.setFont(new Font("宋体", Font.PLAIN, 12));
-		hallLoading.setBounds(760, 192, 112, 83);
+		hallLoading.setBounds(771, 192, 95, 95);
 		this.add(hallLoading);
 		
-		JButton income = new JButton("收款单");
+		Button income = new Button();
+		income.setNewImages("businesshall/income", "businesshall/incomeSt", "businesshall/incomeP");
 		income.setFont(new Font("宋体", Font.PLAIN, 12));
-		income.setBounds(269, 333, 112, 83);
+		income.setBounds(280, 333, 95, 95);
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -78,9 +83,10 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(income);
 		
-		JButton driverMan = new JButton("司机信息管理");
+		Button driverMan = new Button();
+		driverMan.setNewImages("businesshall/driverMan", "businesshall/driverManSt", "businesshall/driverManP");
 		driverMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		driverMan.setBounds(516, 333, 112, 83);
+		driverMan.setBounds(527, 333, 95, 95);
 		driverMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -91,9 +97,10 @@ public class BusinessHallPanel extends UserPanel {
 		});
 		this.add(driverMan);
 		
-		JButton vanMan = new JButton("车辆信息管理");
+		Button vanMan = new Button();
+		vanMan.setNewImages("businesshall/vanMan", "businesshall/vanManSt", "businesshall/vanManP");
 		vanMan.setFont(new Font("宋体", Font.PLAIN, 12));
-		vanMan.setBounds(760, 333, 112, 83);
+		vanMan.setBounds(771, 333, 95,95);
 		vanMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
