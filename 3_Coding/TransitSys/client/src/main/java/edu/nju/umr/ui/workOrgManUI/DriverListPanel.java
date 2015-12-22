@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -85,8 +85,10 @@ public class DriverListPanel extends JPanel {
 		});
 //		add(search);
 		
-		JButton add = new JButton("新增");
-		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
+		Button add = new AddButton();
+		
+		
+		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 100, 30);
 		add.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -108,8 +110,9 @@ public class DriverListPanel extends JPanel {
 		});
 		add(add);
 		
-		JButton delete = new JButton("删除");
-		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 90, 21);
+		Button delete = new DelButton();
+	
+		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -134,7 +137,7 @@ public class DriverListPanel extends JPanel {
 		add(delete);
 		
 		JButton modify = new JButton("修改");
-		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 90, 21);
+		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -149,8 +152,8 @@ public class DriverListPanel extends JPanel {
 		forDetail.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 90, 21);
 //		add(forDetail);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),90,21);
+		Button out = new ExitButton();
+		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),150,45);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

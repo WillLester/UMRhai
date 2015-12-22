@@ -91,7 +91,6 @@ public class UserPanel extends JPanel{
 		this.add(orgTxt);
 		
 		JButton logoutButton = new LogoutButton();
-		logoutButton.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		logoutButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

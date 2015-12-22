@@ -68,7 +68,6 @@ public class LoginPanel extends JPanel {
 			frame.setContentPane(new TransitInfoInqPanel(frame));
 		}
 		});
-		inquiryButton.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		inquiryButton.setBounds(464, 233, 280, 45);
 		add(inquiryButton);
 		
@@ -96,9 +95,6 @@ public class LoginPanel extends JPanel {
 		add(password);
 	
 		Button loginButton = new LoginButton();
-		loginButton.setIcon(new ImageIcon("ui/button/buttonLogin.png"));
-		loginButton.setRolloverIcon(new ImageIcon("ui/button/buttonLoginSt.png"));
-		loginButton.setPressedIcon(new ImageIcon("ui/button/buttonLoginP.png"));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultMessage re=logicSer.login(idField.getText(), new String(password.getPassword()));
@@ -127,21 +123,14 @@ public class LoginPanel extends JPanel {
 		add(loginButton);
 		
 		Button closeButton = new ExitButton();
-		closeButton.setIcon(new ImageIcon("ui/button/buttonExit.png"));
-		closeButton.setRolloverIcon(new ImageIcon("ui/button/buttonExitSt.png"));
-		closeButton.setPressedIcon(new ImageIcon("ui/button/buttonExitP.png"));
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
 				
 			}
 		});
-		closeButton.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		closeButton.setBounds(625, 450, 150, 45);
 		add(closeButton);
-		
-		
-	
 
 	}
 	protected void paintComponent(Graphics g){
