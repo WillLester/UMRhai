@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,8 +13,11 @@ import javax.swing.JTextField;
 import edu.nju.umr.logic.stockLogic.StockWarningLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanModButton;
+import edu.nju.umr.ui.component.ConfirmModButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 
@@ -97,9 +99,8 @@ public class StockWarningPanel extends JPanel{
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
 		} 
 		
-		JButton confirmButton = new JButton("确认修改");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(428, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirmButton = new ConfirmModButton();
+		confirmButton.setBounds(428, 407,100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -128,9 +129,8 @@ public class StockWarningPanel extends JPanel{
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消修改");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cancelButton.setBounds(555, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button cancelButton = new CanModButton();
+		cancelButton.setBounds(555, 407, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -151,9 +151,8 @@ public class StockWarningPanel extends JPanel{
 		});
 		add(cancelButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(746, 407, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(746, 407,100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

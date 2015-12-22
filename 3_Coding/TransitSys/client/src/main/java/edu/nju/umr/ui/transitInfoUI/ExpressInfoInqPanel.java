@@ -1,16 +1,16 @@
 package edu.nju.umr.ui.transitInfoUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.transitInfoLogic.CourierLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CheckButton;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
@@ -22,7 +22,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -6608025281059459114L;
-	protected JButton checkButton;
+	protected Button checkButton;
 	private CourierLSer logicSer;
 	/**
 	 * Create the panel.
@@ -31,10 +31,9 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		super(fr,"","");
 		logicSer = new CourierLogic();
 		titleLabel.setText("订单查询");
-		checkButton = new JButton("查询");
-		checkButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		checkButton = new CheckButton();
 		checkButton.addActionListener(new InqListener());
-		checkButton.setBounds(518, 66, 93, 23);
+		checkButton.setBounds(518, 66, 100, 30);
 		add(checkButton);
 		setEnabled();
 		

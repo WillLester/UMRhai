@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,9 +20,15 @@ import javax.swing.table.DefaultTableModel;
 import edu.nju.umr.logic.stockLogic.StockDivideLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.AddButton;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanModButton;
+import edu.nju.umr.ui.component.ConfirmModButton;
+import edu.nju.umr.ui.component.DelButton;
+import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -65,9 +70,8 @@ public class StockDividePanel extends JPanel{
 		searchField.setColumns(10);
 		
 		
-		JButton searchButton = new JButton("搜索");
-		searchButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		searchButton.setBounds(827, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button searchButton = new SearchButton();
+		searchButton.setBounds(827, 66, 100, 30);
 		searchButton.addActionListener(new ActionListener() {
 			
 			@SuppressWarnings({ "unused" })
@@ -124,9 +128,8 @@ public class StockDividePanel extends JPanel{
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
 		add(partCombo);
 		
-		JButton addButton = new JButton("新增");
-		addButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		addButton.setBounds(332, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button addButton = new AddButton();
+		addButton.setBounds(332, 541, 100, 30);
 		addButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -143,9 +146,8 @@ public class StockDividePanel extends JPanel{
 		});
 		add(addButton);
 		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		deleteButton.setBounds(455, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button deleteButton = new DelButton();
+		deleteButton.setBounds(455, 541, 100, 30);
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -157,9 +159,8 @@ public class StockDividePanel extends JPanel{
 		});
 		add(deleteButton);
 		
-		JButton confirmButton = new JButton("确认修改");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(578, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirmButton = new ConfirmModButton();
+		confirmButton.setBounds(578, 541,100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -179,9 +180,8 @@ public class StockDividePanel extends JPanel{
 		});
 		add(confirmButton);
 		
-		JButton cancelButton = new JButton("取消修改");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cancelButton.setBounds(701, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button cancelButton = new CanModButton();
+		cancelButton.setBounds(701, 541, 100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 
@@ -204,9 +204,8 @@ public class StockDividePanel extends JPanel{
 		});
 		add(cancelButton);
 		
-		JButton exitButton = new JButton("退出");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(881, 541, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(881, 541, 100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

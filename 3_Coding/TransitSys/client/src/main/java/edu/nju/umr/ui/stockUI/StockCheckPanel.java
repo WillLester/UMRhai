@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,10 +18,12 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.stockLogic.StockCheckLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ConfirmButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockInOutVO;
@@ -71,9 +72,8 @@ public class StockCheckPanel extends JPanel{
 		dateTimeE.setBounds(281, 116, 750, 25);
 		add(dateTimeE);
 		
-		JButton confirmButton = new JButton("查看");
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		confirmButton.setBounds(700, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirmButton = new ConfirmButton();
+		confirmButton.setBounds(700, 550, 100,30);
 		confirmButton.addActionListener(new ActionListener(){
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
@@ -91,9 +91,8 @@ public class StockCheckPanel extends JPanel{
 		});
 		add(confirmButton);
 		
-		JButton exitButton = new JButton("退出查看");
-		exitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		exitButton.setBounds(816, 550, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button exitButton = new ExitButton();
+		exitButton.setBounds(816, 550, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) 
 			{

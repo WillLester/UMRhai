@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +17,10 @@ import edu.nju.umr.logicService.transitInfoLogicSer.CustomerLogicSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanButton;
+import edu.nju.umr.ui.component.ConfirmButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.vo.ResultMessage;
@@ -66,7 +69,7 @@ public class TransitInfoInqPanel extends JPanel {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scroll);
 		
-		JButton confirmButton = new JButton("确定");
+		Button confirmButton = new ConfirmButton();
 		confirmButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
@@ -86,13 +89,11 @@ public class TransitInfoInqPanel extends JPanel {
 				}
 			}
 		});
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(638, 108, 93, 23);
+		confirmButton.setBounds(638, 108, 100,30 );
 		add(confirmButton);
 		
-		JButton closeButton = new JButton("关闭");
-		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		closeButton.setBounds(547, 571, 93, 23);
+		Button closeButton = new ExitButton();
+		closeButton.setBounds(547, 571, 100, 30);
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
@@ -100,9 +101,8 @@ public class TransitInfoInqPanel extends JPanel {
 		});
 		add(closeButton);
 		
-		JButton cancelButton = new JButton("取消");
-		cancelButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		cancelButton.setBounds(386, 571, 93, 23);
+		Button cancelButton = new CanButton();
+		cancelButton.setBounds(386, 571, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
