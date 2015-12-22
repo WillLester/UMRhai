@@ -220,12 +220,15 @@ public class UserListPanel extends JPanel {
 				if(e.getValueIsAdjusting()==false){
 					if(table.getModel().getRowCount()==users.size()+1){
 						addButton.setEnabled(false);
+						deleteButton.setEnabled(false);
 					}else{
 						addButton.setEnabled(true);
+						deleteButton.setEnabled(true);
 					}
 					if(table.getSelectedRow() >= 0){
 						displayUser(table.getSelectedRow());
-						deleteButton.setEnabled(true);
+						if(table.getModel().getRowCount()!=users.size()+1)
+							deleteButton.setEnabled(true);
 						confirmButton.setEnabled(true);
 						if(table.getSelectedRow()<users.size())
 						{
