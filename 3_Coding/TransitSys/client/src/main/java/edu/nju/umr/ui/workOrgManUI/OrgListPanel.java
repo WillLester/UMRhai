@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,6 +28,12 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.AddButton;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanModButton;
+import edu.nju.umr.ui.component.ConfirmModButton;
+import edu.nju.umr.ui.component.DelButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -49,10 +56,10 @@ public class OrgListPanel extends JPanel {
 	private JComboBox<String> orgType;
 	private OrgManLSer serv;
 	private JComboBox<String> cityComboBox;
-	private JButton modify;
+	private Button modify;
 	private JButton workMan;
-	private JButton confirmMod;
-	private JButton delete;
+	private Button confirmMod;
+	private Button delete;
 	private String name;
 	/**
 	 * Create the panel.
@@ -75,8 +82,12 @@ public class OrgListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		JButton search = new JButton("搜索");
-		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
+		Button search = new Button();
+		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
+		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
+		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
+
+		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -125,8 +136,8 @@ public class OrgListPanel extends JPanel {
 		add(textFieldAddr);
 		textFieldAddr.setColumns(10);
 		
-		JButton add = new JButton("新增");
-		add.setBounds(Constants.TABLE_X+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 93, 23);
+		Button add = new AddButton();
+		add.setBounds(Constants.TABLE_X+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 100, 30);
 		add.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addOrg();
@@ -139,8 +150,8 @@ public class OrgListPanel extends JPanel {
 		});
 		add(add);
 		
-		delete = new JButton("删除");
-		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 93, 23);
+		delete = new DelButton();
+		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -153,8 +164,8 @@ public class OrgListPanel extends JPanel {
 		});
 		add(delete);
 		
-		modify = new JButton("确认修改");
-		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 93, 23);
+		modify = new ConfirmModButton();
+		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -163,12 +174,12 @@ public class OrgListPanel extends JPanel {
 		});
 		add(modify);
 		
-		confirmMod = new JButton("取消修改");
-		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
+		confirmMod = new CanModButton();
+		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 100, 30);
 		add(confirmMod);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		Button out = new ExitButton();
+		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 150, 45);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

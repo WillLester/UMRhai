@@ -3,9 +3,7 @@ package edu.nju.umr.ui.workOrgManUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +15,9 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanButton;
+import edu.nju.umr.ui.component.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 
@@ -132,8 +133,8 @@ public class DriverInfoPanel extends JPanel {
 		deadline.setDate(driver.getDriveEnd());
 		add(deadline);
 		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button cancel = new CanButton();
+		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, 100, 30);
 		cancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -141,8 +142,8 @@ public class DriverInfoPanel extends JPanel {
 		});
 		add(cancel);
 		
-		JButton confirm = new JButton("确认");
-		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, cancel.getY(), Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button confirm = new ConfirmButton();
+		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, cancel.getY(),100, 30);
 		confirm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Gender sex;

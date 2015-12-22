@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -86,8 +88,6 @@ public class DriverListPanel extends JPanel {
 //		add(search);
 		
 		Button add = new AddButton();
-		
-		
 		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 100, 30);
 		add.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -111,7 +111,6 @@ public class DriverListPanel extends JPanel {
 		add(add);
 		
 		Button delete = new DelButton();
-	
 		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -136,7 +135,12 @@ public class DriverListPanel extends JPanel {
 		});
 		add(delete);
 		
-		JButton modify = new JButton("修改");
+		Button modify = new Button();
+		modify.setIcon(new ImageIcon("ui/button/buttonRev.png"));
+		modify.setRolloverIcon(new ImageIcon("ui/button/buttonRevSt.png"));
+		modify.setPressedIcon(new ImageIcon("ui/button/buttonRevP.png"));
+
+		
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -224,10 +228,10 @@ public class DriverListPanel extends JPanel {
 		return result;
 	}
 //	public static void main(String[] args){
-//		JFrame f=new JFrame();
+//		FunctionFrame f=new FunctionFrame("");
 //		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		f.setSize(1300,800);
-//		f.setContentPane(new DriverListPanel(f));
+//		f.setContentPane(new DriverListPanel(f,"",""));
 //		f.setVisible(true);
 //	}
 }

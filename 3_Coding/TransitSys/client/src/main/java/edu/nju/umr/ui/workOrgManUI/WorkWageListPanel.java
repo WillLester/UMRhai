@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +23,8 @@ import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -67,7 +70,10 @@ public class WorkWageListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		JButton search = new JButton("搜索");
+		Button search = new Button();
+		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
+		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
+		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
 		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 90, 21);
 		search.addActionListener(new ActionListener() {
 			
@@ -146,8 +152,8 @@ public class WorkWageListPanel extends JPanel {
 		});
 		add(make);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(make.getX(), make.getY()+make.getHeight()+30, 93, 23);
+		Button out = new ExitButton();
+		out.setBounds(make.getX(), make.getY()+make.getHeight()+30, 100, 30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

@@ -25,6 +25,7 @@ import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
 
@@ -42,7 +43,7 @@ public class VanInfoPanel extends JPanel {
 	private DatePanel servTime;
 	private JLabel pic;
 	private String orgId;
-	private JButton confirm;
+	private Button confirm;
 
 	/**
 	 * Create the panel.
@@ -118,8 +119,8 @@ public class VanInfoPanel extends JPanel {
 		}});
 		add(upload);
 		
-		confirm = new JButton("确定");
-		confirm.setBounds(upload.getX()+200, upload.getY(), 93, 23);
+		confirm = new ConfirmButton();
+		confirm.setBounds(upload.getX()+200, upload.getY(), 100, 30);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -127,8 +128,8 @@ public class VanInfoPanel extends JPanel {
 		}});
 		add(confirm);
 		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(confirm.getX()+confirm.getWidth()+50, confirm.getY(), 93, 23);
+		Button cancel = new CanButton();
+		cancel.setBounds(confirm.getX()+confirm.getWidth()+50, confirm.getY(), 100, 30);
 		cancel.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

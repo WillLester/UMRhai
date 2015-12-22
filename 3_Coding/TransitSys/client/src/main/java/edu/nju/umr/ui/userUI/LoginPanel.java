@@ -19,7 +19,6 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.component.LoginButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
@@ -122,7 +121,10 @@ public class LoginPanel extends JPanel {
 		loginButton.setBounds(452, 450, 150, 45);
 		add(loginButton);
 		
-		Button closeButton = new ExitButton();
+		Button closeButton = new Button();
+		closeButton.setIcon(new ImageIcon("ui/button/buttonExit.png"));
+		closeButton.setRolloverIcon(new ImageIcon("ui/button/buttonExitSt.png"));
+		closeButton.setPressedIcon(new ImageIcon("ui/button/buttonExitP.png"));
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);

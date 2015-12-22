@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,6 +26,10 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.AddButton;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.DelButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
@@ -66,8 +71,11 @@ public class VanListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		JButton search = new JButton("搜索");
-		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 90, 21);
+		Button search = new Button();
+		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
+		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
+		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
+		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				getVans(textFieldSearch.getText());
@@ -76,7 +84,7 @@ public class VanListPanel extends JPanel {
 		add(search);
 
 		JButton all = new JButton("显示全部");
-		all.setBounds(textFieldSearch.getX()+700+20, textFieldSearch.getY(), 90, 21);
+		all.setBounds(textFieldSearch.getX()+700+20, textFieldSearch.getY(), 100, 30);
 		all.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -85,8 +93,8 @@ public class VanListPanel extends JPanel {
 		add(all);
 		
 		
-		JButton add = new JButton("新增");
-		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 90, 21);
+		Button add = new AddButton();
+		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 100, 30);
 		add.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -94,8 +102,8 @@ public class VanListPanel extends JPanel {
 		}});
 		add(add);
 		
-		JButton delete = new JButton("删除");
-		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 90, 21);
+		Button delete = new DelButton();
+		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
 		delete.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -108,7 +116,7 @@ public class VanListPanel extends JPanel {
 		add(delete);
 		
 		JButton modify = new JButton("查看修改");
-		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 90, 21);
+		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -124,8 +132,8 @@ public class VanListPanel extends JPanel {
 		}});
 //		add(forDetail);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),90,21);
+		Button out = new ExitButton();
+		out.setBounds(forDetail.getX()+forDetail.getWidth()+50,add.getY(),100,30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

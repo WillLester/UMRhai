@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -25,6 +26,12 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
+import edu.nju.umr.ui.component.AddButton;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.CanModButton;
+import edu.nju.umr.ui.component.ConfirmModButton;
+import edu.nju.umr.ui.component.DelButton;
+import edu.nju.umr.ui.component.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -42,9 +49,9 @@ public class WorkListPanel extends JPanel {
 	private JComboBox<String> orgCombo;
 	private JComboBox<String> juriCombo;
 	private ArrayList<WorkVO> workList;
-	private JButton delete;
-	private JButton modify;
-	private JButton cancelMod;
+	private Button delete;
+	private Button modify;
+	private Button cancelMod;
 	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -69,8 +76,11 @@ public class WorkListPanel extends JPanel {
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
-		JButton search = new JButton("搜索");
-		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 90, 21);
+		Button search = new Button();
+		search.setIcon(new ImageIcon("ui/button/buttonSearch.png"));
+		search.setRolloverIcon(new ImageIcon("ui/button/buttonSearchSt.png"));
+		search.setPressedIcon(new ImageIcon("ui/button/buttonSearchP.png"));
+		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 100, 30);
 		search.addActionListener(new ActionListener() {
 			
 			@Override
@@ -140,8 +150,8 @@ public class WorkListPanel extends JPanel {
 		juriCombo.setEnabled(false);
 		add(juriCombo);
 		
-		JButton add = new JButton("新增");
-		add.setBounds(Constants.TABLE_X, textFieldMobile.getY()+textFieldMobile.getHeight()+30, 93, 23);
+		Button add = new AddButton();
+		add.setBounds(Constants.TABLE_X, textFieldMobile.getY()+textFieldMobile.getHeight()+30, 100, 30);
 		add.addActionListener(new ActionListener() {
 			
 			@Override
@@ -153,8 +163,8 @@ public class WorkListPanel extends JPanel {
 		});
 		add(add);
 		
-		delete = new JButton("删除");
-		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 93, 23);
+		delete = new DelButton();
+		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
 		delete.setEnabled(false);
 		delete.addActionListener(new ActionListener() {
 			
@@ -175,8 +185,8 @@ public class WorkListPanel extends JPanel {
 		});
 		add(delete);
 		
-		modify = new JButton("确认修改");
-		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 93, 23);
+		modify = new ConfirmModButton();
+		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.setEnabled(false);
 		modify.addActionListener(new ActionListener() {
 			
@@ -200,8 +210,8 @@ public class WorkListPanel extends JPanel {
 		});
 		add(modify);
 		
-		cancelMod = new JButton("取消修改");
-		cancelMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 93, 23);
+		cancelMod = new CanModButton();
+		cancelMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 100, 30);
 		cancelMod.setEnabled(false);
 		cancelMod.addActionListener(new ActionListener() {
 			
@@ -217,8 +227,8 @@ public class WorkListPanel extends JPanel {
 		});
 		add(cancelMod);
 		
-		JButton out = new JButton("退出");
-		out.setBounds(cancelMod.getX()+cancelMod.getWidth()+50+cancelMod.getWidth()+50, add.getY(), 93, 23);
+		Button out = new ExitButton();
+		out.setBounds(cancelMod.getX()+cancelMod.getWidth()+50+cancelMod.getWidth()+50, add.getY(), 100, 30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

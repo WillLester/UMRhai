@@ -7,7 +7,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +16,7 @@ import javax.swing.JTextField;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
+import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.utility.DoHint;
 
 public class WageDraftPanel extends JPanel {
@@ -148,8 +148,8 @@ public class WageDraftPanel extends JPanel {
 		group.add(rbCount);
 		group.add(rbMonth);
 		
-		JButton cancel = new JButton("取消");
-		cancel.setBounds(this.getWidth()-300, bound.getY()+bound.getHeight()+20, 93, 23);
+		Button cancel = new CanButton();
+		cancel.setBounds(this.getWidth()-300, bound.getY()+bound.getHeight()+20, 100, 30);
 		cancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -158,8 +158,8 @@ public class WageDraftPanel extends JPanel {
 		});
 		add(cancel);
 		
-		JButton confirm = new JButton("确认");
-		confirm.setBounds(cancel.getX()-cancel.getWidth()-50, cancel.getY(), 93, 23);
+		Button confirm = new ConfirmButton();
+		confirm.setBounds(cancel.getX()-cancel.getWidth()-50, cancel.getY(), 100, 30);
 		confirm.addActionListener(new ActionListener() {
 			
 			@Override
