@@ -218,7 +218,7 @@ public class UserListPanel extends JPanel {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
-					if(table.getModel().getRowCount()==users.size()){
+					if(table.getModel().getRowCount()==users.size()+1){
 						addButton.setEnabled(false);
 					}else{
 						addButton.setEnabled(true);
