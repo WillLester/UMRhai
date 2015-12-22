@@ -74,7 +74,7 @@ public class TransitCenterPanel extends UserPanel{
 		});
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 	}
 
