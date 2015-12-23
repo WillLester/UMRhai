@@ -9,7 +9,7 @@ import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
@@ -33,6 +33,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private DiaryUpdateLSer diarySer;
 	private OrderInfoLSer orderInfo;
 	private OrderCalcuLSer orderCalcu;
+	private UpdateTranStateLogic orderState;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -55,9 +56,16 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		try{
 			isSuc=hallData.create(VPFactory.toHallLoadingPO(order));
 			if(isSuc.equals(Result.SUCCESS)){
+				for(String express:order.getExpress()){
+					isSuc=orderState.updateExpressState(express,order.getHallId()+"#");
+					if(!isSuc.equals(Result.SUCCESS)){
+						break;
+					}
+				}
+			}
+			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("生成了营业厅装车单", order.getOpName());
 			}
-			
 		} catch (RemoteException e) { 
             return Result.NET_INTERRUPT;
         } catch(Exception e){
@@ -95,6 +103,10 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+	}
+	@Override
+	public ResultMessage getUnloadExpresses(String orgId) {
+		return orderState.getExpressHere(orgId);
 	}
 
 }

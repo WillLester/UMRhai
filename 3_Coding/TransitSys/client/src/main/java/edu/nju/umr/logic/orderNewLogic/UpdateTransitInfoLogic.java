@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
-import edu.nju.umr.dataService.dataFactory.UpdateTransitInfoDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTransitInfoDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 import edu.nju.umr.po.TransitInfoPO;

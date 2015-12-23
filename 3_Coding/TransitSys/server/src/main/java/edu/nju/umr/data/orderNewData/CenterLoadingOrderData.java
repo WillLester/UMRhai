@@ -46,7 +46,7 @@ public class CenterLoadingOrderData extends UnicastRemoteObject implements Cente
 	@Override
 	public int getOrderSize(String partId) throws RemoteException {
 		// TODO 自动生成的方法存根
-		GetToday get = new CenterLoadingPO(null, partId, null, null, null, null, null, null, null, 0, null);
+		GetToday get = new CenterLoadingPO(null, partId, null, null, null, null, null, null, null, 0, null,false,null);
 		ResultSet result = mysqlSer.checkToday(get);
 		return OrderCounter.count(result);
 	}

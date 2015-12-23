@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.ArriveOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.ArriveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ArriveOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;

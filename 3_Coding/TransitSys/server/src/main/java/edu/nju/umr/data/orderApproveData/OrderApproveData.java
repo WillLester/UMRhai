@@ -71,14 +71,14 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 			po = new ArrivePO(null, null, id, null, null, null, null,null);
 			return OrderPOFactory.getArrive(mysqlSer.checkOrder(po));
 		case CENTERLOADING:
-			po = new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0,null);
+			po = new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0,null,false,null);
 			return OrderPOFactory.getCenterLoad(mysqlSer.checkOrder(po));
 		case EXPRESS:
 			po = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, id,
-					null, null, null, 0, null, null, null, null, null, null, null,null);
+					null, null, null, 0, null, null, null, null, null, null, null,null,null);
 			return OrderPOFactory.getExpress(mysqlSer.checkOrder(po));
 		case HALLLOADING:
-			po = new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0,null);
+			po = new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0,null,false);
 			return OrderPOFactory.getHallLoad(mysqlSer.checkOrder(po));
 		case INCOME:
 			po = new IncomePO(null, null, null, null, id, null, null, null,null,null);
@@ -99,7 +99,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 			po = new StockOutPO(id, null, null, null, null, null, null, null, null,null);
 			return OrderPOFactory.getStockOut(mysqlSer.checkOrder(po));
 		case TRANSIT:
-			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0,null,null);
+			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0,null,null,false);
 			return OrderPOFactory.getTransit(mysqlSer.checkOrder(po));
 		default:
 			return null;

@@ -77,9 +77,11 @@ public class OrderApprovePanel extends JPanel{
 		approveLabel.setBounds(505, 40, 93, 24);
 		add(approveLabel);
 		
-		JButton allButton = new JButton("全选");
-		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		allButton.setBounds(927, 103, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button allButton = new Button();
+		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
+		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
+		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
+		allButton.setBounds(927, 103,100, 30);
 		allButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -87,9 +89,11 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(allButton);
 		
-		JButton passedButton = new JButton("通过审批");
-		passedButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		passedButton.setBounds(927, 159, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button passedButton = new Button();
+		passedButton.setIcon(new ImageIcon("ui/button/buttonPassed.png"));
+		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonPassedSt.png"));
+		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonPassedP.png"));
+		passedButton.setBounds(927, 159, 100,30);
 		passedButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -98,9 +102,11 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(passedButton);
 		
-		JButton unpassedButton = new JButton("不通过审批");
-		unpassedButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		unpassedButton.setBounds(927, 215, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		Button unpassedButton = new Button();
+		passedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
+		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
+		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
+		unpassedButton.setBounds(927, 215,100,30);
 		unpassedButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

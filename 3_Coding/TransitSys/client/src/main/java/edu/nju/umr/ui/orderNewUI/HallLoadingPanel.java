@@ -27,6 +27,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.HallLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
@@ -47,7 +48,7 @@ public class HallLoadingPanel extends JPanel {
 	private JTextField transitIdField;
 	private JTextField superviseField;
 	private JTextField guardField;
-	private JTextField expressIdField;
+	private AutoCompPanel expressIdField;
 	private JLabel priceLabel;
 	private Table table;
 	private DefaultTableModel model;
@@ -57,6 +58,7 @@ public class HallLoadingPanel extends JPanel {
 	private JComboBox<String> comboBoxDestination;
 	private JComboBox<String> comboBoxVan;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
+	private ArrayList<String> allExpresses=new ArrayList<String>();
 	private String userName;
 	private String orgId;
 	private String userId;
@@ -185,9 +187,8 @@ public class HallLoadingPanel extends JPanel {
 		expressIdLabel.setBounds(220+75, 255, 130, 24);
 		add(expressIdLabel);
 		
-		expressIdField = new JTextField();
+		expressIdField = new AutoCompPanel();
 		expressIdField.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressIdField.setColumns(10);
 		expressIdField.setBounds(355+75, 254, 280, 25);
 		add(expressIdField);
 		
@@ -201,6 +202,8 @@ public class HallLoadingPanel extends JPanel {
 				{
 					model.addRow(new String[]{expressIdField.getText()});
 					expressIdList.add(expressIdField.getText());
+					allExpresses.remove(expressIdField.getText());
+					expressIdField.setAllItem(allExpresses);
 					expressIdField.setText("");
 					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
 					if(!getPrice())
@@ -261,14 +264,13 @@ public class HallLoadingPanel extends JPanel {
 	protected void createOrder() {
 		// TODO Auto-generated method stub
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId);
+				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId,false);
 		Result result=serv.create(vo);
 		DoHint.hint(result, frame,true);
 		if(result.equals(Result.SUCCESS)){
 			confirmButton.setEnabled(false);
 		}
 		return;
-		
 	}
 	private void tableInit(){
 		table = new Table(new DefaultTableModel());
@@ -299,6 +301,7 @@ public class HallLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 	}
+	@SuppressWarnings("unchecked")
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
@@ -343,10 +346,22 @@ public class HallLoadingPanel extends JPanel {
 		String temp=Integer.toString(num);
 		while(temp.length()<5)temp="0"+temp;
 		transitIdField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+		
+		message=serv.getUnloadExpresses(orgId);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			DoHint.hint(result, frame);
+			return;
+		}
+		allExpresses=(ArrayList<String>)message.getMessage();
+		expressIdField.setAllItem(allExpresses);
 	}
 	private void deleteExpress(){
 		int row=table.getSelectedRow();
 		if(row<0||row>=table.getRowCount())return;
+		allExpresses.add(model.getValueAt(row, 0).toString());
+		expressIdField.setAllItem(allExpresses);
+		
 		model.removeRow(row);
 		expressIdList.remove(row);
 		expressIdField.setText("");

@@ -11,9 +11,11 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
+public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,GetToday,UpdateTranState,LocationFind{
 	/**
 	 * 
 	 */
@@ -31,11 +33,12 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	private double cost;
 	private String userId;
 	private Transit transit;
+	private boolean isArrived;
 	
 	public TransitPO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName, double cost,String userId,Transit transit) {
+			String opName, double cost,String userId,Transit transit,boolean isArrived) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -50,6 +53,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 		this.cost = cost;
 		this.userId = userId;
 		this.transit = transit;
+		this.isArrived = isArrived;
 	}
 	public String getId() {
 		return id;
@@ -90,6 +94,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	public Transit getTransit() {
 		return transit;
 	}
+	public boolean isArrived() {
+		return isArrived;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -103,7 +110,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 			}
 			command="insert into transitorderwaiting values"+"("+"'"+id+"','"+planeId+"','"+startPlace+"','"
 		+arrivePlace+"','"+containerId+"','"+supervision+"','"+DateFormat.DATE.format(date.getTime())+"','"+
-				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"',"+transit.ordinal()+")";break;
+				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+cost+",'"+text+"','"+userId+"',"+transit.ordinal()+","+isArrived+")";break;
 		case DELETE:break;
 		case FIND:command="select * from transitorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
@@ -150,5 +157,19 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 		return "select * from transitorderwaiting,transitorderpassed,transitorderunpassed where "
 				+ "transitorderwaiting.id like '%"+id+"%' or transitorderpassed.id like '%"+id+"%' or"
 						+ " transitorderunpassed.id like '%"+id+"%'";
+	}
+	@Override
+	public String getOrdersHere() {
+		// TODO 自动生成的方法存根
+		if(startPlace == null){
+			return "select id from transitorderpassed where arrivePlace = '"+arrivePlace+"' and isArrived = "+isArrived;
+		} else {
+			return "select id from transitorderpassed where startPlace = '"+startPlace+"' and isArrived = "+isArrived;
+		}
+	}
+	@Override
+	public String getUpdateTran() {
+		// TODO 自动生成的方法存根
+		return "update transitorderpassed set isArrived = "+isArrived+" where id = '"+id+"'";
 	}
 }

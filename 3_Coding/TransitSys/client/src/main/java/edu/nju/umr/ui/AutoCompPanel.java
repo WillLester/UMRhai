@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -18,10 +19,10 @@ public class AutoCompPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -7950844264752430637L;
-	JComboBox<String> jc;
-	JTextField jt;
-	ArrayList<String> allItem=new ArrayList<String>();
-	ArrayList<String> toDisplayItem = new ArrayList<String>();
+	private JComboBox<String> jc;
+	private JTextField jt;
+	private ArrayList<String> allItem=new ArrayList<String>();
+	private ArrayList<String> toDisplayItem = new ArrayList<String>();
 	public AutoCompPanel(){
 		setLayout(null);
 		jt=new JTextField();
@@ -93,5 +94,15 @@ public class AutoCompPanel extends JPanel{
 		super.setBounds(x, y, width, height);
 		jt.setBounds(0, 0, width, height);
 		jc.setBounds(0, height-2, width, 0);
+	}
+	public void setText(String temp){
+		jt.setText(temp);
+	}
+	public String getText(){
+		return jt.getText();
+	}
+	public void setFont(Font font){
+		jt.setFont(font);
+		jc.setFont(font);
 	}
 }

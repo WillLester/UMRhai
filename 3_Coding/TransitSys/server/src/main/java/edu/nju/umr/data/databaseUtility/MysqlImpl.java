@@ -31,7 +31,9 @@ import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.po.order.function.GetToday;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
 
 public class MysqlImpl implements MysqlService{
@@ -75,7 +77,6 @@ public class MysqlImpl implements MysqlService{
 		}
 	}
 	public Result addInfo(PO po) {
-		// TODO 自动生成的方法存根
 		try{
 			state.executeUpdate(po.getCommand(MysqlOperation.INSERT));
 		} catch (SQLException e){
@@ -302,7 +303,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case CENTERLOADING:
 			for(String i:id){
-				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null);
+				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null,false,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -312,7 +313,7 @@ public class MysqlImpl implements MysqlService{
 		case EXPRESS:
 			for(String i:id){
 				order = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 
-						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null);
+						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -321,7 +322,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case HALLLOADING:
 			for(String i:id){
-				order = new HallLoadingPO(null, i, null, null, null, null, null, null, null, null, 0,null);
+				order = new HallLoadingPO(null, i, null, null, null, null, null, null, null, null, 0,null,false);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -384,7 +385,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case TRANSIT:
 			for(String i:id){
-				order = new TransitPO(i, null, null, null, null, null, null, null, null, null, 0,null,null);
+				order = new TransitPO(i, null, null, null, null, null, null, null, null, null, 0,null,null,false);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -445,6 +446,30 @@ public class MysqlImpl implements MysqlService{
 		// TODO 自动生成的方法存根
 		try {
 			ResultSet result = state.executeQuery(get.getToday());
+			return result;
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
+	}
+	@Override
+	public Result updateTranState(UpdateTranState order) {
+		// TODO 自动生成的方法存根
+		try {
+			state.executeUpdate(order.getUpdateTran());
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return Result.DATABASE_ERROR;
+		}
+		return Result.SUCCESS;
+	}
+	@Override
+	public ResultSet getOrdersHere(LocationFind order) {
+		// TODO 自动生成的方法存根
+		try {
+			ResultSet result = state.executeQuery(order.getOrdersHere());
 			return result;
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块

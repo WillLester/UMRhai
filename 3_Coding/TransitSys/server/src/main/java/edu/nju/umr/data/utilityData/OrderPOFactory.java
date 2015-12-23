@@ -74,7 +74,7 @@ public class OrderPOFactory {
 				}
 				return new CenterLoadingPO(date, result.getString(1), result.getString(2), result.getString(3), 
 						result.getString(4), result.getString(5), express, opTime, result.getString(10), result.getDouble(9)
-						,result.getString(11));
+						,result.getString(11),result.getBoolean(12),result.getString(13));
 			} else {
 				return null;
 			}
@@ -106,7 +106,7 @@ public class OrderPOFactory {
 						result.getString(13), result.getDouble(14), result.getDouble(15), result.getDouble(16), result.getDouble(25), 
 						result.getDouble(17), result.getString(1), arrive, date,expresses[result.getInt(19)], result.getDouble(20), 
 						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),
-						result.getString(29),result.getString(30),result.getString(32));
+						result.getString(29),result.getString(30),result.getString(32),result.getString(33));
 			} else {
 				return null;
 			}
@@ -130,7 +130,7 @@ public class OrderPOFactory {
 				opTime.setTime(result.getDate(8));
 				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(4), 
 						result.getString(3), result.getString(5), result.getString(6), express, date, opTime, 
-						result.getString(10), result.getDouble(11),result.getString(12));
+						result.getString(10), result.getDouble(11),result.getString(12),result.getBoolean(13));
 			} else {
 				return null;
 			}
@@ -270,7 +270,7 @@ public class OrderPOFactory {
 				}
 				return new TransitPO(result.getString(1), result.getString(2), result.getString(3), result.getString(4), 
 						result.getString(5), result.getString(6), express, date, opTime, result.getString(9), 
-						result.getDouble(10),result.getString(12),Transit.values()[result.getInt(13)]);
+						result.getDouble(10),result.getString(12),Transit.values()[result.getInt(13)],result.getBoolean(14));
 			} else {
 				return null;
 			}

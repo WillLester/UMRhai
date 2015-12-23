@@ -9,7 +9,9 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.POKind;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.function.GetToday;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 /**
  * 
  * @author WillLester
@@ -98,4 +100,19 @@ public interface MysqlService {
 	 * @see GetToday
 	 */
 	public ResultSet checkToday(GetToday get);
+	
+	/**
+	 * 更新单据物流状态
+	 * @param order 实现了UpdateTranState接口的单据PO，要求包含ID和要更改的状态
+	 * @return 结果
+	 */
+	public Result updateTranState(UpdateTranState order);
+	
+	/**
+	 * 根据机构ID找到这里的所有单据
+	 * @param order 单据PO，要求实现LocationFind接口
+	 * @see LocationFind
+	 * @return 含有ID的ResultSet
+	 */
+	public ResultSet getOrdersHere(LocationFind order);
 }

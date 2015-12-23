@@ -75,7 +75,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getCenterLoad(String userId){
-		OrderOper po = new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, userId);
+		OrderOper po = new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, userId,false,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceCenterLoad(result);
@@ -87,7 +87,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	
 	private ArrayList<KindGetter> getExpress(String userId){
 		OrderOper po = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, 
-				null, null, null, null, 0, null, null, null, null, null, null, null, userId);
+				null, null, null, null, 0, null, null, null, null, null, null, null, userId,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceExpress(result);
@@ -99,7 +99,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	
 	private ArrayList<KindGetter> getHallLoad(String userId){
 		OrderOper po = new HallLoadingPO(null, null, null, null, null, 
-				null, null, null, null, null, 0, userId);
+				null, null, null, null, null, 0, userId,false);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceHallLoad(result);
@@ -176,7 +176,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getTransit(String userId){
-		OrderOper po = new TransitPO(null, null, null, null, null, null, null, null, null, null, 0, userId,null);
+		OrderOper po = new TransitPO(null, null, null, null, null, null, null, null, null, null, 0, userId,null,false);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceTransit(result);

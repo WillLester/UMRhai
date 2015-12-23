@@ -10,9 +10,11 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
+public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday,UpdateTranState,LocationFind{
 	/**
 	 * 
 	 */
@@ -29,10 +31,11 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	private String opName;
 	private double cost;
 	private String userId;
+	private boolean isArrived;
 	public HallLoadingPO(String hallId, String convertId,
 			String arriveLoc, String vanId, String supervision, String escort,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName,double cost,String userId) {
+			String opName,double cost,String userId,boolean isArrived) {
 		super();
 		this.hallId = hallId;
 		this.convertId = convertId;
@@ -46,6 +49,7 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		this.opName = opName;
 		this.cost=cost;
 		this.userId=userId;
+		this.isArrived = isArrived;
 	}
 	public String getHallId() {
 		return hallId;
@@ -83,6 +87,9 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getUserId() {
 		return userId;
 	}
+	public boolean isArrived() {
+		return isArrived;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -93,7 +100,8 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 			for(String e:express){
 				text = text + e + " ";
 			}
-			command="insert into halllorderwaiting values"+"("+"'"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"',"+cost+",'"+userId+"')";break;
+			command="insert into halllorderwaiting values"+"("+"'"+hallId+"','"+convertId+"','"+vanId+"','"+arriveLoc+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"
+			+DateFormat.TIME.format(opTime.getTime())+"','"+text+"','"+opName+"',"+cost+",'"+userId+"',"+isArrived+")";break;
 		case DELETE:break;
 		case FIND:command = "select * from halllorderpassed where convertId='"+convertId+"'";break;
 		case UPDATE:break;
@@ -140,6 +148,17 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 		return "select * from halllorderwaiting where convertId like '%"+convertId+"%' union "
 				+ "select * from halllorderpassed where convertId like '%"+convertId+"%' union "
 				+ "select * from halllorderunpassed where convertId like '%"+convertId+"%'";
+	}
+	@Override
+	public String getUpdateTran() {
+		// TODO 自动生成的方法存根
+		return "update halllorderpassed set isArrived = "+isArrived+ " where convertId = '"+convertId+"'";
+	}
+	
+	@Override
+	public String getOrdersHere() {
+		// TODO 自动生成的方法存根
+		return "select convertId from halllorderpassed where arriveLoc = '"+arriveLoc +"' and isArrived = "+isArrived;
 	}
 	
 }

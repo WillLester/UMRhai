@@ -103,13 +103,14 @@ public class ExpressPanel extends JPanel {
 	protected JLabel arriveLabel;
 	protected JTextField arriveField;
 	private String userId;
+	private String nowOrgId;
 	protected ConfirmListener conListener;
 	/**
 	 * Create the panel.
 	 */
 	public ExpressPanel(JFrame fr,ExpressVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getUserId(),vo.getNowOrgId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -143,13 +144,14 @@ public class ExpressPanel extends JPanel {
 		
 		
 	}
-	public ExpressPanel(JFrame fr,String name,String userId) {
+	public ExpressPanel(JFrame fr,String name,String userId,String orgId) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new ExpressOrderLogic();
 //		logicSer = new ExpressPanelStub();
 		this.name = name;
 		this.userId = userId;
+		this.nowOrgId=orgId;
 		
 		titleLabel = new JLabel("订单");
 		titleLabel.setBounds(437, 21, 120, 35);
@@ -604,7 +606,7 @@ public class ExpressPanel extends JPanel {
 		ExpressVO vo = new ExpressVO(barcodeField.getText(), sender.getText(), senderLoc.getLoc(), receiver.getText(), receiverLoc.getLoc(), senderMobileField.getText(), receiverMobileField.getText(), senderPhoneField.getText(), receiverPhoneField.getText(), 
 				senderCompanyField.getText(), receiverCompanyField.getText(), (Integer)numSpinner.getValue(), nameField.getText(), Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), 
 				Double.parseDouble(weightField.getText()), Double.parseDouble(volumnField.getText()), arrive, datePanel.getCalendar(), EnumTransFactory.getExpress((String)expressKindCombo.getSelectedItem()), Double.parseDouble(costField.getText()), name,EnumTransFactory.getParse((String)pakKindCombo.getSelectedItem()),
-				senderLoc.getProvince(),senderLoc.getCity(),receiverLoc.getProvince(),receiverLoc.getCity(),userId);
+				senderLoc.getProvince(),senderLoc.getCity(),receiverLoc.getProvince(),receiverLoc.getCity(),userId,nowOrgId);
 		return vo;
 		
 	}
