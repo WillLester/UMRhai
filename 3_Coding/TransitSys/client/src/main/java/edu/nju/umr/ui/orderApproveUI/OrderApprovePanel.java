@@ -168,6 +168,10 @@ public class OrderApprovePanel extends JPanel{
 						else
 						{
 							table.setValueAt(true,row, 0);
+						}
+					}
+					for(int i=0;i<table.getRowCount();i++){
+						if((Boolean)table.getValueAt(i, 0)){
 							count++;
 						}
 					}
