@@ -26,7 +26,6 @@ public class ExpressVO implements ShowOrder{
 	protected double height;
 	protected double weight;
 	protected double volumn;
-//	protected String id;
 	protected Calendar arrive;
 	protected Calendar createDate;
 	protected Express kind;
