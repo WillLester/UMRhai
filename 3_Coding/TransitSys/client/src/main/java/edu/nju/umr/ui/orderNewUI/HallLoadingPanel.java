@@ -58,6 +58,7 @@ public class HallLoadingPanel extends JPanel {
 	private JComboBox<String> comboBoxDestination;
 	private JComboBox<String> comboBoxVan;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
+	private ArrayList<String> allExpresses=new ArrayList<String>();
 	private String userName;
 	private String orgId;
 	private String userId;
@@ -201,6 +202,8 @@ public class HallLoadingPanel extends JPanel {
 				{
 					model.addRow(new String[]{expressIdField.getText()});
 					expressIdList.add(expressIdField.getText());
+					allExpresses.remove(expressIdField.getText());
+					expressIdField.setAllItem(allExpresses);
 					expressIdField.setText("");
 					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
 					if(!getPrice())
@@ -298,6 +301,7 @@ public class HallLoadingPanel extends JPanel {
 		add(costField);
 		costField.setColumns(10);
 	}
+	@SuppressWarnings("unchecked")
 	private void dataInit(){
 		serv=new HallLoadingOrderLogic();
 		
@@ -342,10 +346,22 @@ public class HallLoadingPanel extends JPanel {
 		String temp=Integer.toString(num);
 		while(temp.length()<5)temp="0"+temp;
 		transitIdField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+		
+		message=serv.getUnloadExpresses(orgId);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			DoHint.hint(result, frame);
+			return;
+		}
+		allExpresses=(ArrayList<String>)message.getMessage();
+		expressIdField.setAllItem(allExpresses);
 	}
 	private void deleteExpress(){
 		int row=table.getSelectedRow();
 		if(row<0||row>=table.getRowCount())return;
+		allExpresses.add(model.getValueAt(row, 0).toString());
+		expressIdField.setAllItem(allExpresses);
+		
 		model.removeRow(row);
 		expressIdList.remove(row);
 		expressIdField.setText("");
