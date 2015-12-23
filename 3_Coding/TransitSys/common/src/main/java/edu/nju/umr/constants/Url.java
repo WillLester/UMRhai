@@ -21,7 +21,7 @@ public class Url {
 		File file = new File(loc);
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-			URL = reader.readLine();
+			URL = "rmi://"+reader.readLine()+"/DataFactory";
 			reader.close();
 			return true;
 		} catch (FileNotFoundException e) {

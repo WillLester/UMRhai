@@ -19,10 +19,10 @@ public class AutoCompPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -7950844264752430637L;
-	JComboBox<String> jc;
-	JTextField jt;
-	ArrayList<String> allItem=new ArrayList<String>();
-	ArrayList<String> toDisplayItem = new ArrayList<String>();
+	private JComboBox<String> jc;
+	private JTextField jt;
+	private ArrayList<String> allItem=new ArrayList<String>();
+	private ArrayList<String> toDisplayItem = new ArrayList<String>();
 	public AutoCompPanel(){
 		setLayout(null);
 		jt=new JTextField();
