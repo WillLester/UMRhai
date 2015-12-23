@@ -87,7 +87,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	
 	private ArrayList<KindGetter> getExpress(String userId){
 		OrderOper po = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, 
-				null, null, null, null, 0, null, null, null, null, null, null, null, userId);
+				null, null, null, null, 0, null, null, null, null, null, null, null, userId,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceExpress(result);

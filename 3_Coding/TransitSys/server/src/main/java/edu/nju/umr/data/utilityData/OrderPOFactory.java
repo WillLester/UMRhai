@@ -106,7 +106,7 @@ public class OrderPOFactory {
 						result.getString(13), result.getDouble(14), result.getDouble(15), result.getDouble(16), result.getDouble(25), 
 						result.getDouble(17), result.getString(1), arrive, date,expresses[result.getInt(19)], result.getDouble(20), 
 						opTime, result.getString(24),parses[result.getInt(26)],result.getString(27),result.getString(28),
-						result.getString(29),result.getString(30),result.getString(32));
+						result.getString(29),result.getString(30),result.getString(32),result.getString(33));
 			} else {
 				return null;
 			}

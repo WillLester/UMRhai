@@ -9,7 +9,7 @@ import java.util.List;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.HallLoadingOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.HallLoadingOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.HallLoadingOrderDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
