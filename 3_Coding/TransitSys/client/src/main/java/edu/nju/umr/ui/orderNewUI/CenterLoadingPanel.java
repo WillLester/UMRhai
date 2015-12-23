@@ -243,7 +243,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		ArrayList<String> expresses = expressList.getExpresses();
 		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), transitIdField.getText(),(String)arriveCombo.getSelectedItem(), vanIdField.getText(), 
 				supervisionField.getText(), escortField.getText(), 
-				expresses, Double.parseDouble(costField.getText()), name,userId);
+				expresses, Double.parseDouble(costField.getText()), name,userId,false,org);
 		return vo;
 	}
 	private boolean isLegal(){
