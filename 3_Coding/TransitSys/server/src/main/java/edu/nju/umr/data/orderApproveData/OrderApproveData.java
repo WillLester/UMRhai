@@ -99,7 +99,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 			po = new StockOutPO(id, null, null, null, null, null, null, null, null,null);
 			return OrderPOFactory.getStockOut(mysqlSer.checkOrder(po));
 		case TRANSIT:
-			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0,null,null);
+			po = new TransitPO(id, null, null, null, null, null, null, null, null, null, 0,null,null,false);
 			return OrderPOFactory.getTransit(mysqlSer.checkOrder(po));
 		default:
 			return null;

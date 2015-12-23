@@ -10,10 +10,11 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
 import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday,UpdateTranState{
+public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday,UpdateTranState,LocationFind{
 	/**
 	 * 
 	 */
@@ -152,6 +153,12 @@ public class HallLoadingPO extends PO implements Serializable,KindGetter,OrderOp
 	public String getUpdateTran() {
 		// TODO 自动生成的方法存根
 		return "update halllorderpassed set isArrived = "+isArrived+ " where convertId = '"+convertId+"'";
+	}
+	
+	@Override
+	public String getOrdersHere() {
+		// TODO 自动生成的方法存根
+		return "select convertId from halllorderpassed where arriveLoc = '"+arriveLoc +"' and isArrived = "+isArrived;
 	}
 	
 }

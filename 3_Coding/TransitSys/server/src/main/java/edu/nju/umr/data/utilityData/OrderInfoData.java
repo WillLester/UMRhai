@@ -47,7 +47,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	 * @return 中转单中含有的订单号组成的ArrayList
 	 */
 	public List<String> getTransitExp(String id){
-		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null));
+		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false));
 		TransitPO transit = OrderPOFactory.getTransit(result);
 		if(transit == null){
 			return new ArrayList<String>();
@@ -57,7 +57,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	
 	@Override
 	public boolean isTransitValid(String id){
-		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null));
+		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false));
 		try {
 			if(result.next()){
 				return true;
