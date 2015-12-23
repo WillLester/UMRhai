@@ -8,7 +8,6 @@ import java.util.Calendar;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +22,6 @@ import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.*;
@@ -46,6 +44,8 @@ public class OrderApprovePanel extends JPanel{
 	private ArrayList<OrderVO> orderList;
 	private String name;
 	private Button checkButton;
+	private Button passedButton;
+	private Button unpassedButton;
 	
 	class MyTableModel extends DefaultTableModel {
 	    /**
@@ -87,7 +87,7 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(allButton);
 		
-		Button passedButton = new Button();
+		passedButton = new Button();
 		passedButton.setIcon(new ImageIcon("ui/button/buttonPassed.png"));
 		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonPassedSt.png"));
 		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonPassedP.png"));
@@ -100,10 +100,10 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(passedButton);
 		
-		Button unpassedButton = new Button();
-		passedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
-		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
-		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
+		unpassedButton = new Button();
+		unpassedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
+		unpassedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
+		unpassedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
 		unpassedButton.setBounds(927, 215,100,30);
 		unpassedButton.addActionListener(new ActionListener(){
 			@Override
@@ -171,13 +171,18 @@ public class OrderApprovePanel extends JPanel{
 							count++;
 						}
 					}
-					if(count==1)
-					{
-						checkButton.setEnabled(true);
+					if(count==0){
+						passedButton.setEnabled(false);
+						unpassedButton.setEnabled(false);
 					}
-					else
-					{
-						checkButton.setEnabled(false);
+					else{
+						passedButton.setEnabled(true);
+						unpassedButton.setEnabled(true);
+						if(count==1){
+							checkButton.setEnabled(true);
+						}else{
+							checkButton.setEnabled(false);
+						}
 					}
 					table.clearSelection();
 				}
