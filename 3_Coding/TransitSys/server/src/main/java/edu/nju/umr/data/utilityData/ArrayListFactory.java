@@ -124,6 +124,7 @@ public class ArrayListFactory {
 		try {
 			while(result.next()){
 				String path = result.getString(4);
+				Calendar date = Calendar.getInstance();
 				InputStream in = new FileInputStream(path);  
 				byte[] data = new byte[in.available()];
 				try {
@@ -137,7 +138,6 @@ public class ArrayListFactory {
 				in.close();
 				BASE64Encoder encoder = new BASE64Encoder();  
 				String photo =encoder.encode(data);
-				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(3));
 				VanPO van = new VanPO(result.getString(1), result.getString(2), date, photo,result.getString(5));
 				vanList.add(van);

@@ -13,6 +13,7 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
@@ -25,6 +26,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	private ArriveOrderDSer arriveData;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
+	private UpdateTranStateLSer orderState;
 	public ArriveOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -39,6 +41,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
             e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(ArriveVO order) {
 		// TODO 自动生成的方法存根
@@ -76,6 +79,11 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	@Override
 	public ResultMessage getLocalHallsAndAllCenter(String orgId) {
 		return uti.getLocalHallAndAllCenter(orgId);
+	}
+	@Override
+	public ResultMessage getArriveOrders(String org) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

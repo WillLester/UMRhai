@@ -8,7 +8,6 @@ import java.util.Calendar;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +22,6 @@ import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.*;
@@ -46,7 +44,8 @@ public class OrderApprovePanel extends JPanel{
 	private ArrayList<OrderVO> orderList;
 	private String name;
 	private Button checkButton;
-	private int count;
+	private Button passedButton;
+	private Button unpassedButton;
 	
 	class MyTableModel extends DefaultTableModel {
 	    /**
@@ -70,7 +69,6 @@ public class OrderApprovePanel extends JPanel{
 		serv=new OrderApproveLogic();
 //		serv=new OrderApprovePanelStub();
 		this.name = name;
-		count=0;
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -78,9 +76,9 @@ public class OrderApprovePanel extends JPanel{
 		add(approveLabel);
 		
 		Button allButton = new Button();
-		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
-		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
-		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
+		allButton.setIcon(new ImageIcon("ui/button/buttonAllSelect.png"));
+		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSelectSt.png"));
+		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllSelectP.png"));
 		allButton.setBounds(927, 103,100, 30);
 		allButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
@@ -89,7 +87,7 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(allButton);
 		
-		Button passedButton = new Button();
+		passedButton = new Button();
 		passedButton.setIcon(new ImageIcon("ui/button/buttonPassed.png"));
 		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonPassedSt.png"));
 		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonPassedP.png"));
@@ -102,10 +100,10 @@ public class OrderApprovePanel extends JPanel{
 		}});
 		add(passedButton);
 		
-		Button unpassedButton = new Button();
-		passedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
-		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
-		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
+		unpassedButton = new Button();
+		unpassedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
+		unpassedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
+		unpassedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
 		unpassedButton.setBounds(927, 215,100,30);
 		unpassedButton.addActionListener(new ActionListener(){
 			@Override
@@ -153,6 +151,9 @@ public class OrderApprovePanel extends JPanel{
 		add(exitButton);
 		tableInit();
 		dataInit();
+		
+		passedButton.setEnabled(false);
+		unpassedButton.setEnabled(false);
 
 	}
 	private void tableInit(){
@@ -161,25 +162,35 @@ public class OrderApprovePanel extends JPanel{
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
+					int count=0;
 					for(int row:table.getSelectedRows())
 					{
 						if(((Boolean)table.getValueAt(row,0)).booleanValue()){
 							table.setValueAt(false,row, 0);
-							count--;
 						}
 						else
 						{
 							table.setValueAt(true,row, 0);
+						}
+					}
+					for(int i=0;i<table.getRowCount();i++){
+						if((Boolean)table.getValueAt(i, 0)){
 							count++;
 						}
 					}
-					if(count==1)
-					{
-						checkButton.setEnabled(true);
-					}
-					else
-					{
+					if(count==0){
+						passedButton.setEnabled(false);
+						unpassedButton.setEnabled(false);
 						checkButton.setEnabled(false);
+					}
+					else{
+						passedButton.setEnabled(true);
+						unpassedButton.setEnabled(true);
+						if(count==1){
+							checkButton.setEnabled(true);
+						}else{
+							checkButton.setEnabled(false);
+						}
 					}
 					table.clearSelection();
 				}
@@ -235,7 +246,6 @@ public class OrderApprovePanel extends JPanel{
 		}
 		Result result=serv.examine(ispassed, idList,name);
 		DoHint.hint(result, frame);
-		count=0;
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)

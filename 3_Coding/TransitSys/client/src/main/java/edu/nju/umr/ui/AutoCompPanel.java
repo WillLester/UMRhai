@@ -19,8 +19,8 @@ public class AutoCompPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -7950844264752430637L;
-	private JComboBox<String> jc;
-	private JTextField jt;
+	private JComboBox<String> jc=new JComboBox<String>();
+	private JTextField jt=new JTextField();
 	private ArrayList<String> allItem=new ArrayList<String>();
 	private ArrayList<String> toDisplayItem = new ArrayList<String>();
 	public AutoCompPanel(){
@@ -101,7 +101,7 @@ public class AutoCompPanel extends JPanel{
 	public String getText(){
 		return jt.getText();
 	}
-	public void setFont(Font font){
+	public void setMyFont(Font font){
 		jt.setFont(font);
 		jc.setFont(font);
 	}

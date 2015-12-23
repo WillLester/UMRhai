@@ -96,31 +96,9 @@ public class CountInfoPanel extends JPanel{
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					OrgVO org = orgList.get(orgCombo.getSelectedIndex());
-					workerPresented = new ArrayList<WorkVO>();
-					for(WorkVO worker:workerList){
-						if(worker.getOrg().equals(org.getName())){
-							workerPresented.add(worker);
-						}
-					}
-					String workers[] = new String[workerPresented.size()];
-					for(int i = 0;i < workers.length;i++){
-						WorkVO worker = workerPresented.get(i);
-						workers[i] = worker.getName();
-					}
-					workerCombo.setModel(new DefaultComboBoxModel<String>(workers));
+					setWorkCombo(org.getName());
 					if(org.getKind().equals(Organization.HALL)){
-						vanPresented = new ArrayList<VanVO>();
-						for(VanVO van:vanList){
-							if(van.getHallId().equals(org.getId())){
-								vanPresented.add(van);
-							}
-						}
-						String vans[] = new String[vanPresented.size()];
-						for(int i = 0;i < vans.length;i++){
-							VanVO van = vanPresented.get(i);
-							vans[i] = van.getId();
-						}
-						vanCombo.setModel(new DefaultComboBoxModel<String>(vans));
+						setVanCombo(org.getId());
 					}
 				}
 			}
@@ -138,7 +116,7 @@ public class CountInfoPanel extends JPanel{
 		String stocks[] = new String[stockList.size()];
 		for(int i = 0;i < stocks.length;i++){
 			StockVO stock = stockList.get(i);
-			stocks[i] = stock.getStockId();
+			stocks[i] = stock.getName();
 		}
 		stockCombo.setModel(new DefaultComboBoxModel<String>(stocks));
 		stockCombo.addItemListener(new ItemListener() {
@@ -147,14 +125,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(arg0.getStateChange() == ItemEvent.SELECTED){
-					StockVO stock = stockList.get(stockCombo.getSelectedIndex());
-					goodPresented = stock.getGoods();
-					String goods[] = new String[goodPresented.size()];
-					for(int i = 0;i < goods.length;i++){
-						GoodVO good = goodPresented.get(i);
-						goods[i] = good.getId();
-					}
-					goodCombo.setModel(new DefaultComboBoxModel<String>(goods));
+					setGoodCombo(stockCombo.getSelectedIndex());
 				}
 			}
 		});
@@ -202,9 +173,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					WorkVO worker = workerPresented.get(workerCombo.getSelectedIndex());
-					mobileField.setText(worker.getMobile());
-					dutyField.setText(EnumTransFactory.checkJuri(worker.getJuri()));
+					setWorkInfo(workerCombo.getSelectedIndex());
 				}
 			}
 		});
@@ -240,9 +209,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					VanVO van = vanPresented.get(vanCombo.getSelectedIndex());
-					plateField.setText(van.getPlateNum());
-					dateField.setText(DateFormat.DATE.format(van.getServTime().getTime()));
+					setVanInfo(vanCombo.getSelectedIndex());
 				}
 			}
 		});
@@ -388,10 +355,72 @@ public class CountInfoPanel extends JPanel{
 			}
 		});
 		add(confirmButton);
-
 		
-//		orgCombo.setSelectedIndex(0);
-//		stockCombo.setSelectedIndex(0);
-//		accountCombo.setSelectedIndex(0);
+		dataInit();
+	}
+	
+	private void dataInit(){
+		OrgVO org = orgList.get(0);
+		setWorkCombo(org.getName());
+		if(workerPresented.size() > 0){
+			setWorkInfo(0);
+		}
+		if(org.getKind() == Organization.HALL){
+			setVanCombo(org.getId());
+		}
+		setGoodCombo(0);
+	}
+	
+	private void setWorkCombo(String orgName){
+		workerPresented = new ArrayList<WorkVO>();
+		for(WorkVO worker:workerList){
+			if(worker.getOrg().equals(orgName)){
+				workerPresented.add(worker);
+			}
+		}
+		String workers[] = new String[workerPresented.size()];
+		for(int i = 0;i < workers.length;i++){
+			WorkVO worker = workerPresented.get(i);
+			workers[i] = worker.getName();
+		}
+		workerCombo.setModel(new DefaultComboBoxModel<String>(workers));
+	}
+	
+	private void setVanCombo(String orgId){
+		vanPresented = new ArrayList<VanVO>();
+		for(VanVO van:vanList){
+			if(van.getHallId().equals(orgId)){
+				vanPresented.add(van);
+			}
+		}
+		String vans[] = new String[vanPresented.size()];
+		for(int i = 0;i < vans.length;i++){
+			VanVO van = vanPresented.get(i);
+			vans[i] = van.getId();
+		}
+		vanCombo.setModel(new DefaultComboBoxModel<String>(vans));
+	}
+	
+	private void setGoodCombo(int stockIndex){
+		StockVO stock = stockList.get(stockIndex);
+		goodPresented = stock.getGoods();
+		String goods[] = new String[goodPresented.size()];
+		for(int i = 0;i < goods.length;i++){
+			GoodVO good = goodPresented.get(i);
+			goods[i] = good.getId();
+		}
+		goodCombo.setModel(new DefaultComboBoxModel<String>(goods));
+	}
+	
+	private void setWorkInfo(int index){
+		WorkVO worker = workerPresented.get(index);
+		mobileField.setText(worker.getMobile());
+		dutyField.setText(EnumTransFactory.checkJuri(worker.getJuri()));
+	}
+	
+	private void setVanInfo(int index){
+		VanVO van = vanPresented.get(index);
+		plateField.setText(van.getPlateNum());
+		dateField.setText(DateFormat.DATE.format(van.getServTime().getTime()));
 	}
 }

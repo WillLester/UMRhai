@@ -188,7 +188,7 @@ public class HallLoadingPanel extends JPanel {
 		add(expressIdLabel);
 		
 		expressIdField = new AutoCompPanel();
-		expressIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressIdField.setMyFont(new Font("宋体", Font.PLAIN, 20));
 		expressIdField.setBounds(355+75, 254, 280, 25);
 		add(expressIdField);
 		
@@ -198,7 +198,7 @@ public class HallLoadingPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(serv.isLegal(expressIdField.getText()))
+				if(serv.isLegal(expressIdField.getText())&&(!expressIdList.contains(expressIdField.getText())))
 				{
 					model.addRow(new String[]{expressIdField.getText()});
 					expressIdList.add(expressIdField.getText());
@@ -279,7 +279,7 @@ public class HallLoadingPanel extends JPanel {
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
 					if(table.getSelectedRow() >= 0){
-						expressIdField.setText(table.getValueAt(table.getSelectedRow(),0).toString());
+//						expressIdField.setText(table.getValueAt(table.getSelectedRow(),0).toString());
 					}
 				};
 			}

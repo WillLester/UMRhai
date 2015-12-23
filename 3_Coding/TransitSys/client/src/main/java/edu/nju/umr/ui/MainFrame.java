@@ -37,5 +37,6 @@ public class MainFrame extends EFrame{
 		{
 			fr.dispose();
 		}
+		System.exit(0);
 	}
 }

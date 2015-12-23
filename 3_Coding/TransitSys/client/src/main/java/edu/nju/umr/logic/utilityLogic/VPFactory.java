@@ -92,7 +92,7 @@ public class VPFactory {
     	 ExpressPO po=new ExpressPO(vo.getSender(), vo.getSendLoc(), vo.getReceiver(), vo.getReceiveLoc(),vo.getSendMobile(), vo.getReceiveMobile(),
     			 vo.getSendPhone(), vo.getReceivePhone(), vo.getSendUnit(),vo.getReceiveUnit(), vo.getNum(), vo.getName(),vo.getLength(),vo.getWidth(), vo.getHeight(), vo.getWeight(), vo.getVolumn(), 
     			 vo.getId(), vo.getArrive(), vo.getCreateDate(),vo.getKind(), vo.getCost(), Calendar.getInstance(), vo.getOpName(),vo.getParse(),
-    			 vo.getSendProvince(),vo.getSendCity(),vo.getReceiveProvince(),vo.getReceiveCity(),vo.getUserId());
+    			 vo.getSendProvince(),vo.getSendCity(),vo.getReceiveProvince(),vo.getReceiveCity(),vo.getUserId(),vo.getNowOrgId());
     	 return po;
      }
      

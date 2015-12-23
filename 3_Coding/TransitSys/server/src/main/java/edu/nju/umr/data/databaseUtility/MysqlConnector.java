@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class MysqlConnector {
 	private static final String LOC = "database.txt";
-	private String url = "jdbc:mysql://localhost:3306/transitsys";
+	private String url;
 	private Connection connect;
 	private String userName;
 	private String password;
