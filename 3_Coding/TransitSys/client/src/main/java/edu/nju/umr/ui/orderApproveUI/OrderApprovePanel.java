@@ -76,9 +76,9 @@ public class OrderApprovePanel extends JPanel{
 		add(approveLabel);
 		
 		Button allButton = new Button();
-		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
-		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
-		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
+		allButton.setIcon(new ImageIcon("ui/button/buttonAllSelect.png"));
+		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSelectSt.png"));
+		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllSelectP.png"));
 		allButton.setBounds(927, 103,100, 30);
 		allButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
