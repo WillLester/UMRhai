@@ -78,7 +78,7 @@ public class OrderApproveData extends UnicastRemoteObject implements OrderApprov
 					null, null, null, 0, null, null, null, null, null, null, null,null,null);
 			return OrderPOFactory.getExpress(mysqlSer.checkOrder(po));
 		case HALLLOADING:
-			po = new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0,null);
+			po = new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0,null,false);
 			return OrderPOFactory.getHallLoad(mysqlSer.checkOrder(po));
 		case INCOME:
 			po = new IncomePO(null, null, null, null, id, null, null, null,null,null);

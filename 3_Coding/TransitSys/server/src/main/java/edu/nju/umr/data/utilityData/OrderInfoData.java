@@ -125,7 +125,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	@Override
 	public List<String> getHallLoadExp(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null));
+		ResultSet result = mysqlSer.checkInfo(new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null,false));
 		HallLoadingPO po = OrderPOFactory.getHallLoad(result);
 		return po.getExpress();
 	}

@@ -130,7 +130,7 @@ public class OrderPOFactory {
 				opTime.setTime(result.getDate(8));
 				return new HallLoadingPO(result.getString(1), result.getString(2), result.getString(4), 
 						result.getString(3), result.getString(5), result.getString(6), express, date, opTime, 
-						result.getString(10), result.getDouble(11),result.getString(12));
+						result.getString(10), result.getDouble(11),result.getString(12),result.getBoolean(13));
 			} else {
 				return null;
 			}
