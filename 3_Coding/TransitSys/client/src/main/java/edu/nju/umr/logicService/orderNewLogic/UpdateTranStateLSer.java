@@ -6,4 +6,7 @@ import edu.nju.umr.vo.ResultMessage;
 public interface UpdateTranStateLSer {
 	public Result updateExpressState(String id,String nowOrgId);
 	public ResultMessage getExpressHere(String nowOrgId);
+	public ResultMessage getHallLoadingHere(String arriveLoc,boolean arrived);
+	public ResultMessage getCenterLoadingHere(String arriveLoc,boolean arrived);
+	public ResultMessage getTransitHere(String arriveLoc,boolean arrived);
 }
