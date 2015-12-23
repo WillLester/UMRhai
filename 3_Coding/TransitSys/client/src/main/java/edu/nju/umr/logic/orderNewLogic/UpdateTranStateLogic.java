@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTranStateDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.UpdateTranStateDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
+import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 public class UpdateTranStateLogic implements UpdateTranStateLSer{
@@ -50,5 +51,28 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 		ArrayList<String> ar =new ArrayList<String>();
 		ar.addAll(list);
 		return new ResultMessage(Result.SUCCESS,ar);
+	}
+	@Override
+	public ResultMessage getHallLoadingHere(String arriveLoc, boolean arrived) {
+		HallLoadingPO hl=new HallLoadingPO(null, null, arriveLoc, null, null, null, null, null, null, null, 0, null, arrived);
+		List<String> list=new ArrayList<String>();
+		try{
+			list=updateData.getOrdersHere(hl);
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<String> ar =new ArrayList<String>();
+		ar.addAll(list);
+		return new ResultMessage(Result.SUCCESS,ar);
+	}
+	@Override
+	public ResultMessage getCenterLoadingHere(String arriveLoc, boolean arrived) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultMessage getTransitHere(String arriveLoc, boolean arrived) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
