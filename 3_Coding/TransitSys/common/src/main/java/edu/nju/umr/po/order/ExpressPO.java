@@ -10,10 +10,11 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
 import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper,UpdateTranState{
+public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper,UpdateTranState,LocationFind{
 	/**
 	 * 
 	 */
@@ -210,7 +211,9 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper,U
 						+ kind.ordinal()+","+cost+",null,null,'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+
 				",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"','"+DateFormat.DATE.format(createDate.getTime())+"','"+userId+"','"+nowOrgId+"')";break;
 		case DELETE:break;
-		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
+		case FIND:
+				command="select * from expressorderpassed where id='"+id+"'";
+			break;
 		case UPDATE:command="update expressorderpassed set realReceiver = '"+realReceiver+"',receiveTime ='"+DateFormat.TIME.format(receiveTime.getTime())+"' where id ='"+id+"'";break;
 		}
 		return command;
@@ -253,5 +256,10 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper,U
 	public String getUpdateTran() {
 		// TODO 自动生成的方法存根
 		return "update expressorderpassed set nowOrgId = '"+nowOrgId+"' where id = '"+id+"'";
+	}
+	@Override
+	public String getOrdersHere() {
+		// TODO 自动生成的方法存根
+		return "select id from expressorderpassed where nowOrgId = '"+nowOrgId+"'";
 	}
 }

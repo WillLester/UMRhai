@@ -31,6 +31,7 @@ import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.po.order.function.GetToday;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
 import edu.nju.umr.po.order.function.UpdateTranState;
 
@@ -463,5 +464,17 @@ public class MysqlImpl implements MysqlService{
 			return Result.DATABASE_ERROR;
 		}
 		return Result.SUCCESS;
+	}
+	@Override
+	public ResultSet getOrdersHere(LocationFind order) {
+		// TODO 自动生成的方法存根
+		try {
+			ResultSet result = state.executeQuery(order.getOrdersHere());
+			return result;
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
