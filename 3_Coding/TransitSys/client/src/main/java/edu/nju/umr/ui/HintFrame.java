@@ -50,7 +50,7 @@ public class HintFrame extends EDialog{
 		default:
 			break;
 		}
-		
+//		setPanel();
 		textAndButton(txt);
 		repaint();
 	}
