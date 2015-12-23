@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -16,17 +16,17 @@ import javax.swing.border.EmptyBorder;
 import com.sun.javafx.geom.RoundRectangle2D;
 import com.sun.javafx.geom.Shape;
 
-public class TextField extends JTextField{
+public class PasswordField extends JPasswordField{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3381742775192974151L;
+	private static final long serialVersionUID = -6375235173665163950L;
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
 	private Shape shape;
 	
-	public TextField() {
+	public PasswordField() {
 		setBorder(null);
 		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension(200, 25));
