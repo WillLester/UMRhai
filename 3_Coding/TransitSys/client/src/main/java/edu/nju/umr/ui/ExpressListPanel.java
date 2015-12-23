@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,6 +23,9 @@ import javax.swing.event.ListSelectionListener;
 
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.button.AddButton;
+import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
@@ -37,7 +40,7 @@ public class ExpressListPanel extends JPanel{
 	private DefaultListModel<String> model;
 	private JFrame frame;
 	private PriceCount faPanel;
-	private JButton newExpButton;
+	private Button newExpButton;
 	public ExpressListPanel(JFrame fr,PriceCount fa)
 	{
 		this(fr);
@@ -73,9 +76,8 @@ public class ExpressListPanel extends JPanel{
 		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
-		newExpButton = new JButton("新增");
-		newExpButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		newExpButton.setBounds(476, 36, 93, 23);
+		newExpButton = new AddButton();
+		newExpButton.setBounds(476, 36, 100, 30);
 		add(newExpButton);
 		newExpButton.addActionListener(new ActionListener() {
 			
@@ -99,9 +101,8 @@ public class ExpressListPanel extends JPanel{
 		expressListLabel.setBounds(232, 69, 130, 24);
 		add(expressListLabel);
 		
-		JButton deleteButton = new JButton("删除");
-		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(575, 146, 93, 23);
+		Button deleteButton = new DelButton();
+		deleteButton.setBounds(575, 146, 100, 30);
 		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -112,9 +113,11 @@ public class ExpressListPanel extends JPanel{
 		});
 		add(deleteButton);
 		
-		JButton modifyButton = new JButton("修改");
-		modifyButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		modifyButton.setBounds(575, 179, 93, 23);
+		Button modifyButton = new Button();
+		modifyButton.setIcon(new ImageIcon("ui/button/buttonRev.png"));
+		modifyButton.setRolloverIcon(new ImageIcon("ui/button/buttonRevSt.png"));
+		modifyButton.setPressedIcon(new ImageIcon("ui/button/buttonRevP.png"));
+		modifyButton.setBounds(575, 179, 100, 30);
 		modifyButton.setEnabled(false);
 		modifyButton.addActionListener(new ActionListener() {
 			

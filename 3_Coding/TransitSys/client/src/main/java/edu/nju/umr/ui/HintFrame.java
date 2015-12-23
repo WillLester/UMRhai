@@ -4,12 +4,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.button.ConfirmButton;
 
 public class HintFrame extends JDialog{
 	/**
@@ -68,14 +69,13 @@ public class HintFrame extends JDialog{
 		label.setBounds(0, FRAME_HEIGHT/2-50, FRAME_WIDTH, 40);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
 		add(label);
-		JButton confirmButton = new JButton("确定");
+		Button confirmButton = new ConfirmButton();
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dispose();
 			}
 		});
-		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(FRAME_WIDTH/2-40, FRAME_HEIGHT/2+14, 80, 28);
+		confirmButton.setBounds(FRAME_WIDTH/2-40, FRAME_HEIGHT/2+14, 100, 30);
 		add(confirmButton);
 	}
 }

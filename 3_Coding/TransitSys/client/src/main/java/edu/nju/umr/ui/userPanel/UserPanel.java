@@ -8,13 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.LogoutButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
@@ -90,7 +90,7 @@ public class UserPanel extends JPanel{
 		orgTxt.setBounds(66, 189, orgl.length()*16, 21);
 		this.add(orgTxt);
 		
-		JButton logoutButton = new LogoutButton();
+		Button logoutButton = new LogoutButton();
 		logoutButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -104,7 +104,7 @@ public class UserPanel extends JPanel{
 		logoutButton.setBounds(1121, 85, 100, 30);
 		this.add(logoutButton);
 		
-		JButton existButton = new ExitButton();
+		Button existButton = new ExitButton();
 		existButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
