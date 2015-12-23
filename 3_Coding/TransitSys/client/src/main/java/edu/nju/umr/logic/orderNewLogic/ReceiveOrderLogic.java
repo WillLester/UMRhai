@@ -9,7 +9,7 @@ import java.util.Calendar;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
-import edu.nju.umr.dataService.dataFactory.ReceiveOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;

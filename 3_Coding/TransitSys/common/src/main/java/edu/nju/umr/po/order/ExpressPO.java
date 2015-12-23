@@ -11,8 +11,9 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.order.function.KindGetter;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
+public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper,UpdateTranState{
 	/**
 	 * 
 	 */
@@ -49,6 +50,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	private String receiveProvince;
 	private String receiveCity;
 	private String userId;
+	private String nowOrgId;//订单所在的地方
 	
 	public ExpressPO(String sender, String sendLoc, String receiver,
 			String receiveLoc, String sendMobile, String receiveMobile,
@@ -59,7 +61,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 			double cost, 
 			Calendar opTime, String opName, Parse parse, String sendProvince,
 			String sendCity, String receiveProvince, String receiveCity,
-			String userId) {
+			String userId,String nowOrgId) {
 		super();
 		this.sender = sender;
 		this.sendLoc = sendLoc;
@@ -91,6 +93,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 		this.receiveProvince = receiveProvince;
 		this.receiveCity = receiveCity;
 		this.userId = userId;
+		this.nowOrgId = nowOrgId;
 	}
 	public String getSender() {
 		return sender;
@@ -194,6 +197,9 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUserId() {
 		return userId;
 	}
+	public String getNowOrgId() {
+		return nowOrgId;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -202,7 +208,7 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 		case INSERT:command="insert into expressorderwaiting values"+"("+"'"+id+"','"+sender+"','"+sendLoc+"','"+receiver+"','"+receiveLoc+"','"+sendMobile+"','"+receiveMobile+"','"
 				+sendPhone+"','"+receivePhone+"','"+sendUnit+"','"+receiveUnit+"',"+num+",'"+name+"',"+length+","+width+","+height+","+volumn+",'"+DateFormat.DATE.format(arrive.getTime())+"',"
 						+ kind.ordinal()+","+cost+",null,null,'"+DateFormat.TIME.format(opTime.getTime())+"','"+opName+"',"+weight+","+parse.ordinal()+
-				",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"','"+DateFormat.DATE.format(createDate.getTime())+"','"+userId+"')";break;
+				",'"+sendProvince+"','"+sendCity+"','"+receiveProvince+"','"+receiveCity+"','"+DateFormat.DATE.format(createDate.getTime())+"','"+userId+"','"+nowOrgId+"')";break;
 		case DELETE:break;
 		case FIND:command="select * from expressorderpassed where id='"+id+"'";break;
 		case UPDATE:command="update expressorderpassed set realReceiver = '"+realReceiver+"',receiveTime ='"+DateFormat.TIME.format(receiveTime.getTime())+"' where id ='"+id+"'";break;
@@ -242,5 +248,10 @@ public class ExpressPO extends PO implements Serializable,KindGetter,OrderOper{
 	public String getUnpassed() {
 		// TODO 自动生成的方法存根
 		return "select * from expressorderunpassed where userId='"+userId+"'";
+	}
+	@Override
+	public String getUpdateTran() {
+		// TODO 自动生成的方法存根
+		return "update expressorderpassed set nowOrgId = '"+nowOrgId+"' where id = '"+id+"'";
 	}
 }

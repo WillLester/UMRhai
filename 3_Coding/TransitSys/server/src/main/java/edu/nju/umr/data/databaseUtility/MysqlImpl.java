@@ -32,6 +32,7 @@ import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
 
 public class MysqlImpl implements MysqlService{
@@ -75,7 +76,6 @@ public class MysqlImpl implements MysqlService{
 		}
 	}
 	public Result addInfo(PO po) {
-		// TODO 自动生成的方法存根
 		try{
 			state.executeUpdate(po.getCommand(MysqlOperation.INSERT));
 		} catch (SQLException e){
@@ -312,7 +312,7 @@ public class MysqlImpl implements MysqlService{
 		case EXPRESS:
 			for(String i:id){
 				order = new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 
-						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null);
+						0, 0, 0, 0, 0, i, null, null, null, 0, null, null, null, null, null, null, null,null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -451,5 +451,17 @@ public class MysqlImpl implements MysqlService{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	@Override
+	public Result updateTranState(UpdateTranState order) {
+		// TODO 自动生成的方法存根
+		try {
+			state.executeUpdate(order.getUpdateTran());
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return Result.DATABASE_ERROR;
+		}
+		return Result.SUCCESS;
 	}
 }

@@ -72,7 +72,9 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	
 	@Override
 	public boolean isExpressValid(String id){
-		ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, null, null, null, null));
+		ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, 
+				null, null, null, null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null,
+				null, null, null, null, null, null, null,null));
 		try {
 			if(result.next()){
 				return true;
@@ -107,7 +109,8 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 		List<ExpressPO> expresses = new ArrayList<ExpressPO>();
 		for(String id:expressIds){
 			ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, 
-					null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, null, null, null, null));
+					null, 0, null, 0, 0, 0, 0, 0, id, null, null, null, 0, null, null, null, null, 
+					null, null, null, null,null));
 			ExpressPO po = OrderPOFactory.getExpress(result);
 
 			if(po == null){

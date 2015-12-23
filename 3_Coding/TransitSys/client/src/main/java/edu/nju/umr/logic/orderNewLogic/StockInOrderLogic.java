@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.dataFactory.StockInOrderDFacSer;
+import edu.nju.umr.dataService.dataFactory.orderNew.StockInOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.logic.stockLogic.StockCheckWarnLogic;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;

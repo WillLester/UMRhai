@@ -34,7 +34,7 @@ public class CourierData extends UnicastRemoteObject implements CourierDSer{
 	public ExpressPO find(String barcode) throws RemoteException {
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new ExpressPO(null, null, null, null, null, null, null, null, null, null, 0, 
-				null, 0, 0, 0, 0, 0, barcode, null, null, null, 0, null, null, null, null, null, null, null,null));
+				null, 0, 0, 0, 0, 0, barcode, null, null, null, 0, null, null, null, null, null, null, null,null,null));
 		return OrderPOFactory.getExpress(result);
 	}
 
