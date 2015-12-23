@@ -50,6 +50,9 @@ public class Constants {
 		public static final int SECOND_Y=DOUBLE_Y+144;
 		public static final int UNPASSED_X=921;
 		public static final int UNPASSED_Y=85;
+		public static final int THERE_Y=192;
+		public static final int THERE_SEC_Y=THERE_Y+144;
+		public static final int THERE_THI_Y=THERE_Y+2*144;
 		
 		//
 }
