@@ -10,9 +10,11 @@ import edu.nju.umr.po.enums.MysqlOperation;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.order.function.GetToday;
 import edu.nju.umr.po.order.function.KindGetter;
+import edu.nju.umr.po.order.function.LocationFind;
 import edu.nju.umr.po.order.function.OrderOper;
+import edu.nju.umr.po.order.function.UpdateTranState;
 
-public class CenterLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday{
+public class CenterLoadingPO extends PO implements Serializable,KindGetter,OrderOper,GetToday,UpdateTranState,LocationFind{
 	/**
 	 * 
 	 */
@@ -28,10 +30,13 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	private String opName;
 	private double cost;
 	private String userId;
+	private boolean isArrived;
+	private String startPlace;
 	
 	public CenterLoadingPO(Calendar date, String id, String target,
 			String vanId, String supervision, String escort,
-			ArrayList<String> express, Calendar opTime, String opName,double cost,String userId) {
+			ArrayList<String> express, Calendar opTime, String opName,double cost,String userId,
+			boolean isArrived,String startPlace) {
 		super();
 		this.date = date;
 		this.id = id;
@@ -44,6 +49,8 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		this.opName = opName;
 		this.cost=cost;
 		this.userId = userId;
+		this.isArrived = isArrived;
+		this.startPlace = startPlace;
 	}
 	public Calendar getDate() {
 		return date;
@@ -78,6 +85,12 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 	public String getUserId() {
 		return userId;
 	}
+	public boolean isArrived() {
+		return isArrived;
+	}
+	public String getStartPlace() {
+		return startPlace;
+	}
 	@Override
 	public String getCommand(MysqlOperation op) {
 		// TODO 自动生成的方法存根
@@ -89,7 +102,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 				text = text + exp + " ";
 			}
 			command="insert into centerlorderwaiting values"+"("+"'"+id+"','"+target+"','"+vanId+"','"+supervision+"','"+escort+"','"+DateFormat.DATE.format(date.getTime())+"','"+
-		DateFormat.TIME.format(opTime.getTime())+"','"+text+"',"+cost+",'"+opName+"','"+userId+"')";break;
+		DateFormat.TIME.format(opTime.getTime())+"','"+text+"',"+cost+",'"+opName+"','"+userId+"',"+isArrived+",'"+startPlace+"')";break;
 		case DELETE:break;
 		case FIND:command="select * from centerlorderpassed where id='"+id+"'";break;
 		case UPDATE:break;
@@ -136,6 +149,20 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		return "select * from centerlorderwaiting where id like '%"+id+"%' union "
 				+ "select * from centerlorderpassed where id like '%"+id+"%' union "
 				+ "select * from centerlorderunpassed where id like '%"+id+"%'";
+	}
+	@Override
+	public String getOrdersHere() {
+		// TODO 自动生成的方法存根
+		if(startPlace == null){
+			return "select id from centerlorderpassed where target = '"+target+"' and isArrived = "+isArrived;
+		} else {
+			return "select id from centerlorderpassed where startPlace = '"+startPlace+"' and isArrived = "+isArrived;
+		}
+	}
+	@Override
+	public String getUpdateTran() {
+		// TODO 自动生成的方法存根
+		return "update centerlorderpassed set isArrived = "+isArrived +" where id = '"+id+"'";
 	}
 	
 }

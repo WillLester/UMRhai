@@ -89,7 +89,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	
 	@Override
 	public boolean isCenterLoadValid(String id){
-		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null));
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null));
 		try {
 			if(result.next()){
 				return true;
@@ -133,7 +133,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	@Override
 	public List<String> getCenterLoadExp(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null));
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null));
 		CenterLoadingPO po = OrderPOFactory.getCenterLoad(result);
 		return po.getExpress();
 	}

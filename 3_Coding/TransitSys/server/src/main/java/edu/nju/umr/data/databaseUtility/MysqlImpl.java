@@ -303,7 +303,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case CENTERLOADING:
 			for(String i:id){
-				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null);
+				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null,false,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;

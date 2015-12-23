@@ -161,7 +161,11 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getOrdersHere() {
 		// TODO 自动生成的方法存根
-		return "select id from transitorderpassed where arrivePlace = '"+arrivePlace+"' and isArrived = "+isArrived;
+		if(startPlace == null){
+			return "select id from transitorderpassed where arrivePlace = '"+arrivePlace+"' and isArrived = "+isArrived;
+		} else {
+			return "select id from transitorderpassed where startPlace = '"+startPlace+"' and isArrived = "+isArrived;
+		}
 	}
 	@Override
 	public String getUpdateTran() {
