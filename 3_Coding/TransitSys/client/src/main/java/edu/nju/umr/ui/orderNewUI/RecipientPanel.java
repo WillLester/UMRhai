@@ -38,7 +38,7 @@ public class RecipientPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -2907522992276366929L;
-	private JTextField transitIdField;
+	private TextField transitIdField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private JComboBox<String> cityCombo;
@@ -88,7 +88,7 @@ public class RecipientPanel extends JPanel {
 		transitIdLabel.setBounds(342+40, 216, 107, 24);
 		add(transitIdLabel);
 		
-		transitIdField = new JTextField();
+		transitIdField = new TextField();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
 		transitIdField.setBounds(474+40, 216, 193, 24);
 		add(transitIdField);

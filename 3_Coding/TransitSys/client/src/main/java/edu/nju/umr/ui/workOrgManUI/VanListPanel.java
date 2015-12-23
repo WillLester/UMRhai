@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,7 +25,10 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
+import edu.nju.umr.ui.component.button.AllButton;
+import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
@@ -40,7 +42,7 @@ public class VanListPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 5807654807287399993L;
-	private JTextField textFieldSearch;
+	private TextField textFieldSearch;
 	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -66,13 +68,13 @@ public class VanListPanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
-		textFieldSearch = new JTextField();
+		textFieldSearch = new TextField();
 		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		Button search = new SearchButton();
-		search.setBounds(textFieldSearch.getX()+600+20, textFieldSearch.getY(), 100, 30);
+		search.setBounds(textFieldSearch.getX()+600+Constants.INTERVAL, textFieldSearch.getY()-5, 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				getVans(textFieldSearch.getText());
@@ -80,8 +82,8 @@ public class VanListPanel extends JPanel {
 		});
 		add(search);
 
-		JButton all = new JButton("显示全部");
-		all.setBounds(textFieldSearch.getX()+700+20, textFieldSearch.getY(), 100, 30);
+		Button all = new AllButton();
+		all.setBounds(textFieldSearch.getX()+700+Constants.INTERVAL*2, textFieldSearch.getY()-5, 100, 30);
 		all.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -112,7 +114,7 @@ public class VanListPanel extends JPanel {
 		}});
 		add(delete);
 		
-		JButton modify = new JButton("查看修改");
+		Button modify = new CheckButton();
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {

@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
@@ -35,7 +36,7 @@ public class ExpressListPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 4053236284290729766L;
-	private JTextField expressField;
+	private TextField expressField;
 	private JList<String> expressList;
 	private DefaultListModel<String> model;
 	private JFrame frame;
@@ -70,14 +71,14 @@ public class ExpressListPanel extends JPanel{
 		expressId.setBounds(47, 35, 130, 24);
 		add(expressId);
 		
-		expressField = new JTextField();
+		expressField = new TextField();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressField.setColumns(10);
 		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
 		newExpButton = new AddButton();
-		newExpButton.setBounds(476, 36, 100, 30);
+		newExpButton.setBounds(expressField.getX()+280+Constants.INTERVAL, 32, 100, 30);
 		add(newExpButton);
 		newExpButton.addActionListener(new ActionListener() {
 			

@@ -36,8 +36,8 @@ public class VanInfoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -6047938368654645426L;
-	private JTextField textFieldNum;
-	private JTextField textFieldPlate;
+	private TextField textFieldNum;
+	private TextField textFieldPlate;
 	private VanListPanel fatherPanel;
 	private String imageString=null;
 	private VanVO van;
@@ -67,7 +67,7 @@ public class VanInfoPanel extends JPanel {
 		vanNum.setBounds(Constants.INFOTABLE_X, Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(vanNum);
 		
-		textFieldNum = new JTextField();
+		textFieldNum = new TextField();
 		textFieldNum.setBounds(vanNum.getX()+vanNum.getWidth(), vanNum.getY(), Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		textFieldNum.setEnabled(false);
 		add(textFieldNum);
@@ -77,7 +77,7 @@ public class VanInfoPanel extends JPanel {
 		plateNum.setBounds(vanNum.getX(), vanNum.getY()+vanNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(plateNum);
 		
-		textFieldPlate = new JTextField();
+		textFieldPlate = new TextField();
 		textFieldPlate.setBounds(textFieldNum.getX(), plateNum.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldPlate);
 		textFieldPlate.setColumns(10);
@@ -104,8 +104,9 @@ public class VanInfoPanel extends JPanel {
 		pic.setBounds(textFieldNum.getX(), picture.getY(), 350, 180);
 		add(pic);
 		
-		JButton upload = new JButton("选择图片");
-		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 93, 23);
+		Button upload = new Button();
+		upload.setNewImages("buttonSelectPic", "buttonSelectPicSt", "buttonSelectPicP");
+		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 100, 30);
 		upload.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -21,7 +20,8 @@ import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -36,7 +36,7 @@ public class IncomePanel extends JPanel {
 	private static final long serialVersionUID = -5845767449951861001L;
 	private JComboBox<String> courierCombo;
 	private JComboBox<String> accountCombo;
-	private JTextField amountField;
+	private TextField amountField;
 	private IncomeOrderLSer logicSer;
 	private JFrame frame;
 	private DatePanel datePanel;
@@ -46,7 +46,7 @@ public class IncomePanel extends JPanel {
 	private String userId;
 	private Button confirmButton;
 	private JLabel idLabel;
-	private JTextField idField;
+	private TextField idField;
 	/**  
 	 * Create the panel.
 	 */
@@ -110,7 +110,7 @@ public class IncomePanel extends JPanel {
 		amountLabel.setBounds(490, 175, 85, 24);
 		add(amountLabel);
 		
-		amountField = new JTextField();
+		amountField = new TextField();
 		amountField.setFont(new Font("宋体", Font.PLAIN, 20));
 		amountField.setColumns(10);
 		amountField.setBounds(569, 174, 85, 25);
@@ -169,7 +169,7 @@ public class IncomePanel extends JPanel {
 		idLabel.setBounds(357, 81, 120, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(473, 81, 252, 25);
 		idField.setEnabled(false);
