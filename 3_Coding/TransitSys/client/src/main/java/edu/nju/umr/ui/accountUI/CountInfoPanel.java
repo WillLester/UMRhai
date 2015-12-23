@@ -19,6 +19,7 @@ import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.AccountVO;
 import edu.nju.umr.vo.CountVO;
@@ -82,8 +83,8 @@ public class CountInfoPanel extends JPanel{
 		orgLabel.setBounds(234, 82, 67, 17);
 		add(orgLabel);
 		
-		orgCombo = new JComboBox<String>();
-		orgCombo.setBounds(150, 102, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		orgCombo = new UMRComboBox<String>();
+		orgCombo.setBounds(150, 102, Constants.TEXTFIELD_WIDTH_S*3/2, 30);
 		String orgs[] = new String[orgList.size()];
 		for(int i = 0;i < orgs.length;i++){
 			OrgVO org = orgList.get(i);
