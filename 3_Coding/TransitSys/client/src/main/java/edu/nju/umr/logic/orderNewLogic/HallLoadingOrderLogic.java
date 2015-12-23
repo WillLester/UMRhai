@@ -96,5 +96,10 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
 	}
+	@Override
+	public ResultMessage getUnloadExpresses(String orgId) {
+		
+		return null;
+	}
 
 }

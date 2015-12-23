@@ -37,6 +37,7 @@ public class ExpressVO implements ShowOrder{
 	protected String receiveProvince;
 	protected String receiveCity;
 	protected String userId;
+	protected String nowOrgId;
 	
 	
 	public ExpressVO(String id, String sender, String sendLoc, String receiver,
@@ -46,7 +47,7 @@ public class ExpressVO implements ShowOrder{
 			double width, double height, double weight, double volumn,
 			Calendar arrive, Calendar createDate, Express kind, double cost,
 			String opName,Parse parse,String sendProvince,String sendCity,
-			String receiveProvince,String receiveCity,String userId) {
+			String receiveProvince,String receiveCity,String userId,String nowOrgId) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -77,6 +78,7 @@ public class ExpressVO implements ShowOrder{
 		this.receiveProvince = receiveProvince;
 		this.receiveCity = receiveCity;
 		this.userId = userId;
+		this.nowOrgId=nowOrgId;
 	}
 	public String getId(){
 		return id;
@@ -164,6 +166,9 @@ public class ExpressVO implements ShowOrder{
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public String getNowOrgId(){
+		return nowOrgId;
 	}
 	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("订单");

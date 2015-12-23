@@ -85,7 +85,7 @@ public class VPFactory {
     	 ExpressVO vo=new ExpressVO(po.getId(), po.getSender(), po.getSendLoc(), po.getReceiver(), po.getReceiveLoc(), po.getSendMobile(), po.getReceiveMobile(), 
     			 po.getSendPhone(), po.getReceivePhone(), po.getSendUnit(), po.getReceiveUnit(),po.getNum(), po.getName(), po.getLength(), po.getWidth(),
     			 po.getHeight(), po.getWeight(), po.getVolumn(), po.getArrive(),po.getCreateDate(), po.getKind(), po.getCost(), po.getOpName(),po.getParse(),
-    			 po.getSendProvince(),po.getSendCity(),po.getReceiveProvince(),po.getReceiveCity(),po.getUserId());
+    			 po.getSendProvince(),po.getSendCity(),po.getReceiveProvince(),po.getReceiveCity(),po.getUserId(),po.getNowOrgId());
     	 return vo;
      }
      public static ExpressPO toExpressPO(ExpressVO vo){

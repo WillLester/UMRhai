@@ -18,7 +18,8 @@ public class HallLoadingVO implements ShowOrder{
 	private Calendar date;
 	private String opName;
 	private String userId;
-	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost,Calendar date,String opName,String userId) {
+	private boolean arrived;
+	public HallLoadingVO(String hallId,String convertId,String arriveLoc,String vanId,String supervision, String escort,ArrayList<String> express,double cost,Calendar date,String opName,String userId,boolean arrived) {
 		// TODO 自动生成的构造函数存根
 		this.hallId = hallId;
 		this.convertId = convertId;
@@ -31,6 +32,7 @@ public class HallLoadingVO implements ShowOrder{
 		this.date=date;
 		this.opName=opName;
 		this.userId = userId;
+		this.arrived=arrived;
 	}
 	public String getHallId() {
 		return hallId;
@@ -64,6 +66,9 @@ public class HallLoadingVO implements ShowOrder{
 	}
 	public String getUserId() {
 		return userId;
+	}
+	public boolean getArrived(){
+		return arrived;
 	}
 	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("营业厅装车单");
