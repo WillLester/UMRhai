@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +25,9 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
+import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -42,11 +43,11 @@ public class UserListPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 3156670290800175855L;
-	private JTextField textField;
-	private JTextField idField;
-	private JTextField passwordField;
-	private JTextField nameField;
-	private JTextField mobileField;
+	private TextField textField;
+	private TextField idField;
+	private TextField passwordField;
+	private TextField nameField;
+	private TextField mobileField;
 	private Table table;
 	private DefaultTableModel model;
 	private JComboBox<String> juriBox;
@@ -74,15 +75,15 @@ public class UserListPanel extends JPanel {
 		accountLabel.setBounds(504, 6, 129, 60);
 		add(accountLabel);
 		
-		textField = new JTextField();
+		textField = new TextField();
 		textField.setText("请输入关键字");
-		textField.setBounds(133, 67, 442, 24);
+		textField.setBounds(133, 77, 350, 24);
 		add(textField);
 		textField.setColumns(10);
 		
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(577, 66, 100, 30);
+		searchButton.setBounds(textField.getX()+350+Constants.INTERVAL, 74, 100, 30);
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -92,9 +93,9 @@ public class UserListPanel extends JPanel {
 		});
 		add(searchButton);
 		
-		JButton allButton = new JButton("显示全部");
+		Button allButton = new AllButton();
 		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		allButton.setBounds(577+100, 66, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		allButton.setBounds(searchButton.getX()+100+Constants.INTERVAL, 74,100, 30);
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				users=getUsers(null);
@@ -180,12 +181,14 @@ public class UserListPanel extends JPanel {
 		mobileIdLabel.setBounds(805,421-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(mobileIdLabel);
 		
-		idField=new JTextField("账号");
+		idField=new TextField();
+		idField.setText("账号");
 		idField.setFont(new Font("宋体", Font.PLAIN, 12));
 		idField.setBounds(855,121,200,24);
 		add(idField);
 		
-		passwordField=new JTextField("密码");
+		passwordField=new TextField();
+		passwordField.setText("密码");
 		passwordField.setFont(new Font("宋体", Font.PLAIN, 12));
 		passwordField.setBounds(855,171,200,24);
 		add(passwordField);
@@ -196,12 +199,14 @@ public class UserListPanel extends JPanel {
 		juriBox.setBounds(855, 221, 200, 24);
 		add(juriBox);
 		
-		nameField=new JTextField("姓名");
+		nameField=new TextField();
+		nameField.setText("姓名");
 		nameField.setFont(new Font("宋体", Font.PLAIN, 12));
 		nameField.setBounds(855,271,200,24);
 		add(nameField);
 
-		mobileField=new JTextField("手机号");
+		mobileField=new TextField();
+		mobileField.setText("手机号");
 		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
 		mobileField.setBounds(855,421-100,200,24);
 		add(mobileField);
