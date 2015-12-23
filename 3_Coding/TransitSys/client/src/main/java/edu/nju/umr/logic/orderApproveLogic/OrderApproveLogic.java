@@ -104,7 +104,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 //			}
 			ids.add(order.getId());
 			try {
-				System.out.println(approve+" "+ids.get(0)+" "+order.getKind());
 				results.add(approveData.update(approve, ids, order.getKind()));
 				if(approve==false&&order.getKind().equals(Order.HALLLOADING)){
 					ResultMessage message = chooseOrder(ids.get(0),order.getKind());
