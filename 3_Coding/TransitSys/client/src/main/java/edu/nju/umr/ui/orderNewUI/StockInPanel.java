@@ -22,6 +22,7 @@ import edu.nju.umr.logic.orderNewLogic.StockInOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
 import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.*;
@@ -40,7 +41,7 @@ public class StockInPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1734951723422352793L;
-	private JTextField expressField;
+	private AutoCompPanel expressField;
 	private JComboBox<String> partCombo;
 	private JComboBox<Integer> rowCombo;
 	private JComboBox<String> shelfCombo;
@@ -96,11 +97,10 @@ public class StockInPanel extends JPanel {
 		expressLabel.setBounds(359, 137, 120, 24);
 		add(expressLabel);
 		
-		expressField = new JTextField();
+		expressField = new AutoCompPanel();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressField.setBounds(483, 136, 165, 25);
 		add(expressField);
-		expressField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("入库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -262,7 +262,19 @@ public class StockInPanel extends JPanel {
 				}
 				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
 			}
+			
+			message=logicSer.getComingExpresses(orgId);
+			result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS))
+			{
+				DoHint.hint(result, frame);
+			}
+			else{
+				ArrayList<String> ar = (ArrayList<String>) message.getMessage();
+				expressField.setAllItem(ar);
+			}
 		}
+		
 		
 	}
 	private void getShelfPart(Part part){

@@ -105,6 +105,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 			ids.add(order.getId());
 			try {
 				results.add(approveData.update(approve, ids, order.getKind()));
+				
 				if(approve==false&&order.getKind().equals(Order.HALLLOADING)){
 					ResultMessage message = chooseOrder(ids.get(0),order.getKind());
 					Result result=message.getReInfo();
@@ -119,7 +120,95 @@ public class OrderApproveLogic implements OrderApproveLSer{
 						}
 					}
 				}
-			} catch (RemoteException e) {
+				
+				if(order.getKind().equals(Order.ARRIVE)){
+					ResultMessage message = chooseOrder(ids.get(0),order.getKind());
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS)){
+						return result;
+					}
+					ArrivePO ap=(ArrivePO)message.getMessage();
+					String id=ap.getId();
+					if(id.length()==19){
+						message=chooseOrder(id,Order.HALLLOADING);
+						result=message.getReInfo();
+						if(!result.equals(Result.SUCCESS)){
+							return result;
+						}
+						HallLoadingPO hp=(HallLoadingPO)message.getMessage();
+						if(approve){
+							for(String express:hp.getExpress()){
+								result=state.updateExpressState(express,ap.getCenterId());
+								if(!result.equals(Result.SUCCESS)){
+									return result;
+								}
+							}
+						}else{
+							result=state.updateHallLoadingState(id, false);
+							if(!result.equals(Result.SUCCESS)){
+								return result;
+							}
+						}
+					}else{
+						message=chooseOrder(id,Order.TRANSIT);
+						result=message.getReInfo();
+						if(!result.equals(Result.SUCCESS)){
+							return result;
+						}
+						TransitPO tp=(TransitPO)message.getMessage();
+						if(approve){
+							for(String express:tp.getExpress()){
+								result=state.updateExpressState(express,ap.getCenterId());
+								if(!result.equals(Result.SUCCESS)){
+									return result;
+								}
+							}
+						}else{
+							result=state.updateTransitState(id, false);
+							if(!result.equals(Result.SUCCESS)){
+								return result;
+							}
+						}
+					}
+				}
+				
+				if(order.getKind().equals(Order.STOCKIN)){
+					ResultMessage message=chooseOrder(order.getId(),Order.STOCKIN);
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS)){
+						return result;
+					}
+					StockInPO sp=(StockInPO)message.getMessage();
+					if(approve){
+						result=state.updateExpressState(sp.getExpressId(), sp.getStockId()+"*");
+						if(!result.equals(Result.SUCCESS)){
+							return result;
+						}
+					}else{
+						result=state.updateExpressState(sp.getExpressId(), sp.getStockId());
+						if(!result.equals(Result.SUCCESS)){
+							return result;
+						}
+					}
+				}
+				
+				if(order.getKind().equals(Order.TRANSIT)&&(!approve)){
+					ResultMessage message=chooseOrder(order.getId(),Order.TRANSIT);
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS))
+					{
+						return result;
+					}
+					TransitPO tp=(TransitPO)message.getMessage();
+					for(String express:tp.getExpress()){
+						result=state.updateExpressState(express,tp.getStartOrgId()+"*");
+						if(!result.equals(Result.SUCCESS))
+						{
+							return result;
+						}
+					}
+				}
+			} catch (RemoteException e){
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
 			}

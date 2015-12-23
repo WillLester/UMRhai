@@ -20,11 +20,13 @@ public class TransitVO implements ShowOrder{
 	private Calendar date;
 	private String userId;
 	private Transit transit;
+	private boolean arrived;
+	private String startOrgId;
 	
 	public TransitVO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
 			ArrayList<String> express, String opName, double cost, Calendar date,String userId,
-			Transit transit) {
+			Transit transit,boolean arrived,String startOrgId) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -38,6 +40,8 @@ public class TransitVO implements ShowOrder{
 		this.date = date;
 		this.userId = userId;
 		this.transit = transit;
+		this.arrived=arrived;
+		this.startOrgId=startOrgId;
 	}
 
 	public String getId() {
@@ -78,6 +82,12 @@ public class TransitVO implements ShowOrder{
 	}
 	public Transit getTransit() {
 		return transit;
+	}
+	public boolean isArrived(){
+		return arrived;
+	}
+	public String getStartOrgId(){
+		return startOrgId;
 	}
 
 	public void Show(boolean isEnabled) {

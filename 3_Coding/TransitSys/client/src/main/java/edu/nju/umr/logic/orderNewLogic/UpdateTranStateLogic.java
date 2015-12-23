@@ -11,8 +11,10 @@ import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTranStateDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.UpdateTranStateDSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
+import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 public class UpdateTranStateLogic implements UpdateTranStateLSer{
@@ -68,11 +70,55 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	@Override
 	public ResultMessage getCenterLoadingHere(String arriveLoc, boolean arrived) {
 		// TODO Auto-generated method stub
-		return null;
+		CenterLoadingPO cl=new CenterLoadingPO(null, null, arriveLoc, null, null, null, null, null, null, 0, null, arrived, null);
+		List<String> list=new ArrayList<String>();
+		try{
+			list=updateData.getOrdersHere(cl);
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<String> ar =new ArrayList<String>();
+		ar.addAll(list);
+		return new ResultMessage(Result.SUCCESS,ar);
 	}
 	@Override
 	public ResultMessage getTransitHere(String arriveLoc, boolean arrived) {
-		// TODO Auto-generated method stub
-		return null;
+		TransitPO tr=new TransitPO(null, null, null, arriveLoc, null, null, null, null, null, null, 0, null, null, arrived);
+		List<String> list=new ArrayList<String>();
+		try{
+			list=updateData.getOrdersHere(tr);
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<String> ar =new ArrayList<String>();
+		ar.addAll(list);
+		return new ResultMessage(Result.SUCCESS,ar);
+	}
+	@Override
+	public Result updateHallLoadingState(String id, boolean arrived) {
+		HallLoadingPO hl=new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null, arrived);
+		try{
+			return updateData.updateTranState(hl);
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}
+	}
+	@Override
+	public Result updateCenterLoadingState(String id, boolean arrived) {
+		CenterLoadingPO cl=new CenterLoadingPO(null, id,null, null, null, null, null, null, null, 0, null, arrived, null);
+		try{
+			return updateData.updateTranState(cl);
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}
+	}
+	@Override
+	public Result updateTransitState(String id, boolean arrived) {
+		TransitPO tr=new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null, null, arrived);
+		try{
+			return updateData.updateTranState(tr);
+		}catch(RemoteException e){
+			return Result.NET_INTERRUPT;
+		}
 	}
 }

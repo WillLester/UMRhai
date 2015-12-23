@@ -15,6 +15,7 @@ import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockInOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
@@ -33,6 +34,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	private OrderInfoLSer orderInfoLogic;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
+	private UpdateTranStateLSer orderState;
 	public StockInOrderLogic(){
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
@@ -43,6 +45,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		uti = new UtilityLogic();
 		orderInfoLogic = new OrderInfoLogic();
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
@@ -54,6 +57,10 @@ public class StockInOrderLogic implements StockInOrderLSer{
 				if(isSuc == Result.SUCCESS){
 					diarySer.addDiary("为货物"+order.getExpressId()+"生成了入库单", order.getOpName());
 				}
+			}
+			if(isSuc.equals(Result.SUCCESS)){
+				isSuc=orderState.updateExpressState(order.getExpressId(), order.getStockId()+"#");
+				if(!isSuc.equals(Result.SUCCESS))return isSuc;
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -107,5 +114,10 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+	}
+	@Override
+	public ResultMessage getComingExpresses(String orgId) {
+		// TODO Auto-generated method stub
+		return orderState.getExpressHere(orgId);
 	}
 }

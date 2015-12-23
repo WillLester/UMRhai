@@ -48,6 +48,14 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = arriveData.create(VPFactory.toArrivePO(order));
+			if(isSuc.equals(Result.SUCCESS)){
+				String id=order.getId();
+				if(id.length()==19){
+					orderState.updateHallLoadingState(id, true);
+				}else{
+					orderState.updateTransitState(id, true);
+				}
+			}
 			if(isSuc == Result.SUCCESS){
 				isSuc = diarySer.addDiary("生成了到达单"+order.getId(), order.getOpName());
 			}
@@ -80,10 +88,24 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	public ResultMessage getLocalHallsAndAllCenter(String orgId) {
 		return uti.getLocalHallAndAllCenter(orgId);
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public ResultMessage getArriveOrders(String org) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> ar =new ArrayList<String>();
+		ResultMessage message=orderState.getHallLoadingHere(org, false);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return message;
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		message=orderState.getTransitHere(org, false);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return message;
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		return new ResultMessage(Result.SUCCESS,ar);
 	}
 	
 }

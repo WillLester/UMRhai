@@ -36,7 +36,7 @@ public class TransitCenterPanel extends UserPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FunctionFrame ffr = new FunctionFrame("生成到达单");
-				ffr.setContentPane(new  ArrivePanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				ffr.setContentPane(new  ArrivePanel(ffr,user.getName(),user.getOrgId(),user.getId(),user.getOrg()));
 				fr.sonFrames.add(ffr);
 			}
 		});

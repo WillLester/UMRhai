@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListDataEvent;
@@ -24,7 +23,6 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
@@ -36,8 +34,9 @@ public class ExpressListPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 4053236284290729766L;
-	private TextField expressField;
+	private AutoCompPanel expressField;
 	private JList<String> expressList;
+	private ArrayList<String> toAddExpresses;
 	private DefaultListModel<String> model;
 	private JFrame frame;
 	private PriceCount faPanel;
@@ -71,9 +70,8 @@ public class ExpressListPanel extends JPanel{
 		expressId.setBounds(47, 35, 130, 24);
 		add(expressId);
 		
-		expressField = new TextField();
+		expressField = new AutoCompPanel();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
-		expressField.setColumns(10);
 		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
@@ -92,6 +90,10 @@ public class ExpressListPanel extends JPanel{
 					}
 					model.addElement(expressField.getText());
 					expressList.setModel(model);
+					toAddExpresses.remove(expressField.getText());
+					expressField.setAllItem(toAddExpresses);
+					expressField.setText("");
+					
 				}
 			}
 		});
@@ -109,7 +111,11 @@ public class ExpressListPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				toAddExpresses.add(expressList.getSelectedValue());
+				expressField.setAllItem(toAddExpresses);
+				expressField.setText("");
 				model.remove(expressList.getSelectedIndex());
+				
 			}
 		});
 		add(deleteButton);
@@ -129,7 +135,7 @@ public class ExpressListPanel extends JPanel{
 				}
 			}
 		});
-		add(modifyButton);
+//		add(modifyButton);
 		
 		model = new DefaultListModel<String>();
 		expressList = new JList<String>(model);
@@ -199,5 +205,10 @@ public class ExpressListPanel extends JPanel{
 		{
 			model.addElement(expressList.get(i));
 		}
+	}
+	public void setAllItem(ArrayList<String> ar){
+		toAddExpresses=new ArrayList<String>();
+		toAddExpresses.addAll(ar);
+		expressField.setAllItem(toAddExpresses);
 	}
 }

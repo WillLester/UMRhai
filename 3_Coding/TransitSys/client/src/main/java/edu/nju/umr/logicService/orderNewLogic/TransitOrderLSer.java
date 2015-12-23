@@ -22,4 +22,5 @@ public interface TransitOrderLSer {
 	 * @return int 机构编号
 	 */
 	public ResultMessage getNextId(String orgId);
+	public ResultMessage getGoingExpresses(String orgId);
 }

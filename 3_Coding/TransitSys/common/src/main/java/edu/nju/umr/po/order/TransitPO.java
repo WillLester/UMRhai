@@ -34,11 +34,12 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	private String userId;
 	private Transit transit;
 	private boolean isArrived;
+	private String startOrgId;
 	
 	public TransitPO(String id, String planeId, String startPlace,
 			String arrivePlace, String containerId, String supervision,
 			ArrayList<String> express, Calendar date, Calendar opTime,
-			String opName, double cost,String userId,Transit transit,boolean isArrived) {
+			String opName, double cost,String userId,Transit transit,boolean isArrived,String startOrgId) {
 		super();
 		this.id = id;
 		this.planeId = planeId;
@@ -54,6 +55,7 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 		this.userId = userId;
 		this.transit = transit;
 		this.isArrived = isArrived;
+		this.startOrgId=startOrgId;
 	}
 	public String getId() {
 		return id;
@@ -96,6 +98,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	}
 	public boolean isArrived() {
 		return isArrived;
+	}
+	public String getStartOrgId(){
+		return startOrgId;
 	}
 	@Override
 	public String getCommand(MysqlOperation op) {

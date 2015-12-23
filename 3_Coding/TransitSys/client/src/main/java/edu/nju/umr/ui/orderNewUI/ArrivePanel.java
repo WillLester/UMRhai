@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -40,6 +41,7 @@ public class ArrivePanel extends JPanel {
 	private String name;
 	private String orgId;
 	private String userId;
+	private String org;
 	private ArriveOrderLSer serv;
 	private JComboBox<String> startCombo;
 	private JComboBox<String> stateCombo;
@@ -49,7 +51,7 @@ public class ArrivePanel extends JPanel {
 	 */
 	public ArrivePanel(JFrame fr,ArriveVO arrive)
 	{
-		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId());
+		this(fr,arrive.getOpName(),arrive.getCenterId(),arrive.getUserId(),"");
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -61,7 +63,7 @@ public class ArrivePanel extends JPanel {
 		startCombo.setSelectedItem((String)arrive.getStartPlace());
 		stateCombo.setSelectedItem(arrive.getState().toString());
 	}
-	public ArrivePanel(JFrame fr,String name,String orgId,String userId) {
+	public ArrivePanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -161,7 +163,16 @@ public class ArrivePanel extends JPanel {
 			DoHint.hint(result, frame);
 		}
 		
-//		message=serv.get
+		message=serv.getArriveOrders(org);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			DoHint.hint(result, frame);
+			return;
+		}
+		@SuppressWarnings("unchecked")
+		ArrayList<String> ar = (ArrayList<String>)message.getMessage();
+		idField.setAllItem(ar);
+		
 	}
 	private void createOrder()
 	{
