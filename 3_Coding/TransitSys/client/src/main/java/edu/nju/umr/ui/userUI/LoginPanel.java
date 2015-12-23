@@ -72,7 +72,7 @@ public class LoginPanel extends JPanel {
 		add(inquiryButton);
 		
 		idField = new TextField();
-		idField.setBounds(530, 340, 200, 25);
+		idField.setBounds(530, 340, 210, 24);
 		add(idField);
 		idField.setColumns(10);
 		
