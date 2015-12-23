@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.component;
 
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 public class EDialog extends JDialog {
 
@@ -21,8 +23,8 @@ public class EDialog extends JDialog {
 	private Point pre=null;
 	private Point end=null;
 	
-//	private Button back=new Button();
-//	private JPanel panel=new JPanel();
+	private Button back=new Button();
+	private JPanel panel=new JPanel();
 	
 	public EDialog(int width,int height){
 		setLayout(null);
@@ -72,14 +74,9 @@ public class EDialog extends JDialog {
 		getContentPane().add(close);
 	}
 	
-//	public void setPanel(){
-//		back.setIcon(new ImageIcon("ui/frame/hint.png"));
-//		panel.setSize(409,230);
-//		back.setSize(409, 230);
-//		panel.add(back);
-//		setContentPane(panel);
-//		panel.setLayout(null);
-//		setAttach();
-//	}
+	public void setContentPane(Container c){
+		super.setContentPane(c);
+		this.setAttach();
+	}
 
 }
