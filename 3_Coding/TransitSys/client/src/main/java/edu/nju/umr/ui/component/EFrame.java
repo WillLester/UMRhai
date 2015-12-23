@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.component;
 
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,7 @@ public class EFrame extends JFrame {
 		
 		close.setNewImages("close", "closeSt", "closeP");
 		toMin.setNewImages("mini", "miniSt", "miniP");
-		toMax.setIcon(new ImageIcon("ui/button/maxP.png"));
+		toMax.setIcon(new ImageIcon("ui/button/max.png"));
 		
 		close.setBounds(width-30, 0, 30, 30);
 		toMax.setBounds(width-30*2, 0, 30, 30);
@@ -42,7 +43,7 @@ public class EFrame extends JFrame {
 		setDragable(this);
 		close.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);	
+				dispose();
 			}
 			
 		});
@@ -82,6 +83,11 @@ public class EFrame extends JFrame {
 		getContentPane().add(close);
 		getContentPane().add(toMin);
 		getContentPane().add(toMax);
+	}
+	
+	public void setContentPane(Container contentPane){
+		super.setContentPane(contentPane);
+		setAttach();
 	}
 //	public static void main(String[] args){
 //		ExcitedFrame ef=new ExcitedFrame(1200,700);

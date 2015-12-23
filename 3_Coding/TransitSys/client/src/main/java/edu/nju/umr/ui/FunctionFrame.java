@@ -4,7 +4,9 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
-public class FunctionFrame extends JFrame{
+import edu.nju.umr.ui.component.EFrame;
+
+public class FunctionFrame extends EFrame{
 	/**
 	 * 
 	 */
@@ -15,10 +17,11 @@ public class FunctionFrame extends JFrame{
 	static final int FRAME_HEIGHT = (int)(MainFrame.FRAME_HEIGHT*0.9);
 	public LinkedList<JFrame> sonFrames;
 	public FunctionFrame(String title) {
+		super(FRAME_WIDTH,FRAME_HEIGHT);
 		setTitle(title);
 		setLayout(null);
 		setResizable(false);
-		setBounds(FRAME_X,FRAME_Y,FRAME_WIDTH,FRAME_HEIGHT);
+		this.setLocation(FRAME_X,FRAME_Y);
 		sonFrames=new LinkedList<JFrame>();
 		setVisible(true);
 	}

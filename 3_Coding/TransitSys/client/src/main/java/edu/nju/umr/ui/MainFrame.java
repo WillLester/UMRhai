@@ -30,7 +30,6 @@ public class MainFrame extends EFrame{
 		this.setVisible(true);
 		sonFrames=new LinkedList<JFrame>();
 		this.setContentPane(new LoginPanel(this));
-		this.setAttach();
 	}
 	public void dispose(){
 		super.dispose();

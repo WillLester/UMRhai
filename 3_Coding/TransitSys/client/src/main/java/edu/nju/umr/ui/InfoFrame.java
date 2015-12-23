@@ -1,8 +1,8 @@
 package edu.nju.umr.ui;
 
-import javax.swing.JFrame;
+import edu.nju.umr.ui.component.EFrame;
 
-public class InfoFrame extends JFrame{
+public class InfoFrame extends EFrame{
 	/**
 	 * 
 	 */
@@ -15,8 +15,9 @@ public class InfoFrame extends JFrame{
 	 * Create the frame.
 	 */
 	public InfoFrame(String title) {
+		super( FRAME_WIDTH, FRAME_HEIGHT);
 		setResizable(false);
-		setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
+		setLocation(FRAME_X, FRAME_Y);
 		setTitle(title);
 		this.setVisible(true);
 	}
