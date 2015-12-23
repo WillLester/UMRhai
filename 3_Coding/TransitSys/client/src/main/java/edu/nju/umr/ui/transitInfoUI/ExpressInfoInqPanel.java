@@ -10,7 +10,7 @@ import edu.nju.umr.logic.transitInfoLogic.CourierLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.CheckButton;
+import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;

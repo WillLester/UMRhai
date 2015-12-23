@@ -1,4 +1,6 @@
-package edu.nju.umr.ui.component;
+package edu.nju.umr.ui.component.button;
+
+import edu.nju.umr.ui.component.Button;
 
 public class UnpassButton extends Button {
 

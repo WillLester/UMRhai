@@ -15,9 +15,9 @@ import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.CanModButton;
-import edu.nju.umr.ui.component.ConfirmModButton;
-import edu.nju.umr.ui.component.ExitButton;
+import edu.nju.umr.ui.component.button.CanModButton;
+import edu.nju.umr.ui.component.button.ConfirmModButton;
+import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 
