@@ -27,9 +27,9 @@ public class CostBenePanel extends JPanel {
 	private static final long serialVersionUID = -8005438231338516338L;
 	private JFrame frame;
 	private CostBeneLSer serv;
-	private JTextField inField;
-	private JTextField outField;
-	private JTextField profitField;
+	private TextField inField;
+	private TextField outField;
+	private TextField profitField;
 	/**
 	 * Create the panel.
 	 */
@@ -69,19 +69,19 @@ public class CostBenePanel extends JPanel {
 		profitLabel.setBounds(810, 196, 106, 27);
 		add(profitLabel);
 		
-		inField = new JTextField();
+		inField = new TextField();
 		inField.setEditable(false);
 		inField.setBounds(156, 233, 175, 27);
 		add(inField);
 		inField.setColumns(10);
 		
-		outField = new JTextField();
+		outField = new TextField();
 		outField.setEditable(false);
 		outField.setColumns(10);
 		outField.setBounds(438, 233, 175, 27);
 		add(outField);
 		
-		profitField = new JTextField();
+		profitField = new TextField();
 		profitField.setEditable(false);
 		profitField.setColumns(10);
 		profitField.setBounds(754, 233, 175, 27);

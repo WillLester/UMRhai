@@ -26,10 +26,10 @@ public class WageDraftPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1937201346793974753L;
-	private JTextField textFieldwm;
-	private JTextField textFieldwc;
-	private JTextField textFieldwi;
-	private JTextField textFieldbound;
+	private TextField textFieldwm;
+	private TextField textFieldwc;
+	private TextField textFieldwi;
+	private TextField textFieldbound;
 	private JRadioButton rbMonth;
 	private JRadioButton rbCount;
 	private JRadioButton rbBound;
@@ -71,7 +71,7 @@ public class WageDraftPanel extends JPanel {
 		wageMonth.setBounds(rbMonth.getX()+50, rbMonth.getY()+rbMonth.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageMonth);
 		
-		textFieldwm = new JTextField();
+		textFieldwm = new TextField();
 		textFieldwm.setBounds(wageMonth.getX()+wageMonth.getWidth(), wageMonth.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		textFieldwm.setEnabled(false);
 		add(textFieldwm);
@@ -99,7 +99,7 @@ public class WageDraftPanel extends JPanel {
 		wageCount.setBounds(wageMonth.getX(), rbCount.getY()+rbCount.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageCount);
 		
-		textFieldwc = new JTextField();
+		textFieldwc = new TextField();
 		textFieldwc.setBounds(textFieldwm.getX(), wageCount.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldwc);
 		textFieldwc.setEnabled(false);
@@ -129,7 +129,7 @@ public class WageDraftPanel extends JPanel {
 		wageinit.setBounds(wageMonth.getX(), rbBound.getY()+rbBound.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageinit);
 		
-		textFieldwi = new JTextField();
+		textFieldwi = new TextField();
 		textFieldwi.setBounds(textFieldwm.getX(), wageinit.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldwi);
 		textFieldwi.setEnabled(false);
@@ -139,7 +139,7 @@ public class WageDraftPanel extends JPanel {
 		bound.setBounds(wageMonth.getX(), wageinit.getY()+wageinit.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bound);
 		
-		textFieldbound = new JTextField();
+		textFieldbound = new TextField();
 		textFieldbound.setBounds(textFieldwm.getX(), bound.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldbound);
 		textFieldbound.setEnabled(false);

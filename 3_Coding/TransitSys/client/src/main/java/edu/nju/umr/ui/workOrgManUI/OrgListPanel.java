@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -29,7 +28,9 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
+import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -45,10 +46,10 @@ public class OrgListPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -9120059892438869471L;
-	private JTextField textFieldSearch;
-	private JTextField textFieldName;
-	private JTextField textFieldAddr;
-	private JTextField idField;
+	private TextField textFieldSearch;
+	private TextField textFieldName;
+	private TextField textFieldAddr;
+	private TextField idField;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -78,13 +79,13 @@ public class OrgListPanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
-		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 670, 21);
+		textFieldSearch = new TextField();
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		Button search = new SearchButton();
-		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 100, 30);
+		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+Constants.INTERVAL,textFieldSearch.getY()-5, 100, 30);
 		search.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -94,11 +95,8 @@ public class OrgListPanel extends JPanel {
 		});
 		add(search);
 		
-		Button all = new Button();
-		all.setIcon(new ImageIcon("ui/button/buttonAll.png"));
-		all.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
-		all.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
-		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+120,textFieldSearch.getY(), 100, 30);
+		Button all = new AllButton();
+		all.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+100+Constants.INTERVAL*2,textFieldSearch.getY()-5, 100, 30);
 		all.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -113,7 +111,7 @@ public class OrgListPanel extends JPanel {
 		orgName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(orgName);
 		
-		textFieldName = new JTextField();
+		textFieldName = new TextField();
 		textFieldName.setBounds(orgName.getX()+orgName.getWidth(), orgName.getY()+3,Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(textFieldName);
 		textFieldName.setColumns(10);
@@ -131,7 +129,7 @@ public class OrgListPanel extends JPanel {
 		address.setBounds(orgName.getX(), orgName.getY()+orgName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(address);
 		
-		textFieldAddr = new JTextField();
+		textFieldAddr = new TextField();
 		textFieldAddr.setBounds(textFieldName.getX()+200, address.getY()+3, 400, 21);
 		add(textFieldAddr);
 		textFieldAddr.setColumns(10);
@@ -203,7 +201,7 @@ public class OrgListPanel extends JPanel {
 		idLabel.setBounds(orgType.getX()+200, orgType.getY(), 100, 24);
 		add(idLabel);
 		
-		idField=new JTextField();
+		idField=new TextField();
 		idField.setBounds(idLabel.getX()+80, idLabel.getY(),200, 24);
 		add(idField);
 		

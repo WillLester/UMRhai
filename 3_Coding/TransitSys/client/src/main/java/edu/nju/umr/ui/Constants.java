@@ -54,5 +54,6 @@ public class Constants {
 		public static final int THERE_SEC_Y=THERE_Y+144;
 		public static final int THERE_THI_Y=THERE_Y+2*144;
 		
-		//
+		//搜索框与搜索与显示全部的间隔
+		public static final int INTERVAL=30;
 }

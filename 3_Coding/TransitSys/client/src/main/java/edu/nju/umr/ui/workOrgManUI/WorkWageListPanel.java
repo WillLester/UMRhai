@@ -23,6 +23,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -36,12 +37,12 @@ public class WorkWageListPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7764066933710729156L;
-	private JTextField textFieldSearch;
-	private JTextField textFieldtype;
-	private JTextField textFieldwCount;
-	private JTextField textFieldwInit;
-	private JTextField textFieldBound;
-	private JTextField textFieldwMonth;
+	private TextField textFieldSearch;
+	private TextField textFieldtype;
+	private TextField textFieldwCount;
+	private TextField textFieldwInit;
+	private TextField textFieldBound;
+	private TextField textFieldwMonth;
 	private FunctionFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -65,13 +66,13 @@ public class WorkWageListPanel extends JPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+60, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
-		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y, 300, 21);
+		textFieldSearch = new TextField();
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
 		Button search = new SearchButton();
-		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20,textFieldSearch.getY(), 100, 30);
+		search.setBounds(textFieldSearch.getX()+textFieldSearch.getWidth()+20+Constants.INTERVAL,textFieldSearch.getY()-5, 100, 30);
 		search.addActionListener(new ActionListener() {
 			
 			@Override
@@ -90,7 +91,7 @@ public class WorkWageListPanel extends JPanel {
 		wageType.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+ Constants.TABLE_HEIGHT*4+40, 54, 15);
 		add(wageType);
 		
-		textFieldtype = new JTextField();
+		textFieldtype = new TextField();
 		textFieldtype.setBounds(wageType.getX()+wageType.getWidth()+10, wageType.getY(),90, 21);
 		add(textFieldtype);
 		textFieldtype.setEnabled(false);
@@ -100,7 +101,7 @@ public class WorkWageListPanel extends JPanel {
 		wageMonth.setBounds(textFieldtype.getX()+textFieldtype.getWidth()+40, wageType.getY(), 54, 15);
 		add(wageMonth);
 		
-		textFieldwMonth = new JTextField();
+		textFieldwMonth = new TextField();
 		textFieldwMonth.setBounds(wageMonth.getX()+wageMonth.getWidth()+10, wageMonth.getY(),90, 21);
 		add(textFieldwMonth);
 		textFieldwMonth.setEnabled(false);
@@ -110,7 +111,7 @@ public class WorkWageListPanel extends JPanel {
 		wageCount.setBounds(textFieldwMonth.getX()+textFieldwMonth.getWidth()+40, wageType.getY(), 54, 15);
 		add(wageCount);
 		
-		textFieldwCount = new JTextField();
+		textFieldwCount = new TextField();
 		textFieldwCount.setBounds(wageCount.getX()+wageCount.getWidth()+10, wageMonth.getY(),90, 21);
 		add(textFieldwCount);
 		textFieldwCount.setEnabled(false);
@@ -120,7 +121,7 @@ public class WorkWageListPanel extends JPanel {
 		wageInit.setBounds(wageMonth.getX(), wageMonth.getY()+wageMonth.getHeight()+30, 54, 15);
 		add(wageInit);
 		
-		textFieldwInit = new JTextField();
+		textFieldwInit = new TextField();
 		textFieldwInit.setBounds(textFieldwMonth.getX(), wageInit.getY(),90, 21);
 		add(textFieldwInit);
 		textFieldwInit.setEnabled(false);
@@ -130,7 +131,7 @@ public class WorkWageListPanel extends JPanel {
 		bound.setBounds(wageCount.getX(), wageInit.getY(), 54, 15);
 		add(bound);
 		
-		textFieldBound = new JTextField();
+		textFieldBound = new TextField();
 		textFieldBound.setBounds(textFieldwCount.getX(), wageInit.getY(), 90, 21);
 		add(textFieldBound);
 		textFieldBound.setEnabled(false);
@@ -138,8 +139,9 @@ public class WorkWageListPanel extends JPanel {
 		
 		
 		
-		JButton make = new JButton("制定薪水策略");
-		make.setBounds(getWidth()-300, wageInit.getY(), 150, 23);
+		Button make = new Button();
+		make.setNewImages("buttonWageMake", "buttonWageMakeSt", "buttonWageMakeP");
+		make.setBounds(getWidth()-300, wageInit.getY(), 100, 30);
 		make.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("制定薪水策略");
