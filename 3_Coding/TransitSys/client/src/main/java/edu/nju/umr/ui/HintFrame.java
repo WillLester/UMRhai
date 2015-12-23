@@ -4,14 +4,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.component.EDialog;
+import edu.nju.umr.ui.component.button.ConfirmButton;
 
-public class HintFrame extends JDialog{
+public class HintFrame extends EDialog{
 	/**
 	 * 
 	 */
@@ -22,6 +22,7 @@ public class HintFrame extends JDialog{
 	 * Create the frame.
 	 */
 	public HintFrame(Result result,int x,int y,int width,int height) {
+		super(FRAME_WIDTH, FRAME_HEIGHT);
 		initialize(x,y,width,height);
 		String txt=null;
 		switch(result){
@@ -49,17 +50,19 @@ public class HintFrame extends JDialog{
 		default:
 			break;
 		}
+		
 		textAndButton(txt);
 		repaint();
 	}
 	public HintFrame(String error,int x,int y,int width,int height){
+		super(width,height);
 		initialize(x, y,width,height);
 		textAndButton(error);
 	}
 	private void initialize(int x,int y,int width,int height){
 		setTitle("错误!");
 		this.setLayout(null);
-		setBounds(x+width/2-FRAME_WIDTH/2, y+height/2-FRAME_HEIGHT/2, FRAME_WIDTH, FRAME_HEIGHT);
+		setLocation(x+width/2-FRAME_WIDTH/2, y+height/2-FRAME_HEIGHT/2);
 		this.setVisible(true);
 	}
 	private void textAndButton(String text){
@@ -68,14 +71,14 @@ public class HintFrame extends JDialog{
 		label.setBounds(0, FRAME_HEIGHT/2-50, FRAME_WIDTH, 40);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
 		add(label);
-		JButton confirmButton = new JButton("确定");
+		ConfirmButton confirmButton = new ConfirmButton();
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dispose();
 			}
 		});
 		confirmButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		confirmButton.setBounds(FRAME_WIDTH/2-40, FRAME_HEIGHT/2+14, 80, 28);
+		confirmButton.setBounds(FRAME_WIDTH/2-50, FRAME_HEIGHT/2+30, 100, 30);
 		add(confirmButton);
 	}
 }
