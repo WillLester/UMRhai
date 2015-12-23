@@ -151,6 +151,9 @@ public class OrderApprovePanel extends JPanel{
 		add(exitButton);
 		tableInit();
 		dataInit();
+		
+		passedButton.setEnabled(false);
+		unpassedButton.setEnabled(false);
 
 	}
 	private void tableInit(){
@@ -178,6 +181,7 @@ public class OrderApprovePanel extends JPanel{
 					if(count==0){
 						passedButton.setEnabled(false);
 						unpassedButton.setEnabled(false);
+						checkButton.setEnabled(false);
 					}
 					else{
 						passedButton.setEnabled(true);
