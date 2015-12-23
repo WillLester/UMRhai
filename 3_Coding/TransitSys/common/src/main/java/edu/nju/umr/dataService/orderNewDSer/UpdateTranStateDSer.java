@@ -30,5 +30,5 @@ public interface UpdateTranStateDSer extends Remote{
 	 * @return 订单ID列表，形式是List<String>
 	 * @throws RemoteException
 	 */
-	public List<String> getExpressesHere(LocationFind order) throws RemoteException;
+	public List<String> getOrdersHere(LocationFind order) throws RemoteException;
 }

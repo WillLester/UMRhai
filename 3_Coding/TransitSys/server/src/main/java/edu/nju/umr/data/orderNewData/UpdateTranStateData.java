@@ -41,7 +41,7 @@ public class UpdateTranStateData extends UnicastRemoteObject implements UpdateTr
 	}
 
 	@Override
-	public List<String> getExpressesHere(LocationFind order)
+	public List<String> getOrdersHere(LocationFind order)
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.getOrdersHere(order);
