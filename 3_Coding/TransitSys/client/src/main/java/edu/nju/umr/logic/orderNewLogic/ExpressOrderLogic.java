@@ -74,10 +74,11 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		if(!result.equals(Result.SUCCESS))
 			return null;
 		@SuppressWarnings("unchecked")
-		ArrayList<Double> pri= (ArrayList<Double>)message.getMessage();
+		ArrayList<BigDecimal> pri= (ArrayList<BigDecimal>)message.getMessage();
 		BigDecimal price = distance;
 		price=price.divide(new BigDecimal(1000));
-		price=price.multiply(new BigDecimal(pri.get(expressKind.ordinal())));
+		
+		price=price.multiply((pri.get(expressKind.ordinal())));
 		price=price.multiply(new BigDecimal(weight));
 		double []pakp=new double[]{5,10,1};
 		price.add(new BigDecimal(pakp[pakKind.ordinal()]));

@@ -46,7 +46,6 @@ public class OrderApprovePanel extends JPanel{
 	private ArrayList<OrderVO> orderList;
 	private String name;
 	private Button checkButton;
-	private int count;
 	
 	class MyTableModel extends DefaultTableModel {
 	    /**
@@ -70,7 +69,6 @@ public class OrderApprovePanel extends JPanel{
 		serv=new OrderApproveLogic();
 //		serv=new OrderApprovePanelStub();
 		this.name = name;
-		count=0;
 		
 		JLabel approveLabel = new JLabel("审批单据");
 		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
@@ -161,11 +159,11 @@ public class OrderApprovePanel extends JPanel{
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false){
+					int count=0;
 					for(int row:table.getSelectedRows())
 					{
 						if(((Boolean)table.getValueAt(row,0)).booleanValue()){
 							table.setValueAt(false,row, 0);
-							count--;
 						}
 						else
 						{
@@ -235,7 +233,6 @@ public class OrderApprovePanel extends JPanel{
 		}
 		Result result=serv.examine(ispassed, idList,name);
 		DoHint.hint(result, frame);
-		count=0;
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)
