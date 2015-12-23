@@ -17,6 +17,8 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.button.CanButton;
+import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 
 public class WageDraftPanel extends JPanel {

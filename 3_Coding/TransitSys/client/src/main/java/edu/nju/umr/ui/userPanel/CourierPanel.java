@@ -4,8 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
@@ -21,7 +20,6 @@ public class CourierPanel extends UserPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4332309242600582994L;
-
 	public CourierPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
@@ -29,7 +27,7 @@ public class CourierPanel extends UserPanel {
 		Button receive = new Button();
 		receive.setNewImages("courier/receive","courier/receiveSt", "courier/receiveP");
 		receive.setFont(new Font("宋体", Font.PLAIN, 12));
-		receive.setBounds(314, 227, 95, 95);
+		receive.setBounds(Constants.FIRST_X, Constants.SINGLE_Y, 95, 95);
 		receive.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -43,7 +41,7 @@ public class CourierPanel extends UserPanel {
 		Button expressInq = new Button();//订单查询
 		expressInq.setNewImages("courier/expressNewInq", "courier/expressNewInqSt", "courier/expressNewInqP");
 		expressInq.setFont(new Font("宋体", Font.PLAIN, 12));
-		expressInq.setBounds(505, 227, 95, 95);
+		expressInq.setBounds(Constants.SECOND_X, Constants.SINGLE_Y, 95, 95);
 		expressInq.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -57,7 +55,7 @@ public class CourierPanel extends UserPanel {
 		Button expressNew = new Button();
 		expressNew.setNewImages("courier/expressNew", "courier/expressNewSt", "courier/expressNewP");
 		expressNew.setFont(new Font("宋体", Font.PLAIN, 12));
-		expressNew.setBounds(695, 227, 95, 95);
+		expressNew.setBounds(Constants.THIRD_X, Constants.SINGLE_Y, 95, 95);
 		expressNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -69,7 +67,7 @@ public class CourierPanel extends UserPanel {
 		this.add(expressNew);
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 	}
 

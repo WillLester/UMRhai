@@ -1,0 +1,53 @@
+ArrivePanel 中转单
+RecipientPanel 装车单
+ExpressListPanel 相应订单
+SendPanel 订单
+StockInPanel 订单
+StockOutPanel
+
+订单添加 String nowOrgId
+创建订单A A.nowOrgId=营业厅id
+
+营业厅装车单添加boolean arrived
+生成营业厅装车单B时 备选订单为所有nowOrgId.equals(营业厅id)的订单,B.arrived=false
+B添加完订单提交待审后，其中所有订单的nowOrgId+="#"
+若不通过，订单nowOrgId复原
+通过，订单nowOrgId不管
+
+生成中转中心到达单C时，备选的单据可能是 营业厅装车单B，中转单C
+备选单据为arriveLoc.equals(中转中心名称)&&arrived==false的B,C
+到达单提交待审时，其包含的B或C的arrived=true
+不通过，B或C.arrived=false
+通过，更新B或C.express中所有订单的nowOrgId为该中转中心Id
+
+生成入库单时，备选的单据是订单，备选列表为所有nowOrgId为该中转中心id的订单
+提交入库单待审批时，对应订单的nowOrgId+="#"
+若通过,订单nowOrgId=中转中心id+"*"，更新库存
+不通过，订单nowOrgId复原
+
+中转单添加boolean arrived
+生成中转单时，备选的单据是订单，备选列表为所有nowOrgId为该中转中心id+"*"的订单，arrived=false
+提交中转单待审批时，对应所有订单的nowOrgId+="#"
+若通过，不管
+若不通过，对应所有订单的nowOrgId=centerId+"*"
+
+中转中心装车单添加boolean arrived,String startPlace
+生成中转中心装车单D时 备选订单为所有nowOrgId.equals(中转中心id+"*")的订单,D.arrived=false
+D添加完订单提交待审后，其中所有订单的nowOrgId+="#"
+若不通过，订单nowOrgId=centerId+"*"
+通过，不管
+
+生成出库单时，备选的单据是中转单或中转中心装车单，备选列表为所有startPlace==中转中心名称&&arrived==false的中转单或中转中心装车单
+提交待审，arrived=true
+不过，arrived=false
+过，不管
+
+营业厅到达单，备选为target==营业厅名称，arrived==false的两种装车单
+待审，arrived=true
+不过，arrived=false
+过，arrived=true，更新express的nowOrgId为营业厅id+"*"
+
+派件单，备选为nowOrgId为营业厅id+"*"的订单
+待审，订单nowOrgId+="#"
+过，不管
+不过，nowOrgId复原

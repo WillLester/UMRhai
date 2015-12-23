@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.ui.MainFrame;
-import edu.nju.umr.ui.component.ExitButton;
-import edu.nju.umr.ui.component.LogoutButton;
+import edu.nju.umr.ui.component.button.ExitButton;
+import edu.nju.umr.ui.component.button.LogoutButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.vo.UserVO;
 

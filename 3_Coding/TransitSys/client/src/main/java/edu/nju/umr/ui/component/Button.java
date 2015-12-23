@@ -14,7 +14,7 @@ public class Button extends JButton{
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);
-			
+		setOpaque(false);
 	}
 	public void setNewImages(String before,String on,String after){
 		

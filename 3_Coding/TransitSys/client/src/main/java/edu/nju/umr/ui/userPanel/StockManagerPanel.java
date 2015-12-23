@@ -4,8 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
@@ -24,7 +23,6 @@ public class StockManagerPanel extends UserPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 7789564793624015310L;
-
 	public StockManagerPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
@@ -32,7 +30,7 @@ public class StockManagerPanel extends UserPanel{
 		Button stockCheckButton = new Button();
 		stockCheckButton.setNewImages("stockmanager/stockCheck", "stockmanager/stockCheckSt", "stockmanager/stockCheckP");
 		stockCheckButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockCheckButton.setBounds(269, 192, 95, 95);
+		stockCheckButton.setBounds(Constants.FIRST_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(stockCheckButton);
 		stockCheckButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
@@ -45,7 +43,7 @@ public class StockManagerPanel extends UserPanel{
 		Button divideButton = new Button();
 		divideButton.setNewImages("stockmanager/stockDivide", "stockmanager/stockDivideSt", "stockmanager/stockDivideP");
 		divideButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		divideButton.setBounds(516, 192, 95, 95);
+		divideButton.setBounds(Constants.SECOND_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(divideButton);
 		divideButton.addActionListener(new ActionListener() {
 			
@@ -60,7 +58,7 @@ public class StockManagerPanel extends UserPanel{
 		Button warnButton = new Button();
 		warnButton.setNewImages("stockmanager/stockWarn", "stockmanager/stockWarnSt", "stockmanager/stockWarnP");
 		warnButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		warnButton.setBounds(760, 192, 95, 95);
+		warnButton.setBounds(Constants.THIRD_X,Constants.DOUBLE_Y, 95, 95);
 		this.add(warnButton);
 		warnButton.addActionListener(new ActionListener() {
 			
@@ -75,7 +73,7 @@ public class StockManagerPanel extends UserPanel{
 		Button checkNowButton = new Button();
 		checkNowButton.setNewImages("stockmanager/stockCheckNow", "stockmanager/stockCheckNowSt", "stockmanager/stockCheckNowP");
 		checkNowButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		checkNowButton.setBounds(269, 333, 95, 95);
+		checkNowButton.setBounds(Constants.FIRST_X, Constants.SECOND_Y, 95, 95);
 		this.add(checkNowButton);
 		checkNowButton.addActionListener(new ActionListener() {
 			
@@ -90,7 +88,7 @@ public class StockManagerPanel extends UserPanel{
 		Button stockOutButton = new Button();
 		stockOutButton.setNewImages("stockmanager/stockOut", "stockmanager/stockOutSt", "stockmanager/stockOutP");
 		stockOutButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockOutButton.setBounds(516, 333, 95, 95);
+		stockOutButton.setBounds(Constants.SECOND_X, Constants.SECOND_Y, 95, 95);
 		this.add(stockOutButton);
 		stockOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +102,7 @@ public class StockManagerPanel extends UserPanel{
 		Button stockInButton = new Button();
 		stockInButton.setNewImages("stockmanager/stockIn", "stockmanager/stockInSt", "stockmanager/stockInP");
 		stockInButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		stockInButton.setBounds(760, 333, 95, 95);
+		stockInButton.setBounds(Constants.THIRD_X, Constants.SECOND_Y, 95, 95);
 		this.add(stockInButton);
 		stockInButton.addActionListener(new ActionListener() {
 			
@@ -117,7 +115,7 @@ public class StockManagerPanel extends UserPanel{
 		});
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 	}
 

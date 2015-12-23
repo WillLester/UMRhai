@@ -4,10 +4,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderNewUI.ArrivePanel;
 import edu.nju.umr.ui.orderNewUI.CenterLoadingPanel;
 import edu.nju.umr.ui.orderNewUI.TransitPanel;
@@ -20,14 +20,16 @@ public class TransitCenterPanel extends UserPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -4764722362354952480L;
+	String path="transitcenter/";
 
 	public TransitCenterPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
-		JButton receiveButton = new JButton("生成到达单");
+		Button receiveButton = new Button();
+		receiveButton.setNewImages(path+"arrive", path+"arriveSt", path+"arriveP");
 		receiveButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		receiveButton.setBounds(299, 192, 112, 83);
+		receiveButton.setBounds(Constants.FIRST_X, Constants.SINGLE_Y, 95, 95);
 		this.add(receiveButton);
 		receiveButton.addActionListener(new ActionListener() {
 			
@@ -39,9 +41,10 @@ public class TransitCenterPanel extends UserPanel{
 			}
 		});
 		
-		JButton loadingButton = new JButton("生成装车单");
+		Button loadingButton = new Button();
+		loadingButton.setNewImages(path+"centerloading", path+"centerloadingSt", path+"centerloadingP");
 		loadingButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		loadingButton.setBounds(546, 192, 112, 83);
+		loadingButton.setBounds(Constants.SECOND_X,Constants.SINGLE_Y, 95, 95);
 		this.add(loadingButton);
 		loadingButton.addActionListener(new ActionListener() {
 			
@@ -53,9 +56,10 @@ public class TransitCenterPanel extends UserPanel{
 			}
 		});
 		
-		JButton transitButton = new JButton("生成中转单");
+		Button transitButton = new Button();
+		transitButton.setNewImages(path+"transit", path+"transitSt", path+"transitP");
 		transitButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		transitButton.setBounds(790, 192, 112, 83);
+		transitButton.setBounds(Constants.THIRD_X, Constants.SINGLE_Y, 95, 95);
 		this.add(transitButton);
 		transitButton.addActionListener(new ActionListener() {
 			
@@ -68,7 +72,7 @@ public class TransitCenterPanel extends UserPanel{
 		});
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 	}
 

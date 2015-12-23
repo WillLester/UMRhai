@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.checkUI.BusiCircumPanel;
@@ -13,6 +14,7 @@ import edu.nju.umr.ui.checkUI.CostBenePanel;
 import edu.nju.umr.ui.checkUI.DiaryListPanel;
 import edu.nju.umr.ui.cityUI.CityListPanel;
 import edu.nju.umr.ui.cityUI.ConstantPanel;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderApproveUI.OrderApprovePanel;
 import edu.nju.umr.ui.workOrgManUI.OrgListPanel;
 import edu.nju.umr.ui.workOrgManUI.WorkListPanel;
@@ -24,14 +26,16 @@ public class ManagerPanel extends UserPanel{
 	 * 总经理的界面
 	 */
 	private static final long serialVersionUID = 2151583811822292521L;
-
+    private static final String pathb="finance&manager/";
+    private static final String path="manager/";
 	public ManagerPanel(UserVO user,MainFrame fr) {
 		
 		super(user,fr);
 		
-		JButton approveButton = new JButton("单据审批");
+		Button approveButton = new Button();
+		approveButton.setNewImages(path+"approve", path+"approveSt", path+"approveP");
 		approveButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		approveButton.setBounds(269, 192, 112, 83);
+		approveButton.setBounds(Constants.FIRST_X, Constants.THERE_Y, 95, 95);
 		this.add(approveButton);
 		approveButton.addActionListener(new ActionListener() {
 			
@@ -43,9 +47,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton cityButton = new JButton("城市管理");
+		Button cityButton = new Button();
+		cityButton.setNewImages(path+"city", path+"citySt", path+"cityP");
 		cityButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		cityButton.setBounds(516, 192, 112, 83);
+		cityButton.setBounds(Constants.SECOND_X, Constants.THERE_Y, 95, 95);
 		this.add(cityButton);
 		cityButton.addActionListener(new ActionListener() {
 			
@@ -57,9 +62,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton constantButton = new JButton("常量制定");
+		Button constantButton = new Button();
+		constantButton.setNewImages(path+"constant", path+"constantSt", path+"constantP");
 		constantButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		constantButton.setBounds(760, 192, 112, 83);
+		constantButton.setBounds(Constants.THIRD_X, Constants.THERE_Y, 95, 95);
 		this.add(constantButton);
 		constantButton.addActionListener(new ActionListener() {
 			
@@ -71,9 +77,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton workerButton = new JButton("人员管理");
+		Button workerButton = new Button();
+		workerButton.setNewImages(path+"workMan", path+"workManSt", path+"workManP");
 		workerButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		workerButton.setBounds(269, 333, 112, 83);
+		workerButton.setBounds(Constants.FIRST_X, Constants.THERE_SEC_Y, 95, 95);
 		this.add(workerButton);
 		workerButton.addActionListener(new ActionListener() {
 			
@@ -85,9 +92,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton orgButton = new JButton("机构管理");
+		Button orgButton = new Button();
+		orgButton.setNewImages(path+"orgMan", path+"orgManSt", path+"orgManP");
 		orgButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		orgButton.setBounds(516, 333, 112, 83);
+		orgButton.setBounds(Constants.SECOND_X, Constants.THERE_SEC_Y, 95, 95);
 		this.add(orgButton);
 		orgButton.addActionListener(new ActionListener() {
 			
@@ -99,9 +107,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton wageButton = new JButton("薪水策略管理");
+		Button wageButton = new Button();
+		wageButton.setNewImages(path+"wageMan", path+"wageManSt", path+"wageManP");
 		wageButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		wageButton.setBounds(760, 333, 112, 83);
+		wageButton.setBounds(Constants.THIRD_X, Constants.THERE_SEC_Y, 95, 95);
 		this.add(wageButton);
 		wageButton.addActionListener(new ActionListener() {
 			
@@ -113,9 +122,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton busiCircumButton = new JButton("经营情况表");
+		Button busiCircumButton = new Button();
+		busiCircumButton.setNewImages(pathb+"busiCircum", pathb+"busiCircumSt", pathb+"busiCircumP");
 		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		busiCircumButton.setBounds(269, 477, 112, 83);
+		busiCircumButton.setBounds(Constants.FIRST_X, Constants.THERE_THI_Y, 95, 95);
 		this.add(busiCircumButton);
 		busiCircumButton.addActionListener(new ActionListener() {
 			
@@ -127,9 +137,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton costBeneButton = new JButton("成本收益表");
+		Button costBeneButton = new Button();
+		costBeneButton.setNewImages(pathb+"costBene", pathb+"costBeneSt", pathb+"costBeneP");
 		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		costBeneButton.setBounds(516, 477, 112, 83);
+		costBeneButton.setBounds(Constants.SECOND_X, Constants.THERE_THI_Y, 95, 95);
 		this.add(costBeneButton);
 		costBeneButton.addActionListener(new ActionListener() {
 			
@@ -141,9 +152,10 @@ public class ManagerPanel extends UserPanel{
 			}
 		});
 		
-		JButton diaryButton = new JButton("日志查询");
+		Button diaryButton = new Button();
+		diaryButton.setNewImages(pathb+"diary", pathb+"diarySt", pathb+"diaryP");
 		diaryButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		diaryButton.setBounds(760, 477, 112, 83);
+		diaryButton.setBounds(Constants.THIRD_X, Constants.THERE_THI_Y, 95, 95);
 		this.add(diaryButton);
 		diaryButton.addActionListener(new ActionListener() {
 			
