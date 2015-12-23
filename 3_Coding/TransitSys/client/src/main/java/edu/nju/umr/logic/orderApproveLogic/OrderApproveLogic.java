@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
+import edu.nju.umr.logic.orderNewLogic.UpdateTranStateLogic;
 import edu.nju.umr.logic.utilityLogic.CheckUtility;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
@@ -49,6 +51,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
 	private OrderUpdate update;
+	private UpdateTranStateLSer state;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -63,6 +66,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
         } 
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
+		state = new UpdateTranStateLogic();
 	}
 	public ResultMessage askExamine() {
 		
@@ -90,16 +94,31 @@ public class OrderApproveLogic implements OrderApproveLSer{
 				return re;
 			}
 			ArrayList<String> ids=new ArrayList<String>();
-			for(int j=0;j<indexs.size();j++){
-				OrderPO sameKind=orderList.get(indexs.get(j));
-				if(sameKind.getKind().equals(order.getKind())){
-					ids.add(sameKind.getId());
-					indexs.remove(j);
-					j--;
-				}					
-			}
+//			for(int j=0;j<indexs.size();j++){
+//				OrderPO sameKind=orderList.get(indexs.get(j));
+//				if(sameKind.getKind().equals(order.getKind())){
+//					ids.add(sameKind.getId());
+//					indexs.remove(j);
+//					j--;
+//				}					
+//			}
+			ids.add(order.getId());
 			try {
 				results.add(approveData.update(approve, ids, order.getKind()));
+				if(approve==false&&order.getKind().equals(Order.HALLLOADING)){
+					ResultMessage message = chooseOrder(ids.get(0),order.getKind());
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS)){
+						return result;
+					}
+					HallLoadingVO vo=(HallLoadingVO)message.getMessage();
+					for(String express:vo.getExpress()){
+						result=state.updateExpressState(express, vo.getHallId());
+						if(!result.equals(Result.SUCCESS)){
+							return result;
+						}
+					}
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;

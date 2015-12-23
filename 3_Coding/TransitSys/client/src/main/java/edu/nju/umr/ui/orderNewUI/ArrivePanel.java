@@ -19,6 +19,7 @@ import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.component.*;
 import edu.nju.umr.ui.component.button.CanButton;
@@ -32,7 +33,7 @@ public class ArrivePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7454707708911829194L;
-	private JTextField idField;
+	private AutoCompPanel idField;
 	private JTextField centerField;
 	private JFrame frame;
 	private DatePanel datePanel;
@@ -78,11 +79,10 @@ public class ArrivePanel extends JPanel {
 		idLabel.setBounds(342+75, 216, 107, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new AutoCompPanel();
 		idField.setFont(new Font("宋体", Font.PLAIN, 20));
 		idField.setBounds(474+75+25, 216, 193, 24);
 		add(idField);
-		idField.setColumns(10);
 		
 		JLabel arriveDateLabel = new JLabel("到达日期");
 		arriveDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -161,7 +161,7 @@ public class ArrivePanel extends JPanel {
 			DoHint.hint(result, frame);
 		}
 		
-		
+//		message=serv.get
 	}
 	private void createOrder()
 	{

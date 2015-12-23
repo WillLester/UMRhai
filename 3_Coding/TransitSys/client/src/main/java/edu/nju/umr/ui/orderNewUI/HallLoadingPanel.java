@@ -188,7 +188,7 @@ public class HallLoadingPanel extends JPanel {
 		add(expressIdLabel);
 		
 		expressIdField = new AutoCompPanel();
-		expressIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressIdField.setMyFont(new Font("宋体", Font.PLAIN, 20));
 		expressIdField.setBounds(355+75, 254, 280, 25);
 		add(expressIdField);
 		

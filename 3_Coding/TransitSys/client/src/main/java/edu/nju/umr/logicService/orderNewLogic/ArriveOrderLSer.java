@@ -7,4 +7,5 @@ import edu.nju.umr.vo.order.ArriveVO;
 public interface ArriveOrderLSer {
 	public Result create(ArriveVO order);
 	public ResultMessage getLocalHallsAndAllCenter(String orgId);
+	public ResultMessage getArriveOrders(String org);
 }

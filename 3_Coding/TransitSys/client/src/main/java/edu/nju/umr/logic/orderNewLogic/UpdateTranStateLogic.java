@@ -13,7 +13,8 @@ import edu.nju.umr.dataService.orderNewDSer.UpdateTranStateDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.vo.ResultMessage;
-public class UpdateTranStateLogic{
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
+public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	UpdateTranStateDFacSer dataFac;
 	UpdateTranStateDSer updateData;
 	public UpdateTranStateLogic(){

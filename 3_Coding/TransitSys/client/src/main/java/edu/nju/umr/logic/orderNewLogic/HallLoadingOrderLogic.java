@@ -17,6 +17,7 @@ import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
@@ -33,7 +34,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private DiaryUpdateLSer diarySer;
 	private OrderInfoLSer orderInfo;
 	private OrderCalcuLSer orderCalcu;
-	private UpdateTranStateLogic orderState;
+	private UpdateTranStateLSer orderState;
 	public HallLoadingOrderLogic() {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -49,6 +50,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 		diarySer = new DiaryUpdateLogic();
 		orderInfo = new OrderInfoLogic();
 		orderCalcu = new OrderCalcuLogic();
+		orderState = new UpdateTranStateLogic();
 	}
 	public Result create(HallLoadingVO order) {
 		// TODO 自动生成的方法存根
