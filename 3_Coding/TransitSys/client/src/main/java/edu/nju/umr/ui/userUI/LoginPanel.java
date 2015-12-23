@@ -19,6 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.LoginButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
 import edu.nju.umr.ui.userPanel.AdministerPanel;
@@ -70,17 +71,17 @@ public class LoginPanel extends JPanel {
 		inquiryButton.setBounds(464, 233, 280, 45);
 		add(inquiryButton);
 		
+		idField = new TextField();
+		idField.setBounds(530, 340, 200, 25);
+		add(idField);
+		idField.setColumns(10);
+		
 		JLabel idLabel = new JLabel("账号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(469, 340, 40, 24);
 		Color color = new Color(57, 152,214);
 		idLabel.setForeground(color);
 		add(idLabel);
-		
-		idField = new JTextField();
-		idField.setBounds(530, 340, 210, 24);
-		add(idField);
-		idField.setColumns(10);
 		
 		JLabel passwordLabel = new JLabel("密码");
 		passwordLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
