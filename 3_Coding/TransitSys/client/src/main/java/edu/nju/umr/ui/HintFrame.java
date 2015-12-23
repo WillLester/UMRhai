@@ -70,7 +70,7 @@ public class HintFrame extends EDialog{
 	private void textAndButton(String text){
 		JLabel label=new JLabel(text);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(0, FRAME_HEIGHT/2-30, FRAME_WIDTH, 40);
+		label.setBounds(0, FRAME_HEIGHT/2-40, FRAME_WIDTH, 40);
 		label.setFont(new Font("宋体", Font.PLAIN, 30));
 		add(label);
 		Button confirmButton = new ConfirmButton();
@@ -79,7 +79,7 @@ public class HintFrame extends EDialog{
 				dispose();
 			}
 		});
-		confirmButton.setBounds(FRAME_WIDTH/2-50, FRAME_HEIGHT/2+50, 100, 30);
+		confirmButton.setBounds(FRAME_WIDTH/2-50, FRAME_HEIGHT/2+40, 100, 30);
 		add(confirmButton);
 	}
 	

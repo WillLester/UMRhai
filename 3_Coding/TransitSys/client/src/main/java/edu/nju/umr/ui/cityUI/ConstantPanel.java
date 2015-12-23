@@ -28,15 +28,15 @@ public class ConstantPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -3910636508748161665L;
-	private JTextField planeField;
-	private JTextField trainField;
-	private JTextField vanField;
-	private JTextField planeCostField;
-	private JTextField trainCostField;
-	private JTextField vanCostField;
-	private JTextField economicField;
-	private JTextField normalField;
-	private JTextField fastField;
+	private TextField planeField;
+	private TextField trainField;
+	private TextField vanField;
+	private TextField planeCostField;
+	private TextField trainCostField;
+	private TextField vanCostField;
+	private TextField economicField;
+	private TextField normalField;
+	private TextField fastField;
 	private JFrame frame;
 	private ConstantLSer logicSer;
 	/**
@@ -73,19 +73,19 @@ public class ConstantPanel extends JPanel {
 		vanLabel.setBounds(246, 191, 90, 15);
 		add(vanLabel);
 		
-		planeField = new JTextField();
-		planeField.setBounds(362, 91, 43, 21);
+		planeField = new TextField();
+		planeField.setBounds(362, 91, 60, 21);
 		add(planeField);
 		planeField.setColumns(10);
 		
-		trainField = new JTextField();
+		trainField = new TextField();
 		trainField.setColumns(10);
-		trainField.setBounds(362, 141, 43, 21);
+		trainField.setBounds(362, 141, 60, 21);
 		add(trainField);
 		
-		vanField = new JTextField();
+		vanField = new TextField();
 		vanField.setColumns(10);
-		vanField.setBounds(362, 188, 43, 21);
+		vanField.setBounds(362, 188, 60, 21);
 		add(vanField);
 		
 		JLabel planeCostLabel = new JLabel("飞机运费(元每公里每吨)");
@@ -106,19 +106,19 @@ public class ConstantPanel extends JPanel {
 		vanCostLabel.setBounds(466, 188, 143, 15);
 		add(vanCostLabel);
 		
-		planeCostField = new JTextField();
+		planeCostField = new TextField();
 		planeCostField.setColumns(10);
-		planeCostField.setBounds(637, 91, 43, 21);
+		planeCostField.setBounds(637, 91, 60, 21);
 		add(planeCostField);
 		
-		trainCostField = new JTextField();
+		trainCostField = new TextField();
 		trainCostField.setColumns(10);
-		trainCostField.setBounds(637, 141, 43, 21);
+		trainCostField.setBounds(637, 141, 60, 21);
 		add(trainCostField);
 		
-		vanCostField = new JTextField();
+		vanCostField = new TextField();
 		vanCostField.setColumns(10);
-		vanCostField.setBounds(637, 188, 43, 21);
+		vanCostField.setBounds(637, 188, 60, 21);
 		add(vanCostField);
 		
 		JLabel priceLabel = new JLabel("快递价格比");
@@ -133,7 +133,7 @@ public class ConstantPanel extends JPanel {
 		economicLabel.setBounds(346, 266, 67, 15);
 		add(economicLabel);
 		
-		economicField = new JTextField();
+		economicField = new TextField();
 		economicField.setColumns(10);
 		economicField.setBounds(410, 263, 43, 21);
 		add(economicField);
@@ -150,7 +150,7 @@ public class ConstantPanel extends JPanel {
 		normalLabel.setBounds(458, 266, 67, 15);
 		add(normalLabel);
 		
-		normalField = new JTextField();
+		normalField = new TextField();
 		normalField.setColumns(10);
 		normalField.setBounds(519, 263, 43, 21);
 		add(normalField);
@@ -167,7 +167,7 @@ public class ConstantPanel extends JPanel {
 		fastLabel.setBounds(572, 266, 67, 15);
 		add(fastLabel);
 		
-		fastField = new JTextField();
+		fastField = new TextField();
 		fastField.setColumns(10);
 		fastField.setBounds(637, 263, 43, 21);
 		add(fastField);
