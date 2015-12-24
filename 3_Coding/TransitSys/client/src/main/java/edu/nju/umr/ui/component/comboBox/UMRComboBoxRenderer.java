@@ -30,7 +30,7 @@ public class UMRComboBoxRenderer<E> implements ListCellRenderer<E>{
 		} else {
 			renderer.setBackground(Color.WHITE);
 		}
-		list.setSelectionBackground(Color.WHITE);
+		list.setSelectionBackground(Utils.STD_COLOR);
 		renderer.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 		return renderer;
