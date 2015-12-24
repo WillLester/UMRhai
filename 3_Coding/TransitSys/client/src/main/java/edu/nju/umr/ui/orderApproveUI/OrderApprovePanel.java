@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.orderApproveUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,10 +20,12 @@ import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -71,10 +72,7 @@ public class OrderApprovePanel extends PPanel{
 //		serv=new OrderApprovePanelStub();
 		this.name = name;
 		
-		JLabel approveLabel = new JLabel("审批单据");
-		approveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
-//		approveLabel.setForeground(Color.white);
-		approveLabel.setBounds(505, 40, 120, 32);
+		JLabel approveLabel = new TitleLabel("审批单据");
 		add(approveLabel);
 		
 		Button allButton = new Button();
@@ -198,10 +196,10 @@ public class OrderApprovePanel extends PPanel{
 				}
 			}
 		});
-		table.setBounds(180, 125, 717, 421);
+		table.setBounds(180, Constants.LAYOUT_FIR_Y, 717, 421);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(180, 125, 717, 421);
+		scroll.setBounds(180, Constants.LAYOUT_FIR_Y, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"是否选中","时间","种类","编号","提交人"};
 		model.setColumnIdentifiers(columnNames);

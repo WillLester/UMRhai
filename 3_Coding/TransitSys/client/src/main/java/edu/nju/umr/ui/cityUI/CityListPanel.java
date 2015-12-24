@@ -21,10 +21,13 @@ import edu.nju.umr.constants.Province;
 import edu.nju.umr.logic.cityLogic.CityLogic;
 import edu.nju.umr.logicService.cityLogicSer.CityLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -45,10 +48,10 @@ public class CityListPanel extends PPanel{
 	private Table cityTable2;
 	private DefaultTableModel model1;
 	private DefaultTableModel model2;
-	private JTextField nameField;
-	private JTextField idField;
+	private TextField nameField;
+	private TextField idField;
 	private JComboBox<String> provinceCombo;
-	private JTextField distanceField;
+	private TextField distanceField;
 	private JFrame frame;
 	private ArrayList<CityVO> cityList;
 	private ArrayList<CitiesVO> citiesList;
@@ -67,51 +70,49 @@ public class CityListPanel extends PPanel{
 		cityList = new ArrayList<CityVO>();
 		citiesList = new ArrayList<CitiesVO>();
 		
-		JLabel cityLabel = new JLabel("城市管理");
-		cityLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-		cityLabel.setBounds(508, 35, 88, 29);
+		JLabel cityLabel = new TitleLabel("城市管理");
 		add(cityLabel);
 		
 		JLabel nameLabel = new JLabel("城市名");
 		nameLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		nameLabel.setBounds(313, 471, 54, 23);
+		nameLabel.setBounds(313, 485, 54, 23);
 		add(nameLabel);
 		
-		nameField = new JTextField();
-		nameField.setBounds(377, 472, 106, 22);
+		nameField = new TextField();
+		nameField.setBounds(377, 485, 106, 23);
 		add(nameField);
 		nameField.setEnabled(false);;
 		nameField.setColumns(10);
 		
 		JLabel idLabel = new JLabel("区号");
 		idLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		idLabel.setBounds(493, 473, 54, 19);
+		idLabel.setBounds(493, 485, 54, 23);
 		add(idLabel);
 		
-		idField = new JTextField();
-		idField.setBounds(531, 471, 106, 23);
+		idField = new TextField();
+		idField.setBounds(531, 485, 106, 23);
 		add(idField);
 		idField.setEnabled(false);
 		idField.setColumns(10);
 		
 		JLabel provinceLabel = new JLabel("所属省份");
 		provinceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		provinceLabel.setBounds(647, 473, 74, 19);
+		provinceLabel.setBounds(647, 485, 74, 23);
 		add(provinceLabel);
 		
 		provinceCombo = new JComboBox<String>();
-		provinceCombo.setBounds(716, 472, 106, 22);
+		provinceCombo.setBounds(716, 485, 106, 23);
 		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
 		provinceCombo.setEnabled(false);
 		add(provinceCombo);
 		
 		JLabel distanceLabel = new JLabel("距离km");
 		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
-		distanceLabel.setBounds(540, 525, 54, 19);
+		distanceLabel.setBounds(480, 525, 54, 23);
 		add(distanceLabel);
 		
-		distanceField = new JTextField();
-		distanceField.setBounds(606, 523, 106, 23);
+		distanceField = new TextField();
+		distanceField.setBounds(531, 523, 106, 23);
 		add(distanceField);
 		distanceField.setEnabled(false);
 		distanceField.setColumns(10);
@@ -294,11 +295,11 @@ public class CityListPanel extends PPanel{
 				}
 			}
 		});
-		cityTable1.setBounds(140, 80, 403, 367);
+		cityTable1.setBounds(140, Constants.LAYOUT_FIR_Y-20, 403, 367);
 		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cityTable1.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll1=new JScrollPane(cityTable1);
-		scroll1.setBounds(140, 80, 403, 367);
+		scroll1.setBounds(140,Constants.LAYOUT_FIR_Y-20, 403, 367);
 		scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"城市名","区号","省份"};
 		model1.setColumnIdentifiers(columnNames);
@@ -335,11 +336,11 @@ public class CityListPanel extends PPanel{
 				}
 			}
 		});
-		cityTable2.setBounds(567, 80, 403, 367);
+		cityTable2.setBounds(567, Constants.LAYOUT_FIR_Y-20, 403, 367);
 		cityTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cityTable2.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll2=new JScrollPane(cityTable2);
-		scroll2.setBounds(567, 80, 403, 367);
+		scroll2.setBounds(567, Constants.LAYOUT_FIR_Y-20, 403, 367);
 		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
