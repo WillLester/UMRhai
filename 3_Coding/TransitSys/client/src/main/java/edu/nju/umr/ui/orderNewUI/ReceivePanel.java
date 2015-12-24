@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import edu.nju.umr.logic.orderNewLogic.ReceiveOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
