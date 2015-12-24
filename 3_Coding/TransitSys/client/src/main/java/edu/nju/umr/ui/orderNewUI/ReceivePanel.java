@@ -36,6 +36,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	 */
 	public ReceivePanel(JFrame fr,String org,String name) {
 		super(fr);
+		titleLabel.setText("收件信息输入");
 		this.org = org;
 		this.name = name;
 		logicSer = new ReceiveOrderLogic();
@@ -51,8 +52,8 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		confirmButton.setLocation(418, 564);
 		confirmButton.addActionListener(new ConfirmListener());
 		
-		checkButton.removeActionListener(checkButton.getActionListeners()[0]);
-		checkButton.addActionListener(new ActionListener() {
+		searchButton.removeActionListener(searchButton.getActionListeners()[0]);
+		searchButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
