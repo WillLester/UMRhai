@@ -148,7 +148,6 @@ public class SendPanel extends PPanel {
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);
-							frame.dispose();
 						}
 					}
 			}
