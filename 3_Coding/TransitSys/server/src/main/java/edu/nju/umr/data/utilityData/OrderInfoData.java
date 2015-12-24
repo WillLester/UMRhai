@@ -47,7 +47,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	 * @return 中转单中含有的订单号组成的ArrayList
 	 */
 	public List<String> getTransitExp(String id){
-		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false));
+		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false,null));
 		TransitPO transit = OrderPOFactory.getTransit(result);
 		if(transit == null){
 			return new ArrayList<String>();
@@ -57,7 +57,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	
 	@Override
 	public boolean isTransitValid(String id){
-		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false));
+		ResultSet result = mysqlSer.checkInfo(new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null,null,false,null));
 		try {
 			if(result.next()){
 				return true;
@@ -89,7 +89,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	
 	@Override
 	public boolean isCenterLoadValid(String id){
-		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null));
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null,null));
 		try {
 			if(result.next()){
 				return true;
@@ -133,7 +133,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 	@Override
 	public List<String> getCenterLoadExp(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null));
+		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null,null));
 		CenterLoadingPO po = OrderPOFactory.getCenterLoad(result);
 		return po.getExpress();
 	}
