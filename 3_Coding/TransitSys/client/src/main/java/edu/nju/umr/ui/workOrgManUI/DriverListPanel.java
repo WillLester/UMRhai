@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -27,6 +26,7 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -61,9 +61,9 @@ public class DriverListPanel extends PPanel {
 		this.name = name;
 		serv=new DriverManLogic();
 		
-		JLabel nameLabel = new JLabel("司机信息列表");
+		TitleLabel nameLabel = new TitleLabel("司机信息列表");
 		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
+		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2,25, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
 		textFieldSearch = new JTextField();
@@ -92,7 +92,7 @@ public class DriverListPanel extends PPanel {
 //		add(search);
 		
 		Button add = new AddButton();
-		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 100, 30);
+		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7+25, 100, 30);
 		add.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -143,8 +143,6 @@ public class DriverListPanel extends PPanel {
 		modify.setIcon(new ImageIcon("ui/button/buttonRev.png"));
 		modify.setRolloverIcon(new ImageIcon("ui/button/buttonRevSt.png"));
 		modify.setPressedIcon(new ImageIcon("ui/button/buttonRevP.png"));
-
-		
 		modify.setBounds(delete.getX()+delete.getWidth()+50, add.getY(), 100, 30);
 		modify.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -183,11 +181,11 @@ public class DriverListPanel extends PPanel {
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+60, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","姓名","出生日期","身份证号","手机号","性别","行驶证有效期限","行驶证失效期限"};
 		model.setColumnIdentifiers(columnNames);

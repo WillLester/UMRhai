@@ -26,6 +26,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -67,9 +68,9 @@ public class WorkListPanel extends PPanel {
 		logicSer = new WorkManLogic();
 		workList = new ArrayList<WorkVO>();
 		
-		JLabel nameLabel = new JLabel("人员信息列表");
+		TitleLabel nameLabel = new TitleLabel("人员信息列表");
 		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
+		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 25, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();

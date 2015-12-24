@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -25,6 +24,7 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CheckButton;
@@ -62,13 +62,13 @@ public class VanListPanel extends PPanel {
 		vanListPanel=this;
 		vanList = new ArrayList<VanVO>();
 		
-		JLabel nameLabel = new JLabel("车辆信息列表");
+		TitleLabel nameLabel = new TitleLabel("车辆信息列表");
 		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
+		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 25, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();
-		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,600, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y+45,600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -92,7 +92,7 @@ public class VanListPanel extends PPanel {
 		
 		
 		Button add = new AddButton();
-		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7, 100, 30);
+		add.setBounds(this.getWidth()/2-250, Constants.TABLE_HEIGHT*7+60, 100, 30);
 		add.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -150,11 +150,11 @@ public class VanListPanel extends PPanel {
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+50, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+40, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+50, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"车辆代号","车牌号","服役时间"};
 		model.setColumnIdentifiers(columnNames);
