@@ -231,6 +231,12 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 					transitIdField.setText(temp);
 				}
 			}
+			message = logicSer.getExpressList(orgId+"*");
+			result=message.getReInfo();
+			if(result.equals(Result.SUCCESS)){
+				ArrayList<String> ar = (ArrayList<String>)message.getMessage();
+				expressList.setAllItem(ar);
+			}
 		}
 	}
 	private void hint(Result result){

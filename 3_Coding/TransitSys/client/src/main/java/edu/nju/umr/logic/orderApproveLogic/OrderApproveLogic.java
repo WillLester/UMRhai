@@ -208,6 +208,23 @@ public class OrderApproveLogic implements OrderApproveLSer{
 						}
 					}
 				}
+				
+				if(order.getKind().equals(Order.CENTERLOADING)&&(!approve)){
+					ResultMessage message=chooseOrder(order.getId(),Order.CENTERLOADING);
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS))
+					{
+						return result;
+					}
+					CenterLoadingPO cp=(CenterLoadingPO)message.getMessage();
+					for(String express:cp.getExpress()){
+						result=state.updateExpressState(express,cp.getStartOrgId()+"*");
+						if(!result.equals(Result.SUCCESS))
+						{
+							return result;
+						}
+					}
+				}
 			} catch (RemoteException e){
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;

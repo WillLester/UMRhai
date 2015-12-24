@@ -56,7 +56,7 @@ public class TransitOrderLogic implements TransitOrderLSer{
 			if(result == Result.SUCCESS){
 				result = diarySer.addDiary("生成了中转单"+order.getId(), order.getOpName());
 				for(String express:order.getExpress()){
-					result=orderState.updateExpressState(express, order.getStartOrgId()+"#");
+					result=orderState.updateExpressState(express, order.getStartOrgId()+"*#");
 					if(!result.equals(Result.SUCCESS)){
 						return result;
 					}
