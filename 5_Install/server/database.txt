@@ -1,3 +1,2 @@
-localhost:3306/yyy
+localhost:3306/transitSys
 root
-bbmm
