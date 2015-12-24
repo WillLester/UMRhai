@@ -62,7 +62,7 @@ public class DriverListPanel extends PPanel {
 		serv=new DriverManLogic();
 		
 		JLabel nameLabel = new JLabel("司机信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		

@@ -26,6 +26,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
@@ -74,7 +75,7 @@ public class OrgListPanel extends PPanel {
 		this.name = name;
 		
 		JLabel nameLabel = new JLabel("机构信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
@@ -106,7 +107,7 @@ public class OrgListPanel extends PPanel {
 		add(all);
 		
 		
-		JLabel orgName = new JLabel("机构名称");
+		ELabel orgName = new ELabel("机构名称");
 		orgName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(orgName);
 		
@@ -115,7 +116,7 @@ public class OrgListPanel extends PPanel {
 		add(textFieldName);
 		textFieldName.setColumns(10);
 		
-		JLabel type = new JLabel("机构种类");
+		ELabel type = new ELabel("机构种类");
 		type.setBounds(this.getWidth()/2-130, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(type);
 		
@@ -124,7 +125,7 @@ public class OrgListPanel extends PPanel {
 		orgType.setModel(new DefaultComboBoxModel<String>(new String[]{"营业厅","中转中心","总部"}));
 		add(orgType);
 		
-		JLabel address = new JLabel("机构地址");
+		ELabel address = new ELabel("机构地址");
 		address.setBounds(orgName.getX(), orgName.getY()+orgName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(address);
 		
@@ -196,7 +197,7 @@ public class OrgListPanel extends PPanel {
 		});
 		add(workMan);
 		
-		JLabel idLabel=new JLabel("机构编号");
+		ELabel idLabel=new ELabel("机构编号");
 		idLabel.setBounds(orgType.getX()+200, orgType.getY(), 100, 24);
 		add(idLabel);
 		
@@ -204,7 +205,7 @@ public class OrgListPanel extends PPanel {
 		idField.setBounds(idLabel.getX()+80, idLabel.getY(),200, 24);
 		add(idField);
 		
-		JLabel cityLabel=new JLabel("城市");
+		ELabel cityLabel=new ELabel("城市");
 		cityLabel.setBounds(address.getX()+120, address.getY(),  Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(cityLabel);
 		

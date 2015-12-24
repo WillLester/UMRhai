@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,7 +30,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button diaryButton = new Button();
 		diaryButton.setNewImages(pathb+"diary",pathb+ "diarySt", pathb+"diaryP");
-		diaryButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		diaryButton.setBounds(Constants.FIRST_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(diaryButton);
 		diaryButton.addActionListener(new ActionListener() {
@@ -46,7 +44,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button busiCircumButton = new Button();
 		busiCircumButton.setNewImages(pathb+"busiCircum", pathb+"busiCircumSt", pathb+"busiCircumP");
-		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		busiCircumButton.setBounds(Constants.SECOND_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(busiCircumButton);
 		busiCircumButton.addActionListener(new ActionListener() {
@@ -61,7 +58,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button costBeneButton = new Button();
 		costBeneButton.setNewImages(pathb+"costBene", pathb+"costBeneSt", pathb+"costBeneP");
-		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		costBeneButton.setBounds(Constants.THIRD_X, Constants.DOUBLE_Y, 95, 95);
 		this.add(costBeneButton);
 		costBeneButton.addActionListener(new ActionListener() {
@@ -76,7 +72,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button incomeButton = new Button();
 		incomeButton.setNewImages(pathf+"incomeList", pathf+"incomeListSt", pathf+"incomeListP");
-		incomeButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		incomeButton.setBounds(Constants.FIRST_X, Constants.SECOND_Y, 95, 95);
 		this.add(incomeButton);
 		incomeButton.addActionListener(new ActionListener() {
@@ -91,7 +86,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button countButton = new Button();
 		countButton.setNewImages(pathf+"count", pathf+"countSt", pathf+"countP");
-		countButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		countButton.setBounds(Constants.SECOND_X, Constants.SECOND_Y, 95, 95);
 		this.add(countButton);
 		countButton.addActionListener(new ActionListener() {
@@ -106,7 +100,6 @@ public class FinancePanel extends UserPanel{
 		
 		Button paymentButton = new Button();
 		paymentButton.setNewImages(pathf+"payment", pathf+"paymentSt", pathf+"paymentP");
-		paymentButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		paymentButton.setBounds(Constants.THIRD_X, Constants.SECOND_Y, 95,95);
 		this.add(paymentButton);
 		paymentButton.addActionListener(new ActionListener() {

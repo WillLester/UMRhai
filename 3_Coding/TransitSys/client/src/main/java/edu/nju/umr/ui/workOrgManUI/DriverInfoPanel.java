@@ -17,6 +17,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -46,11 +47,13 @@ public class DriverInfoPanel extends JPanel {
 		panel=pa;
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		JLabel nameLabel = new JLabel("司机信息");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2,0,Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
 		JLabel driverNum = new JLabel("司机编号");
+		driverNum.setFont(Utils.COMBO_FONT);
+		driverNum.setForeground(Utils.STD_COLOR);
 		driverNum.setBounds(Constants.INFOTABLE_X, Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverNum);
 		
@@ -62,6 +65,8 @@ public class DriverInfoPanel extends JPanel {
 		textFieldNum.setColumns(10);
 		
 		JLabel driverName = new JLabel("姓名");
+		driverName.setFont(Utils.COMBO_FONT);
+		driverName.setForeground(Utils.STD_COLOR);
 		driverName.setBounds(driverNum.getX(), driverNum.getY()+driverNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverName);
 		
@@ -72,6 +77,8 @@ public class DriverInfoPanel extends JPanel {
 		textFieldName.setColumns(10);
 		
 		JLabel driverSex = new JLabel("性别");
+		driverSex.setFont(Utils.COMBO_FONT);
+		driverSex.setForeground(Utils.STD_COLOR);
 		driverSex.setBounds(driverNum.getX(), driverName.getY()+driverName.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverSex);
 		
@@ -84,6 +91,8 @@ public class DriverInfoPanel extends JPanel {
 		add(comboBoxSex);
 		
 		JLabel bornDate = new JLabel("出生日期");
+		bornDate.setFont(Utils.COMBO_FONT);
+		bornDate.setForeground(Utils.STD_COLOR);
 		bornDate.setBounds(driverNum.getX(), driverSex.getY()+driverSex.getHeight()+30,Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bornDate);
 		
@@ -93,6 +102,8 @@ public class DriverInfoPanel extends JPanel {
 		add(born);
 		
 		JLabel identity = new JLabel("身份证号");
+		identity.setFont(Utils.COMBO_FONT);
+		identity.setForeground(Utils.STD_COLOR);
 		identity.setBounds(driverNum.getX(), bornDate.getY()+bornDate.getHeight()+30,Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(identity);
 		
@@ -103,6 +114,8 @@ public class DriverInfoPanel extends JPanel {
 		textFieldIden.setColumns(10);
 		
 		JLabel mobile = new JLabel("手机");
+		mobile.setFont(Utils.COMBO_FONT);
+		mobile.setForeground(Utils.STD_COLOR);
 		mobile.setBounds(this.getWidth()/2+40, driverNum.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(mobile);
 		
@@ -113,10 +126,14 @@ public class DriverInfoPanel extends JPanel {
 		textFieldMobile.setColumns(10);
 		
 		JLabel term = new JLabel("行驶证期限");
+		term.setFont(Utils.COMBO_FONT);
+		term.setForeground(Utils.STD_COLOR);
 		term.setBounds(mobile.getX(), mobile.getY()+mobile.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(term);
 		
 		JLabel labely = new JLabel("由");
+		labely.setFont(Utils.COMBO_FONT);
+		labely.setForeground(Utils.STD_COLOR);
 		labely.setBounds(textFieldMobile.getX(), term.getY()+8, 19, 15);
 		add(labely);
 		

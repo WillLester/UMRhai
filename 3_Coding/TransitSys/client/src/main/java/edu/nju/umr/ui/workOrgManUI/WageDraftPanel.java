@@ -16,6 +16,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
@@ -45,7 +46,7 @@ public class WageDraftPanel extends JPanel {
 		panel = pa;
 		
 		JLabel nameLabel = new JLabel("薪水制定");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
@@ -67,7 +68,7 @@ public class WageDraftPanel extends JPanel {
 		});
 		add(rbMonth);
 		
-		JLabel wageMonth = new JLabel("月薪");
+		ELabel wageMonth = new ELabel("月薪");
 		wageMonth.setBounds(rbMonth.getX()+50, rbMonth.getY()+rbMonth.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageMonth);
 		
@@ -95,7 +96,7 @@ public class WageDraftPanel extends JPanel {
 		});
 		add(rbCount);
 		
-		JLabel wageCount = new JLabel("次薪");
+		ELabel wageCount = new ELabel("次薪");
 		wageCount.setBounds(wageMonth.getX(), rbCount.getY()+rbCount.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageCount);
 		
@@ -125,7 +126,7 @@ public class WageDraftPanel extends JPanel {
 		});
 		add(rbBound);
 		
-		JLabel wageinit= new JLabel("月基本工资");
+		ELabel wageinit= new ELabel("月基本工资");
 		wageinit.setBounds(wageMonth.getX(), rbBound.getY()+rbBound.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageinit);
 		
@@ -135,7 +136,7 @@ public class WageDraftPanel extends JPanel {
 		textFieldwi.setEnabled(false);
 		textFieldwi.setColumns(10);
 		
-		JLabel bound = new JLabel("提成份额");
+		ELabel bound = new ELabel("提成份额");
 		bound.setBounds(wageMonth.getX(), wageinit.getY()+wageinit.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bound);
 		

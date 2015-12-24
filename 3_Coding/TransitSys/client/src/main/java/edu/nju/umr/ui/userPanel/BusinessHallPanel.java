@@ -31,7 +31,6 @@ public class BusinessHallPanel extends UserPanel {
 		Button recipient = new Button();
 		recipient.setNewImages("businesshall/recipient", "businesshall/recipientSt", "businesshall/recipientP");
 		recipient.setBounds(Constants.FIRST_X, Constants.DOUBLE_Y, 95, 95);
-		recipient.setFont(new Font("宋体", Font.PLAIN, 12));
 		recipient.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -45,7 +44,6 @@ public class BusinessHallPanel extends UserPanel {
 		Button send = new Button();
 		send.setNewImages("businesshall/send", "businesshall/sendSt", "businesshall/sendP");
 		send.setBounds(Constants.SECOND_X, Constants.DOUBLE_Y, 95, 95);
-		send.setFont(new Font("宋体", Font.PLAIN, 12));
 		send.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -71,7 +69,6 @@ public class BusinessHallPanel extends UserPanel {
 		
 		Button income = new Button();
 		income.setNewImages("businesshall/income", "businesshall/incomeSt", "businesshall/incomeP");
-		income.setFont(new Font("宋体", Font.PLAIN, 12));
 		income.setBounds(Constants.FIRST_X, Constants.SECOND_Y, 95, 95);
 		income.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -85,7 +82,6 @@ public class BusinessHallPanel extends UserPanel {
 		
 		Button driverMan = new Button();
 		driverMan.setNewImages("businesshall/driverMan", "businesshall/driverManSt", "businesshall/driverManP");
-		driverMan.setFont(new Font("宋体", Font.PLAIN, 12));
 		driverMan.setBounds(Constants.SECOND_X, Constants.SECOND_Y, 95, 95);
 		driverMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -99,7 +95,6 @@ public class BusinessHallPanel extends UserPanel {
 		
 		Button vanMan = new Button();
 		vanMan.setNewImages("businesshall/vanMan", "businesshall/vanManSt", "businesshall/vanManP");
-		vanMan.setFont(new Font("宋体", Font.PLAIN, 12));
 		vanMan.setBounds(Constants.THIRD_X, Constants.SECOND_Y, 95,95);
 		vanMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)

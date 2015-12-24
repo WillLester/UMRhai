@@ -20,6 +20,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -60,7 +61,7 @@ public class WorkWageListPanel extends PPanel {
 		wageList = new ArrayList<WageVO>();
 		
 		JLabel nameLabel = new JLabel("人员薪水信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+60, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
@@ -85,7 +86,7 @@ public class WorkWageListPanel extends PPanel {
 		});
 		add(search);
 		
-		JLabel wageType = new JLabel("计薪方式");
+		ELabel wageType = new ELabel("计薪方式");
 		wageType.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+ Constants.TABLE_HEIGHT*4+40, 54, 15);
 		add(wageType);
 		
@@ -95,7 +96,7 @@ public class WorkWageListPanel extends PPanel {
 		textFieldtype.setEnabled(false);
 		textFieldtype.setColumns(10);
 		
-		JLabel wageMonth = new JLabel("月薪");
+		ELabel wageMonth = new ELabel("月薪");
 		wageMonth.setBounds(textFieldtype.getX()+textFieldtype.getWidth()+40, wageType.getY(), 54, 15);
 		add(wageMonth);
 		
@@ -105,7 +106,7 @@ public class WorkWageListPanel extends PPanel {
 		textFieldwMonth.setEnabled(false);
 		textFieldwMonth.setColumns(10);
 		
-		JLabel wageCount = new JLabel("次薪");
+		ELabel wageCount = new ELabel("次薪");
 		wageCount.setBounds(textFieldwMonth.getX()+textFieldwMonth.getWidth()+40, wageType.getY(), 54, 15);
 		add(wageCount);
 		
@@ -115,7 +116,7 @@ public class WorkWageListPanel extends PPanel {
 		textFieldwCount.setEnabled(false);
 		textFieldwCount.setColumns(10);
 		
-		JLabel wageInit = new JLabel("基本工资");
+		ELabel wageInit = new ELabel("基本工资");
 		wageInit.setBounds(wageMonth.getX(), wageMonth.getY()+wageMonth.getHeight()+30, 54, 15);
 		add(wageInit);
 		
@@ -125,7 +126,7 @@ public class WorkWageListPanel extends PPanel {
 		textFieldwInit.setEnabled(false);
 		textFieldwInit.setColumns(10);
 		
-		JLabel bound = new JLabel("提成份额");
+		ELabel bound = new ELabel("提成份额");
 		bound.setBounds(wageCount.getX(), wageInit.getY(), 54, 15);
 		add(bound);
 		
