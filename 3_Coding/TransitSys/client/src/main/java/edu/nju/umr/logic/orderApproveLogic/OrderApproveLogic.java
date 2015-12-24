@@ -268,6 +268,43 @@ public class OrderApproveLogic implements OrderApproveLSer{
 					}
 				}
 				
+				if(order.getKind().equals(Order.RECIPIENT)){
+					ResultMessage message=chooseOrder(order.getId(),order.getKind());
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS)){
+						return result;
+					}
+					RecipientPO rp=(RecipientPO)message.getMessage();
+					if(!approve){
+						state.updateCenterLoadingState(rp.getTransitId(), true);
+						state.updateHallLoadingState(rp.getTransitId(), true);
+					}else{
+						String id=rp.getTransitId();
+						if(id.length()==19){
+							message=chooseOrder(id,Order.HALLLOADING);
+							result=message.getReInfo();
+							if(!result.equals(Result.SUCCESS)){
+								return result;
+							}
+							HallLoadingPO hp=(HallLoadingPO)message.getMessage();
+							for(String express:hp.getExpress()){
+								state.updateExpressState(express,rp.getId().substring(0,6)+"*");
+							}
+						}
+					}
+				}
+				
+				if(order.getKind().equals(Order.SEND)&&!approve){
+					ResultMessage message=chooseOrder(order.getId(),order.getKind());
+					Result result=message.getReInfo();
+					if(!result.equals(Result.SUCCESS)){
+						return result;
+					}
+					SendPO sp=(SendPO)message.getMessage();
+					String exp=sp.getExpressId();
+					state.updateExpressState(exp, sp.getId().substring(0,6)+"*");
+				}
+				
 			} catch (RemoteException e){
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;

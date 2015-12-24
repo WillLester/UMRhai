@@ -72,11 +72,11 @@ public class VPFactory {
      
      //中转中心装车单
      public static CenterLoadingVO toCenterLoadVO(CenterLoadingPO po){
-    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(),po.getId(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getUserId());
+    	 CenterLoadingVO vo=new CenterLoadingVO(po.getDate(),po.getId(), po.getTarget(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getOpName(),po.getUserId(),po.isArrived(),po.getStartPlace(),po.getStartOrgId());
     	 return vo;
      }
      public static CenterLoadingPO toCenterLoadPO(CenterLoadingVO vo){
-    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), vo.getTransitId(), vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getUserId());
+    	 CenterLoadingPO po=new CenterLoadingPO(vo.getDate(), vo.getTransitId(), vo.getTarget(), vo.getVanId(), vo.getSupervision(), vo.getEscort(), vo.getExpress(), Calendar.getInstance(), vo.getOpName(), vo.getCost(),vo.getUserId(),vo.isArrived(),vo.getStartPlace(),vo.getStartOrgId());
     	 return po;
      }
      
@@ -98,11 +98,11 @@ public class VPFactory {
      
      //营业厅装车单
      public static HallLoadingVO toHallLoadingVO(HallLoadingPO po){
-    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName(),po.getUserId());
+    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName(),po.getUserId(),po.isArrived());
     	 return vo;
      }
      public static HallLoadingPO toHallLoadingPO(HallLoadingVO vo){
-    	 HallLoadingPO po=new HallLoadingPO(vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost(),vo.getUserId());
+    	 HallLoadingPO po=new HallLoadingPO(vo.getHallId(),vo.getConvertId(),vo.getArriveLoc(),vo.getVanId(),vo.getSupervision(),vo.getEscort(),vo.getExpress(),vo.getDate(),Calendar.getInstance(),vo.getOpName(),vo.getCost(),vo.getUserId(),vo.getArrived());
     	 return po;
      }
      
@@ -178,11 +178,11 @@ public class VPFactory {
 	
 	//中转单
 	public static TransitVO toTransitVO(TransitPO po){
-		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost(),po.getDate(),po.getUserId(),po.getTransit());
+		TransitVO vo=new TransitVO(po.getId(),po.getPlaneId(), po.getStartPlace(),po.getArrivePlace(), po.getContainerId(), po.getSupervision(), po.getExpress(), po.getOpName(), po.getCost(),po.getDate(),po.getUserId(),po.getTransit(),po.isArrived(),po.getStartOrgId());
 		return vo;
 	}
 	public static TransitPO toTransitPO(TransitVO vo){
-		TransitPO po=new TransitPO(vo.getId(),vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost(), vo.getUserId(),vo.getTransit());
+		TransitPO po=new TransitPO(vo.getId(),vo.getPlaneId(),vo.getStartPlace(),vo.getArrivePlace(),vo.getContainerId(),vo.getSupervision(),vo.getExpress(),vo.getDate(),Calendar.getInstance(), vo.getOpName(),vo.getCost(), vo.getUserId(),vo.getTransit(),vo.isArrived(),vo.getStartOrgId());
 		return po;
 	}
 	//账户

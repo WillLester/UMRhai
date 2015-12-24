@@ -40,4 +40,10 @@ public class TransitPanelStub implements TransitOrderLSer{
 		return new ResultMessage(Result.SUCCESS,10);
 	}
 
+	@Override
+	public ResultMessage getGoingExpresses(String orgId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
