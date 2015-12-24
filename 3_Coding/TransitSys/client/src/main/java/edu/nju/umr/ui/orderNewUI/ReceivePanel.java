@@ -50,6 +50,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 			}
 		});
 		confirmButton.setLocation(418, 564);
+		confirmButton.removeActionListener(ca);
 		confirmButton.addActionListener(new ConfirmListener());
 		
 		searchButton.removeActionListener(searchButton.getActionListeners()[0]);
