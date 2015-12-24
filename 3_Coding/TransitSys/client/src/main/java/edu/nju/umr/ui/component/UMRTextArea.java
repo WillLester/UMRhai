@@ -1,14 +1,13 @@
 package edu.nju.umr.ui.component;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -16,20 +15,19 @@ import javax.swing.border.EmptyBorder;
 import com.sun.javafx.geom.RoundRectangle2D;
 import com.sun.javafx.geom.Shape;
 
-public class TextField extends JTextField{
+public class UMRTextArea extends JTextArea{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3381742775192974151L;
+	private static final long serialVersionUID = -7908387263032252442L;
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
 	private Shape shape;
 	
-	public TextField() {
+	public UMRTextArea() {
 		setBorder(null);
 		setBackground(Color.WHITE);
-		setPreferredSize(new Dimension(200, 25));
 		Border empty = new EmptyBorder(0, 5, 0, 0);
 		CompoundBorder border = new CompoundBorder(this.getBorder(), empty);
 		setBorder(border);
