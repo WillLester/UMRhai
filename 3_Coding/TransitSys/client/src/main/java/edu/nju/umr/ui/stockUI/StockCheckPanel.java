@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.stockUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,12 +51,15 @@ public class StockCheckPanel extends JPanel{
 		tableInit();
 		
 		JLabel checkLabel = new JLabel("库存查看");
-		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		checkLabel.setBounds(503, 32, 97, 24);
 		add(checkLabel);
 		
+		Color color = new Color(57, 152,214);
+		
 		JLabel startLabel = new JLabel("开始时间");
-		startLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		startLabel.setForeground(color);
 		startLabel.setBounds(210, 71, 71, 24);
 		add(startLabel);
 		
@@ -64,7 +68,8 @@ public class StockCheckPanel extends JPanel{
 		add(dateTimeS);
 		
 		JLabel endLabel = new JLabel("结束时间");
-		endLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		endLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		endLabel.setForeground(color);
 		endLabel.setBounds(210, 116, 71, 19);
 		add(endLabel);
 		

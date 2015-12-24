@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -64,14 +65,16 @@ public class ExpressListPanel extends JPanel{
 		frame = fr;
 		setLayout(null);
 		
+		Color color = new Color(57, 152,214);
+		
 		JLabel expressId = new JLabel("订单条形码号");
 		expressId.setHorizontalAlignment(SwingConstants.CENTER);
-		expressId.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressId.setBounds(47, 35, 130, 24);
+		expressId.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		expressId.setForeground(color);
 		add(expressId);
 		
 		expressField = new AutoCompPanel();
-		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressField.setBounds(182, 34, 280, 25);
 		add(expressField);
 		
@@ -100,7 +103,8 @@ public class ExpressListPanel extends JPanel{
 		
 		JLabel expressListLabel = new JLabel("已输入订单");
 		expressListLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressListLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressListLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		expressListLabel.setForeground(color);
 		expressListLabel.setBounds(232, 69, 130, 24);
 		add(expressListLabel);
 		

@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,9 +39,10 @@ public class CostBenePanel extends JPanel {
 		frame=fr;
 		serv = new CostBeneLogic();
 		this.setSize(1104,621);
+		Color color = new Color(57, 152,214);
 		
 		JLabel nameLabel = new JLabel("成本收益");
-		nameLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
@@ -56,16 +58,19 @@ public class CostBenePanel extends JPanel {
 		
 		JLabel inLabel = new JLabel("总收入");
 		inLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		inLabel.setForeground(color);
 		inLabel.setBounds(210, 196, 106, 27);
 		add(inLabel);
 		
 		JLabel outLabel = new JLabel("总支出");
+		outLabel.setForeground(color);
 		outLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		outLabel.setBounds(495, 196, 106, 27);
 		add(outLabel);
 		
 		JLabel profitLabel = new JLabel("总利润");
 		profitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		profitLabel.setForeground(color);
 		profitLabel.setBounds(810, 196, 106, 27);
 		add(profitLabel);
 		

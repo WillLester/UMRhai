@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.accountUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,8 +57,11 @@ public class AccountManPanel extends JPanel{
 		setLayout(null);
 		logicSer=new AccountLogic();
 		
+		Color color = new Color(57, 152,214);
+		
 		JLabel accountLabel = new JLabel("账户管理");
-		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+		accountLabel.setForeground(color);
 		accountLabel.setBounds(504, 6, 96, 60);
 		add(accountLabel);
 		frame = fr;
@@ -103,12 +107,14 @@ public class AccountManPanel extends JPanel{
 		nameField.setColumns(10);
 		
 		JLabel nameLabel = new JLabel("账户名称");
-		nameLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		nameLabel.setForeground(color);
 		nameLabel.setBounds(283, 465, 67, 30);
 		add(nameLabel);
 		
 		JLabel balanceLabel = new JLabel("账户余额");
-		balanceLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		balanceLabel.setForeground(color);
 		balanceLabel.setBounds(566, 465, 67, 30);
 		add(balanceLabel);
 		

@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,14 +56,17 @@ public class LocPanel extends JPanel {
 		logicSer = new LocLogic();
 //		logicSer = new LocLogicStub();
 		cities = new ArrayList<LocVO>();
+			
+		Color color = new Color(57, 152,214);
 		
 		JLabel provinceLabel = new JLabel("省份");
-		provinceLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		provinceLabel.setForeground(color);
 		provinceLabel.setBounds(10, 10, 54, 22);
 		add(provinceLabel);
 		
 		provinceCombo = new JComboBox<String>();
-		provinceCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		provinceCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceCombo.setBounds(62, 10, 74, 21);
 		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
 		provinceCombo.addItemListener(new ItemListener() {
@@ -78,23 +82,25 @@ public class LocPanel extends JPanel {
 		add(provinceCombo);
 		
 		JLabel cityLabel = new JLabel("城市");
-		cityLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		provinceLabel.setForeground(color);
 		cityLabel.setBounds(146, 10, 54, 22);
 		add(cityLabel);
 		
 		cityCombo = new JComboBox<String>();
 		cityCombo.setBounds(193, 10, 75, 21);
-		cityCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(cityCombo);
 		
 		JLabel locLabel = new JLabel("地址");
 		locLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		locLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		locLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		locLabel.setForeground(color);
 		locLabel.setBounds(271, 10, 62, 24);
 		add(locLabel);
 		
 		locField = new JTextField();
-		locField.setFont(new Font("宋体", Font.PLAIN, 20));
+		locField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		locField.setColumns(10);
 		locField.setBounds(341, 10, 165, 25);
 		add(locField);

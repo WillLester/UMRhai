@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +55,10 @@ public class DiaryListPanel extends JPanel {
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
+		Color color = new Color(57, 152,214);
+		
 		JLabel start = new JLabel("开始日期");
+		start.setForeground(color);
 		start.setBounds(Constants.TABLE_X, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
@@ -63,6 +67,7 @@ public class DiaryListPanel extends JPanel {
 		add(startDate);
 		
 		JLabel end = new JLabel("结束日期");
+		end.setForeground(color);
 		end.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
@@ -102,12 +107,14 @@ public class DiaryListPanel extends JPanel {
 //		add(diaryTable);
 		
 		JLabel diaryLable = new JLabel("日志记录");
-		diaryLable.setFont(new Font("华文新魏",Font.PLAIN,15));
+		diaryLable.setFont(new Font("微软雅黑",Font.PLAIN,15));
+		diaryLable.setForeground(color);
 		diaryLable.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(diaryLable);
 		
 		JLabel nameLabel = new JLabel("日志记录");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
+//		nameLabel.setForeground(Color.white);
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		

@@ -71,7 +71,8 @@ public class OrderApprovePanel extends JPanel{
 		this.name = name;
 		
 		JLabel approveLabel = new JLabel("审批单据");
-		approveLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		approveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+//		approveLabel.setForeground(Color.white);
 		approveLabel.setBounds(505, 40, 93, 24);
 		add(approveLabel);
 		

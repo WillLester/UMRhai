@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,8 +59,11 @@ public class BusiCircumPanel extends JPanel {
 		serv = new BusiCircumLogic();
 //        serv = new BusiCircumPanelStub();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
+		Color color = new Color(57, 152,214);
 		
 		JLabel start = new JLabel("开始日期");
+		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		start.setForeground(color);
 		start.setBounds(Constants.TABLE_X, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
@@ -68,6 +72,8 @@ public class BusiCircumPanel extends JPanel {
 		add(startDate);
 		
 		JLabel end = new JLabel("结束日期");
+		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		end.setForeground(color);
 		end.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
@@ -95,12 +101,14 @@ public class BusiCircumPanel extends JPanel {
 		add(confirm);
 		
 		JLabel statementLabel = new JLabel("经营情况表");
-		statementLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
+		statementLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
+//		statementLabel.setForeground(Color.WHITE);
 		statementLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(statementLabel);
 		
 		JLabel nameLabel = new JLabel("经营情况表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
+		nameLabel.setForeground(color);
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		

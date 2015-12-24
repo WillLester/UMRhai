@@ -15,6 +15,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -43,27 +44,31 @@ public class StockWarningPanel extends JPanel{
 		logicSer = new StockWarningLogic();
 		
 		JLabel warningLabel = new JLabel("库存报警设置");
-		warningLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		warningLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		warningLabel.setBounds(486, 25, 132, 24);
 		add(warningLabel);
 		
 		JLabel planeLabel = new JLabel("航运区警戒线（%）");
-		planeLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		planeLabel.setFont(Utils.COMBO_FONT);
+		planeLabel.setForeground(Utils.STD_COLOR);
 		planeLabel.setBounds(389, 85, 132, 24);
 		add(planeLabel);
 		
 		JLabel trainLabel = new JLabel("铁运区警戒线（%）");
-		trainLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		trainLabel.setFont(Utils.COMBO_FONT);
+		trainLabel.setForeground(Utils.STD_COLOR);
 		trainLabel.setBounds(389, 145, 132, 24);
 		add(trainLabel);
 		
 		JLabel vanLabel = new JLabel("汽运区警戒线（%）");
-		vanLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		vanLabel.setFont(Utils.COMBO_FONT);
+		vanLabel.setForeground(Utils.STD_COLOR);
 		vanLabel.setBounds(389, 205, 132, 24);
 		add(vanLabel);
 		
 		JLabel maneuverLabel = new JLabel("机动区警戒线（%）");
-		maneuverLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		maneuverLabel.setFont(Utils.COMBO_FONT);
+		maneuverLabel.setForeground(Utils.STD_COLOR);
 		maneuverLabel.setBounds(389, 265, 132, 24);
 		add(maneuverLabel);
 		
