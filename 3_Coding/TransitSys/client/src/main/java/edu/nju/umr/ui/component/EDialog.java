@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 
 public class EDialog extends JDialog {
 
@@ -22,9 +21,6 @@ public class EDialog extends JDialog {
 	private boolean isMoved=false;
 	private Point pre=null;
 	private Point end=null;
-	
-	private Button back=new Button();
-	private JPanel panel=new JPanel();
 	
 	public EDialog(int width,int height){
 		setLayout(null);

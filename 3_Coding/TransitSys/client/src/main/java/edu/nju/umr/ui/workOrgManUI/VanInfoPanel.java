@@ -12,24 +12,23 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 public class VanInfoPanel extends JPanel {
 	/**

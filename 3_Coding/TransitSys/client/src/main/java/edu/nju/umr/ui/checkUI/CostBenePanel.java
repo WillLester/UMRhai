@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import edu.nju.umr.logic.checkLogic.CostBeneLogic;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CostBeneVO;

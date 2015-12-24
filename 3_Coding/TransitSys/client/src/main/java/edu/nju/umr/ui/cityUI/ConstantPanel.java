@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.cityLogic.ConstantLogic;
 import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
