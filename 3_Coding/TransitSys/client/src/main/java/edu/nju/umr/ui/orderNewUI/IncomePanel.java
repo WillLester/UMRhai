@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,8 +21,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -45,7 +48,7 @@ public class IncomePanel extends PPanel {
 	private String name;
 	private String userId;
 	private Button confirmButton;
-	private JLabel idLabel;
+	private ELabel idLabel;
 	private TextField idField;
 	/**  
 	 * Create the panel.
@@ -72,30 +75,30 @@ public class IncomePanel extends PPanel {
 		this.userId = userId;
 		logicSer = new IncomeOrderLogic();
 		
-		JLabel titleLabel = new JLabel("收款单");
+		TitleLabel titleLabel = new TitleLabel("收款单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392+40, 10, 243, 67);
 		add(titleLabel);
 		
-		JLabel dateLabel = new JLabel("收款日期");
+		ELabel dateLabel = new ELabel("收款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		dateLabel.setBounds(338, 128, 120, 24);
+		dateLabel.setBounds(338, 158, 120, 24);
 		add(dateLabel);
 		
 		datePanel=new DatePanel();
-		datePanel.setBounds(474, 128, 285, 26);
+		datePanel.setBounds(474, 158, 285, 26);
 		add(datePanel);
 		
-		JLabel courierLabel = new JLabel("快递员");
-		courierLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		courierLabel.setBounds(286+40, 175, 85, 24);
+		ELabel courierLabel = new ELabel("快递员");
+		courierLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		courierLabel.setBounds(286+40, 205, 85, 24);
 		add(courierLabel);
 		
 		courierCombo = new JComboBox<String>();
-		courierCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		courierCombo.setBounds(355+40, 174, 85, 25);
+		courierCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		courierCombo.setBounds(355+40, 204, 85, 25);
 		ResultMessage message = logicSer.getCouriers(orgId);
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			String[] couriers = (String[]) message.getMessage();
@@ -105,23 +108,23 @@ public class IncomePanel extends PPanel {
 		}
 		add(courierCombo);
 		
-		JLabel amountLabel = new JLabel("金额/元");
-		amountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		amountLabel.setBounds(490, 175, 85, 24);
+		ELabel amountLabel = new ELabel("金额/元");
+		amountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		amountLabel.setBounds(490, 205, 85, 24);
 		add(amountLabel);
 		
 		amountField = new TextField();
-		amountField.setFont(new Font("宋体", Font.PLAIN, 20));
+		amountField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		amountField.setColumns(10);
-		amountField.setBounds(569, 174, 85, 25);
+		amountField.setBounds(569, 204, 85, 25);
 		add(amountField);
 
 		expressList = new ExpressListPanel(frame);
-		expressList.setBounds(280, 200, 700, 290);
+		expressList.setBounds(280, 230, 700, 290);
 		add(expressList);
 		
 		confirmButton = new ConfirmButton();
-		confirmButton.setBounds(342+40, 499, 100, 30);
+		confirmButton.setBounds(342+40, 529, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -140,7 +143,7 @@ public class IncomePanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(542+40, 499, 100, 30);
+		cancelButton.setBounds(542+40, 529, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -148,13 +151,13 @@ public class IncomePanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		JLabel accountLabel = new JLabel("账户");
-		accountLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		accountLabel.setBounds(664, 175, 65, 22);
+		ELabel accountLabel = new ELabel("账户");
+		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		accountLabel.setBounds(664, 205, 65, 22);
 		add(accountLabel);
 		
 		accountCombo = new JComboBox<String>();
-		accountCombo.setBounds(714, 175, 110, 25);
+		accountCombo.setBounds(714, 205, 110, 25);
 		ResultMessage messageA = logicSer.getAccount();
 		if(messageA.getReInfo() == Result.SUCCESS){
 			String[] accountList = (String[]) messageA.getMessage();
@@ -164,17 +167,18 @@ public class IncomePanel extends PPanel {
 		}
 		add(accountCombo);
 		
-		idLabel = new JLabel("收款单编号");
+		idLabel = new ELabel("收款单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		idLabel.setBounds(357, 81, 120, 24);
+		idLabel.setBounds(357, 111, 120, 24);
 		add(idLabel);
 		
 		idField = new TextField();
 		idField.setEditable(false);
-		idField.setBounds(473, 81, 252, 25);
-		idField.setEnabled(false);
-		add(idField);
+		idField.setBounds(473, 111, 252, 25);
+		idField.setForeground(Color.black);
 		idField.setColumns(10);
+		add(idField);
+		
 		
 		if(orgId!=null){
 			message=logicSer.getNextId(orgId);
