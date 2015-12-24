@@ -34,6 +34,7 @@ public class UMRTextArea extends JTextArea{
 		setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setMargin(new Insets(0, 5, 0, 0));
 		setOpaque(false);
+		setLineWrap(true);;
 	}
 	
 	public boolean contains(int x ,int y){
