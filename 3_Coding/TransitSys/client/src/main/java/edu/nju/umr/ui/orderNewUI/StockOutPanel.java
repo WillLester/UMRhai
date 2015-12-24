@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -15,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.StockOutOrderLogic;
@@ -220,23 +220,43 @@ public class StockOutPanel extends PPanel {
 				ArrayList<String> ar =(ArrayList<String>)message.getMessage();
 				transitIdField.setAllItem(ar);
 			}
-			transitIdField.addFocusListener(new FocusListener(){
+			
+			transitIdField.getjt().getDocument().addDocumentListener(new DocumentListener(){
 
 				@Override
-				public void focusGained(FocusEvent e) {
+				public void insertUpdate(DocumentEvent e) {
 					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void focusLost(FocusEvent e) {
 					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText(),orgId);
 					if(!message.getReInfo().equals(Result.SUCCESS)){
 						return;
 					}
 					ArrayList<String> ex=(ArrayList<String>)messagee.getMessage();
 					expressField.setAllItem(ex);
-				}});
+				}
+
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText(),orgId);
+					if(!message.getReInfo().equals(Result.SUCCESS)){
+						return;
+					}
+					ArrayList<String> ex=(ArrayList<String>)messagee.getMessage();
+					expressField.setAllItem(ex);
+				}
+
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText(),orgId);
+					if(!message.getReInfo().equals(Result.SUCCESS)){
+						return;
+					}
+					ArrayList<String> ex=(ArrayList<String>)messagee.getMessage();
+					expressField.setAllItem(ex);
+				}
+			});
+
 		}
 	}
 	@SuppressWarnings("unused")

@@ -50,11 +50,8 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 			isSuc = arriveData.create(VPFactory.toArrivePO(order));
 			if(isSuc.equals(Result.SUCCESS)){
 				String id=order.getId();
-				if(id.length()==19){
 					orderState.updateHallLoadingState(id, true);
-				}else{
 					orderState.updateTransitState(id, true);
-				}
 			}
 			if(isSuc == Result.SUCCESS){
 				isSuc = diarySer.addDiary("生成了到达单"+order.getId(), order.getOpName());
