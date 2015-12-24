@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.OrderApproveDFacSer;
@@ -12,10 +13,12 @@ import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.logic.orderNewLogic.UpdateTranStateLogic;
 import edu.nju.umr.logic.utilityLogic.CheckUtility;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
 import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.ArrivePO;
@@ -50,6 +53,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
+	private OrderInfoLSer orderInfo;
 	private OrderUpdate update;
 	private UpdateTranStateLSer state;
 	public OrderApproveLogic() {
@@ -67,6 +71,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
 		state = new UpdateTranStateLogic();
+		orderInfo = new OrderInfoLogic();
 	}
 	public ResultMessage askExamine() {
 		
@@ -126,17 +131,12 @@ public class OrderApproveLogic implements OrderApproveLSer{
 					if(!result.equals(Result.SUCCESS)){
 						return result;
 					}
-					ArrivePO ap=(ArrivePO)message.getMessage();
+					ArriveVO ap=(ArriveVO)message.getMessage();
 					String id=ap.getId();
 					if(id.length()==19){
-						message=chooseOrder(id,Order.HALLLOADING);
-						result=message.getReInfo();
-						if(!result.equals(Result.SUCCESS)){
-							return result;
-						}
-						HallLoadingPO hp=(HallLoadingPO)message.getMessage();
+						List<String> expresses = orderInfo.getHallLoadExp(id);
 						if(approve){
-							for(String express:hp.getExpress()){
+							for(String express:expresses){
 								result=state.updateExpressState(express,ap.getCenterId());
 								if(!result.equals(Result.SUCCESS)){
 									return result;
