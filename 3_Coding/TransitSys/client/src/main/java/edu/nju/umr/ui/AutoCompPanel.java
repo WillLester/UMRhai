@@ -1,6 +1,7 @@
 package edu.nju.umr.ui;
 
 import java.awt.Font;
+import java.awt.IllegalComponentStateException;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -88,7 +89,11 @@ public class AutoCompPanel extends JPanel{
 		}
 		jc.setModel(m);
 		jc.setSelectedIndex(-1);
-		jc.showPopup();
+		try{
+			jc.showPopup();
+		}catch(IllegalComponentStateException e){
+			
+		}
 	}
 	public void setBounds(int x,int y,int width,int height){
 		super.setBounds(x, y, width, height);
