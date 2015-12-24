@@ -47,7 +47,8 @@ public class OrderRevisePanel extends PPanel{
 		this.userId = userId;
 
 		JLabel reviseLabel = new JLabel("未通过单据");
-		reviseLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		reviseLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+//		reviseLabel.setForeground(Color.white);
 		reviseLabel.setBounds(485, 40, 120, 24);
 		add(reviseLabel);
 		

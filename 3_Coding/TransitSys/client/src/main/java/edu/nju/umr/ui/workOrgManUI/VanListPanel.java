@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -64,7 +63,7 @@ public class VanListPanel extends PPanel {
 		vanList = new ArrayList<VanVO>();
 		
 		JLabel nameLabel = new JLabel("车辆信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
@@ -123,7 +122,7 @@ public class VanListPanel extends PPanel {
 		}});
 		add(modify);
 		
-		JButton forDetail = new JButton("查看详细");
+		Button forDetail = new CheckButton();
 		forDetail.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 90, 21);
 		forDetail.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {

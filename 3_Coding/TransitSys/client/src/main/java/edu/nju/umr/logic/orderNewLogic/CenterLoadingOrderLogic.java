@@ -16,6 +16,7 @@ import edu.nju.umr.logic.utilityLogic.OrderCalcuLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.CenterLoadingOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderCalcuLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
@@ -30,6 +31,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private OrderCalcuLSer orderCalcu;
+	private UpdateTranStateLSer orderState;
 	public CenterLoadingOrderLogic() {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
@@ -44,12 +46,19 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		uti=new UtilityLogic();
 		orderCalcu = new OrderCalcuLogic();
 		diarySer = new DiaryUpdateLogic();
+		orderState = new UpdateTranStateLogic();
 	}
 	public Result create(CenterLoadingVO order) {
 		// TODO 自动生成的方法存根
 		Result isSuc = Result.SUCCESS;
 		try {
 			isSuc = centerData.create(VPFactory.toCenterLoadPO(order));
+			if(isSuc.equals(Result.SUCCESS))
+			{
+				for(String express:order.getExpress()){
+					isSuc=orderState.updateExpressState(express, order.getStartOrgId()+"*#");
+				}
+			}
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());
 			}
@@ -79,6 +88,11 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 		{
 			return new ResultMessage(Result.DATABASE_ERROR,null);
 		}
+	}
+	@Override
+	public ResultMessage getExpressList(String orgId) {
+		// TODO Auto-generated method stub
+		return orderState.getExpressHere(orgId);
 	}
 
 }

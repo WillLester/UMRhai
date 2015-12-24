@@ -25,6 +25,7 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -70,7 +71,7 @@ public class UserListPanel extends PPanel {
 		this.name = name;
 		
 		JLabel accountLabel = new JLabel("用户管理");
-		accountLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		accountLabel.setBounds(504, 6, 129, 60);
 		add(accountLabel);
 		
@@ -93,7 +94,6 @@ public class UserListPanel extends PPanel {
 		add(searchButton);
 		
 		Button allButton = new AllButton();
-		allButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		allButton.setBounds(searchButton.getX()+100+Constants.INTERVAL, 74,100, 30);
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -146,67 +146,74 @@ public class UserListPanel extends PPanel {
 		add(exitButton);
 		
 		JLabel idLabel=new JLabel("账号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		idLabel.setForeground(Utils.STD_COLOR);
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		idLabel.setBounds(805,121, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(idLabel);
 		
 		JLabel passwordLabel=new JLabel("密码");
-		passwordLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		passwordLabel.setForeground(Utils.STD_COLOR);
+		passwordLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		passwordLabel.setBounds(805,171, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(passwordLabel);
 		
 		JLabel juriLabel=new JLabel("权限");
-		juriLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		juriLabel.setForeground(Utils.STD_COLOR);
+		juriLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		juriLabel.setBounds(805,221, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(juriLabel);
 		
 		JLabel nameLabel=new JLabel("姓名");
-		nameLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		nameLabel.setForeground(Utils.STD_COLOR);
+		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		nameLabel.setBounds(805,271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(nameLabel);
 		
 		JLabel orgLabel=new JLabel("机构");
-		orgLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		orgLabel.setForeground(Utils.STD_COLOR);
 		orgLabel.setBounds(805,321, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 //		add(orgLabel);
 		
 		JLabel orgIdLabel=new JLabel("机构编号");
-		orgIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		orgIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		orgIdLabel.setForeground(Utils.STD_COLOR);
 		orgIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 //		add(orgIdLabel);
 		
 		JLabel mobileIdLabel=new JLabel("手机号");
-		mobileIdLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		mobileIdLabel.setForeground(Utils.STD_COLOR);
+		mobileIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		mobileIdLabel.setBounds(805,421-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(mobileIdLabel);
 		
 		idField=new TextField();
 		idField.setText("账号");
-		idField.setFont(new Font("宋体", Font.PLAIN, 12));
+		idField.setFont(new Font("微软雅黑 ", Font.PLAIN, 12));
 		idField.setBounds(855,121,200,24);
 		add(idField);
 		
 		passwordField=new TextField();
 		passwordField.setText("密码");
-		passwordField.setFont(new Font("宋体", Font.PLAIN, 12));
+		passwordField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		passwordField.setBounds(855,171,200,24);
 		add(passwordField);
 		
 		juriBox = new JComboBox<String>();
 		juriBox.setModel(new DefaultComboBoxModel<String>(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","仓库管理员"}));
-		juriBox.setFont(new Font("宋体", Font.PLAIN, 12));
+		juriBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		juriBox.setBounds(855, 221, 200, 24);
 		add(juriBox);
 		
 		nameField=new TextField();
 		nameField.setText("姓名");
-		nameField.setFont(new Font("宋体", Font.PLAIN, 12));
+		nameField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		nameField.setBounds(855,271,200,24);
 		add(nameField);
 
 		mobileField=new TextField();
 		mobileField.setText("手机号");
-		mobileField.setFont(new Font("宋体", Font.PLAIN, 12));
+		mobileField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		mobileField.setBounds(855,421-100,200,24);
 		add(mobileField);
 		

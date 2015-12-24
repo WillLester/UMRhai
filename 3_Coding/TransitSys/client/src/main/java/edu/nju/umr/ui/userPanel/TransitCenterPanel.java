@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +27,6 @@ public class TransitCenterPanel extends UserPanel{
 		
 		Button receiveButton = new Button();
 		receiveButton.setNewImages(path+"arrive", path+"arriveSt", path+"arriveP");
-		receiveButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		receiveButton.setBounds(Constants.FIRST_X, Constants.SINGLE_Y, 95, 95);
 		this.add(receiveButton);
 		receiveButton.addActionListener(new ActionListener() {
@@ -43,7 +41,6 @@ public class TransitCenterPanel extends UserPanel{
 		
 		Button loadingButton = new Button();
 		loadingButton.setNewImages(path+"centerloading", path+"centerloadingSt", path+"centerloadingP");
-		loadingButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		loadingButton.setBounds(Constants.SECOND_X,Constants.SINGLE_Y, 95, 95);
 		this.add(loadingButton);
 		loadingButton.addActionListener(new ActionListener() {
@@ -58,7 +55,6 @@ public class TransitCenterPanel extends UserPanel{
 		
 		Button transitButton = new Button();
 		transitButton.setNewImages(path+"transit", path+"transitSt", path+"transitP");
-		transitButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		transitButton.setBounds(Constants.THIRD_X, Constants.SINGLE_Y, 95, 95);
 		this.add(transitButton);
 		transitButton.addActionListener(new ActionListener() {

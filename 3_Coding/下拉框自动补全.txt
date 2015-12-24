@@ -16,8 +16,8 @@ B添加完订单提交待审后，其中所有订单的nowOrgId+="#"
 
 生成中转中心到达单C时，备选的单据可能是 营业厅装车单B，中转单C
 备选单据为arriveLoc.equals(中转中心名称)&&arrived==false的B,C
-到达单提交待审时，其包含的B或C的arrived=true
-不通过，B或C.arrived=false
+到达单提交待审时，其包含的B或C的arrived=true;
+不通过，arrived=false
 通过，更新B或C.express中所有订单的nowOrgId为该中转中心Id
 
 生成入库单时，备选的单据是订单，备选列表为所有nowOrgId为该中转中心id的订单
@@ -37,9 +37,9 @@ D添加完订单提交待审后，其中所有订单的nowOrgId+="#"
 若不通过，订单nowOrgId=centerId+"*"
 通过，不管
 
-生成出库单时，备选的单据是中转单或中转中心装车单，备选列表为所有startPlace==中转中心名称&&arrived==false的中转单或中转中心装车单
-提交待审，arrived=true
-不过，arrived=false
+生成出库单时，备选的单据是中转单或中转中心装车单，备选列表为所有startPlace==中转中心名称&&arrived==false的,没出完库的中转单或中转中心装车单,以及其中nowOrgId==startOrgId+"*#"的订单
+提交待审，nowOrgId+="#"
+不过，nowOrgId还原
 过，不管
 
 营业厅到达单，备选为target==营业厅名称，arrived==false的两种装车单

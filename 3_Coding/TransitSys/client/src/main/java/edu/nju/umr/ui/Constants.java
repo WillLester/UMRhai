@@ -56,4 +56,13 @@ public class Constants {
 		
 		//搜索框与搜索与显示全部的间隔
 		public static final int INTERVAL=30;
+		
+		//界面布局
+		public static final int TITLE_WIDTH=120;
+		public static final int TITLE_HEIGHT=32;
+		public static final int TITLE_X=553-TITLE_WIDTH/2;
+		public static final int TITLE_Y=10;
+		public static final int LAYOUT_FIR_Y=125;
+		
+		
 }

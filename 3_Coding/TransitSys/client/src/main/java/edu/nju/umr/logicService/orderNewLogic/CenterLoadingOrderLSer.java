@@ -12,4 +12,5 @@ public interface CenterLoadingOrderLSer {
 	public ResultMessage getHalls();
 	public ResultMessage getPrice(String org1,String org2,List<String> expressList);
 	public ResultMessage getNextId(String orgId);
+	public ResultMessage getExpressList(String orgId);
 }

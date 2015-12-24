@@ -1,11 +1,10 @@
 package edu.nju.umr.ui.userPanel;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 
+import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.accountUI.AccountManPanel;
@@ -14,6 +13,7 @@ import edu.nju.umr.ui.checkUI.BusiCircumPanel;
 import edu.nju.umr.ui.checkUI.CostBenePanel;
 import edu.nju.umr.ui.checkUI.DiaryListPanel;
 import edu.nju.umr.ui.checkUI.IncomeListPanel;
+import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.orderNewUI.PaymentPanel;
 import edu.nju.umr.vo.UserVO;
 
@@ -24,12 +24,14 @@ public class FinanceSuperPanel extends UserPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -6829798067793603996L;
+	private static final String pathb="finance&manager/";
+	private static final String path="finance/";
 	public FinanceSuperPanel(UserVO user,MainFrame fr) {
 		super(user,fr);
 		
-		JButton diaryButton = new JButton("查询日志");
-		diaryButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		diaryButton.setBounds(269, 192, 112, 83);
+		Button diaryButton = new Button();
+		diaryButton.setNewImages(pathb+"diary", pathb+"diarySt", pathb+"diaryP");
+		diaryButton.setBounds(Constants.FIRST_X, Constants.THERE_Y, 95, 95);
 		this.add(diaryButton);
 		diaryButton.addActionListener(new ActionListener() {
 			
@@ -41,9 +43,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton busiCircumButton = new JButton("经营情况表");
-		busiCircumButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		busiCircumButton.setBounds(516, 192, 112, 83);
+		Button busiCircumButton = new Button();
+		busiCircumButton.setNewImages(pathb+"busiCircum", pathb+"busiCircumSt", pathb+"busiCircumP");
+		busiCircumButton.setBounds(Constants.SECOND_X, Constants.THERE_Y, 95, 95);
 		this.add(busiCircumButton);
 		busiCircumButton.addActionListener(new ActionListener() {
 			
@@ -55,9 +57,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton costBeneButton = new JButton("成本收益表");
-		costBeneButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		costBeneButton.setBounds(760, 192, 112, 83);
+		Button costBeneButton = new Button();
+		costBeneButton.setNewImages(pathb+"costBene", pathb+"costBeneSt", pathb+"costBeneP");
+		costBeneButton.setBounds(Constants.THIRD_X, Constants.THERE_Y, 95, 95);
 		this.add(costBeneButton);
 		costBeneButton.addActionListener(new ActionListener() {
 			
@@ -69,9 +71,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton incomeButton = new JButton("查看收款记录");
-		incomeButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		incomeButton.setBounds(269, 333, 112, 83);
+		Button incomeButton = new Button();
+		incomeButton.setNewImages(path+"incomeList", path+"incomeListSt",path+"incomeListP");
+		incomeButton.setBounds(Constants.FIRST_X, Constants.THERE_SEC_Y, 95,95);
 		this.add(incomeButton);
 		incomeButton.addActionListener(new ActionListener() {
 			
@@ -83,9 +85,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton countButton = new JButton("期初建账");
-		countButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		countButton.setBounds(516, 333, 112, 83);
+		Button countButton = new Button();
+		countButton.setNewImages(path+"count", path+"countSt", path+"countP");
+		countButton.setBounds(Constants.SECOND_X, Constants.THERE_SEC_Y, 95, 95);
 		this.add(countButton);
 		countButton.addActionListener(new ActionListener() {
 			
@@ -97,9 +99,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton paymentButton = new JButton("生成付款单");
-		paymentButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		paymentButton.setBounds(269, 477, 112, 83);
+		Button paymentButton = new Button();
+		paymentButton.setNewImages(path+"payment", path+"paymentSt",path+"paymentP");
+		paymentButton.setBounds(Constants.FIRST_X, Constants.THERE_THI_Y, 95,95);
 		this.add(paymentButton);
 		paymentButton.addActionListener(new ActionListener() {
 			
@@ -111,9 +113,9 @@ public class FinanceSuperPanel extends UserPanel{
 			}
 		});
 		
-		JButton accountButton = new JButton("账户管理");
-		accountButton.setFont(new Font("宋体", Font.PLAIN, 12));
-		accountButton.setBounds(760, 333, 112, 83);
+		Button accountButton = new Button();
+		accountButton.setNewImages(path+"account", path+"accountSt", path+"accountP");
+		accountButton.setBounds(Constants.THIRD_X, Constants.THERE_SEC_Y, 95, 95);
 		this.add(accountButton);
 		accountButton.addActionListener(new ActionListener() {
 			
@@ -126,7 +128,7 @@ public class FinanceSuperPanel extends UserPanel{
 		});
 		
 		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(853, 10, 200, 30);
+		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
 		add(upo);
 	}
 

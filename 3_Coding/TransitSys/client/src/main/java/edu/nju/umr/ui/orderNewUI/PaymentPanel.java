@@ -24,6 +24,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -37,8 +38,8 @@ public class PaymentPanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 3964332892070986657L;
-	private JTextField payerField;
-	private JTextField costField;
+	private TextField payerField;
+	private TextField costField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private String[] accountList;
@@ -48,7 +49,7 @@ public class PaymentPanel extends PPanel {
 	private JComboBox<String> reasonCombo;
 	private JTextArea remarkArea;
 	private String userId;
-	private JTextField idField;
+	private TextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -94,7 +95,7 @@ public class PaymentPanel extends PPanel {
 		payerLabel.setBounds(235, 175, 85, 24);
 		add(payerLabel);
 		
-		payerField = new JTextField();
+		payerField = new TextField();
 		payerField.setFont(new Font("宋体", Font.PLAIN, 20));
 		payerField.setColumns(10);
 		payerField.setBounds(302, 174, 85, 25);
@@ -105,7 +106,7 @@ public class PaymentPanel extends PPanel {
 		amountLabel.setBounds(397, 175, 85, 24);
 		add(amountLabel);
 		
-		costField = new JTextField();
+		costField = new TextField();
 		costField.setFont(new Font("宋体", Font.PLAIN, 20));
 		costField.setColumns(10);
 		costField.setBounds(487, 174, 85, 25);
@@ -181,7 +182,7 @@ public class PaymentPanel extends PPanel {
 		idLabel.setBounds(286, 66, 120, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(458, 66, 251, 25);
 		add(idField);

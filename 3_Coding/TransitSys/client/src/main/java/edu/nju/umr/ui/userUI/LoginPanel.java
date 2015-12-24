@@ -77,8 +77,8 @@ public class LoginPanel extends JPanel {
 		idField.setColumns(10);
 		
 		JLabel idLabel = new JLabel("账号");
-		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(469, 340, 40, 24);
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		Color color = new Color(57, 152,214);
 		idLabel.setForeground(color);
 		add(idLabel);

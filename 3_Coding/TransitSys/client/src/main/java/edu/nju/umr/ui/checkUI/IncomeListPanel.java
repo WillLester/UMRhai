@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.checkUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,8 +98,10 @@ public class IncomeListPanel extends PPanel {
 				}
 			}
 		});
+		Color color = new Color(57, 152,214);
 		
 		JLabel hallLabel = new JLabel("营业厅");
+		hallLabel.setForeground(color);
 		hallLabel.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(hallLabel);
 		
@@ -121,13 +124,15 @@ public class IncomeListPanel extends PPanel {
 		add(confirm);
 		
 		JLabel nameLabel = new JLabel("收款记录");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
+//		hallLabel.setForeground(Color.white);
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
 		
 		listLabel = new JLabel("收款记录");
-		listLabel.setFont(new Font("华文新魏",Font.PLAIN,15));
+		listLabel.setForeground(color);
+		listLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		listLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*4+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		
 		tableInit();

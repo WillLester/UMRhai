@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.accountUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,11 +76,14 @@ public class CountInfoPanel extends PPanel{
 		
 		JLabel countLabel = new JLabel("期初信息查看");
 		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+//		countLabel.setForeground(Color.white);
 		countLabel.setBounds(483, 6, 137, 98);
 		add(countLabel);
 		
 		JLabel orgLabel = new JLabel("机构信息");
-		orgLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		Color color = new Color(57, 152,214);
+		orgLabel.setForeground(color);
 		orgLabel.setBounds(234, 82, 67, 17);
 		add(orgLabel);
 		
@@ -108,7 +112,8 @@ public class CountInfoPanel extends PPanel{
 		
 		
 		JLabel stockLabel = new JLabel("库存信息");
-		stockLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		stockLabel.setForeground(color);
+		stockLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		stockLabel.setBounds(518, 82, 67, 17);
 		add(stockLabel);
 		
@@ -135,7 +140,8 @@ public class CountInfoPanel extends PPanel{
 		
 		
 		JLabel accountLabel = new JLabel("账户信息");
-		accountLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		accountLabel.setForeground(color);
 		accountLabel.setBounds(808, 82, 67, 17);
 		add(accountLabel);
 		
@@ -161,7 +167,8 @@ public class CountInfoPanel extends PPanel{
 		
 		
 		JLabel workerLabel = new JLabel("人员信息");
-		workerLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		workerLabel.setForeground(color);
+		workerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		workerLabel.setBounds(234, 138, 67, 17);
 		add(workerLabel);
 		
@@ -180,7 +187,8 @@ public class CountInfoPanel extends PPanel{
 		add(workerCombo);
 		
 		JLabel mobileLabel = new JLabel("手机号");
-		mobileLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		mobileLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		mobileLabel.setForeground(color);
 		mobileLabel.setBounds(155, 200, 53, 34);
 		add(mobileLabel);
 		
@@ -191,7 +199,8 @@ public class CountInfoPanel extends PPanel{
 		mobileField.setColumns(10);
 		
 		JLabel dutyLabel = new JLabel("职务");
-		dutyLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		dutyLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		dutyLabel.setForeground(color);
 		dutyLabel.setBounds(155, 235, 45, 34);
 		add(dutyLabel);
 		
@@ -216,12 +225,14 @@ public class CountInfoPanel extends PPanel{
 		add(vanCombo);
 		
 		JLabel vanLabel = new JLabel("车辆信息");
-		vanLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		vanLabel.setForeground(color);
+		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		vanLabel.setBounds(234, 279, 67, 17);
 		add(vanLabel);
 		
 		JLabel plateLabel = new JLabel("车牌号");
-		plateLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		plateLabel.setForeground(color);
+		plateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		plateLabel.setBounds(155, 342, 53, 34);
 		add(plateLabel);
 		
@@ -232,7 +243,8 @@ public class CountInfoPanel extends PPanel{
 		plateField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("服役时间");
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		dateLabel.setForeground(color);
+		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		dateLabel.setBounds(155, 378, 67, 34);
 		add(dateLabel);
 		
@@ -243,7 +255,8 @@ public class CountInfoPanel extends PPanel{
 		dateField.setColumns(10);
 		
 		JLabel goodLabel = new JLabel("货物信息");
-		goodLabel.setFont(new Font("华文新魏", Font.PLAIN, 15));
+		goodLabel.setForeground(color);
+		goodLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		goodLabel.setBounds(518, 138, 67, 17);
 		add(goodLabel);
 		
@@ -262,7 +275,8 @@ public class CountInfoPanel extends PPanel{
 		add(goodCombo);
 		
 		JLabel inDateLabel = new JLabel("入库时间");
-		inDateLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		inDateLabel.setForeground(color);
+		inDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		inDateLabel.setBounds(437, 185, 67, 34);
 		add(inDateLabel);
 		
@@ -273,7 +287,8 @@ public class CountInfoPanel extends PPanel{
 		inDateField.setColumns(10);
 		
 		JLabel destinationLabel = new JLabel("到达地");
-		destinationLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		destinationLabel.setForeground(color);
+		destinationLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		destinationLabel.setBounds(437, 220, 59, 34);
 		add(destinationLabel);
 		
@@ -284,7 +299,8 @@ public class CountInfoPanel extends PPanel{
 		destinationField.setColumns(10);
 		
 		JLabel partLabel = new JLabel("区");
-		partLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		partLabel.setForeground(color);
+		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partLabel.setBounds(437, 254, 45, 34);
 		add(partLabel);
 		
@@ -295,7 +311,8 @@ public class CountInfoPanel extends PPanel{
 		partField.setColumns(10);
 		
 		JLabel shelfLabel = new JLabel("架");
-		shelfLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		shelfLabel.setForeground(color);
+		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		shelfLabel.setBounds(437, 286, 59, 34);
 		add(shelfLabel);
 		
@@ -306,7 +323,8 @@ public class CountInfoPanel extends PPanel{
 		shelfField.setColumns(10);
 		
 		JLabel rowLabel = new JLabel("排");
-		rowLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		rowLabel.setForeground(color);
+		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		rowLabel.setBounds(437, 322, 59, 34);
 		add(rowLabel);
 		
@@ -317,7 +335,8 @@ public class CountInfoPanel extends PPanel{
 		rowField.setColumns(10);
 		
 		JLabel placeLabel = new JLabel("位");
-		placeLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		placeLabel.setForeground(color);
+		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		placeLabel.setBounds(437, 357, 59, 34);
 		add(placeLabel);
 		
@@ -328,7 +347,8 @@ public class CountInfoPanel extends PPanel{
 		placeField.setColumns(10);
 		
 		JLabel balanceLabel = new JLabel("账户余额");
-		balanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		balanceLabel.setForeground(color);
+		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		balanceLabel.setBounds(723, 135, 67, 34);
 		add(balanceLabel);
 		

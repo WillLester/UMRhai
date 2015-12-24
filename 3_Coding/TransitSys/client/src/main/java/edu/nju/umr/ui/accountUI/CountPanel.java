@@ -50,7 +50,8 @@ public class CountPanel extends PPanel{
 		logicSer=new CountLogic();
 		
 		JLabel countLabel = new JLabel("期初建账");
-		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		countLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+//		countLabel.setForeground(Color.white);
 		countLabel.setBounds(6*Constants.WIDTH_DIV_15, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
 		add(countLabel);
 		

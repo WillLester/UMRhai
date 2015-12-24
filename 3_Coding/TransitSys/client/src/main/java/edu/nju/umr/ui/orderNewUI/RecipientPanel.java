@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -19,11 +20,11 @@ import edu.nju.umr.logic.orderNewLogic.RecipientOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
-import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.CheckLegal;
@@ -39,7 +40,7 @@ public class RecipientPanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -2907522992276366929L;
-	private TextField transitIdField;
+	private AutoCompPanel transitIdField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private JComboBox<String> cityCombo;
@@ -55,7 +56,7 @@ public class RecipientPanel extends PPanel {
 	 */
 	public RecipientPanel(JFrame fr,RecipientVO vo)
 	{
-		this(fr,vo.getOpName(),null,vo.getUserId());
+		this(fr,vo.getOpName(),null,vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -70,7 +71,7 @@ public class RecipientPanel extends PPanel {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public RecipientPanel(JFrame fr,String name,String orgId,String userId) {
+	public RecipientPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
@@ -89,11 +90,10 @@ public class RecipientPanel extends PPanel {
 		transitIdLabel.setBounds(342+40, 216, 107, 24);
 		add(transitIdLabel);
 		
-		transitIdField = new TextField();
+		transitIdField = new AutoCompPanel();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
 		transitIdField.setBounds(474+40, 216, 193, 24);
 		add(transitIdField);
-		transitIdField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
@@ -173,6 +173,14 @@ public class RecipientPanel extends PPanel {
 		idField.setColumns(10);
 		if(orgId != null){
 			getId();
+		}
+		if(org!=null){
+			ResultMessage message=logicSer.getComingLoadingOrder(org);
+			Result result=message.getReInfo();
+			if(result.equals(Result.SUCCESS)){
+				ArrayList<String> ar=(ArrayList<String>)message.getMessage();
+				transitIdField.setAllItem(ar);
+			}
 		}
 	}
 	

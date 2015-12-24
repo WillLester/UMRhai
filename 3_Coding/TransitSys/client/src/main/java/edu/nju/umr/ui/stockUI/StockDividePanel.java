@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -22,7 +23,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -34,7 +35,7 @@ import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 
-public class StockDividePanel extends PPanel{
+public class StockDividePanel extends JPanel{
 	/**
 	 * 
 	 */
@@ -60,7 +61,7 @@ public class StockDividePanel extends PPanel{
 		this.orgId = orgId;
 		
 		JLabel divideLabel = new JLabel("库存分区");
-		divideLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		divideLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		divideLabel.setBounds(508, 36, 88, 24);
 		add(divideLabel);
 		
@@ -88,7 +89,8 @@ public class StockDividePanel extends PPanel{
 		add(searchButton);
 		
 		JLabel idLabel = new JLabel("编号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		idLabel.setFont(Utils.COMBO_FONT);
+		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setBounds(206, 500, 54, 24);
 		add(idLabel);
 		
@@ -99,7 +101,8 @@ public class StockDividePanel extends PPanel{
 		idField.setColumns(10);
 		
 		JLabel rowLabel = new JLabel("排数");
-		rowLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		rowLabel.setFont(Utils.COMBO_FONT);
+		rowLabel.setForeground(Utils.STD_COLOR);
 		rowLabel.setBounds(370, 500, 54, 24);
 		add(rowLabel);
 		
@@ -109,7 +112,8 @@ public class StockDividePanel extends PPanel{
 		rowField.setColumns(10);
 		
 		JLabel placeLabel = new JLabel("每排位数");
-		placeLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		placeLabel.setFont(Utils.COMBO_FONT);
+		placeLabel.setForeground(Utils.STD_COLOR);
 		placeLabel.setBounds(541, 500, 71, 24);
 		add(placeLabel);
 		
@@ -119,7 +123,8 @@ public class StockDividePanel extends PPanel{
 		placeField.setColumns(10);
 		
 		JLabel partLabel = new JLabel("所在区");
-		partLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		partLabel.setFont(Utils.COMBO_FONT);
+		partLabel.setForeground(Utils.STD_COLOR);
 		partLabel.setBounds(742, 500, 54, 24);
 		add(partLabel);
 		

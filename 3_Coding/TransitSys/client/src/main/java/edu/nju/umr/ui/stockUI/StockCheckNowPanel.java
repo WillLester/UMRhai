@@ -52,7 +52,7 @@ public class StockCheckNowPanel extends PPanel{
 //		logicSer = new StockCheckNowPanelStub();
 		
 		JLabel checkLabel = new JLabel("库存盘点");
-		checkLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
+		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		checkLabel.setBounds(504, 31, 95, 24);
 		add(checkLabel);
 		
