@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.transitInfoLogic.CustomerLogic;
@@ -18,6 +17,9 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRTextArea;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
@@ -32,7 +34,7 @@ public class TransitInfoInqPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 640397412841029930L;
-	private JTextField idField;
+	private TextField idField;
 	private CustomerLogicSer logicSer;
 	private ArrayList<String> info;
 	private MainFrame frame;
@@ -46,19 +48,19 @@ public class TransitInfoInqPanel extends JPanel {
 		frame = fr;
 		this.setBounds(150, 0, 1229, 691);
 		
-		JLabel titleLabel = new JLabel("物流历史轨迹查询");
+		JLabel titleLabel = new TitleLabel("物流轨迹查询");
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(364, 10, 242, 67);
 		add(titleLabel);
 		
-		JLabel idLabel = new JLabel("订单编号");
+		JLabel idLabel = new ELabel("订单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setBounds(305, 107, 120, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setBounds(408, 110, 193, 24);
 		add(idField);
 		idField.setColumns(10);
