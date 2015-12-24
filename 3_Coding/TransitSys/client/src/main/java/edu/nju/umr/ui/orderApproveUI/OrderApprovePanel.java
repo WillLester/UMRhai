@@ -251,6 +251,12 @@ public class OrderApprovePanel extends PPanel{
 		for(int i=0;i<orderList.size();i++)
 		{
 			table.setValueAt(true,i,0);
+			passedButton.setEnabled(true);
+			unpassedButton.setEnabled(true);
+			checkButton.setEnabled(true);
+			if(i>0){
+				checkButton.setEnabled(false);
+			}
 		}
 	}
 	private void checkOrder(){
