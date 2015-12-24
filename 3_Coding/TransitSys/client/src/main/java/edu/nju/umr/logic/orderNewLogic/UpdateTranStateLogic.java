@@ -105,7 +105,7 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	}
 	@Override
 	public Result updateCenterLoadingState(String id, boolean arrived) {
-		CenterLoadingPO cl=new CenterLoadingPO(null, id,null, null, null, null, null, null, null, 0, null, arrived, null);
+		CenterLoadingPO cl=new CenterLoadingPO(null, id,null, null, null, null, null, null, null, 0, null, arrived, null,null);
 		try{
 			return updateData.updateTranState(cl);
 		}catch(RemoteException e){
