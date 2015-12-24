@@ -178,6 +178,7 @@ public class RecipientPanel extends PPanel {
 			ResultMessage message=logicSer.getComingLoadingOrder(org);
 			Result result=message.getReInfo();
 			if(result.equals(Result.SUCCESS)){
+				@SuppressWarnings("unchecked")
 				ArrayList<String> ar=(ArrayList<String>)message.getMessage();
 				transitIdField.setAllItem(ar);
 			}
