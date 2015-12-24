@@ -111,4 +111,26 @@ public class OrderInfoLogic implements OrderInfoLSer{
 			return new ArrayList<String>();
 		}
 	}
+
+	@Override
+	public String getStockInExp(String id) {
+		// TODO 自动生成的方法存根
+		try {
+			return dataSer.getStockInExp(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return "";
+		}
+	}
+
+	@Override
+	public String getStockOutExp(String id) {
+		// TODO 自动生成的方法存根
+		try {
+			return dataSer.getStockOutExp(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			return "";
+		}
+	}
 }

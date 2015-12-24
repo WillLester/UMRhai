@@ -66,4 +66,18 @@ public interface OrderInfoLSer {
 	 * @see ExpressPO
 	 */
 	public List<ExpressPO> getExpresses(List<String> expressList);
+	
+	/**
+	 * 根据入库单号获得入库的订单ID
+	 * @param id 入库单ID
+	 * @return 订单ID，发生错误时返回""
+	 */
+	public String getStockInExp(String id);
+	
+	/**
+	 * 根据出库单号获得出库的订单ID
+	 * @param id 出库单ID
+	 * @return 订单ID 发生错误时返回""
+	 */
+	public String getStockOutExp(String id);
 }
