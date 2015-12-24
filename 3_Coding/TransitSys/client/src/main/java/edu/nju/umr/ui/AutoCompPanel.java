@@ -110,4 +110,9 @@ public class AutoCompPanel extends JPanel{
 		jt.setFont(font);
 		jc.setFont(font);
 	}
+	public void setEnabled(boolean enabled){
+		super.setEnabled(enabled);
+		jt.setEnabled(enabled);
+		jc.setEnabled(enabled);
+	}
 }
