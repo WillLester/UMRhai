@@ -104,7 +104,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 //			}
 			ids.add(order.getId());
 			try {
-				results.add(approveData.update(approve, ids, order.getKind()));
 				
 				if(approve==false&&order.getKind().equals(Order.HALLLOADING)){
 					ResultMessage message = chooseOrder(ids.get(0),order.getKind());
@@ -305,6 +304,7 @@ public class OrderApproveLogic implements OrderApproveLSer{
 					state.updateExpressState(exp, sp.getId().substring(0,6)+"*");
 				}
 				
+				results.add(approveData.update(approve, ids, order.getKind()));
 			} catch (RemoteException e){
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;
