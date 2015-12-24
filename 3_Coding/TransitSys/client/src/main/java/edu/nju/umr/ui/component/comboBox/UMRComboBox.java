@@ -38,7 +38,7 @@ public class UMRComboBox<E> extends JComboBox<E>{
 		setOpaque(false);
 		setUI(new UMRComboBoxUI());
 		setRenderer(new UMRComboBoxRenderer<E>());
-		setBackground(Color.WHITE);
+		setBackground(null);
 	}
 	
 	public Dimension getPreferredSize(){
