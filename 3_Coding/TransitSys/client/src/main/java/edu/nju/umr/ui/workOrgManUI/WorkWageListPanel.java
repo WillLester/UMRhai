@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -48,6 +48,7 @@ public class WorkWageListPanel extends PPanel {
 	private WageManLSer logicSer;
 	private ArrayList<WageVO> wageList;
 	private String name;
+	private static final int y=20;
 	/**
 	 * Create the panel.
 	 */
@@ -60,13 +61,11 @@ public class WorkWageListPanel extends PPanel {
 //		logicSer = new WorkWageListPanelStub();
 		wageList = new ArrayList<WageVO>();
 		
-		JLabel nameLabel = new JLabel("人员薪水信息列表");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+60, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("薪水管理");
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20, 600, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,y+Constants.TABLE_Y+20, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -139,7 +138,7 @@ public class WorkWageListPanel extends PPanel {
 		
 		
 		Button make = new Button();
-		make.setNewImages("buttonWageMake", "buttonWageMakeSt", "buttonWageMakeP");
+		make.setNewImages("buttonWage", "buttonWageSt", "buttonWageP");
 		make.setBounds(getWidth()-300, wageInit.getY(), 100, 30);
 		make.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

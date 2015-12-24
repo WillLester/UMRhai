@@ -18,7 +18,7 @@ public class TitleLabel extends JLabel {
 		setText(title);
 		setFont(Utils.TITLE_FONT);
 		this.setForeground(Color.WHITE);
-		setBounds(Constants.TITLE_X,Constants.TITLE_Y,Constants.TITLE_WIDTH,Constants.TITLE_HEIGHT);
+		setBounds(Constants.TITLE_X,Constants.TITLE_Y,Constants.TITLE_WIDTH+50,Constants.TITLE_HEIGHT);
 		
 	}
 
