@@ -24,7 +24,9 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -45,6 +47,7 @@ public class DiaryListPanel extends PPanel {
 	private DefaultTableModel model;
 	private DiaryLSer serv;
 	private ArrayList<DiaryVO> diaryList;
+	private static final int y=20;
 	/**
 	 * Create the panel.
 	 */
@@ -57,26 +60,28 @@ public class DiaryListPanel extends PPanel {
 		
 		Color color = new Color(57, 152,214);
 		
-		JLabel start = new JLabel("开始日期");
+		JLabel start = new ELabel("开始日期");
+		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		start.setForeground(color);
-		start.setBounds(Constants.TABLE_X, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
 		DateTimePanel startDate=new DateTimePanel();
-		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+4, 530, 21);
+		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 530, 21);
 		add(startDate);
 		
-		JLabel end = new JLabel("结束日期");
+		JLabel end = new ELabel("结束日期");
+		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		end.setForeground(color);
-		end.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
 		DateTimePanel endDate=new DateTimePanel();
-		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 530, 21);
+		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4+3, 530, 21);
 		add(endDate);
 		
 		Button cancel = new CanButton();
-		cancel.setBounds(Constants.PANEL_WIDTH/10*8+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100,30);
+		cancel.setBounds(Constants.PANEL_WIDTH/10*8+10, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100,30);
 		cancel.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -87,7 +92,7 @@ public class DiaryListPanel extends PPanel {
 		add(cancel);
 		
 		Button confirm = new ConfirmButton();
-		confirm.setBounds(Constants.PANEL_WIDTH/10*7+10, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100, 30);
+		confirm.setBounds(Constants.PANEL_WIDTH/10*7+10, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100, 30);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -109,13 +114,10 @@ public class DiaryListPanel extends PPanel {
 		JLabel diaryLable = new JLabel("日志记录");
 		diaryLable.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		diaryLable.setForeground(color);
-		diaryLable.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		diaryLable.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(diaryLable);
 		
-		JLabel nameLabel = new JLabel("日志记录");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
-//		nameLabel.setForeground(Color.white);
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("日志记录");
 		add(nameLabel);
 		
 		Button button = new ExitButton();

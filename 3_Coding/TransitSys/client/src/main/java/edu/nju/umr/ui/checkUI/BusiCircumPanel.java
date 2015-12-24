@@ -27,6 +27,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
@@ -70,7 +71,7 @@ public class BusiCircumPanel extends PPanel {
 		add(start);
 		
 		DatePanel startDate=new DatePanel();
-		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4, 267, 21);
+		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 267, 21);
 		add(startDate);
 		
 		JLabel end = new JLabel("结束日期");
@@ -80,7 +81,7 @@ public class BusiCircumPanel extends PPanel {
 		add(end);
 		
 		DatePanel endDate=new DatePanel();
-		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 267, 21);
+		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4+3, 267, 21);
 		add(endDate);
 		
 		Button exportButton = new OutputButton();
@@ -102,7 +103,7 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(confirm);
 		
-		JLabel statementLabel = new JLabel("经营情况表");
+		JLabel statementLabel = new ELabel("经营情况表");
 		statementLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 //		statementLabel.setForeground(Color.WHITE);
 		statementLabel.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
