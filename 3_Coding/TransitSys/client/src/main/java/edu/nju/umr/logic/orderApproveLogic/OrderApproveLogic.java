@@ -225,6 +225,8 @@ public class OrderApproveLogic implements OrderApproveLSer{
 						}
 					}
 				}
+				
+				
 			} catch (RemoteException e){
 				e.printStackTrace();
 				return Result.NET_INTERRUPT;

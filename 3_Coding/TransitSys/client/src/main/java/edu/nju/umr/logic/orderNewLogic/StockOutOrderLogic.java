@@ -2,6 +2,7 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import edu.nju.umr.constants.DateFormat;
@@ -13,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Result;
@@ -26,6 +28,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 	private UtilityLogic uti=new UtilityLogic();
 	private OrderInfoLSer orderInfo;
 	private DiaryUpdateLSer diarySer;
+	private UpdateTranStateLSer orderState;
 	public StockOutOrderLogic(){
 		try{
 			dataFac=(StockOutOrderDFacSer)Naming.lookup(Url.URL);
@@ -36,6 +39,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		uti = new UtilityLogic();
 		orderInfo = new OrderInfoLogic();
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(StockOutVO order) {
 		Result isSuccessful=Result.DATABASE_ERROR;
@@ -88,6 +92,31 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 		{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public ResultMessage getGoingOrders(String org) {
+		ArrayList<String> ar = new ArrayList<String>();
+		ResultMessage message=orderState.getGoingCenterLoading(org, false);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return new ResultMessage(result,null);
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		message=orderState.getGoingTransit(org, false);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return new ResultMessage(result,null);
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		return new ResultMessage(Result.SUCCESS,ar);
+	}
+	@Override
+	public ResultMessage getGoingExpress(String orderId) {
+		ArrayList<String> ar = new ArrayList<String>();
+		ar.addAll(orderInfo.getCenterLoadExp(orderId));
+		ar.addAll(orderInfo.getTransitExp(orderId));
+		return new ResultMessage(Result.SUCCESS,ar);
 	}
 
 }
