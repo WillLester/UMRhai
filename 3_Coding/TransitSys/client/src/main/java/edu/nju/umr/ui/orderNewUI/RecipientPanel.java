@@ -137,14 +137,14 @@ public class RecipientPanel extends PPanel {
 				// TODO 自动生成的方法存根
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
-					DoHint.hint(result, frame);
+					DoHint.hint(result, frame,true);
 					if(result.equals(Result.SUCCESS)){
-						DoHint.hint(result, frame);
-						if(result.equals(Result.SUCCESS)){
-							confirmButton.setEnabled(false);
-						}
-						frame.setTitle("派件单生成");
-						frame.setContentPane(new SendPanel(frame,name,orgId,userId,(LinkedList<String>) logicSer.expressList(transitIdField.getText())));
+//						DoHint.hint(result, frame);
+//						if(result.equals(Result.SUCCESS)){
+//							confirmButton.setEnabled(false);
+//						}
+//						frame.setTitle("派件单生成");
+//						frame.setContentPane(new SendPanel(frame,name,orgId,userId,(LinkedList<String>) logicSer.expressList(transitIdField.getText())));
 					}
 				} 
 			}

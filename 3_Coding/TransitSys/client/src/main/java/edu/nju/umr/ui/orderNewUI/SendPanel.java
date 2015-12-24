@@ -142,9 +142,9 @@ public class SendPanel extends PPanel {
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);
 					}
+						express.removeFirst();
 						if(!express.isEmpty()){
 							DoHint.hint(result, frame);
-							express.removeFirst();
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);
