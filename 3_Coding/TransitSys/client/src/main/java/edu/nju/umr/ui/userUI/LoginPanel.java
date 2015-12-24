@@ -134,7 +134,6 @@ public class LoginPanel extends JPanel {
 		});
 		closeButton.setBounds(625, 450, 150, 45);
 		add(closeButton);
-
 	}
 	protected void paintComponent(Graphics g){
 		Image backGround = new ImageIcon("ui/frame/main.png").getImage();

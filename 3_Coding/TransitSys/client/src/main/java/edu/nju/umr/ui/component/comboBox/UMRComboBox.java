@@ -6,10 +6,7 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
-import edu.nju.umr.ui.component.Utils;
-
 public class UMRComboBox<E> extends JComboBox<E>{
-
 	/**
 	 * 
 	 */
@@ -40,7 +37,7 @@ public class UMRComboBox<E> extends JComboBox<E>{
 		setOpaque(false);
 		setUI(new UMRComboBoxUI());
 		setRenderer(new UMRComboBoxRenderer<E>());
-		setBackground(Utils.STD_COLOR);
+		setBackground(null);
 	}
 	
 	public Dimension getPreferredSize(){

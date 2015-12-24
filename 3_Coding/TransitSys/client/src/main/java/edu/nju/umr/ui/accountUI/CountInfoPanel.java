@@ -11,13 +11,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -29,7 +29,7 @@ import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
-public class CountInfoPanel extends JPanel{
+public class CountInfoPanel extends PPanel{
 	/**
 	 * 
 	 */
@@ -153,8 +153,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(arg0.getStateChange() == ItemEvent.SELECTED){
-					AccountVO account = accountList.get(accountCombo.getSelectedIndex());
-					balanceField.setText(account.getBalance()+"");
+					setAccountInfo(accountCombo.getSelectedIndex());
 				}
 			}
 		});
@@ -256,13 +255,7 @@ public class CountInfoPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					GoodVO good = goodPresented.get(goodCombo.getSelectedIndex());
-					inDateField.setText(DateFormat.DATE.format(good.getDate().getTime()));
-					destinationField.setText(good.getCity());
-					partField.setText(EnumTransFactory.checkPart(good.getPart()));
-					shelfField.setText(good.getShelf());
-					rowField.setText(good.getRow()+"");
-					placeField.setText(good.getPlace()+"");
+					setGoodInfo(goodCombo.getSelectedIndex());
 				}
 			}
 		});
@@ -370,6 +363,12 @@ public class CountInfoPanel extends JPanel{
 			setVanCombo(org.getId());
 		}
 		setGoodCombo(0);
+		if(goodPresented.size() > 0){
+			setGoodInfo(0);
+		}
+		if(accountList.size() > 0){
+			setAccountInfo(0);
+		}
 	}
 	
 	private void setWorkCombo(String orgName){
@@ -423,5 +422,20 @@ public class CountInfoPanel extends JPanel{
 		VanVO van = vanPresented.get(index);
 		plateField.setText(van.getPlateNum());
 		dateField.setText(DateFormat.DATE.format(van.getServTime().getTime()));
+	}
+	
+	private void setGoodInfo(int index){
+		GoodVO good = goodPresented.get(index);
+		inDateField.setText(DateFormat.DATE.format(good.getDate().getTime()));
+		destinationField.setText(good.getCity());
+		partField.setText(EnumTransFactory.checkPart(good.getPart()));
+		shelfField.setText(good.getShelf());
+		rowField.setText(good.getRow()+"");
+		placeField.setText(good.getPlace()+"");
+	}
+	
+	private void setAccountInfo(int index){
+		AccountVO account = accountList.get(index);
+		balanceField.setText(account.getBalance()+"");
 	}
 }

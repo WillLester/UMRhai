@@ -75,7 +75,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getCenterLoad(String userId){
-		OrderOper po = new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, userId,false,null);
+		OrderOper po = new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, userId,false,null,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceCenterLoad(result);
@@ -176,7 +176,7 @@ public class OrderResubmitData extends UnicastRemoteObject implements OrderResub
 	}
 	
 	private ArrayList<KindGetter> getTransit(String userId){
-		OrderOper po = new TransitPO(null, null, null, null, null, null, null, null, null, null, 0, userId,null,false);
+		OrderOper po = new TransitPO(null, null, null, null, null, null, null, null, null, null, 0, userId,null,false,null);
 		ResultSet result = mysqlSer.checkUnpassed(po);
 		if(!isNull(result)){
 			ArrayList<KindGetter> list = OrderListFactory.produceTransit(result);

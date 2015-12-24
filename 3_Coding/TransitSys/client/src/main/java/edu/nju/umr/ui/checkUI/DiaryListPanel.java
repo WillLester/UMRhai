@@ -8,7 +8,6 @@ import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -24,6 +23,7 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -34,7 +34,7 @@ import edu.nju.umr.vo.ResultMessage;
  * 20151028
  * 查看日志记录panel
  */
-public class DiaryListPanel extends JPanel {
+public class DiaryListPanel extends PPanel {
 	/**
 	 * 
 	 */

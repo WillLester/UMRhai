@@ -10,7 +10,7 @@ import edu.nju.umr.logic.transitInfoLogic.CourierLogic;
 import edu.nju.umr.logicService.transitInfoLogicSer.CourierLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.button.CheckButton;
+import edu.nju.umr.ui.component.button.SearchButton;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
@@ -22,7 +22,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -6608025281059459114L;
-	protected Button checkButton;
+	protected Button searchButton;
 	private CourierLSer logicSer;
 	/**
 	 * Create the panel.
@@ -31,10 +31,10 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		super(fr,"","","");
 		logicSer = new CourierLogic();
 		titleLabel.setText("订单查询");
-		checkButton = new CheckButton();
-		checkButton.addActionListener(new InqListener());
-		checkButton.setBounds(518, 66, 100, 30);
-		add(checkButton);
+		searchButton = new SearchButton();
+		searchButton.addActionListener(new InqListener());
+		searchButton.setBounds(532, 63, 100, 30);
+		add(searchButton);
 		setEnabled();
 		
 		confirmButton.removeActionListener(conListener);

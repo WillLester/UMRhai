@@ -16,9 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
@@ -30,7 +28,9 @@ import edu.nju.umr.po.enums.Parse;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.CheckLegal;
@@ -39,28 +39,28 @@ import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.order.ExpressVO;
 
-public class ExpressPanel extends JPanel {
+public class ExpressPanel extends PPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 472329397579383210L;
-	protected JTextField barcodeField;
-	protected JTextField senderField;
-	protected JTextField senderCompanyField;
-	protected JTextField senderMobileField;
-	protected JTextField senderPhoneField;
-	protected JTextField receiverField;
-	protected JTextField receiverCompanyField;
-	protected JTextField receiverMobileField;
-	protected JTextField receiverPhoneField;
-	protected JTextField volumnField;
-	protected JTextField weightField;
-	protected JTextField nameField;
+	protected TextField barcodeField;
+	protected TextField senderField;
+	protected TextField senderCompanyField;
+	protected TextField senderMobileField;
+	protected TextField senderPhoneField;
+	protected TextField receiverField;
+	protected TextField receiverCompanyField;
+	protected TextField receiverMobileField;
+	protected TextField receiverPhoneField;
+	protected TextField volumnField;
+	protected TextField weightField;
+	protected TextField nameField;
 	protected JFrame frame;
-	protected JTextField costField;
-	protected JTextField lengthField;
-	protected JTextField widthField;
-	protected JTextField heightField;
+	protected TextField costField;
+	protected TextField lengthField;
+	protected TextField widthField;
+	protected TextField heightField;
 	protected JLabel titleLabel;
 	protected JLabel barcodeLabel;
 	protected JLabel dateLabel;
@@ -101,7 +101,7 @@ public class ExpressPanel extends JPanel {
 	private ExpressOrderLSer logicSer;
 	private String name;
 	protected JLabel arriveLabel;
-	protected JTextField arriveField;
+	protected TextField arriveField;
 	private String userId;
 	private String nowOrgId;
 	protected ConfirmListener conListener;
@@ -154,7 +154,7 @@ public class ExpressPanel extends JPanel {
 		this.nowOrgId=orgId;
 		
 		titleLabel = new JLabel("订单");
-		titleLabel.setBounds(437, 21, 120, 35);
+		titleLabel.setBounds(437, 21, 240, 35);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
 		add(titleLabel);
@@ -165,10 +165,10 @@ public class ExpressPanel extends JPanel {
 		barcodeLabel.setBounds(189, 66, 120, 24);
 		add(barcodeLabel);
 		
-		barcodeField = new JTextField();
+		barcodeField = new TextField();
 		barcodeField.setFont(new Font("宋体", Font.PLAIN, 20));
 		barcodeField.setColumns(10);
-		barcodeField.setBounds(337, 65, 165, 25);
+		barcodeField.setBounds(337, 66, 165, 25);
 		add(barcodeField);
 		
 		dateLabel=new JLabel("日期");
@@ -192,7 +192,7 @@ public class ExpressPanel extends JPanel {
 		senderLabel.setBounds(253, 192, 120, 24);
 		add(senderLabel);
 		
-		senderField = new JTextField();
+		senderField = new TextField();
 		senderField.setFont(new Font("宋体", Font.PLAIN, 20));
 		senderField.setColumns(10);
 		senderField.setBounds(343, 192, 83, 25);
@@ -204,7 +204,7 @@ public class ExpressPanel extends JPanel {
 		senderCompanyLabel.setBounds(836, 233, 62, 24);
 		add(senderCompanyLabel);
 		
-		senderCompanyField = new JTextField();
+		senderCompanyField = new TextField();
 		senderCompanyField.setFont(new Font("宋体", Font.PLAIN, 20));
 		senderCompanyField.setColumns(10);
 		senderCompanyField.setBounds(892, 232, 165, 25);
@@ -216,7 +216,7 @@ public class ExpressPanel extends JPanel {
 		senderMobileLabel.setBounds(253, 233, 120, 24);
 		add(senderMobileLabel);
 		
-		senderMobileField = new JTextField();
+		senderMobileField = new TextField();
 		senderMobileField.setFont(new Font("宋体", Font.PLAIN, 20));
 		senderMobileField.setColumns(10);
 		senderMobileField.setBounds(343, 233, 193, 25);
@@ -228,7 +228,7 @@ public class ExpressPanel extends JPanel {
 		senderPhoneLabel.setBounds(546, 233, 62, 24);
 		add(senderPhoneLabel);
 		
-		senderPhoneField = new JTextField();
+		senderPhoneField = new TextField();
 		senderPhoneField.setFont(new Font("宋体", Font.PLAIN, 20));
 		senderPhoneField.setColumns(10);
 		senderPhoneField.setBounds(613, 232, 216, 25);
@@ -250,7 +250,7 @@ public class ExpressPanel extends JPanel {
 		receiverLabel.setBounds(253, 301, 120, 24);
 		add(receiverLabel);
 		
-		receiverField = new JTextField();
+		receiverField = new TextField();
 		receiverField.setFont(new Font("宋体", Font.PLAIN, 20));
 		receiverField.setColumns(10);
 		receiverField.setBounds(343, 301, 83, 25);
@@ -262,7 +262,7 @@ public class ExpressPanel extends JPanel {
 		receiverCompanyLabel.setBounds(836, 342, 62, 24);
 		add(receiverCompanyLabel);
 		
-		receiverCompanyField = new JTextField();
+		receiverCompanyField = new TextField();
 		receiverCompanyField.setFont(new Font("宋体", Font.PLAIN, 20));
 		receiverCompanyField.setColumns(10);
 		receiverCompanyField.setBounds(892, 342, 165, 25);
@@ -274,7 +274,7 @@ public class ExpressPanel extends JPanel {
 		receiverMobileLabel.setBounds(253, 342, 120, 24);
 		add(receiverMobileLabel);
 		
-		receiverMobileField = new JTextField();
+		receiverMobileField = new TextField();
 		receiverMobileField.setFont(new Font("宋体", Font.PLAIN, 20));
 		receiverMobileField.setColumns(10);
 		receiverMobileField.setBounds(343, 342, 193, 25);
@@ -286,7 +286,7 @@ public class ExpressPanel extends JPanel {
 		receiverPhoneLabel.setBounds(546, 342, 62, 24);
 		add(receiverPhoneLabel);
 		
-		receiverPhoneField = new JTextField();
+		receiverPhoneField = new TextField();
 		receiverPhoneField.setFont(new Font("宋体", Font.PLAIN, 20));
 		receiverPhoneField.setColumns(10);
 		receiverPhoneField.setBounds(613, 342, 216, 25);
@@ -320,7 +320,7 @@ public class ExpressPanel extends JPanel {
 		volumnLabel.setBounds(724, 410, 62, 24);
 		add(volumnLabel);
 		
-		volumnField = new JTextField();
+		volumnField = new TextField();
 		volumnField.setEditable(false);
 		volumnField.setFont(new Font("宋体", Font.PLAIN, 20));
 		volumnField.setColumns(10);
@@ -341,7 +341,7 @@ public class ExpressPanel extends JPanel {
 		weightLabel.setBounds(854, 410, 62, 25);
 		add(weightLabel);
 		
-		weightField = new JTextField();
+		weightField = new TextField();
 		weightField.setFont(new Font("宋体", Font.PLAIN, 20));
 		weightField.setColumns(10);
 		weightField.setBounds(914, 410, 50, 25);
@@ -360,7 +360,7 @@ public class ExpressPanel extends JPanel {
 		nameLabel.setBounds(271, 444, 120, 24);
 		add(nameLabel);
 		
-		nameField = new JTextField();
+		nameField = new TextField();
 		nameField.setFont(new Font("宋体", Font.PLAIN, 20));
 		nameField.setColumns(10);
 		nameField.setBounds(389, 444, 193, 25);
@@ -422,7 +422,7 @@ public class ExpressPanel extends JPanel {
 		});
 		add(cancelButton);
 		
-		costField = new JTextField();
+		costField = new TextField();
 		costField.setEditable(false);
 		costField.setBounds(832, 483, 66, 21);
 		costField.setEnabled(false);
@@ -434,7 +434,7 @@ public class ExpressPanel extends JPanel {
 		lengthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(lengthLabel);
 		
-		lengthField = new JTextField();
+		lengthField = new TextField();
 		lengthField.setBounds(437, 410, 50, 25);
 		add(lengthField);
 		lengthField.addFocusListener(new MyFocusListener());
@@ -450,7 +450,7 @@ public class ExpressPanel extends JPanel {
 		widthLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(widthLabel);
 		
-		widthField = new JTextField();
+		widthField = new TextField();
 		widthField.setBounds(549, 410, 50, 25);
 		widthField.addFocusListener(new MyFocusListener());
 		add(widthField);
@@ -466,7 +466,7 @@ public class ExpressPanel extends JPanel {
 		heightLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		add(heightLabel);
 		
-		heightField = new JTextField();
+		heightField = new TextField();
 		heightField.setBounds(651, 410, 50, 25);
 		heightField.addFocusListener(new MyFocusListener());
 		add(heightField);
@@ -483,7 +483,7 @@ public class ExpressPanel extends JPanel {
 		arriveLabel.setBounds(592, 444, 93, 22);
 		add(arriveLabel);
 		
-		arriveField = new JTextField();
+		arriveField = new TextField();
 		arriveField.setEditable(false);
 		arriveField.setBounds(684, 444, 187, 25);
 		arriveField.setEnabled(false);

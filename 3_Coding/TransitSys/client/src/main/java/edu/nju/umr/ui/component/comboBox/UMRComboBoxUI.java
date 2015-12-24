@@ -9,11 +9,14 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.UMRScrollBarUI;
 import edu.nju.umr.ui.component.Utils;
 
 public class UMRComboBoxUI extends BasicComboBoxUI {
@@ -81,11 +84,11 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 			 * 
 			 */
 			private static final long serialVersionUID = 2521901655055728829L;
-//			protected JScrollPane createScroller() {
-//				ScrollPane sp = new IScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-//				sp.setHorizontalScrollBar(null);
-//				return sp;
-//			}
+			protected JScrollPane createScroller() {
+				JScrollPane sp = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				sp.getHorizontalScrollBar().setUI(new UMRScrollBarUI());
+				return sp;
+			}
 			public void paintBorder(Graphics g){
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

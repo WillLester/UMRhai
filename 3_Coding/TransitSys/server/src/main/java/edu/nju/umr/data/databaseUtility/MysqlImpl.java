@@ -303,7 +303,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case CENTERLOADING:
 			for(String i:id){
-				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null,false,null);
+				order = new CenterLoadingPO(null, i, null, null, null, null, null, null, null, 0,null,false,null,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
@@ -385,7 +385,7 @@ public class MysqlImpl implements MysqlService{
 			return Result.SUCCESS;
 		case TRANSIT:
 			for(String i:id){
-				order = new TransitPO(i, null, null, null, null, null, null, null, null, null, 0,null,null,false);
+				order = new TransitPO(i, null, null, null, null, null, null, null, null, null, 0,null,null,false,null);
 				Result re = changeOrder(isPassed, order);
 				if(!re.equals(Result.SUCCESS)){
 					return re;
