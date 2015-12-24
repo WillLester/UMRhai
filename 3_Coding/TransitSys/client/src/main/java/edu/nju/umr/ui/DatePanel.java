@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Calendar;
@@ -80,6 +81,7 @@ public class DatePanel extends JPanel {
 		yearCombo.setSelectedIndex(100);
 		monthCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.MONTH));
 		dayCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.DATE)-1);
+		setBackground(Color.WHITE);
 	}
 	public Calendar getCalendar(){
 		Calendar calendar=Calendar.getInstance();

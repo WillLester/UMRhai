@@ -166,6 +166,8 @@ public class ExpressListPanel extends JPanel{
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scroll);
+		
+		setBackground(Color.WHITE);
 	}
 	private boolean isExpressLegal(){
 		String info = CheckLegal.isExpressLegal(expressField.getText());
