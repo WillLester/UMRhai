@@ -18,6 +18,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.UMRTextArea;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
@@ -62,12 +63,12 @@ public class TransitInfoInqPanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		JTextArea textArea = new JTextArea();
+		JTextArea textArea = new UMRTextArea();
 		textArea.setEnabled(false);
 		textArea.setBounds(174, 153, 687, 374);
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setBounds(174, 153, 687, 374);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scroll);
 		

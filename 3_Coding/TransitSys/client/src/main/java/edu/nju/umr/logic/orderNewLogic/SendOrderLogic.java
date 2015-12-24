@@ -13,6 +13,7 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.SendOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;
@@ -24,6 +25,7 @@ public class SendOrderLogic implements SendOrderLSer{
 	private SendOrderDSer sendData;
 	private UtilityLogic uti=new UtilityLogic();
 	private DiaryUpdateLSer diarySer;
+	private UpdateTranStateLSer orderState;
 	public SendOrderLogic(){
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
@@ -33,6 +35,7 @@ public class SendOrderLogic implements SendOrderLSer{
 			e.printStackTrace();
 		}
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(SendVO order) {
 		// TODO 自动生成的方法存根
@@ -42,6 +45,7 @@ public class SendOrderLogic implements SendOrderLSer{
 			isSuccessful=sendData.create(orderPO);
 			if(isSuccessful.equals(Result.SUCCESS)){
 				isSuccessful = diarySer.addDiary("生成了派件单，派出"+order.getExpressId(), order.getOpName());
+				orderState.updateExpressState(order.getExpressId(), order.getId().substring(0,6)+"*#");
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -77,6 +81,11 @@ public class SendOrderLogic implements SendOrderLSer{
 		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+	}
+	@Override
+	public ResultMessage getGoingExpress(String orgId) {
+		// TODO Auto-generated method stub
+		return orderState.getExpressHere(orgId);
 	}
 
 }

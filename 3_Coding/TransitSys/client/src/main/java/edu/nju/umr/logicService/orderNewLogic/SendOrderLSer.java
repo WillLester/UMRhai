@@ -14,4 +14,5 @@ public interface SendOrderLSer {
 	 * @return
 	 */
 	public ResultMessage getNextId(String orgId);
+	public ResultMessage getGoingExpress(String orgId);
 }

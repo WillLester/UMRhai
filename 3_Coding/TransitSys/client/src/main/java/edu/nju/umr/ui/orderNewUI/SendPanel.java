@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -147,7 +148,6 @@ public class SendPanel extends PPanel {
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);
-							frame.dispose();
 						}
 					}
 			}
@@ -177,6 +177,22 @@ public class SendPanel extends PPanel {
 		
 		if(orgId != null){
 			getId();
+			ResultMessage message=logicSer.getGoingExpress(orgId+"*");
+			Result resultt=message.getReInfo();
+			if(!resultt.equals(Result.SUCCESS)){
+				DoHint.hint(resultt, frame);
+			}else{
+				express.clear();
+				@SuppressWarnings("unchecked")
+				ArrayList<String> ar=((ArrayList<String>)message.getMessage());
+				for(String exp:ar){
+					express.add(exp);
+				}
+				if(express.size()>0){
+					barcodeField.setText(express.get(0));
+					barcodeField.setEditable(false);
+				}
+			}
 		}
 	}
 	

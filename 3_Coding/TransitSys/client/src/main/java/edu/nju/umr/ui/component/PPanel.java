@@ -6,7 +6,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import edu.nju.umr.ui.Constants;
 
 public class PPanel extends JPanel {
 

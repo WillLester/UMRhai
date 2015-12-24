@@ -53,7 +53,6 @@ public class StockOutPanel extends PPanel {
 	private String orgId;
 	private String userId;
 	private JTextField idField;
-	private String org;
 	/**
 	 * Create the panel.
 	 */
@@ -83,7 +82,6 @@ public class StockOutPanel extends PPanel {
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
-		this.org=org;
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

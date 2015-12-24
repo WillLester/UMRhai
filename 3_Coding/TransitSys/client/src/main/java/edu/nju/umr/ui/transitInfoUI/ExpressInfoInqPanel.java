@@ -24,9 +24,18 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	private static final long serialVersionUID = -6608025281059459114L;
 	protected Button searchButton;
 	private CourierLSer logicSer;
+	public closeAction ca;
 	/**
 	 * Create the panel.
 	 */
+	private class closeAction implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+		}
+		
+	}
 	public ExpressInfoInqPanel(JFrame fr) {
 		super(fr,"","","");
 		logicSer = new CourierLogic();
@@ -38,14 +47,8 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		setEnabled();
 		
 		confirmButton.removeActionListener(conListener);
-		confirmButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
-				frame.dispose();
-			}
-		});
+		ca=new closeAction();
+		confirmButton.addActionListener(ca);
 		remove(cancelButton);
 	}
 	protected void setEnabled(){

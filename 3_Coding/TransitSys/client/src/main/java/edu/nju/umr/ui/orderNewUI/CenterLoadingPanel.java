@@ -234,6 +234,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 			message = logicSer.getExpressList(orgId+"*");
 			result=message.getReInfo();
 			if(result.equals(Result.SUCCESS)){
+				@SuppressWarnings("unchecked")
 				ArrayList<String> ar = (ArrayList<String>)message.getMessage();
 				expressList.setAllItem(ar);
 			}
