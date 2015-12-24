@@ -14,6 +14,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
@@ -27,7 +28,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	private static final long serialVersionUID = -3052576244031029859L;
 	private TextField receiveField;
 	private DatePanel receiveDate;
-	private JLabel timelabel;
+	private TitleLabel timelabel;
 	private ReceiveOrderLSer logicSer;
 	private String org;
 	private String name;
