@@ -221,10 +221,10 @@ public class RecipientPanel extends PPanel {
 			HintFrame hint = new HintFrame(result, frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			return false;
 		}
-		if(!logicSer.isLoadValid(transitIdField.getText())){
-			DoHint.hint("中转单不存在！", frame);
-			return false;
-		}
+//		if(!logicSer.isLoadValid(transitIdField.getText())){
+//			DoHint.hint("中转单不存在！", frame);
+//			return false;
+//		}
 		return true;
 	}
 	private RecipientVO createVO(){
