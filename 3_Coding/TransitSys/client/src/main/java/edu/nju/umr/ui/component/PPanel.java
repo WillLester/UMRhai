@@ -1,4 +1,4 @@
-package edu.nju.umr.ui;
+package edu.nju.umr.ui.component;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,21 +6,22 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class HintPanel extends JPanel {
+import edu.nju.umr.ui.Constants;
+
+public class PPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private JDialog dialog=new JDialog();
-	public HintPanel(){
-//		this.dialog=dialog;
+	
+	public PPanel(){
 		setLayout(null);
-		setSize(409,230);
+		setSize(1106,622);
 	}
 	
 	protected void paintComponent(Graphics g){
-		Image background=new ImageIcon("ui/frame/hint.png").getImage();
+		Image background=new ImageIcon("ui/frame/function.png").getImage();
 		g.drawImage(background, 0, 0, null);
 	}
 

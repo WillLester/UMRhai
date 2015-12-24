@@ -9,7 +9,6 @@ import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -25,6 +24,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
@@ -37,7 +37,7 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.VanVO;
 
 
-public class VanListPanel extends JPanel {
+public class VanListPanel extends PPanel {
 	/**
 	 * 
 	 */
