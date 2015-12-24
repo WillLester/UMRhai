@@ -23,6 +23,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
@@ -67,7 +68,7 @@ public class WorkListPanel extends PPanel {
 		workList = new ArrayList<WorkVO>();
 		
 		JLabel nameLabel = new JLabel("人员信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
+		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
 		add(nameLabel);
 		
@@ -104,7 +105,7 @@ public class WorkListPanel extends PPanel {
 		});
 		add(all);
 		
-		JLabel workName = new JLabel("姓名");
+		ELabel workName = new ELabel("姓名");
 		workName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20,50,24);
 		add(workName);
 		
@@ -113,7 +114,7 @@ public class WorkListPanel extends PPanel {
 		textFieldName.setEnabled(false);
 		add(textFieldName);
 		
-		JLabel type = new JLabel("所属机构");
+		ELabel type = new ELabel("所属机构");
 		type.setBounds(380, workName.getY(),60,24);
 		add(type);
 		
@@ -127,7 +128,7 @@ public class WorkListPanel extends PPanel {
 		orgCombo.setEnabled(false);
 		add(orgCombo);
 		
-		JLabel mobile = new JLabel("手机");
+		ELabel mobile = new ELabel("手机");
 		mobile.setBounds(workName.getX(), workName.getY()+workName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(mobile);
 		
@@ -136,7 +137,7 @@ public class WorkListPanel extends PPanel {
 		textFieldMobile.setEnabled(false);
 		add(textFieldMobile);
 		
-		JLabel position = new JLabel("职位");
+		ELabel position = new ELabel("职位");
 		position.setBounds(type.getX(), type.getY()+type.getHeight()+20,60,24);
 		add(position);
 		
