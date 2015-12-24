@@ -118,7 +118,8 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			expPO.clear();
 			expPO.addAll(orderInfo.getExpresses(exp));
 			for(ExpressPO p:expPO){
-				if(p.getNowOrgId()==orgId+"*#"){
+				System.out.println(p.getId()+" "+p.getNowOrgId());
+				if(p.getNowOrgId().equals(orgId+"*#")){
 					allOut=false;
 					break;
 				}
@@ -143,7 +144,8 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			expPO.clear();
 			expPO.addAll(orderInfo.getExpresses(exp));
 			for(ExpressPO p:expPO){
-				if(p.getNowOrgId()==orgId+"*#"){
+				System.out.println(p.getId()+" "+p.getNowOrgId());
+				if(p.getNowOrgId().equals(orgId+"*#")){
 					allOut=false;
 					break;
 				}
