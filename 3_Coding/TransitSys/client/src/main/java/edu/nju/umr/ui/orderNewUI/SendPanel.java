@@ -189,8 +189,10 @@ public class SendPanel extends PPanel {
 				for(String exp:ar){
 					express.add(exp);
 				}
-				barcodeField.setText(express.get(0));
-				barcodeField.setEditable(false);
+				if(express.size()>0){
+					barcodeField.setText(express.get(0));
+					barcodeField.setEditable(false);
+				}
 			}
 		}
 	}
