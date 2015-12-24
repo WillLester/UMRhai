@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -25,6 +24,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -73,8 +73,8 @@ public class CityListPanel extends PPanel{
 		JLabel cityLabel = new TitleLabel("城市管理");
 		add(cityLabel);
 		
-		JLabel nameLabel = new JLabel("城市名");
-		nameLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		JLabel nameLabel = new ELabel("城市名");
+		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		nameLabel.setBounds(313, 485, 54, 23);
 		add(nameLabel);
 		
@@ -84,8 +84,8 @@ public class CityListPanel extends PPanel{
 		nameField.setEnabled(false);;
 		nameField.setColumns(10);
 		
-		JLabel idLabel = new JLabel("区号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		JLabel idLabel = new ELabel("区号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		idLabel.setBounds(493, 485, 54, 23);
 		add(idLabel);
 		
@@ -95,8 +95,8 @@ public class CityListPanel extends PPanel{
 		idField.setEnabled(false);
 		idField.setColumns(10);
 		
-		JLabel provinceLabel = new JLabel("所属省份");
-		provinceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		JLabel provinceLabel = new ELabel("所属省份");
+		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		provinceLabel.setBounds(647, 485, 74, 23);
 		add(provinceLabel);
 		
@@ -106,8 +106,8 @@ public class CityListPanel extends PPanel{
 		provinceCombo.setEnabled(false);
 		add(provinceCombo);
 		
-		JLabel distanceLabel = new JLabel("距离km");
-		distanceLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		JLabel distanceLabel = new ELabel("距离km");
+		distanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		distanceLabel.setBounds(480, 525, 54, 23);
 		add(distanceLabel);
 		

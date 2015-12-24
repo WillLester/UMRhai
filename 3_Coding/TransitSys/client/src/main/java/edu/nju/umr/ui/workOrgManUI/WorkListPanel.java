@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,8 +22,10 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -56,6 +57,7 @@ public class WorkListPanel extends PPanel {
 	private Table table;
 	private DefaultTableModel model;
 	private WorkManLSer logicSer;
+	private static final int y=10;
 	/**
 	 * Create the panel.
 	 */
@@ -66,13 +68,11 @@ public class WorkListPanel extends PPanel {
 		logicSer = new WorkManLogic();
 		workList = new ArrayList<WorkVO>();
 		
-		JLabel nameLabel = new JLabel("人员信息列表");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("人员信息");
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20, 600, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20+y, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -104,8 +104,8 @@ public class WorkListPanel extends PPanel {
 		});
 		add(all);
 		
-		JLabel workName = new JLabel("姓名");
-		workName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20,50,24);
+		JLabel workName = new ELabel("姓名");
+		workName.setBounds(Constants.TABLE_X, y+textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20,50,24);
 		add(workName);
 		
 		textFieldName = new TextField();
@@ -113,7 +113,7 @@ public class WorkListPanel extends PPanel {
 		textFieldName.setEnabled(false);
 		add(textFieldName);
 		
-		JLabel type = new JLabel("所属机构");
+		JLabel type = new ELabel("所属机构");
 		type.setBounds(380, workName.getY(),60,24);
 		add(type);
 		
@@ -127,16 +127,16 @@ public class WorkListPanel extends PPanel {
 		orgCombo.setEnabled(false);
 		add(orgCombo);
 		
-		JLabel mobile = new JLabel("手机");
+		JLabel mobile = new ELabel("手机");
 		mobile.setBounds(workName.getX(), workName.getY()+workName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(mobile);
 		
 		textFieldMobile = new TextField();
-		textFieldMobile.setBounds(textFieldName.getX(), mobile.getY(), 150, 24);
+		textFieldMobile.setBounds(textFieldName.getX(), mobile.getY()+5, 150, 24);
 		textFieldMobile.setEnabled(false);
 		add(textFieldMobile);
 		
-		JLabel position = new JLabel("职位");
+		JLabel position = new ELabel("职位");
 		position.setBounds(type.getX(), type.getY()+type.getHeight()+20,60,24);
 		add(position);
 		
@@ -161,7 +161,7 @@ public class WorkListPanel extends PPanel {
 		add(add);
 		
 		delete = new DelButton();
-		delete.setBounds(add.getX()+add.getWidth()+50, add.getY(), 100, 30);
+		delete.setBounds(add.getX()+add.getWidth()+50,add.getY(), 100, 30);
 		delete.setEnabled(false);
 		delete.addActionListener(new ActionListener() {
 			

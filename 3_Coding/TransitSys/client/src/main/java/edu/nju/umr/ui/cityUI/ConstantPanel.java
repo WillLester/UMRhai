@@ -14,8 +14,10 @@ import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -39,6 +41,13 @@ public class ConstantPanel extends PPanel {
 	private TextField fastField;
 	private JFrame frame;
 	private ConstantLSer logicSer;
+	
+	private static final int label_x=330;
+	private static final int label_y=125;
+	private static final int dis_y=50;
+	private static final int field_first_x=label_x+90+20;
+	private static final int label_sec_x=field_first_x+60+50;
+	private static final int field_sec_x=label_sec_x+143+20;
 	/**
 	 * Create the panel.
 	 */
@@ -49,127 +58,124 @@ public class ConstantPanel extends PPanel {
 //		logicSer = new ConstantPanelStub();
 		
 		
-		JLabel titleLabel = new JLabel("常量制定");
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(367, 10, 242, 82);
+		JLabel titleLabel = new TitleLabel("常量制定");
 		add(titleLabel);
 		
-		JLabel planeLabel = new JLabel("飞机满载量(吨)");
+		JLabel planeLabel = new ELabel("飞机满载量(吨)");
 		planeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		planeLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		planeLabel.setBounds(246, 94, 90, 15);
+		planeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		planeLabel.setBounds(label_x, label_y, 90, 15);
 		add(planeLabel);
 		
-		JLabel trainLabel = new JLabel("火车满载量(吨)");
+		JLabel trainLabel = new ELabel("火车满载量(吨)");
 		trainLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		trainLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		trainLabel.setBounds(246, 144, 90, 15);
+		trainLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		trainLabel.setBounds(label_x, label_y+dis_y, 90, 15);
 		add(trainLabel);
 		
-		JLabel vanLabel = new JLabel("汽车满载量(吨)");
+		JLabel vanLabel = new ELabel("汽车满载量(吨)");
 		vanLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		vanLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		vanLabel.setBounds(246, 191, 90, 15);
+		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		vanLabel.setBounds(label_x, label_y+2*dis_y, 90, 15);
 		add(vanLabel);
 		
 		planeField = new TextField();
-		planeField.setBounds(362, 91, 60, 21);
+		planeField.setBounds(field_first_x, label_y, 60, 21);
 		add(planeField);
 		planeField.setColumns(10);
 		
 		trainField = new TextField();
 		trainField.setColumns(10);
-		trainField.setBounds(362, 141, 60, 21);
+		trainField.setBounds(field_first_x, label_y+dis_y, 60, 21);
 		add(trainField);
 		
 		vanField = new TextField();
 		vanField.setColumns(10);
-		vanField.setBounds(362, 188, 60, 21);
+		vanField.setBounds(field_first_x, label_y+dis_y*2, 60, 21);
 		add(vanField);
 		
-		JLabel planeCostLabel = new JLabel("飞机运费(元每公里每吨)");
+		JLabel planeCostLabel = new ELabel("飞机运费(元每公里每吨)");
 		planeCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		planeCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		planeCostLabel.setBounds(466, 94, 143, 15);
+		planeCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		planeCostLabel.setBounds(label_sec_x, label_y, 143, 15);
 		add(planeCostLabel);
 		
-		JLabel trainCostLabel = new JLabel("火车运费(元每公里每吨)");
+		JLabel trainCostLabel = new ELabel("火车运费(元每公里每吨)");
 		trainCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		trainCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		trainCostLabel.setBounds(466, 144, 143, 15);
+		trainCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		trainCostLabel.setBounds(label_sec_x, label_y+dis_y, 143, 15);
 		add(trainCostLabel);
 		
-		JLabel vanCostLabel = new JLabel("汽车运费(元每公里每吨)");
+		JLabel vanCostLabel = new ELabel("汽车运费(元每公里每吨)");
 		vanCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		vanCostLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		vanCostLabel.setBounds(466, 188, 143, 15);
+		vanCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		vanCostLabel.setBounds(label_sec_x, label_y+dis_y*2, 143, 15);
 		add(vanCostLabel);
 		
 		planeCostField = new TextField();
 		planeCostField.setColumns(10);
-		planeCostField.setBounds(637, 91, 60, 21);
+		planeCostField.setBounds(field_sec_x, label_y, 60, 21);
 		add(planeCostField);
 		
 		trainCostField = new TextField();
 		trainCostField.setColumns(10);
-		trainCostField.setBounds(637, 141, 60, 21);
+		trainCostField.setBounds(field_sec_x, label_y+dis_y, 60, 21);
 		add(trainCostField);
 		
 		vanCostField = new TextField();
 		vanCostField.setColumns(10);
-		vanCostField.setBounds(637, 188, 60, 21);
+		vanCostField.setBounds(field_sec_x, label_y+dis_y*2, 60, 21);
 		add(vanCostField);
 		
-		JLabel priceLabel = new JLabel("快递价格比");
+		JLabel priceLabel = new ELabel("快递价格比");
 		priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		priceLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		priceLabel.setBounds(246, 266, 90, 15);
+		priceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		priceLabel.setBounds(label_x-14, label_y+dis_y*2+80, 90, 15);
 		add(priceLabel);
 		
-		JLabel economicLabel = new JLabel("经济快递/元");
+		JLabel economicLabel = new ELabel("经济快递/元");
 		economicLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		economicLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		economicLabel.setBounds(346, 266, 67, 15);
+		economicLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		economicLabel.setBounds(label_x, priceLabel.getY()+dis_y-10, 67, 15);
 		add(economicLabel);
 		
 		economicField = new TextField();
 		economicField.setColumns(10);
-		economicField.setBounds(410, 263, 43, 21);
+		economicField.setBounds(label_x+67+10, priceLabel.getY()+dis_y-10, 43, 21);
 		add(economicField);
 		
-		JLabel colonLabel1 = new JLabel(":");
-		colonLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-		colonLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
-		colonLabel1.setBounds(451, 266, 13, 15);
-		add(colonLabel1);
+//		JLabel colonLabel1 = new JLabel(":");
+//		colonLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+//		colonLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
+//		colonLabel1.setBounds(451, 266, 13, 15);
+//		add(colonLabel1);
 		
-		JLabel normalLabel = new JLabel("标准快递/元");
+		JLabel normalLabel = new ELabel("标准快递/元");
 		normalLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		normalLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		normalLabel.setBounds(458, 266, 67, 15);
+		normalLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		normalLabel.setBounds(economicField.getX()+43+20, priceLabel.getY()+dis_y-10, 67, 15);
 		add(normalLabel);
 		
 		normalField = new TextField();
 		normalField.setColumns(10);
-		normalField.setBounds(519, 263, 43, 21);
+		normalField.setBounds(normalLabel.getX()+67+10, normalLabel.getY(), 43, 21);
 		add(normalField);
 		
-		JLabel colonLabel2 = new JLabel(":");
-		colonLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-		colonLabel2.setFont(new Font("宋体", Font.PLAIN, 12));
-		colonLabel2.setBounds(563, 266, 13, 15);
-		add(colonLabel2);
+//		JLabel colonLabel2 = new JLabel(":");
+//		colonLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+//		colonLabel2.setFont(new Font("宋体", Font.PLAIN, 12));
+//		colonLabel2.setBounds(563, 266, 13, 15);
+//		add(colonLabel2);
 		
-		JLabel fastLabel = new JLabel("次晨特快/元");
+		JLabel fastLabel = new ELabel("次晨特快/元");
 		fastLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		fastLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		fastLabel.setBounds(572, 266, 67, 15);
+		fastLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		fastLabel.setBounds(normalField.getX()+43+20, normalField.getY(), 67, 15);
 		add(fastLabel);
 		
 		fastField = new TextField();
 		fastField.setColumns(10);
-		fastField.setBounds(637, 263, 43, 21);
+		fastField.setBounds(fastLabel.getX()+67+10, fastLabel.getY(), 43, 21);
 		add(fastField);
 		
 		ResultMessage message = logicSer.getConstant();
@@ -200,7 +206,7 @@ public class ConstantPanel extends PPanel {
 		}
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(312, 425, 100, 30);
+		confirmButton.setBounds(401, 425, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -218,7 +224,7 @@ public class ConstantPanel extends PPanel {
 		add(confirmButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(519, 427, 100, 30);
+		exitButton.setBounds(401+100+100, 427, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
