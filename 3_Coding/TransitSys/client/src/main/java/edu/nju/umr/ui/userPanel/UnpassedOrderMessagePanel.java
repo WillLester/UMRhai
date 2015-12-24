@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.userPanel;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	}
 	public UnpassedOrderMessagePanel(String userId){
 		x=0;
+		this.setBackground(Color.WHITE);
 		this.userId=userId;
 		serv=new OrderResubmitLogic();
 		

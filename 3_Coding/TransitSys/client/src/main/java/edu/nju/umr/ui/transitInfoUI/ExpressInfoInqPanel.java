@@ -42,11 +42,12 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		titleLabel.setText("订单查询");
 		searchButton = new SearchButton();
 		searchButton.addActionListener(new InqListener());
-		searchButton.setBounds(532, 63, 100, 30);
+		searchButton.setBounds(532, 83, 100, 30);
 		add(searchButton);
 		setEnabled();
 		
 		confirmButton.removeActionListener(conListener);
+		confirmButton.setLocation(getWidth()/2-50, confirmButton.getY());
 		ca=new closeAction();
 		confirmButton.addActionListener(ca);
 		remove(cancelButton);

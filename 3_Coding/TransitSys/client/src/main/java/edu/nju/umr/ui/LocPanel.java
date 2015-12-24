@@ -52,6 +52,7 @@ public class LocPanel extends JPanel {
 	}
 	public LocPanel(JFrame fr) {
 		setLayout(null);
+		this.setBackground(Color.WHITE);
 		frame = fr;
 		logicSer = new LocLogic();
 //		logicSer = new LocLogicStub();
