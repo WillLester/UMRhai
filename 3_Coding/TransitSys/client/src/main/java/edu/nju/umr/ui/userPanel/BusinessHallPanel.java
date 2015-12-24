@@ -36,7 +36,7 @@ public class BusinessHallPanel extends UserPanel {
 			public void actionPerformed(ActionEvent e)
 			{
 				FunctionFrame ffr=new FunctionFrame("单据创建");
-				ffr.setContentPane(new RecipientPanel(ffr,user.getName(),user.getOrgId(),user.getId()));
+				ffr.setContentPane(new RecipientPanel(ffr,user.getName(),user.getOrgId(),user.getId(),user.getOrg()));
 				fr.sonFrames.add(ffr);
 			}
 		});

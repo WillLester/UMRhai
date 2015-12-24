@@ -26,6 +26,6 @@ public interface StockOutOrderLSer {
 	 */
 	public boolean isConveyValid(String id);
 	public ResultMessage getNextId(String orgId);
-	public ResultMessage getGoingOrders(String org);
-	public ResultMessage getGoingExpress(String orderId);
+	public ResultMessage getGoingOrders(String org,String orgId);
+	public ResultMessage getGoingExpress(String orderId,String orgId);
 }

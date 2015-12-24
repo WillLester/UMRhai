@@ -55,7 +55,9 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 			isSuc = centerData.create(VPFactory.toCenterLoadPO(order));
 			if(isSuc.equals(Result.SUCCESS))
 			{
-				
+				for(String express:order.getExpress()){
+					isSuc=orderState.updateExpressState(express, order.getStartOrgId()+"*#");
+				}
 			}
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("生成了中转中心装车单"+order.getTransitId(), order.getOpName());

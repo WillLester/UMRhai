@@ -28,4 +28,5 @@ public interface RecipientOrderLSer {
 	 * @return
 	 */
 	public ResultMessage getNextId(String orgId);
+	public ResultMessage getComingLoadingOrder(String org);
 }

@@ -215,7 +215,7 @@ public class StockOutPanel extends PPanel {
 		}
 		
 		if(org!=null){
-			ResultMessage message=logicSer.getGoingOrders(org);
+			ResultMessage message=logicSer.getGoingOrders(org,orgId);
 			Result resultt=message.getReInfo();
 			if(resultt.equals(Result.SUCCESS))
 			{
@@ -232,7 +232,7 @@ public class StockOutPanel extends PPanel {
 
 				@Override
 				public void focusLost(FocusEvent e) {
-					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText());
+					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText(),orgId);
 					if(!message.getReInfo().equals(Result.SUCCESS)){
 						return;
 					}

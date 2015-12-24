@@ -2,6 +2,7 @@ package edu.nju.umr.logic.orderNewLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +16,7 @@ import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.RecipientOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Result;
@@ -28,6 +30,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 	private UtilityLogic uti=new UtilityLogic();
 	private DiaryUpdateLSer diarySer;
 	private OrderInfoLSer orderInfoLogic;
+	private UpdateTranStateLSer orderState;
 	public RecipientOrderLogic(){
 		try{
 			dataFac=(RecipientOrderDFacSer)Naming.lookup(Url.URL);
@@ -38,6 +41,7 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			e.printStackTrace();
 		}
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(RecipientVO order) {
 		// TODO 自动生成的方法存根
@@ -47,6 +51,8 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 			isSuc=recipientData.create(orderPO);
 			if(isSuc.equals(Result.SUCCESS)){
 				isSuc = diarySer.addDiary("接收了中转单"+order.getTransitId(), order.getOpName());
+				orderState.updateCenterLoadingState(order.getTransitId(), true);
+				orderState.updateHallLoadingState(order.getTransitId(), true);
 			}
 			
 		}catch(RemoteException e){
@@ -89,6 +95,25 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 		}catch(RemoteException e){
 			return new ResultMessage(Result.DATABASE_ERROR,null);
 		}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public ResultMessage getComingLoadingOrder(String org) {
+		// TODO Auto-generated method stub
+		ArrayList<String> ar =new ArrayList<String>();
+		ResultMessage message=orderState.getCenterLoadingHere(org, false);
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return new ResultMessage(result,null);
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		message=orderState.getHallLoadingHere(org, false);
+		result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return new ResultMessage(result,null);
+		}
+		ar.addAll((ArrayList<String>)message.getMessage());
+		return new ResultMessage(Result.SUCCESS,ar);
 	}
 
 }
