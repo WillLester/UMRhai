@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import com.sun.javafx.geom.RoundRectangle2D;
 import com.sun.javafx.geom.Shape;
 
-public class PasswordField extends JPasswordField{
+public class UMRPasswordField extends JPasswordField{
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class PasswordField extends JPasswordField{
 	private static final int arcHeight = 15;
 	private Shape shape;
 	
-	public PasswordField() {
+	public UMRPasswordField() {
 		setBorder(null);
 		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension(200, 25));
