@@ -70,7 +70,7 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	@Override
 	public ResultMessage getCenterLoadingHere(String arriveLoc, boolean arrived) {
 		// TODO Auto-generated method stub
-		CenterLoadingPO cl=new CenterLoadingPO(null, null, arriveLoc, null, null, null, null, null, null, 0, null, arrived, null);
+		CenterLoadingPO cl=new CenterLoadingPO(null, null, arriveLoc, null, null, null, null, null, null, 0, null, arrived, null,null);
 		List<String> list=new ArrayList<String>();
 		try{
 			list=updateData.getOrdersHere(cl);
@@ -83,7 +83,7 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	}
 	@Override
 	public ResultMessage getTransitHere(String arriveLoc, boolean arrived) {
-		TransitPO tr=new TransitPO(null, null, null, arriveLoc, null, null, null, null, null, null, 0, null, null, arrived);
+		TransitPO tr=new TransitPO(null, null, null, arriveLoc, null, null, null, null, null, null, 0, null, null, arrived,null);
 		List<String> list=new ArrayList<String>();
 		try{
 			list=updateData.getOrdersHere(tr);
@@ -105,7 +105,7 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	}
 	@Override
 	public Result updateCenterLoadingState(String id, boolean arrived) {
-		CenterLoadingPO cl=new CenterLoadingPO(null, id,null, null, null, null, null, null, null, 0, null, arrived, null);
+		CenterLoadingPO cl=new CenterLoadingPO(null, id,null, null, null, null, null, null, null, 0, null, arrived, null,null);
 		try{
 			return updateData.updateTranState(cl);
 		}catch(RemoteException e){
@@ -114,11 +114,38 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	}
 	@Override
 	public Result updateTransitState(String id, boolean arrived) {
-		TransitPO tr=new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null, null, arrived);
+		TransitPO tr=new TransitPO(id, null, null, null, null, null, null, null, null, null, 0, null, null, arrived,null);
 		try{
 			return updateData.updateTranState(tr);
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}
+	}
+	@Override
+	public ResultMessage getGoingCenterLoading(String startPlace,
+			boolean arrived) {
+		CenterLoadingPO cl=new CenterLoadingPO(null, null, null, null, null, null, null, null, null, 0, null, arrived, startPlace,null);
+		List<String> list=new ArrayList<String>();
+		try{
+			list=updateData.getOrdersHere(cl);
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<String> ar =new ArrayList<String>();
+		ar.addAll(list);
+		return new ResultMessage(Result.SUCCESS,ar);
+	}
+	@Override
+	public ResultMessage getGoingTransit(String startPlace, boolean arrived) {
+		TransitPO tr=new TransitPO(null, null, startPlace, null, null, null, null, null, null, null, 0, null, null, arrived,null);
+		List<String> list=new ArrayList<String>();
+		try{
+			list=updateData.getOrdersHere(tr);
+		}catch(RemoteException e){
+			return new ResultMessage(Result.NET_INTERRUPT,null);
+		}
+		ArrayList<String> ar =new ArrayList<String>();
+		ar.addAll(list);
+		return new ResultMessage(Result.SUCCESS,ar);
 	}
 }

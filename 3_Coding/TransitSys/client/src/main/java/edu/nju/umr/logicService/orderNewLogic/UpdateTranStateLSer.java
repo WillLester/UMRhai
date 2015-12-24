@@ -12,4 +12,6 @@ public interface UpdateTranStateLSer {
 	public ResultMessage getHallLoadingHere(String arriveLoc,boolean arrived);
 	public ResultMessage getCenterLoadingHere(String arriveLoc,boolean arrived);
 	public ResultMessage getTransitHere(String arriveLoc,boolean arrived);
+	public ResultMessage getGoingCenterLoading(String startPlace,boolean arrived);
+	public ResultMessage getGoingTransit(String startPlace,boolean arrived);
 }

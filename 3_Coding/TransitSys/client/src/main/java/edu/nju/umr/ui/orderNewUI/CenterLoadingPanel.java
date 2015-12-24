@@ -51,6 +51,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 	private ExpressListPanel expressList;
 	private String userId;
 	private String org;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
@@ -86,6 +87,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		this.name = name;
 		this.userId = userId;
 		this.org = org;
+		this.orgId=orgId;
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -243,7 +245,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		ArrayList<String> expresses = expressList.getExpresses();
 		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), transitIdField.getText(),(String)arriveCombo.getSelectedItem(), vanIdField.getText(), 
 				supervisionField.getText(), escortField.getText(), 
-				expresses, Double.parseDouble(costField.getText()), name,userId,false,org);
+				expresses, Double.parseDouble(costField.getText()), name,userId,false,org,orgId);
 		return vo;
 	}
 	private boolean isLegal(){

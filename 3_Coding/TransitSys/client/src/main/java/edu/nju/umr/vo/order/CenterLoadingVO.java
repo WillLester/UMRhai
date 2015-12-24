@@ -19,10 +19,11 @@ public class CenterLoadingVO implements ShowOrder{
 	private String userId;
 	private boolean arrived;
 	private String startPlace;
+	private String startOrgId;
 	
 	public CenterLoadingVO(Calendar date, String transitId, String target,
 			String vanId, String supervision, String escort,
-			ArrayList<String> express, double cost, String opName, String userId,boolean arrived,String startPlace) {
+			ArrayList<String> express, double cost, String opName, String userId,boolean arrived,String startPlace,String startOrgId) {
 		super();
 		this.date = date;
 		this.transitId = transitId;
@@ -72,6 +73,9 @@ public class CenterLoadingVO implements ShowOrder{
 	}
 	public String getStartPlace(){
 		return startPlace;
+	}
+	public String getStartOrgId(){
+		return startOrgId;
 	}
 	public void Show(boolean isEnabled) {
 		FunctionFrame ffr = new FunctionFrame("中转中心装车单");

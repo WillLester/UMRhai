@@ -25,13 +25,13 @@ B添加完订单提交待审后，其中所有订单的nowOrgId+="#"
 若通过,订单nowOrgId=中转中心id+"*"，更新库存
 不通过，订单nowOrgId复原
 
-中转单添加boolean arrived
+中转单添加boolean arrived,String startOrgId
 生成中转单时，备选的单据是订单，备选列表为所有nowOrgId为该中转中心id+"*"的订单，arrived=false
 提交中转单待审批时，对应所有订单的nowOrgId+="#"
 若通过，不管
 若不通过，对应所有订单的nowOrgId=centerId+"*"
 
-中转中心装车单添加boolean arrived,String startPlace
+中转中心装车单添加boolean arrived,String startPlace,String startOrgId
 生成中转中心装车单D时 备选订单为所有nowOrgId.equals(中转中心id+"*")的订单,D.arrived=false
 D添加完订单提交待审后，其中所有订单的nowOrgId+="#"
 若不通过，订单nowOrgId=centerId+"*"
