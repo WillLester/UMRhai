@@ -4,13 +4,15 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -19,9 +21,11 @@ import edu.nju.umr.logic.orderNewLogic.StockOutOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.StockOutOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Transit;
+import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.CheckLegal;
@@ -32,14 +36,14 @@ import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.StockOutVO;
 
-public class StockOutPanel extends JPanel {
+public class StockOutPanel extends PPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4807982962712921033L;
-	private JTextField expressField;
-	private JTextField transitIdField;
+	private AutoCompPanel expressField;
+	private AutoCompPanel transitIdField;
 	private JComboBox<String> targetCombo;
 	private JComboBox<String> transitCombo;
 	private JFrame frame;
@@ -49,12 +53,13 @@ public class StockOutPanel extends JPanel {
 	private String orgId;
 	private String userId;
 	private JTextField idField;
+	private String org;
 	/**
 	 * Create the panel.
 	 */
 	public StockOutPanel(JFrame fr,StockOutVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId());
+		this(fr,vo.getOpName(),vo.getStockId(),vo.getUserId(),null);
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)
@@ -70,13 +75,15 @@ public class StockOutPanel extends JPanel {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public StockOutPanel(JFrame fr,String name,String orgId,String userId) {
+	@SuppressWarnings("unchecked")
+	public StockOutPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockOutOrderLogic();
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
+		this.org=org;
 		
 		JLabel titleLabel = new JLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -90,11 +97,10 @@ public class StockOutPanel extends JPanel {
 		expressLabel.setBounds(355, 124, 120, 24);
 		add(expressLabel);
 		
-		expressField = new JTextField();
+		expressField = new AutoCompPanel();
 		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
 		expressField.setBounds(485, 124, 165, 25);
 		add(expressField);
-		expressField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("出库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -143,9 +149,8 @@ public class StockOutPanel extends JPanel {
 		transitIdLabel.setBounds(315, 282, 160, 24);
 		add(transitIdLabel);
 		
-		transitIdField = new JTextField();
+		transitIdField = new AutoCompPanel();
 		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
-		transitIdField.setColumns(10);
 		transitIdField.setBounds(485, 281, 233, 25);
 		add(transitIdField);
 		
@@ -207,6 +212,33 @@ public class StockOutPanel extends JPanel {
 				}
 				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
 			}
+		}
+		
+		if(org!=null){
+			ResultMessage message=logicSer.getGoingOrders(org);
+			Result resultt=message.getReInfo();
+			if(resultt.equals(Result.SUCCESS))
+			{
+				ArrayList<String> ar =(ArrayList<String>)message.getMessage();
+				transitIdField.setAllItem(ar);
+			}
+			transitIdField.addFocusListener(new FocusListener(){
+
+				@Override
+				public void focusGained(FocusEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					ResultMessage messagee=logicSer.getGoingExpress(transitIdField.getText());
+					if(!message.getReInfo().equals(Result.SUCCESS)){
+						return;
+					}
+					ArrayList<String> ex=(ArrayList<String>)messagee.getMessage();
+					expressField.setAllItem(ex);
+				}});
 		}
 	}
 	@SuppressWarnings("unused")

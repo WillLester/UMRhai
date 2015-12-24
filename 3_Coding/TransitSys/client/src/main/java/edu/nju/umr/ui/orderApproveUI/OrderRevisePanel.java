@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -21,14 +20,15 @@ import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderResubmitLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.ShowOrder;
 
-public class OrderRevisePanel extends JPanel{
+public class OrderRevisePanel extends PPanel{
 	private static final long serialVersionUID = 1L;
 	private ApproveTable table;
 	private DefaultTableModel model;

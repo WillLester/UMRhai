@@ -74,7 +74,7 @@ public class OrderPOFactory {
 				}
 				return new CenterLoadingPO(date, result.getString(1), result.getString(2), result.getString(3), 
 						result.getString(4), result.getString(5), express, opTime, result.getString(10), result.getDouble(9)
-						,result.getString(11),result.getBoolean(12),result.getString(13));
+						,result.getString(11),result.getBoolean(12),result.getString(13),result.getString(14));
 			} else {
 				return null;
 			}
@@ -270,7 +270,7 @@ public class OrderPOFactory {
 				}
 				return new TransitPO(result.getString(1), result.getString(2), result.getString(3), result.getString(4), 
 						result.getString(5), result.getString(6), express, date, opTime, result.getString(9), 
-						result.getDouble(10),result.getString(12),Transit.values()[result.getInt(13)],result.getBoolean(14));
+						result.getDouble(10),result.getString(12),Transit.values()[result.getInt(13)],result.getBoolean(14),result.getString(15));
 			} else {
 				return null;
 			}

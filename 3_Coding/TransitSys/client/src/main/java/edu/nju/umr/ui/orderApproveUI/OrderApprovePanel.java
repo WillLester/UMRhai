@@ -10,7 +10,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,7 +23,8 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -32,7 +32,7 @@ import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.OrderVO;
 import edu.nju.umr.vo.order.ShowOrder;
 
-public class OrderApprovePanel extends JPanel{
+public class OrderApprovePanel extends PPanel{
 	/**
 	 * 
 	 */

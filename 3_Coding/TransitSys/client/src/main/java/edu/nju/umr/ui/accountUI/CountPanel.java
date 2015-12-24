@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -23,6 +22,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -31,7 +31,7 @@ import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CountVO;
 import edu.nju.umr.vo.ResultMessage;
 
-public class CountPanel extends JPanel{
+public class CountPanel extends PPanel{
 	/**
 	 * 
 	 */

@@ -12,13 +12,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -30,7 +30,7 @@ import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
-public class CountInfoPanel extends JPanel{
+public class CountInfoPanel extends PPanel{
 	/**
 	 * 
 	 */

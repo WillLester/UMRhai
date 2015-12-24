@@ -11,7 +11,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -23,7 +22,9 @@ import edu.nju.umr.po.enums.Pay;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -31,14 +32,14 @@ import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.PaymentVO;
 
-public class PaymentPanel extends JPanel {
+public class PaymentPanel extends PPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3964332892070986657L;
-	private JTextField payerField;
-	private JTextField costField;
+	private TextField payerField;
+	private TextField costField;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private String[] accountList;
@@ -48,7 +49,7 @@ public class PaymentPanel extends JPanel {
 	private JComboBox<String> reasonCombo;
 	private JTextArea remarkArea;
 	private String userId;
-	private JTextField idField;
+	private TextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -94,7 +95,7 @@ public class PaymentPanel extends JPanel {
 		payerLabel.setBounds(235, 175, 85, 24);
 		add(payerLabel);
 		
-		payerField = new JTextField();
+		payerField = new TextField();
 		payerField.setFont(new Font("宋体", Font.PLAIN, 20));
 		payerField.setColumns(10);
 		payerField.setBounds(302, 174, 85, 25);
@@ -105,7 +106,7 @@ public class PaymentPanel extends JPanel {
 		amountLabel.setBounds(397, 175, 85, 24);
 		add(amountLabel);
 		
-		costField = new JTextField();
+		costField = new TextField();
 		costField.setFont(new Font("宋体", Font.PLAIN, 20));
 		costField.setColumns(10);
 		costField.setBounds(487, 174, 85, 25);
@@ -181,7 +182,7 @@ public class PaymentPanel extends JPanel {
 		idLabel.setBounds(286, 66, 120, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(458, 66, 251, 25);
 		add(idField);

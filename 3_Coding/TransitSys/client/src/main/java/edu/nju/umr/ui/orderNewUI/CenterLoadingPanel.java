@@ -14,7 +14,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -25,14 +24,15 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.component.*;
+import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
 
-public class CenterLoadingPanel extends JPanel implements PriceCount{
+public class CenterLoadingPanel extends PPanel implements PriceCount{
 
 	/**
 	 * 
@@ -51,6 +51,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 	private ExpressListPanel expressList;
 	private String userId;
 	private String org;
+	private String orgId;
 	/**
 	 * Create the panel.
 	 */
@@ -86,6 +87,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		this.name = name;
 		this.userId = userId;
 		this.org = org;
+		this.orgId=orgId;
 		
 		JLabel transitIdLabel = new JLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -229,6 +231,12 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 					transitIdField.setText(temp);
 				}
 			}
+			message = logicSer.getExpressList(orgId+"*");
+			result=message.getReInfo();
+			if(result.equals(Result.SUCCESS)){
+				ArrayList<String> ar = (ArrayList<String>)message.getMessage();
+				expressList.setAllItem(ar);
+			}
 		}
 	}
 	private void hint(Result result){
@@ -243,7 +251,7 @@ public class CenterLoadingPanel extends JPanel implements PriceCount{
 		ArrayList<String> expresses = expressList.getExpresses();
 		CenterLoadingVO vo = new CenterLoadingVO(datePanel.getCalendar(), transitIdField.getText(),(String)arriveCombo.getSelectedItem(), vanIdField.getText(), 
 				supervisionField.getText(), escortField.getText(), 
-				expresses, Double.parseDouble(costField.getText()), name,userId,false,org);
+				expresses, Double.parseDouble(costField.getText()), name,userId,false,org,orgId);
 		return vo;
 	}
 	private boolean isLegal(){
