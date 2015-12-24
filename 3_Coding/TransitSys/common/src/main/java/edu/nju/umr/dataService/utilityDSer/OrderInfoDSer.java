@@ -62,18 +62,4 @@ public interface OrderInfoDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<String> getCenterLoadExp(String id) throws RemoteException;
-	
-	/**
-	 * 根据入库单号获得入库的订单ID
-	 * @param id 入库单ID
-	 * @return 订单ID
-	 */
-	public String getStockInExp(String id) throws RemoteException;
-	
-	/**
-	 * 根据出库单号获得出库的订单ID
-	 * @param id 出库单ID
-	 * @return 订单ID
-	 */
-	public String getStockOutExp(String id) throws RemoteException;
 }

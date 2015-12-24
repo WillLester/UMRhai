@@ -55,16 +55,4 @@ public class OrderInfoLogicStub implements OrderInfoLSer{
 		return null;
 	}
 
-	@Override
-	public String getStockInExp(String id) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	@Override
-	public String getStockOutExp(String id) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
 }
