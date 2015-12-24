@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.component.comboBox;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Vector;
 
