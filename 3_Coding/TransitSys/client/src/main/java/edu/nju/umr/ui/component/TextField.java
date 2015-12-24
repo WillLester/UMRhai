@@ -48,11 +48,7 @@ public class TextField extends JTextField{
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setColor(new Color(57, 152,214));
 		g2.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight);
-		if(isEditable()){
-			g2.setColor(Color.WHITE);
-		} else {
-			g2.setColor(Color.LIGHT_GRAY);
-		}
+		g2.setColor(Color.WHITE);
 		g2.fillRoundRect(1, 1, getWidth()-2, getHeight()-2, arcWidth, arcHeight);
 		super.paintComponent(g);
 	}
