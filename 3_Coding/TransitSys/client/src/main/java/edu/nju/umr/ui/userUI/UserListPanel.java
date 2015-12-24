@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.userUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,18 +73,19 @@ public class UserListPanel extends PPanel {
 		
 		JLabel accountLabel = new JLabel("用户管理");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
+		accountLabel.setForeground(Color.WHITE);
 		accountLabel.setBounds(504, 6, 129, 60);
 		add(accountLabel);
 		
 		textField = new TextField();
 		textField.setText("请输入关键字");
-		textField.setBounds(133, 77, 350, 24);
+		textField.setBounds(133, 127, 350, 24);
 		add(textField);
 		textField.setColumns(10);
 		
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(textField.getX()+350+Constants.INTERVAL, 74, 100, 30);
+		searchButton.setBounds(textField.getX()+350+Constants.INTERVAL, 124, 100, 30);
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -94,7 +96,7 @@ public class UserListPanel extends PPanel {
 		add(searchButton);
 		
 		Button allButton = new AllButton();
-		allButton.setBounds(searchButton.getX()+100+Constants.INTERVAL, 74,100, 30);
+		allButton.setBounds(searchButton.getX()+100+Constants.INTERVAL, 124,100, 30);
 		allButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				users=getUsers(null);
@@ -104,7 +106,7 @@ public class UserListPanel extends PPanel {
 		add(allButton);
 		
 		addButton = new AddButton();
-		addButton.setBounds(283, 487,100, 30);
+		addButton.setBounds(283, 537,100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addUser();
@@ -113,7 +115,7 @@ public class UserListPanel extends PPanel {
 		add(addButton);
 		
 		deleteButton = new DelButton();
-		deleteButton.setBounds(525, 487, 100,30);
+		deleteButton.setBounds(525, 537, 100,30);
 		deleteButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
@@ -126,7 +128,7 @@ public class UserListPanel extends PPanel {
 		add(deleteButton);
 		
 		confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(895, 487-100, 100, 30);
+		confirmButton.setBounds(895, 537-100, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				confirmChange();
@@ -148,25 +150,25 @@ public class UserListPanel extends PPanel {
 		JLabel idLabel=new JLabel("账号");
 		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		idLabel.setBounds(805,121, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		idLabel.setBounds(805,171, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(idLabel);
 		
 		JLabel passwordLabel=new JLabel("密码");
 		passwordLabel.setForeground(Utils.STD_COLOR);
 		passwordLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		passwordLabel.setBounds(805,171, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		passwordLabel.setBounds(805,221, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(passwordLabel);
 		
 		JLabel juriLabel=new JLabel("权限");
 		juriLabel.setForeground(Utils.STD_COLOR);
 		juriLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		juriLabel.setBounds(805,221, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		juriLabel.setBounds(805,271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(juriLabel);
 		
 		JLabel nameLabel=new JLabel("姓名");
 		nameLabel.setForeground(Utils.STD_COLOR);
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		nameLabel.setBounds(805,271, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		nameLabel.setBounds(805,321, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(nameLabel);
 		
 		JLabel orgLabel=new JLabel("机构");
@@ -178,43 +180,43 @@ public class UserListPanel extends PPanel {
 		JLabel orgIdLabel=new JLabel("机构编号");
 		orgIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		orgIdLabel.setForeground(Utils.STD_COLOR);
-		orgIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		orgIdLabel.setBounds(805,421, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 //		add(orgIdLabel);
 		
 		JLabel mobileIdLabel=new JLabel("手机号");
 		mobileIdLabel.setForeground(Utils.STD_COLOR);
 		mobileIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		mobileIdLabel.setBounds(805,421-100, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+		mobileIdLabel.setBounds(805,371, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
 		add(mobileIdLabel);
 		
 		idField=new TextField();
 		idField.setText("账号");
 		idField.setFont(new Font("微软雅黑 ", Font.PLAIN, 12));
-		idField.setBounds(855,121,200,24);
+		idField.setBounds(855,171,200,24);
 		add(idField);
 		
 		passwordField=new TextField();
 		passwordField.setText("密码");
 		passwordField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		passwordField.setBounds(855,171,200,24);
+		passwordField.setBounds(855,221,200,24);
 		add(passwordField);
 		
 		juriBox = new JComboBox<String>();
 		juriBox.setModel(new DefaultComboBoxModel<String>(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","仓库管理员"}));
 		juriBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		juriBox.setBounds(855, 221, 200, 24);
+		juriBox.setBounds(855, 271, 200, 24);
 		add(juriBox);
 		
 		nameField=new TextField();
 		nameField.setText("姓名");
 		nameField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		nameField.setBounds(855,271,200,24);
+		nameField.setBounds(855,321,200,24);
 		add(nameField);
 
 		mobileField=new TextField();
 		mobileField.setText("手机号");
 		mobileField.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		mobileField.setBounds(855,421-100,200,24);
+		mobileField.setBounds(855,371,200,24);
 		add(mobileField);
 		
 		tableInit();
@@ -255,10 +257,10 @@ public class UserListPanel extends PPanel {
 				}
 			}
 		});
-		table.setBounds(133, 121, 637, 335);
+		table.setBounds(133, 171, 637, 335);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(133, 121, 637, 335);
+		scroll.setBounds(133, 171, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"账号","密码","权限","姓名","手机号"};
 		model.setColumnIdentifiers(columnNames);
