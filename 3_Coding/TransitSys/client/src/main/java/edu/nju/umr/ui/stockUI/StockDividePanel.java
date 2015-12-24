@@ -16,6 +16,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Constants;
+
 import edu.nju.umr.logic.stockLogic.StockDivideLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockDivideLSer;
 import edu.nju.umr.po.enums.Result;
@@ -23,6 +25,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -39,10 +42,10 @@ public class StockDividePanel extends PPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 3564861686953328781L;
-	private JTextField searchField;
-	private JTextField idField;
-	private JTextField rowField;
-	private JTextField placeField;
+	private TextField searchField;
+	private TextField idField;
+	private TextField rowField;
+	private TextField placeField;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -64,14 +67,14 @@ public class StockDividePanel extends PPanel{
 		divideLabel.setBounds(508, 36, 88, 24);
 		add(divideLabel);
 		
-		searchField = new JTextField();
-		searchField.setBounds(233, 67, 542, 24);
+		searchField = new TextField();
+		searchField.setBounds(233, 90, 500, 24);
 		add(searchField);
 		searchField.setColumns(10);
 		
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(827, 66, 100, 30);
+		searchButton.setBounds(searchField.getX()+500+Constants.INTERNAL, 87, 100, 30);
 		searchButton.addActionListener(new ActionListener() {
 			
 			@SuppressWarnings({ "unused" })
@@ -92,7 +95,7 @@ public class StockDividePanel extends PPanel{
 		idLabel.setBounds(206, 500, 54, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(253, 500, 98, 22);
 		add(idField);
@@ -103,7 +106,7 @@ public class StockDividePanel extends PPanel{
 		rowLabel.setBounds(370, 500, 54, 24);
 		add(rowLabel);
 		
-		rowField = new JTextField();
+		rowField = new TextField();
 		rowField.setBounds(416, 500, 98, 22);
 		add(rowField);
 		rowField.setColumns(10);
@@ -113,7 +116,7 @@ public class StockDividePanel extends PPanel{
 		placeLabel.setBounds(541, 500, 71, 24);
 		add(placeLabel);
 		
-		placeField = new JTextField();
+		placeField = new TextField();
 		placeField.setBounds(617, 500, 98, 22);
 		add(placeField);
 		placeField.setColumns(10);
