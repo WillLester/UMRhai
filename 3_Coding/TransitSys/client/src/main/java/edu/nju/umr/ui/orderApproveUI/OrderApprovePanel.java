@@ -46,13 +46,14 @@ public class OrderApprovePanel extends PPanel{
 	private Button checkButton;
 	private Button passedButton;
 	private Button unpassedButton;
-	
+	private static final int dis=56;
+	private static final int this_y=125;
 	class MyTableModel extends DefaultTableModel {
 	    /**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-
+		
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Class getColumnClass(int c) {
 	        if(c==0)return new Boolean(true).getClass();
@@ -71,16 +72,16 @@ public class OrderApprovePanel extends PPanel{
 		this.name = name;
 		
 		JLabel approveLabel = new JLabel("审批单据");
-		approveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+		approveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 //		approveLabel.setForeground(Color.white);
-		approveLabel.setBounds(505, 40, 93, 24);
+		approveLabel.setBounds(505, 40, 120, 32);
 		add(approveLabel);
 		
 		Button allButton = new Button();
 		allButton.setIcon(new ImageIcon("ui/button/buttonAllSelect.png"));
 		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSelectSt.png"));
 		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllSelectP.png"));
-		allButton.setBounds(927, 103,100, 30);
+		allButton.setBounds(927, this_y,100, 30);
 		allButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -92,7 +93,7 @@ public class OrderApprovePanel extends PPanel{
 		passedButton.setIcon(new ImageIcon("ui/button/buttonPassed.png"));
 		passedButton.setRolloverIcon(new ImageIcon("ui/button/buttonPassedSt.png"));
 		passedButton.setPressedIcon(new ImageIcon("ui/button/buttonPassedP.png"));
-		passedButton.setBounds(927, 159, 100,30);
+		passedButton.setBounds(927, this_y+dis, 100,30);
 		passedButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -105,7 +106,7 @@ public class OrderApprovePanel extends PPanel{
 		unpassedButton.setIcon(new ImageIcon("ui/button/buttonUnpa.png"));
 		unpassedButton.setRolloverIcon(new ImageIcon("ui/button/buttonUnpaSt.png"));
 		unpassedButton.setPressedIcon(new ImageIcon("ui/button/buttonUnpaP.png"));
-		unpassedButton.setBounds(927, 215,100,30);
+		unpassedButton.setBounds(927, this_y+2*dis,100,30);
 		unpassedButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -117,7 +118,7 @@ public class OrderApprovePanel extends PPanel{
 		add(unpassedButton);
 		
 		checkButton = new CheckButton();
-		checkButton.setBounds(927, 271,100, 30);
+		checkButton.setBounds(927, this_y+3*dis,100, 30);
 		checkButton.setEnabled(false);
 		checkButton.addActionListener(new ActionListener(){
 			@Override
@@ -132,7 +133,7 @@ public class OrderApprovePanel extends PPanel{
 		refreshButton.setIcon(new ImageIcon("ui/button/buttonFresh.png"));
 		refreshButton.setRolloverIcon(new ImageIcon("ui/button/buttonFreshSt.png"));
 		refreshButton.setPressedIcon(new ImageIcon("ui/button/buttonFreshP.png"));
-		refreshButton.setBounds(927, 327, 100, 30);
+		refreshButton.setBounds(927, this_y+4*dis, 100, 30);
 		refreshButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -142,7 +143,7 @@ public class OrderApprovePanel extends PPanel{
 		add(refreshButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(927, 383,100,30);
+		exitButton.setBounds(927, this_y+5*dis,100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -197,10 +198,10 @@ public class OrderApprovePanel extends PPanel{
 				}
 			}
 		});
-		table.setBounds(193, 71, 717, 421);
+		table.setBounds(180, 125, 717, 421);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(193, 71, 717, 421);
+		scroll.setBounds(180, 125, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"是否选中","时间","种类","编号","提交人"};
 		model.setColumnIdentifiers(columnNames);
