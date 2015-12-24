@@ -63,8 +63,8 @@
     <ROW Component="bci.dll" ComponentId="{E05D0F6C-EC74-43A2-B82A-E22B98D1ADCE}" Directory_="bin_Dir" Attributes="256" KeyPath="bci.dll"/>
     <ROW Component="blacklist" ComponentId="{53FF51FF-8C5F-4A70-B74E-DDB63A229861}" Directory_="security_Dir" Attributes="0" KeyPath="blacklist" Type="0"/>
     <ROW Component="classes.jsa" ComponentId="{CC668DD4-F34D-455B-B59F-AF19480D5B15}" Directory_="server_1_Dir" Attributes="0" KeyPath="classes.jsa" Type="0"/>
-    <ROW Component="constant.ser" ComponentId="{66367F34-D68F-464B-92B0-0A11EFCFE26B}" Directory_="constant_Dir" Attributes="0" KeyPath="constant.ser" Type="0"/>
-    <ROW Component="count0.ser" ComponentId="{B66EE3F9-6E76-4BC3-9A34-76FD51172B9B}" Directory_="count_Dir" Attributes="0" KeyPath="count0.ser" Type="0"/>
+    <ROW Component="constant" ComponentId="{F3DE1831-673F-4F68-881F-7F7536EE3F91}" Directory_="constant_Dir" Attributes="0"/>
+    <ROW Component="count" ComponentId="{6343ADF1-F45C-4260-BDC7-3A24F6E1475D}" Directory_="count_Dir" Attributes="0"/>
     <ROW Component="cursors.properties" ComponentId="{F45332C3-0F54-4350-A9CF-AC1B94F4E805}" Directory_="cursors_Dir" Attributes="0" KeyPath="cursors.properties" Type="0"/>
     <ROW Component="database.txt_1" ComponentId="{8FAC8484-FF76-4F0B-8F28-D3368A0B5340}" Directory_="APPDIR" Attributes="0" KeyPath="database.txt" Type="0"/>
     <ROW Component="dcpr.dll" ComponentId="{A0E0E6F0-592D-48BF-B8C2-9538026BE1DF}" Directory_="bin_Dir" Attributes="256" KeyPath="dcpr.dll"/>
@@ -112,7 +112,6 @@
     <ROW Component="jp2native.dll" ComponentId="{5F8FD02E-4D78-4706-82DC-EB9F10A0FE95}" Directory_="bin_Dir" Attributes="256" KeyPath="jp2native.dll"/>
     <ROW Component="jp2ssv.dll" ComponentId="{7CE51756-35CF-4C98-80EB-B6A487EA6738}" Directory_="bin_Dir" Attributes="256" KeyPath="jp2ssv.dll"/>
     <ROW Component="jpeg.dll" ComponentId="{E7BCE0DF-CD31-4675-B1B0-A023C0E605E0}" Directory_="bin_Dir" Attributes="256" KeyPath="jpeg.dll"/>
-    <ROW Component="jpg" ComponentId="{EEF909C4-A299-4967-B423-0139A8F6220F}" Directory_="vanImage_Dir" Attributes="0" KeyPath="jpg" Type="0"/>
     <ROW Component="jsdt.dll" ComponentId="{62523949-2556-4828-A608-C33D315543F9}" Directory_="bin_Dir" Attributes="256" KeyPath="jsdt.dll"/>
     <ROW Component="jsound.dll" ComponentId="{A4217091-CEC6-4BAD-9886-A5ED6B922340}" Directory_="bin_Dir" Attributes="256" KeyPath="jsound.dll"/>
     <ROW Component="jsoundds.dll" ComponentId="{736A79AE-39C7-49AE-84C3-EFBF1CD4A0A7}" Directory_="bin_Dir" Attributes="256" KeyPath="jsoundds.dll"/>
@@ -144,24 +143,25 @@
     <ROW Component="resource.dll" ComponentId="{BD435123-2EEE-4DE8-8CEE-7C386A85C5EF}" Directory_="bin_Dir" Attributes="256" KeyPath="resource.dll"/>
     <ROW Component="rmid.exe" ComponentId="{5ABE3C2C-9795-44D2-81FC-1E6993A96266}" Directory_="bin_Dir" Attributes="256" KeyPath="rmid.exe"/>
     <ROW Component="rmiregistry.exe" ComponentId="{EC1CA96A-6E72-439C-A0E6-AA514B52DD16}" Directory_="bin_Dir" Attributes="256" KeyPath="rmiregistry.exe"/>
-    <ROW Component="ser" ComponentId="{9BFF848E-EC41-45BB-BC66-1746BC2F3B55}" Directory_="stockWarning_Dir" Attributes="0" KeyPath="ser" Type="0"/>
     <ROW Component="servertool.exe" ComponentId="{F487051E-E775-4B67-B8B4-07FCA1BE4051}" Directory_="bin_Dir" Attributes="256" KeyPath="servertool.exe"/>
     <ROW Component="splashscreen.dll" ComponentId="{889C70AF-83E2-42B4-98A7-B4AD1788CCD4}" Directory_="bin_Dir" Attributes="256" KeyPath="splashscreen.dll"/>
     <ROW Component="ssv.dll" ComponentId="{21CCA18F-8CEA-45E5-90AA-C76FB76D7B2B}" Directory_="bin_Dir" Attributes="256" KeyPath="ssv.dll"/>
     <ROW Component="ssvagent.exe" ComponentId="{5ED579C7-C6E4-4864-A468-A1ED36C9B561}" Directory_="bin_Dir" Attributes="256" KeyPath="ssvagent.exe"/>
+    <ROW Component="stockWarning" ComponentId="{DD670461-9957-4B8D-B2C2-A1A2402AAEA0}" Directory_="stockWarning_Dir" Attributes="0"/>
     <ROW Component="sunec.dll" ComponentId="{8F86F2B5-6394-4183-9D1B-ABFB6DB1FBA5}" Directory_="bin_Dir" Attributes="256" KeyPath="sunec.dll"/>
     <ROW Component="sunmscapi.dll" ComponentId="{047F2D6C-1C89-4197-AF50-1AEA450A6E6E}" Directory_="bin_Dir" Attributes="256" KeyPath="sunmscapi.dll"/>
     <ROW Component="t2k.dll" ComponentId="{E3CA2A55-97F2-49BE-8EE0-3CAB494090B4}" Directory_="bin_Dir" Attributes="256" KeyPath="t2k.dll"/>
     <ROW Component="tnameserv.exe" ComponentId="{8C5338B7-F62D-41A6-959D-C715D2F90637}" Directory_="bin_Dir" Attributes="256" KeyPath="tnameserv.exe"/>
     <ROW Component="unpack.dll" ComponentId="{F204BAC0-4042-458C-8B43-3EE3723FD349}" Directory_="bin_Dir" Attributes="256" KeyPath="unpack.dll"/>
     <ROW Component="unpack200.exe" ComponentId="{DF624B87-386F-4200-B15D-8FE08C3A1F0A}" Directory_="bin_Dir" Attributes="256" KeyPath="unpack200.exe"/>
+    <ROW Component="vanImage" ComponentId="{BD6D05B3-9622-497A-A0BF-E582ADA328C0}" Directory_="vanImage_Dir" Attributes="0"/>
     <ROW Component="verify.dll" ComponentId="{470AB464-A91E-49EE-9DB0-8C65F58980E1}" Directory_="bin_Dir" Attributes="256" KeyPath="verify.dll"/>
     <ROW Component="w2k_lsa_auth.dll" ComponentId="{C6CA8B45-9A08-49CB-A54F-4406AD4D9B97}" Directory_="bin_Dir" Attributes="256" KeyPath="w2k_lsa_auth.dll"/>
     <ROW Component="wsdetect.dll" ComponentId="{C432E673-E678-4FB5-ADC6-0A4C474A33B5}" Directory_="bin_Dir" Attributes="256" KeyPath="wsdetect.dll"/>
     <ROW Component="zip.dll" ComponentId="{E8750D8B-52E2-4B7E-A280-47782A1522E8}" Directory_="bin_Dir" Attributes="256" KeyPath="zip.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="ProductInformation SHORTCUTDIR constant.ser count0.ser database.txt_1 exe jpg ser"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="ProductInformation SHORTCUTDIR constant count database.txt_1 exe stockWarning vanImage"/>
     <ROW Feature="bitJREBundle" Title="64-bit JRE Bundle" Description="This feature contains the 64-bit JRE bundle." Display="3" Level="1" Directory_="APPDIR" Attributes="0" Components="CIEXYZ.pf COPYRIGHT JAWTAccessBridge64.dll JavaAccessBridge64.dll LucidaBrightDemiBold.ttf WindowsAccessBridge64.dll accessbridge64.jar accessibility.properties awt.dll bci.dll blacklist classes.jsa cursors.properties dcpr.dll decora_sse.dll default.jfc deploy.dll deployJava1.dll dt_shmem.dll dt_socket.dll eula.dll ffjcext.zip fontmanager.dll fxplugins.dll glass.dll gliblite.dll gstreamerlite.dll hprof.dll instrument.dll j2pcsc.dll j2pkcs11.dll jaas_nt.dll jabswitch.exe java.dll java.exe java_crw_demo.dll javacpl.cpl javacpl.exe javafx_font.dll javafx_font_t2k.dll javafx_iio.dll javarmi.exe javaw.exe javaws.exe jawt.dll jdwp.dll jfr.dll jfxmedia.dll jfxwebkit.dll jjs.exe jli.dll jmxremote.access jp2iexp.dll jp2launcher.exe jp2native.dll jp2ssv.dll jpeg.dll jsdt.dll jsound.dll jsoundds.dll jvm.cfg jvm.dll kcms.dll keytool.exe kinit.exe klist.exe ktab.exe lcms.dll management.dll mlib_image.dll msvcp120.dll msvcr100.dll msvcr100.dll_1 msvcr120.dll net.dll nio.dll npdeployJava1.dll npjp2.dll npt.dll orbd.exe pack200.exe policytool.exe prism_common.dll prism_d3d.dll prism_sw.dll resource.dll rmid.exe rmiregistry.exe servertool.exe splashscreen.dll ssv.dll ssvagent.exe sunec.dll sunmscapi.dll t2k.dll tnameserv.exe unpack.dll unpack200.exe verify.dll w2k_lsa_auth.dll wsdetect.dll zip.dll" Builds="DefaultBuild"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
@@ -186,7 +186,7 @@
     <ROW File="THIRDPARTYLICENSEREADME.txt" Component_="COPYRIGHT" FileName="THIRDP~2.TXT|THIRDPARTYLICENSEREADME.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\THIRDPARTYLICENSEREADME.txt" SelfReg="false" NextFile="Welcome.html"/>
     <ROW File="THIRDPARTYLICENSEREADMEJAVAFX.txt" Component_="COPYRIGHT" FileName="THIRDP~1.TXT|THIRDPARTYLICENSEREADME-JAVAFX.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\THIRDPARTYLICENSEREADME-JAVAFX.txt" SelfReg="false" NextFile="THIRDPARTYLICENSEREADME.txt"/>
     <ROW File="US_export_policy.jar" Component_="blacklist" FileName="US_EXP~1.JAR|US_export_policy.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\security\US_export_policy.jar" SelfReg="false" NextFile="sound.properties"/>
-    <ROW File="Welcome.html" Component_="COPYRIGHT" FileName="WELCOM~1.HTM|Welcome.html" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\Welcome.html" SelfReg="false"/>
+    <ROW File="Welcome.html" Component_="COPYRIGHT" FileName="WELCOM~1.HTM|Welcome.html" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\Welcome.html" SelfReg="false" NextFile="readme.txt_1"/>
     <ROW File="WindowsAccessBridge64.dll" Component_="WindowsAccessBridge64.dll" FileName="WINDOW~1.DLL|WindowsAccessBridge-64.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\WindowsAccessBridge-64.dll" SelfReg="false" NextFile="wsdetect.dll"/>
     <ROW File="Xusage.txt" Component_="classes.jsa" FileName="Xusage.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\server\Xusage.txt" SelfReg="false" NextFile="servertool.exe"/>
     <ROW File="accessbridge64.jar" Component_="accessbridge64.jar" FileName="ACCESS~1.JAR|access-bridge-64.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\access-bridge-64.jar" SelfReg="false" NextFile="cldrdata.jar"/>
@@ -201,9 +201,7 @@
     <ROW File="classes.jsa" Component_="classes.jsa" FileName="classes.jsa" Attributes="1" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\server\classes.jsa" SelfReg="false" NextFile="jvm.dll"/>
     <ROW File="classlist" Component_="accessibility.properties" FileName="CLASSL~1|classlist" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\classlist" SelfReg="false" NextFile="CIEXYZ.pf"/>
     <ROW File="cldrdata.jar" Component_="accessbridge64.jar" FileName="cldrdata.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\cldrdata.jar" SelfReg="false" NextFile="dnsns.jar"/>
-    <ROW File="constant.ser" Component_="constant.ser" FileName="constant.ser" Attributes="0" SourcePath="server\data\constant\constant.ser" SelfReg="false" NextFile="count0.ser"/>
     <ROW File="contenttypes.properties" Component_="accessibility.properties" FileName="CONTEN~1.PRO|content-types.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\content-types.properties" SelfReg="false" NextFile="currency.data"/>
-    <ROW File="count0.ser" Component_="count0.ser" FileName="count0.ser" Attributes="0" SourcePath="server\data\count\count0.ser" SelfReg="false" NextFile="ser"/>
     <ROW File="currency.data" Component_="accessibility.properties" FileName="CURREN~1.DAT|currency.data" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\currency.data" SelfReg="false" NextFile="ffjcext.zip"/>
     <ROW File="cursors.properties" Component_="cursors.properties" FileName="CURSOR~1.PRO|cursors.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\images\cursors\cursors.properties" SelfReg="false" NextFile="invalid32x32.gif"/>
     <ROW File="database.txt" Component_="database.txt_1" FileName="database.txt" Attributes="0" SourcePath="server\database.txt" SelfReg="false" NextFile="server.jar"/>
@@ -270,9 +268,6 @@
     <ROW File="jp2native.dll" Component_="jp2native.dll" FileName="JP2NAT~1.DLL|jp2native.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jp2native.dll" SelfReg="false" NextFile="jp2ssv.dll"/>
     <ROW File="jp2ssv.dll" Component_="jp2ssv.dll" FileName="jp2ssv.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jp2ssv.dll" SelfReg="false" NextFile="jpeg.dll"/>
     <ROW File="jpeg.dll" Component_="jpeg.dll" FileName="jpeg.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jpeg.dll" SelfReg="false" NextFile="jsdt.dll"/>
-    <ROW File="jpg" Component_="jpg" FileName="025000~1.JPG|025000001.jpg" Attributes="0" SourcePath="server\vanImage\025000001.jpg" SelfReg="false" NextFile="jpg_1"/>
-    <ROW File="jpg_1" Component_="jpg" FileName="25000002.jpg" Attributes="0" SourcePath="server\vanImage\25000002.jpg" SelfReg="false" NextFile="jpg_2"/>
-    <ROW File="jpg_2" Component_="jpg" FileName="25000003.jpg" Attributes="0" SourcePath="server\vanImage\25000003.jpg" SelfReg="false" NextFile="exe"/>
     <ROW File="jsdt.dll" Component_="jsdt.dll" FileName="jsdt.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jsdt.dll" SelfReg="false" NextFile="jsound.dll"/>
     <ROW File="jsound.dll" Component_="jsound.dll" FileName="jsound.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jsound.dll" SelfReg="false" NextFile="jsoundds.dll"/>
     <ROW File="jsoundds.dll" Component_="jsoundds.dll" FileName="jsoundds.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\jsoundds.dll" SelfReg="false" NextFile="kcms.dll"/>
@@ -328,6 +323,7 @@
     <ROW File="profile.jfc" Component_="default.jfc" FileName="profile.jfc" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\jfr\profile.jfc" SelfReg="false" NextFile="jfr.jar"/>
     <ROW File="psfont.properties.ja" Component_="accessibility.properties" FileName="PSFONT~1.JA|psfont.properties.ja" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\psfont.properties.ja" SelfReg="false" NextFile="psfontj2d.properties"/>
     <ROW File="psfontj2d.properties" Component_="accessibility.properties" FileName="PSFONT~1.PRO|psfontj2d.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\psfontj2d.properties" SelfReg="false" NextFile="resources.jar"/>
+    <ROW File="readme.txt_1" Component_="database.txt_1" FileName="readme.txt" Attributes="0" SourcePath="server\readme.txt" SelfReg="false" NextFile="transitsys.sql"/>
     <ROW File="release" Component_="COPYRIGHT" FileName="release" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\release" SelfReg="false" NextFile="THIRDPARTYLICENSEREADMEJAVAFX.txt"/>
     <ROW File="resource.dll" Component_="resource.dll" FileName="resource.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\resource.dll" SelfReg="false" NextFile="rmid.exe"/>
     <ROW File="resources.jar" Component_="accessibility.properties" FileName="RESOUR~1.JAR|resources.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\resources.jar" SelfReg="false" NextFile="rt.jar"/>
@@ -335,7 +331,6 @@
     <ROW File="rmiregistry.exe" Component_="rmiregistry.exe" FileName="RMIREG~1.EXE|rmiregistry.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\rmiregistry.exe" SelfReg="false" NextFile="classes.jsa" DigSign="true"/>
     <ROW File="rt.jar" Component_="accessibility.properties" FileName="rt.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\rt.jar" SelfReg="false" NextFile="blacklist"/>
     <ROW File="sRGB.pf" Component_="CIEXYZ.pf" FileName="sRGB.pf" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\cmm\sRGB.pf" SelfReg="false" NextFile="contenttypes.properties"/>
-    <ROW File="ser" Component_="ser" FileName="0250.ser" Attributes="0" SourcePath="server\data\stockWarning\0250.ser" SelfReg="false" NextFile="database.txt"/>
     <ROW File="server.jar" Component_="database.txt_1" FileName="server.jar" Attributes="0" SourcePath="server\server.jar" SelfReg="false" NextFile="url.txt"/>
     <ROW File="servertool.exe" Component_="servertool.exe" FileName="SERVER~1.EXE|servertool.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\servertool.exe" SelfReg="false" NextFile="splashscreen.dll" DigSign="true"/>
     <ROW File="snmp.acl.template" Component_="jmxremote.access" FileName="SNMPAC~1.TEM|snmp.acl.template" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\management\snmp.acl.template" SelfReg="false" NextFile="managementagent.jar"/>
@@ -353,12 +348,13 @@
     <ROW File="sunpkcs11.jar" Component_="accessbridge64.jar" FileName="SUNPKC~1.JAR|sunpkcs11.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\sunpkcs11.jar" SelfReg="false" NextFile="zipfs.jar"/>
     <ROW File="t2k.dll" Component_="t2k.dll" FileName="t2k.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\t2k.dll" SelfReg="false" NextFile="tnameserv.exe"/>
     <ROW File="tnameserv.exe" Component_="tnameserv.exe" FileName="TNAMES~1.EXE|tnameserv.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\tnameserv.exe" SelfReg="false" NextFile="unpack.dll" DigSign="true"/>
+    <ROW File="transitsys.sql" Component_="database.txt_1" FileName="TRANSI~1.SQL|transitsys.sql" Attributes="0" SourcePath="server\transitsys.sql" SelfReg="false"/>
     <ROW File="trusted.libraries" Component_="blacklist" FileName="TRUSTE~1.LIB|trusted.libraries" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\security\trusted.libraries" SelfReg="false" NextFile="US_export_policy.jar"/>
     <ROW File="tzdb.dat" Component_="accessibility.properties" FileName="tzdb.dat" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\tzdb.dat" SelfReg="false" NextFile="tzmappings"/>
     <ROW File="tzmappings" Component_="accessibility.properties" FileName="TZMAPP~1|tzmappings" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\tzmappings" SelfReg="false" NextFile="LICENSE"/>
     <ROW File="unpack.dll" Component_="unpack.dll" FileName="unpack.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\unpack.dll" SelfReg="false" NextFile="unpack200.exe"/>
     <ROW File="unpack200.exe" Component_="unpack200.exe" FileName="UNPACK~1.EXE|unpack200.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\unpack200.exe" SelfReg="false" NextFile="verify.dll" DigSign="true"/>
-    <ROW File="url.txt" Component_="database.txt_1" FileName="url.txt" Attributes="0" SourcePath="server\url.txt" SelfReg="false" NextFile="jpg"/>
+    <ROW File="url.txt" Component_="database.txt_1" FileName="url.txt" Attributes="0" SourcePath="server\url.txt" SelfReg="false" NextFile="exe"/>
     <ROW File="verify.dll" Component_="verify.dll" FileName="verify.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\verify.dll" SelfReg="false" NextFile="w2k_lsa_auth.dll"/>
     <ROW File="w2k_lsa_auth.dll" Component_="w2k_lsa_auth.dll" FileName="W2K_LS~1.DLL|w2k_lsa_auth.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\w2k_lsa_auth.dll" SelfReg="false" NextFile="WindowsAccessBridge64.dll"/>
     <ROW File="win32_CopyDrop32x32.gif" Component_="cursors.properties" FileName="WIN32_~1.GIF|win32_CopyDrop32x32.gif" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\images\cursors\win32_CopyDrop32x32.gif" SelfReg="false" NextFile="win32_CopyNoDrop32x32.gif"/>
@@ -425,6 +421,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+    <ROW Directory_="vanImage_Dir" Component_="vanImage" ManualDelete="false"/>
+    <ROW Directory_="constant_Dir" Component_="constant" ManualDelete="false"/>
+    <ROW Directory_="count_Dir" Component_="count" ManualDelete="false"/>
+    <ROW Directory_="stockWarning_Dir" Component_="stockWarning" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
@@ -440,12 +440,31 @@
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="Adjustsizesasneededexperimenttofindtheoptimalvalues." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# Adjust sizes as needed, experiment to find the optimal values." Value="# Adjust sizes as needed, experiment to find the optimal values." Action="0" Component_="ProductInformation"/>
     <ROW IniFile="ApplicationType" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Application" Key="Application Type" Value="cmdline" Action="0" Component_="exe"/>
     <ROW IniFile="ClassPath" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Class Path" Key="Class Path" Value="[#server.jar];" Action="0" Component_="exe"/>
     <ROW IniFile="MainClass" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Main Class" Value="edu.nju.umr.server.Main" Action="0" Component_="exe"/>
     <ROW IniFile="MaximumVersion" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Maximum Version" Value="1.8" Action="0" Component_="exe"/>
     <ROW IniFile="MinimumVersion" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Minimum Version" Value="1.7" Action="0" Component_="exe"/>
+    <ROW IniFile="RemoveleadingandsettotheamountofRAMforthemostimportantdata" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# Remove leading # and set to the amount of RAM for the most important data" Value="# Remove leading # and set to the amount of RAM for the most important data" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="Removeleadingtosetoptionsmainlyusefulforreportingservers." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# Remove leading # to set options mainly useful for reporting servers." Value="# Remove leading # to set options mainly useful for reporting servers." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="Removeleadingtoturnonaveryimportantdataintegrityoptionlogging" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# Remove leading # to turn on a very important data integrity option: logging" Value="# Remove leading # to turn on a very important data integrity option: logging" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="Thesearecommonlysetremovetheandsetasrequired." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# These are commonly set, remove the # and set as required." Value="# These are commonly set, remove the # and set as required." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="TheserverdefaultsarefasterfortransactionsandfastSELECTs." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# The server defaults are faster for transactions and fast SELECTs." Value="# The server defaults are faster for transactions and fast SELECTs." Action="0" Component_="ProductInformation"/>
     <ROW IniFile="VirtualMachineParameters" FileName="TRANSI~2.INI|transitSys-server.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Virtual Machine Parameters" Value="-Xms64M -Xmx256M " Action="0" Component_="exe"/>
+    <ROW IniFile="basedir" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="basedir" Value="D:\Mysql" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="cacheinMySQL.Startat70oftotalRAMfordedicatedserverelse10." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%." Value="# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="changestothebinarylogbetweenbackups." FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# changes to the binary log between backups." Value="# changes to the binary log between backups." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="charactersetserver" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="character-set-server" Value="gbk" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="datadir" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="datadir" Value="D:\Mysql\data" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="innodb_buffer_pool_size" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# innodb_buffer_pool_size" Value="128M" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="join_buffer_size" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# join_buffer_size" Value="128M" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="log_bin" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# log_bin" Value="# log_bin" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="port" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# port" Value="....." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="read_rnd_buffer_size" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# read_rnd_buffer_size" Value="2M" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="server_id" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# server_id" Value="....." Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="sort_buffer_size" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="# sort_buffer_size" Value="2M" Action="0" Component_="ProductInformation"/>
+    <ROW IniFile="sql_mode" FileName="my.ini" DirProperty="APPDIR" Section="mysqld" Key="sql_mode" Value="NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES" Action="0" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
