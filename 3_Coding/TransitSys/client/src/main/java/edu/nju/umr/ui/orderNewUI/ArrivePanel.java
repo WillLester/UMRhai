@@ -14,9 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.logic.orderNewLogic.ArriveOrderLogic;
-import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.orderNewLogic.ArriveOrderLSer;
-import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.GoodState;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.AutoCompPanel;
@@ -69,6 +67,7 @@ public class ArrivePanel extends PPanel {
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
+		this.org = org;
 		
 		JLabel titleLabel = new JLabel("中转中心到达单");
 		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
@@ -180,13 +179,7 @@ public class ArrivePanel extends PPanel {
 		String centerId=centerField.getText();
 		if(idField.getText().isEmpty())
 		{
-			DoHint.hint("中转单编号未输入!", frame);
-			return;
-		}
-		OrderInfoLSer orderServ=new OrderInfoLogic();
-		if(!orderServ.isTransitValid(idField.getText()))
-		{
-			DoHint.hint("中转单不存在!", frame);
+			DoHint.hint("中转单或装车单编号未输入!", frame);
 			return;
 		}
 		GoodState state;

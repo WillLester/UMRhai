@@ -1,12 +1,10 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +27,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -59,10 +58,11 @@ public class OrgListPanel extends PPanel {
 	private OrgManLSer serv;
 	private JComboBox<String> cityComboBox;
 	private Button modify;
-	private JButton workMan;
+	private Button workMan;
 	private Button confirmMod;
 	private Button delete;
 	private String name;
+	private static final int y=20;
 	/**
 	 * Create the panel.
 	 */
@@ -74,13 +74,11 @@ public class OrgListPanel extends PPanel {
 		serv=new OrgManLogic();
 		this.name = name;
 		
-		JLabel nameLabel = new JLabel("机构信息列表");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("机构信息");
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();
-		textFieldSearch.setBounds(Constants.TABLE_X,Constants.TABLE_Y+20, 600, 21);
+		textFieldSearch.setBounds(Constants.TABLE_X,y+Constants.TABLE_Y+20, 600, 21);
 		add(textFieldSearch);
 		textFieldSearch.setColumns(10);
 		
@@ -186,8 +184,9 @@ public class OrgListPanel extends PPanel {
 		});
 		add(out);
 		
-		workMan = new JButton("人员管理");
-		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 93, 23);
+		workMan = new Button();
+		workMan.setNewImages("buttonWorkMan", "buttonWorkManSt", "buttonWorkManP");
+		workMan.setBounds(confirmMod.getX()+confirmMod.getWidth()+50, add.getY(), 100, 30);
 		workMan.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				FunctionFrame ffr=new FunctionFrame("人员管理");

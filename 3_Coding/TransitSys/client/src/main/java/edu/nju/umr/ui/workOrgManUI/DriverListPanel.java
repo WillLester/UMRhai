@@ -132,7 +132,6 @@ public class DriverListPanel extends PPanel {
 						{
 							ex.printStackTrace();
 						}
-						frame.dispose();
 					}
 		        }
 			}

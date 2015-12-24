@@ -61,7 +61,7 @@ public class Constants {
 		public static final int TITLE_WIDTH=120;
 		public static final int TITLE_HEIGHT=32;
 		public static final int TITLE_X=553-TITLE_WIDTH/2;
-		public static final int TITLE_Y=10;
+		public static final int TITLE_Y=25;
 		public static final int LAYOUT_FIR_Y=125;
 		
 		

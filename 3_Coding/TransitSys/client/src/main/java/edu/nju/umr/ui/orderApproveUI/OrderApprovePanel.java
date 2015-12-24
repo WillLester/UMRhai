@@ -141,7 +141,7 @@ public class OrderApprovePanel extends PPanel{
 		add(refreshButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(927, this_y+5*dis,100,30);
+		exitButton.setBounds(927, this_y+5*dis+100,100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{

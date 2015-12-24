@@ -127,7 +127,11 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new HallLoadingPO(null, id, null, null, null, null, null, null, null, null, 0, null,false));
 		HallLoadingPO po = OrderPOFactory.getHallLoad(result);
-		return po.getExpress();
+		if(po == null){
+			return new ArrayList<String>();
+		} else {
+			return po.getExpress();
+		}
 	}
 
 	@Override
@@ -135,6 +139,7 @@ public class OrderInfoData extends UnicastRemoteObject implements OrderInfoDSer{
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new CenterLoadingPO(null, id, null, null, null, null, null, null, null, 0, null,false,null,null));
 		CenterLoadingPO po = OrderPOFactory.getCenterLoad(result);
+		if(po==null)return new ArrayList<String>();
 		return po.getExpress();
 	}
 	

@@ -27,7 +27,9 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.OutputButton;
@@ -50,6 +52,7 @@ public class BusiCircumPanel extends PPanel {
 	private DefaultTableModel model;
 	private ArrayList<BusiCircumVO> orderList;
 	private BusiCircumLSer serv;
+	private static final int y=20;
 	/**
 	 * Create the panel.
 	 */
@@ -64,25 +67,25 @@ public class BusiCircumPanel extends PPanel {
 		JLabel start = new JLabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		start.setForeground(color);
-		start.setBounds(Constants.TABLE_X, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
 		DatePanel startDate=new DatePanel();
-		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+4, 267, 21);
+		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 267, 21);
 		add(startDate);
 		
 		JLabel end = new JLabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		end.setForeground(color);
-		end.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
 		DatePanel endDate=new DatePanel();
-		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 267, 21);
+		endDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4+3, 267, 21);
 		add(endDate);
 		
 		Button exportButton = new OutputButton();
-		exportButton.setBounds(Constants.PANEL_WIDTH/10*8, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 100, 30);
+		exportButton.setBounds(Constants.PANEL_WIDTH/10*8, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4, 100, 30);
 		exportButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -91,7 +94,7 @@ public class BusiCircumPanel extends PPanel {
 		add(exportButton);
 		
 		Button confirm = new ConfirmButton();
-		confirm.setBounds(Constants.PANEL_WIDTH/10*7, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100, 30);
+		confirm.setBounds(Constants.PANEL_WIDTH/10*7, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+4,100, 30);
 		confirm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -100,20 +103,18 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(confirm);
 		
-		JLabel statementLabel = new JLabel("经营情况表");
+		JLabel statementLabel = new ELabel("经营情况表");
 		statementLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 //		statementLabel.setForeground(Color.WHITE);
-		statementLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		statementLabel.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(statementLabel);
 		
-		JLabel nameLabel = new JLabel("经营情况表");
-		nameLabel.setForeground(color);
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("经营情况表");
+//		setSize(250,Constants.TITLE_HEIGHT);
 		add(nameLabel);
 		
 		Button button = new ExitButton();
-		button.setBounds(Constants.PANEL_WIDTH/10*8, this.getHeight()/10*9, 100,30);
+		button.setBounds(Constants.PANEL_WIDTH/10*8, Constants.PANEL_HEIGHT/10*9, 100,30);
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -133,7 +134,7 @@ public class BusiCircumPanel extends PPanel {
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		statementTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
+		statementTable.setBounds(Constants.TABLE_X,Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		statementTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		statementTable.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(statementTable);

@@ -24,28 +24,32 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	private static final long serialVersionUID = -6608025281059459114L;
 	protected Button searchButton;
 	private CourierLSer logicSer;
+	public closeAction ca;
 	/**
 	 * Create the panel.
 	 */
+	private class closeAction implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+		}
+		
+	}
 	public ExpressInfoInqPanel(JFrame fr) {
 		super(fr,"","","");
 		logicSer = new CourierLogic();
 		titleLabel.setText("订单查询");
 		searchButton = new SearchButton();
 		searchButton.addActionListener(new InqListener());
-		searchButton.setBounds(532, 63, 100, 30);
+		searchButton.setBounds(532, 83, 100, 30);
 		add(searchButton);
 		setEnabled();
 		
 		confirmButton.removeActionListener(conListener);
-		confirmButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
-				frame.dispose();
-			}
-		});
+		confirmButton.setLocation(getWidth()/2-50, confirmButton.getY());
+		ca=new closeAction();
+		confirmButton.addActionListener(ca);
 		remove(cancelButton);
 	}
 	protected void setEnabled(){

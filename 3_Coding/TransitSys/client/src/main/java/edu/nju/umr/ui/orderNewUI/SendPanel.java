@@ -148,7 +148,6 @@ public class SendPanel extends PPanel {
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);
-							frame.dispose();
 						}
 					}
 			}
@@ -189,8 +188,10 @@ public class SendPanel extends PPanel {
 				for(String exp:ar){
 					express.add(exp);
 				}
-				barcodeField.setText(express.get(0));
-				barcodeField.setEditable(false);
+				if(express.size()>0){
+					barcodeField.setText(express.get(0));
+					barcodeField.setEditable(false);
+				}
 			}
 		}
 	}

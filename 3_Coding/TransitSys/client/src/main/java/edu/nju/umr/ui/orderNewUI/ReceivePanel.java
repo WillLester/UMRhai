@@ -13,6 +13,7 @@ import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
@@ -37,11 +38,11 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	 */
 	public ReceivePanel(JFrame fr,String org,String name) {
 		super(fr);
-		titleLabel.setText("收件信息输入");
+		titleLabel.setText("收件录入");
 		this.org = org;
 		this.name = name;
 		logicSer = new ReceiveOrderLogic();
-		cancelButton.setLocation(642, 564);
+		cancelButton.setLocation(642, 564+10);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -50,7 +51,9 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 				frame.dispose();
 			}
 		});
-		confirmButton.setLocation(418, 564);
+		add(cancelButton);
+		confirmButton.setLocation(418, 564+10);
+		confirmButton.removeActionListener(ca);
 		confirmButton.addActionListener(new ConfirmListener());
 		
 		searchButton.removeActionListener(searchButton.getActionListeners()[0]);
@@ -71,22 +74,22 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		});
 		
 		receiveField = new TextField();
-		receiveField.setBounds(370, 517, 103, 25);
+		receiveField.setBounds(370, 517+y, 103, 25);
 		add(receiveField);
 		receiveField.setColumns(10);
 		
-		JLabel receivelabel = new JLabel("收件人");
-		receivelabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		receivelabel.setBounds(294, 517, 80, 24);
+		JLabel receivelabel = new ELabel("收件人");
+		receivelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		receivelabel.setBounds(294, 517+y, 80, 24);
 		add(receivelabel);
 		
 		receiveDate = new DatePanel();
-		receiveDate.setBounds(603, 518, 400, 24);
+		receiveDate.setBounds(603, 518+y, 400, 24);
 		add(receiveDate);
 		
-		timelabel = new JLabel("收件时间");
-		timelabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		timelabel.setBounds(503, 517, 99, 24);
+		timelabel = new ELabel("收件时间");
+		timelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		timelabel.setBounds(503, 517+y, 99, 24);
 		add(timelabel);
 	}
 	@SuppressWarnings("unused")

@@ -19,7 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.PasswordField;
+import edu.nju.umr.ui.component.UMRPasswordField;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.LoginButton;
 import edu.nju.umr.ui.transitInfoUI.TransitInfoInqPanel;
@@ -89,7 +89,7 @@ public class LoginPanel extends JPanel {
 		passwordLabel.setBounds(469, 385, 40, 24);
 		add(passwordLabel);
 		
-		password = new PasswordField();
+		password = new UMRPasswordField();
 		password.setColumns(10);
 		password.setBounds(530, 385,210, 24);
 		add(password);
