@@ -12,12 +12,15 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
@@ -27,8 +30,6 @@ import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 public class VanInfoPanel extends JPanel {
 	/**
@@ -103,8 +104,7 @@ public class VanInfoPanel extends JPanel {
 		pic.setBounds(textFieldNum.getX(), picture.getY(), 350, 180);
 		add(pic);
 		
-		Button upload = new Button();
-		upload.setNewImages("buttonSelectPic", "buttonSelectPicSt", "buttonSelectPicP");
+		JButton upload = new JButton();
 		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 100, 30);
 		upload.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {

@@ -160,9 +160,9 @@ public class TransitPO extends PO implements Serializable,KindGetter,OrderOper,G
 	@Override
 	public String getToday() {
 		// TODO 自动生成的方法存根
-		return "select * from transitorderwaiting,transitorderpassed,transitorderunpassed where "
-				+ "transitorderwaiting.id like '%"+id+"%' or transitorderpassed.id like '%"+id+"%' or"
-						+ " transitorderunpassed.id like '%"+id+"%'";
+		return "select * from transitorderwaiting where id like '%"+id+"%' union "
+				+ "select * from transitorderpassed where id like '%"+id+"%' union "
+				+ "select * from transitorderunpassed where id like '%"+id+"%'";
 	}
 	@Override
 	public String getOrdersHere() {
