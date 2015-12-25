@@ -265,11 +265,13 @@ public class OrderApproveLogic implements OrderApproveLSer{
 						state.updateHallLoadingState(rv.getTransitId(), true);
 					}else{
 						String id=rv.getTransitId();
-						if(id.length()==19){
-							List<String> expresses = orderInfo.getHallLoadExp(id);
-							for(String express:expresses){
-								state.updateExpressState(express,rv.getId().substring(0,6)+"*");
-							}
+						List<String> expresses = orderInfo.getHallLoadExp(id);
+						for(String express:expresses){
+							state.updateExpressState(express,rv.getId().substring(0,6)+"*");
+						}
+						expresses = orderInfo.getCenterLoadExp(id);
+						for(String express:expresses){
+							state.updateExpressState(express,rv.getId().substring(0,6)+"*");
 						}
 					}
 				}

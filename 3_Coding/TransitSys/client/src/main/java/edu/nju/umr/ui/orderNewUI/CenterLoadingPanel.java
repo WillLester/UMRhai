@@ -57,7 +57,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 	 */
 	public CenterLoadingPanel(JFrame fr,CenterLoadingVO vo)
 	{
-		this(fr,vo.getOpName(),vo.getUserId(),null,null);
+		this(fr,vo.getOpName(),vo.getUserId(),vo.getStartPlace(),vo.getStartOrgId());
 		for(Component co:this.getComponents())
 		{
 			if(co.getName()==null)

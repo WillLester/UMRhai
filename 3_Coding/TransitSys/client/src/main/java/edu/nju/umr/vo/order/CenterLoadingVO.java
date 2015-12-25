@@ -37,6 +37,7 @@ public class CenterLoadingVO implements ShowOrder{
 		this.userId = userId;
 		this.arrived=arrived;
 		this.startPlace=startPlace;
+		this.startOrgId=startOrgId;
 	}
 	public Calendar getDate() {
 		return date;

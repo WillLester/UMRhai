@@ -54,7 +54,6 @@ public class RecipientOrderLogic implements RecipientOrderLSer{
 				orderState.updateCenterLoadingState(order.getTransitId(), true);
 				orderState.updateHallLoadingState(order.getTransitId(), true);
 			}
-			
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){

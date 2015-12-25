@@ -52,6 +52,7 @@ public class CenterLoadingPO extends PO implements Serializable,KindGetter,Order
 		this.userId = userId;
 		this.isArrived = isArrived;
 		this.startPlace = startPlace;
+		this.startOrgId = startOrgId;
 	}
 	public Calendar getDate() {
 		return date;
