@@ -246,11 +246,21 @@ public class OrderApprovePanel extends PPanel{
 		}
 		Result result=serv.examine(ispassed, idList,name);
 		DoHint.hint(result, frame);
+		
+		passedButton.setEnabled(false);
+		unpassedButton.setEnabled(false);
+		checkButton.setEnabled(false);
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)
 		{
 			table.setValueAt(true,i,0);
+			passedButton.setEnabled(true);
+			unpassedButton.setEnabled(true);
+			checkButton.setEnabled(true);
+			if(i>0){
+				checkButton.setEnabled(false);
+			}
 		}
 	}
 	private void checkOrder(){

@@ -60,10 +60,9 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 			if(isSuc.equals(Result.SUCCESS)){
 				for(String express:order.getExpress()){
 					isSuc=orderState.updateExpressState(express,order.getHallId()+"#");
-					System.out.println("isSuc");
-//					if(!isSuc.equals(Result.SUCCESS)){
-//						break;
-//					}
+					if(!isSuc.equals(Result.SUCCESS)){
+						break;
+					}
 				}
 			}
 			if(isSuc.equals(Result.SUCCESS)){

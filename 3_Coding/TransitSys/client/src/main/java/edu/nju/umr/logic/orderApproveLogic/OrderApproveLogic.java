@@ -133,7 +133,8 @@ public class OrderApproveLogic implements OrderApproveLSer{
 					}
 					ArriveVO ap=(ArriveVO)message.getMessage();
 					String id=ap.getId();
-					if(id.length()==19){
+//					if(id.length()==19)
+					{
 						List<String> expresses = orderInfo.getHallLoadExp(id);
 						if(approve){
 							for(String express:expresses){
@@ -148,8 +149,10 @@ public class OrderApproveLogic implements OrderApproveLSer{
 								return result;
 							}
 						}
-					}else{
-						List<String> expresses = orderInfo.getCenterLoadExp(id);
+					}
+//					else
+					{
+						List<String> expresses = orderInfo.getTransitExp(id);
 						if(approve){
 							for(String express:expresses){
 								result=state.updateExpressState(express,ap.getCenterId());

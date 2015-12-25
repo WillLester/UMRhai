@@ -115,4 +115,7 @@ public class AutoCompPanel extends JPanel{
 		jt.setEnabled(enabled);
 		jc.setEnabled(enabled);
 	}
+	public JTextField getjt(){
+		return jt;
+	}
 }
