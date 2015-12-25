@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -22,7 +21,9 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -50,35 +51,35 @@ public class StockCheckPanel extends PPanel{
 		logicSer = new StockCheckLogic();
 		tableInit();
 		
-		JLabel checkLabel = new JLabel("库存查看");
+		TitleLabel checkLabel = new TitleLabel("库存查看");
 		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		checkLabel.setBounds(503, 32, 97, 24);
 		add(checkLabel);
 		
 		Color color = new Color(57, 152,214);
 		
-		JLabel startLabel = new JLabel("开始时间");
+		ELabel startLabel = new ELabel("开始时间");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		startLabel.setForeground(color);
-		startLabel.setBounds(210, 71, 71, 24);
+		startLabel.setBounds(210, 101, 71, 24);
 		add(startLabel);
 		
 		dateTimeS = new DateTimePanel();
-		dateTimeS.setBounds(281, 71, 750, 25);
+		dateTimeS.setBounds(281, 101, 750, 25);
 		add(dateTimeS);
 		
-		JLabel endLabel = new JLabel("结束时间");
+		ELabel endLabel = new ELabel("结束时间");
 		endLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		endLabel.setForeground(color);
-		endLabel.setBounds(210, 116, 71, 19);
+		endLabel.setBounds(210, 146, 71, 19);
 		add(endLabel);
 		
 		dateTimeE = new DateTimePanel();
-		dateTimeE.setBounds(281, 116, 750, 25);
+		dateTimeE.setBounds(281, 146, 750, 25);
 		add(dateTimeE);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(700, 550, 100,30);
+		confirmButton.setBounds(916, 480, 100,30);
 		confirmButton.addActionListener(new ActionListener(){
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +98,7 @@ public class StockCheckPanel extends PPanel{
 		add(confirmButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(816, 550, 100, 30);
+		exitButton.setBounds(916, 550, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -117,11 +118,11 @@ public class StockCheckPanel extends PPanel{
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(219, 156, 665, 372);
+		table.setBounds(219, 186, 665, 372);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(219, 156, 665, 372);
+		scroll.setBounds(219, 186, 665, 372);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","时间","操作","订单号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);

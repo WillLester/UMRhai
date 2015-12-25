@@ -9,7 +9,6 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
@@ -41,7 +41,7 @@ public class DriverListPanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 8718383258027786192L;
-	private JTextField textFieldSearch;
+	private TextField textFieldSearch;
 	private FunctionFrame frame;
 	private DriverListPanel panel;
 	private Table table;
@@ -66,7 +66,7 @@ public class DriverListPanel extends PPanel {
 		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2,25, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
-		textFieldSearch = new JTextField();
+		textFieldSearch = new TextField();
 		textFieldSearch.setText("请输入关键字或司机编号");
 		textFieldSearch.setBounds(Constants.TABLE_X, Constants.TABLE_Y,300, 21);
 //		add(textFieldSearch);

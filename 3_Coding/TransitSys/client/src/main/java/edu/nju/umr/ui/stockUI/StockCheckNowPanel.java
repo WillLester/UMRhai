@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.OutputButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -51,13 +51,13 @@ public class StockCheckNowPanel extends PPanel{
 		logicSer = new StockCheckNowLogic();
 //		logicSer = new StockCheckNowPanelStub();
 		
-		JLabel checkLabel = new JLabel("库存盘点");
+		TitleLabel checkLabel = new TitleLabel("库存盘点");
 		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		checkLabel.setBounds(504, 31, 95, 24);
 		add(checkLabel);
 		
 		Button outputButton = new OutputButton();
-		outputButton.setBounds(947, 150, 100, 30);
+		outputButton.setBounds(947, 466, 100, 30);
 		outputButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -96,7 +96,7 @@ public class StockCheckNowPanel extends PPanel{
 		add(outputButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(947, 276, 100, 30);
+		exitButton.setBounds(947, 546, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -116,11 +116,11 @@ public class StockCheckNowPanel extends PPanel{
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(186, 84, 731, 442);
+		table.setBounds(186, 104, 731, 442);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(186, 84, 731, 442);
+		scroll.setBounds(186, 104, 731, 442);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"快递编号","入库日期","目的地","区号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
