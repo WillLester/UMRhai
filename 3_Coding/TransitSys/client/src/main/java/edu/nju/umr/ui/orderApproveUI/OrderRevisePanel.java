@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.orderApproveUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -22,6 +21,7 @@ import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
@@ -46,16 +46,14 @@ public class OrderRevisePanel extends PPanel{
 //		serv=new OrderRevisePanelStub();
 		this.userId = userId;
 
-		JLabel reviseLabel = new JLabel("未通过单据");
-		reviseLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-//		reviseLabel.setForeground(Color.white);
-		reviseLabel.setBounds(485, 40, 120, 24);
+		JLabel reviseLabel = new TitleLabel("未通过单据");
 		add(reviseLabel);
 		
 		Button refreshButton = new Button();
 		refreshButton.setIcon(new ImageIcon("ui/button/buttonFresh.png"));
 		refreshButton.setRolloverIcon(new ImageIcon("ui/button/buttonFreshSt.png"));
 		refreshButton.setPressedIcon(new ImageIcon("ui/button/buttonFreshP.png"));
+		refreshButton.setBounds(927,159,100,30);
 		refreshButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -96,11 +94,11 @@ public class OrderRevisePanel extends PPanel{
 	private void tableInit(){
 		table = new ApproveTable(new DefaultTableModel());
 		model=(DefaultTableModel)table.getModel();
-		table.setBounds(193, 71, 717, 421);
+		table.setBounds(193, 71+35, 717, 421);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(193, 71, 717, 421);
+		scroll.setBounds(193, 71+35, 717, 421);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"时间","种类"};
 		model.setColumnIdentifiers(columnNames);
