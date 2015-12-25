@@ -43,6 +43,7 @@ public class VanManLogic implements VanManLSer{
 		try{
 			isSuccessful=vanData.addVan(VPFactory.toVanPO(van));
 			isSuccessful = diarySer.addDiary("添加车辆"+van.getId(), name);
+			ar.add(VPFactory.toVanPO(van));
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -57,6 +58,12 @@ public class VanManLogic implements VanManLSer{
 		try{
 			isSuccessful=vanData.deleteVan(id);
 			isSuccessful = diarySer.addDiary("删除车辆"+id, name);
+			for(VanPO p:ar){
+				if(p.getId().equals(id)){
+					ar.remove(p);
+					break;
+				}
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -71,6 +78,14 @@ public class VanManLogic implements VanManLSer{
 		try{
 			isSuccessful=vanData.reviseVan(VPFactory.toVanPO(van));
 			isSuccessful = diarySer.addDiary("修改车辆"+van.getId(), name);
+			int ind=0;
+			for(VanPO p:ar){
+				if(p.getId().equals(van.getId())){
+					ar.set(ind, VPFactory.toVanPO(van));
+					break;
+				}
+				ind++;
+			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
 		}catch(Exception e){
@@ -110,22 +125,22 @@ public class VanManLogic implements VanManLSer{
 	public ResultMessage getNextId(String hallId) {
 		// TODO Auto-generated method stub
 		for(int i=0;i<ar.size()-1;i++){
-			int x1=Integer.parseInt(ar.get(i).getId());
-			int x2=Integer.parseInt(ar.get(i+1).getId());
+			int x1=Integer.parseInt(ar.get(i).getId().substring(6,9));
+			int x2=Integer.parseInt(ar.get(i+1).getId().substring(6,9));
 			if(x2-x1>1)
 			{
 				String temp=Integer.toString(x1+1);
-				while(temp.length()<9)temp="0"+temp;
-				return new ResultMessage(Result.SUCCESS,temp);
+				while(temp.length()<3)temp="0"+temp;
+				return new ResultMessage(Result.SUCCESS,hallId+temp);
 			}
 		}
 		int x=-1;
 		if(ar.size()>0)
 		{
-			x=Integer.parseInt(ar.get(ar.size()-1).getId());
+			x=Integer.parseInt(ar.get(ar.size()-1).getId().substring(6,9));
 			String temp=Integer.toString(x+1);
-			while(temp.length()<9)temp="0"+temp;
-			return new ResultMessage(Result.SUCCESS,temp);
+			while(temp.length()<3)temp="0"+temp;
+			return new ResultMessage(Result.SUCCESS,hallId+temp);
 		}
 		else
 		{
