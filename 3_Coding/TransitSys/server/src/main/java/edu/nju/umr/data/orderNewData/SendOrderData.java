@@ -47,7 +47,7 @@ public class SendOrderData extends UnicastRemoteObject implements SendOrderDSer{
 		// TODO 自动生成的方法存根
 		GetToday get = new SendPO(null, null, partId, null, null, null, null);
 		ResultSet result = mysqlSer.checkToday(get);
-	return OrderCounter.count(result);
+		return OrderCounter.count(result);
 	}
 
 }
