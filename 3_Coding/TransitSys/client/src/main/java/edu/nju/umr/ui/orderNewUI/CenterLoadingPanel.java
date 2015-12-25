@@ -13,8 +13,6 @@ import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -25,7 +23,10 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -38,14 +39,14 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 	 * 
 	 */
 	private static final long serialVersionUID = 6510869696757978208L;
-	private JTextField transitIdField;
-	private JTextField supervisionField;
-	private JTextField escortField;
-	private JTextField vanIdField;
+	private TextField transitIdField;
+	private TextField supervisionField;
+	private TextField escortField;
+	private TextField vanIdField;
 	private JFrame frame;
 	private CenterLoadingOrderLSer logicSer;
 	private DatePanel datePanel;
-	private JTextField costField;
+	private TextField costField;
 	private JComboBox<String> arriveCombo;
 	private String name;
 	private ExpressListPanel expressList;
@@ -77,9 +78,9 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 	 */
 	public CenterLoadingPanel(JFrame fr,String name,String userId,String org,String orgId) {
 		setLayout(null);
-		JLabel titleLabel = new JLabel("中转中心装车单");
+		TitleLabel titleLabel = new TitleLabel("中转中心装车单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392+75, 10, 243, 67);
 		add(titleLabel);
 		frame = fr;
@@ -89,22 +90,22 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		this.org = org;
 		this.orgId=orgId;
 		
-		JLabel transitIdLabel = new JLabel("汽运编号");
+		ELabel transitIdLabel = new ELabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		transitIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdLabel.setStdFont();
 		transitIdLabel.setBounds(355+75, 87, 120, 24);
 		add(transitIdLabel);
 		
-		transitIdField = new JTextField();
-		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdField = new TextField();
+		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdField.setBounds(560, 87, 190, 25);
 		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		
-		JLabel dateLabel = new JLabel("装车日期");
+		ELabel dateLabel = new ELabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		dateLabel.setStdFont();
 		dateLabel.setBounds(297+75, 121, 120, 24);
 		add(dateLabel);
 		
@@ -112,8 +113,8 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		datePanel.setBounds(522, 121, 285, 26);
 		add(datePanel);
 		
-		JLabel arriveLabel = new JLabel("到达地");
-		arriveLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		ELabel arriveLabel = new ELabel("到达地");
+		arriveLabel.setStdFont();
 		arriveLabel.setBounds(278, 155, 85, 24);
 		add(arriveLabel);
 		
@@ -133,41 +134,41 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		}});
 		add(arriveCombo);
 		
-		JLabel supervisionLabel = new JLabel("监装员");
-		supervisionLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		ELabel supervisionLabel = new ELabel("监装员");
+		supervisionLabel.setStdFont();
 		supervisionLabel.setBounds(421+75, 157, 85, 24);
 		add(supervisionLabel);
 		
-		supervisionField = new JTextField();
-		supervisionField.setFont(new Font("宋体", Font.PLAIN, 20));
+		supervisionField = new TextField();
+		supervisionField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		supervisionField.setColumns(10);
 		supervisionField.setBounds(485+75, 157, 85, 25);
 		add(supervisionField);
 		
-		JLabel escortLabel = new JLabel("押运员");
-		escortLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		ELabel escortLabel = new ELabel("押运员");
+		escortLabel.setStdFont();
 		escortLabel.setBounds(609+75, 157, 85, 24);
 		add(escortLabel);
 		
-		escortField = new JTextField();
-		escortField.setFont(new Font("宋体", Font.PLAIN, 20));
+		escortField = new TextField();
+		escortField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		escortField.setColumns(10);
 		escortField.setBounds(674+75, 158, 85, 25);
 		add(escortField);
 		
-		JLabel vanIdLabel = new JLabel("车辆代号");
+		ELabel vanIdLabel = new ELabel("车辆代号");
 		vanIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		vanIdLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		vanIdLabel.setStdFont();
 		vanIdLabel.setBounds(220+75, 204, 120, 24);
 		add(vanIdLabel);
 		
-		vanIdField = new JTextField();
-		vanIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		vanIdField = new TextField();
+		vanIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		vanIdField.setColumns(10);
 		vanIdField.setBounds(328+75, 203, 165, 25);
 		add(vanIdField);
 		
-		JLabel costLabel = new JLabel("运费/元");
+		ELabel costLabel = new ELabel("运费/元");
 		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		costLabel.setBounds(655, 204, 79, 24);
 		add(costLabel);
@@ -201,7 +202,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		});
 		add(cancelButton);
 		
-		costField = new JTextField();
+		costField = new TextField();
 		costField.setEditable(false);
 		costField.setBounds(731, 208, 66, 21);
 		costField.setEnabled(false);

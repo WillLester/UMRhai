@@ -11,7 +11,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -25,7 +24,10 @@ import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.CheckLegal;
@@ -52,7 +54,7 @@ public class StockOutPanel extends PPanel {
 	private String name;
 	private String orgId;
 	private String userId;
-	private JTextField idField;
+	private TextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -83,24 +85,24 @@ public class StockOutPanel extends PPanel {
 		this.orgId = orgId;
 		this.userId=userId;
 		
-		JLabel titleLabel = new JLabel("出库单");
+		JLabel titleLabel = new TitleLabel("出库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
-		JLabel expressLabel = new JLabel("快递编号");
+		JLabel expressLabel = new ELabel("快递编号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressLabel.setBounds(355, 124, 120, 24);
 		add(expressLabel);
 		
 		expressField = new AutoCompPanel();
-		expressField.setFont(new Font("宋体", Font.PLAIN, 20));
+		expressField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressField.setBounds(485, 124, 165, 25);
 		add(expressField);
 		
-		JLabel dateLabel = new JLabel("出库日期");
+		JLabel dateLabel = new ELabel("出库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(298, 170, 120, 24);
@@ -119,36 +121,36 @@ public class StockOutPanel extends PPanel {
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			
 		}
-		JLabel targetLabel = new JLabel("目的地");
+		JLabel targetLabel = new ELabel("目的地");
 		targetLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		targetLabel.setBounds(251, 213, 85, 24);
 		add(targetLabel);
 		
 		targetCombo = new JComboBox<String>();
-		targetCombo.setFont(new Font("黑体", Font.PLAIN, 15));
+		targetCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		targetCombo.setModel(new DefaultComboBoxModel<String>(targetList));
 		targetCombo.setBounds(334, 214, 183, 25);
 		add(targetCombo);
 		
-		JLabel transitLabel = new JLabel("装运形式");
-		transitLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		JLabel transitLabel = new ELabel("装运形式");
+		transitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitLabel.setBounds(541, 214, 85, 24);
 		add(transitLabel);
 		
 		transitCombo = new JComboBox<String>();
-		transitCombo.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitCombo.setBounds(636, 214, 87, 25);
 		transitCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"飞机","铁路","公路"}));
 		add(transitCombo);
 		
-		JLabel transitIdLabel = new JLabel("中转单/汽运编号");
+		JLabel transitIdLabel = new ELabel("中转单/汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdLabel.setBounds(315, 282, 160, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new AutoCompPanel();
-		transitIdField.setFont(new Font("宋体", Font.PLAIN, 20));
+		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdField.setBounds(485, 281, 233, 25);
 		add(transitIdField);
 		
@@ -180,12 +182,12 @@ public class StockOutPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		JLabel idLabel = new JLabel("出库单编号");
+		JLabel idLabel = new ELabel("出库单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(355, 87, 120, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(485, 87, 165, 25);
 		idField.setEnabled(false);
