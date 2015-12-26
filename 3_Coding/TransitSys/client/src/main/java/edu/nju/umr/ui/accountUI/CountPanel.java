@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.accountUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -41,6 +41,7 @@ public class CountPanel extends PPanel{
 	private ArrayList<CountVO> countList;
 	private FunctionFrame frame;
 	private CountLSer logicSer;
+	private static final int y=15;
 	/**
 	 * Create the panel.
 	 */
@@ -49,14 +50,11 @@ public class CountPanel extends PPanel{
 		frame=fr;
 		logicSer=new CountLogic();
 		
-		JLabel countLabel = new JLabel("期初建账");
-		countLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-//		countLabel.setForeground(Color.white);
-		countLabel.setBounds(6*Constants.WIDTH_DIV_15, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		JLabel countLabel = new TitleLabel("期初建账");
 		add(countLabel);
 		
 		Button addButton = new AddButton();
-		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
+		addButton.setBounds(Constants.WIDTH_DIV_9*17/10, y+Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		add(addButton);
 		addButton.addActionListener(new ActionListener() {
 			
@@ -73,7 +71,7 @@ public class CountPanel extends PPanel{
 		});
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(Constants.WIDTH_DIV_9*27/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
+		deleteButton.setBounds(Constants.WIDTH_DIV_9*27/10, y+Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -91,7 +89,7 @@ public class CountPanel extends PPanel{
 		add(deleteButton);
 		
 		Button checkButton = new CheckButton();
-		checkButton.setBounds(Constants.WIDTH_DIV_9*37/10, Constants.HEIGHT_DIV_10*74/10, 100,30);
+		checkButton.setBounds(Constants.WIDTH_DIV_9*37/10, y+Constants.HEIGHT_DIV_10*74/10, 100,30);
 		checkButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -105,7 +103,7 @@ public class CountPanel extends PPanel{
 		add(checkButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
+		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, y+Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -125,11 +123,11 @@ public class CountPanel extends PPanel{
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
+		table.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(Constants.WIDTH_DIV_9*13/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
+		scroll.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","生成时间"};
 		model.setColumnIdentifiers(columnNames);
