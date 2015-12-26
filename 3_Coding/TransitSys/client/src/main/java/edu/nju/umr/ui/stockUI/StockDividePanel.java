@@ -23,6 +23,8 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -65,7 +67,7 @@ public class StockDividePanel extends JPanel{
 		divideLabel.setBounds(508, 36, 88, 24);
 		add(divideLabel);
 		
-		searchField = new JTextField();
+		searchField = new TextField();
 		searchField.setBounds(233, 67, 542, 24);
 		add(searchField);
 		searchField.setColumns(10);
@@ -88,48 +90,49 @@ public class StockDividePanel extends JPanel{
 		});
 		add(searchButton);
 		
-		JLabel idLabel = new JLabel("编号");
+		JLabel idLabel = new ELabel("编号");
 		idLabel.setFont(Utils.COMBO_FONT);
 		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setBounds(206, 500, 54, 24);
 		add(idLabel);
 		
-		idField = new JTextField();
+		idField = new TextField();
 		idField.setEditable(false);
 		idField.setBounds(253, 500, 98, 22);
 		add(idField);
 		idField.setColumns(10);
 		
-		JLabel rowLabel = new JLabel("排数");
+		JLabel rowLabel = new ELabel("排数");
 		rowLabel.setFont(Utils.COMBO_FONT);
 		rowLabel.setForeground(Utils.STD_COLOR);
 		rowLabel.setBounds(370, 500, 54, 24);
 		add(rowLabel);
 		
-		rowField = new JTextField();
+		rowField = new TextField();
 		rowField.setBounds(416, 500, 98, 22);
 		add(rowField);
 		rowField.setColumns(10);
 		
-		JLabel placeLabel = new JLabel("每排位数");
+		JLabel placeLabel = new ELabel("每排位数");
 		placeLabel.setFont(Utils.COMBO_FONT);
 		placeLabel.setForeground(Utils.STD_COLOR);
 		placeLabel.setBounds(541, 500, 71, 24);
 		add(placeLabel);
 		
-		placeField = new JTextField();
+		placeField = new TextField();
 		placeField.setBounds(617, 500, 98, 22);
 		add(placeField);
 		placeField.setColumns(10);
 		
-		JLabel partLabel = new JLabel("所在区");
+		JLabel partLabel = new ELabel("所在区");
 		partLabel.setFont(Utils.COMBO_FONT);
 		partLabel.setForeground(Utils.STD_COLOR);
 		partLabel.setBounds(742, 500, 54, 24);
 		add(partLabel);
 		
 		JComboBox<String> partCombo = new JComboBox<String>();
-		partCombo.setBounds(803, 500, 98, 21);
+		partCombo.setBounds(803, 500, 98, 22);
+		partCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
 		add(partCombo);
 		
