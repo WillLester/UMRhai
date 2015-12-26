@@ -2,22 +2,18 @@ package edu.nju.umr.ui.orderNewUI;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.PaymentOrderLogic;
@@ -53,9 +49,9 @@ public class PaymentPanel extends PPanel {
 	private String name;
 	private JComboBox<String> accountCombo;
 	private JComboBox<String> reasonCombo;
-	private JTextArea remarkArea;
 	private String userId;
 	private TextField idField;
+	private JTextArea remarkArea;
 	/**
 	 * Create the panel.
 	 */
@@ -153,8 +149,9 @@ public class PaymentPanel extends PPanel {
 		add(remarkLabel);
 		
 		remarkArea = new JTextArea();
-	
 		remarkArea.setBounds(410, 341, 435, 154);
+		remarkArea.setBackground(Color.white);
+		remarkArea.setBorder(BorderFactory.createLineBorder(Color.gray,1));
 		add(remarkArea);
 		
 		Button confirmButton = new ConfirmButton();
