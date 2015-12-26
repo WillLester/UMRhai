@@ -20,7 +20,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -69,66 +72,65 @@ public class ArrivePanel extends PPanel {
 		this.userId=userId;
 		this.org = org;
 		
-		JLabel titleLabel = new JLabel("中转中心到达单");
-		titleLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		TitleLabel titleLabel = new TitleLabel("中转中心到达单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(364+75+25, 10, 242, 67);
 		add(titleLabel);
 		
-		JLabel idLabel = new JLabel("中转单编号");
-		idLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		idLabel.setBounds(342+75, 216, 107, 24);
+		JLabel idLabel = new ELabel("中转单编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(342+35, 246, 107, 24);
 		add(idLabel);
 		
 		idField = new AutoCompPanel();
-		idField.setFont(new Font("宋体", Font.PLAIN, 20));
-		idField.setBounds(474+75+25, 216, 193, 24);
+		idField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idField.setBounds(474+60, 246, 193, 24);
 		add(idField);
 		
-		JLabel arriveDateLabel = new JLabel("到达日期");
-		arriveDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		arriveDateLabel.setBounds(342+75+25, 268, 107, 24);
+		JLabel arriveDateLabel = new ELabel("到达日期");
+		arriveDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		arriveDateLabel.setBounds(377, 298, 107, 24);
 		add(arriveDateLabel);
 		
-		JLabel centerLabel = new JLabel("中转中心编号");
-		centerLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		centerLabel.setBounds(329+75, 107, 120, 24);
+		JLabel centerLabel = new ELabel("中转中心编号");
+		centerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		centerLabel.setBounds(377, 137, 120, 24);
 		add(centerLabel);
 		
-		centerField = new JTextField();
-		centerField.setBounds(474+75+25, 110, 193, 24);
+		centerField = new TextField();
+		centerField.setBounds(474+60, 140, 193, 24);
 		centerField.setEnabled(false);
 		add(centerField);
 		centerField.setColumns(10);
 		
-		JLabel startLabel = new JLabel("出发地");
-		startLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		startLabel.setBounds(342+75+25, 162, 107, 24);
+		JLabel startLabel = new ELabel("出发地");
+		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		startLabel.setBounds(377, 192, 107, 24);
 		add(startLabel);
 		
 		startCombo = new JComboBox<String>();
-		startCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		startCombo.setBounds(474+75+25, 166, 193, 21);
+		startCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+		startCombo.setBounds(474+60, 196, 193, 24);
 		add(startCombo);
 		
 		datePanel=new DatePanel();
-		datePanel.setBounds(474+75+25, 268, 285, 26);
+		datePanel.setBounds(474+60, 298, 285, 26);
 		add(datePanel);
 		
 		
-		JLabel stateLabel = new JLabel("货物到达状态");
-		stateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		stateLabel.setBounds(329+75+25, 327, 120, 45);
+		JLabel stateLabel = new ELabel("货物到达状态");
+		stateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		stateLabel.setBounds(377, 357, 120, 45);
 		add(stateLabel);
 		
 		stateCombo = new JComboBox<String>();
 		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
-		stateCombo.setFont(new Font("宋体", Font.PLAIN, 20));
-		stateCombo.setBounds(474+75+25, 338, 193, 24);
+		stateCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		stateCombo.setBounds(474+60, 368, 193, 24);
 		add(stateCombo);
 		
 		confirmButton = new ConfirmButton();
-		confirmButton.setBounds(364+75+25, 434, 100, 30);
+		confirmButton.setBounds(364+60, 464, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -138,7 +140,7 @@ public class ArrivePanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(548+75+25, 436, 100, 30);
+		cancelButton.setBounds(548+60, 466, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
