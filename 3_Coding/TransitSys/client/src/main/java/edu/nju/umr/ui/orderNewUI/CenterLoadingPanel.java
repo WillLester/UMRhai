@@ -93,12 +93,12 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		ELabel transitIdLabel = new ELabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setStdFont();
-		transitIdLabel.setBounds(355+75, 87, 120, 24);
+		transitIdLabel.setBounds(375, 107, 130, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new TextField();
-		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdField.setBounds(560, 87, 190, 25);
+		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+		transitIdField.setBounds(519, 107, 219, 24);
 		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
@@ -106,21 +106,21 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		ELabel dateLabel = new ELabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setStdFont();
-		dateLabel.setBounds(297+75, 121, 120, 24);
+		dateLabel.setBounds(375, 141, 120, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
-		datePanel.setBounds(522, 121, 285, 26);
+		datePanel.setBounds(522, 141, 285, 26);
 		add(datePanel);
 		
 		ELabel arriveLabel = new ELabel("到达地");
 		arriveLabel.setStdFont();
-		arriveLabel.setBounds(278, 155, 85, 24);
+		arriveLabel.setBounds(295, 175, 85, 24);
 		add(arriveLabel);
 		
 		arriveCombo = new JComboBox<String>();
-		arriveCombo.setFont(new Font("黑体", Font.PLAIN, 15));
-		arriveCombo.setBounds(342, 155, 150, 25);
+		arriveCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		arriveCombo.setBounds(380, 175, 150, 25);
 		ResultMessage message = logicSer.getHalls();
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			String halls[] = (String[]) message.getMessage();
@@ -136,45 +136,45 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		
 		ELabel supervisionLabel = new ELabel("监装员");
 		supervisionLabel.setStdFont();
-		supervisionLabel.setBounds(421+75, 157, 85, 24);
+		supervisionLabel.setBounds(540, 177, 70, 24);
 		add(supervisionLabel);
 		
 		supervisionField = new TextField();
 		supervisionField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		supervisionField.setColumns(10);
-		supervisionField.setBounds(485+75, 157, 85, 25);
+		supervisionField.setBounds(610, 177, 85, 25);
 		add(supervisionField);
 		
 		ELabel escortLabel = new ELabel("押运员");
 		escortLabel.setStdFont();
-		escortLabel.setBounds(609+75, 157, 85, 24);
+		escortLabel.setBounds(700, 177, 70, 24);
 		add(escortLabel);
 		
 		escortField = new TextField();
 		escortField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		escortField.setColumns(10);
-		escortField.setBounds(674+75, 158, 85, 25);
+		escortField.setBounds(770, 178, 85, 25);
 		add(escortField);
 		
 		ELabel vanIdLabel = new ELabel("车辆代号");
 		vanIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanIdLabel.setStdFont();
-		vanIdLabel.setBounds(220+75, 204, 120, 24);
+		vanIdLabel.setBounds(220+75, 224, 120, 24);
 		add(vanIdLabel);
 		
 		vanIdField = new TextField();
 		vanIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		vanIdField.setColumns(10);
-		vanIdField.setBounds(328+75, 203, 165, 25);
+		vanIdField.setBounds(328+75, 223, 165, 25);
 		add(vanIdField);
 		
 		ELabel costLabel = new ELabel("运费/元");
 		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		costLabel.setBounds(655, 204, 79, 24);
+		costLabel.setBounds(655, 224, 79, 24);
 		add(costLabel);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(342+75, 499, 100, 30);
+		confirmButton.setBounds(342+75, 530, 100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -192,7 +192,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(542+75, 499, 100, 30);
+		cancelButton.setBounds(542+75, 530, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -204,13 +204,13 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		
 		costField = new TextField();
 		costField.setEditable(false);
-		costField.setBounds(731, 208, 66, 21);
+		costField.setBounds(731, 228, 66, 21);
 		costField.setEnabled(false);
 		add(costField);
 		costField.setColumns(10);
 		
 		expressList = new ExpressListPanel(frame,this);
-		expressList.setBounds(266, 216, 677, 273);
+		expressList.setBounds(266, 236, 677, 273);
 		add(expressList);
 		
 		if(orgId!=null){
