@@ -91,25 +91,37 @@ public class StockOutPanel extends PPanel {
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
+		JLabel idLabel = new ELabel("出库单编号");
+		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		idLabel.setBounds(359, 122, 120, 24);
+		add(idLabel);
+		
+		idField = new TextField();
+		idField.setEditable(false);
+		idField.setBounds(485, 122, 165, 25);
+		idField.setEnabled(false);
+		add(idField);
+		idField.setColumns(10);
+		
 		JLabel expressLabel = new ELabel("快递编号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressLabel.setBounds(355, 124, 120, 24);
+		expressLabel.setBounds(340, 164, 120, 24);
 		add(expressLabel);
 		
 		expressField = new AutoCompPanel();
 		expressField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressField.setBounds(485, 124, 165, 25);
+		expressField.setBounds(485, 164, 165, 25);
 		add(expressField);
 		
 		JLabel dateLabel = new ELabel("出库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		dateLabel.setBounds(298, 170, 120, 24);
+		dateLabel.setBounds(340, 210, 120, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
-		datePanel.setBounds(449, 170, 285, 26);
+		datePanel.setBounds(485, 210, 285, 26);
 		add(datePanel);
 		
 		String targetList[] = null;
@@ -123,39 +135,39 @@ public class StockOutPanel extends PPanel {
 		}
 		JLabel targetLabel = new ELabel("目的地");
 		targetLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		targetLabel.setBounds(251, 213, 85, 24);
+		targetLabel.setBounds(359, 253, 85, 24);
 		add(targetLabel);
 		
 		targetCombo = new JComboBox<String>();
 		targetCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		targetCombo.setModel(new DefaultComboBoxModel<String>(targetList));
-		targetCombo.setBounds(334, 214, 183, 25);
+		targetCombo.setBounds(485, 254, 190, 25);
 		add(targetCombo);
 		
 		JLabel transitLabel = new ELabel("装运形式");
 		transitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitLabel.setBounds(541, 214, 85, 24);
+		transitLabel.setBounds(359, 300, 85, 24);
 		add(transitLabel);
 		
 		transitCombo = new JComboBox<String>();
 		transitCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitCombo.setBounds(636, 214, 87, 25);
+		transitCombo.setBounds(485, 300, 87, 25);
 		transitCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"飞机","铁路","公路"}));
 		add(transitCombo);
 		
 		JLabel transitIdLabel = new ELabel("中转单/汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdLabel.setBounds(315, 282, 160, 24);
+		transitIdLabel.setBounds(330, 346, 160, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new AutoCompPanel();
 		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdField.setBounds(485, 281, 233, 25);
+		transitIdField.setBounds(485, 346, 233, 25);
 		add(transitIdField);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(347, 434, 100,30);
+		confirmButton.setBounds(347, 464, 100,30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -174,26 +186,14 @@ public class StockOutPanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(541, 434, 100, 30);
+		cancelButton.setBounds(541, 464, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
 			}
 		});
 		add(cancelButton);
-		
-		JLabel idLabel = new ELabel("出库单编号");
-		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		idLabel.setBounds(355, 87, 120, 24);
-		add(idLabel);
-		
-		idField = new TextField();
-		idField.setEditable(false);
-		idField.setBounds(485, 87, 165, 25);
-		idField.setEnabled(false);
-		add(idField);
-		idField.setColumns(10);
-		
+	
 		if(orgId!=null)
 		{
 			ResultMessage messagee=logicSer.getNextId(orgId);

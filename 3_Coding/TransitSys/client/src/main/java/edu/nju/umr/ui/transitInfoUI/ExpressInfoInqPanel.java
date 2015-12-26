@@ -47,7 +47,7 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 		setEnabled();
 		
 		confirmButton.removeActionListener(conListener);
-		confirmButton.setLocation(getWidth()/2-50, confirmButton.getY());
+		confirmButton.setLocation(getWidth()/2, confirmButton.getY());
 		ca=new closeAction();
 		confirmButton.addActionListener(ca);
 		remove(cancelButton);

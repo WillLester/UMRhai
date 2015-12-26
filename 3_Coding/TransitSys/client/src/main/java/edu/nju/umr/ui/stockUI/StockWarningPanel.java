@@ -15,6 +15,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -51,43 +52,43 @@ public class StockWarningPanel extends JPanel{
 		JLabel planeLabel = new JLabel("航运区警戒线（%）");
 		planeLabel.setFont(Utils.COMBO_FONT);
 		planeLabel.setForeground(Utils.STD_COLOR);
-		planeLabel.setBounds(389, 85, 132, 24);
+		planeLabel.setBounds(380, 85, 138, 24);
 		add(planeLabel);
 		
 		JLabel trainLabel = new JLabel("铁运区警戒线（%）");
 		trainLabel.setFont(Utils.COMBO_FONT);
 		trainLabel.setForeground(Utils.STD_COLOR);
-		trainLabel.setBounds(389, 145, 132, 24);
+		trainLabel.setBounds(380, 145, 138, 24);
 		add(trainLabel);
 		
 		JLabel vanLabel = new JLabel("汽运区警戒线（%）");
 		vanLabel.setFont(Utils.COMBO_FONT);
 		vanLabel.setForeground(Utils.STD_COLOR);
-		vanLabel.setBounds(389, 205, 132, 24);
+		vanLabel.setBounds(380, 205, 138, 24);
 		add(vanLabel);
 		
 		JLabel maneuverLabel = new JLabel("机动区警戒线（%）");
 		maneuverLabel.setFont(Utils.COMBO_FONT);
 		maneuverLabel.setForeground(Utils.STD_COLOR);
-		maneuverLabel.setBounds(389, 265, 132, 24);
+		maneuverLabel.setBounds(380, 265, 138, 24);
 		add(maneuverLabel);
 		
-		planeField = new JTextField();
+		planeField = new TextField();
 		planeField.setBounds(555, 85, 132, 22);
 		add(planeField);
 		planeField.setColumns(10);
 		
-		trainField = new JTextField();
+		trainField = new TextField();
 		trainField.setBounds(555, 145, 132, 24);
 		add(trainField);
 		trainField.setColumns(10);
 		
-		vanField = new JTextField();
+		vanField = new TextField();
 		vanField.setBounds(555, 205, 132, 24);
 		add(vanField);
 		vanField.setColumns(10);
 		
-		maneuverField = new JTextField();
+		maneuverField = new TextField();
 		maneuverField.setBounds(555, 265, 132, 24);
 		add(maneuverField);
 		maneuverField.setColumns(10);
