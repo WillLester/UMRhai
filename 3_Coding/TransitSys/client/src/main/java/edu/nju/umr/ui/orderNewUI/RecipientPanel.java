@@ -84,54 +84,54 @@ public class RecipientPanel extends PPanel {
 		TitleLabel titleLabel = new TitleLabel("营业厅接收单");
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(382+40, 45, 242, 67);
+		titleLabel.setBounds(382+40, 10, 242, 67);
 		add(titleLabel);
 		
 		JLabel transitIdLabel = new ELabel("装车单编号");
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdLabel.setBounds(342+40, 216, 107, 24);
+		transitIdLabel.setBounds(342+40, 236, 107, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new AutoCompPanel();
 		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdField.setBounds(474+40, 216, 193, 24);
+		transitIdField.setBounds(474+50, 236, 193, 24);
 		add(transitIdField);
 		
 		JLabel dateLabel = new ELabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		dateLabel.setBounds(342+40, 268, 107, 24);
+		dateLabel.setBounds(342+40, 291, 107, 24);
 		add(dateLabel);
 		
 		datePanel = new DatePanel();
-		datePanel.setBounds(532, 268, 285, 26);
+		datePanel.setBounds(525, 291, 285, 26);
 		add(datePanel);
 		
 		JLabel startLabel = new ELabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		startLabel.setBounds(342+40, 162, 107, 24);
+		startLabel.setBounds(342+40, 182, 107, 24);
 		add(startLabel);
 		
 		getOrg();
 		
 		cityCombo = new JComboBox<String>();
-		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		cityCombo.setBounds(474+40, 166, 193, 21);
+		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+		cityCombo.setBounds(474+50, 186, 193, 24);
 		cityCombo.setModel(new DefaultComboBoxModel<String>(orgList));
 		add(cityCombo);
 		
 		ELabel stateLabel = new ELabel("货物到达状态");
 		stateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		stateLabel.setBounds(329+40, 327, 120, 45);
+		stateLabel.setBounds(329+49, 347, 120, 45);
 		add(stateLabel);
 		
 		stateCombo = new JComboBox<String>();
 		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
-		stateCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		stateCombo.setBounds(474+40, 338, 193, 24);
+		stateCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
+		stateCombo.setBounds(474+50, 358, 193, 24);
 		add(stateCombo);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(364+40, 434,100, 30);
+		confirmButton.setBounds(364+40, 454,100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -155,7 +155,7 @@ public class RecipientPanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(548+40, 436, 100, 30);
+		cancelButton.setBounds(548+40, 456, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -165,12 +165,12 @@ public class RecipientPanel extends PPanel {
 		
 		JLabel idLabel = new ELabel("单据编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		idLabel.setBounds(382, 121, 107, 24);
+		idLabel.setBounds(382, 141, 107, 24);
 		add(idLabel);
 		
 		idField = new TextField();
 		idField.setEditable(false);
-		idField.setBounds(505, 121, 193, 24);
+		idField.setBounds(525, 141, 199, 28);
 		add(idField);
 		idField.setColumns(10);
 		if(orgId != null){

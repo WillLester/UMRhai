@@ -111,12 +111,12 @@ public class HallLoadingPanel extends PPanel {
 		ELabel transitIdLabel = new ELabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setStdFont();
-		transitIdLabel.setBounds(355, 87, 120, 24);
+		transitIdLabel.setBounds(355, 107, 120, 24);
 		add(transitIdLabel);
 		
 		transitIdField = new TextField();
 		transitIdField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		transitIdField.setBounds(485, 87, 250, 25);
+		transitIdField.setBounds(485, 107, 250, 25);
 		transitIdField.setEditable(false);
 		add(transitIdField);
 		transitIdField.setColumns(10);
@@ -124,22 +124,22 @@ public class HallLoadingPanel extends PPanel {
 		ELabel loadDateLabel = new ELabel("装车日期");
 		loadDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loadDateLabel.setStdFont();
-		loadDateLabel.setBounds(297+75, 121, 120, 24);
+		loadDateLabel.setBounds(297+75, 141, 120, 24);
 		add(loadDateLabel);
 		
 		datePanel=new DatePanel();
 		datePanel.setDate(Calendar.getInstance());
-		datePanel.setBounds(411+75,121, 275, 26);
+		datePanel.setBounds(411+75,141, 275, 26);
 		add(datePanel);
 		
 		ELabel destinationLabel = new ELabel("到达地");
 		destinationLabel.setStdFont();
-		destinationLabel.setBounds(242, 155, 85, 24);
+		destinationLabel.setBounds(242, 175, 85, 24);
 		add(destinationLabel);
 		
 		comboBoxDestination = new JComboBox<String>();
 		comboBoxDestination.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		comboBoxDestination.setBounds(307, 155, 160, 25);
+		comboBoxDestination.setBounds(307, 175, 160, 25);
 		comboBoxDestination.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e) {
 				getPrice();
@@ -148,55 +148,55 @@ public class HallLoadingPanel extends PPanel {
 		
 		ELabel superviseLabel = new ELabel("监装员");
 		superviseLabel.setStdFont();
-		superviseLabel.setBounds(421+75, 157, 85, 24);
+		superviseLabel.setBounds(421+75, 177, 85, 24);
 		add(superviseLabel);
 		
 		superviseField = new TextField();
 		superviseField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		superviseField.setColumns(10);
-		superviseField.setBounds(485+75, 157, 85, 25);
+		superviseField.setBounds(485+75, 177, 85, 25);
 		add(superviseField);
 		
 		ELabel guardLabel = new ELabel("押运员");
 		guardLabel.setStdFont();
-		guardLabel.setBounds(609+75, 157, 85, 24);
+		guardLabel.setBounds(609+75, 177, 85, 24);
 		add(guardLabel);
 		
 		guardField = new TextField();
 		guardField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		guardField.setColumns(10);
-		guardField.setBounds(674+75, 158, 85, 25);
+		guardField.setBounds(674+75, 178, 85, 25);
 		add(guardField);
 		
 		ELabel vanIdLabel = new ELabel("车辆代号");
 		vanIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanIdLabel.setStdFont();
-		vanIdLabel.setBounds(220+75, 204, 120, 24);
+		vanIdLabel.setBounds(220+75, 224, 120, 24);
 		add(vanIdLabel);
 		
 		comboBoxVan=new JComboBox<String>();
 		comboBoxVan.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		comboBoxVan.setBounds(328+75, 203, 165, 25);
+		comboBoxVan.setBounds(328+75, 223, 165, 25);
 		add(comboBoxVan);
 		
 		priceLabel = new ELabel("运费/元");
 		priceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		priceLabel.setBounds(656, 204, 70, 24);
+		priceLabel.setBounds(656, 224, 70, 24);
 		add(priceLabel);
 		
 		ELabel expressIdLabel = new ELabel("订单条形码号");
 		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdLabel.setBounds(220+75, 255, 130, 24);
+		expressIdLabel.setBounds(220+75, 275, 130, 24);
 		add(expressIdLabel);
 		
 		expressIdField = new AutoCompPanel();
 		expressIdField.setMyFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdField.setBounds(355+75, 254, 280, 25);
+		expressIdField.setBounds(355+75, 274, 280, 25);
 		add(expressIdField);
 		
 		Button btnNewButton = new AddButton();
-		btnNewButton.setBounds(656+75, 256, 100, 30);
+		btnNewButton.setBounds(656+75, 276, 100, 30);
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -227,7 +227,7 @@ public class HallLoadingPanel extends PPanel {
 		add(btnNewButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(656+75+93, 256, 100, 30);
+		deleteButton.setBounds(656+75+93, 276, 100, 30);
 		deleteButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -239,11 +239,11 @@ public class HallLoadingPanel extends PPanel {
 		JLabel tableHeadLabel = new ELabel("已输入订单");
 		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		tableHeadLabel.setBounds(401+75, 289, 130, 24);
+		tableHeadLabel.setBounds(401+75, 309, 130, 24);
 		add(tableHeadLabel);
 		
 		confirmButton = new ConfirmButton();
-		confirmButton.setBounds(342+75, 499, 100, 30);
+		confirmButton.setBounds(342+75, 539, 100, 30);
 		confirmButton.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -253,7 +253,7 @@ public class HallLoadingPanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(542+75, 499, 100, 30);
+		cancelButton.setBounds(542+75, 539, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
@@ -292,7 +292,7 @@ public class HallLoadingPanel extends PPanel {
 		table.getTableHeader().setReorderingAllowed(false);
 		
 		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(220+75, 313, 529, 176);
+		scroll.setBounds(220+75, 333, 529, 176);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"订单号"};
 		model.setColumnIdentifiers(columnNames);
@@ -300,7 +300,7 @@ public class HallLoadingPanel extends PPanel {
 		
 		costField = new JTextField();
 		costField.setEnabled(false);
-		costField.setBounds(731, 204, 106, 25);
+		costField.setBounds(731, 224, 106, 25);
 		add(costField);
 		costField.setColumns(10);
 	}

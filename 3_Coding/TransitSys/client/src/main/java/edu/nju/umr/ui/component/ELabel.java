@@ -1,5 +1,7 @@
 package edu.nju.umr.ui.component;
 
+import java.awt.Font;
+
 import javax.swing.JLabel;
 
 public class ELabel extends JLabel{
@@ -22,5 +24,8 @@ public class ELabel extends JLabel{
 		// TODO Auto-generated method stub
 		setFont(Utils.COMBO_FONT);
 	}
-
+	public void setMidFont() {
+		// TODO Auto-generated method stub
+		setFont(new Font("微软雅黑", Font.PLAIN, 18));
+	}
 }
