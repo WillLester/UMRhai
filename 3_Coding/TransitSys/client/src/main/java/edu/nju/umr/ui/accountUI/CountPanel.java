@@ -103,11 +103,8 @@ public class CountPanel extends PPanel{
 		add(checkButton);
 		
 		Button exitButton = new ExitButton();
-<<<<<<< HEAD
+
 		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, y+Constants.HEIGHT_DIV_10*74/10, 100, 30);
-=======
-		exitButton.setBounds(950, Constants.HEIGHT_DIV_10*74/10, 100, 30);
->>>>>>> origin/master
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

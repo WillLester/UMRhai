@@ -173,8 +173,7 @@ public class PaymentPanel extends PPanel {
 		add(confirmButton);
 		
 		Button cancelButton = new CanButton();
-		cancelButton.setName("cancel");
-		cancelButton.setBounds(590, 549, 93, 23);
+		cancelButton.setBounds(590, 549, 100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
