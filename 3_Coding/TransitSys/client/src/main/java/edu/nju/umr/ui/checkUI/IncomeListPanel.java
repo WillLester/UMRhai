@@ -26,7 +26,10 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -63,16 +66,22 @@ public class IncomeListPanel extends PPanel {
 		frame=fr;
 		serv = new IncomeListLogic();
 		
+		JLabel nameLabel = new TitleLabel("收款记录");
+		add(nameLabel);
+		
 		//设置panel大小
 		this.setSize(Constants.PANEL_WIDTH, Constants.PANEL_HEIGHT);
 		
 		date=new DatePanel();
-		date.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, 267, 21);
+		date.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5+30, 267, 21);
 		date.setEnabled(false);
 		add(date);
 		
 		JCheckBox checkDate = new JCheckBox("日期");
-		checkDate.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		checkDate.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+		checkDate.setForeground(Utils.STD_COLOR);
+		checkDate.setBackground(Color.white);
+		checkDate.setBounds(Constants.TABLE_X+120, Constants.TABLE_Y+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(checkDate);
 		
 		checkDate.addActionListener(new ActionListener(){
@@ -86,7 +95,10 @@ public class IncomeListPanel extends PPanel {
 		});
 		
 		JCheckBox checkHall = new JCheckBox("营业厅");
-		checkHall.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		checkHall.setBackground(Color.white);
+		checkHall.setForeground(Utils.STD_COLOR);
+		checkHall.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+		checkHall.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(checkHall);
 		
 		checkHall.addActionListener(new ActionListener(){
@@ -100,13 +112,14 @@ public class IncomeListPanel extends PPanel {
 		});
 		Color color = new Color(57, 152,214);
 		
-		JLabel hallLabel = new JLabel("营业厅");
-		hallLabel.setForeground(color);
-		hallLabel.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		ELabel hallLabel = new ELabel("营业厅");
+		hallLabel.setMidFont();
+		hallLabel.setBounds(Constants.TABLE_X+400, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(hallLabel);
 		
 		cbHall=new JComboBox<Object>();
-		cbHall.setBounds(hallLabel.getX()+hallLabel.getWidth()/2,Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, Constants.LABEL_WIDTH-10, Constants.LABEL_HEIGHT_S-10);
+		cbHall.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+		cbHall.setBounds(hallLabel.getX()+hallLabel.getWidth()/2,Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5+30, Constants.LABEL_WIDTH-10, Constants.LABEL_HEIGHT_S-10);
 		cbHall.setEnabled(false);
 		add(cbHall);
 
@@ -115,7 +128,7 @@ public class IncomeListPanel extends PPanel {
 //		add(cancel);
 		
 		Button confirm = new ConfirmButton();
-		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5,100,30);
+		confirm.setBounds(cancel.getX()-Constants.BUTTON_WIDTH-40, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5+30,100,30);
 		confirm.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -123,14 +136,8 @@ public class IncomeListPanel extends PPanel {
 		}});
 		add(confirm);
 		
-		JLabel nameLabel = new JLabel("收款记录");
-//		hallLabel.setForeground(Color.white);
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
-		add(nameLabel);
 		
-		
-		listLabel = new JLabel("收款记录");
+		listLabel = new  JLabel("收款记录");
 		listLabel.setForeground(color);
 		listLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		listLabel.setBounds(Constants.TABLE_X, Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*4+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -140,7 +147,7 @@ public class IncomeListPanel extends PPanel {
 		
 		
 		Button out = new ExitButton();
-		out.setBounds(500, IncomeTable.getY()+IncomeTable.getHeight()+20, 100,30);
+		out.setBounds(950, IncomeTable.getY()+IncomeTable.getHeight()+20, 100,30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -175,11 +182,11 @@ public class IncomeListPanel extends PPanel {
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		IncomeTable.setBounds(233, 101, 637, 335);
-		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
+		IncomeTable.setBounds(233, 121, 637, 335);
+		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		IncomeTable.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scroll=new JScrollPane(IncomeTable);
-		scroll.setBounds(233, 181, 637, 335);
+		scroll.setBounds(233, 201, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"时间","金额","快递员"};
 		model.setColumnIdentifiers(columnNames);

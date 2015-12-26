@@ -1,7 +1,10 @@
 package edu.nju.umr.ui.orderNewUI;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -12,6 +15,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.PaymentOrderLogic;
@@ -87,69 +93,72 @@ public class PaymentPanel extends PPanel {
 		ELabel dateLabel = new ELabel("付款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		dateLabel.setBounds(286, 116, 120, 24);
+		dateLabel.setBounds(286, 166, 120, 24);
 		add(dateLabel);	
 		
 		ELabel payerLabel = new ELabel("付款人");
 		payerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		payerLabel.setBounds(235, 175, 85, 24);
+		payerLabel.setBounds(306, 225, 85, 24);
 		add(payerLabel);
 		
 		payerField = new TextField();
 		payerField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		payerField.setColumns(10);
-		payerField.setBounds(302, 174, 85, 25);
+		payerField.setBounds(406, 224, 85, 25);
 		add(payerField);
 		
 		ELabel amountLabel = new ELabel("付款金额");
 		amountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		amountLabel.setBounds(397, 175, 85, 24);
+		amountLabel.setBounds(515,225, 85, 24);
 		add(amountLabel);
 		
 		costField = new TextField();
 		costField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		costField.setColumns(10);
-		costField.setBounds(487, 174, 85, 25);
+		costField.setBounds(620, 224, 85, 25);
 		add(costField);
 		
-		ELabel remarkLabel = new ELabel("备注");
-		remarkLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		remarkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		remarkLabel.setBounds(429, 291, 130, 24);
-		add(remarkLabel);
-		
+	
 		ELabel accountLabel = new ELabel("付款账号");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		accountLabel.setBounds(597, 175, 85, 24);
+		accountLabel.setBounds(306, 285, 85, 24);
 		add(accountLabel);
 		
-		remarkArea = new JTextArea();
-		remarkArea.setBounds(274, 325, 435, 154);
-		add(remarkArea);
-		
+		getAccount();
+		accountCombo = new JComboBox<String>();
+		accountCombo.setBounds(410, 285, 111, 25);
+		accountCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
+		add(accountCombo);
+				
 		ELabel reasonLabel = new ELabel("条目");
 		reasonLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		reasonLabel.setBounds(437, 237, 59, 24);
+		reasonLabel.setBounds(540, 287, 59, 24);
 		add(reasonLabel);
 		
 		reasonCombo = new JComboBox<String>();
 		reasonCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		reasonCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"租金/年","运费/次","工资/月","奖励"}));
-		reasonCombo.setBounds(499, 237, 111, 25);
+		reasonCombo.setBounds(615, 287, 111, 25);
 		add(reasonCombo);
 		
 		datePanel=new DatePanel();
-		datePanel.setBounds(472, 116, 285, 26);
+		datePanel.setBounds(460, 166, 285, 26);
 		add(datePanel);
 		
-		getAccount();
-		accountCombo = new JComboBox<String>();
-		accountCombo.setBounds(692, 175, 111, 21);
-		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
-		add(accountCombo);
+		ELabel remarkLabel = new ELabel("备注");
+		remarkLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		remarkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		remarkLabel.setBounds(260, 341, 130, 24);
+		add(remarkLabel);
+		
+		remarkArea = new JTextArea();
+	
+		remarkArea.setBounds(410, 341, 435, 154);
+		add(remarkArea);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(342, 499, 100, 30);
+		confirmButton.setBounds(400, 549, 100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -168,7 +177,7 @@ public class PaymentPanel extends PPanel {
 		
 		Button cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(542, 499, 93, 23);
+		cancelButton.setBounds(590, 549, 93, 23);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -179,12 +188,12 @@ public class PaymentPanel extends PPanel {
 		ELabel idLabel = new ELabel("单据编号");
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		idLabel.setBounds(286, 66, 120, 24);
+		idLabel.setBounds(286, 116, 120, 24);
 		add(idLabel);
 		
 		idField = new TextField();
 		idField.setEditable(false);
-		idField.setBounds(458, 66, 251, 25);
+		idField.setBounds(458,116, 251, 25);
 		add(idField);
 		idField.setColumns(10);
 		

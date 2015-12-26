@@ -409,14 +409,14 @@ public class ExpressPanel extends PPanel {
 		add(costLabel);
 		
 		confirmButton = new ConfirmButton();
-		confirmButton.setBounds(418, 556, 100, 30);
+		confirmButton.setBounds(518, 556, 100, 30);
 		conListener = new ConfirmListener();
 		confirmButton.addActionListener(conListener);
 		add(confirmButton);
 		
 		cancelButton = new CanButton();
 		cancelButton.setName("cancel");
-		cancelButton.setBounds(642, 556,100, 30);
+		cancelButton.setBounds(942, 556,100, 30);
 		cancelButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();

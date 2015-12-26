@@ -41,7 +41,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		this.org = org;
 		this.name = name;
 		logicSer = new ReceiveOrderLogic();
-		cancelButton.setLocation(642, 564+10);
+		cancelButton.setLocation(942, 564+10);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -51,7 +51,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 			}
 		});
 		add(cancelButton);
-		confirmButton.setLocation(418, 564+10);
+		confirmButton.setLocation(518, 564+10);
 		confirmButton.removeActionListener(ca);
 		confirmButton.addActionListener(new ConfirmListener());
 		
@@ -73,22 +73,22 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		});
 		
 		receiveField = new TextField();
-		receiveField.setBounds(370, 517, 103, 25);
+		receiveField.setBounds(370, 540, 103, 25);
 		add(receiveField);
 		receiveField.setColumns(10);
 		
 		JLabel receivelabel = new ELabel("收件人");
 		receivelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		receivelabel.setBounds(294, 517, 80, 24);
+		receivelabel.setBounds(294, 540, 80, 24);
 		add(receivelabel);
 		
 		receiveDate = new DatePanel();
-		receiveDate.setBounds(603, 518, 400, 24);
+		receiveDate.setBounds(603, 541, 400, 24);
 		add(receiveDate);
 		
 		timelabel = new ELabel("收件时间");
 		timelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		timelabel.setBounds(503, 517, 99, 24);
+		timelabel.setBounds(503, 540, 99, 24);
 		add(timelabel);
 	}
 	@SuppressWarnings("unused")

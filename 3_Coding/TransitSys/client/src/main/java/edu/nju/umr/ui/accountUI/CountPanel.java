@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.accountUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -49,10 +49,7 @@ public class CountPanel extends PPanel{
 		frame=fr;
 		logicSer=new CountLogic();
 		
-		JLabel countLabel = new JLabel("期初建账");
-		countLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-//		countLabel.setForeground(Color.white);
-		countLabel.setBounds(6*Constants.WIDTH_DIV_15, Constants.HEIGHT_DIV_10/10, 2*Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		JLabel countLabel = new TitleLabel("期初建账");
 		add(countLabel);
 		
 		Button addButton = new AddButton();
@@ -105,7 +102,7 @@ public class CountPanel extends PPanel{
 		add(checkButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(Constants.WIDTH_DIV_9*57/10, Constants.HEIGHT_DIV_10*74/10, 100, 30);
+		exitButton.setBounds(950, Constants.HEIGHT_DIV_10*74/10, 100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
