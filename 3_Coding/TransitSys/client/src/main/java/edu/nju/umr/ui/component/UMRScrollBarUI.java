@@ -41,7 +41,7 @@ public class UMRScrollBarUI extends BasicScrollBarUI{
 	}
 	
 	protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-		g.setColor(Color.WHITE);
+		g.setColor(Utils.STD_COLOR.brighter());
 		int x = trackBounds.x;
 		int y = trackBounds.y;
 		int width = trackBounds.width;

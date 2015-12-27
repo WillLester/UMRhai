@@ -31,7 +31,6 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 	
 	public UMRComboBoxUI(int height) {
 		super();
-		System.out.println(height);
 		arrowI = new ImageIcon("ui/button/arrow.png");
 		arrowI = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
 		arrowSt = new ImageIcon("ui/button/arrowSt.png");
