@@ -59,7 +59,6 @@ public class DiaryListPanel extends PPanel {
 		
 		ELabel start = new ELabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		start.setForeground(color);
 		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
@@ -69,7 +68,6 @@ public class DiaryListPanel extends PPanel {
 		
 		ELabel end = new ELabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		end.setForeground(color);
 		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
