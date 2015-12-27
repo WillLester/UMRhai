@@ -19,17 +19,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 public class VanInfoPanel extends JPanel {
 	/**
@@ -50,7 +51,7 @@ public class VanInfoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo,String orgId) {
+	public VanInfoPanel(InfoFrame fr,VanListPanel father,VanVO vanvo,String orgId) {
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		setLayout(null);
 		fatherPanel=father;
