@@ -23,6 +23,7 @@ import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 
@@ -85,7 +86,7 @@ public class DriverInfoPanel extends JPanel {
 		driverSex.setBounds(driverNum.getX(), driverName.getY()+driverName.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverSex);
 		
-		comboBoxSex = new JComboBox<String>();
+		comboBoxSex = new UMRComboBox<String>();
 		comboBoxSex.setBounds(textFieldNum.getX(), driverSex.getY()+3, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		comboBoxSex.setModel(new DefaultComboBoxModel<String>(new String[]{"男","女"}));
 		if(driver.getSex().equals(Gender.MAN))
@@ -155,7 +156,7 @@ public class DriverInfoPanel extends JPanel {
 		add(deadline);
 		
 		Button cancel = new CanButton();
-		cancel.setBounds(this.getWidth()/10*9, this.getHeight()/10*7, 100, 30);
+		cancel.setBounds(this.getWidth()/10*9-100, this.getHeight()/10*7, 100, 30);
 		cancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
