@@ -32,7 +32,7 @@ public class DatePanel extends JPanel {
 		setLayout(null);
 		
 		yearCombo = new UMRComboBox<String>();
-		yearCombo.setBounds(0, 0, 66, 24);
+		yearCombo.setBounds(0, 0, 66, Constants.DATE_HEIGHT);
 		yearCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		int nowyear=Calendar.getInstance().get(Calendar.YEAR);
 		String [] years=new String[201];
@@ -45,12 +45,12 @@ public class DatePanel extends JPanel {
 		
 		ELabel yearLabel = new ELabel("年");
 		yearLabel.setMidFont();
-		yearLabel.setBounds(69, 1, 19, 24);
+		yearLabel.setBounds(69, 1, 19, Constants.DATE_HEIGHT);
 		add(yearLabel);
 		
 		monthCombo = new UMRComboBox<String>();
 		monthCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		monthCombo.setBounds(89, 0, 66, 24);
+		monthCombo.setBounds(89, 0, 66, Constants.DATE_HEIGHT);
 		String [] months={"1","2","3","4","5","6","7","8","9","10","11","12"};
 		monthCombo.setModel(new DefaultComboBoxModel<String>(months));
 		monthCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.MONTH));
@@ -58,11 +58,11 @@ public class DatePanel extends JPanel {
 		
 		ELabel monthLabel = new ELabel("月");
 		monthLabel.setMidFont();
-		monthLabel.setBounds(156, 1, 19, 24);
+		monthLabel.setBounds(156, 1, 19, Constants.DATE_HEIGHT);
 		add(monthLabel);
 		
 		dayCombo = new UMRComboBox<String>();
-		dayCombo.setBounds(175, 0, 66, 24);
+		dayCombo.setBounds(175, 0, 66, Constants.DATE_HEIGHT);
 		dayCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setDate((String)yearCombo.getModel().getSelectedItem(),(String)monthCombo.getModel().getSelectedItem());
 		dayCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.DATE)-1);
@@ -70,7 +70,7 @@ public class DatePanel extends JPanel {
 		
 		ELabel dayLabel = new ELabel("日");
 		dayLabel.setMidFont();
-		dayLabel.setBounds(244, 1, 19, 24);
+		dayLabel.setBounds(244, 1, 19, Constants.DATE_HEIGHT);
 		add(dayLabel);
 		
 		yearCombo.addItemListener(new ItemListener(){

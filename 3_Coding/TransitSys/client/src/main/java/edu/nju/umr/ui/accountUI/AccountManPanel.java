@@ -50,6 +50,8 @@ public class AccountManPanel extends PPanel{
 	private JFrame frame;
 	private ArrayList<AccountVO> accountList;
 	private AccountLSer logicSer;
+	private static final int y=20;
+	private static final int sec_y=10;
 	/**
 	 * Create the panel.
 	 */
@@ -62,13 +64,13 @@ public class AccountManPanel extends PPanel{
 		frame = fr;
 		
 		searchField = new TextField();
-		searchField.setBounds(233, 67, 442, 24);
+		searchField.setBounds(233,sec_y+ y+67, 402, 24);
 		add(searchField);
 		searchField.setColumns(10);
 		accountLSer = new AccountLogic();
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(233+442, 65,100, 30);
+		searchButton.setBounds(233+442-20,sec_y+ y+65,100, 30);
 		add(searchButton);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +86,7 @@ public class AccountManPanel extends PPanel{
 		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
 		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
 		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
-		allButton.setBounds(233+442+100, 65, 100, 30);
+		allButton.setBounds(233+442+100, sec_y+y+65, 100, 30);
 		add(allButton);
 		allButton.addActionListener(new ActionListener() {
 			
@@ -96,28 +98,28 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		nameField = new TextField();
-		nameField.setBounds(360, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		nameField.setBounds(360, sec_y+y+468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(nameField);
 		nameField.setColumns(10);
 		
 		ELabel nameLabel = new ELabel("账户名称");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		nameLabel.setBounds(283, 465, 67, 30);
+		nameLabel.setBounds(283, sec_y+y+465, 67, 30);
 		add(nameLabel);
 		
 		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		balanceLabel.setBounds(566, 465, 67, 30);
+		balanceLabel.setBounds(566, sec_y+ y+465,67, 30);
 		add(balanceLabel);
 		
 		balanceField = new TextField();
 		balanceField.setEditable(false);
-		balanceField.setBounds(643, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		balanceField.setBounds(643, sec_y+ y+468,Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(balanceField);
 		balanceField.setColumns(10);
 		
 		Button addButton = new AddButton();
-		addButton.setBounds(326, 525, 100, 30);
+		addButton.setBounds(326, y+525, 100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addAccount();
@@ -126,7 +128,7 @@ public class AccountManPanel extends PPanel{
 		add(addButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(435, 525,100,30);
+		deleteButton.setBounds(435, y+525,100,30);
 		add(deleteButton);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -148,7 +150,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(546, 525,100, 30);
+		confirmButton.setBounds(546,y+ 525,100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -173,7 +175,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button cancelButton = new CanModButton();
-		cancelButton.setBounds(656, 525,100,30);
+		cancelButton.setBounds(656, y+525,100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -187,7 +189,7 @@ public class AccountManPanel extends PPanel{
 		add(cancelButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(798, 525, 100, 30);
+		exitButton.setBounds(798, y+525, 100, 30);
 		add(exitButton);
 		exitButton.addActionListener(new ActionListener() {
 			
@@ -216,11 +218,11 @@ public class AccountManPanel extends PPanel{
 				}
 			}
 		});
-		table.setBounds(233, 101, 637, 335);
+		table.setBounds(233, sec_y+y+101, 637, 335);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		UMRScrollPane scroll=new UMRScrollPane(table);
-		scroll.setBounds(233, 101, 637, 335);
+		scroll.setBounds(233, sec_y+y+101, 637, 335);
 		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"名称","余额"};
 		model.setColumnIdentifiers(columnNames);
