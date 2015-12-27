@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListDataEvent;
@@ -24,6 +22,8 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
@@ -65,13 +65,10 @@ public class ExpressListPanel extends JPanel{
 		frame = fr;
 		setLayout(null);
 		
-		Color color = new Color(57, 152,214);
-		
-		JLabel expressId = new JLabel("订单条形码号");
+		ELabel expressId = new ELabel("订单条形码号");
 		expressId.setHorizontalAlignment(SwingConstants.CENTER);
 		expressId.setBounds(47, 35, 130, 24);
 		expressId.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressId.setForeground(color);
 		add(expressId);
 		
 		expressField = new AutoCompPanel();
@@ -101,10 +98,9 @@ public class ExpressListPanel extends JPanel{
 			}
 		});
 		
-		JLabel expressListLabel = new JLabel("已输入订单");
+		ELabel expressListLabel = new ELabel("已输入订单");
 		expressListLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressListLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressListLabel.setForeground(color);
 		expressListLabel.setBounds(232, 69, 130, 24);
 		add(expressListLabel);
 		
@@ -143,7 +139,7 @@ public class ExpressListPanel extends JPanel{
 		
 		model = new DefaultListModel<String>();
 		expressList = new JList<String>(model);
-		JScrollPane scroll = new JScrollPane(expressList);
+		UMRScrollPane scroll = new UMRScrollPane(expressList);
 		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		expressList.addListSelectionListener(new ListSelectionListener() {
@@ -163,8 +159,8 @@ public class ExpressListPanel extends JPanel{
 			}
 		});
 		scroll.setBounds(66, 103, 489, 165);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(UMRScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scroll);
 		
 		setBackground(Color.WHITE);

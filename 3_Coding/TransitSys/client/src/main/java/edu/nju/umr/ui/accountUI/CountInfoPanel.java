@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.accountUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,16 +8,16 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -35,23 +34,23 @@ public class CountInfoPanel extends PPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -5928970050302258436L;
-	private JTextField mobileField;
-	private JTextField dutyField;
-	private JTextField plateField;
-	private JTextField dateField;
-	private JTextField inDateField;
-	private JTextField destinationField;
-	private JTextField partField;
-	private JTextField shelfField;
-	private JTextField rowField;
-	private JTextField placeField;
-	private JTextField balanceField;
-	private JComboBox<String> orgCombo;
-	private JComboBox<String> stockCombo;
-	private JComboBox<String> accountCombo;
-	private JComboBox<String> workerCombo;
-	private JComboBox<String> vanCombo;
-	private JComboBox<String> goodCombo;
+	private TextField mobileField;
+	private TextField dutyField;
+	private TextField plateField;
+	private TextField dateField;
+	private TextField inDateField;
+	private TextField destinationField;
+	private TextField partField;
+	private TextField shelfField;
+	private TextField rowField;
+	private TextField placeField;
+	private TextField balanceField;
+	private UMRComboBox<String> orgCombo;
+	private UMRComboBox<String> stockCombo;
+	private UMRComboBox<String> accountCombo;
+	private UMRComboBox<String> workerCombo;
+	private UMRComboBox<String> vanCombo;
+	private UMRComboBox<String> goodCombo;
 	private ArrayList<OrgVO> orgList;
 	private ArrayList<WorkVO> workerList;
 	private ArrayList<WorkVO> workerPresented;
@@ -74,16 +73,11 @@ public class CountInfoPanel extends PPanel{
 		stockList = count.getStocks();
 		accountList = count.getAccounts();
 		
-		JLabel countLabel = new JLabel("期初信息查看");
-		countLabel.setFont(new Font("华文新魏", Font.PLAIN, 22));
-//		countLabel.setForeground(Color.white);
-		countLabel.setBounds(483, 6, 137, 98);
+		TitleLabel countLabel = new TitleLabel("期初信息查看");
 		add(countLabel);
 		
-		JLabel orgLabel = new JLabel("机构信息");
+		ELabel orgLabel = new ELabel("机构信息");
 		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		Color color = new Color(57, 152,214);
-		orgLabel.setForeground(color);
 		orgLabel.setBounds(234, 82, 67, 17);
 		add(orgLabel);
 		
@@ -111,13 +105,12 @@ public class CountInfoPanel extends PPanel{
 		add(orgCombo);
 		
 		
-		JLabel stockLabel = new JLabel("库存信息");
-		stockLabel.setForeground(color);
+		ELabel stockLabel = new ELabel("库存信息");
 		stockLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		stockLabel.setBounds(518, 82, 67, 17);
 		add(stockLabel);
 		
-		stockCombo = new JComboBox<String>();
+		stockCombo = new UMRComboBox<String>();
 		stockCombo.setBounds(437, 102, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		String stocks[] = new String[stockList.size()];
 		for(int i = 0;i < stocks.length;i++){
@@ -139,13 +132,12 @@ public class CountInfoPanel extends PPanel{
 		
 		
 		
-		JLabel accountLabel = new JLabel("账户信息");
+		ELabel accountLabel = new ELabel("账户信息");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		accountLabel.setForeground(color);
 		accountLabel.setBounds(808, 82, 67, 17);
 		add(accountLabel);
 		
-		accountCombo = new JComboBox<String>();
+		accountCombo = new UMRComboBox<String>();
 		accountCombo.setBounds(723, 102, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		String accounts[] = new String[accountList.size()];
 		for(int i = 0;i < accounts.length;i++){
@@ -166,13 +158,12 @@ public class CountInfoPanel extends PPanel{
 		add(accountCombo);
 		
 		
-		JLabel workerLabel = new JLabel("人员信息");
-		workerLabel.setForeground(color);
+		ELabel workerLabel = new ELabel("人员信息");
 		workerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		workerLabel.setBounds(234, 138, 67, 17);
 		add(workerLabel);
 		
-		workerCombo = new JComboBox<String>();
+		workerCombo = new UMRComboBox<String>();
 		workerCombo.setBounds(150, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		workerCombo.addItemListener(new ItemListener() {
 			
@@ -186,31 +177,29 @@ public class CountInfoPanel extends PPanel{
 		});
 		add(workerCombo);
 		
-		JLabel mobileLabel = new JLabel("手机号");
+		ELabel mobileLabel = new ELabel("手机号");
 		mobileLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		mobileLabel.setForeground(color);
 		mobileLabel.setBounds(155, 200, 53, 34);
 		add(mobileLabel);
 		
-		mobileField = new JTextField();
+		mobileField = new TextField();
 		mobileField.setEditable(false);
 		mobileField.setBounds(210, 207, 169, 20);
 		add(mobileField);
 		mobileField.setColumns(10);
 		
-		JLabel dutyLabel = new JLabel("职务");
+		ELabel dutyLabel = new ELabel("职务");
 		dutyLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dutyLabel.setForeground(color);
 		dutyLabel.setBounds(155, 235, 45, 34);
 		add(dutyLabel);
 		
-		dutyField = new JTextField();
+		dutyField = new TextField();
 		dutyField.setEditable(false);
 		dutyField.setBounds(210, 242, 169, 20);
 		add(dutyField);
 		dutyField.setColumns(10);
 		
-		vanCombo = new JComboBox<String>();
+		vanCombo = new UMRComboBox<String>();
 		vanCombo.setBounds(150, 300, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		vanCombo.addItemListener(new ItemListener() {
 			
@@ -224,43 +213,39 @@ public class CountInfoPanel extends PPanel{
 		});
 		add(vanCombo);
 		
-		JLabel vanLabel = new JLabel("车辆信息");
-		vanLabel.setForeground(color);
+		ELabel vanLabel = new ELabel("车辆信息");
 		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		vanLabel.setBounds(234, 279, 67, 17);
 		add(vanLabel);
 		
-		JLabel plateLabel = new JLabel("车牌号");
-		plateLabel.setForeground(color);
+		ELabel plateLabel = new ELabel("车牌号");
 		plateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		plateLabel.setBounds(155, 342, 53, 34);
 		add(plateLabel);
 		
-		plateField = new JTextField();
+		plateField = new TextField();
 		plateField.setEditable(false);
 		plateField.setBounds(210, 349, 169, 20);
 		add(plateField);
 		plateField.setColumns(10);
 		
-		JLabel dateLabel = new JLabel("服役时间");
-		dateLabel.setForeground(color);
+		ELabel dateLabel = new ELabel("服役时间");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		dateLabel.setBounds(155, 378, 67, 34);
 		add(dateLabel);
 		
-		dateField = new JTextField();
+		dateField = new TextField();
 		dateField.setEditable(false);
 		dateField.setBounds(220, 385, 159, 20);
 		add(dateField);
 		dateField.setColumns(10);
 		
-		JLabel goodLabel = new JLabel("货物信息");
-		goodLabel.setForeground(color);
+		ELabel goodLabel = new ELabel("货物信息");
 		goodLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		goodLabel.setBounds(518, 138, 67, 17);
 		add(goodLabel);
 		
-		goodCombo = new JComboBox<String>();
+		goodCombo = new UMRComboBox<String>();
 		goodCombo.setBounds(437, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		goodCombo.addItemListener(new ItemListener() {
 			
@@ -274,85 +259,78 @@ public class CountInfoPanel extends PPanel{
 		});
 		add(goodCombo);
 		
-		JLabel inDateLabel = new JLabel("入库时间");
-		inDateLabel.setForeground(color);
+		ELabel inDateLabel = new ELabel("入库时间");
 		inDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		inDateLabel.setBounds(437, 185, 67, 34);
 		add(inDateLabel);
 		
-		inDateField = new JTextField();
+		inDateField = new TextField();
 		inDateField.setEditable(false);
 		inDateField.setBounds(513, 192, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(inDateField);
 		inDateField.setColumns(10);
 		
-		JLabel destinationLabel = new JLabel("到达地");
-		destinationLabel.setForeground(color);
+		ELabel destinationLabel = new ELabel("到达地");
 		destinationLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		destinationLabel.setBounds(437, 220, 59, 34);
 		add(destinationLabel);
 		
-		destinationField = new JTextField();
+		destinationField = new TextField();
 		destinationField.setEditable(false);
 		destinationField.setBounds(513, 227, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(destinationField);
 		destinationField.setColumns(10);
 		
-		JLabel partLabel = new JLabel("区");
-		partLabel.setForeground(color);
+		ELabel partLabel = new ELabel("区");
 		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partLabel.setBounds(437, 254, 45, 34);
 		add(partLabel);
 		
-		partField = new JTextField();
+		partField = new TextField();
 		partField.setEditable(false);
 		partField.setBounds(513, 261, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(partField);
 		partField.setColumns(10);
 		
-		JLabel shelfLabel = new JLabel("架");
-		shelfLabel.setForeground(color);
+		ELabel shelfLabel = new ELabel("架");
 		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		shelfLabel.setBounds(437, 286, 59, 34);
 		add(shelfLabel);
 		
-		shelfField = new JTextField();
+		shelfField = new TextField();
 		shelfField.setEditable(false);
 		shelfField.setBounds(513, 292, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(shelfField);
 		shelfField.setColumns(10);
 		
-		JLabel rowLabel = new JLabel("排");
-		rowLabel.setForeground(color);
+		ELabel rowLabel = new ELabel("排");
 		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		rowLabel.setBounds(437, 322, 59, 34);
 		add(rowLabel);
 		
-		rowField = new JTextField();
+		rowField = new TextField();
 		rowField.setEditable(false);
 		rowField.setBounds(513, 329, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(rowField);
 		rowField.setColumns(10);
 		
-		JLabel placeLabel = new JLabel("位");
-		placeLabel.setForeground(color);
+		ELabel placeLabel = new ELabel("位");
 		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		placeLabel.setBounds(437, 357, 59, 34);
 		add(placeLabel);
 		
-		placeField = new JTextField();
+		placeField = new TextField();
 		placeField.setEditable(false);
 		placeField.setBounds(513, 364, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(placeField);
 		placeField.setColumns(10);
 		
-		JLabel balanceLabel = new JLabel("账户余额");
-		balanceLabel.setForeground(color);
+		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		balanceLabel.setBounds(723, 135, 67, 34);
 		add(balanceLabel);
 		
-		balanceField = new JTextField();
+		balanceField = new TextField();
 		balanceField.setEditable(false);
 		balanceField.setBounds(799, 142, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(balanceField);

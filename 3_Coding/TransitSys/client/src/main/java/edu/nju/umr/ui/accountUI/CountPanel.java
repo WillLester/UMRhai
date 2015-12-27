@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -23,6 +21,7 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -50,7 +49,7 @@ public class CountPanel extends PPanel{
 		frame=fr;
 		logicSer=new CountLogic();
 		
-		JLabel countLabel = new TitleLabel("期初建账");
+		TitleLabel countLabel = new TitleLabel("期初建账");
 		add(countLabel);
 		
 		Button addButton = new AddButton();
@@ -127,9 +126,9 @@ public class CountPanel extends PPanel{
 		table.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.WIDTH_DIV_9*17/10, Constants.HEIGHT_DIV_10*17/10, Constants.TEXTFIELD_WIDTH_L*21/20, 14*Constants.TEXTFIELD_HEIGHT);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","生成时间"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
@@ -35,10 +31,12 @@ import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.DelButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
@@ -48,25 +46,25 @@ public class HallLoadingPanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 165564419345172819L;
-	private JTextField transitIdField;
-	private JTextField superviseField;
-	private JTextField guardField;
+	private TextField transitIdField;
+	private TextField superviseField;
+	private TextField guardField;
 	private AutoCompPanel expressIdField;
-	private JLabel priceLabel;
+	private ELabel priceLabel;
 	private Table table;
 	private DefaultTableModel model;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private HallLoadingOrderLSer serv;
-	private JComboBox<String> comboBoxDestination;
-	private JComboBox<String> comboBoxVan;
+	private UMRComboBox<String> comboBoxDestination;
+	private UMRComboBox<String> comboBoxVan;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
 	private ArrayList<String> allExpresses=new ArrayList<String>();
 	private String userName;
 	private String orgId;
 	private String userId;
 	private String org;
-	private JTextField costField;
+	private TextField costField;
 	private Button confirmButton;
 	/**
 	 * Create the panel.
@@ -137,7 +135,7 @@ public class HallLoadingPanel extends PPanel {
 		destinationLabel.setBounds(242, 175, 85, 24);
 		add(destinationLabel);
 		
-		comboBoxDestination = new JComboBox<String>();
+		comboBoxDestination = new UMRComboBox<String>();
 		comboBoxDestination.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		comboBoxDestination.setBounds(307, 175, 160, 25);
 		comboBoxDestination.addItemListener(new ItemListener(){
@@ -174,7 +172,7 @@ public class HallLoadingPanel extends PPanel {
 		vanIdLabel.setBounds(220+75, 224, 120, 24);
 		add(vanIdLabel);
 		
-		comboBoxVan=new JComboBox<String>();
+		comboBoxVan=new UMRComboBox<String>();
 		comboBoxVan.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		comboBoxVan.setBounds(328+75, 223, 165, 25);
 		add(comboBoxVan);
@@ -236,7 +234,7 @@ public class HallLoadingPanel extends PPanel {
 		});
 		add(deleteButton);
 		
-		JLabel tableHeadLabel = new ELabel("已输入订单");
+		ELabel tableHeadLabel = new ELabel("已输入订单");
 		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		tableHeadLabel.setBounds(401+75, 309, 130, 24);
@@ -291,14 +289,14 @@ public class HallLoadingPanel extends PPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(220+75, 333, 529, 176);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"订单号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 		
-		costField = new JTextField();
+		costField = new TextField();
 		costField.setEnabled(false);
 		costField.setBounds(731, 224, 106, 25);
 		add(costField);

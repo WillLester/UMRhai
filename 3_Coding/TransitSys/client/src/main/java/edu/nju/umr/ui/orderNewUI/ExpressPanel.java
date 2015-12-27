@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -35,6 +34,7 @@ import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
@@ -93,8 +93,8 @@ public class ExpressPanel extends PPanel {
 	protected ELabel heightLabel;
 	protected ELabel mLabelH;
 	protected DatePanel datePanel;
-	protected JComboBox<String> pakKindCombo;
-	protected JComboBox<String> expressKindCombo;
+	protected UMRComboBox<String> pakKindCombo;
+	protected UMRComboBox<String> expressKindCombo;
 	protected ELabel costLabel;
 	protected Button confirmButton;
 	protected Button cancelButton;
@@ -374,7 +374,7 @@ public class ExpressPanel extends PPanel {
 		pakKindLabel.setBounds(271, 503, 120, 24);
 		add(pakKindLabel);
 		
-		pakKindCombo = new JComboBox<String>();
+		pakKindCombo = new UMRComboBox<String>();
 		pakKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"纸箱", "木箱", "快递袋"}));
 		pakKindCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		pakKindCombo.setBounds(389, 503, 103, 25);
@@ -391,7 +391,7 @@ public class ExpressPanel extends PPanel {
 		expressKindLabel.setBounds(512, 503, 120, 24);
 		add(expressKindLabel);
 		
-		expressKindCombo = new JComboBox<String>();
+		expressKindCombo = new UMRComboBox<String>();
 		expressKindCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"经济快递", "标准快递", "特快专递"}));
 		expressKindCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressKindCombo.setBounds(629, 503, 123, 25);

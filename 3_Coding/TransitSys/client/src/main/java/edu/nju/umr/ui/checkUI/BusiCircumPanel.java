@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.checkUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +9,7 @@ import java.util.Calendar;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -30,6 +27,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.OutputButton;
@@ -62,11 +60,9 @@ public class BusiCircumPanel extends PPanel {
 		serv = new BusiCircumLogic();
 //        serv = new BusiCircumPanelStub();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
-		Color color = new Color(57, 152,214);
 		
-		JLabel start = new JLabel("开始日期");
+		ELabel start = new ELabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		start.setForeground(color);
 		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
@@ -74,9 +70,8 @@ public class BusiCircumPanel extends PPanel {
 		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 267, 21);
 		add(startDate);
 		
-		JLabel end = new JLabel("结束日期");
+		ELabel end = new ELabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		end.setForeground(color);
 		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
@@ -103,14 +98,12 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(confirm);
 		
-		JLabel statementLabel = new ELabel("经营情况表");
+		ELabel statementLabel = new ELabel("经营情况表");
 		statementLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
-//		statementLabel.setForeground(Color.WHITE);
 		statementLabel.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(statementLabel);
 		
-		JLabel nameLabel = new TitleLabel("经营情况表");
-//		setSize(250,Constants.TITLE_HEIGHT);
+		TitleLabel nameLabel = new TitleLabel("经营情况表");
 		add(nameLabel);
 		
 		Button button = new ExitButton();
@@ -137,9 +130,9 @@ public class BusiCircumPanel extends PPanel {
 		statementTable.setBounds(Constants.TABLE_X,Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		statementTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		statementTable.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(statementTable);
+		UMRScrollPane scroll=new UMRScrollPane(statementTable);
 		scroll.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"单据种类","日期","金额","缘由"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

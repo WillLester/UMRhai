@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
@@ -36,8 +36,8 @@ public class IncomePanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5845767449951861001L;
-	private JComboBox<String> courierCombo;
-	private JComboBox<String> accountCombo;
+	private UMRComboBox<String> courierCombo;
+	private UMRComboBox<String> accountCombo;
 	private TextField amountField;
 	private IncomeOrderLSer logicSer;
 	private JFrame frame;
@@ -95,7 +95,7 @@ public class IncomePanel extends PPanel {
 		courierLabel.setBounds(286+40, 205, 85, 24);
 		add(courierLabel);
 		
-		courierCombo = new JComboBox<String>();
+		courierCombo = new UMRComboBox<String>();
 		courierCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		courierCombo.setBounds(355+40, 204, 85, 25);
 		ResultMessage message = logicSer.getCouriers(orgId);
@@ -155,7 +155,7 @@ public class IncomePanel extends PPanel {
 		accountLabel.setBounds(664, 205, 65, 22);
 		add(accountLabel);
 		
-		accountCombo = new JComboBox<String>();
+		accountCombo = new UMRComboBox<String>();
 		accountCombo.setBounds(714, 205, 110, 25);
 		ResultMessage messageA = logicSer.getAccount();
 		if(messageA.getReInfo() == Result.SUCCESS){

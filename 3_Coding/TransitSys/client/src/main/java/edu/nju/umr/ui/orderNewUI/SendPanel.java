@@ -9,10 +9,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -28,6 +25,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.vo.ResultMessage;
@@ -39,8 +37,8 @@ public class SendPanel extends PPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 8991812902473293357L;
-	private JTextField barcodeField;
-	private JComboBox<String> courierCombo;
+	private TextField barcodeField;
+	private UMRComboBox<String> courierCombo;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private String name;
@@ -101,7 +99,7 @@ public class SendPanel extends PPanel {
 		add(barcodeField);
 		barcodeField.setColumns(10);
 		
-		JLabel dateLabel = new ELabel("到达日期");
+		ELabel dateLabel = new ELabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342, 288, 107, 24);
 		add(dateLabel);
@@ -110,7 +108,7 @@ public class SendPanel extends PPanel {
 		datePanel.setBounds(483, 288, 285, 26);
 		add(datePanel);
 		
-		JLabel courierLabel = new ELabel("派送员");
+		ELabel courierLabel = new ELabel("派送员");
 		courierLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		courierLabel.setBounds(342, 186, 107, 24);
 		add(courierLabel);
@@ -123,7 +121,7 @@ public class SendPanel extends PPanel {
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
-		courierCombo = new JComboBox<String>();
+		courierCombo = new UMRComboBox<String>();
 		courierCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		courierCombo.setBounds(487, 186, 193, 24);
 		courierCombo.setModel(new DefaultComboBoxModel<String>(courierList));
@@ -167,7 +165,7 @@ public class SendPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		JLabel idLabel = new ELabel("单据编号");
+		ELabel idLabel = new ELabel("单据编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(342, 142, 107, 24);
 		add(idLabel);

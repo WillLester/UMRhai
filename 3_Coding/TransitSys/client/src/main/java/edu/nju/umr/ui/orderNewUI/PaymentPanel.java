@@ -6,10 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Calendar;
+
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -27,6 +26,7 @@ import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRTextArea;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -45,11 +45,11 @@ public class PaymentPanel extends PPanel {
 	private String[] accountList;
 	private PaymentOrderLSer logicSer;
 	private String name;
-	private JComboBox<String> accountCombo;
-	private JComboBox<String> reasonCombo;
+	private UMRComboBox<String> accountCombo;
+	private UMRComboBox<String> reasonCombo;
 	private String userId;
 	private TextField idField;
-	private JTextArea remarkArea;
+	private UMRTextArea remarkArea;
 	/**
 	 * Create the panel.
 	 */
@@ -119,7 +119,7 @@ public class PaymentPanel extends PPanel {
 		add(accountLabel);
 		
 		getAccount();
-		accountCombo = new JComboBox<String>();
+		accountCombo = new UMRComboBox<String>();
 		accountCombo.setBounds(410, 285, 111, 25);
 		accountCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
@@ -130,7 +130,7 @@ public class PaymentPanel extends PPanel {
 		reasonLabel.setBounds(540, 287, 59, 24);
 		add(reasonLabel);
 		
-		reasonCombo = new JComboBox<String>();
+		reasonCombo = new UMRComboBox<String>();
 		reasonCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		reasonCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"租金/年","运费/次","工资/月","奖励"}));
 		reasonCombo.setBounds(615, 287, 111, 25);

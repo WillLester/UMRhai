@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -30,6 +28,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -46,9 +45,9 @@ public class TransitPanel extends PPanel implements PriceCount {
 	private TextField supervisionField;
 	private TextField planeIdField;
 	private TextField containerField;
-	private JComboBox<String> startCombo;
-	private JComboBox<String> arriveCombo;
-	private JComboBox<String> kindCombo;
+	private UMRComboBox<String> startCombo;
+	private UMRComboBox<String> arriveCombo;
+	private UMRComboBox<String> kindCombo;
 	private ExpressListPanel expressList;
 	private TextField costField;
 	private JFrame frame;
@@ -91,13 +90,13 @@ public class TransitPanel extends PPanel implements PriceCount {
 		logicSer = new TransitOrderLogic();
 //		logicSer = new TransitPanelStub(); 
 		
-		JLabel titleLabel = new TitleLabel("中转单");
+		TitleLabel titleLabel = new TitleLabel("中转单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
-		JLabel idLabel = new ELabel("中转单编号");
+		ELabel idLabel = new ELabel("中转单编号");
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(355, 87, 120, 24);
@@ -110,7 +109,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		add(idField);
 		idField.setColumns(10);
 		
-		JLabel dateLabel = new ELabel("装车日期");
+		ELabel dateLabel = new ELabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(296, 121, 120, 24);
@@ -120,12 +119,12 @@ public class TransitPanel extends PPanel implements PriceCount {
 		datePanel.setBounds(452, 121, 285, 26);
 		add(datePanel);
 		
-		JLabel startLabel = new ELabel("出发地");
+		ELabel startLabel = new ELabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(140, 157, 85, 24);
 		add(startLabel);
 		
-		arriveCombo = new JComboBox<String>();
+		arriveCombo = new UMRComboBox<String>();
 		arriveCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		arriveCombo.setBounds(432, 157, 140, 25);
 		arriveCombo.addItemListener(new ItemListener(){
@@ -135,7 +134,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		});
 		add(arriveCombo);
 		
-		startCombo = new JComboBox<String>();
+		startCombo = new UMRComboBox<String>();
 		startCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		startCombo.setBounds(214, 157, 148, 25);
 		ResultMessage message = logicSer.getCenters();
@@ -166,7 +165,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		});
 		add(startCombo);
 		
-		JLabel supervisionLabel = new ELabel("监装员");
+		ELabel supervisionLabel = new ELabel("监装员");
 		supervisionLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		supervisionLabel.setBounds(582, 157, 85, 24);
 		add(supervisionLabel);
@@ -177,7 +176,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		supervisionField.setBounds(646, 157, 85, 25);
 		add(supervisionField);
 		
-		JLabel planeIdLabel = new ELabel("航班号");
+		ELabel planeIdLabel = new ELabel("航班号");
 		planeIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		planeIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		planeIdLabel.setBounds(220, 204, 120, 24);
@@ -189,7 +188,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		planeIdField.setBounds(328, 203, 165, 25);
 		add(planeIdField);
 		
-		JLabel costLabel = new ELabel("运费/元");
+		ELabel costLabel = new ELabel("运费/元");
 		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		costLabel.setBounds(661, 204, 100, 24);
 		add(costLabel);
@@ -229,17 +228,17 @@ public class TransitPanel extends PPanel implements PriceCount {
 			}
 		});
 		
-		JLabel kindLabel = new ELabel("运输方式");
+		ELabel kindLabel = new ELabel("运输方式");
 		kindLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		kindLabel.setBounds(741, 157, 80, 24);
 		add(kindLabel);
 		
-		JLabel arriveLabel = new ELabel("到达地");
+		ELabel arriveLabel = new ELabel("到达地");
 		arriveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		arriveLabel.setBounds(366, 157, 85, 24);
 		add(arriveLabel);
 		
-		JLabel containerLabel = new ELabel("货柜号");
+		ELabel containerLabel = new ELabel("货柜号");
 		containerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		containerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		containerLabel.setBounds(485, 204, 120, 24);
@@ -255,7 +254,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		expressList.setBounds(206, 212, 683, 297);
 		add(expressList);
 		
-		kindCombo = new JComboBox<String>();
+		kindCombo = new UMRComboBox<String>();
 		kindCombo.setBounds(827, 157, 62, 25);
 		String kind[] = {"飞机","铁路","公路"};
 		kindCombo.setModel(new DefaultComboBoxModel<String>(kind));
