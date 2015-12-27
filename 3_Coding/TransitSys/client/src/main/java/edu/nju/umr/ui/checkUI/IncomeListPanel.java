@@ -77,6 +77,7 @@ public class IncomeListPanel extends PPanel {
 		JCheckBox checkDate = new JCheckBox("日期");
 		checkDate.setBackground(Color.WHITE);
 		checkDate.setForeground(color);
+		checkDate.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		checkDate.setBounds(Constants.TABLE_X+120, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(checkDate);
 		
@@ -93,6 +94,7 @@ public class IncomeListPanel extends PPanel {
 		JCheckBox checkHall = new JCheckBox("营业厅");
 		checkHall.setBackground(Color.WHITE);
 		checkHall.setForeground(color);
+		checkHall.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		checkHall.setBounds(Constants.TABLE_X+400, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(checkHall);
 		
@@ -109,6 +111,7 @@ public class IncomeListPanel extends PPanel {
 		
 		ELabel hallLabel = new ELabel("营业厅");
 		hallLabel.setForeground(color);
+		hallLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		hallLabel.setBounds(Constants.TABLE_X+400, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(hallLabel);
 		

@@ -1,5 +1,6 @@
 package edu.nju.umr.ui;
 
+import java.awt.Font;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -20,20 +21,23 @@ public class DateTimePanel extends DatePanel {
 		// TODO 自动生成的构造函数存根
 		super();
 		hourCombo = new UMRComboBox<String>();
-		hourCombo.setBounds(263, 0, 66, 21);
+		hourCombo.setBounds(263, 0, 66, Constants.DATE_HEIGHT);
 		String hours[] = new String[24];
 		for(int i = 0;i <= 23;i++){
 			hours[i] = ""+i;
 		}
+		hourCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		hourCombo.setModel(new DefaultComboBoxModel<String>(hours));
 		add(hourCombo);
 		
 		ELabel hourLabel = new ELabel("时");
-		hourLabel.setBounds(332, 3, 19, 15);
+		hourLabel.setMidFont();
+		hourLabel.setBounds(332, 3, 19,Constants.DATE_HEIGHT);
 		add(hourLabel);
 		
 		minuteCombo = new UMRComboBox<String>();
-		minuteCombo.setBounds(351, 0, 66, 21);
+		minuteCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		minuteCombo.setBounds(351, 0, 66,Constants.DATE_HEIGHT);
 		String minutes[] = new String[60];
 		for(int i = 0;i <= 59;i++){
 			minutes[i] = ""+i;
@@ -42,11 +46,13 @@ public class DateTimePanel extends DatePanel {
 		add(minuteCombo);
 		
 		ELabel minuteLabel = new ELabel("分");
-		minuteLabel.setBounds(420, 3, 19, 15);
+		minuteLabel.setMidFont();
+		minuteLabel.setBounds(420, 3, 19,Constants.DATE_HEIGHT);
 		add(minuteLabel);
 		
 		secondCombo = new UMRComboBox<String>();
-		secondCombo.setBounds(439, 0, 66, 21);
+		secondCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		secondCombo.setBounds(439, 0, 66, Constants.DATE_HEIGHT);
 		String seconds[] = new String[60];
 		for(int i = 0;i <= 59;i++){
 			seconds[i] = ""+i;
@@ -55,7 +61,8 @@ public class DateTimePanel extends DatePanel {
 		add(secondCombo);
 		
 		ELabel secondLabel = new ELabel("秒");
-		secondLabel.setBounds(508, 3, 19, 15);
+		secondLabel.setMidFont();
+		secondLabel.setBounds(508, 3, 19, Constants.DATE_HEIGHT);
 		add(secondLabel);
 	}
 	public Calendar getCalendar(){
