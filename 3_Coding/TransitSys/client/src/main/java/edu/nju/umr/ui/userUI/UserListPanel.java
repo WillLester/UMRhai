@@ -33,6 +33,7 @@ import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -51,7 +52,7 @@ public class UserListPanel extends PPanel {
 	private TextField mobileField;
 	private Table table;
 	private DefaultTableModel model;
-	private JComboBox<String> juriBox;
+	private UMRComboBox<String> juriBox;
 	private Button deleteButton;
 	private Button confirmButton;
 	private Button addButton;
@@ -201,7 +202,7 @@ public class UserListPanel extends PPanel {
 		passwordField.setBounds(855,221,200,24);
 		add(passwordField);
 		
-		juriBox = new JComboBox<String>();
+		juriBox = new UMRComboBox<String>();
 		juriBox.setModel(new DefaultComboBoxModel<String>(new String[] {"总经理", "高级财务人员", "普通财务人员","快递员","营业厅业务员","中转中心业务员","仓库管理员"}));
 		juriBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		juriBox.setBounds(855, 271, 200, 24);
