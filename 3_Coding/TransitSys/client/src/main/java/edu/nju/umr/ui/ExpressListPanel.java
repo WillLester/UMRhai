@@ -24,6 +24,8 @@ import javax.swing.event.ListSelectionListener;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.UMRList;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.orderNewUI.PriceCount;
@@ -142,8 +144,8 @@ public class ExpressListPanel extends JPanel{
 //		add(modifyButton);
 		
 		model = new DefaultListModel<String>();
-		expressList = new JList<String>(model);
-		JScrollPane scroll = new JScrollPane(expressList);
+		expressList = new UMRList<String>(model);
+		JScrollPane scroll = new UMRScrollPane(expressList);
 		expressList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		expressList.addListSelectionListener(new ListSelectionListener() {

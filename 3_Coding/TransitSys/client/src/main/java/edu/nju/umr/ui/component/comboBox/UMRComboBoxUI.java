@@ -24,6 +24,7 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
 	private Button arrow;
+	private ImageIcon arrowI;
 	
 	public UMRComboBoxUI() {
 		super();
