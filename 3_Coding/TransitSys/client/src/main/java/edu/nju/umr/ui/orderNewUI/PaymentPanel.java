@@ -1,14 +1,11 @@
 package edu.nju.umr.ui.orderNewUI;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Calendar;
-
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,6 +24,7 @@ import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRTextArea;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -148,10 +146,8 @@ public class PaymentPanel extends PPanel {
 		remarkLabel.setBounds(260, 341, 130, 24);
 		add(remarkLabel);
 		
-		remarkArea = new JTextArea();
+		remarkArea = new UMRTextArea();
 		remarkArea.setBounds(410, 341, 435, 154);
-		remarkArea.setBackground(Color.white);
-		remarkArea.setBorder(BorderFactory.createLineBorder(Color.gray,1));
 		add(remarkArea);
 		
 		Button confirmButton = new ConfirmButton();
