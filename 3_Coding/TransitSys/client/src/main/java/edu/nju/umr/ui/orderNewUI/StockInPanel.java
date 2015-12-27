@@ -189,7 +189,7 @@ public class StockInPanel extends PPanel {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO 自动生成的方法存根
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					setRowAndPlaceModel();
+					setRow();
 				}
 			}
 		});
@@ -203,6 +203,16 @@ public class StockInPanel extends PPanel {
 		rowCombo = new JComboBox<Integer>();
 		rowCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		rowCombo.setBounds(604, 296, 90, 25);
+		rowCombo.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO 自动生成的方法存根
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					setPlace();
+				}
+			}
+		});
 		add(rowCombo);
 		
 		JLabel placeLabel = new ELabel("位号");
@@ -322,24 +332,37 @@ public class StockInPanel extends PPanel {
 			shelves[i] = shelf.getId();
 		}
 		shelfCombo.setModel(new DefaultComboBoxModel<String>(shelves));
-		setRowAndPlaceModel();
+//		setRowAndPlaceModel();
+		setRow();
 	}
 	
-	private void setRowAndPlaceModel(){
-		if(shelfCombo.getSelectedIndex() < 0){
-			return;
-		}
-		ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
-		Integer rows[] = new Integer[shelf.getRow()];
-		for(int i = 1;i <= rows.length;i++){
-			rows[i-1] = i;
-		}
-		Integer places[] = new Integer[shelf.getPlace()];
-		for(int i = 1;i <= places.length;i++){
-			places[i-1] = i;
-		}
-		rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
-		placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
+//	private void setRowAndPlaceModel(){
+//		if(shelfCombo.getSelectedIndex() < 0){
+//			return;
+//		}
+//		ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
+//		Integer rows[] = new Integer[shelf.getRow()];
+//		for(int i = 1;i <= rows.length;i++){
+//			rows[i-1] = i;
+//		}
+//		Integer places[] = new Integer[shelf.getPlace()];
+//		for(int i = 1;i <= places.length;i++){
+//			places[i-1] = i;
+//		}
+//		rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
+//		placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
+//	}
+	private void setRow(){
+		if(shelfCombo.getSelectedIndex()<0)return;
+		Integer [] t= logicSer.getRow(shelfCombo.getSelectedItem().toString());
+		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
+		setPlace();
+	}
+	private void setPlace(){
+		if(rowCombo.getSelectedIndex()<0)return;
+		Integer [] t= logicSer.getPlace(shelfCombo.getSelectedItem().toString(),Integer.parseInt((rowCombo.getSelectedItem().toString())));
+		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
+		
 	}
 	public void setEnabled(boolean enabled)
 	{

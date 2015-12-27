@@ -48,6 +48,8 @@ public class HintFrame extends EDialog{
 		case CITY_ID_USED:txt="区号已使用！";break;
 		case ORG_EXIST:txt="机构已存在！";break;
 		case ACCOUNT_EXIST:txt="账户已存在！";break;
+		case STOCK_FULL:txt="库存已满！";break;
+		case NOSPACE_FOR_STOCK:txt="没有可用仓库";break;
 		default:
 			break;
 		}

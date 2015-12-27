@@ -16,4 +16,6 @@ public interface StockInOrderLSer {
 	public boolean isExpressValid(String id);
 	public ResultMessage getNextId(String orgId);
 	public ResultMessage getComingExpresses(String orgId);
+	public Integer[] getRow(String shelf);
+	public Integer[] getPlace(String shelf,int row);
 }

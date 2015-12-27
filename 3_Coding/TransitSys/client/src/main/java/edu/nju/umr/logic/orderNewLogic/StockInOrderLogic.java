@@ -24,8 +24,10 @@ import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
+import edu.nju.umr.vo.GoodVO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
+import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.order.StockInVO;
 
 public class StockInOrderLogic implements StockInOrderLSer{
@@ -35,6 +37,10 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private UpdateTranStateLSer orderState;
+	private StockVO thisStock;
+	private ArrayList<ShelfVO> theseShelves;
+	private boolean [][][] positions;
+	private int [] size;
 	public StockInOrderLogic(){
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
@@ -78,9 +84,10 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
 		return (Result) checkWarn.checkWarning(id).getMessage();
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public ResultMessage getShelves(String orgId) {
-		ArrayList<ShelfVO> shelves=new ArrayList<ShelfVO>();
+		theseShelves=new ArrayList<ShelfVO>();
 		ArrayList<ShelfPO> shelfPOs=null;
 		try {
 			shelfPOs=stockinData.getShelves(orgId);
@@ -91,9 +98,68 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		
 		for(ShelfPO po:shelfPOs){
 			ShelfVO shelf=VPFactory.toShelfVO(po);
-			shelves.add(shelf);
+			theseShelves.add(shelf);
 		}
-		return new ResultMessage(Result.SUCCESS,shelves);
+		
+		ResultMessage message = uti.getStocks();
+		Result result=message.getReInfo();
+		if(!result.equals(Result.SUCCESS)){
+			return message;
+		}
+		ArrayList<StockVO> stocks=(ArrayList<StockVO>)message.getMessage();
+		for(StockVO sv:stocks){
+			if(sv.getStockId().equals(orgId)){
+				thisStock=sv;
+				break;
+			}
+		}
+		if(theseShelves.size()==0){
+			return new ResultMessage(Result.NOSPACE_FOR_STOCK,null);
+		}
+		
+		size=new int[3];
+		size[0]=theseShelves.size();
+		for(int i=0;i<size[0];i++){
+			if(size[1]<theseShelves.get(i).getRow())size[1]=theseShelves.get(i).getRow();
+			if(size[2]<theseShelves.get(i).getPlace())size[2]=theseShelves.get(i).getPlace();
+		}
+		positions=new boolean[size[0]][size[1]][size[2]];
+		
+		
+		for(GoodVO gv:thisStock.getGoods()){
+			for(int i=0;i<size[0];i++){
+				ShelfVO sv=theseShelves.get(i);
+				if(gv.getShelf().equals(sv.getId())){
+					positions[i][gv.getRow()-1][gv.getPlace()-1]=true;
+					break;
+				}
+			}
+		}
+		
+		ArrayList<ShelfVO> emptyShelves=new ArrayList<ShelfVO>();
+		for(int i=0;i<size[0];i++){
+			boolean empty=false;
+			ShelfVO tempSV=theseShelves.get(i);
+			for(int j=0;j<tempSV.getRow();j++){
+				for(int k=0;k<tempSV.getPlace();k++){
+					if(positions[i][j][k]==false){
+						empty=true;break;
+					}
+				}
+				if(empty){
+					break;
+				}
+			}
+			if(empty){
+				emptyShelves.add(theseShelves.get(i));
+			}
+		}
+		
+		if(emptyShelves.size()==0){
+			return new ResultMessage(Result.STOCK_FULL,null);
+		}
+		
+		return new ResultMessage(Result.SUCCESS,emptyShelves);
 	}
 	@Override
 	public boolean isExpressValid(String id) {
@@ -119,5 +185,60 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	public ResultMessage getComingExpresses(String orgId) {
 		// TODO Auto-generated method stub
 		return orderState.getExpressHere(orgId);
+	}
+	@Override
+	public Integer[] getRow(String shelf) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> ar=new ArrayList<Integer>();
+		int sh=-1;
+		for(int i=0;i<size[0];i++){
+			if(theseShelves.get(i).getId().equals(shelf)){
+				sh=i;
+				break;
+			}
+		}
+		ShelfVO tempSV=theseShelves.get(sh);
+		for(int i=0;i<tempSV.getRow();i++){
+			int count=tempSV.getPlace();
+			for(int j=0;j<tempSV.getPlace();j++){
+				if(positions[sh][i][j]){
+					count--;
+				}
+			}
+			if(count!=0){
+				ar.add(i);
+			}
+		}
+		
+		Integer [] t = new Integer[ar.size()];
+		for(int i=0;i<ar.size();i++){
+			t[i]=ar.get(i)+1;
+		}
+		return t;
+	}
+	@Override
+	public Integer[] getPlace(String shelf, int row) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> ar=new ArrayList<Integer>();
+		int sh=-1;
+		for(int i=0;i<size[0];i++){
+			if(theseShelves.get(i).getId().equals(shelf)){
+				sh=i;
+				break;
+			}
+		}
+		ShelfVO tempSV=theseShelves.get(sh);
+		
+		for(int i=0;i<tempSV.getPlace();i++){
+			if(positions[sh][row-1][i]==false){
+				ar.add(i);
+			}
+		}
+		
+		Integer [] t = new Integer[ar.size()];
+		for(int i=0;i<ar.size();i++){
+			t[i]=ar.get(i)+1;
+		}
+		return t;
 	}
 }
