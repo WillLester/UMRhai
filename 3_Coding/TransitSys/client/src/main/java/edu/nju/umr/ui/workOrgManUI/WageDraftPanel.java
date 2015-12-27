@@ -9,21 +9,20 @@ import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
-import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 
-public class WageDraftPanel extends JPanel {
+public class WageDraftPanel extends InfoPanel {
 	/**
 	 * 
 	 */
