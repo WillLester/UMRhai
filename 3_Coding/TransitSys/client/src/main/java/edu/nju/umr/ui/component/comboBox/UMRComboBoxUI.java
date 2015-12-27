@@ -29,14 +29,15 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 	private ImageIcon arrowSt;
 	private ImageIcon arrowP;
 	
-	public UMRComboBoxUI() {
+	public UMRComboBoxUI(int height) {
 		super();
+		System.out.println(height);
 		arrowI = new ImageIcon("ui/button/arrow.png");
-		arrowI = new ImageIcon(arrowI.getImage().getScaledInstance(getDisplaySize().height, getDisplaySize().height, Image.SCALE_DEFAULT));
+		arrowI = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
 		arrowSt = new ImageIcon("ui/button/arrowSt.png");
-		arrowSt = new ImageIcon(arrowI.getImage().getScaledInstance(getDisplaySize().height, getDisplaySize().height, Image.SCALE_DEFAULT));
+		arrowSt = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
 		arrowP = new ImageIcon("ui/button/arrowP.png");
-		arrowP = new ImageIcon(arrowI.getImage().getScaledInstance(getDisplaySize().height, getDisplaySize().height, Image.SCALE_DEFAULT));
+		arrowP = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
 	}
 
 	protected JButton createArrowButton() {
