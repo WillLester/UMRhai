@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -30,6 +28,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -44,10 +43,10 @@ public class StockInPanel extends PPanel {
 	 */
 	private static final long serialVersionUID = 1734951723422352793L;
 	private AutoCompPanel expressField;
-	private JComboBox<String> partCombo;
-	private JComboBox<Integer> rowCombo;
-	private JComboBox<String> shelfCombo;
-	private JComboBox<Integer> placeCombo;
+	private UMRComboBox<String> partCombo;
+	private UMRComboBox<Integer> rowCombo;
+	private UMRComboBox<String> shelfCombo;
+	private UMRComboBox<Integer> placeCombo;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private String name;
@@ -55,7 +54,7 @@ public class StockInPanel extends PPanel {
 	private StockInOrderLSer logicSer;
 	private ArrayList<ShelfVO> shelfList;
 	private ArrayList<ShelfVO> shelfPart;
-	private JComboBox<String> targetCombo;
+	private UMRComboBox<String> targetCombo;
 	private String userId;
 	private TextField idField;
 	/**
@@ -87,13 +86,13 @@ public class StockInPanel extends PPanel {
 		this.orgId = orgId;
 		this.userId=userId;
 		
-		JLabel titleLabel = new TitleLabel("入库单");
+		TitleLabel titleLabel = new TitleLabel("入库单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 				
-		JLabel label = new ELabel("入库单编号");
+		ELabel label = new ELabel("入库单编号");
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		label.setBounds(359, 112, 123, 24);
 		add(label);
@@ -104,7 +103,7 @@ public class StockInPanel extends PPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		JLabel expressLabel = new ELabel("快递单号");
+		ELabel expressLabel = new ELabel("快递单号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressLabel.setBounds(340, 157, 123, 24);
@@ -115,7 +114,7 @@ public class StockInPanel extends PPanel {
 		expressField.setBounds(483, 156, 165, 25);
 		add(expressField);
 		
-		JLabel dateLabel = new ELabel("入库日期");
+		ELabel dateLabel = new ELabel("入库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(340, 202, 120, 24);
@@ -134,12 +133,12 @@ public class StockInPanel extends PPanel {
 			HintFrame hint = new HintFrame(orgResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
-		JLabel destiLabel = new ELabel("目的地");
+		ELabel destiLabel = new ELabel("目的地");
 		destiLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		destiLabel.setBounds(359, 247, 85, 24);
 		add(destiLabel);
 		
-		targetCombo = new JComboBox<String>();
+		targetCombo = new UMRComboBox<String>();
 		targetCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		targetCombo.setBounds(480, 247, 190, 25);
 		targetCombo.setModel(new DefaultComboBoxModel<String>(orgList));
@@ -153,12 +152,12 @@ public class StockInPanel extends PPanel {
 			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
-		JLabel partLabel = new ELabel("区号");
+		ELabel partLabel = new ELabel("区号");
 		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		partLabel.setBounds(332, 296, 85, 24);
 		add(partLabel);
 		
-		partCombo = new JComboBox<String>();
+		partCombo = new UMRComboBox<String>();
 		partCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		partCombo.setBounds(378, 296, 140, 25);
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
@@ -175,12 +174,12 @@ public class StockInPanel extends PPanel {
 		});
 		add(partCombo);
 		
-		JLabel shelfLabel = new ELabel("架号");
+		ELabel shelfLabel = new ELabel("架号");
 		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		shelfLabel.setBounds(332, 346, 85, 24);
 		add(shelfLabel);
 		
-		shelfCombo = new JComboBox<String>();
+		shelfCombo = new UMRComboBox<String>();
 		shelfCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		shelfCombo.setBounds(378, 346, 140, 25);
 		shelfCombo.addItemListener(new ItemListener() {
@@ -195,22 +194,22 @@ public class StockInPanel extends PPanel {
 		});
 		add(shelfCombo);
 		
-		JLabel rowLabel = new ELabel("排号");
+		ELabel rowLabel = new ELabel("排号");
 		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		rowLabel.setBounds(552, 296, 85, 24);
 		add(rowLabel);
 		
-		rowCombo = new JComboBox<Integer>();
+		rowCombo = new UMRComboBox<Integer>();
 		rowCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		rowCombo.setBounds(604, 296, 90, 25);
 		add(rowCombo);
 		
-		JLabel placeLabel = new ELabel("位号");
+		ELabel placeLabel = new ELabel("位号");
 		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		placeLabel.setBounds(552, 346, 85, 24);
 		add(placeLabel);
 		
-		placeCombo = new JComboBox<Integer>();
+		placeCombo = new UMRComboBox<Integer>();
 		placeCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		placeCombo.setBounds(604, 346, 90, 25);
 		add(placeCombo);

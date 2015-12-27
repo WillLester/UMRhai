@@ -7,10 +7,10 @@ import java.awt.event.ItemListener;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 /*
  * 用以年、月、日的添加
  */
@@ -20,9 +20,9 @@ public class DatePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 93870983191916410L;
-	private JComboBox<String> yearCombo;
-	private JComboBox<String> monthCombo;
-	private JComboBox<String> dayCombo;
+	private UMRComboBox<String> yearCombo;
+	private UMRComboBox<String> monthCombo;
+	private UMRComboBox<String> dayCombo;
 	
 	/**
 	 * Create the panel.
@@ -31,7 +31,7 @@ public class DatePanel extends JPanel {
 //		this.setSize(267,21);
 		setLayout(null);
 		
-		yearCombo = new JComboBox<String>();
+		yearCombo = new UMRComboBox<String>();
 		yearCombo.setBounds(0, 0, 66, 24);
 		yearCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		int nowyear=Calendar.getInstance().get(Calendar.YEAR);
@@ -48,7 +48,7 @@ public class DatePanel extends JPanel {
 		yearLabel.setBounds(69, 1, 19, 24);
 		add(yearLabel);
 		
-		monthCombo = new JComboBox<String>();
+		monthCombo = new UMRComboBox<String>();
 		monthCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		monthCombo.setBounds(89, 0, 66, 24);
 		String [] months={"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -61,7 +61,7 @@ public class DatePanel extends JPanel {
 		monthLabel.setBounds(156, 1, 19, 24);
 		add(monthLabel);
 		
-		dayCombo = new JComboBox<String>();
+		dayCombo = new UMRComboBox<String>();
 		dayCombo.setBounds(175, 0, 66, 24);
 		dayCombo.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setDate((String)yearCombo.getModel().getSelectedItem(),(String)monthCombo.getModel().getSelectedItem());

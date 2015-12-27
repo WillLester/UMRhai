@@ -38,6 +38,7 @@ public class TransitInfoInqPanel extends JPanel {
 	private CustomerLogicSer logicSer;
 	private ArrayList<String> info;
 	private MainFrame frame;
+	private static final int x=100;
 	/**
 	 * Create the panel.
 	 */
@@ -46,30 +47,27 @@ public class TransitInfoInqPanel extends JPanel {
 		logicSer = new CustomerLogic();
 //		logicSer = new TransitInfoInqPanelStub();
 		frame = fr;
-		this.setBounds(150, 0, 1229, 691);
+		this.setBounds(0, 0, 1229, 691);
 		
 		JLabel titleLabel = new TitleLabel("物流轨迹查询");
-		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(364, 10, 242, 67);
 		add(titleLabel);
 		
 		JLabel idLabel = new ELabel("订单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setForeground(Utils.STD_COLOR);
-		idLabel.setBounds(305, 107, 120, 24);
+		idLabel.setBounds(305+x, 107, 120, 24);
 		add(idLabel);
 		
 		idField = new TextField();
-		idField.setBounds(408, 110, 193, 24);
+		idField.setBounds(408+x, 110, 193, 24);
 		add(idField);
 		idField.setColumns(10);
 		
 		JTextArea textArea = new UMRTextArea();
 		textArea.setEnabled(false);
-		textArea.setBounds(174, 153, 687, 374);
+		textArea.setBounds(174+x, 153, 687, 374);
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(174, 153, 687, 374);
+		scroll.setBounds(174+x, 153, 687, 374);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(scroll);
@@ -94,11 +92,11 @@ public class TransitInfoInqPanel extends JPanel {
 				}
 			}
 		});
-		confirmButton.setBounds(638, 108, 100,30 );
+		confirmButton.setBounds(638+x, 108, 100,30 );
 		add(confirmButton);
 		
 		Button closeButton = new ExitButton();
-		closeButton.setBounds(547, 571, 100, 30);
+		closeButton.setBounds(547+x, 571, 100, 30);
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
@@ -107,7 +105,7 @@ public class TransitInfoInqPanel extends JPanel {
 		add(closeButton);
 		
 		Button cancelButton = new CanButton();
-		cancelButton.setBounds(386, 571, 100, 30);
+		cancelButton.setBounds(386+x, 571, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

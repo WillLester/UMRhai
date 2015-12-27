@@ -9,25 +9,26 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 
 public class AutoCompPanel extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7950844264752430637L;
-	private JComboBox<String> jc=new JComboBox<String>();
-	private JTextField jt=new JTextField();
+	private UMRComboBox<String> jc=new UMRComboBox<String>();
+	private TextField jt=new TextField();
 	private ArrayList<String> allItem=new ArrayList<String>();
 	private ArrayList<String> toDisplayItem = new ArrayList<String>();
 	public AutoCompPanel(){
 		setLayout(null);
-		jt=new JTextField();
-		jc=new JComboBox<String>();
+		jt=new TextField();
+		jc=new UMRComboBox<String>();
 		jt.setBounds(0, 0, 100, 24);
 		jc.setBounds(0, 22, 100, 0);
 		add(jt);
@@ -115,7 +116,7 @@ public class AutoCompPanel extends JPanel{
 		jt.setEnabled(enabled);
 		jc.setEnabled(enabled);
 	}
-	public JTextField getjt(){
+	public TextField getjt(){
 		return jt;
 	}
 }

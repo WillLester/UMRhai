@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.accountUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -25,7 +21,11 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -41,9 +41,9 @@ public class AccountManPanel extends PPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -5046945253769534297L;
-	private JTextField searchField;
-	private JTextField nameField;
-	private JTextField balanceField;
+	private TextField searchField;
+	private TextField nameField;
+	private TextField balanceField;
 	private Table table;
 	private DefaultTableModel model;
 	private AccountLSer accountLSer;
@@ -56,17 +56,12 @@ public class AccountManPanel extends PPanel{
 	public AccountManPanel(JFrame fr,String name) {
 		setLayout(null);
 		logicSer=new AccountLogic();
-		
-		Color color = new Color(57, 152,214);
-		
-		JLabel accountLabel = new JLabel("账户管理");
-		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		accountLabel.setForeground(color);
-		accountLabel.setBounds(504, 6, 96, 60);
+			
+		TitleLabel accountLabel = new TitleLabel("账户管理");
 		add(accountLabel);
 		frame = fr;
 		
-		searchField = new JTextField();
+		searchField = new TextField();
 		searchField.setBounds(233, 67, 442, 24);
 		add(searchField);
 		searchField.setColumns(10);
@@ -89,7 +84,6 @@ public class AccountManPanel extends PPanel{
 		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
 		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
 		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
-		
 		allButton.setBounds(233+442+100, 65, 100, 30);
 		add(allButton);
 		allButton.addActionListener(new ActionListener() {
@@ -101,24 +95,22 @@ public class AccountManPanel extends PPanel{
 			}
 		});
 		
-		nameField = new JTextField();
+		nameField = new TextField();
 		nameField.setBounds(360, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(nameField);
 		nameField.setColumns(10);
 		
-		JLabel nameLabel = new JLabel("账户名称");
+		ELabel nameLabel = new ELabel("账户名称");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		nameLabel.setForeground(color);
 		nameLabel.setBounds(283, 465, 67, 30);
 		add(nameLabel);
 		
-		JLabel balanceLabel = new JLabel("账户余额");
+		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		balanceLabel.setForeground(color);
 		balanceLabel.setBounds(566, 465, 67, 30);
 		add(balanceLabel);
 		
-		balanceField = new JTextField();
+		balanceField = new TextField();
 		balanceField.setEditable(false);
 		balanceField.setBounds(643, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(balanceField);
@@ -227,9 +219,9 @@ public class AccountManPanel extends PPanel{
 		table.setBounds(233, 101, 637, 335);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(233, 101, 637, 335);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"名称","余额"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.DateFormat;
@@ -29,6 +26,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.CheckLegal;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
@@ -45,14 +43,14 @@ public class RecipientPanel extends PPanel {
 	private AutoCompPanel transitIdField;
 	private JFrame frame;
 	private DatePanel datePanel;
-	private JComboBox<String> cityCombo;
-	private JComboBox<String> stateCombo;
+	private UMRComboBox<String> cityCombo;
+	private UMRComboBox<String> stateCombo;
 	private RecipientOrderLSer logicSer;
 	private String[] orgList;
 	private String name;
 	private String userId;
 	private String orgId;
-	private JTextField idField;
+	private TextField idField;
 	/**
 	 * Create the panel.
 	 */
@@ -87,7 +85,7 @@ public class RecipientPanel extends PPanel {
 		titleLabel.setBounds(382+40, 10, 242, 67);
 		add(titleLabel);
 		
-		JLabel transitIdLabel = new ELabel("装车单编号");
+		ELabel transitIdLabel = new ELabel("装车单编号");
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdLabel.setBounds(342+40, 236, 107, 24);
 		add(transitIdLabel);
@@ -97,7 +95,7 @@ public class RecipientPanel extends PPanel {
 		transitIdField.setBounds(474+50, 236, 193, 24);
 		add(transitIdField);
 		
-		JLabel dateLabel = new ELabel("到达日期");
+		ELabel dateLabel = new ELabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342+40, 291, 107, 24);
 		add(dateLabel);
@@ -106,14 +104,14 @@ public class RecipientPanel extends PPanel {
 		datePanel.setBounds(525, 291, 285, 26);
 		add(datePanel);
 		
-		JLabel startLabel = new ELabel("出发地");
+		ELabel startLabel = new ELabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(342+40, 182, 107, 24);
 		add(startLabel);
 		
 		getOrg();
 		
-		cityCombo = new JComboBox<String>();
+		cityCombo = new UMRComboBox<String>();
 		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		cityCombo.setBounds(474+50, 186, 193, 24);
 		cityCombo.setModel(new DefaultComboBoxModel<String>(orgList));
@@ -124,7 +122,7 @@ public class RecipientPanel extends PPanel {
 		stateLabel.setBounds(329+49, 347, 120, 45);
 		add(stateLabel);
 		
-		stateCombo = new JComboBox<String>();
+		stateCombo = new UMRComboBox<String>();
 		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
 		stateCombo.setFont(new Font("微软雅黑", Font.PLAIN, 17));
 		stateCombo.setBounds(474+50, 358, 193, 24);
@@ -163,7 +161,7 @@ public class RecipientPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		JLabel idLabel = new ELabel("单据编号");
+		ELabel idLabel = new ELabel("单据编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(382, 141, 107, 24);
 		add(idLabel);

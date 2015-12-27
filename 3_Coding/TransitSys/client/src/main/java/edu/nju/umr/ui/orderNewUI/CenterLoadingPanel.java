@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
@@ -29,6 +28,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.CenterLoadingVO;
@@ -47,7 +47,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 	private CenterLoadingOrderLSer logicSer;
 	private DatePanel datePanel;
 	private TextField costField;
-	private JComboBox<String> arriveCombo;
+	private UMRComboBox<String> arriveCombo;
 	private String name;
 	private ExpressListPanel expressList;
 	private String userId;
@@ -118,7 +118,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		arriveLabel.setBounds(295, 175, 85, 24);
 		add(arriveLabel);
 		
-		arriveCombo = new JComboBox<String>();
+		arriveCombo = new UMRComboBox<String>();
 		arriveCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		arriveCombo.setBounds(380, 175, 150, 25);
 		ResultMessage message = logicSer.getHalls();

@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import edu.nju.umr.logic.orderNewLogic.ReceiveOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
@@ -77,7 +76,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		add(receiveField);
 		receiveField.setColumns(10);
 		
-		JLabel receivelabel = new ELabel("收件人");
+		ELabel receivelabel = new ELabel("收件人");
 		receivelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		receivelabel.setBounds(294, 540, 80, 24);
 		add(receivelabel);

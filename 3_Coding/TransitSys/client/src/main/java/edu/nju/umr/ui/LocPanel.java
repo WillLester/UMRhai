@@ -9,17 +9,17 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import edu.nju.umr.constants.Province;
 import edu.nju.umr.logic.cityLogic.LocLogic;
 import edu.nju.umr.logicService.cityLogicSer.LocLSer;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.LocVO;
@@ -30,9 +30,9 @@ public class LocPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4716919307496599696L;
-	private JTextField locField;
-	private JComboBox<String> provinceCombo;
-	private JComboBox<String> cityCombo;
+	private TextField locField;
+	private UMRComboBox<String> provinceCombo;
+	private UMRComboBox<String> cityCombo;
 	private JFrame frame;
 	private ArrayList<LocVO> cities;
 	private LocLSer logicSer;
@@ -60,13 +60,13 @@ public class LocPanel extends JPanel {
 			
 		Color color = new Color(57, 152,214);
 		
-		JLabel provinceLabel = new JLabel("省份");
+		ELabel provinceLabel = new ELabel("省份");
 		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceLabel.setForeground(color);
 		provinceLabel.setBounds(10, 10, 54, 22);
 		add(provinceLabel);
 		
-		provinceCombo = new JComboBox<String>();
+		provinceCombo = new UMRComboBox<String>();
 		provinceCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceCombo.setBounds(62, 10, 74, 21);
 		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
@@ -82,25 +82,24 @@ public class LocPanel extends JPanel {
 		});
 		add(provinceCombo);
 		
-		JLabel cityLabel = new JLabel("城市");
+		ELabel cityLabel = new ELabel("城市");
 		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceLabel.setForeground(color);
 		cityLabel.setBounds(146, 10, 54, 22);
 		add(cityLabel);
 		
-		cityCombo = new JComboBox<String>();
+		cityCombo = new UMRComboBox<String>();
 		cityCombo.setBounds(193, 10, 75, 21);
 		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(cityCombo);
 		
-		JLabel locLabel = new JLabel("地址");
+		ELabel locLabel = new ELabel("地址");
 		locLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		locLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		locLabel.setForeground(color);
 		locLabel.setBounds(271, 10, 62, 24);
 		add(locLabel);
 		
-		locField = new JTextField();
+		locField = new TextField();
 		locField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		locField.setColumns(10);
 		locField.setBounds(341, 10, 165, 25);

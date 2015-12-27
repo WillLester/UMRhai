@@ -1,18 +1,17 @@
 package edu.nju.umr.ui.checkUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import edu.nju.umr.logic.checkLogic.CostBeneLogic;
 import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -40,9 +39,8 @@ public class CostBenePanel extends PPanel {
 		frame=fr;
 		serv = new CostBeneLogic();
 		this.setSize(1104,621);
-		Color color = new Color(57, 152,214);
 		
-		JLabel nameLabel = new TitleLabel("成本收益");
+		TitleLabel nameLabel = new TitleLabel("成本收益");
 		add(nameLabel);
 		
 		Button out = new ExitButton();
@@ -55,21 +53,18 @@ public class CostBenePanel extends PPanel {
 		});
 		add(out);
 		
-		JLabel inLabel = new JLabel("总收入");
+		ELabel inLabel = new ELabel("总收入");
 		inLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		inLabel.setForeground(color);
 		inLabel.setBounds(210, 230, 106, 27);
 		add(inLabel);
 		
-		JLabel outLabel = new JLabel("总支出");
-		outLabel.setForeground(color);
+		ELabel outLabel = new ELabel("总支出");
 		outLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		outLabel.setBounds(495, 230, 106, 27);
 		add(outLabel);
 		
-		JLabel profitLabel = new JLabel("总利润");
+		ELabel profitLabel = new ELabel("总利润");
 		profitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		profitLabel.setForeground(color);
 		profitLabel.setBounds(810, 230, 106, 27);
 		add(profitLabel);
 		

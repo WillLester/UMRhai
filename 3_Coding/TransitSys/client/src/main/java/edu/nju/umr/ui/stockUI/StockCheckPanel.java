@@ -1,13 +1,11 @@
 package edu.nju.umr.ui.stockUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,6 +22,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -55,12 +54,9 @@ public class StockCheckPanel extends PPanel{
 		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		checkLabel.setBounds(503, 32, 97, 24);
 		add(checkLabel);
-		
-		Color color = new Color(57, 152,214);
-		
+			
 		ELabel startLabel = new ELabel("开始时间");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		startLabel.setForeground(color);
 		startLabel.setBounds(210, 101, 71, 24);
 		add(startLabel);
 		
@@ -70,7 +66,6 @@ public class StockCheckPanel extends PPanel{
 		
 		ELabel endLabel = new ELabel("结束时间");
 		endLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		endLabel.setForeground(color);
 		endLabel.setBounds(210, 146, 71, 19);
 		add(endLabel);
 		
@@ -121,9 +116,9 @@ public class StockCheckPanel extends PPanel{
 		table.setBounds(219, 186, 665, 372);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(219, 186, 665, 372);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","时间","操作","订单号","架号","排号","位号"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

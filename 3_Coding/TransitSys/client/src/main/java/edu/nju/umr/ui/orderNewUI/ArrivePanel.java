@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -26,6 +25,7 @@ import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.ArriveVO;
@@ -44,8 +44,8 @@ public class ArrivePanel extends PPanel {
 	private String userId;
 	private String org;
 	private ArriveOrderLSer serv;
-	private JComboBox<String> startCombo;
-	private JComboBox<String> stateCombo;
+	private UMRComboBox<String> startCombo;
+	private UMRComboBox<String> stateCombo;
 	private Button confirmButton;
 	/**
 	 * Create the panel.
@@ -108,7 +108,7 @@ public class ArrivePanel extends PPanel {
 		startLabel.setBounds(377, 192, 107, 24);
 		add(startLabel);
 		
-		startCombo = new JComboBox<String>();
+		startCombo = new UMRComboBox<String>();
 		startCombo.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		startCombo.setBounds(474+60, 196, 193, 24);
 		add(startCombo);
@@ -123,7 +123,7 @@ public class ArrivePanel extends PPanel {
 		stateLabel.setBounds(377, 357, 120, 45);
 		add(stateLabel);
 		
-		stateCombo = new JComboBox<String>();
+		stateCombo = new UMRComboBox<String>();
 		stateCombo.setModel(new DefaultComboBoxModel<String>(new String[] {"完整", "损坏", "丢失"}));
 		stateCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		stateCombo.setBounds(474+60, 368, 193, 24);
