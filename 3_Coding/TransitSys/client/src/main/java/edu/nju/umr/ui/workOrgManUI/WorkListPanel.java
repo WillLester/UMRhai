@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
