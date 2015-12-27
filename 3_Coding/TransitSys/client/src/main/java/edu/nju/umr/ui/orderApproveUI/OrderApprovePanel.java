@@ -8,8 +8,6 @@ import java.util.Calendar;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +24,7 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -72,7 +71,7 @@ public class OrderApprovePanel extends PPanel{
 //		serv=new OrderApprovePanelStub();
 		this.name = name;
 		
-		JLabel approveLabel = new TitleLabel("审批单据");
+		TitleLabel approveLabel = new TitleLabel("审批单据");
 		add(approveLabel);
 		
 		Button allButton = new Button();
@@ -198,9 +197,9 @@ public class OrderApprovePanel extends PPanel{
 		});
 		table.setBounds(180, Constants.LAYOUT_FIR_Y, 717, 421);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(180, Constants.LAYOUT_FIR_Y, 717, 421);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"是否选中","时间","种类","编号","提交人"};
 		model.setColumnIdentifiers(columnNames);
 		TableColumnModel tcm = table.getColumnModel();

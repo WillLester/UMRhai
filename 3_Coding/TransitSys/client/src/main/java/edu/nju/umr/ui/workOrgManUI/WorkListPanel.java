@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -33,6 +32,7 @@ import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Hints;
 import edu.nju.umr.utility.EnumTransFactory;
@@ -47,8 +47,8 @@ public class WorkListPanel extends PPanel {
 	private TextField textFieldSearch;
 	private TextField textFieldName;
 	private TextField textFieldMobile;
-	private JComboBox<String> orgCombo;
-	private JComboBox<String> juriCombo;
+	private UMRComboBox<String> orgCombo;
+	private UMRComboBox<String> juriCombo;
 	private ArrayList<WorkVO> workList;
 	private Button delete;
 	private Button modify;
@@ -118,7 +118,7 @@ public class WorkListPanel extends PPanel {
 		type.setBounds(380, workName.getY(),60,24);
 		add(type);
 		
-		orgCombo = new JComboBox<String>();
+		orgCombo = new UMRComboBox<String>();
 		orgCombo.setBounds(type.getWidth()+type.getX(), type.getY(), 150, 21);
 		ResultMessage message = logicSer.orgList();
 		if(message.getReInfo().equals(Result.SUCCESS)){
@@ -141,7 +141,7 @@ public class WorkListPanel extends PPanel {
 		position.setBounds(type.getX(), type.getY()+type.getHeight()+20,60,24);
 		add(position);
 		
-		juriCombo = new JComboBox<String>();
+		juriCombo = new UMRComboBox<String>();
 		juriCombo.setBounds(orgCombo.getX(), position.getY()+3, 150, 21);
 		String[] juris = {"快递员","营业厅业务员","中转中心业务员","仓库管理员","高级财务人员","普通财务人员","总经理","管理员"};
 		juriCombo.setModel(new DefaultComboBoxModel<String>(juris));

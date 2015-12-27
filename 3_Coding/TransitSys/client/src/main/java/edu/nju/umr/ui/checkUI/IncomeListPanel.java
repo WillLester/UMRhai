@@ -9,10 +9,7 @@ import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -29,9 +26,11 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -51,10 +50,10 @@ public class IncomeListPanel extends PPanel {
 	private DefaultTableModel model;
 	private ArrayList<IncomeVO> incomeList;
 	private ArrayList<OrgVO> hallList;
-	private JLabel listLabel;
+	private ELabel listLabel;
 	private JFrame frame;
 	private IncomeListLSer serv;
-	private JComboBox<Object> cbHall;
+	private UMRComboBox<Object> cbHall;
 	private DatePanel date;
 	private static final int y=25;
 	private static final Color color = new Color(57, 152,214);
@@ -108,12 +107,12 @@ public class IncomeListPanel extends PPanel {
 		});
 		
 		
-		JLabel hallLabel = new ELabel("营业厅");
+		ELabel hallLabel = new ELabel("营业厅");
 		hallLabel.setForeground(color);
 		hallLabel.setBounds(Constants.TABLE_X+400, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(hallLabel);
 		
-		cbHall=new JComboBox<Object>();
+		cbHall=new UMRComboBox<Object>();
 		cbHall.setBounds(hallLabel.getX()+hallLabel.getWidth()/2,y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5, Constants.LABEL_WIDTH-10, Constants.LABEL_HEIGHT_S-10);
 		cbHall.setEnabled(false);
 		add(cbHall);
@@ -131,7 +130,7 @@ public class IncomeListPanel extends PPanel {
 		}});
 		add(confirm);
 		
-		JLabel nameLabel = new TitleLabel("收款记录");
+		TitleLabel nameLabel = new TitleLabel("收款记录");
 //		hallLabel.setForeground(Color.white);
 		add(nameLabel);
 		
@@ -183,9 +182,9 @@ public class IncomeListPanel extends PPanel {
 		IncomeTable.setBounds(233, 101+y, 637, 335);
 		IncomeTable.setBounds(Constants.TABLE_X, listLabel.getY()+Constants.LABEL_HEIGHT_S+5, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		IncomeTable.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(IncomeTable);
+		UMRScrollPane scroll=new UMRScrollPane(IncomeTable);
 		scroll.setBounds(233, 181+y, 637, 335);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"时间","金额","快递员"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

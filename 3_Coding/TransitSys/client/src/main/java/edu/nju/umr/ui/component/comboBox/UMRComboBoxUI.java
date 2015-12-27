@@ -3,6 +3,7 @@ package edu.nju.umr.ui.component.comboBox;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 
@@ -24,14 +25,25 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
 	private Button arrow;
+	private ImageIcon arrowI;
+	private ImageIcon arrowSt;
+	private ImageIcon arrowP;
 	
-	public UMRComboBoxUI() {
+	public UMRComboBoxUI(int height) {
 		super();
+		arrowI = new ImageIcon("ui/button/arrow.png");
+		arrowI = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
+		arrowSt = new ImageIcon("ui/button/arrowSt.png");
+		arrowSt = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
+		arrowP = new ImageIcon("ui/button/arrowP.png");
+		arrowP = new ImageIcon(arrowI.getImage().getScaledInstance(height, height, Image.SCALE_DEFAULT));
 	}
 
 	protected JButton createArrowButton() {
 		arrow = new Button();
-		arrow.setNewImages("arrow", "arrowSt", "arrowP");
+		arrow.setIcon(arrowI);
+		arrow.setRolloverIcon(arrowSt);
+		arrow.setPressedIcon(arrowP);
 		arrow.setBorder(null);
 		arrow.setBackground(Utils.STD_COLOR);
 		arrow.setOpaque(false);
@@ -51,9 +63,9 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 		int width = (int) comboBox.getWidth()*87/100;
 		int height = (int) comboBox.getHeight();
 		if (comboBox.isPopupVisible()) {
-			arrow.setIcon(new ImageIcon("ui/button/arrowP.png"));
+			arrow.setIcon(arrowP);
 		} else {
-			arrow.setIcon(new ImageIcon("ui/button/arrow.png"));
+			arrow.setIcon(arrowI);
 		}
 		if (comboBox.isFocusable()) {
 			g2.setColor(Utils.STD_COLOR);

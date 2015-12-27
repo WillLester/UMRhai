@@ -9,8 +9,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -22,6 +20,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
@@ -46,7 +45,7 @@ public class OrderRevisePanel extends PPanel{
 //		serv=new OrderRevisePanelStub();
 		this.userId = userId;
 
-		JLabel reviseLabel = new TitleLabel("未通过单据");
+		TitleLabel reviseLabel = new TitleLabel("未通过单据");
 		add(reviseLabel);
 		
 		Button refreshButton = new Button();
@@ -97,9 +96,9 @@ public class OrderRevisePanel extends PPanel{
 		table.setBounds(193, 71+35, 717, 421);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(193, 71+35, 717, 421);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"时间","种类"};
 		model.setColumnIdentifiers(columnNames);
 		TableColumnModel tcm = table.getColumnModel();

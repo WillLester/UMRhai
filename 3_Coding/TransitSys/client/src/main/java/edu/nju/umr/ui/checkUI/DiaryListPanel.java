@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.checkUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,6 +24,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
@@ -58,11 +56,9 @@ public class DiaryListPanel extends PPanel {
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
-		Color color = new Color(57, 152,214);
 		
-		JLabel start = new ELabel("开始日期");
+		ELabel start = new ELabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		start.setForeground(color);
 		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
 		
@@ -70,9 +66,8 @@ public class DiaryListPanel extends PPanel {
 		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 530, 21);
 		add(startDate);
 		
-		JLabel end = new ELabel("结束日期");
+		ELabel end = new ELabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		end.setForeground(color);
 		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
 		
@@ -111,13 +106,12 @@ public class DiaryListPanel extends PPanel {
 //		diaryTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 //		add(diaryTable);
 		
-		JLabel diaryLable = new JLabel("日志记录");
+		ELabel diaryLable = new ELabel("日志记录");
 		diaryLable.setFont(new Font("微软雅黑",Font.PLAIN,15));
-		diaryLable.setForeground(color);
 		diaryLable.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(diaryLable);
 		
-		JLabel nameLabel = new TitleLabel("日志记录");
+		TitleLabel nameLabel = new TitleLabel("日志记录");
 		add(nameLabel);
 		
 		Button button = new ExitButton();
@@ -143,9 +137,9 @@ public class DiaryListPanel extends PPanel {
 		table.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"操作人","操作","操作时间"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

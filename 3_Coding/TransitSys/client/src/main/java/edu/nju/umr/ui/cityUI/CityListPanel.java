@@ -6,11 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -28,11 +25,13 @@ import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.vo.CitiesVO;
@@ -50,7 +49,7 @@ public class CityListPanel extends PPanel{
 	private DefaultTableModel model2;
 	private TextField nameField;
 	private TextField idField;
-	private JComboBox<String> provinceCombo;
+	private UMRComboBox<String> provinceCombo;
 	private TextField distanceField;
 	private JFrame frame;
 	private ArrayList<CityVO> cityList;
@@ -70,10 +69,10 @@ public class CityListPanel extends PPanel{
 		cityList = new ArrayList<CityVO>();
 		citiesList = new ArrayList<CitiesVO>();
 		
-		JLabel cityLabel = new TitleLabel("城市管理");
+		TitleLabel cityLabel = new TitleLabel("城市管理");
 		add(cityLabel);
 		
-		JLabel nameLabel = new ELabel("城市名");
+		ELabel nameLabel = new ELabel("城市名");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		nameLabel.setBounds(313, 485, 54, 23);
 		add(nameLabel);
@@ -84,7 +83,7 @@ public class CityListPanel extends PPanel{
 		nameField.setEnabled(false);;
 		nameField.setColumns(10);
 		
-		JLabel idLabel = new ELabel("区号");
+		ELabel idLabel = new ELabel("区号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		idLabel.setBounds(493, 485, 54, 23);
 		add(idLabel);
@@ -95,18 +94,18 @@ public class CityListPanel extends PPanel{
 		idField.setEnabled(false);
 		idField.setColumns(10);
 		
-		JLabel provinceLabel = new ELabel("所属省份");
+		ELabel provinceLabel = new ELabel("所属省份");
 		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		provinceLabel.setBounds(647, 485, 74, 23);
 		add(provinceLabel);
 		
-		provinceCombo = new JComboBox<String>();
+		provinceCombo = new UMRComboBox<String>();
 		provinceCombo.setBounds(716, 485, 106, 23);
 		provinceCombo.setModel(new DefaultComboBoxModel<String>(Province.PROVINCES));
 		provinceCombo.setEnabled(false);
 		add(provinceCombo);
 		
-		JLabel distanceLabel = new ELabel("距离km");
+		ELabel distanceLabel = new ELabel("距离km");
 		distanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		distanceLabel.setBounds(480, 525, 54, 23);
 		add(distanceLabel);
@@ -298,9 +297,9 @@ public class CityListPanel extends PPanel{
 		cityTable1.setBounds(140, Constants.LAYOUT_FIR_Y-20, 403, 367);
 		cityTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cityTable1.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll1=new JScrollPane(cityTable1);
+		UMRScrollPane scroll1=new UMRScrollPane(cityTable1);
 		scroll1.setBounds(140,Constants.LAYOUT_FIR_Y-20, 403, 367);
-		scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll1.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"城市名","区号","省份"};
 		model1.setColumnIdentifiers(columnNames);
 		add(scroll1);
@@ -339,9 +338,9 @@ public class CityListPanel extends PPanel{
 		cityTable2.setBounds(567, Constants.LAYOUT_FIR_Y-20, 403, 367);
 		cityTable2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cityTable2.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll2=new JScrollPane(cityTable2);
+		UMRScrollPane scroll2=new UMRScrollPane(cityTable2);
 		scroll2.setBounds(567, Constants.LAYOUT_FIR_Y-20, 403, 367);
-		scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll2.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
 		initialize();

@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +34,7 @@ import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
@@ -54,9 +54,9 @@ public class OrgListPanel extends PPanel {
 	private DefaultTableModel model;
 	private ArrayList<CityVO> cityList;
 	private ArrayList<OrgVO> orgList;
-	private JComboBox<String> orgType;
+	private UMRComboBox<String> orgType;
 	private OrgManLSer serv;
-	private JComboBox<String> cityComboBox;
+	private UMRComboBox<String> cityComboBox;
 	private Button modify;
 	private Button workMan;
 	private Button confirmMod;
@@ -118,7 +118,7 @@ public class OrgListPanel extends PPanel {
 		type.setBounds(this.getWidth()/2-130, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(type);
 		
-		orgType = new JComboBox<String>();
+		orgType = new UMRComboBox<String>();
 		orgType.setBounds(type.getWidth()+type.getX()-70, type.getY()+5, 150, 21);
 		orgType.setModel(new DefaultComboBoxModel<String>(new String[]{"营业厅","中转中心","总部"}));
 		add(orgType);
@@ -214,7 +214,7 @@ public class OrgListPanel extends PPanel {
 		{
 			cityListString[i]=cityList.get(i).getName();
 		}
-		cityComboBox =new JComboBox<String>(new DefaultComboBoxModel<String>(cityListString));
+		cityComboBox =new UMRComboBox<String>(new DefaultComboBoxModel<String>(cityListString));
 		cityComboBox.setBounds(cityLabel.getX()+50, cityLabel.getY(),  Constants.LABEL_WIDTH, 24);
 		add(cityComboBox);
 		

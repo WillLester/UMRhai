@@ -6,12 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -25,6 +21,7 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -32,6 +29,7 @@ import edu.nju.umr.ui.component.button.ConfirmModButton;
 import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
+import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
@@ -42,10 +40,10 @@ public class StockDividePanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 3564861686953328781L;
-	private JTextField searchField;
-	private JTextField idField;
-	private JTextField rowField;
-	private JTextField placeField;
+	private TextField searchField;
+	private TextField idField;
+	private TextField rowField;
+	private TextField placeField;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -62,7 +60,7 @@ public class StockDividePanel extends JPanel{
 //		logicSer = new StockDividePanelStub();
 		this.orgId = orgId;
 		
-		JLabel divideLabel = new JLabel("库存分区");
+		ELabel divideLabel = new ELabel("库存分区");
 		divideLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		divideLabel.setBounds(508, 36, 88, 24);
 		add(divideLabel);
@@ -90,9 +88,8 @@ public class StockDividePanel extends JPanel{
 		});
 		add(searchButton);
 		
-		JLabel idLabel = new ELabel("编号");
+		ELabel idLabel = new ELabel("编号");
 		idLabel.setFont(Utils.COMBO_FONT);
-		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setBounds(206, 500, 54, 24);
 		add(idLabel);
 		
@@ -102,9 +99,8 @@ public class StockDividePanel extends JPanel{
 		add(idField);
 		idField.setColumns(10);
 		
-		JLabel rowLabel = new ELabel("排数");
+		ELabel rowLabel = new ELabel("排数");
 		rowLabel.setFont(Utils.COMBO_FONT);
-		rowLabel.setForeground(Utils.STD_COLOR);
 		rowLabel.setBounds(370, 500, 54, 24);
 		add(rowLabel);
 		
@@ -113,9 +109,8 @@ public class StockDividePanel extends JPanel{
 		add(rowField);
 		rowField.setColumns(10);
 		
-		JLabel placeLabel = new ELabel("每排位数");
+		ELabel placeLabel = new ELabel("每排位数");
 		placeLabel.setFont(Utils.COMBO_FONT);
-		placeLabel.setForeground(Utils.STD_COLOR);
 		placeLabel.setBounds(541, 500, 71, 24);
 		add(placeLabel);
 		
@@ -124,13 +119,12 @@ public class StockDividePanel extends JPanel{
 		add(placeField);
 		placeField.setColumns(10);
 		
-		JLabel partLabel = new ELabel("所在区");
+		ELabel partLabel = new ELabel("所在区");
 		partLabel.setFont(Utils.COMBO_FONT);
-		partLabel.setForeground(Utils.STD_COLOR);
 		partLabel.setBounds(742, 500, 54, 24);
 		add(partLabel);
 		
-		JComboBox<String> partCombo = new JComboBox<String>();
+		UMRComboBox<String> partCombo = new UMRComboBox<String>();
 		partCombo.setBounds(803, 500, 98, 22);
 		partCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
@@ -234,9 +228,9 @@ public class StockDividePanel extends JPanel{
 		table.setBounds(233, 109, 638, 371);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		UMRScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(233, 109, 638, 371);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"架号","所属区","排数","每排位数"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);

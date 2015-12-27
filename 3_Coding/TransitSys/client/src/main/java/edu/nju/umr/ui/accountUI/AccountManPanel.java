@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.accountUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -25,7 +21,11 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanModButton;
 import edu.nju.umr.ui.component.button.ConfirmModButton;
@@ -41,39 +41,36 @@ public class AccountManPanel extends PPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -5046945253769534297L;
-	private JTextField searchField;
-	private JTextField nameField;
-	private JTextField balanceField;
+	private TextField searchField;
+	private TextField nameField;
+	private TextField balanceField;
 	private Table table;
 	private DefaultTableModel model;
 	private AccountLSer accountLSer;
 	private JFrame frame;
 	private ArrayList<AccountVO> accountList;
 	private AccountLSer logicSer;
+	private static final int y=20;
+	private static final int sec_y=10;
 	/**
 	 * Create the panel.
 	 */
 	public AccountManPanel(JFrame fr,String name) {
 		setLayout(null);
 		logicSer=new AccountLogic();
-		
-		Color color = new Color(57, 152,214);
-		
-		JLabel accountLabel = new JLabel("账户管理");
-		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		accountLabel.setForeground(color);
-		accountLabel.setBounds(504, 6, 96, 60);
+			
+		TitleLabel accountLabel = new TitleLabel("账户管理");
 		add(accountLabel);
 		frame = fr;
 		
-		searchField = new JTextField();
-		searchField.setBounds(233, 67, 442, 24);
+		searchField = new TextField();
+		searchField.setBounds(233,sec_y+ y+67, 402, 24);
 		add(searchField);
 		searchField.setColumns(10);
 		accountLSer = new AccountLogic();
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(233+442, 65,100, 30);
+		searchButton.setBounds(233+442-20,sec_y+ y+65,100, 30);
 		add(searchButton);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,8 +86,7 @@ public class AccountManPanel extends PPanel{
 		allButton.setIcon(new ImageIcon("ui/button/buttonAll.png"));
 		allButton.setRolloverIcon(new ImageIcon("ui/button/buttonAllSt.png"));
 		allButton.setPressedIcon(new ImageIcon("ui/button/buttonAllP.png"));
-		
-		allButton.setBounds(233+442+100, 65, 100, 30);
+		allButton.setBounds(233+442+100, sec_y+y+65, 100, 30);
 		add(allButton);
 		allButton.addActionListener(new ActionListener() {
 			
@@ -101,31 +97,29 @@ public class AccountManPanel extends PPanel{
 			}
 		});
 		
-		nameField = new JTextField();
-		nameField.setBounds(360, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		nameField = new TextField();
+		nameField.setBounds(360, sec_y+y+468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(nameField);
 		nameField.setColumns(10);
 		
-		JLabel nameLabel = new JLabel("账户名称");
+		ELabel nameLabel = new ELabel("账户名称");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		nameLabel.setForeground(color);
-		nameLabel.setBounds(283, 465, 67, 30);
+		nameLabel.setBounds(283, sec_y+y+465, 67, 30);
 		add(nameLabel);
 		
-		JLabel balanceLabel = new JLabel("账户余额");
+		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		balanceLabel.setForeground(color);
-		balanceLabel.setBounds(566, 465, 67, 30);
+		balanceLabel.setBounds(566, sec_y+ y+465,67, 30);
 		add(balanceLabel);
 		
-		balanceField = new JTextField();
+		balanceField = new TextField();
 		balanceField.setEditable(false);
-		balanceField.setBounds(643, 468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		balanceField.setBounds(643, sec_y+ y+468,Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(balanceField);
 		balanceField.setColumns(10);
 		
 		Button addButton = new AddButton();
-		addButton.setBounds(326, 525, 100, 30);
+		addButton.setBounds(326, y+525, 100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addAccount();
@@ -134,7 +128,7 @@ public class AccountManPanel extends PPanel{
 		add(addButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(435, 525,100,30);
+		deleteButton.setBounds(435, y+525,100,30);
 		add(deleteButton);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -156,7 +150,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(546, 525,100, 30);
+		confirmButton.setBounds(546,y+ 525,100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -181,7 +175,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button cancelButton = new CanModButton();
-		cancelButton.setBounds(656, 525,100,30);
+		cancelButton.setBounds(656, y+525,100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -195,7 +189,7 @@ public class AccountManPanel extends PPanel{
 		add(cancelButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(798, 525, 100, 30);
+		exitButton.setBounds(798, y+525, 100, 30);
 		add(exitButton);
 		exitButton.addActionListener(new ActionListener() {
 			
@@ -224,12 +218,12 @@ public class AccountManPanel extends PPanel{
 				}
 			}
 		});
-		table.setBounds(233, 101, 637, 335);
+		table.setBounds(233, sec_y+y+101, 637, 335);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
-		scroll.setBounds(233, 101, 637, 335);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		UMRScrollPane scroll=new UMRScrollPane(table);
+		scroll.setBounds(233, sec_y+y+101, 637, 335);
+		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"名称","余额"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
