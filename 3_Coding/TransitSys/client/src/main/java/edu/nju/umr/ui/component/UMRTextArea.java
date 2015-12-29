@@ -7,10 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 
+import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 
 import com.sun.javafx.geom.RoundRectangle2D;
 import com.sun.javafx.geom.Shape;
@@ -28,9 +26,10 @@ public class UMRTextArea extends JTextArea{
 	public UMRTextArea() {
 		setBorder(null);
 		setBackground(Color.WHITE);
-		Border empty = new EmptyBorder(0, 5, 0, 0);
-		CompoundBorder border = new CompoundBorder(this.getBorder(), empty);
-		setBorder(border);
+//		Border empty = new EmptyBorder(0, 5, 0, 0);
+//		CompoundBorder border = new CompoundBorder(this.getBorder(), empty);
+//		setBorder(border);
+		setBorder(BorderFactory.createEmptyBorder());
 		setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setMargin(new Insets(0, 5, 0, 0));
 		setOpaque(false);
