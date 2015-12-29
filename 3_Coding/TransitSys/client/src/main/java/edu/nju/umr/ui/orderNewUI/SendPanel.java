@@ -145,7 +145,7 @@ public class SendPanel extends PPanel {
 					}
 						express.removeFirst();
 						if(!express.isEmpty()){
-							DoHint.hint(result, frame);
+							DoHint.hint(result, frame,false);
 							frame.setContentPane(new SendPanel(fr, name, orgId, userId,express));
 						} else {
 							DoHint.hint(result, frame, true);

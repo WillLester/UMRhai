@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.IncomeOrderLSer;
+import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
@@ -26,6 +28,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	private IncomeOrderDSer incomeData;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
+	private UpdateTranStateLSer orderState;
 	public IncomeOrderLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -40,6 +43,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
         } 
 		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
+		orderState=new UpdateTranStateLogic();
 	}
 	public Result create(IncomeVO order) {
 		// TODO 自动生成的方法存根
@@ -94,6 +98,11 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 		{
 			return new ResultMessage(Result.NET_INTERRUPT,null);
 		}
+	}
+	@Override
+	public ResultMessage expressAvaliable(String orgId) {
+		// TODO Auto-generated method stub
+		return orderState.getExpressHere(orgId);
 	}
 
 }

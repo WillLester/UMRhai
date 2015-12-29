@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -191,6 +192,16 @@ public class IncomePanel extends PPanel {
 					temp="0"+temp;
 				}
 				idField.setText(orgId+DateFormat.DATESTRING.format(Calendar.getInstance().getTime())+temp);
+			}
+			
+			message=logicSer.expressAvaliable(orgId);
+			result=message.getReInfo();
+			if(!result.equals(Result.SUCCESS)){
+				DoHint.hint(result, frame);
+			} else{
+				@SuppressWarnings("unchecked")
+				ArrayList<String> ar=(ArrayList<String>)message.getMessage();
+				expressList.setAllItem(ar);
 			}
 		}
 	}
