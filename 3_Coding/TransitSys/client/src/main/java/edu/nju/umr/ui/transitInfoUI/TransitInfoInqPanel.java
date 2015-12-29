@@ -31,6 +31,7 @@ import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.userUI.LoginPanel;
 import edu.nju.umr.ui.utility.CheckLegal;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 
 public class TransitInfoInqPanel extends JPanel {
@@ -91,6 +92,9 @@ public class TransitInfoInqPanel extends JPanel {
 						for(String inf:info){
 							textArea.append(inf);
 							textArea.append("\n");
+						}
+						if(info.size()==0){
+							DoHint.hint(Result.EXPRESS_NOT_FOUND, frame);
 						}
 					} else {
 						@SuppressWarnings("unused")

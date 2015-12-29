@@ -42,7 +42,7 @@ public class HintFrame extends EDialog{
 		case DATABASE_ERROR:txt = "数据库发生错误";break;
 		case DATA_NOT_FOUND:txt = "未找到数据";break;
 		case ID_IS_USED:txt = "用户名重复";break;
-		case EXPRESS_NOT_FOUND:txt = "订单号有错误！";break;
+		case EXPRESS_NOT_FOUND:txt = "订单不存在！";break;
 		case OUT_OF_LOAD:txt = "超出满载量！";break;
 		case CITY_EXIST:txt="城市已存在！";break;
 		case CITY_ID_USED:txt="区号已使用！";break;

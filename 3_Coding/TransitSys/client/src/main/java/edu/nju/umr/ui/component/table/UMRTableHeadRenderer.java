@@ -21,7 +21,7 @@ public class UMRTableHeadRenderer extends JLabel implements TableCellRenderer{
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		// TODO 自动生成的方法存根
-		setForeground(Color.WHITE);
+		setForeground(Utils.STD_COLOR);
 		setBackground(Utils.STD_COLOR);
 		setFont(Utils.COMBO_FONT);
 		setOpaque(false);
