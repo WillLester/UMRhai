@@ -1,7 +1,6 @@
 package edu.nju.umr.ui;
 import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
