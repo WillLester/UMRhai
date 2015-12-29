@@ -1,7 +1,11 @@
 package edu.nju.umr.ui.component;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
+
+import org.apache.poi.ss.formula.functions.T;
 
 public class UMRScrollPane extends JScrollPane{
 
@@ -20,10 +24,18 @@ public class UMRScrollPane extends JScrollPane{
 		init();
 	}
 	
+	public UMRScrollPane(JList<T> list, int verticalScrollbarAsNeeded,
+			int horizontalScrollbarNever) {
+		// TODO 自动生成的构造函数存根
+		super(list,verticalScrollbarAsNeeded,horizontalScrollbarNever);
+		init();
+	}
+
 	private void init(){
 		setOpaque(false);
 		getViewport().setOpaque(false);
 		getVerticalScrollBar().setUI(new UMRScrollBarUI());
+		setBorder(BorderFactory.createEmptyBorder());
 	}
 
 }

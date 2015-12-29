@@ -16,7 +16,6 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.TextField;
