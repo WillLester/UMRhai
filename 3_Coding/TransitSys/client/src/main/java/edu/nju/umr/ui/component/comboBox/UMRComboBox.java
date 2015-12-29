@@ -1,5 +1,6 @@
 package edu.nju.umr.ui.component.comboBox;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Vector;
 
@@ -39,7 +40,7 @@ public class UMRComboBox<E> extends JComboBox<E>{
 		UMRComboBoxUI ui = new UMRComboBoxUI(30);
 		setUI(ui);
 		setRenderer(new UMRComboBoxRenderer<E>());
-		setBackground(null);
+		setBackground(Color.WHITE);
 	}
 	
 	public Dimension getPreferredSize(){

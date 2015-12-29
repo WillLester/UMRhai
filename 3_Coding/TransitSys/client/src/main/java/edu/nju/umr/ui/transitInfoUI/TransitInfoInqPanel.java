@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,6 +20,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.UMRTextArea;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
@@ -65,10 +67,11 @@ public class TransitInfoInqPanel extends JPanel {
 		JTextArea textArea = new UMRTextArea();
 		textArea.setEnabled(false);
 		textArea.setBounds(174+x, 153, 687, 374);
-		JScrollPane scroll = new JScrollPane(textArea);
+		JScrollPane scroll = new UMRScrollPane(textArea);
 		scroll.setBounds(174+x, 153, 687, 374);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroll.setBorder(BorderFactory.createEmptyBorder());
 		add(scroll);
 		
 		Button confirmButton = new ConfirmButton();

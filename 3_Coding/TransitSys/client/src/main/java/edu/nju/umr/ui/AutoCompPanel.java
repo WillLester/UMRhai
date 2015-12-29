@@ -30,7 +30,7 @@ public class AutoCompPanel extends JPanel{
 		jt=new TextField();
 		jc=new UMRComboBox<String>();
 		jt.setBounds(0, 0, 100, 24);
-		jc.setBounds(0, 22, 100, 0);
+		jc.setBounds(0, 22, 100, 1);
 		add(jt);
 		add(jc);
 		
@@ -99,7 +99,7 @@ public class AutoCompPanel extends JPanel{
 	public void setBounds(int x,int y,int width,int height){
 		super.setBounds(x, y, width, height);
 		jt.setBounds(0, 0, width, height);
-		jc.setBounds(0, height-2, width, 0);
+		jc.setBounds(0, height-2, width, 1);
 	}
 	public void setText(String temp){
 		jt.setText(temp);

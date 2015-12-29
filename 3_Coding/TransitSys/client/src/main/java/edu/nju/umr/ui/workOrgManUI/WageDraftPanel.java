@@ -1,6 +1,6 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -9,7 +9,6 @@ import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import edu.nju.umr.po.enums.Result;
@@ -17,12 +16,14 @@ import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 
-public class WageDraftPanel extends JPanel {
+public class WageDraftPanel extends InfoPanel {
 	/**
 	 * 
 	 */
@@ -36,6 +37,7 @@ public class WageDraftPanel extends JPanel {
 	private JRadioButton rbBound;
 	private JFrame frame;
 	private WorkWageListPanel panel;
+	private static final int y=30;
 	/**
 	 * Create the panel.
 	 */
@@ -45,15 +47,15 @@ public class WageDraftPanel extends JPanel {
 		frame=fr;
 		panel = pa;
 		
-		JLabel nameLabel = new JLabel("薪水制定");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		JLabel nameLabel = new TitleLabel("薪水制定");
+		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2-50, 20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
 		//按月发薪
 		
 		rbMonth = new JRadioButton("按月发薪");
-		rbMonth.setBounds(Constants.TABLE_X, Constants.TABLE_Y, 200, 23);
+		rbMonth.setBackground(Color.WHITE);
+		rbMonth.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, 200, 23);
 		rbMonth.addItemListener(new ItemListener() {
 			
 			@Override
@@ -81,6 +83,7 @@ public class WageDraftPanel extends JPanel {
 		//按次发薪
 		
 		rbCount = new JRadioButton("按次发薪");
+		rbCount.setBackground(Color.WHITE);
 		rbCount.setBounds(rbMonth.getX(), wageMonth.getY()+wageMonth.getHeight()+10,200, 23);
 		rbCount.addItemListener(new ItemListener() {
 			
@@ -109,6 +112,7 @@ public class WageDraftPanel extends JPanel {
 		//提成发薪
 		
 		rbBound = new JRadioButton("提成发薪");
+		rbBound.setBackground(Color.WHITE);
 		rbBound.setBounds(rbMonth.getX(), wageCount.getY()+wageCount.getHeight()+10,200, 23);
 		rbBound.addItemListener(new ItemListener() {
 			

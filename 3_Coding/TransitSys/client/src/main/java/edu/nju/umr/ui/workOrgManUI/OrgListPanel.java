@@ -2,6 +2,8 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -62,6 +64,7 @@ public class OrgListPanel extends PPanel {
 	private Button confirmMod;
 	private Button delete;
 	private String name;
+	private Button add;
 	private static final int y=20;
 	/**
 	 * Create the panel.
@@ -121,6 +124,13 @@ public class OrgListPanel extends PPanel {
 		orgType = new UMRComboBox<String>();
 		orgType.setBounds(type.getWidth()+type.getX()-70, type.getY()+5, 150, 21);
 		orgType.setModel(new DefaultComboBoxModel<String>(new String[]{"营业厅","中转中心","总部"}));
+		orgType.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				getId();
+			}});
 		add(orgType);
 		
 		ELabel address = new ELabel("机构地址");
@@ -132,16 +142,16 @@ public class OrgListPanel extends PPanel {
 		add(textFieldAddr);
 		textFieldAddr.setColumns(10);
 		
-		Button add = new AddButton();
+		add = new AddButton();
 		add.setBounds(Constants.TABLE_X+100, textFieldAddr.getY()+textFieldAddr.getHeight()+30, 100, 30);
 		add.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addOrg();
-				textFieldAddr.setText("");
-				textFieldName.setText("");
-				idField.setText("");
-				orgType.setSelectedIndex(0);
-				cityComboBox.setSelectedIndex(0);
+//				textFieldAddr.setText("");
+//				textFieldName.setText("");
+//				idField.setText("");
+//				orgType.setSelectedIndex(0);
+//				cityComboBox.setSelectedIndex(0);
 			}
 		});
 		add(add);
@@ -151,6 +161,12 @@ public class OrgListPanel extends PPanel {
 		delete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
+				if(table.getRowCount()>orgList.size()&&table.getSelectedRow()==table.getRowCount()-1)
+				{
+					displayOrgs();
+					add.setEnabled(true);
+					return;
+				}
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION)
 		        {
@@ -172,7 +188,7 @@ public class OrgListPanel extends PPanel {
 		
 		confirmMod = new CanModButton();
 		confirmMod.setBounds(modify.getX()+modify.getWidth()+50, add.getY(), 100, 30);
-		add(confirmMod);
+//		add(confirmMod);
 		
 		Button out = new ExitButton();
 		out.setBounds(confirmMod.getX()+confirmMod.getWidth()+50+confirmMod.getWidth()+50, add.getY(), 150, 45);
@@ -202,6 +218,7 @@ public class OrgListPanel extends PPanel {
 		
 		idField=new TextField();
 		idField.setBounds(idLabel.getX()+80, idLabel.getY(),200, 24);
+		idField.setEditable(false);
 		add(idField);
 		
 		ELabel cityLabel=new ELabel("城市");
@@ -216,6 +233,13 @@ public class OrgListPanel extends PPanel {
 		}
 		cityComboBox =new UMRComboBox<String>(new DefaultComboBoxModel<String>(cityListString));
 		cityComboBox.setBounds(cityLabel.getX()+50, cityLabel.getY(),  Constants.LABEL_WIDTH, 24);
+		cityComboBox.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				getId();
+			}});
 		add(cityComboBox);
 		
 		tableInit();
@@ -234,6 +258,8 @@ public class OrgListPanel extends PPanel {
 			public void valueChanged(ListSelectionEvent e){
 				if(e.getValueIsAdjusting()==false)
 					displayOrg(table.getSelectedRow());
+				if(table.getRowCount()>orgList.size()){add.setEnabled(false);workMan.setEnabled(false);}
+				if(table.getRowCount()==orgList.size()){add.setEnabled(true);workMan.setEnabled(true);}
 				if(table.getSelectedRow()<0)
 				{
 					modify.setEnabled(false);
@@ -244,7 +270,8 @@ public class OrgListPanel extends PPanel {
 				else
 				{
 					modify.setEnabled(true);
-					workMan.setEnabled(true);
+					if(add.isEnabled()==false&&table.getSelectedRow()==table.getRowCount()-1)workMan.setEnabled(false);
+					else workMan.setEnabled(true);
 					confirmMod.setEnabled(true);
 					delete.setEnabled(true);
 				}
@@ -289,7 +316,14 @@ public class OrgListPanel extends PPanel {
 		}
 	}
 	private void displayOrg(int row){
-		if(row<0||row>=orgList.size())return;
+		if(row<0||row>=orgList.size()){
+			textFieldName.setText("");
+			orgType.setSelectedIndex(0);
+			idField.setText("");
+			cityComboBox.setSelectedIndex(0);
+			textFieldAddr.setText("");
+			return;
+		}
 		OrgVO temp=orgList.get(table.getSelectedRow());
 		textFieldName.setText(temp.getName());
 		textFieldAddr.setText(temp.getLocation());
@@ -310,9 +344,15 @@ public class OrgListPanel extends PPanel {
 		}
 	}
 	private void addOrg(){
+		if(table.getRowCount()>orgList.size()){add.setEnabled(false);workMan.setEnabled(false);return;}
+		orgType.setSelectedIndex(0);
+		if(cityList.size()>0){
+			cityComboBox.setSelectedIndex(0);
+		}
 		String[] data={"","","",""};
 		model.addRow(data);
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
+		getId();
 	}
 	private void deleteOrg(int row){
 		if(row<0||row>=orgList.size())return;
@@ -338,6 +378,7 @@ public class OrgListPanel extends PPanel {
 		String city=(String)cityComboBox.getSelectedItem();
 		String cityId=cityList.get(cityComboBox.getSelectedIndex()).getId();
 		
+		
 		if(name.equals("")){
 			new HintFrame("机构名称未输入!",frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
 			return;
@@ -347,12 +388,17 @@ public class OrgListPanel extends PPanel {
 			return;
 		}
 		
+		if(!name.endsWith(orgType.getSelectedItem().toString())){
+			name+=orgType.getSelectedItem().toString();
+		}
+		
 		OrgVO temp=new OrgVO(id,name,kind,location,city,cityId);
 		if(table.getSelectedRow()==orgList.size())
 		{
 			Result result=serv.addOrg(temp,this.name);
 			DoHint.hint(result, frame);
-			if(result.equals(Result.SUCCESS)){
+			if(result.equals(Result.SUCCESS))
+			{
 				orgList.add(temp);
 				displayOrgs();
 			}
@@ -380,6 +426,16 @@ public class OrgListPanel extends PPanel {
 			temp=(ArrayList<CityVO>)message.getMessage();
 		}
 		return temp;
+	}
+	private void getId(){
+		if(table.getSelectedRow()<orgList.size())return;
+		String temp="";
+		switch(orgType.getSelectedItem().toString()){
+			case "营业厅":temp=Organization.HALL.toString();break;
+			case "中转中心":temp=Organization.CENTER.toString();break;
+			case "总部":temp=Organization.HEADQUARTER.toString();break;
+		}
+		idField.setText(serv.getId(cityList.get(cityComboBox.getSelectedIndex()), temp));
 	}
 
 }

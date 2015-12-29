@@ -18,6 +18,7 @@ import javax.swing.plaf.basic.ComboPopup;
 
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.UMRScrollBarUI;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
 
 public class UMRComboBoxUI extends BasicComboBoxUI {
@@ -97,7 +98,8 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 			 */
 			private static final long serialVersionUID = 2521901655055728829L;
 			protected JScrollPane createScroller() {
-				JScrollPane sp = new JScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				@SuppressWarnings("unchecked")
+				JScrollPane sp = new UMRScrollPane(list,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				sp.getHorizontalScrollBar().setUI(new UMRScrollBarUI());
 				return sp;
 			}
@@ -105,7 +107,7 @@ public class UMRComboBoxUI extends BasicComboBoxUI {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				g2.setColor(Utils.STD_COLOR);
-				g2.drawRoundRect(0,arrow.getHeight(),getWidth(),getHeight(),arcWidth,arcHeight);
+				g2.drawRect(0,0,getWidth()+5,getHeight()+5);
 			}
 		};
 		return popup;

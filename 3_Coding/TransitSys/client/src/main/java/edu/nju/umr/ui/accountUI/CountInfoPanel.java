@@ -15,7 +15,7 @@ import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
-import edu.nju.umr.ui.component.PPanel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
@@ -29,7 +29,7 @@ import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
-public class CountInfoPanel extends PPanel{
+public class CountInfoPanel extends InfoPanel{
 	/**
 	 * 
 	 */
@@ -60,6 +60,7 @@ public class CountInfoPanel extends PPanel{
 	private ArrayList<GoodVO> goodPresented;
 	private ArrayList<AccountVO> accountList;
 	private JFrame frame;
+	private static final int all_y=25;
 
 	/**
 	 * Create the panel.
@@ -74,15 +75,16 @@ public class CountInfoPanel extends PPanel{
 		accountList = count.getAccounts();
 		
 		TitleLabel countLabel = new TitleLabel("期初信息查看");
+		countLabel.setLocation(995/2-countLabel.getWidth()/2,countLabel.getY());
 		add(countLabel);
 		
 		ELabel orgLabel = new ELabel("机构信息");
 		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		orgLabel.setBounds(234, 82, 67, 17);
+		orgLabel.setBounds(234, 82+all_y, 67, 17);
 		add(orgLabel);
 		
 		orgCombo = new UMRComboBox<String>();
-		orgCombo.setBounds(150, 102, Constants.TEXTFIELD_WIDTH_S*3/2, 30);
+		orgCombo.setBounds(150, 102+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, 30);
 		String orgs[] = new String[orgList.size()];
 		for(int i = 0;i < orgs.length;i++){
 			OrgVO org = orgList.get(i);
@@ -107,11 +109,11 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel stockLabel = new ELabel("库存信息");
 		stockLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		stockLabel.setBounds(518, 82, 67, 17);
+		stockLabel.setBounds(518, 82+all_y, 67, 17);
 		add(stockLabel);
 		
 		stockCombo = new UMRComboBox<String>();
-		stockCombo.setBounds(437, 102, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		stockCombo.setBounds(437, 102+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		String stocks[] = new String[stockList.size()];
 		for(int i = 0;i < stocks.length;i++){
 			StockVO stock = stockList.get(i);
@@ -134,11 +136,11 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel accountLabel = new ELabel("账户信息");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		accountLabel.setBounds(808, 82, 67, 17);
+		accountLabel.setBounds(808, 82+all_y, 67, 17);
 		add(accountLabel);
 		
 		accountCombo = new UMRComboBox<String>();
-		accountCombo.setBounds(723, 102, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		accountCombo.setBounds(723, 102+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		String accounts[] = new String[accountList.size()];
 		for(int i = 0;i < accounts.length;i++){
 			AccountVO account = accountList.get(i);
@@ -160,11 +162,11 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel workerLabel = new ELabel("人员信息");
 		workerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		workerLabel.setBounds(234, 138, 67, 17);
+		workerLabel.setBounds(234, 138+all_y, 67, 17);
 		add(workerLabel);
 		
 		workerCombo = new UMRComboBox<String>();
-		workerCombo.setBounds(150, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		workerCombo.setBounds(150, 158+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		workerCombo.addItemListener(new ItemListener() {
 			
 			@Override
@@ -179,28 +181,28 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel mobileLabel = new ELabel("手机号");
 		mobileLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		mobileLabel.setBounds(155, 200, 53, 34);
+		mobileLabel.setBounds(155, 200+all_y, 53, 34);
 		add(mobileLabel);
 		
 		mobileField = new TextField();
 		mobileField.setEditable(false);
-		mobileField.setBounds(210, 207, 169, 20);
+		mobileField.setBounds(210, 207+all_y, 169, 20);
 		add(mobileField);
 		mobileField.setColumns(10);
 		
 		ELabel dutyLabel = new ELabel("职务");
 		dutyLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dutyLabel.setBounds(155, 235, 45, 34);
+		dutyLabel.setBounds(155, 235+all_y, 45, 34);
 		add(dutyLabel);
 		
 		dutyField = new TextField();
 		dutyField.setEditable(false);
-		dutyField.setBounds(210, 242, 169, 20);
+		dutyField.setBounds(210, 242+all_y, 169, 20);
 		add(dutyField);
 		dutyField.setColumns(10);
 		
 		vanCombo = new UMRComboBox<String>();
-		vanCombo.setBounds(150, 300, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		vanCombo.setBounds(150, 300+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		vanCombo.addItemListener(new ItemListener() {
 			
 			@Override
@@ -215,38 +217,38 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel vanLabel = new ELabel("车辆信息");
 		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		vanLabel.setBounds(234, 279, 67, 17);
+		vanLabel.setBounds(234, 279+all_y, 67, 17);
 		add(vanLabel);
 		
 		ELabel plateLabel = new ELabel("车牌号");
 		plateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		plateLabel.setBounds(155, 342, 53, 34);
+		plateLabel.setBounds(155, 342+all_y, 53, 34);
 		add(plateLabel);
 		
 		plateField = new TextField();
 		plateField.setEditable(false);
-		plateField.setBounds(210, 349, 169, 20);
+		plateField.setBounds(210, 349+all_y, 169, 20);
 		add(plateField);
 		plateField.setColumns(10);
 		
 		ELabel dateLabel = new ELabel("服役时间");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		dateLabel.setBounds(155, 378, 67, 34);
+		dateLabel.setBounds(155, 378+all_y, 67, 34);
 		add(dateLabel);
 		
 		dateField = new TextField();
 		dateField.setEditable(false);
-		dateField.setBounds(220, 385, 159, 20);
+		dateField.setBounds(220, 385+all_y, 159, 20);
 		add(dateField);
 		dateField.setColumns(10);
 		
 		ELabel goodLabel = new ELabel("货物信息");
 		goodLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		goodLabel.setBounds(518, 138, 67, 17);
+		goodLabel.setBounds(518, 138+all_y, 67, 17);
 		add(goodLabel);
 		
 		goodCombo = new UMRComboBox<String>();
-		goodCombo.setBounds(437, 158, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
+		goodCombo.setBounds(437, 158+all_y, Constants.TEXTFIELD_WIDTH_S*3/2, Constants.TEXTFIELD_HEIGHT);
 		goodCombo.addItemListener(new ItemListener() {
 			
 			@Override
@@ -261,83 +263,83 @@ public class CountInfoPanel extends PPanel{
 		
 		ELabel inDateLabel = new ELabel("入库时间");
 		inDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		inDateLabel.setBounds(437, 185, 67, 34);
+		inDateLabel.setBounds(437, 200+all_y, 67, 34);
 		add(inDateLabel);
 		
 		inDateField = new TextField();
 		inDateField.setEditable(false);
-		inDateField.setBounds(513, 192, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		inDateField.setBounds(513, 207+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(inDateField);
 		inDateField.setColumns(10);
 		
 		ELabel destinationLabel = new ELabel("到达地");
 		destinationLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		destinationLabel.setBounds(437, 220, 59, 34);
+		destinationLabel.setBounds(437, 235+all_y, 59, 34);
 		add(destinationLabel);
 		
 		destinationField = new TextField();
 		destinationField.setEditable(false);
-		destinationField.setBounds(513, 227, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		destinationField.setBounds(513, 242+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(destinationField);
 		destinationField.setColumns(10);
 		
 		ELabel partLabel = new ELabel("区");
 		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		partLabel.setBounds(437, 254, 45, 34);
+		partLabel.setBounds(437, 270+all_y, 45, 34);
 		add(partLabel);
 		
 		partField = new TextField();
 		partField.setEditable(false);
-		partField.setBounds(513, 261, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		partField.setBounds(513, 277+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(partField);
 		partField.setColumns(10);
 		
 		ELabel shelfLabel = new ELabel("架");
 		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		shelfLabel.setBounds(437, 286, 59, 34);
+		shelfLabel.setBounds(437, 305+all_y, 59, 34);
 		add(shelfLabel);
 		
 		shelfField = new TextField();
 		shelfField.setEditable(false);
-		shelfField.setBounds(513, 292, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		shelfField.setBounds(513, 312+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(shelfField);
 		shelfField.setColumns(10);
 		
 		ELabel rowLabel = new ELabel("排");
 		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		rowLabel.setBounds(437, 322, 59, 34);
+		rowLabel.setBounds(437, 340+all_y, 59, 34);
 		add(rowLabel);
 		
 		rowField = new TextField();
 		rowField.setEditable(false);
-		rowField.setBounds(513, 329, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		rowField.setBounds(513, 347+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(rowField);
 		rowField.setColumns(10);
 		
 		ELabel placeLabel = new ELabel("位");
 		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		placeLabel.setBounds(437, 357, 59, 34);
+		placeLabel.setBounds(437, 375+all_y, 59, 34);
 		add(placeLabel);
 		
 		placeField = new TextField();
 		placeField.setEditable(false);
-		placeField.setBounds(513, 364, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		placeField.setBounds(513, 382+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(placeField);
 		placeField.setColumns(10);
 		
 		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		balanceLabel.setBounds(723, 135, 67, 34);
+		balanceLabel.setBounds(723, 135+all_y, 67, 34);
 		add(balanceLabel);
 		
 		balanceField = new TextField();
 		balanceField.setEditable(false);
-		balanceField.setBounds(799, 142, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
+		balanceField.setBounds(799, 142+all_y, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT*3/4);
 		add(balanceField);
 		balanceField.setColumns(10);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(854, 432,100,30);
+		confirmButton.setBounds(854, 432+all_y,100,30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override

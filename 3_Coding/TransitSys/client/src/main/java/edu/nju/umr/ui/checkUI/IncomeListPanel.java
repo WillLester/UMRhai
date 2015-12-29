@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -188,7 +189,7 @@ public class IncomeListPanel extends PPanel {
 		UMRScrollPane scroll=new UMRScrollPane(IncomeTable);
 		scroll.setBounds(233, 181+y, 637, 335);
 		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"时间","金额","快递员"};
+		String[] columnNames={"时间","金额","快递员","合计"};
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
@@ -217,10 +218,12 @@ public class IncomeListPanel extends PPanel {
 	}
 	private void displayIncomes(){
 		model.setRowCount(0);
+		BigDecimal total=new BigDecimal(0);
 		for(int i=0;i<incomeList.size();i++){
 			IncomeVO temp=incomeList.get(i);
 			String time = DateFormat.TIME.format(temp.getDate().getTime());
-			String []data=new String[]{time,temp.getCost().toString(),temp.getCourier()};
+			total.add(temp.getCost());
+			String []data=new String[]{time,temp.getCost().toString(),temp.getCourier(),total.toString()};
 			model.addRow(data);
 		}
 	}

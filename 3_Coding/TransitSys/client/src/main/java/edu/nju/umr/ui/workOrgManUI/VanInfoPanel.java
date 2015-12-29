@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +11,9 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import sun.misc.BASE64Decoder;
@@ -24,14 +21,19 @@ import sun.misc.BASE64Encoder;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.component.Button;
+import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
 
-public class VanInfoPanel extends JPanel {
+public class VanInfoPanel extends InfoPanel {
 	/**
 	 * 
 	 */
@@ -46,11 +48,12 @@ public class VanInfoPanel extends JPanel {
 	private JLabel pic;
 	private String orgId;
 	private Button confirm;
+	private static final int y=25;
 
 	/**
 	 * Create the panel.
 	 */
-	public VanInfoPanel(JFrame fr,VanListPanel father,VanVO vanvo,String orgId) {
+	public VanInfoPanel(InfoFrame fr,VanListPanel father,VanVO vanvo,String orgId) {
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
 		setLayout(null);
 		fatherPanel=father;
@@ -58,13 +61,13 @@ public class VanInfoPanel extends JPanel {
 		van=vanvo;
 		this.orgId = orgId;
 		
-		JLabel nameLabel = new JLabel("车辆信息");
-		nameLabel.setFont(new Font("华文新魏",Font.PLAIN,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 0, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		JLabel nameLabel = new TitleLabel("车辆信息");
+		nameLabel.setLocation(995/2-nameLabel.getWidth()/2+50, nameLabel.getY());
 		add(nameLabel);
 		
-		JLabel vanNum = new JLabel("车辆代号");
-		vanNum.setBounds(Constants.INFOTABLE_X, Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		JLabel vanNum = new ELabel("车辆代号");
+		vanNum.setFont(Utils.COMBO_FONT);
+		vanNum.setBounds(Constants.INFOTABLE_X, y+Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(vanNum);
 		
 		textFieldNum = new TextField();
@@ -73,7 +76,8 @@ public class VanInfoPanel extends JPanel {
 		add(textFieldNum);
 		textFieldNum.setColumns(10);
 		
-		JLabel plateNum = new JLabel("车牌号");
+		JLabel plateNum = new ELabel("车牌号");
+		plateNum.setFont(Utils.COMBO_FONT);
 		plateNum.setBounds(vanNum.getX(), vanNum.getY()+vanNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(plateNum);
 		
@@ -82,30 +86,36 @@ public class VanInfoPanel extends JPanel {
 		add(textFieldPlate);
 		textFieldPlate.setColumns(10);
 		
-		JLabel workTime = new JLabel("服役时间");
+		JLabel workTime = new ELabel("服役时间");
+		workTime.setFont(Utils.COMBO_FONT);
 		workTime.setBounds(vanNum.getX(), plateNum.getY()+plateNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(workTime);
 		
-		JLabel labely = new JLabel("由");
+		JLabel labely = new ELabel("由");
+		labely.setFont(Utils.COMBO_FONT);;
 		labely.setBounds(textFieldNum.getX(), workTime.getY()+8, 19, 15);
 		
 		servTime=new DatePanel();
 		servTime.setBounds(labely.getX(), workTime.getY()+5, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
 		add(servTime);
 		
-		JLabel labelz = new JLabel("至");
+		JLabel labelz = new ELabel("至");
+		labelz.setFont(Utils.COMBO_FONT);
 		labelz.setBounds(labely.getX(), labely.getY()+30, 19, 15);
 		
-		JLabel picture = new JLabel("车辆图片");
+		JLabel picture = new ELabel("车辆图片");
+		picture.setFont(Utils.COMBO_FONT);
 		picture.setBounds(vanNum.getX(), labelz.getY()+20+40, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(picture);
 		
-		pic = new JLabel("图片");
+		pic = new ELabel("图片");
+		pic.setFont(Utils.COMBO_FONT);
 		pic.setBounds(textFieldNum.getX(), picture.getY(), 350, 180);
 		add(pic);
 		
-		JButton upload = new JButton();
-		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()+15, 100, 30);
+		Button upload = new Button();
+		upload.setNewImages("buttonImage", "buttonImageSt", "buttonImageP");
+		upload.setBounds(pic.getX()+pic.getWidth()-100, pic.getY()+pic.getHeight()-5, 100, 30);
 		upload.addActionListener(new ActionListener(){@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

@@ -17,6 +17,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
+import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
@@ -142,7 +143,7 @@ public class WorkWageListPanel extends PPanel {
 		make.setBounds(getWidth()-300, wageInit.getY(), 100, 30);
 		make.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				FunctionFrame ffr=new FunctionFrame("制定薪水策略");
+				InfoFrame ffr=new InfoFrame("制定薪水策略");
 				ffr.setContentPane(new WageDraftPanel(ffr,getSelf()));
 				frame.sonFrames.add(ffr);
 			}

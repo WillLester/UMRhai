@@ -36,6 +36,6 @@ public class UMRList<E> extends JList<E> {
 	private void init(){
 		setOpaque(false);
 		setCellRenderer(new UMRComboBoxRenderer<E>());
-		setBackground(null);
+		setBackground(Utils.STD_COLOR.brighter());
 	}
 }

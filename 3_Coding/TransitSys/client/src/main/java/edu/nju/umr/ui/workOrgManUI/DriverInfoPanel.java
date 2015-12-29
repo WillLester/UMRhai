@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.workOrgManUI;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,7 +7,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.nju.umr.po.enums.Gender;
@@ -18,6 +16,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.Utils;
@@ -27,7 +26,7 @@ import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DriverVO;
 
-public class DriverInfoPanel extends JPanel {
+public class DriverInfoPanel extends InfoPanel {
 	/**
 	 * 
 	 */
@@ -42,6 +41,7 @@ public class DriverInfoPanel extends JPanel {
 	private DatePanel born;
 	private DatePanel start;
 	private DatePanel deadline;
+	private static final int y=35;
 	/**
 	 * Create the panel.
 	 */
@@ -50,15 +50,15 @@ public class DriverInfoPanel extends JPanel {
 		frame=fr;
 		panel=pa;
 		this.setSize(Constants.INFO_WIDTH,Constants.INFO_HEIGHT);
+		
 		TitleLabel nameLabel = new TitleLabel("司机信息");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2,0,Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_L);
+		nameLabel.setLocation(995/2-nameLabel.getWidth()/2+50,nameLabel.getY());;
 		add(nameLabel);
 		
 		ELabel driverNum = new ELabel("司机编号");
 		driverNum.setFont(Utils.COMBO_FONT);
 		driverNum.setForeground(Utils.STD_COLOR);
-		driverNum.setBounds(Constants.INFOTABLE_X, Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
+		driverNum.setBounds(Constants.INFOTABLE_X, y+Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(driverNum);
 		
 		textFieldNum = new TextField();

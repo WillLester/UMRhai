@@ -34,6 +34,7 @@ public class UMRScrollBarUI extends BasicScrollBarUI{
 		g2.translate(thumbBound.x, thumbBound.y);
 		g2.setColor(Utils.STD_COLOR);
 		g2.drawRoundRect(1,1,width-2, height-2,5,5);
+		g2.fillRoundRect(2, 2, width-3, height-3, 5, 5);
 		g2.setColor(Color.WHITE);
 		g2.drawLine(3,height/2,width-4,height/2);
 		g2.drawLine(3,height/2+3,width-4,height/2+3);
