@@ -98,28 +98,28 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		nameField = new TextField();
-		nameField.setBounds(360, sec_y+y+468, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		nameField.setBounds(360, sec_y+y+468-5, Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(nameField);
 		nameField.setColumns(10);
 		
 		ELabel nameLabel = new ELabel("账户名称");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		nameLabel.setBounds(283, sec_y+y+465, 67, 30);
+		nameLabel.setBounds(283, sec_y+y+465-5, 67, 30);
 		add(nameLabel);
 		
 		ELabel balanceLabel = new ELabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		balanceLabel.setBounds(566, sec_y+ y+465,67, 30);
+		balanceLabel.setBounds(566, sec_y+ y+465-5,67, 30);
 		add(balanceLabel);
 		
 		balanceField = new TextField();
 		balanceField.setEditable(false);
-		balanceField.setBounds(643, sec_y+ y+468,Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
+		balanceField.setBounds(643, sec_y+ y+468-5,Constants.TEXTFIELD_WIDTH_S, Constants.TEXTFIELD_HEIGHT);
 		add(balanceField);
 		balanceField.setColumns(10);
 		
 		Button addButton = new AddButton();
-		addButton.setBounds(326, y+525, 100, 30);
+		addButton.setBounds(233, y+525, 100, 30);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				addAccount();
@@ -128,7 +128,7 @@ public class AccountManPanel extends PPanel{
 		add(addButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(435, y+525,100,30);
+		deleteButton.setBounds(342, y+525,100,30);
 		add(deleteButton);
 		deleteButton.addActionListener(new ActionListener() {
 			
@@ -150,7 +150,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(546,y+ 525,100, 30);
+		confirmButton.setBounds(453,y+ 525,100, 30);
 		add(confirmButton);
 		confirmButton.addActionListener(new ActionListener() {
 			
@@ -175,7 +175,7 @@ public class AccountManPanel extends PPanel{
 		});
 		
 		Button cancelButton = new CanModButton();
-		cancelButton.setBounds(656, y+525,100,30);
+		cancelButton.setBounds(563, y+525,100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -189,7 +189,7 @@ public class AccountManPanel extends PPanel{
 		add(cancelButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(798, y+525, 100, 30);
+		exitButton.setBounds(770, y+525, 100, 30);
 		add(exitButton);
 		exitButton.addActionListener(new ActionListener() {
 			
