@@ -1,11 +1,14 @@
 package edu.nju.umr.ui.transitInfoUI;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,6 +43,7 @@ public class TransitInfoInqPanel extends JPanel {
 	private ArrayList<String> info;
 	private MainFrame frame;
 	private static final int x=100;
+	private static final int y=25;
 	/**
 	 * Create the panel.
 	 */
@@ -51,24 +55,25 @@ public class TransitInfoInqPanel extends JPanel {
 		this.setBounds(0, 0, 1229, 691);
 		
 		JLabel titleLabel = new TitleLabel("物流轨迹查询");
+		titleLabel.setLocation(1229/2-titleLabel.getWidth()/2, titleLabel.getY()+15);
 		add(titleLabel);
 		
 		JLabel idLabel = new ELabel("订单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setForeground(Utils.STD_COLOR);
-		idLabel.setBounds(305+x, 107, 120, 24);
+		idLabel.setBounds(305+x, y+107, 120, 24);
 		add(idLabel);
 		
 		idField = new TextField();
-		idField.setBounds(408+x, 110, 193, 24);
+		idField.setBounds(408+x, y+110, 193, 24);
 		add(idField);
 		idField.setColumns(10);
 		
 		JTextArea textArea = new UMRTextArea();
 		textArea.setEnabled(false);
-		textArea.setBounds(174+x, 153, 687, 374);
+		textArea.setBounds(174+x, y+153, 687, 374);
 		JScrollPane scroll = new UMRScrollPane(textArea);
-		scroll.setBounds(174+x, 153, 687, 374);
+		scroll.setBounds(174+x, y+153, 687, 374);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
@@ -94,11 +99,11 @@ public class TransitInfoInqPanel extends JPanel {
 				}
 			}
 		});
-		confirmButton.setBounds(638+x, 108, 100,30 );
+		confirmButton.setBounds(638+x, y+108, 100,30 );
 		add(confirmButton);
 		
 		Button closeButton = new ExitButton();
-		closeButton.setBounds(547+x, 571, 100, 30);
+		closeButton.setBounds(547+x, y+571, 100, 30);
 		closeButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
@@ -107,7 +112,7 @@ public class TransitInfoInqPanel extends JPanel {
 		add(closeButton);
 		
 		Button cancelButton = new CanButton();
-		cancelButton.setBounds(386+x, 571, 100, 30);
+		cancelButton.setBounds(386+x, y+571, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -126,5 +131,10 @@ public class TransitInfoInqPanel extends JPanel {
 		} else {
 			return true;
 		}
+	}
+	
+	protected void paintComponent(Graphics g){
+		Image background=new ImageIcon("ui/frame/transitInfo.png").getImage();
+		g.drawImage(background, 0, 0, null);
 	}
 }
