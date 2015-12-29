@@ -27,7 +27,7 @@ public class UMRTableHeadRenderer extends JLabel implements TableCellRenderer{
 		setBackground(Utils.STD_COLOR);
 		setFont(Utils.COMBO_FONT);
 		setOpaque(false);
-		setPreferredSize(new Dimension(getWidth(), head.getHeight()));
+		setPreferredSize(new Dimension(getWidth(), getHeight()));
 		return head;
 	}
 
