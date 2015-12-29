@@ -24,6 +24,7 @@ import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -196,7 +197,7 @@ public class WorkWageListPanel extends PPanel {
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		JScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"姓名","职务","薪水策略","金额","提成"};

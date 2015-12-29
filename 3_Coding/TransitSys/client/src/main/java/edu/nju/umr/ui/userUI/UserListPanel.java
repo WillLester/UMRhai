@@ -25,6 +25,7 @@ import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
@@ -259,7 +260,7 @@ public class UserListPanel extends PPanel {
 		});
 		table.setBounds(133, 171, 637, 335);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		JScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(133, 171, 637, 335);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"账号","密码","权限","姓名","手机号"};

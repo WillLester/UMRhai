@@ -29,6 +29,7 @@ import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CanModButton;
@@ -280,7 +281,7 @@ public class OrgListPanel extends PPanel {
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		JScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*4);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","名称","种类","地址"};

@@ -24,6 +24,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.AllButton;
 import edu.nju.umr.ui.component.button.CheckButton;
@@ -150,7 +151,7 @@ public class VanListPanel extends PPanel {
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+50, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		JScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+50, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"车辆代号","车牌号","服役时间"};

@@ -26,6 +26,7 @@ import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CheckButton;
 import edu.nju.umr.ui.component.button.DelButton;
@@ -182,7 +183,7 @@ public class DriverListPanel extends PPanel {
 		table.setBounds(Constants.TABLE_X, textFieldSearch.getY()+20, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scroll=new JScrollPane(table);
+		JScrollPane scroll=new UMRScrollPane(table);
 		scroll.setBounds(Constants.TABLE_X, textFieldSearch.getY()+60, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"编号","姓名","出生日期","身份证号","手机号","性别","行驶证有效期限","行驶证失效期限"};
