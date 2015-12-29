@@ -222,7 +222,7 @@ public class IncomeListPanel extends PPanel {
 		for(int i=0;i<incomeList.size();i++){
 			IncomeVO temp=incomeList.get(i);
 			String time = DateFormat.TIME.format(temp.getDate().getTime());
-			total.add(temp.getCost());
+			total=total.add(temp.getCost());
 			String []data=new String[]{time,temp.getCost().toString(),temp.getCourier(),total.toString()};
 			model.addRow(data);
 		}
