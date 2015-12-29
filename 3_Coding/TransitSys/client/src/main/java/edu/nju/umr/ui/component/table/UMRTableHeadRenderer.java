@@ -2,6 +2,7 @@ package edu.nju.umr.ui.component.table;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -22,10 +23,11 @@ public class UMRTableHeadRenderer extends JLabel implements TableCellRenderer{
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		// TODO 自动生成的方法存根
 		JTableHeader head = table.getTableHeader();
-		head.setForeground(Color.WHITE);
-		head.setBackground(Utils.STD_COLOR);
-		head.setFont(Utils.COMBO_FONT);
-		head.setOpaque(false);
+		setForeground(Color.WHITE);
+		setBackground(Utils.STD_COLOR);
+		setFont(Utils.COMBO_FONT);
+		setOpaque(false);
+		setPreferredSize(new Dimension(getWidth(), head.getHeight()));
 		return head;
 	}
 

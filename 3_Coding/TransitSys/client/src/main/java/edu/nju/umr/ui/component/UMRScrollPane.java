@@ -1,6 +1,5 @@
 package edu.nju.umr.ui.component;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -35,7 +34,7 @@ public class UMRScrollPane extends JScrollPane{
 		setOpaque(false);
 		getViewport().setOpaque(false);
 		getVerticalScrollBar().setUI(new UMRScrollBarUI());
-		setBorder(BorderFactory.createEmptyBorder());
+		setBackground(Utils.STD_COLOR.brighter());
 	}
 
 }

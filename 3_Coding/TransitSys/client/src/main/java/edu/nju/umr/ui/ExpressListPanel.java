@@ -170,6 +170,7 @@ public class ExpressListPanel extends JPanel{
 		add(scroll);
 		
 		setBackground(Color.WHITE);
+
 	}
 	private boolean isExpressLegal(){
 		String info = CheckLegal.isExpressLegal(expressField.getText());
