@@ -63,8 +63,6 @@ public class VanListPanel extends PPanel {
 		vanList = new ArrayList<VanVO>();
 		
 		TitleLabel nameLabel = new TitleLabel("车辆信息列表");
-		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
-		nameLabel.setBounds(this.getWidth()/2-Constants.LABEL_WIDTH/2, 25, Constants.LABEL_WIDTH+20, Constants.LABEL_HEIGHT_S);
 		add(nameLabel);
 		
 		textFieldSearch = new TextField();

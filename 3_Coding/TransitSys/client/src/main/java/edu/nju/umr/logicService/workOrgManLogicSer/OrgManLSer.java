@@ -1,6 +1,7 @@
 package edu.nju.umr.logicService.workOrgManLogicSer;
 
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
 /**
@@ -34,4 +35,5 @@ public interface OrgManLSer {
 	public Result reviseOrg(OrgVO org,String name);
 	public ResultMessage searchOrg(String keyword);
 	public ResultMessage getCities();
+	public String getId(CityVO city,String kind);
 }

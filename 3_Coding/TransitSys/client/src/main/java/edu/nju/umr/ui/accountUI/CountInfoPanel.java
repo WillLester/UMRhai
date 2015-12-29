@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.button.ConfirmButton;
@@ -29,7 +29,7 @@ import edu.nju.umr.vo.StockVO;
 import edu.nju.umr.vo.VanVO;
 import edu.nju.umr.vo.WorkVO;
 
-public class CountInfoPanel extends JPanel{
+public class CountInfoPanel extends InfoPanel{
 	/**
 	 * 
 	 */
