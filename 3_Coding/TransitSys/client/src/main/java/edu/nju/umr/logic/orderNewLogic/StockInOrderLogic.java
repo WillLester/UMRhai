@@ -109,9 +109,11 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		ArrayList<StockVO> stocks=(ArrayList<StockVO>)message.getMessage();
 		for(StockVO sv:stocks){
 			if(sv.getStockId().equals(orgId)){
-				thisStock=sv;
-				break;
+//				thisStock=sv;
+//				break;
+				
 			}
+			System.out.println(sv.getStockId());
 		}
 		if(theseShelves.size()==0){
 			return new ResultMessage(Result.NOSPACE_FOR_STOCK,null);

@@ -64,21 +64,21 @@ public class UtilityData extends UnicastRemoteObject implements UtilityDSer{
 		// TODO 自动生成的方法存根
 		ArrayList<StockPO> stockList = new ArrayList<StockPO>();
 		ArrayList<GoodPO> goodList = (ArrayList<GoodPO>) mysqlSer.checkAll(POKind.STOCK);
-		while(!goodList.isEmpty()){
-			ArrayList<GoodPO> stockGood = new ArrayList<GoodPO>();
-			String stockId = goodList.get(0).getStockId();
+		ArrayList<OrgPO> centerList = getCenters();
+		if(centerList == null){
+			return null;
+		}
+		for(OrgPO org:centerList){
 			ArrayList<GoodPO> removeList = new ArrayList<GoodPO>();
+			ArrayList<GoodPO> stockGood = new ArrayList<GoodPO>();
 			for(GoodPO good:goodList){
-				if(good.getStockId().equals(stockId)){
-					removeList.add(good);
+				if(good.getStockId().equals(org.getId())){
 					stockGood.add(good);
+					removeList.add(good);
 				}
 			}
 			goodList.removeAll(removeList);
-			ResultSet orgRe = mysqlSer.checkInfo(new OrgPO(stockId, null, null, null, null, null));
-			ArrayList<OrgPO> orgList = ArrayListFactory.produceOrgList(orgRe);
-			OrgPO org = orgList.get(0);
-			StockPO stock = new StockPO(stockId, org.getName(),stockGood);
+			StockPO stock = new StockPO(org.getId(), org.getName(), stockGood);
 			stockList.add(stock);
 		}
 		return stockList;
