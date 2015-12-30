@@ -25,7 +25,7 @@ import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -109,7 +109,7 @@ public class OrgListPanel extends PPanel {
 		add(all);
 		
 		
-		ELabel orgName = new ELabel("机构名称");
+		UMRLabel orgName = new UMRLabel("机构名称");
 		orgName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(orgName);
 		
@@ -118,7 +118,7 @@ public class OrgListPanel extends PPanel {
 		add(textFieldName);
 		textFieldName.setColumns(10);
 		
-		ELabel type = new ELabel("机构种类");
+		UMRLabel type = new UMRLabel("机构种类");
 		type.setBounds(this.getWidth()/2-130, orgName.getY(), Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(type);
 		
@@ -134,7 +134,7 @@ public class OrgListPanel extends PPanel {
 			}});
 		add(orgType);
 		
-		ELabel address = new ELabel("机构地址");
+		UMRLabel address = new UMRLabel("机构地址");
 		address.setBounds(orgName.getX(), orgName.getY()+orgName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(address);
 		
@@ -213,7 +213,7 @@ public class OrgListPanel extends PPanel {
 		});
 		add(workMan);
 		
-		ELabel idLabel=new ELabel("机构编号");
+		UMRLabel idLabel=new UMRLabel("机构编号");
 		idLabel.setBounds(orgType.getX()+200, orgType.getY(), 100, 24);
 		add(idLabel);
 		
@@ -222,7 +222,7 @@ public class OrgListPanel extends PPanel {
 		idField.setEditable(false);
 		add(idField);
 		
-		ELabel cityLabel=new ELabel("城市");
+		UMRLabel cityLabel=new UMRLabel("城市");
 		cityLabel.setBounds(address.getX()+120, address.getY(),  Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(cityLabel);
 		

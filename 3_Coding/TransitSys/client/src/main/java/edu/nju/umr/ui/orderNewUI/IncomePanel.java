@@ -20,7 +20,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -48,7 +48,7 @@ public class IncomePanel extends PPanel {
 	private String name;
 	private String userId;
 	private Button confirmButton;
-	private ELabel idLabel;
+	private UMRLabel idLabel;
 	private TextField idField;
 	/**  
 	 * Create the panel.
@@ -81,7 +81,7 @@ public class IncomePanel extends PPanel {
 		titleLabel.setBounds(392+40, 10, 243, 67);
 		add(titleLabel);
 		
-		ELabel dateLabel = new ELabel("收款日期");
+		UMRLabel dateLabel = new UMRLabel("收款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(338, 158, 120, 24);
@@ -91,7 +91,7 @@ public class IncomePanel extends PPanel {
 		datePanel.setBounds(474, 158, 285, 26);
 		add(datePanel);
 		
-		ELabel courierLabel = new ELabel("快递员");
+		UMRLabel courierLabel = new UMRLabel("快递员");
 		courierLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		courierLabel.setBounds(286+40, 205, 85, 24);
 		add(courierLabel);
@@ -108,7 +108,7 @@ public class IncomePanel extends PPanel {
 		}
 		add(courierCombo);
 		
-		ELabel amountLabel = new ELabel("金额/元");
+		UMRLabel amountLabel = new UMRLabel("金额/元");
 		amountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		amountLabel.setBounds(490, 205, 85, 24);
 		add(amountLabel);
@@ -151,7 +151,7 @@ public class IncomePanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		ELabel accountLabel = new ELabel("账户");
+		UMRLabel accountLabel = new UMRLabel("账户");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		accountLabel.setBounds(664, 205, 65, 22);
 		add(accountLabel);
@@ -167,7 +167,7 @@ public class IncomePanel extends PPanel {
 		}
 		add(accountCombo);
 		
-		idLabel = new ELabel("收款单编号");
+		idLabel = new UMRLabel("收款单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(357, 111, 120, 24);
 		add(idLabel);

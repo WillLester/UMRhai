@@ -15,7 +15,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -55,7 +55,7 @@ public class DriverInfoPanel extends InfoPanel {
 		nameLabel.setLocation(995/2-nameLabel.getWidth()/2+50,nameLabel.getY());;
 		add(nameLabel);
 		
-		ELabel driverNum = new ELabel("司机编号");
+		UMRLabel driverNum = new UMRLabel("司机编号");
 		driverNum.setFont(Utils.COMBO_FONT);
 		driverNum.setForeground(Utils.STD_COLOR);
 		driverNum.setBounds(Constants.INFOTABLE_X, y+Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -68,7 +68,7 @@ public class DriverInfoPanel extends InfoPanel {
 		textFieldNum.setText(driver.getId());
 		textFieldNum.setColumns(10);
 		
-		JLabel driverName = new ELabel("姓名");
+		JLabel driverName = new UMRLabel("姓名");
 		driverName.setFont(Utils.COMBO_FONT);
 		driverName.setForeground(Utils.STD_COLOR);
 		driverName.setBounds(driverNum.getX(), driverNum.getY()+driverNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -80,7 +80,7 @@ public class DriverInfoPanel extends InfoPanel {
 		textFieldName.setText(driver.getName());
 		textFieldName.setColumns(10);
 		
-		JLabel driverSex = new ELabel("性别");
+		JLabel driverSex = new UMRLabel("性别");
 		driverSex.setFont(Utils.COMBO_FONT);
 		driverSex.setForeground(Utils.STD_COLOR);
 		driverSex.setBounds(driverNum.getX(), driverName.getY()+driverName.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);

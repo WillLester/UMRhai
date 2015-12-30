@@ -22,7 +22,7 @@ import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -90,7 +90,7 @@ public class StockOutPanel extends PPanel {
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
-		ELabel idLabel = new ELabel("出库单编号");
+		UMRLabel idLabel = new UMRLabel("出库单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(359, 122, 120, 24);
 		add(idLabel);
@@ -102,7 +102,7 @@ public class StockOutPanel extends PPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		ELabel expressLabel = new ELabel("快递编号");
+		UMRLabel expressLabel = new UMRLabel("快递编号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressLabel.setBounds(340, 164, 120, 24);
@@ -113,7 +113,7 @@ public class StockOutPanel extends PPanel {
 		expressField.setBounds(485, 164, 165, 25);
 		add(expressField);
 		
-		ELabel dateLabel = new ELabel("出库日期");
+		UMRLabel dateLabel = new UMRLabel("出库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(340, 210, 120, 24);
@@ -132,7 +132,7 @@ public class StockOutPanel extends PPanel {
 			HintFrame hint = new HintFrame(result.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 			
 		}
-		ELabel targetLabel = new ELabel("目的地");
+		UMRLabel targetLabel = new UMRLabel("目的地");
 		targetLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		targetLabel.setBounds(359, 253, 85, 24);
 		add(targetLabel);
@@ -143,7 +143,7 @@ public class StockOutPanel extends PPanel {
 		targetCombo.setBounds(485, 254, 190, 25);
 		add(targetCombo);
 		
-		ELabel transitLabel = new ELabel("装运形式");
+		UMRLabel transitLabel = new UMRLabel("装运形式");
 		transitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitLabel.setBounds(359, 300, 85, 24);
 		add(transitLabel);
@@ -154,7 +154,7 @@ public class StockOutPanel extends PPanel {
 		transitCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"飞机","铁路","公路"}));
 		add(transitCombo);
 		
-		ELabel transitIdLabel = new ELabel("中转单/汽运编号");
+		UMRLabel transitIdLabel = new UMRLabel("中转单/汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdLabel.setBounds(330, 346, 160, 24);

@@ -20,7 +20,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -103,7 +103,7 @@ public class WorkListPanel extends PPanel {
 		});
 		add(all);
 		
-		ELabel workName = new ELabel("姓名");
+		UMRLabel workName = new UMRLabel("姓名");
 		workName.setBounds(Constants.TABLE_X, textFieldSearch.getY()+textFieldSearch.getHeight()+20+Constants.TABLE_HEIGHT*4+20,50,24);
 		add(workName);
 		
@@ -112,7 +112,7 @@ public class WorkListPanel extends PPanel {
 		textFieldName.setEnabled(false);
 		add(textFieldName);
 		
-		ELabel type = new ELabel("所属机构");
+		UMRLabel type = new UMRLabel("所属机构");
 		type.setBounds(380, workName.getY(),60,24);
 		add(type);
 		
@@ -126,7 +126,7 @@ public class WorkListPanel extends PPanel {
 		orgCombo.setEnabled(false);
 		add(orgCombo);
 		
-		ELabel mobile = new ELabel("手机");
+		UMRLabel mobile = new UMRLabel("手机");
 		mobile.setBounds(workName.getX(), workName.getY()+workName.getHeight()+20, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(mobile);
 		
@@ -135,7 +135,7 @@ public class WorkListPanel extends PPanel {
 		textFieldMobile.setEnabled(false);
 		add(textFieldMobile);
 		
-		ELabel position = new ELabel("职位");
+		UMRLabel position = new UMRLabel("职位");
 		position.setBounds(type.getX(), type.getY()+type.getHeight()+20,60,24);
 		add(position);
 		
@@ -261,6 +261,7 @@ public class WorkListPanel extends PPanel {
 						delete.setEnabled(true);
 						modify.setEnabled(true);
 						cancelMod.setEnabled(true);
+						juriCombo.setEnabled(true);
 						if(table.getSelectedRow() >= workList.size()){
 							textFieldMobile.setText("");
 							textFieldName.setText("");
@@ -274,6 +275,7 @@ public class WorkListPanel extends PPanel {
 							juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
 							if(work.getJuri().equals(Jurisdiction.ADMIN)){
 								delete.setEnabled(false);
+								juriCombo.setEnabled(false);
 							}
 						}
 					} else {

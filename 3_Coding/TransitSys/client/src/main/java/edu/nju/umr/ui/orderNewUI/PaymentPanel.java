@@ -19,7 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -84,13 +84,13 @@ public class PaymentPanel extends PPanel {
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
-		ELabel dateLabel = new ELabel("付款日期");
+		UMRLabel dateLabel = new UMRLabel("付款日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(286, 166, 120, 24);
 		add(dateLabel);	
 		
-		ELabel payerLabel = new ELabel("付款人");
+		UMRLabel payerLabel = new UMRLabel("付款人");
 		payerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		payerLabel.setBounds(306, 225, 85, 24);
 		add(payerLabel);
@@ -101,7 +101,7 @@ public class PaymentPanel extends PPanel {
 		payerField.setBounds(406, 224, 85, 25);
 		add(payerField);
 		
-		ELabel amountLabel = new ELabel("付款金额");
+		UMRLabel amountLabel = new UMRLabel("付款金额");
 		amountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		amountLabel.setBounds(515,225, 85, 24);
 		add(amountLabel);
@@ -113,7 +113,7 @@ public class PaymentPanel extends PPanel {
 		add(costField);
 		
 	
-		ELabel accountLabel = new ELabel("付款账号");
+		UMRLabel accountLabel = new UMRLabel("付款账号");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		accountLabel.setBounds(306, 285, 85, 24);
 		add(accountLabel);
@@ -125,7 +125,7 @@ public class PaymentPanel extends PPanel {
 		accountCombo.setModel(new DefaultComboBoxModel<String>(accountList));
 		add(accountCombo);
 				
-		ELabel reasonLabel = new ELabel("条目");
+		UMRLabel reasonLabel = new UMRLabel("条目");
 		reasonLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		reasonLabel.setBounds(540, 287, 59, 24);
 		add(reasonLabel);
@@ -140,7 +140,7 @@ public class PaymentPanel extends PPanel {
 		datePanel.setBounds(460, 166, 285, 26);
 		add(datePanel);
 		
-		ELabel remarkLabel = new ELabel("备注");
+		UMRLabel remarkLabel = new UMRLabel("备注");
 		remarkLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		remarkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		remarkLabel.setBounds(260, 341, 130, 24);
@@ -177,7 +177,7 @@ public class PaymentPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		ELabel idLabel = new ELabel("单据编号");
+		UMRLabel idLabel = new UMRLabel("单据编号");
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(286, 116, 120, 24);

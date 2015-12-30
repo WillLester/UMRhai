@@ -24,7 +24,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
@@ -61,7 +61,7 @@ public class BusiCircumPanel extends PPanel {
 //        serv = new BusiCircumPanelStub();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
-		ELabel start = new ELabel("开始日期");
+		UMRLabel start = new UMRLabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
@@ -70,7 +70,7 @@ public class BusiCircumPanel extends PPanel {
 		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 267, 21);
 		add(startDate);
 		
-		ELabel end = new ELabel("结束日期");
+		UMRLabel end = new UMRLabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
@@ -98,7 +98,7 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(confirm);
 		
-		ELabel statementLabel = new ELabel("经营情况表");
+		UMRLabel statementLabel = new UMRLabel("经营情况表");
 		statementLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		statementLabel.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(statementLabel);

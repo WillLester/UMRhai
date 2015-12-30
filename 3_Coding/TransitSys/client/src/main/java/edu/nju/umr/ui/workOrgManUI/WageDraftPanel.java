@@ -15,7 +15,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.enums.Wage;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -70,7 +70,7 @@ public class WageDraftPanel extends InfoPanel {
 		});
 		add(rbMonth);
 		
-		ELabel wageMonth = new ELabel("月薪");
+		UMRLabel wageMonth = new UMRLabel("月薪");
 		wageMonth.setBounds(rbMonth.getX()+50, rbMonth.getY()+rbMonth.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageMonth);
 		
@@ -99,7 +99,7 @@ public class WageDraftPanel extends InfoPanel {
 		});
 		add(rbCount);
 		
-		ELabel wageCount = new ELabel("次薪");
+		UMRLabel wageCount = new UMRLabel("次薪");
 		wageCount.setBounds(wageMonth.getX(), rbCount.getY()+rbCount.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageCount);
 		
@@ -130,7 +130,7 @@ public class WageDraftPanel extends InfoPanel {
 		});
 		add(rbBound);
 		
-		ELabel wageinit= new ELabel("月基本工资");
+		UMRLabel wageinit= new UMRLabel("月基本工资");
 		wageinit.setBounds(wageMonth.getX(), rbBound.getY()+rbBound.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageinit);
 		
@@ -140,7 +140,7 @@ public class WageDraftPanel extends InfoPanel {
 		textFieldwi.setEnabled(false);
 		textFieldwi.setColumns(10);
 		
-		ELabel bound = new ELabel("提成份额");
+		UMRLabel bound = new UMRLabel("提成份额");
 		bound.setBounds(wageMonth.getX(), wageinit.getY()+wageinit.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bound);
 		

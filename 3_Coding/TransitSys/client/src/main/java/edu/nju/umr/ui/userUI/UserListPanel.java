@@ -35,6 +35,7 @@ import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.component.button.SearchButton;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
+import edu.nju.umr.ui.utility.Utility;
 import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.UserVO;
@@ -241,14 +242,17 @@ public class UserListPanel extends PPanel {
 					}
 					if(table.getSelectedRow() >= 0){
 						displayUser(table.getSelectedRow());
-						if(table.getModel().getRowCount()!=users.size()+1)
+						if(table.getModel().getRowCount()!=users.size()+1){
 							deleteButton.setEnabled(true);
-						confirmButton.setEnabled(true);
-						if(table.getSelectedRow()<users.size())
-						{
+							confirmButton.setEnabled(true);
+						}
+						if(table.getSelectedRow()<users.size()){
 							UserVO user = users.get(table.getSelectedRow());
 							if(user.getJuri().equals(Jurisdiction.ADMIN)){
 								deleteButton.setEnabled(false);
+								juriBox.setEnabled(false);
+							} else {
+								juriBox.setEnabled(true);
 							}
 						}
 					} else {
@@ -323,19 +327,11 @@ public class UserListPanel extends PPanel {
 		}
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
-		if(temp.isEmpty()){
-			DoHint.hint("权限未选择!", frame);return;
-		}
 		jur = EnumTransFactory.getJuri(temp);
-		String id=idField.getText();
-		String password=passwordField.getText();
-		String name=nameField.getText();
-		String mobile=mobileField.getText();
-		if(id.isEmpty()){DoHint.hint("账号未输入!", frame);return;}
-		if(password.isEmpty()){DoHint.hint("密码未输入!", frame);return;}
-		if(name.isEmpty()){DoHint.hint("姓名未输入!", frame);return;}
-		if(mobile.isEmpty()){DoHint.hint("手机号未输入!", frame);return;}
 		
+		if(!isLegal()){
+			return;
+		}
 		if(row<users.size()){
 			UserVO user = users.get(table.getSelectedRow());
 			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),user.getOrg(),user.getOrgId());
@@ -359,6 +355,34 @@ public class UserListPanel extends PPanel {
 				reportWrong(result);
 			}
 		}
+	}
+	
+	private boolean isLegal(){
+		if(idField.getText().isEmpty()){
+			DoHint.hint("账号未输入!", frame);
+			return false;
+		}
+		if(passwordField.getText().isEmpty()){
+			DoHint.hint("密码未输入!", frame);
+			return false;
+		}
+		if(nameField.getText().isEmpty()){
+			DoHint.hint("姓名未输入!", frame);
+			return false;
+		}
+		if(mobileField.getText().isEmpty()){
+			DoHint.hint("手机号未输入!", frame);
+			return false;
+		}
+		if(!Utility.isNumberic(mobileField.getText())){
+			DoHint.hint("手机号有非数字字符！", frame);
+			return false;
+		}
+		if(mobileField.getText().length() != 11){
+			DoHint.hint("手机号长度错误！", frame);
+			return false;
+		}
+		return true;
 	}
 	
 	private void deleteUser(){

@@ -17,7 +17,7 @@ import edu.nju.umr.constants.Province;
 import edu.nju.umr.logic.cityLogic.LocLogic;
 import edu.nju.umr.logicService.cityLogicSer.LocLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.orderNewUI.ExpressPanel;
@@ -60,7 +60,7 @@ public class LocPanel extends JPanel {
 			
 		Color color = new Color(57, 152,214);
 		
-		ELabel provinceLabel = new ELabel("省份");
+		UMRLabel provinceLabel = new UMRLabel("省份");
 		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceLabel.setForeground(color);
 		provinceLabel.setBounds(10, 10, 54, 22);
@@ -82,7 +82,7 @@ public class LocPanel extends JPanel {
 		});
 		add(provinceCombo);
 		
-		ELabel cityLabel = new ELabel("城市");
+		UMRLabel cityLabel = new UMRLabel("城市");
 		provinceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		provinceLabel.setForeground(color);
 		cityLabel.setBounds(146, 10, 54, 22);
@@ -93,7 +93,7 @@ public class LocPanel extends JPanel {
 		cityCombo.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(cityCombo);
 		
-		ELabel locLabel = new ELabel("地址");
+		UMRLabel locLabel = new UMRLabel("地址");
 		locLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		locLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		locLabel.setBounds(271, 10, 62, 24);

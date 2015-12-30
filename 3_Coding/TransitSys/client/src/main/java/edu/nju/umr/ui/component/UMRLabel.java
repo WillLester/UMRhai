@@ -4,13 +4,13 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-public class ELabel extends JLabel{
+public class UMRLabel extends JLabel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ELabel(String s){
+	public UMRLabel(String s){
 		setText(s);
 		setForeground(Utils.STD_COLOR);
 	}

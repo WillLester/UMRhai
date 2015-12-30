@@ -24,7 +24,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
@@ -51,7 +51,7 @@ public class IncomeListPanel extends PPanel {
 	private DefaultTableModel model;
 	private ArrayList<IncomeVO> incomeList;
 	private ArrayList<OrgVO> hallList;
-	private ELabel listLabel;
+	private UMRLabel listLabel;
 	private JFrame frame;
 	private IncomeListLSer serv;
 	private UMRComboBox<Object> cbHall;
@@ -110,7 +110,7 @@ public class IncomeListPanel extends PPanel {
 		});
 		
 		
-		ELabel hallLabel = new ELabel("营业厅");
+		UMRLabel hallLabel = new UMRLabel("营业厅");
 		hallLabel.setForeground(color);
 		hallLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		hallLabel.setBounds(Constants.TABLE_X+400, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
@@ -139,7 +139,7 @@ public class IncomeListPanel extends PPanel {
 		add(nameLabel);
 		
 		
-		listLabel = new ELabel("收款记录");
+		listLabel = new UMRLabel("收款记录");
 		listLabel.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		listLabel.setBounds(120+Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S+5+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(listLabel);

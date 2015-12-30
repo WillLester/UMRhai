@@ -22,7 +22,7 @@ import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -92,7 +92,7 @@ public class StockInPanel extends PPanel {
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 				
-		ELabel label = new ELabel("入库单编号");
+		UMRLabel label = new UMRLabel("入库单编号");
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		label.setBounds(359, 112, 123, 24);
 		add(label);
@@ -103,7 +103,7 @@ public class StockInPanel extends PPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		ELabel expressLabel = new ELabel("快递单号");
+		UMRLabel expressLabel = new UMRLabel("快递单号");
 		expressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressLabel.setBounds(340, 157, 123, 24);
@@ -114,7 +114,7 @@ public class StockInPanel extends PPanel {
 		expressField.setBounds(483, 156, 165, 25);
 		add(expressField);
 		
-		ELabel dateLabel = new ELabel("入库日期");
+		UMRLabel dateLabel = new UMRLabel("入库日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(340, 202, 120, 24);
@@ -133,7 +133,7 @@ public class StockInPanel extends PPanel {
 			HintFrame hint = new HintFrame(orgResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
-		ELabel destiLabel = new ELabel("目的地");
+		UMRLabel destiLabel = new UMRLabel("目的地");
 		destiLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		destiLabel.setBounds(359, 247, 85, 24);
 		add(destiLabel);
@@ -152,7 +152,7 @@ public class StockInPanel extends PPanel {
 			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
 		}
 		
-		ELabel partLabel = new ELabel("区号");
+		UMRLabel partLabel = new UMRLabel("区号");
 		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		partLabel.setBounds(332, 296, 85, 24);
 		add(partLabel);
@@ -174,7 +174,7 @@ public class StockInPanel extends PPanel {
 		});
 		add(partCombo);
 		
-		ELabel shelfLabel = new ELabel("架号");
+		UMRLabel shelfLabel = new UMRLabel("架号");
 		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		shelfLabel.setBounds(332, 346, 85, 24);
 		add(shelfLabel);
@@ -194,7 +194,7 @@ public class StockInPanel extends PPanel {
 		});
 		add(shelfCombo);
 		
-		ELabel rowLabel = new ELabel("排号");
+		UMRLabel rowLabel = new UMRLabel("排号");
 		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		rowLabel.setBounds(552, 296, 85, 24);
 		add(rowLabel);
@@ -214,7 +214,7 @@ public class StockInPanel extends PPanel {
 		});
 		add(rowCombo);
 		
-		ELabel placeLabel = new ELabel("位号");
+		UMRLabel placeLabel = new UMRLabel("位号");
 		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		placeLabel.setBounds(552, 346, 85, 24);
 		add(placeLabel);

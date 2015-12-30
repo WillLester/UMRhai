@@ -14,7 +14,7 @@ import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -78,7 +78,7 @@ public class CountInfoPanel extends InfoPanel{
 		countLabel.setLocation(995/2-countLabel.getWidth()/2,countLabel.getY());
 		add(countLabel);
 		
-		ELabel orgLabel = new ELabel("机构信息");
+		UMRLabel orgLabel = new UMRLabel("机构信息");
 		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		orgLabel.setBounds(234, 82+all_y, 67, 17);
 		add(orgLabel);
@@ -107,7 +107,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(orgCombo);
 		
 		
-		ELabel stockLabel = new ELabel("库存信息");
+		UMRLabel stockLabel = new UMRLabel("库存信息");
 		stockLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		stockLabel.setBounds(518, 82+all_y, 67, 17);
 		add(stockLabel);
@@ -134,7 +134,7 @@ public class CountInfoPanel extends InfoPanel{
 		
 		
 		
-		ELabel accountLabel = new ELabel("账户信息");
+		UMRLabel accountLabel = new UMRLabel("账户信息");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		accountLabel.setBounds(808, 82+all_y, 67, 17);
 		add(accountLabel);
@@ -160,7 +160,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(accountCombo);
 		
 		
-		ELabel workerLabel = new ELabel("人员信息");
+		UMRLabel workerLabel = new UMRLabel("人员信息");
 		workerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		workerLabel.setBounds(234, 138+all_y, 67, 17);
 		add(workerLabel);
@@ -179,7 +179,7 @@ public class CountInfoPanel extends InfoPanel{
 		});
 		add(workerCombo);
 		
-		ELabel mobileLabel = new ELabel("手机号");
+		UMRLabel mobileLabel = new UMRLabel("手机号");
 		mobileLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		mobileLabel.setBounds(155, 200+all_y, 53, 34);
 		add(mobileLabel);
@@ -190,7 +190,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(mobileField);
 		mobileField.setColumns(10);
 		
-		ELabel dutyLabel = new ELabel("职务");
+		UMRLabel dutyLabel = new UMRLabel("职务");
 		dutyLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		dutyLabel.setBounds(155, 235+all_y, 45, 34);
 		add(dutyLabel);
@@ -215,12 +215,12 @@ public class CountInfoPanel extends InfoPanel{
 		});
 		add(vanCombo);
 		
-		ELabel vanLabel = new ELabel("车辆信息");
+		UMRLabel vanLabel = new UMRLabel("车辆信息");
 		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		vanLabel.setBounds(234, 279+all_y, 67, 17);
 		add(vanLabel);
 		
-		ELabel plateLabel = new ELabel("车牌号");
+		UMRLabel plateLabel = new UMRLabel("车牌号");
 		plateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		plateLabel.setBounds(155, 342+all_y, 53, 34);
 		add(plateLabel);
@@ -231,7 +231,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(plateField);
 		plateField.setColumns(10);
 		
-		ELabel dateLabel = new ELabel("服役时间");
+		UMRLabel dateLabel = new UMRLabel("服役时间");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		dateLabel.setBounds(155, 378+all_y, 67, 34);
 		add(dateLabel);
@@ -242,7 +242,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(dateField);
 		dateField.setColumns(10);
 		
-		ELabel goodLabel = new ELabel("货物信息");
+		UMRLabel goodLabel = new UMRLabel("货物信息");
 		goodLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		goodLabel.setBounds(518, 138+all_y, 67, 17);
 		add(goodLabel);
@@ -261,7 +261,7 @@ public class CountInfoPanel extends InfoPanel{
 		});
 		add(goodCombo);
 		
-		ELabel inDateLabel = new ELabel("入库时间");
+		UMRLabel inDateLabel = new UMRLabel("入库时间");
 		inDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		inDateLabel.setBounds(437, 200+all_y, 67, 34);
 		add(inDateLabel);
@@ -272,7 +272,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(inDateField);
 		inDateField.setColumns(10);
 		
-		ELabel destinationLabel = new ELabel("到达地");
+		UMRLabel destinationLabel = new UMRLabel("到达地");
 		destinationLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		destinationLabel.setBounds(437, 235+all_y, 59, 34);
 		add(destinationLabel);
@@ -283,7 +283,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(destinationField);
 		destinationField.setColumns(10);
 		
-		ELabel partLabel = new ELabel("区");
+		UMRLabel partLabel = new UMRLabel("区");
 		partLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partLabel.setBounds(437, 270+all_y, 45, 34);
 		add(partLabel);
@@ -294,7 +294,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(partField);
 		partField.setColumns(10);
 		
-		ELabel shelfLabel = new ELabel("架");
+		UMRLabel shelfLabel = new UMRLabel("架");
 		shelfLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		shelfLabel.setBounds(437, 305+all_y, 59, 34);
 		add(shelfLabel);
@@ -305,7 +305,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(shelfField);
 		shelfField.setColumns(10);
 		
-		ELabel rowLabel = new ELabel("排");
+		UMRLabel rowLabel = new UMRLabel("排");
 		rowLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		rowLabel.setBounds(437, 340+all_y, 59, 34);
 		add(rowLabel);
@@ -316,7 +316,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(rowField);
 		rowField.setColumns(10);
 		
-		ELabel placeLabel = new ELabel("位");
+		UMRLabel placeLabel = new UMRLabel("位");
 		placeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		placeLabel.setBounds(437, 375+all_y, 59, 34);
 		add(placeLabel);
@@ -327,7 +327,7 @@ public class CountInfoPanel extends InfoPanel{
 		add(placeField);
 		placeField.setColumns(10);
 		
-		ELabel balanceLabel = new ELabel("账户余额");
+		UMRLabel balanceLabel = new UMRLabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		balanceLabel.setBounds(723, 135+all_y, 67, 34);
 		add(balanceLabel);

@@ -21,7 +21,7 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
@@ -57,7 +57,7 @@ public class DiaryListPanel extends PPanel {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
 		
-		ELabel start = new ELabel("开始日期");
+		UMRLabel start = new UMRLabel("开始日期");
 		start.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		start.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(start);
@@ -66,7 +66,7 @@ public class DiaryListPanel extends PPanel {
 		startDate.setBounds(Constants.TABLE_X+Constants.LABEL_WIDTH, y+Constants.TABLE_Y+4+3, 530, 21);
 		add(startDate);
 		
-		ELabel end = new ELabel("结束日期");
+		UMRLabel end = new UMRLabel("结束日期");
 		end.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		end.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(end);
@@ -106,7 +106,7 @@ public class DiaryListPanel extends PPanel {
 //		diaryTable.setBounds(Constants.TABLE_X, Constants.LABEL_Y*3, Constants.TABLE_WIDTH, Constants.TABLE_HEIGHT*5);
 //		add(diaryTable);
 		
-		ELabel diaryLable = new ELabel("日志记录");
+		UMRLabel diaryLable = new UMRLabel("日志记录");
 		diaryLable.setFont(new Font("微软雅黑",Font.PLAIN,15));
 		diaryLable.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y+Constants.LABEL_HEIGHT_S*2+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(diaryLable);

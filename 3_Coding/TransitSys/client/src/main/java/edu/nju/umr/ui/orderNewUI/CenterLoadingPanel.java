@@ -22,7 +22,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -90,7 +90,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		this.org = org;
 		this.orgId=orgId;
 		
-		ELabel transitIdLabel = new ELabel("汽运编号");
+		UMRLabel transitIdLabel = new UMRLabel("汽运编号");
 		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setStdFont();
 		transitIdLabel.setBounds(375, 107, 130, 24);
@@ -103,7 +103,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		
-		ELabel dateLabel = new ELabel("装车日期");
+		UMRLabel dateLabel = new UMRLabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setStdFont();
 		dateLabel.setBounds(375, 141, 120, 24);
@@ -113,7 +113,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		datePanel.setBounds(522, 141, 285, 26);
 		add(datePanel);
 		
-		ELabel arriveLabel = new ELabel("到达地");
+		UMRLabel arriveLabel = new UMRLabel("到达地");
 		arriveLabel.setStdFont();
 		arriveLabel.setBounds(295, 175, 85, 24);
 		add(arriveLabel);
@@ -134,7 +134,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		}});
 		add(arriveCombo);
 		
-		ELabel supervisionLabel = new ELabel("监装员");
+		UMRLabel supervisionLabel = new UMRLabel("监装员");
 		supervisionLabel.setStdFont();
 		supervisionLabel.setBounds(540, 177, 70, 24);
 		add(supervisionLabel);
@@ -145,7 +145,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		supervisionField.setBounds(610, 177, 85, 25);
 		add(supervisionField);
 		
-		ELabel escortLabel = new ELabel("押运员");
+		UMRLabel escortLabel = new UMRLabel("押运员");
 		escortLabel.setStdFont();
 		escortLabel.setBounds(700, 177, 70, 24);
 		add(escortLabel);
@@ -156,7 +156,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		escortField.setBounds(770, 178, 85, 25);
 		add(escortField);
 		
-		ELabel vanIdLabel = new ELabel("车辆代号");
+		UMRLabel vanIdLabel = new UMRLabel("车辆代号");
 		vanIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanIdLabel.setStdFont();
 		vanIdLabel.setBounds(220+75, 224, 120, 24);
@@ -168,7 +168,7 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		vanIdField.setBounds(328+75, 223, 165, 25);
 		add(vanIdField);
 		
-		ELabel costLabel = new ELabel("运费/元");
+		UMRLabel costLabel = new UMRLabel("运费/元");
 		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		costLabel.setBounds(655, 224, 79, 24);
 		add(costLabel);
