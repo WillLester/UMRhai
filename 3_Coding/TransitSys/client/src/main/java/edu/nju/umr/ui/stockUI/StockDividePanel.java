@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -20,7 +19,9 @@ import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
+import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
@@ -35,7 +36,7 @@ import edu.nju.umr.utility.EnumTransFactory;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.ShelfVO;
 
-public class StockDividePanel extends JPanel{
+public class StockDividePanel extends PPanel{
 	/**
 	 * 
 	 */
@@ -50,6 +51,7 @@ public class StockDividePanel extends JPanel{
 	private StockDivideLSer logicSer;
 	private ArrayList<ShelfVO> shelfList;
 	private String orgId;
+	private static final int y=25;
 	/**
 	 * Create the panel.
 	 */
@@ -60,19 +62,17 @@ public class StockDividePanel extends JPanel{
 //		logicSer = new StockDividePanelStub();
 		this.orgId = orgId;
 		
-		ELabel divideLabel = new ELabel("库存分区");
-		divideLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		divideLabel.setBounds(508, 36, 88, 24);
+		TitleLabel divideLabel = new TitleLabel("库存分区");
 		add(divideLabel);
 		
 		searchField = new TextField();
-		searchField.setBounds(233, 67, 542, 24);
+		searchField.setBounds(233, y+67, 542, 24);
 		add(searchField);
 		searchField.setColumns(10);
 		
 		
 		Button searchButton = new SearchButton();
-		searchButton.setBounds(827, 66, 100, 30);
+		searchButton.setBounds(827, y+66, 100, 30);
 		searchButton.addActionListener(new ActionListener() {
 			
 			@SuppressWarnings({ "unused" })
@@ -90,48 +90,48 @@ public class StockDividePanel extends JPanel{
 		
 		ELabel idLabel = new ELabel("编号");
 		idLabel.setFont(Utils.COMBO_FONT);
-		idLabel.setBounds(206, 500, 54, 24);
+		idLabel.setBounds(206, y+500, 54, 24);
 		add(idLabel);
 		
 		idField = new TextField();
 		idField.setEditable(false);
-		idField.setBounds(253, 500, 98, 22);
+		idField.setBounds(253, y+500, 98, 22);
 		add(idField);
 		idField.setColumns(10);
 		
 		ELabel rowLabel = new ELabel("排数");
 		rowLabel.setFont(Utils.COMBO_FONT);
-		rowLabel.setBounds(370, 500, 54, 24);
+		rowLabel.setBounds(370, y+500, 54, 24);
 		add(rowLabel);
 		
 		rowField = new TextField();
-		rowField.setBounds(416, 500, 98, 22);
+		rowField.setBounds(416, y+500, 98, 22);
 		add(rowField);
 		rowField.setColumns(10);
 		
 		ELabel placeLabel = new ELabel("每排位数");
 		placeLabel.setFont(Utils.COMBO_FONT);
-		placeLabel.setBounds(541, 500, 71, 24);
+		placeLabel.setBounds(541, y+500, 71, 24);
 		add(placeLabel);
 		
 		placeField = new TextField();
-		placeField.setBounds(617, 500, 98, 22);
+		placeField.setBounds(617, y+500, 98, 22);
 		add(placeField);
 		placeField.setColumns(10);
 		
 		ELabel partLabel = new ELabel("所在区");
 		partLabel.setFont(Utils.COMBO_FONT);
-		partLabel.setBounds(742, 500, 54, 24);
+		partLabel.setBounds(742, y+500, 54, 24);
 		add(partLabel);
 		
 		UMRComboBox<String> partCombo = new UMRComboBox<String>();
-		partCombo.setBounds(803, 500, 98, 22);
+		partCombo.setBounds(803, y+500, 98, 22);
 		partCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
 		add(partCombo);
 		
 		Button addButton = new AddButton();
-		addButton.setBounds(332, 541, 100, 30);
+		addButton.setBounds(332, y+541, 100, 30);
 		addButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -149,7 +149,7 @@ public class StockDividePanel extends JPanel{
 		add(addButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(455, 541, 100, 30);
+		deleteButton.setBounds(455, y+541, 100, 30);
 		deleteButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -162,7 +162,7 @@ public class StockDividePanel extends JPanel{
 		add(deleteButton);
 		
 		Button confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(578, 541,100, 30);
+		confirmButton.setBounds(578, y+541,100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,7 +183,7 @@ public class StockDividePanel extends JPanel{
 		add(confirmButton);
 		
 		Button cancelButton = new CanModButton();
-		cancelButton.setBounds(701, 541, 100,30);
+		cancelButton.setBounds(701, y+541, 100,30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 
@@ -207,7 +207,7 @@ public class StockDividePanel extends JPanel{
 		add(cancelButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(881, 541, 100,30);
+		exitButton.setBounds(881, y+541, 100,30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
@@ -225,11 +225,11 @@ public class StockDividePanel extends JPanel{
 				if(e.getValueIsAdjusting()==false);
 			}
 		});
-		table.setBounds(233, 109, 638, 371);
+		table.setBounds(233, y+109, 638, 371);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getTableHeader().setReorderingAllowed(false);
 		UMRScrollPane scroll=new UMRScrollPane(table);
-		scroll.setBounds(233, 109, 638, 371);
+		scroll.setBounds(233, y+109, 638, 371);
 		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		String[] columnNames={"架号","所属区","排数","每排位数"};
 		model.setColumnIdentifiers(columnNames);

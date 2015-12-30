@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import edu.nju.umr.logic.stockLogic.StockWarningLogic;
 import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
@@ -14,6 +13,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.Utils;
@@ -23,7 +23,7 @@ import edu.nju.umr.ui.component.button.ExitButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 
-public class StockWarningPanel extends JPanel{
+public class StockWarningPanel extends PPanel{
 	/**
 	 * 
 	 */
@@ -35,6 +35,7 @@ public class StockWarningPanel extends JPanel{
 	private JFrame frame;
 	private StockWarningLSer logicSer;
 	private ArrayList<Integer> warnings;
+	private static final int y=35;
 	/**
 	 * Create the panel.
 	 */
@@ -45,51 +46,49 @@ public class StockWarningPanel extends JPanel{
 		logicSer = new StockWarningLogic();
 		
 		TitleLabel warningLabel = new TitleLabel("库存报警设置");
-		warningLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		warningLabel.setBounds(486, 25, 132, 24);
 		add(warningLabel);
 		
 		ELabel planeLabel = new ELabel("航运区警戒线（%）");
 		planeLabel.setFont(Utils.COMBO_FONT);
 		planeLabel.setForeground(Utils.STD_COLOR);
-		planeLabel.setBounds(380, 85, 138, 24);
+		planeLabel.setBounds(380, y+85, 138, 24);
 		add(planeLabel);
 		
 		ELabel trainLabel = new ELabel("铁运区警戒线（%）");
 		trainLabel.setFont(Utils.COMBO_FONT);
 		trainLabel.setForeground(Utils.STD_COLOR);
-		trainLabel.setBounds(380, 145, 138, 24);
+		trainLabel.setBounds(380, y+145, 138, 24);
 		add(trainLabel);
 		
 		ELabel vanLabel = new ELabel("汽运区警戒线（%）");
 		vanLabel.setFont(Utils.COMBO_FONT);
 		vanLabel.setForeground(Utils.STD_COLOR);
-		vanLabel.setBounds(380, 205, 138, 24);
+		vanLabel.setBounds(380, y+205, 138, 24);
 		add(vanLabel);
 		
 		ELabel maneuverLabel = new ELabel("机动区警戒线（%）");
 		maneuverLabel.setFont(Utils.COMBO_FONT);
 		maneuverLabel.setForeground(Utils.STD_COLOR);
-		maneuverLabel.setBounds(380, 265, 138, 24);
+		maneuverLabel.setBounds(380, y+265, 138, 24);
 		add(maneuverLabel);
 		
 		planeField = new TextField();
-		planeField.setBounds(555, 85, 132, 22);
+		planeField.setBounds(555, y+85, 132, 22);
 		add(planeField);
 		planeField.setColumns(10);
 		
 		trainField = new TextField();
-		trainField.setBounds(555, 145, 132, 24);
+		trainField.setBounds(555, y+145, 132, 24);
 		add(trainField);
 		trainField.setColumns(10);
 		
 		vanField = new TextField();
-		vanField.setBounds(555, 205, 132, 24);
+		vanField.setBounds(555, y+205, 132, 24);
 		add(vanField);
 		vanField.setColumns(10);
 		
 		maneuverField = new TextField();
-		maneuverField.setBounds(555, 265, 132, 24);
+		maneuverField.setBounds(555, y+265, 132, 24);
 		add(maneuverField);
 		maneuverField.setColumns(10);
 		
@@ -106,7 +105,7 @@ public class StockWarningPanel extends JPanel{
 		} 
 		
 		Button confirmButton = new ConfirmModButton();
-		confirmButton.setBounds(428, 407,100, 30);
+		confirmButton.setBounds(428, y+385,100, 30);
 		confirmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -136,7 +135,7 @@ public class StockWarningPanel extends JPanel{
 		add(confirmButton);
 		
 		Button cancelButton = new CanModButton();
-		cancelButton.setBounds(555, 407, 100, 30);
+		cancelButton.setBounds(555, y+385, 100, 30);
 		cancelButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -158,7 +157,7 @@ public class StockWarningPanel extends JPanel{
 		add(cancelButton);
 		
 		Button exitButton = new ExitButton();
-		exitButton.setBounds(746, 407,100, 30);
+		exitButton.setBounds(766, y+385,100, 30);
 		exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
