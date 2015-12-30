@@ -13,9 +13,6 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.javafx.geom.RoundRectangle2D;
-import com.sun.javafx.geom.Shape;
-
 public class UMRPasswordField extends JPasswordField{
 
 	/**
@@ -24,7 +21,6 @@ public class UMRPasswordField extends JPasswordField{
 	private static final long serialVersionUID = -6375235173665163950L;
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
-	private Shape shape;
 	
 	public UMRPasswordField() {
 		setBorder(null);
@@ -36,11 +32,6 @@ public class UMRPasswordField extends JPasswordField{
 		setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setMargin(new Insets(0, 5, 0, 0));
 		setOpaque(false);
-	}
-	
-	public boolean contains(int x ,int y){
-		shape = new RoundRectangle2D(0, 0, getWidth(), getHeight(), arcWidth, arcHeight);
-		return shape.contains(x,y);
 	}
 	
 	protected void paintComponent(Graphics g){

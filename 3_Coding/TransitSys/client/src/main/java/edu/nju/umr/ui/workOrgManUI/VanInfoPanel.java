@@ -33,6 +33,7 @@ import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.VanVO;
 
+@SuppressWarnings("restriction")
 public class VanInfoPanel extends InfoPanel {
 	/**
 	 * 

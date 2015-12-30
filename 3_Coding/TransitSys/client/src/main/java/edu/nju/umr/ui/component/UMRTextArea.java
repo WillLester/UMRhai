@@ -10,9 +10,6 @@ import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
 
-import com.sun.javafx.geom.RoundRectangle2D;
-import com.sun.javafx.geom.Shape;
-
 public class UMRTextArea extends JTextArea{
 
 	/**
@@ -21,25 +18,16 @@ public class UMRTextArea extends JTextArea{
 	private static final long serialVersionUID = -7908387263032252442L;
 	private static final int arcWidth = 15;
 	private static final int arcHeight = 15;
-	private Shape shape;
 	
 	public UMRTextArea() {
 		setBorder(null);
 		setBackground(Color.WHITE);
-//		Border empty = new EmptyBorder(0, 5, 0, 0);
-//		CompoundBorder border = new CompoundBorder(this.getBorder(), empty);
-//		setBorder(border);
 		setBorder(BorderFactory.createEmptyBorder());
 		setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		setMargin(new Insets(0, 5, 0, 0));
 		setOpaque(false);
 		setLineWrap(true);;
 		setBackground(null);
-	}
-	
-	public boolean contains(int x ,int y){
-		shape = new RoundRectangle2D(0, 0, getWidth(), getHeight(), arcWidth, arcHeight);
-		return shape.contains(x,y);
 	}
 	
 	protected void paintComponent(Graphics g){
