@@ -23,7 +23,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.InfoFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -66,7 +66,7 @@ public class VanInfoPanel extends InfoPanel {
 		nameLabel.setLocation(995/2-nameLabel.getWidth()/2+50, nameLabel.getY());
 		add(nameLabel);
 		
-		JLabel vanNum = new ELabel("车辆代号");
+		JLabel vanNum = new UMRLabel("车辆代号");
 		vanNum.setFont(Utils.COMBO_FONT);
 		vanNum.setBounds(Constants.INFOTABLE_X, y+Constants.INFOTABLE_Y, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(vanNum);
@@ -77,7 +77,7 @@ public class VanInfoPanel extends InfoPanel {
 		add(textFieldNum);
 		textFieldNum.setColumns(10);
 		
-		JLabel plateNum = new ELabel("车牌号");
+		JLabel plateNum = new UMRLabel("车牌号");
 		plateNum.setFont(Utils.COMBO_FONT);
 		plateNum.setBounds(vanNum.getX(), vanNum.getY()+vanNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(plateNum);
@@ -87,12 +87,12 @@ public class VanInfoPanel extends InfoPanel {
 		add(textFieldPlate);
 		textFieldPlate.setColumns(10);
 		
-		JLabel workTime = new ELabel("服役时间");
+		JLabel workTime = new UMRLabel("服役时间");
 		workTime.setFont(Utils.COMBO_FONT);
 		workTime.setBounds(vanNum.getX(), plateNum.getY()+plateNum.getHeight()+30, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(workTime);
 		
-		JLabel labely = new ELabel("由");
+		JLabel labely = new UMRLabel("由");
 		labely.setFont(Utils.COMBO_FONT);;
 		labely.setBounds(textFieldNum.getX(), workTime.getY()+8, 19, 15);
 		
@@ -100,16 +100,16 @@ public class VanInfoPanel extends InfoPanel {
 		servTime.setBounds(labely.getX(), workTime.getY()+5, Constants.DATE_WIDTH, Constants.DATE_HEIGHT);
 		add(servTime);
 		
-		JLabel labelz = new ELabel("至");
+		JLabel labelz = new UMRLabel("至");
 		labelz.setFont(Utils.COMBO_FONT);
 		labelz.setBounds(labely.getX(), labely.getY()+30, 19, 15);
 		
-		JLabel picture = new ELabel("车辆图片");
+		JLabel picture = new UMRLabel("车辆图片");
 		picture.setFont(Utils.COMBO_FONT);
 		picture.setBounds(vanNum.getX(), labelz.getY()+20+40, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(picture);
 		
-		pic = new ELabel("图片");
+		pic = new UMRLabel("图片");
 		pic.setFont(Utils.COMBO_FONT);
 		pic.setBounds(textFieldNum.getX(), picture.getY(), 350, 180);
 		add(pic);

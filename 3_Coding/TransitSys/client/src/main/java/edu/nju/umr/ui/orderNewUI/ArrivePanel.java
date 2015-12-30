@@ -19,7 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -77,7 +77,7 @@ public class ArrivePanel extends PPanel {
 		titleLabel.setBounds(364+75+25, 10, 242, 67);
 		add(titleLabel);
 		
-		JLabel idLabel = new ELabel("中转单编号");
+		JLabel idLabel = new UMRLabel("中转单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(342+35, 246, 107, 24);
 		add(idLabel);
@@ -87,12 +87,12 @@ public class ArrivePanel extends PPanel {
 		idField.setBounds(474+60, 246, 193, 24);
 		add(idField);
 		
-		JLabel arriveDateLabel = new ELabel("到达日期");
+		JLabel arriveDateLabel = new UMRLabel("到达日期");
 		arriveDateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		arriveDateLabel.setBounds(377, 298, 107, 24);
 		add(arriveDateLabel);
 		
-		JLabel centerLabel = new ELabel("中转中心编号");
+		JLabel centerLabel = new UMRLabel("中转中心编号");
 		centerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		centerLabel.setBounds(377, 137, 120, 24);
 		add(centerLabel);
@@ -103,7 +103,7 @@ public class ArrivePanel extends PPanel {
 		add(centerField);
 		centerField.setColumns(10);
 		
-		JLabel startLabel = new ELabel("出发地");
+		JLabel startLabel = new UMRLabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(377, 192, 107, 24);
 		add(startLabel);
@@ -118,7 +118,7 @@ public class ArrivePanel extends PPanel {
 		add(datePanel);
 		
 		
-		JLabel stateLabel = new ELabel("货物到达状态");
+		JLabel stateLabel = new UMRLabel("货物到达状态");
 		stateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		stateLabel.setBounds(377, 357, 120, 45);
 		add(stateLabel);

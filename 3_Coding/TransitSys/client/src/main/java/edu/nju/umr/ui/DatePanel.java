@@ -9,7 +9,7 @@ import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 /*
  * 用以年、月、日的添加
@@ -43,7 +43,7 @@ public class DatePanel extends JPanel {
 		yearCombo.setSelectedIndex(1);
 		add(yearCombo);
 		
-		ELabel yearLabel = new ELabel("年");
+		UMRLabel yearLabel = new UMRLabel("年");
 		yearLabel.setMidFont();
 		yearLabel.setBounds(69, 1, 19, Constants.DATE_HEIGHT);
 		add(yearLabel);
@@ -56,7 +56,7 @@ public class DatePanel extends JPanel {
 		monthCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.MONTH));
 		add(monthCombo);
 		
-		ELabel monthLabel = new ELabel("月");
+		UMRLabel monthLabel = new UMRLabel("月");
 		monthLabel.setMidFont();
 		monthLabel.setBounds(156, 1, 19, Constants.DATE_HEIGHT);
 		add(monthLabel);
@@ -68,7 +68,7 @@ public class DatePanel extends JPanel {
 		dayCombo.setSelectedIndex(Calendar.getInstance().get(Calendar.DATE)-1);
 		add(dayCombo);
 		
-		ELabel dayLabel = new ELabel("日");
+		UMRLabel dayLabel = new UMRLabel("日");
 		dayLabel.setMidFont();
 		dayLabel.setBounds(244, 1, 19, Constants.DATE_HEIGHT);
 		add(dayLabel);

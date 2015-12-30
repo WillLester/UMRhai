@@ -13,7 +13,7 @@ import edu.nju.umr.logicService.stockLogicSer.StockWarningLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.Utils;
@@ -49,25 +49,25 @@ public class StockWarningPanel extends JPanel{
 		warningLabel.setBounds(486, 25, 132, 24);
 		add(warningLabel);
 		
-		ELabel planeLabel = new ELabel("航运区警戒线（%）");
+		UMRLabel planeLabel = new UMRLabel("航运区警戒线（%）");
 		planeLabel.setFont(Utils.COMBO_FONT);
 		planeLabel.setForeground(Utils.STD_COLOR);
 		planeLabel.setBounds(380, 85, 138, 24);
 		add(planeLabel);
 		
-		ELabel trainLabel = new ELabel("铁运区警戒线（%）");
+		UMRLabel trainLabel = new UMRLabel("铁运区警戒线（%）");
 		trainLabel.setFont(Utils.COMBO_FONT);
 		trainLabel.setForeground(Utils.STD_COLOR);
 		trainLabel.setBounds(380, 145, 138, 24);
 		add(trainLabel);
 		
-		ELabel vanLabel = new ELabel("汽运区警戒线（%）");
+		UMRLabel vanLabel = new UMRLabel("汽运区警戒线（%）");
 		vanLabel.setFont(Utils.COMBO_FONT);
 		vanLabel.setForeground(Utils.STD_COLOR);
 		vanLabel.setBounds(380, 205, 138, 24);
 		add(vanLabel);
 		
-		ELabel maneuverLabel = new ELabel("机动区警戒线（%）");
+		UMRLabel maneuverLabel = new UMRLabel("机动区警戒线（%）");
 		maneuverLabel.setFont(Utils.COMBO_FONT);
 		maneuverLabel.setForeground(Utils.STD_COLOR);
 		maneuverLabel.setBounds(380, 265, 138, 24);

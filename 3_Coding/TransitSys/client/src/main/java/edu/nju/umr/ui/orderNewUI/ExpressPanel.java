@@ -27,7 +27,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.LocPanel;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -64,45 +64,45 @@ public class ExpressPanel extends PPanel {
 	protected TextField widthField;
 	protected TextField heightField;
 	protected TitleLabel titleLabel;
-	protected ELabel barcodeLabel;
-	protected ELabel dateLabel;
-	protected ELabel sender;
-	protected ELabel senderLabel;
-	protected ELabel senderCompanyLabel;
-	protected ELabel senderMobileLabel;
-	protected ELabel senderPhoneLabel;
-	protected ELabel receiver;
-	protected ELabel receiverLabel;
-	protected ELabel receiverCompanyLabel;
-	protected ELabel receiverMobileLabel;
-	protected ELabel receiverPhoneLabel;
-	protected ELabel goodLabel;
-	protected ELabel numLabel;
+	protected UMRLabel barcodeLabel;
+	protected UMRLabel dateLabel;
+	protected UMRLabel sender;
+	protected UMRLabel senderLabel;
+	protected UMRLabel senderCompanyLabel;
+	protected UMRLabel senderMobileLabel;
+	protected UMRLabel senderPhoneLabel;
+	protected UMRLabel receiver;
+	protected UMRLabel receiverLabel;
+	protected UMRLabel receiverCompanyLabel;
+	protected UMRLabel receiverMobileLabel;
+	protected UMRLabel receiverPhoneLabel;
+	protected UMRLabel goodLabel;
+	protected UMRLabel numLabel;
 	protected JSpinner numSpinner;
-	protected ELabel volumnLabel;
-	protected ELabel cubeMLabel;
-	protected ELabel weightLabel;
-	protected ELabel kgLabel;
-	protected ELabel nameLabel;
-	protected ELabel pakKindLabel;
-	protected ELabel expressKindLabel;
-	protected ELabel lengthLabel;
-	protected ELabel mLabelL;
-	protected ELabel widthLabel;
-	protected ELabel mLabelW;
-	protected ELabel heightLabel;
-	protected ELabel mLabelH;
+	protected UMRLabel volumnLabel;
+	protected UMRLabel cubeMLabel;
+	protected UMRLabel weightLabel;
+	protected UMRLabel kgLabel;
+	protected UMRLabel nameLabel;
+	protected UMRLabel pakKindLabel;
+	protected UMRLabel expressKindLabel;
+	protected UMRLabel lengthLabel;
+	protected UMRLabel mLabelL;
+	protected UMRLabel widthLabel;
+	protected UMRLabel mLabelW;
+	protected UMRLabel heightLabel;
+	protected UMRLabel mLabelH;
 	protected DatePanel datePanel;
 	protected UMRComboBox<String> pakKindCombo;
 	protected UMRComboBox<String> expressKindCombo;
-	protected ELabel costLabel;
+	protected UMRLabel costLabel;
 	protected Button confirmButton;
 	protected Button cancelButton;
 	protected LocPanel senderLoc;
 	protected LocPanel receiverLoc;
 	private ExpressOrderLSer logicSer;
 	private String name;
-	protected ELabel arriveLabel;
+	protected UMRLabel arriveLabel;
 	protected TextField arriveField;
 	private String userId;
 	private String nowOrgId;
@@ -161,7 +161,7 @@ public class ExpressPanel extends PPanel {
 		titleLabel.setFont(Utils.TITLE_FONT);
 		add(titleLabel);
 		
-		barcodeLabel = new ELabel("订单条形码号");
+		barcodeLabel = new UMRLabel("订单条形码号");
 		barcodeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		barcodeLabel.setStdFont();
 		barcodeLabel.setBounds(189, 86, 120, 24);
@@ -173,7 +173,7 @@ public class ExpressPanel extends PPanel {
 		barcodeField.setBounds(337, 86, 165, 25);
 		add(barcodeField);
 		
-		dateLabel=new ELabel("日期");
+		dateLabel=new UMRLabel("日期");
 		dateLabel.setBounds(189, 133,120, 24);
 		dateLabel.setStdFont();
 		add(dateLabel);
@@ -182,13 +182,13 @@ public class ExpressPanel extends PPanel {
 		datePanel.setBounds(342, 133, 500, 24);
 		add(datePanel);
 		
-		sender = new ELabel("寄件人");
+		sender = new UMRLabel("寄件人");
 		sender.setHorizontalAlignment(SwingConstants.CENTER);
 		sender.setStdFont();
 		sender.setBounds(159, 178, 120, 24);
 		add(sender);
 		
-		senderLabel = new ELabel("姓名");
+		senderLabel = new UMRLabel("姓名");
 		senderLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		senderLabel.setStdFont();
 		senderLabel.setBounds(253, 212, 120, 24);
@@ -200,7 +200,7 @@ public class ExpressPanel extends PPanel {
 		senderField.setBounds(343, 212, 83, 25);
 		add(senderField);
 		
-		senderCompanyLabel = new ELabel("单位");
+		senderCompanyLabel = new UMRLabel("单位");
 		senderCompanyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		senderCompanyLabel.setStdFont();
 		senderCompanyLabel.setBounds(836, 253, 62, 24);
@@ -212,7 +212,7 @@ public class ExpressPanel extends PPanel {
 		senderCompanyField.setBounds(892, 252, 165, 25);
 		add(senderCompanyField);
 		
-		senderMobileLabel = new ELabel("手机");
+		senderMobileLabel = new UMRLabel("手机");
 		senderMobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		senderMobileLabel.setStdFont();
 		senderMobileLabel.setBounds(253, 253, 120, 24);
@@ -224,7 +224,7 @@ public class ExpressPanel extends PPanel {
 		senderMobileField.setBounds(343, 253, 193, 25);
 		add(senderMobileField);
 		
-		senderPhoneLabel = new ELabel("电话");
+		senderPhoneLabel = new UMRLabel("电话");
 		senderPhoneLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		senderPhoneLabel.setStdFont();
 		senderPhoneLabel.setBounds(546, 253, 62, 24);
@@ -236,7 +236,7 @@ public class ExpressPanel extends PPanel {
 		senderPhoneField.setBounds(613, 252, 216, 25);
 		add(senderPhoneField);
 		
-		receiver = new ELabel("收件人");
+		receiver = new UMRLabel("收件人");
 		receiver.setHorizontalAlignment(SwingConstants.CENTER);
 		receiver.setStdFont();
 		receiver.setBounds(159, 287, 120, 24);
@@ -246,7 +246,7 @@ public class ExpressPanel extends PPanel {
 		senderLoc.setBounds(437, 204, 600, 50);
 		add(senderLoc);
 		
-		receiverLabel = new ELabel("姓名");
+		receiverLabel = new UMRLabel("姓名");
 		receiverLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverLabel.setStdFont();
 		receiverLabel.setBounds(253, 321, 120, 24);
@@ -258,7 +258,7 @@ public class ExpressPanel extends PPanel {
 		receiverField.setBounds(343, 321, 83, 25);
 		add(receiverField);
 		
-		receiverCompanyLabel = new ELabel("单位");
+		receiverCompanyLabel = new UMRLabel("单位");
 		receiverCompanyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverCompanyLabel.setStdFont();
 		receiverCompanyLabel.setBounds(836, 362, 62, 24);
@@ -270,7 +270,7 @@ public class ExpressPanel extends PPanel {
 		receiverCompanyField.setBounds(892, 362, 165, 25);
 		add(receiverCompanyField);
 		
-		receiverMobileLabel = new ELabel("手机");
+		receiverMobileLabel = new UMRLabel("手机");
 		receiverMobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverMobileLabel.setStdFont();
 		receiverMobileLabel.setBounds(253, 362, 120, 24);
@@ -282,7 +282,7 @@ public class ExpressPanel extends PPanel {
 		receiverMobileField.setBounds(343, 362, 193, 25);
 		add(receiverMobileField);
 		
-		receiverPhoneLabel = new ELabel("电话");
+		receiverPhoneLabel = new UMRLabel("电话");
 		receiverPhoneLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverPhoneLabel.setStdFont();
 		receiverPhoneLabel.setBounds(546, 362, 62, 24);
@@ -298,13 +298,13 @@ public class ExpressPanel extends PPanel {
 		receiverLoc.setBounds(437, 312, 600,50);
 		add(receiverLoc);
 		
-		goodLabel = new ELabel("货物信息");
+		goodLabel = new UMRLabel("货物信息");
 		goodLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		goodLabel.setStdFont();
 		goodLabel.setBounds(159, 396, 120, 24);
 		add(goodLabel);
 		
-		numLabel = new ELabel("件数");
+		numLabel = new UMRLabel("件数");
 		numLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		numLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		numLabel.setBounds(253, 430, 120, 24);
@@ -316,7 +316,7 @@ public class ExpressPanel extends PPanel {
 		numSpinner.setBounds(337, 429, 48, 26);
 		add(numSpinner);
 		
-		volumnLabel = new ELabel("体积");
+		volumnLabel = new UMRLabel("体积");
 		volumnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		volumnLabel.setStdFont();
 		volumnLabel.setBounds(724, 430, 62, 24);
@@ -331,13 +331,13 @@ public class ExpressPanel extends PPanel {
 		volumnField.addFocusListener(new MyFocusListener());
 		add(volumnField);
 		
-		cubeMLabel = new ELabel("m³");
+		cubeMLabel = new UMRLabel("m³");
 		cubeMLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		cubeMLabel.setStdFont();
 		cubeMLabel.setBounds(833, 430, 41, 24);
 		add(cubeMLabel);
 		
-		weightLabel = new ELabel("重量");
+		weightLabel = new UMRLabel("重量");
 		weightLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		weightLabel.setStdFont();
 		weightLabel.setBounds(854, 430, 62, 25);
@@ -350,13 +350,13 @@ public class ExpressPanel extends PPanel {
 		weightField.addFocusListener(new MyFocusListener());
 		add(weightField);
 		
-		kgLabel = new ELabel("kg");
+		kgLabel = new UMRLabel("kg");
 		kgLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		kgLabel.setStdFont();
 		kgLabel.setBounds(962, 430, 41, 24);
 		add(kgLabel);
 		
-		nameLabel = new ELabel("内件品名");
+		nameLabel = new UMRLabel("内件品名");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setStdFont();
 		nameLabel.setBounds(271, 464, 120, 24);
@@ -368,7 +368,7 @@ public class ExpressPanel extends PPanel {
 		nameField.setBounds(389, 464, 193, 25);
 		add(nameField);
 		
-		pakKindLabel = new ELabel("包装种类");
+		pakKindLabel = new UMRLabel("包装种类");
 		pakKindLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		pakKindLabel.setStdFont();
 		pakKindLabel.setBounds(271, 503, 120, 24);
@@ -385,7 +385,7 @@ public class ExpressPanel extends PPanel {
 		});
 		add(pakKindCombo);
 		
-		expressKindLabel = new ELabel("快递种类");
+		expressKindLabel = new UMRLabel("快递种类");
 		expressKindLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressKindLabel.setStdFont();
 		expressKindLabel.setBounds(512, 503, 120, 24);
@@ -402,7 +402,7 @@ public class ExpressPanel extends PPanel {
 		});
 		add(expressKindCombo);
 		
-		costLabel = new ELabel("费用/元");
+		costLabel = new UMRLabel("费用/元");
 		costLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		costLabel.setStdFont();
 		costLabel.setBounds(760, 503, 83, 24);
@@ -431,7 +431,7 @@ public class ExpressPanel extends PPanel {
 		add(costField);
 		costField.setColumns(10);
 		
-		lengthLabel = new ELabel("长");
+		lengthLabel = new UMRLabel("长");
 		lengthLabel.setBounds(405, 430, 41, 24);
 		lengthLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(lengthLabel);
@@ -442,12 +442,12 @@ public class ExpressPanel extends PPanel {
 		lengthField.addFocusListener(new MyFocusListener());
 		lengthField.setColumns(10);
 		
-		mLabelL = new ELabel("m");
+		mLabelL = new UMRLabel("m");
 		mLabelL.setBounds(503, 430, 32, 24);
 		mLabelL.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(mLabelL);
 		
-		widthLabel = new ELabel("宽");
+		widthLabel = new UMRLabel("宽");
 		widthLabel.setBounds(520, 430, 62, 24);
 		widthLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(widthLabel);
@@ -458,12 +458,12 @@ public class ExpressPanel extends PPanel {
 		add(widthField);
 		widthField.setColumns(10);
 		
-		mLabelW = new ELabel("m");
+		mLabelW = new UMRLabel("m");
 		mLabelW.setBounds(609, 430, 32, 24);
 		mLabelW.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(mLabelW);
 		
-		heightLabel = new ELabel("高");
+		heightLabel = new UMRLabel("高");
 		heightLabel.setBounds(625, 430, 62, 24);
 		heightLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(heightLabel);
@@ -474,13 +474,13 @@ public class ExpressPanel extends PPanel {
 		add(heightField);
 		heightField.setColumns(10);
 		
-		mLabelH = new ELabel("m");
+		mLabelH = new UMRLabel("m");
 		mLabelH.setBounds(711, 430, 41, 24);
 		mLabelH.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		add(mLabelH);
 
 		
-		arriveLabel = new ELabel("到达时间");
+		arriveLabel = new UMRLabel("到达时间");
 		arriveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		arriveLabel.setBounds(592, 464, 93, 22);
 		add(arriveLabel);

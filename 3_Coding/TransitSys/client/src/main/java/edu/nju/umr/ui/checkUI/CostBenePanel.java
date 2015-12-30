@@ -11,7 +11,7 @@ import edu.nju.umr.logicService.checkLogicSer.CostBeneLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -53,17 +53,17 @@ public class CostBenePanel extends PPanel {
 		});
 		add(out);
 		
-		ELabel inLabel = new ELabel("总收入");
+		UMRLabel inLabel = new UMRLabel("总收入");
 		inLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		inLabel.setBounds(210, 230, 106, 27);
 		add(inLabel);
 		
-		ELabel outLabel = new ELabel("总支出");
+		UMRLabel outLabel = new UMRLabel("总支出");
 		outLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		outLabel.setBounds(495, 230, 106, 27);
 		add(outLabel);
 		
-		ELabel profitLabel = new ELabel("总利润");
+		UMRLabel profitLabel = new UMRLabel("总利润");
 		profitLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		profitLabel.setBounds(810, 230, 106, 27);
 		add(profitLabel);

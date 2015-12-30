@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 
 public class DateTimePanel extends DatePanel {
@@ -30,7 +30,7 @@ public class DateTimePanel extends DatePanel {
 		hourCombo.setModel(new DefaultComboBoxModel<String>(hours));
 		add(hourCombo);
 		
-		ELabel hourLabel = new ELabel("时");
+		UMRLabel hourLabel = new UMRLabel("时");
 		hourLabel.setMidFont();
 		hourLabel.setBounds(332, 3, 19,Constants.DATE_HEIGHT);
 		add(hourLabel);
@@ -45,7 +45,7 @@ public class DateTimePanel extends DatePanel {
 		minuteCombo.setModel(new DefaultComboBoxModel<String>(minutes));
 		add(minuteCombo);
 		
-		ELabel minuteLabel = new ELabel("分");
+		UMRLabel minuteLabel = new UMRLabel("分");
 		minuteLabel.setMidFont();
 		minuteLabel.setBounds(420, 3, 19,Constants.DATE_HEIGHT);
 		add(minuteLabel);
@@ -60,7 +60,7 @@ public class DateTimePanel extends DatePanel {
 		secondCombo.setModel(new DefaultComboBoxModel<String>(seconds));
 		add(secondCombo);
 		
-		ELabel secondLabel = new ELabel("秒");
+		UMRLabel secondLabel = new UMRLabel("秒");
 		secondLabel.setMidFont();
 		secondLabel.setBounds(508, 3, 19, Constants.DATE_HEIGHT);
 		add(secondLabel);

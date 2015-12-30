@@ -19,7 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -88,7 +88,7 @@ public class SendPanel extends PPanel {
 		titleLabel.setBounds(382, 10, 242, 67);
 		add(titleLabel);
 		
-		ELabel barcodeLabel = new ELabel("托运单条形码号");
+		UMRLabel barcodeLabel = new UMRLabel("托运单条形码号");
 		barcodeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		barcodeLabel.setBounds(342, 236, 140, 24);
 		add(barcodeLabel);
@@ -99,7 +99,7 @@ public class SendPanel extends PPanel {
 		add(barcodeField);
 		barcodeField.setColumns(10);
 		
-		ELabel dateLabel = new ELabel("到达日期");
+		UMRLabel dateLabel = new UMRLabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342, 288, 107, 24);
 		add(dateLabel);
@@ -108,7 +108,7 @@ public class SendPanel extends PPanel {
 		datePanel.setBounds(483, 288, 285, 26);
 		add(datePanel);
 		
-		ELabel courierLabel = new ELabel("派送员");
+		UMRLabel courierLabel = new UMRLabel("派送员");
 		courierLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		courierLabel.setBounds(342, 186, 107, 24);
 		add(courierLabel);
@@ -165,7 +165,7 @@ public class SendPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		ELabel idLabel = new ELabel("单据编号");
+		UMRLabel idLabel = new UMRLabel("单据编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(342, 142, 107, 24);
 		add(idLabel);

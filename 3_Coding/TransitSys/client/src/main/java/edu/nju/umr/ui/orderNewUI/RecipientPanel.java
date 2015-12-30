@@ -20,7 +20,7 @@ import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -85,7 +85,7 @@ public class RecipientPanel extends PPanel {
 		titleLabel.setBounds(382+40, 10, 242, 67);
 		add(titleLabel);
 		
-		ELabel transitIdLabel = new ELabel("装车单编号");
+		UMRLabel transitIdLabel = new UMRLabel("装车单编号");
 		transitIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		transitIdLabel.setBounds(342+40, 236, 107, 24);
 		add(transitIdLabel);
@@ -95,7 +95,7 @@ public class RecipientPanel extends PPanel {
 		transitIdField.setBounds(474+50, 236, 193, 24);
 		add(transitIdField);
 		
-		ELabel dateLabel = new ELabel("到达日期");
+		UMRLabel dateLabel = new UMRLabel("到达日期");
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(342+40, 291, 107, 24);
 		add(dateLabel);
@@ -104,7 +104,7 @@ public class RecipientPanel extends PPanel {
 		datePanel.setBounds(525, 291, 285, 26);
 		add(datePanel);
 		
-		ELabel startLabel = new ELabel("出发地");
+		UMRLabel startLabel = new UMRLabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(342+40, 182, 107, 24);
 		add(startLabel);
@@ -117,7 +117,7 @@ public class RecipientPanel extends PPanel {
 		cityCombo.setModel(new DefaultComboBoxModel<String>(orgList));
 		add(cityCombo);
 		
-		ELabel stateLabel = new ELabel("货物到达状态");
+		UMRLabel stateLabel = new UMRLabel("货物到达状态");
 		stateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		stateLabel.setBounds(329+49, 347, 120, 45);
 		add(stateLabel);
@@ -161,7 +161,7 @@ public class RecipientPanel extends PPanel {
 		});
 		add(cancelButton);
 		
-		ELabel idLabel = new ELabel("单据编号");
+		UMRLabel idLabel = new UMRLabel("单据编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(382, 141, 107, 24);
 		add(idLabel);

@@ -27,7 +27,7 @@ import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -50,7 +50,7 @@ public class HallLoadingPanel extends PPanel {
 	private TextField superviseField;
 	private TextField guardField;
 	private AutoCompPanel expressIdField;
-	private ELabel priceLabel;
+	private UMRLabel priceLabel;
 	private Table table;
 	private DefaultTableModel model;
 	private JFrame frame;
@@ -106,7 +106,7 @@ public class HallLoadingPanel extends PPanel {
 		themeLabel.setBounds(392+75, 10, 243, 67);
 		add(themeLabel);
 		
-		ELabel transitIdLabel = new ELabel("汽运编号");
+		UMRLabel transitIdLabel = new UMRLabel("汽运编号");
 //		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setStdFont();
 		transitIdLabel.setBounds(355, 107, 120, 24);
@@ -119,7 +119,7 @@ public class HallLoadingPanel extends PPanel {
 		add(transitIdField);
 		transitIdField.setColumns(10);
 		
-		ELabel loadDateLabel = new ELabel("装车日期");
+		UMRLabel loadDateLabel = new UMRLabel("装车日期");
 //		loadDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loadDateLabel.setStdFont();
 		loadDateLabel.setBounds(355, 141, 120, 24);
@@ -130,7 +130,7 @@ public class HallLoadingPanel extends PPanel {
 		datePanel.setBounds(410+75,141, 275, 26);
 		add(datePanel);
 		
-		ELabel destinationLabel = new ELabel("到达地");
+		UMRLabel destinationLabel = new UMRLabel("到达地");
 		destinationLabel.setStdFont();
 		destinationLabel.setBounds(242, 175, 85, 24);
 		add(destinationLabel);
@@ -144,7 +144,7 @@ public class HallLoadingPanel extends PPanel {
 			}});
 		add(comboBoxDestination);
 		
-		ELabel superviseLabel = new ELabel("监装员");
+		UMRLabel superviseLabel = new UMRLabel("监装员");
 		superviseLabel.setStdFont();
 		superviseLabel.setBounds(421+75, 177, 85, 24);
 		add(superviseLabel);
@@ -155,7 +155,7 @@ public class HallLoadingPanel extends PPanel {
 		superviseField.setBounds(485+75, 177, 85, 25);
 		add(superviseField);
 		
-		ELabel guardLabel = new ELabel("押运员");
+		UMRLabel guardLabel = new UMRLabel("押运员");
 		guardLabel.setStdFont();
 		guardLabel.setBounds(609+75, 177, 85, 24);
 		add(guardLabel);
@@ -166,7 +166,7 @@ public class HallLoadingPanel extends PPanel {
 		guardField.setBounds(674+75, 178, 85, 25);
 		add(guardField);
 		
-		ELabel vanIdLabel = new ELabel("车辆代号");
+		UMRLabel vanIdLabel = new UMRLabel("车辆代号");
 		vanIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanIdLabel.setStdFont();
 		vanIdLabel.setBounds(220+75, 224, 120, 24);
@@ -177,12 +177,12 @@ public class HallLoadingPanel extends PPanel {
 		comboBoxVan.setBounds(328+75, 223, 165, 25);
 		add(comboBoxVan);
 		
-		priceLabel = new ELabel("运费/元");
+		priceLabel = new UMRLabel("运费/元");
 		priceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		priceLabel.setBounds(656, 224, 70, 24);
 		add(priceLabel);
 		
-		ELabel expressIdLabel = new ELabel("订单条形码号");
+		UMRLabel expressIdLabel = new UMRLabel("订单条形码号");
 		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		expressIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		expressIdLabel.setBounds(220+75, 275, 130, 24);
@@ -234,7 +234,7 @@ public class HallLoadingPanel extends PPanel {
 		});
 		add(deleteButton);
 		
-		ELabel tableHeadLabel = new ELabel("已输入订单");
+		UMRLabel tableHeadLabel = new UMRLabel("已输入订单");
 		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		tableHeadLabel.setBounds(401+75, 309, 130, 24);

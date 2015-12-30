@@ -20,7 +20,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.MainFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
@@ -59,7 +59,7 @@ public class TransitInfoInqPanel extends JPanel {
 		titleLabel.setLocation(1229/2-titleLabel.getWidth()/2, titleLabel.getY()+15);
 		add(titleLabel);
 		
-		JLabel idLabel = new ELabel("订单编号");
+		JLabel idLabel = new UMRLabel("订单编号");
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setForeground(Utils.STD_COLOR);
 		idLabel.setBounds(305+x, y+107, 120, 24);

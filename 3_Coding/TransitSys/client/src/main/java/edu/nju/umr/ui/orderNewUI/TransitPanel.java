@@ -22,7 +22,7 @@ import edu.nju.umr.po.enums.Transit;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -96,7 +96,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		titleLabel.setBounds(392, 10, 243, 67);
 		add(titleLabel);
 		
-		ELabel idLabel = new ELabel("中转单编号");
+		UMRLabel idLabel = new UMRLabel("中转单编号");
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		idLabel.setBounds(355, 87, 120, 24);
@@ -109,7 +109,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		add(idField);
 		idField.setColumns(10);
 		
-		ELabel dateLabel = new ELabel("装车日期");
+		UMRLabel dateLabel = new UMRLabel("装车日期");
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		dateLabel.setBounds(296, 121, 120, 24);
@@ -119,7 +119,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		datePanel.setBounds(452, 121, 285, 26);
 		add(datePanel);
 		
-		ELabel startLabel = new ELabel("出发地");
+		UMRLabel startLabel = new UMRLabel("出发地");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		startLabel.setBounds(140, 157, 85, 24);
 		add(startLabel);
@@ -165,7 +165,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		});
 		add(startCombo);
 		
-		ELabel supervisionLabel = new ELabel("监装员");
+		UMRLabel supervisionLabel = new UMRLabel("监装员");
 		supervisionLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		supervisionLabel.setBounds(582, 157, 85, 24);
 		add(supervisionLabel);
@@ -176,7 +176,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		supervisionField.setBounds(646, 157, 85, 25);
 		add(supervisionField);
 		
-		ELabel planeIdLabel = new ELabel("航班号");
+		UMRLabel planeIdLabel = new UMRLabel("航班号");
 		planeIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		planeIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		planeIdLabel.setBounds(220, 204, 120, 24);
@@ -188,7 +188,7 @@ public class TransitPanel extends PPanel implements PriceCount {
 		planeIdField.setBounds(328, 203, 165, 25);
 		add(planeIdField);
 		
-		ELabel costLabel = new ELabel("运费/元");
+		UMRLabel costLabel = new UMRLabel("运费/元");
 		costLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		costLabel.setBounds(661, 204, 100, 24);
 		add(costLabel);
@@ -228,17 +228,17 @@ public class TransitPanel extends PPanel implements PriceCount {
 			}
 		});
 		
-		ELabel kindLabel = new ELabel("运输方式");
+		UMRLabel kindLabel = new UMRLabel("运输方式");
 		kindLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		kindLabel.setBounds(741, 157, 80, 24);
 		add(kindLabel);
 		
-		ELabel arriveLabel = new ELabel("到达地");
+		UMRLabel arriveLabel = new UMRLabel("到达地");
 		arriveLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		arriveLabel.setBounds(366, 157, 85, 24);
 		add(arriveLabel);
 		
-		ELabel containerLabel = new ELabel("货柜号");
+		UMRLabel containerLabel = new UMRLabel("货柜号");
 		containerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		containerLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		containerLabel.setBounds(485, 204, 120, 24);

@@ -21,7 +21,7 @@ import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -102,12 +102,12 @@ public class AccountManPanel extends PPanel{
 		add(nameField);
 		nameField.setColumns(10);
 		
-		ELabel nameLabel = new ELabel("账户名称");
+		UMRLabel nameLabel = new UMRLabel("账户名称");
 		nameLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		nameLabel.setBounds(283, sec_y+y+465-5, 67, 30);
 		add(nameLabel);
 		
-		ELabel balanceLabel = new ELabel("账户余额");
+		UMRLabel balanceLabel = new UMRLabel("账户余额");
 		balanceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		balanceLabel.setBounds(566, sec_y+ y+465-5,67, 30);
 		add(balanceLabel);

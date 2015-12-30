@@ -19,7 +19,7 @@ import edu.nju.umr.ui.DateTimePanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TitleLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
@@ -55,7 +55,7 @@ public class StockCheckPanel extends PPanel{
 //		checkLabel.setBounds(503, 32, 97, 24);
 		add(checkLabel);
 			
-		ELabel startLabel = new ELabel("开始时间");
+		UMRLabel startLabel = new UMRLabel("开始时间");
 		startLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		startLabel.setBounds(210, 101, 71, 24);
 		add(startLabel);
@@ -64,7 +64,7 @@ public class StockCheckPanel extends PPanel{
 		dateTimeS.setBounds(281, 101, 540, 25);
 		add(dateTimeS);
 		
-		ELabel endLabel = new ELabel("结束时间");
+		UMRLabel endLabel = new UMRLabel("结束时间");
 		endLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		endLabel.setBounds(210, 146, 71, 19);
 		add(endLabel);

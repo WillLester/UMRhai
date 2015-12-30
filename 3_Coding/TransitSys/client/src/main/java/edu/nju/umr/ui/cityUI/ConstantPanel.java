@@ -13,7 +13,7 @@ import edu.nju.umr.logicService.cityLogicSer.ConstantLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
@@ -60,19 +60,19 @@ public class ConstantPanel extends PPanel {
 		TitleLabel titleLabel = new TitleLabel("常量制定");
 		add(titleLabel);
 		
-		ELabel planeLabel = new ELabel("飞机满载量(吨)");
+		UMRLabel planeLabel = new UMRLabel("飞机满载量(吨)");
 		planeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		planeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		planeLabel.setBounds(label_x, label_y, 90, 15);
 		add(planeLabel);
 		
-		ELabel trainLabel = new ELabel("火车满载量(吨)");
+		UMRLabel trainLabel = new UMRLabel("火车满载量(吨)");
 		trainLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		trainLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		trainLabel.setBounds(label_x, label_y+dis_y, 90, 15);
 		add(trainLabel);
 		
-		ELabel vanLabel = new ELabel("汽车满载量(吨)");
+		UMRLabel vanLabel = new UMRLabel("汽车满载量(吨)");
 		vanLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		vanLabel.setBounds(label_x, label_y+2*dis_y, 90, 15);
@@ -93,19 +93,19 @@ public class ConstantPanel extends PPanel {
 		vanField.setBounds(field_first_x, label_y+dis_y*2, 60, 21);
 		add(vanField);
 		
-		ELabel planeCostLabel = new ELabel("飞机运费(元每公里每吨)");
+		UMRLabel planeCostLabel = new UMRLabel("飞机运费(元每公里每吨)");
 		planeCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		planeCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		planeCostLabel.setBounds(label_sec_x, label_y, 143, 15);
 		add(planeCostLabel);
 		
-		ELabel trainCostLabel = new ELabel("火车运费(元每公里每吨)");
+		UMRLabel trainCostLabel = new UMRLabel("火车运费(元每公里每吨)");
 		trainCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		trainCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		trainCostLabel.setBounds(label_sec_x, label_y+dis_y, 143, 15);
 		add(trainCostLabel);
 		
-		ELabel vanCostLabel = new ELabel("汽车运费(元每公里每吨)");
+		UMRLabel vanCostLabel = new UMRLabel("汽车运费(元每公里每吨)");
 		vanCostLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		vanCostLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		vanCostLabel.setBounds(label_sec_x, label_y+dis_y*2, 143, 15);
@@ -126,13 +126,13 @@ public class ConstantPanel extends PPanel {
 		vanCostField.setBounds(field_sec_x, label_y+dis_y*2, 60, 21);
 		add(vanCostField);
 		
-		ELabel priceLabel = new ELabel("快递价格比");
+		UMRLabel priceLabel = new UMRLabel("快递价格比");
 		priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		priceLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		priceLabel.setBounds(label_x-14, label_y+dis_y*2+80, 90, 15);
 		add(priceLabel);
 		
-		ELabel economicLabel = new ELabel("经济快递/元");
+		UMRLabel economicLabel = new UMRLabel("经济快递/元");
 		economicLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		economicLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		economicLabel.setBounds(label_x, priceLabel.getY()+dis_y-10, 67, 15);
@@ -149,7 +149,7 @@ public class ConstantPanel extends PPanel {
 //		colonLabel1.setBounds(451, 266, 13, 15);
 //		add(colonLabel1);
 		
-		ELabel normalLabel = new ELabel("标准快递/元");
+		UMRLabel normalLabel = new UMRLabel("标准快递/元");
 		normalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		normalLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		normalLabel.setBounds(economicField.getX()+43+20, priceLabel.getY()+dis_y-10, 67, 15);
@@ -166,7 +166,7 @@ public class ConstantPanel extends PPanel {
 //		colonLabel2.setBounds(563, 266, 13, 15);
 //		add(colonLabel2);
 		
-		ELabel fastLabel = new ELabel("次晨特快/元");
+		UMRLabel fastLabel = new UMRLabel("次晨特快/元");
 		fastLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		fastLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		fastLabel.setBounds(normalField.getX()+43+20, normalField.getY(), 67, 15);

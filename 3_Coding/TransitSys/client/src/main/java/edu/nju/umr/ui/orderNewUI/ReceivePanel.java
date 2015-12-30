@@ -12,7 +12,7 @@ import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.DatePanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.transitInfoUI.ExpressInfoInqPanel;
 import edu.nju.umr.ui.utility.DoHint;
@@ -27,7 +27,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 	private static final long serialVersionUID = -3052576244031029859L;
 	private TextField receiveField;
 	private DatePanel receiveDate;
-	private ELabel timelabel;
+	private UMRLabel timelabel;
 	private ReceiveOrderLSer logicSer;
 	private String org;
 	private String name;
@@ -76,7 +76,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		add(receiveField);
 		receiveField.setColumns(10);
 		
-		ELabel receivelabel = new ELabel("收件人");
+		UMRLabel receivelabel = new UMRLabel("收件人");
 		receivelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		receivelabel.setBounds(294, 540, 80, 24);
 		add(receivelabel);
@@ -85,7 +85,7 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		receiveDate.setBounds(603, 541, 400, 24);
 		add(receiveDate);
 		
-		timelabel = new ELabel("收件时间");
+		timelabel = new UMRLabel("收件时间");
 		timelabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		timelabel.setBounds(503, 540, 99, 24);
 		add(timelabel);

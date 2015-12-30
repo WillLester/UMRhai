@@ -19,7 +19,7 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
@@ -60,7 +60,7 @@ public class StockDividePanel extends JPanel{
 //		logicSer = new StockDividePanelStub();
 		this.orgId = orgId;
 		
-		ELabel divideLabel = new ELabel("库存分区");
+		UMRLabel divideLabel = new UMRLabel("库存分区");
 		divideLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		divideLabel.setBounds(508, 36, 88, 24);
 		add(divideLabel);
@@ -88,7 +88,7 @@ public class StockDividePanel extends JPanel{
 		});
 		add(searchButton);
 		
-		ELabel idLabel = new ELabel("编号");
+		UMRLabel idLabel = new UMRLabel("编号");
 		idLabel.setFont(Utils.COMBO_FONT);
 		idLabel.setBounds(206, 500, 54, 24);
 		add(idLabel);
@@ -99,7 +99,7 @@ public class StockDividePanel extends JPanel{
 		add(idField);
 		idField.setColumns(10);
 		
-		ELabel rowLabel = new ELabel("排数");
+		UMRLabel rowLabel = new UMRLabel("排数");
 		rowLabel.setFont(Utils.COMBO_FONT);
 		rowLabel.setBounds(370, 500, 54, 24);
 		add(rowLabel);
@@ -109,7 +109,7 @@ public class StockDividePanel extends JPanel{
 		add(rowField);
 		rowField.setColumns(10);
 		
-		ELabel placeLabel = new ELabel("每排位数");
+		UMRLabel placeLabel = new UMRLabel("每排位数");
 		placeLabel.setFont(Utils.COMBO_FONT);
 		placeLabel.setBounds(541, 500, 71, 24);
 		add(placeLabel);
@@ -119,7 +119,7 @@ public class StockDividePanel extends JPanel{
 		add(placeField);
 		placeField.setColumns(10);
 		
-		ELabel partLabel = new ELabel("所在区");
+		UMRLabel partLabel = new UMRLabel("所在区");
 		partLabel.setFont(Utils.COMBO_FONT);
 		partLabel.setBounds(742, 500, 54, 24);
 		add(partLabel);
