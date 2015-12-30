@@ -35,10 +35,10 @@ public class SuccessPanel extends JPanel implements Runnable{
 		g.drawImage(success.getImage(), 0, 0, getWidth(), getHeight(), null);
 	}
 	public void run(){
-		int changeX=x/100;
-		for(int i=0;i<=100;i++){
+		int changeX=x/100+1;
+		while(this.getX()+x>frame.getWidth()){
 			try{
-				SuccessThread.sleep(2);
+				SuccessThread.sleep(5);
 			} catch (InterruptedException e){
 				e.printStackTrace();
 			}
@@ -53,9 +53,9 @@ public class SuccessPanel extends JPanel implements Runnable{
 		} catch (InterruptedException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<=100;i++){
+		while(this.getX()<frame.getWidth()){
 			try {
-				SuccessThread.sleep(2);
+				SuccessThread.sleep(5);
 			} catch (InterruptedException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
