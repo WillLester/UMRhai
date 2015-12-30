@@ -66,14 +66,14 @@
     <ROW Component="WindowsAccessBridge64.dll" ComponentId="{284388D7-A389-48CB-A883-DB6638FA55F2}" Directory_="bin_Dir" Attributes="256" KeyPath="WindowsAccessBridge64.dll"/>
     <ROW Component="accessbridge64.jar" ComponentId="{EA884EC1-E286-4B5B-B4EA-DB2E770B2BB2}" Directory_="ext_Dir" Attributes="0" KeyPath="accessbridge64.jar" Type="0"/>
     <ROW Component="accessibility.properties" ComponentId="{B10F583B-7B1A-4B17-8CE8-B13C562B9A48}" Directory_="lib_Dir" Attributes="0" KeyPath="accessibility.properties" Type="0"/>
-    <ROW Component="account.png" ComponentId="{C06AAEDF-E4ED-4B80-AFDF-EBA845B48792}" Directory_="finance_Dir" Attributes="0" KeyPath="account.png" Type="0"/>
-    <ROW Component="approve.png" ComponentId="{82D8551E-D225-4118-ACEA-CA5908B3A211}" Directory_="manager_Dir" Attributes="0" KeyPath="approve.png" Type="0"/>
-    <ROW Component="arrive.png" ComponentId="{220FCE96-B594-478A-88FB-5289667E212C}" Directory_="transitcenter_Dir" Attributes="0" KeyPath="arrive.png" Type="0"/>
-    <ROW Component="arrow.png" ComponentId="{886697F1-222C-4E3E-B2CB-56C28EA86525}" Directory_="button_Dir" Attributes="0" KeyPath="arrow.png" Type="0"/>
+    <ROW Component="account.png" ComponentId="{CBA276A2-A018-44FA-823E-5AFF68464F46}" Directory_="finance_Dir" Attributes="0" KeyPath="account.png" Type="0"/>
+    <ROW Component="approve.png" ComponentId="{EA989DEA-6D2E-42D2-B29A-84E0A70740FA}" Directory_="manager_Dir" Attributes="0" KeyPath="approve.png" Type="0"/>
+    <ROW Component="arrive.png" ComponentId="{03EED88D-82D2-4439-9EC7-A382C817009C}" Directory_="transitcenter_Dir" Attributes="0" KeyPath="arrive.png" Type="0"/>
+    <ROW Component="arrow.png" ComponentId="{5D8F8602-6199-44F5-B152-03702A301DC4}" Directory_="button_Dir" Attributes="0" KeyPath="arrow.png" Type="0"/>
     <ROW Component="awt.dll" ComponentId="{B4C3544E-A59A-40B3-B8B1-CE1C74536BCF}" Directory_="bin_Dir" Attributes="256" KeyPath="awt.dll"/>
     <ROW Component="bci.dll" ComponentId="{78F7ACBD-6D8F-49CC-899A-B762424C0FA2}" Directory_="bin_Dir" Attributes="256" KeyPath="bci.dll"/>
     <ROW Component="blacklist" ComponentId="{F6B3FA8C-0788-4A42-AC25-8F4B7DD84C27}" Directory_="security_Dir" Attributes="0" KeyPath="blacklist" Type="0"/>
-    <ROW Component="busiCircum.png" ComponentId="{FC552AA4-28A9-4534-9E18-9123FA201356}" Directory_="financemanager_Dir" Attributes="0" KeyPath="busiCircum.png" Type="0"/>
+    <ROW Component="busiCircum.png" ComponentId="{5974BC6F-10D5-4A52-8AC4-F729562B6757}" Directory_="financemanager_Dir" Attributes="0" KeyPath="busiCircum.png" Type="0"/>
     <ROW Component="classes.jsa" ComponentId="{D3FFADBB-E4F7-4FEB-8AEF-DC5C68DD27CB}" Directory_="server_Dir" Attributes="0" KeyPath="classes.jsa" Type="0"/>
     <ROW Component="client.jar" ComponentId="{307B282C-4201-40C7-932F-6B12F3999A82}" Directory_="APPDIR" Attributes="0" KeyPath="client.jar" Type="0"/>
     <ROW Component="cursors.properties" ComponentId="{14491095-EDC4-49C5-8DDD-B5FFC43BB004}" Directory_="cursors_Dir" Attributes="0" KeyPath="cursors.properties" Type="0"/>
@@ -82,14 +82,14 @@
     <ROW Component="default.jfc" ComponentId="{149075F9-5779-4F16-AE9F-449477FFEBFE}" Directory_="jfr_Dir" Attributes="0" KeyPath="default.jfc" Type="0"/>
     <ROW Component="deploy.dll" ComponentId="{6736178D-38EE-42F7-A541-3F4CD90379C0}" Directory_="bin_Dir" Attributes="256" KeyPath="deploy.dll"/>
     <ROW Component="deployJava1.dll" ComponentId="{E9B09BAB-4EFC-4017-92C0-B0825025DFCD}" Directory_="dtplugin_Dir" Attributes="256" KeyPath="deployJava1.dll"/>
-    <ROW Component="driverMan.png" ComponentId="{8CE307F0-70C7-4443-9651-392E1E3AC828}" Directory_="businesshall_Dir" Attributes="0" KeyPath="driverMan.png" Type="0"/>
+    <ROW Component="driverMan.png" ComponentId="{408F5AB5-52E2-451E-8BA7-C8AC4D28DCFF}" Directory_="businesshall_Dir" Attributes="0" KeyPath="driverMan.png" Type="0"/>
     <ROW Component="dt_shmem.dll" ComponentId="{1E3F2978-6652-4D7A-B39B-F2DB3C822756}" Directory_="bin_Dir" Attributes="256" KeyPath="dt_shmem.dll"/>
     <ROW Component="dt_socket.dll" ComponentId="{A545AD52-BED6-4EE1-A692-D53B5F00AFA6}" Directory_="bin_Dir" Attributes="256" KeyPath="dt_socket.dll"/>
     <ROW Component="eula.dll" ComponentId="{C8649A42-3778-43F0-9B8E-29EAAB8B562B}" Directory_="bin_Dir" Attributes="256" KeyPath="eula.dll"/>
-    <ROW Component="expressNew.png" ComponentId="{0BCD5608-D0D8-472B-928F-2E4A97343996}" Directory_="courier_Dir" Attributes="0" KeyPath="expressNew.png" Type="0"/>
+    <ROW Component="expressNew.png" ComponentId="{D7C24E26-DDC5-46A4-8C25-DC73D14E5F39}" Directory_="courier_Dir" Attributes="0" KeyPath="expressNew.png" Type="0"/>
     <ROW Component="ffjcext.zip" ComponentId="{94ED494F-5CCA-4049-B22C-518A1BA55090}" Directory_="deploy_Dir" Attributes="0" KeyPath="ffjcext.zip" Type="0"/>
     <ROW Component="fontmanager.dll" ComponentId="{A1BD4E5C-0392-416D-8305-B24575EB9E27}" Directory_="bin_Dir" Attributes="256" KeyPath="fontmanager.dll"/>
-    <ROW Component="function.png" ComponentId="{705F3A79-0326-4C1F-99D1-785D5CD2C640}" Directory_="frame_Dir" Attributes="0" KeyPath="function.png" Type="0"/>
+    <ROW Component="function.png" ComponentId="{F6842A8F-C7BE-44A1-933C-743F71BCE58B}" Directory_="frame_Dir" Attributes="0" KeyPath="function.png" Type="0"/>
     <ROW Component="fxplugins.dll" ComponentId="{0CF4A16B-2CB3-4640-8971-B59FB7DEA266}" Directory_="bin_Dir" Attributes="256" KeyPath="fxplugins.dll"/>
     <ROW Component="glass.dll" ComponentId="{34CF1AD9-F932-4BE3-B04D-644CAB85FF3B}" Directory_="bin_Dir" Attributes="256" KeyPath="glass.dll"/>
     <ROW Component="gliblite.dll" ComponentId="{90B18B46-8CAE-4B49-A300-D74B8B572720}" Directory_="bin_Dir" Attributes="256" KeyPath="gliblite.dll"/>
@@ -159,7 +159,7 @@
     <ROW Component="splashscreen.dll" ComponentId="{8D76CF5F-939E-4AAF-BD20-3322758D7E14}" Directory_="bin_Dir" Attributes="256" KeyPath="splashscreen.dll"/>
     <ROW Component="ssv.dll" ComponentId="{202B8F8A-BFB5-4754-BD2D-FD163B3614B6}" Directory_="bin_Dir" Attributes="256" KeyPath="ssv.dll"/>
     <ROW Component="ssvagent.exe" ComponentId="{CFA65B7D-1BB4-4D37-9E2C-18E518AF3D53}" Directory_="bin_Dir" Attributes="256" KeyPath="ssvagent.exe"/>
-    <ROW Component="stockCheck.png" ComponentId="{C0123672-23CA-4FD9-B955-5D1AD9C30FC1}" Directory_="stockmanager_Dir" Attributes="0" KeyPath="stockCheck.png" Type="0"/>
+    <ROW Component="stockCheck.png" ComponentId="{0C00789D-795A-4C85-A938-9382EE4806C5}" Directory_="stockmanager_Dir" Attributes="0" KeyPath="stockCheck.png" Type="0"/>
     <ROW Component="sunec.dll" ComponentId="{38D3662A-6790-4693-89A1-954AEED72D0B}" Directory_="bin_Dir" Attributes="256" KeyPath="sunec.dll"/>
     <ROW Component="sunmscapi.dll" ComponentId="{1DDAB492-7899-436B-8E49-947247646E2F}" Directory_="bin_Dir" Attributes="256" KeyPath="sunmscapi.dll"/>
     <ROW Component="t2k.dll" ComponentId="{91BCED40-A388-4A92-BF59-FB6A8CA44E63}" Directory_="bin_Dir" Attributes="256" KeyPath="t2k.dll"/>
@@ -167,7 +167,7 @@
     <ROW Component="transitsysclient.exe" ComponentId="{0F9A227B-B075-4943-A7AE-F0B5E5E3D936}" Directory_="APPDIR" Attributes="0" KeyPath="transitsysclient.exe"/>
     <ROW Component="unpack.dll" ComponentId="{CB24892C-8C3C-4E9C-950C-98DBAEB4FAE5}" Directory_="bin_Dir" Attributes="256" KeyPath="unpack.dll"/>
     <ROW Component="unpack200.exe" ComponentId="{CD763170-3D58-4302-B9A7-94CC28A079ED}" Directory_="bin_Dir" Attributes="256" KeyPath="unpack200.exe"/>
-    <ROW Component="userMan.png" ComponentId="{A11172CB-FA52-46EB-A23B-6EDC6C36AF0B}" Directory_="administer_Dir" Attributes="0" KeyPath="userMan.png" Type="0"/>
+    <ROW Component="userMan.png" ComponentId="{F4EBDEF0-D3D3-4947-9970-88503B71A3BF}" Directory_="administer_Dir" Attributes="0" KeyPath="userMan.png" Type="0"/>
     <ROW Component="verify.dll" ComponentId="{DE347924-BC12-41CD-A7DB-B914A70AE3F8}" Directory_="bin_Dir" Attributes="256" KeyPath="verify.dll"/>
     <ROW Component="w2k_lsa_auth.dll" ComponentId="{09677A42-DB82-49E4-8F01-9BFC05A2F542}" Directory_="bin_Dir" Attributes="256" KeyPath="w2k_lsa_auth.dll"/>
     <ROW Component="wsdetect.dll" ComponentId="{DB8D822E-2D58-48A8-AAF7-FA4C688C0CBE}" Directory_="bin_Dir" Attributes="256" KeyPath="wsdetect.dll"/>
@@ -199,7 +199,7 @@
     <ROW File="THIRDPARTYLICENSEREADME.txt" Component_="COPYRIGHT" FileName="THIRDP~2.TXT|THIRDPARTYLICENSEREADME.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\THIRDPARTYLICENSEREADME.txt" SelfReg="false" NextFile="Welcome.html"/>
     <ROW File="THIRDPARTYLICENSEREADMEJAVAFX.txt" Component_="COPYRIGHT" FileName="THIRDP~1.TXT|THIRDPARTYLICENSEREADME-JAVAFX.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\THIRDPARTYLICENSEREADME-JAVAFX.txt" SelfReg="false" NextFile="THIRDPARTYLICENSEREADME.txt"/>
     <ROW File="US_export_policy.jar" Component_="blacklist" FileName="US_EXP~1.JAR|US_export_policy.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\security\US_export_policy.jar" SelfReg="false" NextFile="sound.properties"/>
-    <ROW File="Welcome.html" Component_="COPYRIGHT" FileName="WELCOM~1.HTM|Welcome.html" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\Welcome.html" SelfReg="false"/>
+    <ROW File="Welcome.html" Component_="COPYRIGHT" FileName="WELCOM~1.HTM|Welcome.html" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\Welcome.html" SelfReg="false" NextFile="userMan.png"/>
     <ROW File="WindowsAccessBridge64.dll" Component_="WindowsAccessBridge64.dll" FileName="WINDOW~1.DLL|WindowsAccessBridge-64.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\WindowsAccessBridge-64.dll" SelfReg="false" NextFile="wsdetect.dll"/>
     <ROW File="Xusage.txt" Component_="classes.jsa" FileName="Xusage.txt" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\server\Xusage.txt" SelfReg="false" NextFile="servertool.exe"/>
     <ROW File="accessbridge64.jar" Component_="accessbridge64.jar" FileName="ACCESS~1.JAR|access-bridge-64.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\access-bridge-64.jar" SelfReg="false" NextFile="cldrdata.jar"/>
@@ -261,43 +261,46 @@
     <ROW File="buttonExitSt.png" Component_="arrow.png" FileName="BUTTO~33.PNG|buttonExitSt.png" Attributes="0" SourcePath="client\ui\button\buttonExitSt.png" SelfReg="false" NextFile="buttonFresh.png"/>
     <ROW File="buttonFresh.png" Component_="arrow.png" FileName="BUTTO~34.PNG|buttonFresh.png" Attributes="0" SourcePath="client\ui\button\buttonFresh.png" SelfReg="false" NextFile="buttonFreshP.png"/>
     <ROW File="buttonFreshP.png" Component_="arrow.png" FileName="BUTTO~35.PNG|buttonFreshP.png" Attributes="0" SourcePath="client\ui\button\buttonFreshP.png" SelfReg="false" NextFile="buttonFreshSt.png"/>
-    <ROW File="buttonFreshSt.png" Component_="arrow.png" FileName="BUTTO~36.PNG|buttonFreshSt.png" Attributes="0" SourcePath="client\ui\button\buttonFreshSt.png" SelfReg="false" NextFile="buttonInq.png"/>
-    <ROW File="buttonInq.png" Component_="arrow.png" FileName="BUTTO~37.PNG|buttonInq.png" Attributes="0" SourcePath="client\ui\button\buttonInq.png" SelfReg="false" NextFile="buttonInqP.png"/>
-    <ROW File="buttonInqP.png" Component_="arrow.png" FileName="BUTTO~38.PNG|buttonInqP.png" Attributes="0" SourcePath="client\ui\button\buttonInqP.png" SelfReg="false" NextFile="buttonInqSt.png"/>
-    <ROW File="buttonInqSt.png" Component_="arrow.png" FileName="BUTTO~39.PNG|buttonInqSt.png" Attributes="0" SourcePath="client\ui\button\buttonInqSt.png" SelfReg="false" NextFile="buttonLogin.png"/>
-    <ROW File="buttonLogin.png" Component_="arrow.png" FileName="BUTTO~40.PNG|buttonLogin.png" Attributes="0" SourcePath="client\ui\button\buttonLogin.png" SelfReg="false" NextFile="buttonLoginP.png"/>
-    <ROW File="buttonLoginP.png" Component_="arrow.png" FileName="BUTTO~41.PNG|buttonLoginP.png" Attributes="0" SourcePath="client\ui\button\buttonLoginP.png" SelfReg="false" NextFile="buttonLoginSt.png"/>
-    <ROW File="buttonLoginSt.png" Component_="arrow.png" FileName="BUTTO~42.PNG|buttonLoginSt.png" Attributes="0" SourcePath="client\ui\button\buttonLoginSt.png" SelfReg="false" NextFile="buttonLogout.png"/>
-    <ROW File="buttonLogout.png" Component_="arrow.png" FileName="BUTTO~43.PNG|buttonLogout.png" Attributes="0" SourcePath="client\ui\button\buttonLogout.png" SelfReg="false" NextFile="buttonLogoutP.png"/>
-    <ROW File="buttonLogoutP.png" Component_="arrow.png" FileName="BUTTO~44.PNG|buttonLogoutP.png" Attributes="0" SourcePath="client\ui\button\buttonLogoutP.png" SelfReg="false" NextFile="buttonLogoutSt.png"/>
-    <ROW File="buttonLogoutSt.png" Component_="arrow.png" FileName="BUTTO~45.PNG|buttonLogoutSt.png" Attributes="0" SourcePath="client\ui\button\buttonLogoutSt.png" SelfReg="false" NextFile="buttonOutput.png"/>
-    <ROW File="buttonOutput.png" Component_="arrow.png" FileName="BUTTO~46.PNG|buttonOutput.png" Attributes="0" SourcePath="client\ui\button\buttonOutput.png" SelfReg="false" NextFile="buttonOutputP.png"/>
-    <ROW File="buttonOutputP.png" Component_="arrow.png" FileName="BUTTO~47.PNG|buttonOutputP.png" Attributes="0" SourcePath="client\ui\button\buttonOutputP.png" SelfReg="false" NextFile="buttonOutputSt.png"/>
-    <ROW File="buttonOutputSt.png" Component_="arrow.png" FileName="BUTTO~48.PNG|buttonOutputSt.png" Attributes="0" SourcePath="client\ui\button\buttonOutputSt.png" SelfReg="false" NextFile="buttonPassed.png"/>
-    <ROW File="buttonPassed.png" Component_="arrow.png" FileName="BUTTO~49.PNG|buttonPassed.png" Attributes="0" SourcePath="client\ui\button\buttonPassed.png" SelfReg="false" NextFile="buttonPassedP.png"/>
-    <ROW File="buttonPassedP.png" Component_="arrow.png" FileName="BUTTO~50.PNG|buttonPassedP.png" Attributes="0" SourcePath="client\ui\button\buttonPassedP.png" SelfReg="false" NextFile="buttonPassedSt.png"/>
-    <ROW File="buttonPassedSt.png" Component_="arrow.png" FileName="BUTTO~51.PNG|buttonPassedSt.png" Attributes="0" SourcePath="client\ui\button\buttonPassedSt.png" SelfReg="false" NextFile="buttonRev.png"/>
-    <ROW File="buttonRev.png" Component_="arrow.png" FileName="BUTTO~52.PNG|buttonRev.png" Attributes="0" SourcePath="client\ui\button\buttonRev.png" SelfReg="false" NextFile="buttonRevP.png"/>
-    <ROW File="buttonRevP.png" Component_="arrow.png" FileName="BUTTO~53.PNG|buttonRevP.png" Attributes="0" SourcePath="client\ui\button\buttonRevP.png" SelfReg="false" NextFile="buttonRevSt.png"/>
-    <ROW File="buttonRevSt.png" Component_="arrow.png" FileName="BUTTO~54.PNG|buttonRevSt.png" Attributes="0" SourcePath="client\ui\button\buttonRevSt.png" SelfReg="false" NextFile="buttonSearch.png"/>
-    <ROW File="buttonSearch.png" Component_="arrow.png" FileName="BUTTO~55.PNG|buttonSearch.png" Attributes="0" SourcePath="client\ui\button\buttonSearch.png" SelfReg="false" NextFile="buttonSearchP.png"/>
-    <ROW File="buttonSearchP.png" Component_="arrow.png" FileName="BUTTO~56.PNG|buttonSearchP.png" Attributes="0" SourcePath="client\ui\button\buttonSearchP.png" SelfReg="false" NextFile="buttonSearchSt.png"/>
-    <ROW File="buttonSearchSt.png" Component_="arrow.png" FileName="BUTTO~57.PNG|buttonSearchSt.png" Attributes="0" SourcePath="client\ui\button\buttonSearchSt.png" SelfReg="false" NextFile="buttonTrInfo.png"/>
-    <ROW File="buttonTrInfo.png" Component_="arrow.png" FileName="BUTTO~58.PNG|buttonTrInfo.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfo.png" SelfReg="false" NextFile="buttonTrInfoP.png"/>
-    <ROW File="buttonTrInfoP.png" Component_="arrow.png" FileName="BUTTO~59.PNG|buttonTrInfoP.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfoP.png" SelfReg="false" NextFile="buttonTrInfoSt.png"/>
-    <ROW File="buttonTrInfoSt.png" Component_="arrow.png" FileName="BUTTO~60.PNG|buttonTrInfoSt.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfoSt.png" SelfReg="false" NextFile="buttonUnpa.png"/>
-    <ROW File="buttonUnpa.png" Component_="arrow.png" FileName="BUTTO~61.PNG|buttonUnpa.png" Attributes="0" SourcePath="client\ui\button\buttonUnpa.png" SelfReg="false" NextFile="buttonUnpaP.png"/>
-    <ROW File="buttonUnpaP.png" Component_="arrow.png" FileName="BUTTO~62.PNG|buttonUnpaP.png" Attributes="0" SourcePath="client\ui\button\buttonUnpaP.png" SelfReg="false" NextFile="buttonUnpassed.png"/>
-    <ROW File="buttonUnpaSt.png" Component_="arrow.png" FileName="BUTTO~66.PNG|buttonUnpaSt.png" Attributes="0" SourcePath="client\ui\button\buttonUnpaSt.png" SelfReg="false" NextFile="buttonWage.png"/>
-    <ROW File="buttonUnpassed.png" Component_="arrow.png" FileName="BUTTO~63.PNG|buttonUnpassed.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassed.png" SelfReg="false" NextFile="buttonUnpassedP.png"/>
-    <ROW File="buttonUnpassedP.png" Component_="arrow.png" FileName="BUTTO~64.PNG|buttonUnpassedP.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassedP.png" SelfReg="false" NextFile="buttonUnpassedSt.png"/>
-    <ROW File="buttonUnpassedSt.png" Component_="arrow.png" FileName="BUTTO~65.PNG|buttonUnpassedSt.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassedSt.png" SelfReg="false" NextFile="buttonUnpaSt.png"/>
-    <ROW File="buttonWage.png" Component_="arrow.png" FileName="BUTTO~67.PNG|buttonWage.png" Attributes="0" SourcePath="client\ui\button\buttonWage.png" SelfReg="false" NextFile="buttonWageP.png"/>
-    <ROW File="buttonWageP.png" Component_="arrow.png" FileName="BUTTO~68.PNG|buttonWageP.png" Attributes="0" SourcePath="client\ui\button\buttonWageP.png" SelfReg="false" NextFile="buttonWageSt.png"/>
-    <ROW File="buttonWageSt.png" Component_="arrow.png" FileName="BUTTO~69.PNG|buttonWageSt.png" Attributes="0" SourcePath="client\ui\button\buttonWageSt.png" SelfReg="false" NextFile="buttonWorkMan.png"/>
-    <ROW File="buttonWorkMan.png" Component_="arrow.png" FileName="BUTTO~70.PNG|buttonWorkMan.png" Attributes="0" SourcePath="client\ui\button\buttonWorkMan.png" SelfReg="false" NextFile="buttonWorkManP.png"/>
-    <ROW File="buttonWorkManP.png" Component_="arrow.png" FileName="BUTTO~71.PNG|buttonWorkManP.png" Attributes="0" SourcePath="client\ui\button\buttonWorkManP.png" SelfReg="false" NextFile="buttonWorkManSt.png"/>
-    <ROW File="buttonWorkManSt.png" Component_="arrow.png" FileName="BUTTO~72.PNG|buttonWorkManSt.png" Attributes="0" SourcePath="client\ui\button\buttonWorkManSt.png" SelfReg="false" NextFile="close.png"/>
+    <ROW File="buttonFreshSt.png" Component_="arrow.png" FileName="BUTTO~36.PNG|buttonFreshSt.png" Attributes="0" SourcePath="client\ui\button\buttonFreshSt.png" SelfReg="false" NextFile="buttonImage.png"/>
+    <ROW File="buttonImage.png" Component_="arrow.png" FileName="BUTTO~37.PNG|buttonImage.png" Attributes="0" SourcePath="client\ui\button\buttonImage.png" SelfReg="false" NextFile="buttonImageP.png"/>
+    <ROW File="buttonImageP.png" Component_="arrow.png" FileName="BUTTO~38.PNG|buttonImageP.png" Attributes="0" SourcePath="client\ui\button\buttonImageP.png" SelfReg="false" NextFile="buttonImageSt.png"/>
+    <ROW File="buttonImageSt.png" Component_="arrow.png" FileName="BUTTO~39.PNG|buttonImageSt.png" Attributes="0" SourcePath="client\ui\button\buttonImageSt.png" SelfReg="false" NextFile="buttonInq.png"/>
+    <ROW File="buttonInq.png" Component_="arrow.png" FileName="BUTTO~40.PNG|buttonInq.png" Attributes="0" SourcePath="client\ui\button\buttonInq.png" SelfReg="false" NextFile="buttonInqP.png"/>
+    <ROW File="buttonInqP.png" Component_="arrow.png" FileName="BUTTO~41.PNG|buttonInqP.png" Attributes="0" SourcePath="client\ui\button\buttonInqP.png" SelfReg="false" NextFile="buttonInqSt.png"/>
+    <ROW File="buttonInqSt.png" Component_="arrow.png" FileName="BUTTO~42.PNG|buttonInqSt.png" Attributes="0" SourcePath="client\ui\button\buttonInqSt.png" SelfReg="false" NextFile="buttonLogin.png"/>
+    <ROW File="buttonLogin.png" Component_="arrow.png" FileName="BUTTO~43.PNG|buttonLogin.png" Attributes="0" SourcePath="client\ui\button\buttonLogin.png" SelfReg="false" NextFile="buttonLoginP.png"/>
+    <ROW File="buttonLoginP.png" Component_="arrow.png" FileName="BUTTO~44.PNG|buttonLoginP.png" Attributes="0" SourcePath="client\ui\button\buttonLoginP.png" SelfReg="false" NextFile="buttonLoginSt.png"/>
+    <ROW File="buttonLoginSt.png" Component_="arrow.png" FileName="BUTTO~45.PNG|buttonLoginSt.png" Attributes="0" SourcePath="client\ui\button\buttonLoginSt.png" SelfReg="false" NextFile="buttonLogout.png"/>
+    <ROW File="buttonLogout.png" Component_="arrow.png" FileName="BUTTO~46.PNG|buttonLogout.png" Attributes="0" SourcePath="client\ui\button\buttonLogout.png" SelfReg="false" NextFile="buttonLogoutP.png"/>
+    <ROW File="buttonLogoutP.png" Component_="arrow.png" FileName="BUTTO~47.PNG|buttonLogoutP.png" Attributes="0" SourcePath="client\ui\button\buttonLogoutP.png" SelfReg="false" NextFile="buttonLogoutSt.png"/>
+    <ROW File="buttonLogoutSt.png" Component_="arrow.png" FileName="BUTTO~48.PNG|buttonLogoutSt.png" Attributes="0" SourcePath="client\ui\button\buttonLogoutSt.png" SelfReg="false" NextFile="buttonOutput.png"/>
+    <ROW File="buttonOutput.png" Component_="arrow.png" FileName="BUTTO~49.PNG|buttonOutput.png" Attributes="0" SourcePath="client\ui\button\buttonOutput.png" SelfReg="false" NextFile="buttonOutputP.png"/>
+    <ROW File="buttonOutputP.png" Component_="arrow.png" FileName="BUTTO~50.PNG|buttonOutputP.png" Attributes="0" SourcePath="client\ui\button\buttonOutputP.png" SelfReg="false" NextFile="buttonOutputSt.png"/>
+    <ROW File="buttonOutputSt.png" Component_="arrow.png" FileName="BUTTO~51.PNG|buttonOutputSt.png" Attributes="0" SourcePath="client\ui\button\buttonOutputSt.png" SelfReg="false" NextFile="buttonPassed.png"/>
+    <ROW File="buttonPassed.png" Component_="arrow.png" FileName="BUTTO~52.PNG|buttonPassed.png" Attributes="0" SourcePath="client\ui\button\buttonPassed.png" SelfReg="false" NextFile="buttonPassedP.png"/>
+    <ROW File="buttonPassedP.png" Component_="arrow.png" FileName="BUTTO~53.PNG|buttonPassedP.png" Attributes="0" SourcePath="client\ui\button\buttonPassedP.png" SelfReg="false" NextFile="buttonPassedSt.png"/>
+    <ROW File="buttonPassedSt.png" Component_="arrow.png" FileName="BUTTO~54.PNG|buttonPassedSt.png" Attributes="0" SourcePath="client\ui\button\buttonPassedSt.png" SelfReg="false" NextFile="buttonRev.png"/>
+    <ROW File="buttonRev.png" Component_="arrow.png" FileName="BUTTO~55.PNG|buttonRev.png" Attributes="0" SourcePath="client\ui\button\buttonRev.png" SelfReg="false" NextFile="buttonRevP.png"/>
+    <ROW File="buttonRevP.png" Component_="arrow.png" FileName="BUTTO~56.PNG|buttonRevP.png" Attributes="0" SourcePath="client\ui\button\buttonRevP.png" SelfReg="false" NextFile="buttonRevSt.png"/>
+    <ROW File="buttonRevSt.png" Component_="arrow.png" FileName="BUTTO~57.PNG|buttonRevSt.png" Attributes="0" SourcePath="client\ui\button\buttonRevSt.png" SelfReg="false" NextFile="buttonSearch.png"/>
+    <ROW File="buttonSearch.png" Component_="arrow.png" FileName="BUTTO~58.PNG|buttonSearch.png" Attributes="0" SourcePath="client\ui\button\buttonSearch.png" SelfReg="false" NextFile="buttonSearchP.png"/>
+    <ROW File="buttonSearchP.png" Component_="arrow.png" FileName="BUTTO~59.PNG|buttonSearchP.png" Attributes="0" SourcePath="client\ui\button\buttonSearchP.png" SelfReg="false" NextFile="buttonSearchSt.png"/>
+    <ROW File="buttonSearchSt.png" Component_="arrow.png" FileName="BUTTO~60.PNG|buttonSearchSt.png" Attributes="0" SourcePath="client\ui\button\buttonSearchSt.png" SelfReg="false" NextFile="buttonTrInfo.png"/>
+    <ROW File="buttonTrInfo.png" Component_="arrow.png" FileName="BUTTO~61.PNG|buttonTrInfo.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfo.png" SelfReg="false" NextFile="buttonTrInfoP.png"/>
+    <ROW File="buttonTrInfoP.png" Component_="arrow.png" FileName="BUTTO~62.PNG|buttonTrInfoP.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfoP.png" SelfReg="false" NextFile="buttonTrInfoSt.png"/>
+    <ROW File="buttonTrInfoSt.png" Component_="arrow.png" FileName="BUTTO~63.PNG|buttonTrInfoSt.png" Attributes="0" SourcePath="client\ui\button\buttonTrInfoSt.png" SelfReg="false" NextFile="buttonUnpa.png"/>
+    <ROW File="buttonUnpa.png" Component_="arrow.png" FileName="BUTTO~64.PNG|buttonUnpa.png" Attributes="0" SourcePath="client\ui\button\buttonUnpa.png" SelfReg="false" NextFile="buttonUnpaP.png"/>
+    <ROW File="buttonUnpaP.png" Component_="arrow.png" FileName="BUTTO~65.PNG|buttonUnpaP.png" Attributes="0" SourcePath="client\ui\button\buttonUnpaP.png" SelfReg="false" NextFile="buttonUnpassed.png"/>
+    <ROW File="buttonUnpaSt.png" Component_="arrow.png" FileName="BUTTO~69.PNG|buttonUnpaSt.png" Attributes="0" SourcePath="client\ui\button\buttonUnpaSt.png" SelfReg="false" NextFile="buttonWage.png"/>
+    <ROW File="buttonUnpassed.png" Component_="arrow.png" FileName="BUTTO~66.PNG|buttonUnpassed.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassed.png" SelfReg="false" NextFile="buttonUnpassedP.png"/>
+    <ROW File="buttonUnpassedP.png" Component_="arrow.png" FileName="BUTTO~67.PNG|buttonUnpassedP.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassedP.png" SelfReg="false" NextFile="buttonUnpassedSt.png"/>
+    <ROW File="buttonUnpassedSt.png" Component_="arrow.png" FileName="BUTTO~68.PNG|buttonUnpassedSt.png" Attributes="0" SourcePath="client\ui\button\buttonUnpassedSt.png" SelfReg="false" NextFile="buttonUnpaSt.png"/>
+    <ROW File="buttonWage.png" Component_="arrow.png" FileName="BUTTO~70.PNG|buttonWage.png" Attributes="0" SourcePath="client\ui\button\buttonWage.png" SelfReg="false" NextFile="buttonWageP.png"/>
+    <ROW File="buttonWageP.png" Component_="arrow.png" FileName="BUTTO~71.PNG|buttonWageP.png" Attributes="0" SourcePath="client\ui\button\buttonWageP.png" SelfReg="false" NextFile="buttonWageSt.png"/>
+    <ROW File="buttonWageSt.png" Component_="arrow.png" FileName="BUTTO~72.PNG|buttonWageSt.png" Attributes="0" SourcePath="client\ui\button\buttonWageSt.png" SelfReg="false" NextFile="buttonWorkMan.png"/>
+    <ROW File="buttonWorkMan.png" Component_="arrow.png" FileName="BUTTO~73.PNG|buttonWorkMan.png" Attributes="0" SourcePath="client\ui\button\buttonWorkMan.png" SelfReg="false" NextFile="buttonWorkManP.png"/>
+    <ROW File="buttonWorkManP.png" Component_="arrow.png" FileName="BUTTO~74.PNG|buttonWorkManP.png" Attributes="0" SourcePath="client\ui\button\buttonWorkManP.png" SelfReg="false" NextFile="buttonWorkManSt.png"/>
+    <ROW File="buttonWorkManSt.png" Component_="arrow.png" FileName="BUTTO~75.PNG|buttonWorkManSt.png" Attributes="0" SourcePath="client\ui\button\buttonWorkManSt.png" SelfReg="false" NextFile="close.png"/>
     <ROW File="cacerts" Component_="blacklist" FileName="cacerts" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\security\cacerts" SelfReg="false" NextFile="java.policy"/>
     <ROW File="calendars.properties" Component_="accessibility.properties" FileName="CALEND~1.PRO|calendars.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\calendars.properties" SelfReg="false" NextFile="charsets.jar"/>
     <ROW File="centerloading.png" Component_="arrive.png" FileName="CENTER~1.PNG|centerloading.png" Attributes="0" SourcePath="client\ui\button\transitcenter\centerloading.png" SelfReg="false" NextFile="centerloadingP.png"/>
@@ -362,7 +365,7 @@
     <ROW File="hallloadingP.png" Component_="driverMan.png" FileName="HALLLO~2.PNG|hallloadingP.png" Attributes="0" SourcePath="client\ui\button\businesshall\hallloadingP.png" SelfReg="false" NextFile="hallloadingSt.png"/>
     <ROW File="hallloadingSt.png" Component_="driverMan.png" FileName="HALLLO~3.PNG|hallloadingSt.png" Attributes="0" SourcePath="client\ui\button\businesshall\hallloadingSt.png" SelfReg="false" NextFile="income.png"/>
     <ROW File="hijrahconfigumalqura.properties" Component_="accessibility.properties" FileName="HIJRAH~1.PRO|hijrah-config-umalqura.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\hijrah-config-umalqura.properties" SelfReg="false" NextFile="cursors.properties"/>
-    <ROW File="hint.png" Component_="function.png" FileName="hint.png" Attributes="0" SourcePath="client\ui\frame\hint.png" SelfReg="false" NextFile="main.png"/>
+    <ROW File="hint.png" Component_="function.png" FileName="hint.png" Attributes="0" SourcePath="client\ui\frame\hint.png" SelfReg="false" NextFile="info.png"/>
     <ROW File="hprof.dll" Component_="hprof.dll" FileName="hprof.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\hprof.dll" SelfReg="false" NextFile="instrument.dll"/>
     <ROW File="income.png" Component_="driverMan.png" FileName="income.png" Attributes="0" SourcePath="client\ui\button\businesshall\income.png" SelfReg="false" NextFile="incomeP.png"/>
     <ROW File="incomeList.png" Component_="account.png" FileName="INCOME~1.PNG|incomeList.png" Attributes="0" SourcePath="client\ui\button\finance\incomeList.png" SelfReg="false" NextFile="incomeListP.png"/>
@@ -370,6 +373,7 @@
     <ROW File="incomeListSt.png" Component_="account.png" FileName="INCOME~3.PNG|incomeListSt.png" Attributes="0" SourcePath="client\ui\button\finance\incomeListSt.png" SelfReg="false" NextFile="payment.png"/>
     <ROW File="incomeP.png" Component_="driverMan.png" FileName="incomeP.png" Attributes="0" SourcePath="client\ui\button\businesshall\incomeP.png" SelfReg="false" NextFile="incomeSt.png"/>
     <ROW File="incomeSt.png" Component_="driverMan.png" FileName="incomeSt.png" Attributes="0" SourcePath="client\ui\button\businesshall\incomeSt.png" SelfReg="false" NextFile="recipient.png"/>
+    <ROW File="info.png" Component_="function.png" FileName="info.png" Attributes="0" SourcePath="client\ui\frame\info.png" SelfReg="false" NextFile="main.png"/>
     <ROW File="instrument.dll" Component_="instrument.dll" FileName="INSTRU~1.DLL|instrument.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\instrument.dll" SelfReg="false" NextFile="j2pcsc.dll"/>
     <ROW File="invalid32x32.gif" Component_="cursors.properties" FileName="INVALI~1.GIF|invalid32x32.gif" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\images\cursors\invalid32x32.gif" SelfReg="false" NextFile="win32_CopyDrop32x32.gif"/>
     <ROW File="j2pcsc.dll" Component_="j2pcsc.dll" FileName="j2pcsc.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\j2pcsc.dll" SelfReg="false" NextFile="j2pkcs11.dll"/>
@@ -427,7 +431,7 @@
     <ROW File="local_policy.jar" Component_="blacklist" FileName="LOCAL_~1.JAR|local_policy.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\security\local_policy.jar" SelfReg="false" NextFile="trusted.libraries"/>
     <ROW File="localedata.jar" Component_="accessbridge64.jar" FileName="LOCALE~1.JAR|localedata.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\localedata.jar" SelfReg="false" NextFile="metaindex"/>
     <ROW File="logging.properties" Component_="accessibility.properties" FileName="LOGGIN~1.PRO|logging.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\logging.properties" SelfReg="false" NextFile="jmxremote.access"/>
-    <ROW File="main.png" Component_="function.png" FileName="main.png" Attributes="0" SourcePath="client\ui\frame\main.png" SelfReg="false" NextFile="user.png"/>
+    <ROW File="main.png" Component_="function.png" FileName="main.png" Attributes="0" SourcePath="client\ui\frame\main.png" SelfReg="false" NextFile="success.png"/>
     <ROW File="management.dll" Component_="management.dll" FileName="MANAGE~1.DLL|management.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\management.dll" SelfReg="false" NextFile="mlib_image.dll"/>
     <ROW File="management.properties" Component_="jmxremote.access" FileName="MANAGE~1.PRO|management.properties" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\management\management.properties" SelfReg="false" NextFile="snmp.acl.template"/>
     <ROW File="managementagent.jar" Component_="accessibility.properties" FileName="MANAGE~1.JAR|management-agent.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\management-agent.jar" SelfReg="false" NextFile="metaindex_1"/>
@@ -521,6 +525,7 @@
     <ROW File="stockWarn.png" Component_="stockCheck.png" FileName="STOCKW~1.PNG|stockWarn.png" Attributes="0" SourcePath="client\ui\button\stockmanager\stockWarn.png" SelfReg="false" NextFile="stockWarnP.png"/>
     <ROW File="stockWarnP.png" Component_="stockCheck.png" FileName="STOCKW~2.PNG|stockWarnP.png" Attributes="0" SourcePath="client\ui\button\stockmanager\stockWarnP.png" SelfReg="false" NextFile="stockWarnSt.png"/>
     <ROW File="stockWarnSt.png" Component_="stockCheck.png" FileName="STOCKW~3.PNG|stockWarnSt.png" Attributes="0" SourcePath="client\ui\button\stockmanager\stockWarnSt.png" SelfReg="false" NextFile="arrive.png"/>
+    <ROW File="success.png" Component_="function.png" FileName="success.png" Attributes="0" SourcePath="client\ui\frame\success.png" SelfReg="false" NextFile="transitInfo.png"/>
     <ROW File="sunec.dll" Component_="sunec.dll" FileName="sunec.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\sunec.dll" SelfReg="false" NextFile="sunmscapi.dll"/>
     <ROW File="sunec.jar" Component_="accessbridge64.jar" FileName="sunec.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\sunec.jar" SelfReg="false" NextFile="sunjce_provider.jar"/>
     <ROW File="sunjce_provider.jar" Component_="accessbridge64.jar" FileName="SUNJCE~1.JAR|sunjce_provider.jar" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\ext\sunjce_provider.jar" SelfReg="false" NextFile="sunmscapi.jar"/>
@@ -530,6 +535,7 @@
     <ROW File="t2k.dll" Component_="t2k.dll" FileName="t2k.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\t2k.dll" SelfReg="false" NextFile="tnameserv.exe"/>
     <ROW File="tnameserv.exe" Component_="tnameserv.exe" FileName="TNAMES~1.EXE|tnameserv.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\tnameserv.exe" SelfReg="false" NextFile="unpack.dll" DigSign="true"/>
     <ROW File="transit.png" Component_="arrive.png" FileName="transit.png" Attributes="0" SourcePath="client\ui\button\transitcenter\transit.png" SelfReg="false" NextFile="transitP.png"/>
+    <ROW File="transitInfo.png" Component_="function.png" FileName="TRANSI~1.PNG|transitInfo.png" Attributes="0" SourcePath="client\ui\frame\transitInfo.png" SelfReg="false" NextFile="user.png"/>
     <ROW File="transitP.png" Component_="arrive.png" FileName="transitP.png" Attributes="0" SourcePath="client\ui\button\transitcenter\transitP.png" SelfReg="false" NextFile="transitSt.png"/>
     <ROW File="transitSt.png" Component_="arrive.png" FileName="TRANSI~1.PNG|transitSt.png" Attributes="0" SourcePath="client\ui\button\transitcenter\transitSt.png" SelfReg="false" NextFile="function.png"/>
     <ROW File="transitsysclient.exe" Component_="transitsysclient.exe" FileName="TRANSI~1.EXE|transitsys-client.exe" Attributes="0" SourcePath="&lt;AI_STUBS_64&gt;aijclw.exe" SelfReg="false" NextFile="awt.dll" DigSign="true"/>
@@ -538,8 +544,8 @@
     <ROW File="tzmappings" Component_="accessibility.properties" FileName="TZMAPP~1|tzmappings" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\lib\tzmappings" SelfReg="false" NextFile="LICENSE"/>
     <ROW File="unpack.dll" Component_="unpack.dll" FileName="unpack.dll" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\unpack.dll" SelfReg="false" NextFile="unpack200.exe"/>
     <ROW File="unpack200.exe" Component_="unpack200.exe" FileName="UNPACK~1.EXE|unpack200.exe" Attributes="0" SourcePath="C:\Program Files\Java\jre1.8.0_66\bin\unpack200.exe" SelfReg="false" NextFile="verify.dll" DigSign="true"/>
-    <ROW File="url.txt" Component_="client.jar" FileName="url.txt" Attributes="0" SourcePath="client\url.txt" SelfReg="false" NextFile="userMan.png"/>
-    <ROW File="user.png" Component_="function.png" FileName="user.png" Attributes="0" SourcePath="client\ui\frame\user.png" SelfReg="false" NextFile="transitsysclient.exe"/>
+    <ROW File="url.txt" Component_="client.jar" FileName="url.txt" Attributes="0" SourcePath="client\url.txt" SelfReg="false" NextFile="transitsysclient.exe"/>
+    <ROW File="user.png" Component_="function.png" FileName="user.png" Attributes="0" SourcePath="client\ui\frame\user.png" SelfReg="false"/>
     <ROW File="userMan.png" Component_="userMan.png" FileName="userMan.png" Attributes="0" SourcePath="client\ui\button\administer\userMan.png" SelfReg="false" NextFile="userManP.png"/>
     <ROW File="userManP.png" Component_="userMan.png" FileName="userManP.png" Attributes="0" SourcePath="client\ui\button\administer\userManP.png" SelfReg="false" NextFile="userManSt.png"/>
     <ROW File="userManSt.png" Component_="userMan.png" FileName="USERMA~1.PNG|userManSt.png" Attributes="0" SourcePath="client\ui\button\administer\userManSt.png" SelfReg="false" NextFile="arrow.png"/>
