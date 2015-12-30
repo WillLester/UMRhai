@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
+import edu.nju.umr.ui.SuccessPanel;
 
 public class DoHint {
 	public static void hint(Result result,JFrame fr){

@@ -1,8 +1,9 @@
-package edu.nju.umr.ui.utility;
+package edu.nju.umr.ui;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -29,10 +30,9 @@ public class SuccessPanel extends JPanel implements Runnable{
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.setColor(Color.blue);
-		g.fillRect(0,0, x, y);
-		g.setColor(Color.white);
-		g.drawString("操作成功!", 0,60);
+		ImageIcon success = new ImageIcon("ui/frame/success.png");
+		success = new ImageIcon(success.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		g.drawImage(success.getImage(), 0, 0, getWidth(), getHeight(), null);
 	}
 	public void run(){
 		int changeX=x/100;
