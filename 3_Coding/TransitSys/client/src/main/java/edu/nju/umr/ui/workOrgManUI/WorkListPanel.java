@@ -261,6 +261,7 @@ public class WorkListPanel extends PPanel {
 						delete.setEnabled(true);
 						modify.setEnabled(true);
 						cancelMod.setEnabled(true);
+						juriCombo.setEnabled(true);
 						if(table.getSelectedRow() >= workList.size()){
 							textFieldMobile.setText("");
 							textFieldName.setText("");
@@ -274,6 +275,7 @@ public class WorkListPanel extends PPanel {
 							juriCombo.setSelectedItem(EnumTransFactory.checkJuri(work.getJuri()));
 							if(work.getJuri().equals(Jurisdiction.ADMIN)){
 								delete.setEnabled(false);
+								juriCombo.setEnabled(false);
 							}
 						}
 					} else {

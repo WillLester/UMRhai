@@ -241,14 +241,17 @@ public class UserListPanel extends PPanel {
 					}
 					if(table.getSelectedRow() >= 0){
 						displayUser(table.getSelectedRow());
-						if(table.getModel().getRowCount()!=users.size()+1)
+						if(table.getModel().getRowCount()!=users.size()+1){
 							deleteButton.setEnabled(true);
-						confirmButton.setEnabled(true);
-						if(table.getSelectedRow()<users.size())
-						{
+							confirmButton.setEnabled(true);
+						}
+						if(table.getSelectedRow()<users.size()){
 							UserVO user = users.get(table.getSelectedRow());
 							if(user.getJuri().equals(Jurisdiction.ADMIN)){
 								deleteButton.setEnabled(false);
+								juriBox.setEnabled(false);
+							} else {
+								juriBox.setEnabled(true);
 							}
 						}
 					} else {

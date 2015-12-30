@@ -69,7 +69,8 @@ public class WorkPO extends PO implements Serializable{
 		// TODO 自动生成的方法存根
 		String command=null;
 		switch(op){
-		case INSERT:command="insert into user values"+"(null,null,'"+name+"','"+mobile+"',0,0,'"+orgId+"','"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
+		case INSERT:
+			command="insert into user values"+"(null,null,'"+name+"','"+mobile+"',"+juri.ordinal()+",0,'"+orgId+"','"+org+"',"+kind.ordinal()+","+money+","+commission+")";break;
 		case DELETE:command="delete from user where keyid="+id;break;
 		case FIND:
 			if(juri == null){
@@ -82,7 +83,7 @@ public class WorkPO extends PO implements Serializable{
 				}
 			}
 			break;
-		case UPDATE:command="update user set name = '"+name+"',mobile = '"+mobile+"',orgId='"+orgId+"',org = '"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where keyid="+id;break;
+		case UPDATE:command="update user set name = '"+name+"',mobile = '"+mobile+"',juri = "+juri.ordinal()+", orgId='"+orgId+"',org = '"+org+"',kind="+kind.ordinal()+",money="+money+",commission="+commission+" where keyid="+id;break;
 		}
 		return command;
 	}
