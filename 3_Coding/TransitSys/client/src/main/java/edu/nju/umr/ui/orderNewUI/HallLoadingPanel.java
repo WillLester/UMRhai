@@ -107,7 +107,7 @@ public class HallLoadingPanel extends PPanel {
 		add(themeLabel);
 		
 		ELabel transitIdLabel = new ELabel("汽运编号");
-		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		transitIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		transitIdLabel.setStdFont();
 		transitIdLabel.setBounds(355, 107, 120, 24);
 		add(transitIdLabel);
@@ -120,14 +120,14 @@ public class HallLoadingPanel extends PPanel {
 		transitIdField.setColumns(10);
 		
 		ELabel loadDateLabel = new ELabel("装车日期");
-		loadDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		loadDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loadDateLabel.setStdFont();
-		loadDateLabel.setBounds(297+75, 141, 120, 24);
+		loadDateLabel.setBounds(355, 141, 120, 24);
 		add(loadDateLabel);
 		
 		datePanel=new DatePanel();
 		datePanel.setDate(Calendar.getInstance());
-		datePanel.setBounds(411+75,141, 275, 26);
+		datePanel.setBounds(410+75,141, 275, 26);
 		add(datePanel);
 		
 		ELabel destinationLabel = new ELabel("到达地");
@@ -194,7 +194,7 @@ public class HallLoadingPanel extends PPanel {
 		add(expressIdField);
 		
 		Button btnNewButton = new AddButton();
-		btnNewButton.setBounds(656+75, 276, 100, 30);
+		btnNewButton.setBounds(656+75, 271, 100, 30);
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -225,7 +225,7 @@ public class HallLoadingPanel extends PPanel {
 		add(btnNewButton);
 		
 		Button deleteButton = new DelButton();
-		deleteButton.setBounds(656+75+93, 276, 100, 30);
+		deleteButton.setBounds(656+75+93+20, 271, 100, 30);
 		deleteButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

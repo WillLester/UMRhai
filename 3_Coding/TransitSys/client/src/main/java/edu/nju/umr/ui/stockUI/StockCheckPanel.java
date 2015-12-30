@@ -51,8 +51,8 @@ public class StockCheckPanel extends PPanel{
 		tableInit();
 		
 		TitleLabel checkLabel = new TitleLabel("库存查看");
-		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
-		checkLabel.setBounds(503, 32, 97, 24);
+//		checkLabel.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+//		checkLabel.setBounds(503, 32, 97, 24);
 		add(checkLabel);
 			
 		ELabel startLabel = new ELabel("开始时间");
@@ -61,7 +61,7 @@ public class StockCheckPanel extends PPanel{
 		add(startLabel);
 		
 		dateTimeS = new DateTimePanel();
-		dateTimeS.setBounds(281, 101, 750, 25);
+		dateTimeS.setBounds(281, 101, 540, 25);
 		add(dateTimeS);
 		
 		ELabel endLabel = new ELabel("结束时间");
@@ -70,11 +70,11 @@ public class StockCheckPanel extends PPanel{
 		add(endLabel);
 		
 		dateTimeE = new DateTimePanel();
-		dateTimeE.setBounds(281, 146, 750, 25);
+		dateTimeE.setBounds(281, 146, 540, 25);
 		add(dateTimeE);
 		
 		Button confirmButton = new ConfirmButton();
-		confirmButton.setBounds(916, 480, 100,30);
+		confirmButton.setBounds(916, 143, 100,30);
 		confirmButton.addActionListener(new ActionListener(){
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
