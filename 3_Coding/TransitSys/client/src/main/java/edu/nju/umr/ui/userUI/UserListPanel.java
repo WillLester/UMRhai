@@ -176,13 +176,13 @@ public class UserListPanel extends PPanel {
 		orgLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		orgLabel.setForeground(Utils.STD_COLOR);
 		orgLabel.setBounds(805,321, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-//		add(orgLabel);
+
 		
 		JLabel orgIdLabel=new JLabel("机构编号");
 		orgIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		orgIdLabel.setForeground(Utils.STD_COLOR);
 		orgIdLabel.setBounds(805,421, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-//		add(orgIdLabel);
+
 		
 		JLabel mobileIdLabel=new JLabel("手机号");
 		mobileIdLabel.setForeground(Utils.STD_COLOR);
@@ -282,6 +282,11 @@ public class UserListPanel extends PPanel {
 	}
 	
 	private void displayUsers(){
+		idField.setText("账号");
+		passwordField.setText("密码");
+		nameField.setText("姓名");
+		mobileField.setText("手机号");
+		juriBox.setSelectedIndex(0);
 		model.setRowCount(0);
 		for(int i=0;i<users.size();i++){
 			UserVO user=users.get(i);
