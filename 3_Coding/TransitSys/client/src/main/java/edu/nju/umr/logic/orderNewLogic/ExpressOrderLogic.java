@@ -81,7 +81,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 		price=price.multiply((pri.get(expressKind.ordinal())));
 		price=price.multiply(new BigDecimal(weight));
 		double []pakp=new double[]{5,10,1};
-		price.add(new BigDecimal(pakp[pakKind.ordinal()]));
+		price=price.add(new BigDecimal(pakp[pakKind.ordinal()]));
 		price  = price.setScale(0, BigDecimal.ROUND_HALF_UP);
 		return price.toString();
 	}
