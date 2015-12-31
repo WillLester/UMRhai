@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.dataFactory.CourierDFacSer;
 import edu.nju.umr.dataService.dataFactory.orderNew.ReceiveOrderDFacSer;
 import edu.nju.umr.dataService.orderNewDSer.ReceiveOrderDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CourierDSer;
+import edu.nju.umr.logic.orderApproveLogic.UpdateTransitInfoLogic;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderNewLogic.ReceiveOrderLSer;

@@ -1,7 +1,7 @@
 package edu.nju.umr.logic.stub;
 import java.rmi.RemoteException;
 
-import edu.nju.umr.dataService.utilityDSer.OrderCalcuDSer;
+import edu.nju.umr.dataService.orderNewDSer.OrderCalcuDSer;
 import edu.nju.umr.po.CitiesPO;
 public class OrderCalcuLogicStub implements OrderCalcuDSer{
 

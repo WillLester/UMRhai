@@ -1,4 +1,4 @@
-package edu.nju.umr.logic.utilityLogic;
+package edu.nju.umr.logic.orderNewLogic;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
@@ -10,8 +10,8 @@ import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.utility.ConstantGetDFacSer;
-import edu.nju.umr.dataService.utilityDSer.ConstantGetDSer;
-import edu.nju.umr.logicService.utilityLogicSer.ConstantGetLSer;
+import edu.nju.umr.dataService.orderApproveDSer.ConstantGetDSer;
+import edu.nju.umr.logicService.orderNewLogic.ConstantGetLSer;
 import edu.nju.umr.po.ConstantPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.ResultMessage;

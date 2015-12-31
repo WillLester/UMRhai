@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
-import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;

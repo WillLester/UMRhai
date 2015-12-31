@@ -1,4 +1,4 @@
-package edu.nju.umr.data.utilityData;
+package edu.nju.umr.data.orderNewData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

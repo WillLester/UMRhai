@@ -1,4 +1,4 @@
-package edu.nju.umr.data.utilityData;
+package edu.nju.umr.data.orderApproveData;
 
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
-import edu.nju.umr.dataService.utilityDSer.AccountUpdateDSer;
+import edu.nju.umr.data.utilityData.ArrayListFactory;
+import edu.nju.umr.dataService.orderApproveDSer.AccountUpdateDSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.enums.Result;
 

@@ -1,4 +1,4 @@
-package edu.nju.umr.logicService.utilityLogicSer;
+package edu.nju.umr.logicService.orderNewLogic;
 
 import edu.nju.umr.vo.ResultMessage;
 /**

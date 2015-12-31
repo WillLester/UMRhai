@@ -1,4 +1,4 @@
-package edu.nju.umr.logic.orderNewLogic;
+package edu.nju.umr.logic.orderApproveLogic;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.CustomerDFacSer;
 import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTransitInfoDFacSer;
-import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
+import edu.nju.umr.dataService.orderApproveDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.dataService.transitInfoDSer.CustomerDSer;
 import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.enums.Result;

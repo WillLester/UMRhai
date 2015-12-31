@@ -1,4 +1,4 @@
-package edu.nju.umr.logic.orderNewLogic;
+package edu.nju.umr.logic.orderApproveLogic;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -9,14 +9,14 @@ import java.util.List;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTranStateDFacSer;
-import edu.nju.umr.dataService.orderNewDSer.UpdateTranStateDSer;
+import edu.nju.umr.dataService.orderApproveDSer.UpdateTranStateDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.CenterLoadingPO;
 import edu.nju.umr.po.order.ExpressPO;
 import edu.nju.umr.po.order.HallLoadingPO;
 import edu.nju.umr.po.order.TransitPO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
+import edu.nju.umr.logicService.orderApproveLogicSer.UpdateTranStateLSer;
 public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	UpdateTranStateDFacSer dataFac;
 	UpdateTranStateDSer updateData;

@@ -1,11 +1,11 @@
-package edu.nju.umr.data.utilityData;
+package edu.nju.umr.data.orderApproveData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
-import edu.nju.umr.dataService.utilityDSer.GoodUpdateDSer;
+import edu.nju.umr.dataService.orderApproveDSer.GoodUpdateDSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.enums.Result;
 
