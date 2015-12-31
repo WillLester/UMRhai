@@ -31,6 +31,7 @@ import edu.nju.umr.vo.order.PaymentVO;
 import edu.nju.umr.vo.order.RecipientVO;
 import edu.nju.umr.vo.order.SendVO;
 import edu.nju.umr.vo.order.StockInVO;
+import edu.nju.umr.vo.order.StockOutVO;
 import edu.nju.umr.vo.order.TransitVO;
 
 class OrderUpdate {
@@ -168,13 +169,19 @@ class OrderUpdate {
 			StockInVO voSI= (StockInVO) message.getMessage();
 			GoodPO good = new GoodPO(voSI.getExpressId(), voSI.getStockId(), voSI.getDate(), voSI.getArrivePlace(), voSI.getPart(), voSI.getShelfId(), voSI.getRow(), voSI.getPlace());
 			try {
-				goodData.addGood(good);
+				return goodData.addGood(good);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				return Result.NET_INTERRUPT;
 			}
 		case STOCKOUT:
-			break;
+			StockOutVO voSO = (StockOutVO) message.getMessage();
+			try {
+				return goodData.removeGood(voSO.getExpressId());
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				return Result.NET_INTERRUPT;
+			}
 		default:
 			return Result.PO_KIND_ERROR;
 		}
