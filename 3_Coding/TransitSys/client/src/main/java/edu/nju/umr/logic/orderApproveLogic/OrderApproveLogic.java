@@ -89,9 +89,11 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 		ArrayList<Result> results=new ArrayList<Result>();
 		for(int i=0;i<indexs.size();i++){
 			OrderPO order=orderList.get(indexs.get(i));
-			Result re = updateTransitInfo(order.getId(), order.getKind());
-			if(re != Result.SUCCESS){
-				return re;
+			if(approve){
+				Result re = updateTransitInfo(order.getId(), order.getKind());
+				if(re != Result.SUCCESS){
+					return re;
+				}
 			}
 			ArrayList<String> ids=new ArrayList<String>();
 			ids.add(order.getId());
