@@ -99,14 +99,6 @@ public class OrderApproveLogic implements OrderApproveLSer{
 				return re;
 			}
 			ArrayList<String> ids=new ArrayList<String>();
-//			for(int j=0;j<indexs.size();j++){
-//				OrderPO sameKind=orderList.get(indexs.get(j));
-//				if(sameKind.getKind().equals(order.getKind())){
-//					ids.add(sameKind.getId());
-//					indexs.remove(j);
-//					j--;
-//				}					
-//			}
 			ids.add(order.getId());
 			try {
 				
