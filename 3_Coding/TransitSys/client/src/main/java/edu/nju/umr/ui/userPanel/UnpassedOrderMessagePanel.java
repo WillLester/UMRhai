@@ -1,6 +1,7 @@
 package edu.nju.umr.ui.userPanel;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,7 +70,12 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawString(Integer.toString(x), 150, 20);
+		if(x==0)return;
+		g.setColor(Color.RED);
+		g.fillOval(150,5, 20, 20);
+		g.setColor(Color.white);
+		g.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		g.drawString(Integer.toString(x), 157, 22);
 	}
 	public void stop(){
 		thread.interrupt();
