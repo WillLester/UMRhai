@@ -18,10 +18,10 @@ import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
-import edu.nju.umr.ui.component.ELabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.AddButton;
@@ -45,6 +45,7 @@ public class StockDividePanel extends PPanel{
 	private TextField idField;
 	private TextField rowField;
 	private TextField placeField;
+	private UMRComboBox<String> partCombo;
 	private JFrame frame;
 	private Table table;
 	private DefaultTableModel model;
@@ -59,7 +60,6 @@ public class StockDividePanel extends PPanel{
 		setLayout(null);
 		frame=fr;
 		logicSer = new StockDivideLogic();
-//		logicSer = new StockDividePanelStub();
 		this.orgId = orgId;
 		
 		TitleLabel divideLabel = new TitleLabel("库存分区");
@@ -88,7 +88,7 @@ public class StockDividePanel extends PPanel{
 		});
 		add(searchButton);
 		
-		ELabel idLabel = new ELabel("编号");
+		UMRLabel idLabel = new UMRLabel("编号");
 		idLabel.setFont(Utils.COMBO_FONT);
 		idLabel.setBounds(206, y+500, 54, 24);
 		add(idLabel);
@@ -99,7 +99,7 @@ public class StockDividePanel extends PPanel{
 		add(idField);
 		idField.setColumns(10);
 		
-		ELabel rowLabel = new ELabel("排数");
+		UMRLabel rowLabel = new UMRLabel("排数");
 		rowLabel.setFont(Utils.COMBO_FONT);
 		rowLabel.setBounds(370, y+500, 54, 24);
 		add(rowLabel);
@@ -107,9 +107,10 @@ public class StockDividePanel extends PPanel{
 		rowField = new TextField();
 		rowField.setBounds(416, y+500, 98, 22);
 		add(rowField);
+		rowField.setEditable(false);
 		rowField.setColumns(10);
 		
-		ELabel placeLabel = new ELabel("每排位数");
+		UMRLabel placeLabel = new UMRLabel("每排位数");
 		placeLabel.setFont(Utils.COMBO_FONT);
 		placeLabel.setBounds(541, y+500, 71, 24);
 		add(placeLabel);
@@ -117,18 +118,20 @@ public class StockDividePanel extends PPanel{
 		placeField = new TextField();
 		placeField.setBounds(617, y+500, 98, 22);
 		add(placeField);
+		placeField.setEditable(false);
 		placeField.setColumns(10);
 		
-		ELabel partLabel = new ELabel("所在区");
+		UMRLabel partLabel = new UMRLabel("所在区");
 		partLabel.setFont(Utils.COMBO_FONT);
 		partLabel.setBounds(742, y+500, 54, 24);
 		add(partLabel);
 		
-		UMRComboBox<String> partCombo = new UMRComboBox<String>();
+		partCombo = new UMRComboBox<String>();
 		partCombo.setBounds(803, y+500, 98, 22);
 		partCombo.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		partCombo.setModel(new DefaultComboBoxModel<String>(new String[]{"航运区","铁运区","汽运区","机动区"}));
 		add(partCombo);
+		partCombo.setEnabled(false);
 		
 		Button addButton = new AddButton();
 		addButton.setBounds(332, y+541, 100, 30);
@@ -222,7 +225,20 @@ public class StockDividePanel extends PPanel{
 		model=(DefaultTableModel)table.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false);
+				if(e.getValueIsAdjusting()==false){
+					if(table.getSelectedRow() >= 0){
+						rowField.setEditable(true);
+						placeField.setEditable(true);
+						partCombo.setEnabled(true);
+					}
+					if((table.getSelectedRow() < shelfList.size())&&(table.getSelectedRow() >= 0)){
+						ShelfVO shelf = shelfList.get(table.getSelectedRow());
+						idField.setText(shelf.getId());
+						rowField.setText(shelf.getRow()+"");
+						placeField.setText(shelf.getPlace()+"");
+						partCombo.setSelectedIndex(shelf.getPart().ordinal());
+					}
+				}
 			}
 		});
 		table.setBounds(233, y+109, 638, 371);
@@ -238,6 +254,13 @@ public class StockDividePanel extends PPanel{
 		getAll();
 	}
 	private void tableDisplay(){
+		rowField.setText("");
+		placeField.setText("");
+		idField.setText("");
+		partCombo.setSelectedIndex(0);
+		rowField.setEditable(false);
+		placeField.setEditable(false);
+		partCombo.setEnabled(false);
 		model.setRowCount(0);
 		for(ShelfVO shelf:shelfList){
 			String info[] = getRow(shelf);
