@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -158,8 +159,11 @@ public class StockDividePanel extends PPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				Result result = logicSer.deleteShelf(shelfList.get(table.getSelectedRow()).getId(),name);
-				fresh(result);
+				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
+		        if (n == JOptionPane.YES_OPTION) {  
+		        	Result result = logicSer.deleteShelf(shelfList.get(table.getSelectedRow()).getId(),name);
+		        	fresh(result);
+		        }
 			}
 		});
 		add(deleteButton);

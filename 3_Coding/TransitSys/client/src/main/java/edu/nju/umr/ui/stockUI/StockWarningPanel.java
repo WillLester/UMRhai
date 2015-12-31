@@ -117,17 +117,7 @@ public class StockWarningPanel extends PPanel{
 					newWarn.add(Integer.parseInt(vanField.getText()));
 					newWarn.add(Integer.parseInt(maneuverField.getText()));
 					Result result = logicSer.setWarning(newWarn, orgId,name);
-					DoHint.hint(result, frame);
-					if(result.equals(Result.SUCCESS)){
-						confirmButton.setEnabled(false);
-						try{
-							Thread.sleep(300);
-						}catch(Exception ex)
-						{
-							ex.printStackTrace();
-						}
-						frame.dispose();
-					}
+					DoHint.hint(result, frame,true);
 				}
 			}
 		});
