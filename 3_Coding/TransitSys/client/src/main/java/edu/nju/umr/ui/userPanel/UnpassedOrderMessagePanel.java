@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import edu.nju.umr.logic.orderApproveLogic.OrderResubmitLogic;
@@ -71,11 +74,26 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	{
 		super.paintComponent(g);
 		if(x==0)return;
-		g.setColor(Color.RED);
-		g.fillOval(150,5, 20, 20);
+		String temp=Integer.toString(x);
+		if(x>9){
+			temp="9+";
+		}
+		try{
+			File file=new File("ui/button/unpassedNum.png");
+			BufferedImage img=ImageIO.read(file);
+			g.drawImage(img, 152, 5, null);
+			if(x>9){
+				g.drawImage(img, 155, 5, null);
+				g.drawImage(img, 159, 5, null);
+			}
+		}catch(Exception e){
+			g.setColor(Color.red);
+			g.fillOval(152, 5, 20, 20);
+		}
 		g.setColor(Color.white);
 		g.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		g.drawString(Integer.toString(x), 157, 22);
+		x=9;
+		g.drawString(temp, 158, 21);
 	}
 	public void stop(){
 		thread.interrupt();
