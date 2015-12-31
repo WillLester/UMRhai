@@ -49,10 +49,8 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
 	private DiaryUpdateLSer diarySer;
-//	private OrderInfoLSer orderInfo;
 	private OrderUpdate update;
 	private ExpressStateUpdate stateUpdate;
-//	private UpdateTranStateLSer state;
 	public OrderApproveLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
@@ -67,6 +65,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
         } 
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
+		stateUpdate = new ExpressStateUpdate();
 	}
 	public ResultMessage askExamine() {
 		
