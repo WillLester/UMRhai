@@ -18,6 +18,6 @@ public interface IncomeOrderLSer {
 	 * @return int 表示数字编号
 	 */
 	public ResultMessage getNextId(String orgId);
-	public ResultMessage expressAvaliable(String orgId);
+//	public ResultMessage expressAvaliable(String orgId);
 	
 }
