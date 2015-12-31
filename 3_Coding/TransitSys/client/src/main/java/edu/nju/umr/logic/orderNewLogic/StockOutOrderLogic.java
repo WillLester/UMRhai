@@ -49,10 +49,7 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 			StockOutPO orderPO = VPFactory.toStockOutPO(order);
 			isSuccessful = stockoutData.create(orderPO);
 			if(isSuccessful == Result.SUCCESS){
-				isSuccessful = stockoutData.removeGood(order.getExpressId());
-				if(isSuccessful == Result.SUCCESS){
-					isSuccessful = diarySer.addDiary("为货物"+order.getExpressId()+"生成了出库单", order.getOpName());
-				}
+				isSuccessful = diarySer.addDiary("为货物"+order.getExpressId()+"生成了出库单", order.getOpName());
 				if(isSuccessful.equals(Result.SUCCESS)){
 					orderState.updateExpressState(order.getExpressId(), order.getStockId()+"*##");
 				}

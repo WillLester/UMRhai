@@ -39,6 +39,7 @@ import edu.nju.umr.data.userData.UserManData;
 import edu.nju.umr.data.utilityData.AccountUpdateData;
 import edu.nju.umr.data.utilityData.ConstantGetData;
 import edu.nju.umr.data.utilityData.DiaryUpdateData;
+import edu.nju.umr.data.utilityData.GoodUpdateData;
 import edu.nju.umr.data.utilityData.OrderCalcuData;
 import edu.nju.umr.data.utilityData.OrderInfoData;
 import edu.nju.umr.data.utilityData.UtilityData;
@@ -96,6 +97,7 @@ import edu.nju.umr.dataService.dataFactory.orderNew.UpdateTransitInfoDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.AccountUpdateDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.ConstantGetDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.DiaryUpdateDFacSer;
+import edu.nju.umr.dataService.dataFactory.utility.GoodUpdateDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.OrderCalcuDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.OrderInfoDFacSer;
 import edu.nju.umr.dataService.dataFactory.utility.UtilityDFacSer;
@@ -127,6 +129,7 @@ import edu.nju.umr.dataService.userDSer.UserManDSer;
 import edu.nju.umr.dataService.utilityDSer.AccountUpdateDSer;
 import edu.nju.umr.dataService.utilityDSer.ConstantGetDSer;
 import edu.nju.umr.dataService.utilityDSer.DiaryUpdateDSer;
+import edu.nju.umr.dataService.utilityDSer.GoodUpdateDSer;
 import edu.nju.umr.dataService.utilityDSer.OrderCalcuDSer;
 import edu.nju.umr.dataService.utilityDSer.OrderInfoDSer;
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
@@ -140,7 +143,7 @@ public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,A
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
 RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer,WageManDFacSer,
-DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,OrderCalcuDFacSer,AccountUpdateDFacSer,UpdateTranStateDFacSer {
+DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,OrderCalcuDFacSer,AccountUpdateDFacSer,UpdateTranStateDFacSer,GoodUpdateDFacSer {
 
 	/**
 	 * 
@@ -377,6 +380,12 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 	public UpdateTranStateDSer getUpdateTranState() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return UpdateTranStateData.getUpdateTranState();
+	}
+
+	@Override
+	public GoodUpdateDSer getGoodUpdate() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return GoodUpdateData.getGoodUpdate();
 	}
 
 }

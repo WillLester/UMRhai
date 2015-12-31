@@ -8,7 +8,6 @@ import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.StockOutOrderDSer;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockOutPO;
 import edu.nju.umr.po.order.function.GetToday;
@@ -41,12 +40,6 @@ public class StockOutOrderData extends UnicastRemoteObject implements StockOutOr
 			mysqlSer.deleteUnpassed(order);
 		}
 		return result;
-	}
-
-	@Override
-	public Result removeGood(String id) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return mysqlSer.deleteInfo(new GoodPO(id, null, null, null, null, null, 0, 0));
 	}
 
 	@Override

@@ -14,4 +14,11 @@ public interface GoodUpdateDSer extends Remote{
 	 * @throws RemoteException
 	 */
 	public Result addGood(GoodPO good) throws RemoteException;
+	/**
+	 * 出库单生成后要从库存中删除货物
+	 * @param id 货物（即快递单）的编号
+	 * @return 删除结果
+	 * @throws RemoteException
+	 */
+	public Result removeGood(String id) throws RemoteException;
 }

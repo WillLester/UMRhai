@@ -468,10 +468,9 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 		message = chooseOrder(id, kind);
 		
 		if(CheckUtility.isSuc(message.getReInfo())){
-			update.updateOrder(message, kind, approveData);
+			return update.updateOrder(message, kind, approveData);
 		} else {
 			return message.getReInfo();
 		}
-		return Result.SUCCESS;
 	}
 }

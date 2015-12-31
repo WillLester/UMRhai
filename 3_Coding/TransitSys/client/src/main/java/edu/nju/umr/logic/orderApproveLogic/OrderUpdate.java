@@ -10,11 +10,14 @@ import java.util.List;
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.dataFactory.utility.AccountUpdateDFacSer;
+import edu.nju.umr.dataService.dataFactory.utility.GoodUpdateDFacSer;
 import edu.nju.umr.dataService.orderApproveDSer.OrderApproveDSer;
 import edu.nju.umr.dataService.utilityDSer.AccountUpdateDSer;
+import edu.nju.umr.dataService.utilityDSer.GoodUpdateDSer;
 import edu.nju.umr.logic.orderNewLogic.UpdateTransitInfoLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
+import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.UserPO;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
@@ -27,6 +30,7 @@ import edu.nju.umr.vo.order.IncomeVO;
 import edu.nju.umr.vo.order.PaymentVO;
 import edu.nju.umr.vo.order.RecipientVO;
 import edu.nju.umr.vo.order.SendVO;
+import edu.nju.umr.vo.order.StockInVO;
 import edu.nju.umr.vo.order.TransitVO;
 
 class OrderUpdate {
@@ -35,6 +39,8 @@ class OrderUpdate {
 	private OrderApproveDSer approveData = null;
 	private AccountUpdateDFacSer accountFac;
 	private AccountUpdateDSer accountData;
+	private GoodUpdateDFacSer goodFac;
+	private GoodUpdateDSer goodData;
 	public OrderUpdate() {
 		// TODO 自动生成的构造函数存根
 		infoLogic = new UpdateTransitInfoLogic();
@@ -42,6 +48,8 @@ class OrderUpdate {
 		try {
 			accountFac = (AccountUpdateDFacSer) Naming.lookup(Url.URL);
 			accountData = accountFac.getAccountUp();
+			goodFac = (GoodUpdateDFacSer) Naming.lookup(Url.URL);
+			goodData = goodFac.getGoodUpdate();
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -155,6 +163,17 @@ class OrderUpdate {
 				infoLogic.update(express,DateFormat.TIME.format(Calendar.getInstance().getTime())
 						+" "+org+" 已发出 下一站 "+voT.getArrivePlace());
 			}
+			break;
+		case STOCKIN:
+			StockInVO voSI= (StockInVO) message.getMessage();
+			GoodPO good = new GoodPO(voSI.getExpressId(), voSI.getStockId(), voSI.getDate(), voSI.getArrivePlace(), voSI.getPart(), voSI.getShelfId(), voSI.getRow(), voSI.getPlace());
+			try {
+				goodData.addGood(good);
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				return Result.NET_INTERRUPT;
+			}
+		case STOCKOUT:
 			break;
 		default:
 			return Result.PO_KIND_ERROR;
