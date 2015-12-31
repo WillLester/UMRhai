@@ -65,7 +65,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
         } 
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
-		stateUpdate = new ExpressStateUpdate();
+		stateUpdate = new ExpressStateUpdate(this);
 	}
 	public ResultMessage askExamine() {
 		

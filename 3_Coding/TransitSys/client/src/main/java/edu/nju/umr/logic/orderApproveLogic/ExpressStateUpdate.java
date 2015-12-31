@@ -6,12 +6,11 @@ package edu.nju.umr.logic.orderApproveLogic;
  */
 import java.util.List;
 
+import edu.nju.umr.logic.orderNewLogic.UpdateTranStateLogic;
+import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderChooseLSer;
 import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
-import edu.nju.umr.logic.orderApproveLogic.OrderApproveLogic;
-import edu.nju.umr.logic.orderNewLogic.UpdateTranStateLogic;
-import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.OrderPO;
@@ -28,8 +27,8 @@ public class ExpressStateUpdate{
 	private UpdateTranStateLSer state;
 	private OrderChooseLSer cho;
 	private OrderInfoLSer orderInfo;
-	public ExpressStateUpdate(){
-		cho = new OrderApproveLogic();
+	public ExpressStateUpdate(OrderChooseLSer cho){
+		this.cho = cho;
 		state = new UpdateTranStateLogic();
 		orderInfo = new OrderInfoLogic();
 	}
@@ -210,6 +209,6 @@ public class ExpressStateUpdate{
 			String exp=sv.getExpressId();
 			state.updateExpressState(exp, sv.getId().substring(0,6)+"*");
 		}
-		return null;
+		return Result.SUCCESS;
 	}
 }
