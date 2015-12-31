@@ -250,6 +250,7 @@ public class UtilityLogic implements UtilityLSer{
 			FileOutputStream fout=new FileOutputStream(location+".xlsx");
 			wb.write(fout);
 			fout.close();
+			Runtime.getRuntime().exec("cmd /c start "+location+".xlsx");
 		} catch (FileNotFoundException e) {
 			return Result.FILE_NOT_FOUND;
 		} catch (IOException e) {
