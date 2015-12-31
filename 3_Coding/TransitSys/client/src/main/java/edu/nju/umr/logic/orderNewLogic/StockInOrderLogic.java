@@ -51,7 +51,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		uti = new UtilityLogic();
 		orderInfoLogic = new OrderInfoLogic();
 		diarySer = new DiaryUpdateLogic();
-		orderState=new UpdateTranStateLogic();
+		orderState = new UpdateTranStateLogic();
 	}
 	public Result create(StockInVO order) {
 		Result isSuc=Result.DATABASE_ERROR;
@@ -64,9 +64,14 @@ public class StockInOrderLogic implements StockInOrderLSer{
 					diarySer.addDiary("为货物"+order.getExpressId()+"生成了入库单", order.getOpName());
 				}
 			}
-			if(isSuc.equals(Result.SUCCESS)){
+			if(isSuc == Result.SUCCESS){
 				isSuc=orderState.updateExpressState(order.getExpressId(), order.getStockId()+"#");
-				if(!isSuc.equals(Result.SUCCESS))return isSuc;
+				if(isSuc != Result.SUCCESS){
+					return isSuc;
+				}
+			}
+			if(isSuc == Result.SUCCESS){
+				isSuc = this.checkWarning(order.getStockId());
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -80,7 +85,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		// TODO 自动生成的方法存根
 		return uti.getOrgNames();
 	}
-	public Result checkWarning(String id){
+	private Result checkWarning(String id){
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
 		return (Result) checkWarn.checkWarning(id).getMessage();
 	}
