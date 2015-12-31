@@ -20,7 +20,6 @@ import edu.nju.umr.logicService.stockLogicSer.StockCheckWarnLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
@@ -59,10 +58,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 			StockInPO orderPO = VPFactory.toStockInPO(order);
 			isSuc = stockinData.create(orderPO);
 			if(isSuc == Result.SUCCESS){
-				isSuc = stockinData.addGood(new GoodPO(order.getExpressId(), order.getStockId(), order.getDate(), order.getArrivePlace(), order.getPart(), order.getShelfId(), order.getRow(), order.getPlace()));
-				if(isSuc == Result.SUCCESS){
-					diarySer.addDiary("为货物"+order.getExpressId()+"生成了入库单", order.getOpName());
-				}
+				diarySer.addDiary("为货物"+order.getExpressId()+"生成了入库单", order.getOpName());
 			}
 			if(isSuc == Result.SUCCESS){
 				isSuc=orderState.updateExpressState(order.getExpressId(), order.getStockId()+"#");

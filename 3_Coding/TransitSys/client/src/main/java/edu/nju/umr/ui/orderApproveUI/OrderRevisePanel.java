@@ -132,7 +132,7 @@ public class OrderRevisePanel extends PPanel{
 	}
 	private void displayOrders(){
 		model.setRowCount(0);
-		String[] kind=new String[]{"中转中心到达单","中转中心装车单","快递单","营业厅装车单","入款单","付款单","收件单",
+		String[] kind=new String[]{"中转中心到达单","中转中心装车单","快递单","营业厅装车单","入款单","付款单",
 				"营业厅到达单","派件单","入库单","出库单","中转单"};
 		for(OrderVO vo:orderList)
 		{

@@ -10,7 +10,6 @@ import edu.nju.umr.data.databaseUtility.MysqlService;
 import edu.nju.umr.data.utilityData.ArrayListFactory;
 import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.StockInOrderDSer;
-import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.ShelfPO;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
@@ -51,12 +50,6 @@ public class StockInOrderData extends UnicastRemoteObject implements StockInOrde
 		// TODO 自动生成的方法存根
 		ResultSet result = mysqlSer.checkInfo(new ShelfPO(null, orgId, 0, 0, null));
 		return ArrayListFactory.produceShelfList(result);
-	}
-
-	@Override
-	public Result addGood(GoodPO good) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return mysqlSer.addInfo(good);
 	}
 
 	@Override

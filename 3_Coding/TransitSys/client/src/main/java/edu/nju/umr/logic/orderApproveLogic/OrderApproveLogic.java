@@ -16,6 +16,7 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderApproveLSer;
+import edu.nju.umr.logicService.orderApproveLogicSer.OrderChooseLSer;
 import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
@@ -48,7 +49,7 @@ import edu.nju.umr.vo.order.StockOutVO;
 import edu.nju.umr.vo.order.TransitVO;
 
 
-public class OrderApproveLogic implements OrderApproveLSer{
+public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 	private OrderApproveDFacSer dataFac;
 	private OrderApproveDSer approveData;
 	private ArrayList<OrderPO> orderList=new ArrayList<OrderPO>();
