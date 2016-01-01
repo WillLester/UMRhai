@@ -90,7 +90,7 @@ public class StockInPO extends PO implements Serializable,KindGetter,OrderOper,G
 		String command=null;
 		switch(op){
 		case INSERT:command="insert into stockinorderwaiting values"+"('"+id+"','"+expressId+"','"+arrivePlace+"',"+
-		part.ordinal()+","+shelfId+","+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"','"+
+		part.ordinal()+",'"+shelfId+"',"+row+","+place+",'"+DateFormat.DATE.format(date.getTime())+"','"+
 				DateFormat.TIME.format(opTime.getTime())+"','"+opName+"','"+stockId+"','"+userId+"')";break;
 		case DELETE:break;
 		case FIND:break;

@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import edu.nju.umr.data.orderNewData.UpdateTransitInfoData;
-import edu.nju.umr.dataService.orderNewDSer.UpdateTransitInfoDSer;
+import edu.nju.umr.dataService.orderApproveDSer.UpdateTransitInfoDSer;
 import edu.nju.umr.po.TransitInfoPO;
 import edu.nju.umr.po.enums.Result;
 

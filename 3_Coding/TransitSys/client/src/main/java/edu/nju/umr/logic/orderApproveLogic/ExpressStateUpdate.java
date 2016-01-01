@@ -6,10 +6,9 @@ package edu.nju.umr.logic.orderApproveLogic;
  */
 import java.util.List;
 
-import edu.nju.umr.logic.orderNewLogic.UpdateTranStateLogic;
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
 import edu.nju.umr.logicService.orderApproveLogicSer.OrderChooseLSer;
-import edu.nju.umr.logicService.orderNewLogic.UpdateTranStateLSer;
+import edu.nju.umr.logicService.orderApproveLogicSer.UpdateTranStateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.po.enums.Order;
 import edu.nju.umr.po.enums.Result;

@@ -95,7 +95,6 @@ public class OrderApprovePanel extends PPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			approve(true);
-			dataInit();
 		}});
 		add(passedButton);
 		
@@ -109,7 +108,6 @@ public class OrderApprovePanel extends PPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				approve(false);
-				dataInit();
 			}
 		});
 		add(unpassedButton);
@@ -249,6 +247,10 @@ public class OrderApprovePanel extends PPanel{
 		passedButton.setEnabled(false);
 		unpassedButton.setEnabled(false);
 		checkButton.setEnabled(false);
+		
+		if(result.equals(Result.SUCCESS)){
+			dataInit();
+		}
 	}
 	private void chooseAll(){
 		for(int i=0;i<orderList.size();i++)

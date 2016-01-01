@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 
 import edu.nju.umr.data.databaseUtility.MysqlImpl;
 import edu.nju.umr.data.databaseUtility.MysqlService;
-import edu.nju.umr.data.utilityData.OrderCounter;
 import edu.nju.umr.dataService.orderNewDSer.SendOrderDSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.SendPO;

@@ -17,5 +17,4 @@ public class Main {
 		@SuppressWarnings("unused")
 		MainFrame frame = new MainFrame();
 	}
-
 }

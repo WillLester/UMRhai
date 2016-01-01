@@ -38,7 +38,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		int changeX=x/100+1;
 		while(this.getX()+x>frame.getWidth()){
 			try{
-				SuccessThread.sleep(5);
+				SuccessThread.sleep(2);
 			} catch (InterruptedException e){
 				e.printStackTrace();
 			}
@@ -55,7 +55,7 @@ public class SuccessPanel extends JPanel implements Runnable{
 		}
 		while(this.getX()<frame.getWidth()){
 			try {
-				SuccessThread.sleep(5);
+				SuccessThread.sleep(2);
 			} catch (InterruptedException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
