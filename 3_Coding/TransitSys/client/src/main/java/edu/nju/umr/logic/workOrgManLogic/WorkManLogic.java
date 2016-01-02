@@ -14,6 +14,7 @@ import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.WorkManLSer;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.WorkPO;
@@ -26,7 +27,7 @@ import edu.nju.umr.vo.WorkVO;
 public class WorkManLogic implements WorkManLSer{
 	private WorkManDFacSer dataFac;
 	private WorkManDSer workData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private ArrayList<WorkPO> workList;
 	private DiaryUpdateLSer diarySer;
 	public WorkManLogic()

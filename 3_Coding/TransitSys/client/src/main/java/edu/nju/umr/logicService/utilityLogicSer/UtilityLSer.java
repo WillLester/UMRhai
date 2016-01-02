@@ -82,5 +82,7 @@ public interface UtilityLSer {
 	public ResultMessage getHallNames();
 	
 	public ResultMessage getStocks();
+
+	public ResultMessage getOrgs();
 	
 }

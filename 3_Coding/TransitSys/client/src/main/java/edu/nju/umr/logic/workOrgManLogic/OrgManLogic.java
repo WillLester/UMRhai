@@ -6,24 +6,25 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import edu.nju.umr.constants.Url;
+import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
+import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
 import edu.nju.umr.logic.utilityLogic.DiaryUpdateLogic;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.logicService.workOrgManLogicSer.OrgManLSer;
-import edu.nju.umr.vo.CityVO;
-import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.enums.Organization;
 import edu.nju.umr.po.enums.Result;
+import edu.nju.umr.vo.CityVO;
+import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.constants.Url;
-import edu.nju.umr.dataService.workOrgManDSer.OrgManDSer;
-import edu.nju.umr.dataService.dataFactory.OrgManDFacSer;
 
 public class OrgManLogic implements OrgManLSer{
 	private OrgManDFacSer dataFac;
 	private OrgManDSer orgData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	public OrgManLogic(){
 		try{
