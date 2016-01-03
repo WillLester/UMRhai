@@ -76,22 +76,18 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 	public Result isCityUsed(String name,String id) throws RemoteException {
 		ResultSet result=mysqlSer.checkInfo(new CityPO(name,null,null,0));
 		try{
-			if(result.next())
-			{
+			if(result.next()){
 				return Result.CITY_EXIST;
 			}
-		}catch(SQLException e)
-		{
+		}catch(SQLException e){
 			return Result.DATABASE_ERROR;
 		}
 		result=mysqlSer.checkInfo(new CityPO(null,id,null,0));
 		try{
-			if(result.next())
-			{
+			if(result.next()){
 				return Result.CITY_ID_USED;
 			}
-		}catch(SQLException e)
-		{
+		}catch(SQLException e){
 			return Result.DATABASE_ERROR;
 		}
 		return Result.SUCCESS;
