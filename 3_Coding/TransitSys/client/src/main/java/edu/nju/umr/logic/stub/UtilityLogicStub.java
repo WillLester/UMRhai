@@ -1,7 +1,6 @@
 package edu.nju.umr.logic.stub;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import edu.nju.umr.dataService.utilityDSer.UtilityDSer;
 import edu.nju.umr.po.AccountPO;
@@ -10,7 +9,6 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
-import edu.nju.umr.po.enums.Result;
 public class UtilityLogicStub implements UtilityDSer{
 	public ArrayList<CityPO> getCities() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -45,12 +43,6 @@ public class UtilityLogicStub implements UtilityDSer{
 	}
 	@Override
 	public ArrayList<AccountPO> getAccount() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Result setRecord(Calendar time, String operation, String operator)
-			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

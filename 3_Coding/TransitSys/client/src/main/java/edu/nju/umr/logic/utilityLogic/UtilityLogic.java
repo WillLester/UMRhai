@@ -8,7 +8,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -203,29 +202,6 @@ public class UtilityLogic implements UtilityLSer{
 		}
 		
 		return new ResultMessage(re, accountList);
-	}
-
-	public static Result setRecord(Calendar cal,String op,String opt){
-		Result isSuc=Result.SUCCESS;
-		
-			UtilityDFacSer dataFac;
-			try {
-				dataFac = (UtilityDFacSer)Naming.lookup("rmi://localhost:8885/DataFactory");
-				UtilityDSer data=dataFac.getUtility();
-				isSuc=data.setRecord(cal, op, opt);
-			} catch (MalformedURLException e) {
-				
-				e.printStackTrace();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return Result.NET_INTERRUPT;
-			} catch (NotBoundException e) {
-				e.printStackTrace();
-				return Result.DATA_NOT_FOUND;
-			}
-			
-		
-		return isSuc;
 	}
 	//导出excel文件
 	public Result outputExcel(String data[][],String name, String location) {
