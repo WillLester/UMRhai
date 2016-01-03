@@ -12,5 +12,4 @@ public interface StockDivideDSer extends Remote{
 	public Result addShelf(ShelfPO shelf) throws RemoteException;
 	public Result deleteShelf(String id) throws RemoteException;
 	public Result reviseShelf(ShelfPO shelf) throws RemoteException;
-//	public ShelfPO getShelf(String id) throws RemoteException;
 }

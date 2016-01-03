@@ -43,6 +43,9 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 		}catch(RemoteException e){
 			return new ResultMessage(Result.NET_INTERRUPT, Result.NET_INTERRUPT);
 		}
+		if(warning == null){
+			return new ResultMessage(Result.SUCCESS, Result.SUCCESS);
+		}
 		try {
 			StockPO stock = checkData.getStock(id);
 			ArrayList<GoodPO> goods = stock.getGoods();

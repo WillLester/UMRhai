@@ -8,6 +8,7 @@ import edu.nju.umr.po.OrgPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.VanPO;
 import edu.nju.umr.po.WorkPO;
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -85,11 +86,19 @@ public interface UtilityLSer {
 	 * @return String[]形式的账户列表
 	 */
 	public ResultMessage getHallNames();
-	
+	/**
+	 * 获得仓库名称列表
+	 * @return String[]形式的仓库列表
+	 */
 	public ResultMessage getStocks();
 
 	public ResultMessage getOrgs();
 
+	/**
+	 * 获得人员信息列表
+	 * @param orgId 机构编号，为null时返回全部人员
+	 * @return WorkPO的ArrayList表示的人员列表
+	 */
 	public ArrayList<WorkPO> works(String orgId);
 
 	public ArrayList<AccountPO> accounts();
@@ -97,5 +106,14 @@ public interface UtilityLSer {
 	public ArrayList<StockPO> stocks();
 
 	public ArrayList<VanPO> vans(String orgId);
+
+	/**
+	 * 导出Excel表格
+	 * @param data 二维字符串数组表示的数据
+	 * @param name 表格名
+	 * @param location 表格地址
+	 * @return 导出结果
+	 */
+	public Result outputExcel(String[][] data, String name, String location);
 	
 }

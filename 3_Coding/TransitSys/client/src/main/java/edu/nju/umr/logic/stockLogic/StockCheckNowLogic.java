@@ -13,6 +13,7 @@ import edu.nju.umr.dataService.stockDSer.StockCheckNowDSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.stockLogicSer.StockCheckNowLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.GoodPO;
 import edu.nju.umr.po.StockPO;
 import edu.nju.umr.po.enums.Result;
@@ -21,12 +22,11 @@ import edu.nju.umr.vo.ResultMessage;
 public class StockCheckNowLogic implements StockCheckNowLSer{
 	private StockCheckNowDFacSer dataFac;
 	private StockCheckNowDSer checkData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private StockPO stock=null;
 	
 	public StockCheckNowLogic(){
-		try
-		{
+		try{
 			dataFac=(StockCheckNowDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheckNow();
 		}catch (NotBoundException e) { 
@@ -39,6 +39,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 		{
 			e.printStackTrace();
 		}
+		uti = new UtilityLogic();
 	}
 	
 	public ResultMessage checkNow(String id) {
