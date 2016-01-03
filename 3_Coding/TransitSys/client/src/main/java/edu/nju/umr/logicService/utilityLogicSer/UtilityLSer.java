@@ -1,8 +1,13 @@
 package edu.nju.umr.logicService.utilityLogicSer;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.OrgPO;
+import edu.nju.umr.po.StockPO;
+import edu.nju.umr.po.VanPO;
+import edu.nju.umr.po.WorkPO;
 import edu.nju.umr.vo.CityVO;
 import edu.nju.umr.vo.OrgVO;
 import edu.nju.umr.vo.ResultMessage;
@@ -84,5 +89,13 @@ public interface UtilityLSer {
 	public ResultMessage getStocks();
 
 	public ResultMessage getOrgs();
+
+	public ArrayList<WorkPO> works(String orgId);
+
+	public ArrayList<AccountPO> accounts();
+
+	public ArrayList<StockPO> stocks();
+
+	public ArrayList<VanPO> vans(String orgId);
 	
 }

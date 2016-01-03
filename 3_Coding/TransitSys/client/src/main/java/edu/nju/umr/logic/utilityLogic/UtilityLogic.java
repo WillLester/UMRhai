@@ -298,27 +298,51 @@ public class UtilityLogic implements UtilityLSer{
 		return hall;
 	}
 	
-	public ArrayList<WorkPO> works(String orgId) throws RemoteException{
+	public ArrayList<WorkPO> works(String orgId){
 		ArrayList<WorkPO> work=new ArrayList<WorkPO>();
-		work=utilityData.getWorkers(orgId);
+		try {
+			work=utilityData.getWorkers(orgId);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return new ArrayList<WorkPO>();
+		}
 		return work;
 	}
 	
-	public ArrayList<VanPO> vans(String orId) throws RemoteException{
+	public ArrayList<VanPO> vans(String orId){
 		ArrayList<VanPO> van=new ArrayList<VanPO>();
-		van=utilityData.getVans(orId);
+		try {
+			van=utilityData.getVans(orId);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return van;
+		}
 		return van;
 	}
 	
-	public ArrayList<StockPO> stocks() throws RemoteException{
+	public ArrayList<StockPO> stocks(){
 		ArrayList<StockPO> stock=new ArrayList<StockPO>();
-		stock=utilityData.getStocks();
+		try {
+			stock=utilityData.getStocks();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return stock;
+		}
 		return stock;
 	}
 	
-	public ArrayList<AccountPO> accounts() throws RemoteException{
+	public ArrayList<AccountPO> accounts(){
 		ArrayList<AccountPO> account=new ArrayList<AccountPO>();
-		account=utilityData.getAccount();
+		try {
+			account=utilityData.getAccount();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return account;
+		}
 		return account;
 	}
 	
@@ -404,13 +428,7 @@ public class UtilityLogic implements UtilityLSer{
 	@Override
 	public ResultMessage getVanNames(String orgId) {//车辆代号
 		ArrayList<VanPO> vanList=new ArrayList<VanPO>();
-		try {
-			vanList=vans(orgId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
+		vanList=vans(orgId);
 		String[] vanId=new String[vanList.size()];
 		for(int i=0;i<vanList.size();i++){
 			vanId[i]=vanList.get(i).getId();
@@ -420,13 +438,7 @@ public class UtilityLogic implements UtilityLSer{
 	
 	public ResultMessage getAccountNames() {
 		ArrayList<AccountPO> accountList=new ArrayList<AccountPO>();
-		try {
-			accountList =accounts();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResultMessage(Result.NET_INTERRUPT,null);
-		}
+		accountList =accounts();
 		String[] accountName=new String[accountList.size()];
 		for(int i=0;i<accountList.size();i++){
 			accountName[i]=accountList.get(i).getName();

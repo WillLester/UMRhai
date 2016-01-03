@@ -16,6 +16,7 @@ import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.accountLogicSer.CountLSer;
 import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.AccountPO;
 import edu.nju.umr.po.CountPO;
 import edu.nju.umr.po.OrgPO;
@@ -29,7 +30,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class CountLogic implements CountLSer{
 	private CountDFacSer countFac;
 	private CountDSer countData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	private ArrayList<CountPO> countPO=new ArrayList<CountPO>();
 	private DiaryUpdateLSer diarySer;
 	public CountLogic() {
@@ -52,16 +53,11 @@ public class CountLogic implements CountLSer{
 		ArrayList<VanPO> vanList=null;
 		ArrayList<StockPO> stockList=null;
 		ArrayList<AccountPO> accountList=null;
-		try {
-			orgList = uti.orgs();
-			workList = uti.works(null);
-			vanList = uti.vans(null);
-			stockList = uti.stocks();
-			accountList = uti.accounts();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return Result.NET_INTERRUPT;
-		}
+		orgList = uti.orgs();
+		workList = uti.works(null);
+		vanList = uti.vans(null);
+		stockList = uti.stocks();
+		accountList = uti.accounts();
 		
 		CountPO count=new CountPO(countPO.size(),(ArrayList<OrgPO>) orgList,workList,vanList,stockList,accountList,Calendar.getInstance());
 		try {
