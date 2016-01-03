@@ -1,4 +1,4 @@
-package edu.nju.umr.data.orderNewData;
+package edu.nju.umr.data.orderApproveData;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
