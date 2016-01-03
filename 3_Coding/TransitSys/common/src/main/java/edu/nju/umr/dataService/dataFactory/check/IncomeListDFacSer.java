@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 
 import edu.nju.umr.dataService.checkDSer.IncomeListDSer;
 
-public interface CollectFormDFacSer extends Remote{
-	public IncomeListDSer getCollectForm() throws RemoteException;
+public interface IncomeListDFacSer extends Remote{
+	public IncomeListDSer getIncomeList() throws RemoteException;
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.umr.po.order.function.KindGetter;
 /**
- * 
+ * 查看未通过单据
  * @author WillLester
  * @see OrderResubmitData
  */

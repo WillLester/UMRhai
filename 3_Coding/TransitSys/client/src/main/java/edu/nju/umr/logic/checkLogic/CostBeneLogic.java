@@ -16,15 +16,14 @@ import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
 import edu.nju.umr.vo.CostBeneVO;
 import edu.nju.umr.vo.ResultMessage;
-import edu.nju.umr.vo.order.IncomeVO;
-import edu.nju.umr.vo.order.PaymentVO;
 
 public class CostBeneLogic implements CostBeneLSer{
+	private CostBeneDFacSer dataFac;
 	private CostBeneDSer costBeneDSer;
 	public CostBeneLogic() {
 		// TODO 自动生成的构造函数存根
 		try {
-			CostBeneDFacSer dataFac = (CostBeneDFacSer) Naming.lookup(Url.URL);
+			dataFac = (CostBeneDFacSer) Naming.lookup(Url.URL);
 			costBeneDSer = dataFac.getCostBene();
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
@@ -71,12 +70,6 @@ public class CostBeneLogic implements CostBeneLSer{
 			total = total.add(payment.getAmount());
 		}
 		return new ResultMessage(Result.SUCCESS,total);
-	}
-
-	public Result outputExcel(String location, ArrayList<IncomeVO> income,
-			ArrayList<PaymentVO> payment) {
-		// TODO 自动生成的方法存根
-		return Result.SUCCESS;
 	}
 	
 	public ResultMessage getCostBene(){

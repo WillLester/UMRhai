@@ -10,24 +10,25 @@ import java.util.Calendar;
 
 import edu.nju.umr.constants.Url;
 import edu.nju.umr.dataService.checkDSer.IncomeListDSer;
-import edu.nju.umr.dataService.dataFactory.check.CollectFormDFacSer;
+import edu.nju.umr.dataService.dataFactory.check.IncomeListDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logic.utilityLogic.VPFactory;
 import edu.nju.umr.logicService.checkLogicSer.IncomeListLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.IncomeVO;
 //查看收款记录
 public class IncomeListLogic implements IncomeListLSer{
-	private CollectFormDFacSer dataFac;
+	private IncomeListDFacSer dataFac;
 	private IncomeListDSer collectData;
-	private UtilityLogic uti=new UtilityLogic();
+	private UtilityLSer uti;
 	public IncomeListLogic() {
 		// TODO 自动生成的构造函数存根
 		try{
-			dataFac = (CollectFormDFacSer)Naming.lookup(Url.URL);
-			collectData = dataFac.getCollectForm();
+			dataFac = (IncomeListDFacSer)Naming.lookup(Url.URL);
+			collectData = dataFac.getIncomeList();
 		} catch (NotBoundException e) { 
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
@@ -35,6 +36,7 @@ public class IncomeListLogic implements IncomeListLSer{
         } catch (RemoteException e) { 
             e.printStackTrace();   
         } 
+		uti = new UtilityLogic();
 	}
 	public ResultMessage seeIncomeList(Calendar date, String org) {
 		ArrayList<IncomeVO> incomeList = new ArrayList<IncomeVO>();

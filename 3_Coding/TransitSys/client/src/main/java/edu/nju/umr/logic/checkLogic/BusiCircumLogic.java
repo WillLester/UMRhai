@@ -12,6 +12,7 @@ import edu.nju.umr.dataService.checkDSer.BusiCircumDSer;
 import edu.nju.umr.dataService.dataFactory.check.BusiCircumDFacSer;
 import edu.nju.umr.logic.utilityLogic.UtilityLogic;
 import edu.nju.umr.logicService.checkLogicSer.BusiCircumLSer;
+import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.IncomePO;
 import edu.nju.umr.po.order.PaymentPO;
@@ -21,7 +22,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class BusiCircumLogic implements BusiCircumLSer{
 	private BusiCircumDFacSer dataFac;
 	private BusiCircumDSer busiCircumData;
-	private UtilityLogic uti;
+	private UtilityLSer uti;
 	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
 	
 	public BusiCircumLogic() {

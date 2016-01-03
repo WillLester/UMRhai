@@ -77,7 +77,7 @@ import edu.nju.umr.dataService.dataFactory.WorkManDFacSer;
 import edu.nju.umr.dataService.dataFactory.account.AccountDFacSer;
 import edu.nju.umr.dataService.dataFactory.account.CountDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.BusiCircumDFacSer;
-import edu.nju.umr.dataService.dataFactory.check.CollectFormDFacSer;
+import edu.nju.umr.dataService.dataFactory.check.IncomeListDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.CostBeneDFacSer;
 import edu.nju.umr.dataService.dataFactory.check.DiaryDFacSer;
 import edu.nju.umr.dataService.dataFactory.orderNew.ArriveOrderDFacSer;
@@ -141,7 +141,7 @@ import edu.nju.umr.dataService.workOrgManDSer.WorkManDSer;
 
 public class DataFactory extends UnicastRemoteObject implements AccountDFacSer,ArriveOrderDFacSer,CenterLoadingOrderDFacSer,CityDFacSer,BusiCircumDFacSer,CountDFacSer,CourierDFacSer,CustomerDFacSer,
 DiaryDFacSer,DriverManDFacSer,ExpressOrderDFacSer,HallLoadingOrderDFacSer,IncomeOrderDFacSer,LoginDFacSer,OrderApproveDFacSer,OrderResubmitDFacSer,OrgManDFacSer,PaymentOrderDFacSer,
-RecipientOrderDFacSer,SendOrderDFacSer,CollectFormDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
+RecipientOrderDFacSer,SendOrderDFacSer,IncomeListDFacSer,StockCheckDFacSer,StockCheckNowDFacSer,StockCheckWarnDFacSer,StockDivideDFacSer,StockInOrderDFacSer,StockOutOrderDFacSer,
 StockWarningDFacSer,TransitOrderDFacSer,UserManDFacSer,VanManDFacSer,WorkManDFacSer,UtilityDFacSer,CostBeneDFacSer,ConstantDFacSer,UpdateTransitInfoDFacSer,WageManDFacSer,
 DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,OrderCalcuDFacSer,AccountUpdateDFacSer,UpdateTranStateDFacSer,GoodUpdateDFacSer {
 
@@ -210,7 +210,7 @@ DiaryUpdateDFacSer,ReceiveOrderDFacSer,OrderInfoDFacSer,ConstantGetDFacSer,Order
 		return StockCheckData.getStockCheck();
 	}
 
-	public IncomeListDSer getCollectForm() throws RemoteException {
+	public IncomeListDSer getIncomeList() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return IncomeListData.getIncomeList();
 	}
