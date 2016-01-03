@@ -123,14 +123,16 @@ public class DriverManLogic implements DriverManLSer{
 				}
 			}
 		}
-		String id="0";
+		String id="1";
 		for(int i=0;i<ar.size();i++)
 		{
 			int nowId=Integer.parseInt(ar.get(i).getId().substring(5,9));
-			id=Integer.toString(i+2);
+			id=Integer.toString(i+1);
 			if(nowId>i+1)
 			{
 				break;
+			}else{
+				id=Integer.toString(i+2);
 			}
 		}
 		while(id.length()<3)

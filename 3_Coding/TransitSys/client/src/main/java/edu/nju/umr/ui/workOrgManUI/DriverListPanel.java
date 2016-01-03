@@ -124,15 +124,10 @@ public class DriverListPanel extends PPanel {
 		        {
 		        	Result result;
 		        	result=serv.deleteDriver(driverList.get(table.getSelectedRow()).getId(),name);
-		        	DoHint.hint(result, frame);
-					if(result.equals(Result.SUCCESS)){
-						try{
-							Thread.sleep(300);
-						}catch(Exception ex)
-						{
-							ex.printStackTrace();
-						}
-					}
+		        	DoHint.hint(result, frame,false);
+		        	if(result.equals(Result.SUCCESS)){
+		        		model.removeRow(table.getSelectedRow());
+		        	}
 		        }
 			}
 		});
@@ -223,6 +218,13 @@ public class DriverListPanel extends PPanel {
 			result=serv.addDriver(driver,name);
 			if(!result.equals(Result.SUCCESS))
 				return result;
+			for(int i=0;i<model.getRowCount();i++){
+				if(Integer.parseInt(model.getValueAt(i, 0).toString().substring(5, 9))>i+1){
+					driverList.add(i, driver);
+					displayDrivers();
+					return result;
+				}
+			}
 			driverList.add(driver);
 		}
 		displayDrivers();
