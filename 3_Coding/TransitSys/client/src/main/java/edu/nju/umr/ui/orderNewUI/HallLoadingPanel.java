@@ -24,6 +24,7 @@ import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
 import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
@@ -41,7 +42,7 @@ import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
-public class HallLoadingPanel extends PPanel {
+public class HallLoadingPanel extends PPanel implements PriceCount {
 	/**
 	 * 
 	 */
@@ -58,6 +59,7 @@ public class HallLoadingPanel extends PPanel {
 	private HallLoadingOrderLSer serv;
 	private UMRComboBox<String> comboBoxDestination;
 	private UMRComboBox<String> comboBoxVan;
+	private ExpressListPanel expressList;
 	private ArrayList<String> expressIdList=new ArrayList<String>();
 	private ArrayList<String> allExpresses=new ArrayList<String>();
 	private String userName;
@@ -182,63 +184,67 @@ public class HallLoadingPanel extends PPanel {
 		priceLabel.setBounds(656, 224, 70, 24);
 		add(priceLabel);
 		
-		UMRLabel expressIdLabel = new UMRLabel("订单条形码号");
-		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdLabel.setBounds(220+75, 275, 130, 24);
-		add(expressIdLabel);
+		expressList = new ExpressListPanel(frame,this);
+		expressList.setBounds(266, 236, 677, 273);
+		add(expressList);
 		
-		expressIdField = new AutoCompPanel();
-		expressIdField.setMyFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdField.setBounds(355+75, 274, 280, 25);
-		add(expressIdField);
-		
-		Button btnNewButton = new AddButton();
-		btnNewButton.setBounds(656+75, 271, 100, 30);
-		btnNewButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(serv.isLegal(expressIdField.getText())&&(!expressIdList.contains(expressIdField.getText())))
-				{
-					model.addRow(new String[]{expressIdField.getText()});
-					expressIdList.add(expressIdField.getText());
-					allExpresses.remove(expressIdField.getText());
-					expressIdField.setAllItem(allExpresses);
-					expressIdField.setText("");
-					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
-					if(!getPrice())
-					{
-						System.out.println("Invalid!");
-						int row=table.getSelectedRow();
-						model.removeRow(row);
-						expressIdList.remove(row);
-						expressIdField.setText("");
-					}
-				}
-				else
-				{
-					DoHint.hint("订单号非法!", frame);
-				}
-			}
-		});
-		add(btnNewButton);
-		
-		Button deleteButton = new DelButton();
-		deleteButton.setBounds(656+75+93+20, 271, 100, 30);
-		deleteButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				deleteExpress();
-			}
-		});
-		add(deleteButton);
-		
-		UMRLabel tableHeadLabel = new UMRLabel("已输入订单");
-		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		tableHeadLabel.setBounds(401+75, 309, 130, 24);
-		add(tableHeadLabel);
+//		UMRLabel expressIdLabel = new UMRLabel("订单条形码号");
+//		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		expressIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+//		expressIdLabel.setBounds(220+75, 275, 130, 24);
+//		add(expressIdLabel);
+//		
+//		expressIdField = new AutoCompPanel();
+//		expressIdField.setMyFont(new Font("微软雅黑", Font.PLAIN, 20));
+//		expressIdField.setBounds(355+75, 274, 280, 25);
+//		add(expressIdField);
+//		
+//		Button btnNewButton = new AddButton();
+//		btnNewButton.setBounds(656+75, 271, 100, 30);
+//		btnNewButton.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				if(serv.isLegal(expressIdField.getText())&&(!expressIdList.contains(expressIdField.getText())))
+//				{
+//					model.addRow(new String[]{expressIdField.getText()});
+//					expressIdList.add(expressIdField.getText());
+//					allExpresses.remove(expressIdField.getText());
+//					expressIdField.setAllItem(allExpresses);
+//					expressIdField.setText("");
+//					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
+//					if(!getPrice())
+//					{
+//						System.out.println("Invalid!");
+//						int row=table.getSelectedRow();
+//						model.removeRow(row);
+//						expressIdList.remove(row);
+//						expressIdField.setText("");
+//					}
+//				}
+//				else
+//				{
+//					DoHint.hint("订单号非法!", frame);
+//				}
+//			}
+//		});
+//		add(btnNewButton);
+//		
+//		Button deleteButton = new DelButton();
+//		deleteButton.setBounds(656+75+93+20, 271, 100, 30);
+//		deleteButton.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				deleteExpress();
+//			}
+//		});
+//		add(deleteButton);
+//		
+//		UMRLabel tableHeadLabel = new UMRLabel("已输入订单");
+//		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+//		tableHeadLabel.setBounds(401+75, 309, 130, 24);
+//		add(tableHeadLabel);
 		
 		confirmButton = new ConfirmButton();
 		confirmButton.setBounds(342+75, 539, 100, 30);
