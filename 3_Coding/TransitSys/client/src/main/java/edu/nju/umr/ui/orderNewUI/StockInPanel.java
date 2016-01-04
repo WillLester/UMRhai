@@ -78,7 +78,6 @@ public class StockInPanel extends PPanel {
 		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 		t[0]=vo.getPlace();
 		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
-		System.out.println(vo.getRow()+" "+vo.getPlace());
 	}
 
 	@SuppressWarnings("unchecked")
