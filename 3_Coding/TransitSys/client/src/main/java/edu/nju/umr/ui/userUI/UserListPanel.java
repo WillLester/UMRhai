@@ -254,6 +254,8 @@ public class UserListPanel extends PPanel {
 							} else {
 								juriBox.setEnabled(true);
 							}
+						}else{
+							juriBox.setEnabled(true);
 						}
 					} else {
 						deleteButton.setEnabled(false);
@@ -304,6 +306,8 @@ public class UserListPanel extends PPanel {
 		String[] rowData={"","","","","",""};
 		model.addRow(rowData);
 		table.getSelectionModel().setSelectionInterval(model.getRowCount()-1, model.getRowCount()-1);
+		confirmButton.setEnabled(true);
+		juriBox.setEnabled(true);
 	}
 	private void displayUser(int row)
 	{
@@ -327,6 +331,11 @@ public class UserListPanel extends PPanel {
 		}
 		Jurisdiction jur=null;
 		String temp=(String)juriBox.getModel().getSelectedItem();
+		if(temp.equals(""))
+		{
+			DoHint.hint("权限未选择", frame);
+			return;
+		}
 		jur = EnumTransFactory.getJuri(temp);
 		
 		if(!isLegal()){
@@ -344,7 +353,7 @@ public class UserListPanel extends PPanel {
 				reportWrong(result);
 			}
 		} else {
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),null,null);
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),"","");
 			Result result=serv.newUser(now,this.name);
 			if(result.equals(Result.SUCCESS)){
 				users.add(now);
@@ -355,6 +364,7 @@ public class UserListPanel extends PPanel {
 				reportWrong(result);
 			}
 		}
+		confirmButton.setEnabled(false);
 	}
 	
 	private boolean isLegal(){
