@@ -72,6 +72,9 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 		ArrayList<OrderVO> orders = new ArrayList<OrderVO>();
 		try {
 			 orderList= approveData.getExamine();
+			 if(orderList == null){
+				 return new ResultMessage(Result.DATABASE_ERROR, null);
+			 }
 			for(OrderPO order:orderList){
 				OrderVO vo = new OrderVO(order.getId(), order.getKind(), order.getOperator(), order.getTime());
 				orders.add(vo);

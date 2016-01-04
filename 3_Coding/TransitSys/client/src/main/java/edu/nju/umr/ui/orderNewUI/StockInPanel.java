@@ -239,6 +239,10 @@ public class StockInPanel extends PPanel {
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
 					DoHint.hint(result, frame,true);
+					if((result == Result.OUT_OF_STOCK_VAN)||(result == Result.OUT_OF_STOCK_PLANE)||(result == Result.OUT_OF_STOCK_TRAIN)||
+							(result == Result.OUT_OF_STOCK_MANEUVER)){
+						DoHint.hint(Result.SUCCESS, fr);
+					}
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);
 					}
