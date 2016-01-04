@@ -49,7 +49,7 @@ public class UtilityLogic implements UtilityLSer{
             e.printStackTrace(); 
         } catch (RemoteException e) { 
             e.printStackTrace();   
-        }  
+        }
 	}
 	
 	@Override
