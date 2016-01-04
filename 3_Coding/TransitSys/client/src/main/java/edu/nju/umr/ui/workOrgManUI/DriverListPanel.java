@@ -185,7 +185,7 @@ public class DriverListPanel extends PPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
-	void displayDrivers(){
+	private void displayDrivers(){
 		model.setRowCount(0);
 		for(int i=0;i<driverList.size();i++)
 		{
@@ -193,9 +193,6 @@ public class DriverListPanel extends PPanel {
 			String [] data=driver.getData();
 			model.addRow(data);
 		}
-	}
-	void addDriver(DriverVO driver){
-		
 	}
 	public Result Modify(DriverVO driver){
 		int index;
@@ -230,11 +227,4 @@ public class DriverListPanel extends PPanel {
 		displayDrivers();
 		return result;
 	}
-//	public static void main(String[] args){
-//		FunctionFrame f=new FunctionFrame("");
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		f.setSize(1300,800);
-//		f.setContentPane(new DriverListPanel(f,"",""));
-//		f.setVisible(true);
-//	}
 }

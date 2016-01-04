@@ -70,6 +70,9 @@ public class CountData extends UnicastRemoteObject implements CountDSer{
 	private int countCount(){
 		File file = new File(LOCATION);
 		File[] fs = file.listFiles();
+		if(fs == null){
+			return 0;
+		}
 		return fs.length;
 	}
 	
