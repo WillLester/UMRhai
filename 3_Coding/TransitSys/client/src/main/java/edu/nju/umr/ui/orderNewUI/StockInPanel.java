@@ -70,11 +70,15 @@ public class StockInPanel extends PPanel {
 		}
 		expressField.setText(vo.getExpressId());
 		partCombo.setSelectedItem(vo.getPart());
-		rowCombo.setSelectedItem(vo.getRow());
 		shelfCombo.setSelectedItem(vo.getShelfId());
-		placeCombo.setSelectedItem(vo.getPlace());
 		datePanel.setDate(vo.getDate());
 		targetCombo.setSelectedItem(vo.getArrivePlace());
+		Integer [] t= new Integer[1];
+		t[0]=vo.getRow();
+		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
+		t[0]=vo.getPlace();
+		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
+		System.out.println(vo.getRow()+" "+vo.getPlace());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -320,7 +324,7 @@ public class StockInPanel extends PPanel {
 		Part parts[] = Part.values();
 		StockInVO vo = new StockInVO(idField.getText(),expressField.getText(), datePanel.getCalendar(), (String) targetCombo.getSelectedItem(),
 				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
-				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
+				Integer.parseInt(rowCombo.getSelectedItem().toString()), Integer.parseInt(placeCombo.getSelectedItem().toString()), name, orgId,userId);
 		return vo;
 	}
 	
