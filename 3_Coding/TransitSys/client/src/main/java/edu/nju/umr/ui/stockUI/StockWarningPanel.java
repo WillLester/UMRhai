@@ -94,14 +94,20 @@ public class StockWarningPanel extends PPanel{
 		ResultMessage message = logicSer.getWarning(orgId);
 		if(message.getReInfo().equals(Result.SUCCESS)){
 			this.warnings = (ArrayList<Integer>) message.getMessage();
-			planeField.setText(""+warnings.get(0));
-			trainField.setText(""+warnings.get(1));
-			vanField.setText(""+warnings.get(2));
-			maneuverField.setText(""+warnings.get(3));
 		} else if(!message.getReInfo().equals(Result.FILE_NOT_FOUND)){
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(message.getReInfo(), frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
-		} 
+		} else {
+			warnings = new ArrayList<Integer>();
+			for(int i = 0;i < 4;i++){
+				warnings.add(50);
+			}
+		}
+		
+		planeField.setText(""+warnings.get(0));
+		trainField.setText(""+warnings.get(1));
+		vanField.setText(""+warnings.get(2));
+		maneuverField.setText(""+warnings.get(3));
 		
 		Button confirmButton = new ConfirmModButton();
 		confirmButton.setBounds(428, y+385,100, 30);

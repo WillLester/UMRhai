@@ -57,7 +57,7 @@ public class StockWarningLogic implements StockWarningLSer{
 			warnings=checkData.getWarning(id);
 			if(warnings != null){
 				isSuccessful=Result.SUCCESS;
-			}
+			} 
 
 		}catch (RemoteException e) {
 			return new ResultMessage(Result.NET_INTERRUPT,null);
