@@ -66,6 +66,7 @@ public class HintFrame extends EDialog{
 		this.setLayout(null);
 		setLocation(x+width/2-FRAME_WIDTH/2, y+height/2-FRAME_HEIGHT/2);
 		this.setContentPane(new HintPanel());
+		this.setAlwaysOnTop(true);
 		this.setVisible(true);
 	}
 	private void textAndButton(String text){
@@ -82,7 +83,7 @@ public class HintFrame extends EDialog{
 		});
 		confirmButton.setBounds(FRAME_WIDTH/2-50, FRAME_HEIGHT/2+40, 100, 30);
 		add(confirmButton);
-	}
+	} 
 	
 	
 }
