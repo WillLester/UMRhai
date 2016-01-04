@@ -150,6 +150,7 @@ public class StockInPanel extends PPanel {
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			frame.dispose();
 		}
 		
 		UMRLabel partLabel = new UMRLabel("区号");
@@ -291,6 +292,7 @@ public class StockInPanel extends PPanel {
 	}
 	private void getShelfPart(Part part){
 		shelfPart = new ArrayList<ShelfVO>();
+		if(shelfList==null)return;
 		for(ShelfVO shelf:shelfList){
 			if(shelf.getPart().equals(part)){
 				shelfPart.add(shelf);
@@ -352,13 +354,13 @@ public class StockInPanel extends PPanel {
 //		placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
 //	}
 	private void setRow(){
-		if(shelfCombo.getSelectedIndex()<0)return;
+		if(shelfCombo.getSelectedIndex()<0){rowCombo.setModel(new DefaultComboBoxModel<Integer>());setPlace();return;}
 		Integer [] t= logicSer.getRow(shelfCombo.getSelectedItem().toString());
 		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 		setPlace();
 	}
 	private void setPlace(){
-		if(rowCombo.getSelectedIndex()<0)return;
+		if(rowCombo.getSelectedIndex()<0){placeCombo.setModel(new DefaultComboBoxModel<Integer>());return;}
 		Integer [] t= logicSer.getPlace(shelfCombo.getSelectedItem().toString(),Integer.parseInt((rowCombo.getSelectedItem().toString())));
 		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 		

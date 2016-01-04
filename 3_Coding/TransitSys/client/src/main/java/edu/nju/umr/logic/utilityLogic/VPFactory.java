@@ -98,7 +98,7 @@ public class VPFactory {
      
      //营业厅装车单
      public static HallLoadingVO toHallLoadingVO(HallLoadingPO po){
-    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(), 0, po.getDate(), po.getOpName(),po.getUserId(),po.isArrived());
+    	 HallLoadingVO vo=new HallLoadingVO(po.getHallId(), po.getConvertId(), po.getArriveLoc(), po.getVanId(), po.getSupervision(), po.getEscort(), po.getExpress(),po.getCost(), po.getDate(), po.getOpName(),po.getUserId(),po.isArrived());
     	 return vo;
      }
      public static HallLoadingPO toHallLoadingPO(HallLoadingVO vo){
