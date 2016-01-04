@@ -210,7 +210,7 @@ public class DriverListPanel extends PPanel {
 					return result;
 				driverList.remove(index);
 				driverList.add(driver);
-				break;
+				return result;
 			}
 		}
 		if(index==driverList.size())

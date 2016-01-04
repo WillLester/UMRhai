@@ -67,7 +67,7 @@ public class DriverManLogic implements DriverManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(driver));
+			isSuccessful=driverData.reviseDriver(VPFactory.toDriverPO(driver));
 			isSuccessful = diarySer.addDiary("修改司机"+driver.getId(), name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;
