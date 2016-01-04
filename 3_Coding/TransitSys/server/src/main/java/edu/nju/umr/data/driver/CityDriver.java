@@ -20,9 +20,9 @@ public class CityDriver {
 	public void drive(){
 		
 		try {
-			Result r = serv.isCityUsed("南京", "025");
+			Result r = serv.isCityUsed("南京", "025",0);
 			System.out.println(r);
-			r = serv.isCityUsed("呼和浩特", "0211");
+			r = serv.isCityUsed("呼和浩特", "0211",5);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

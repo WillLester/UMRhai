@@ -73,19 +73,11 @@ public class CityData extends UnicastRemoteObject implements CityDSer{
 		// TODO 自动生成的方法存根
 		return mysqlSer.deleteInfo(cities);
 	}
-	public Result isCityUsed(String name,String id) throws RemoteException {
-		ResultSet result=mysqlSer.checkInfo(new CityPO(name,null,null,0));
+	public Result isCityUsed(String name,String id,int key) throws RemoteException {
+		ResultSet result=mysqlSer.checkInfo(new CityPO(name,id,null,key));
 		try{
 			if(result.next()){
 				return Result.CITY_EXIST;
-			}
-		}catch(SQLException e){
-			return Result.DATABASE_ERROR;
-		}
-		result=mysqlSer.checkInfo(new CityPO(null,id,null,0));
-		try{
-			if(result.next()){
-				return Result.CITY_ID_USED;
 			}
 		}catch(SQLException e){
 			return Result.DATABASE_ERROR;

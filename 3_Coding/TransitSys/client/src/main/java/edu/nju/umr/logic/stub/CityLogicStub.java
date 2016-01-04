@@ -59,7 +59,7 @@ public class CityLogicStub implements CityDSer{
 	}
 
 	@Override
-	public Result isCityUsed(String name, String id) throws RemoteException {
+	public Result isCityUsed(String name, String id,int key) throws RemoteException {
 		// TODO Auto-generated method stub
 		return Result.SUCCESS;
 	}
