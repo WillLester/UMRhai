@@ -189,6 +189,7 @@ public class WorkListPanel extends PPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
+				if(!legal())return;
 				if(table.getSelectedRow() >= workList.size()){
 					Result result = logicSer.addWork(createVO(),name);
 					DoHint.hint(result, frame);
@@ -340,5 +341,23 @@ public class WorkListPanel extends PPanel {
 		} else {
 			search();
 		}
+	}
+	private boolean legal(){
+		if(textFieldName.getText().isEmpty()){
+			DoHint.hint("姓名未输入", frame);
+			return false;
+		}
+		if(textFieldMobile.getText().length()!=11){
+			DoHint.hint("手机号长度错误", frame);
+			return false;
+		}
+		String temp=textFieldMobile.getText();
+		for(int i=0;i<temp.length();i++){
+			if(temp.charAt(i)<'0'&&temp.charAt(i)>'9'){
+				DoHint.hint("手机号包含非法字符", frame);
+				return false;
+			}
+		}
+		return true;
 	}
 }

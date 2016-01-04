@@ -56,6 +56,10 @@ public class VanPO extends PO implements Serializable{
 			command="insert into van values"+"("+"'"+id+"','"+plateNum+"','"+DateFormat.DATE.format(servTime.getTime())+"','"+"vanImage/"+id+".jpg"+"','"+hallId+"')";break;
 		case DELETE:command="delete from van where id='"+id+"'";break;
 		case FIND:
+			if(hallId == null){
+				command = "select * from van";
+				return command;
+			}
 			if(id == null){
 				command = "select * from van where hallId = '"+hallId+"'";
 			} else {

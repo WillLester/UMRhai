@@ -1,6 +1,7 @@
 package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +20,7 @@ import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.InfoPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
+import edu.nju.umr.ui.component.Utils;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.utility.DoHint;
@@ -54,6 +56,8 @@ public class WageDraftPanel extends InfoPanel {
 		//按月发薪
 		
 		rbMonth = new JRadioButton("按月发薪");
+		rbMonth.setFont(new Font("微软雅黑", Font.PLAIN,15));
+		rbMonth.setForeground(Utils.STD_COLOR);
 		rbMonth.setBackground(Color.WHITE);
 		rbMonth.setBounds(Constants.TABLE_X, y+Constants.TABLE_Y, 200, 23);
 		rbMonth.addItemListener(new ItemListener() {
@@ -83,6 +87,8 @@ public class WageDraftPanel extends InfoPanel {
 		//按次发薪
 		
 		rbCount = new JRadioButton("按次发薪");
+		rbCount.setFont(new Font("微软雅黑", Font.PLAIN,15));
+		rbCount.setForeground(Utils.STD_COLOR);
 		rbCount.setBackground(Color.WHITE);
 		rbCount.setBounds(rbMonth.getX(), wageMonth.getY()+wageMonth.getHeight()+10,200, 23);
 		rbCount.addItemListener(new ItemListener() {
@@ -112,6 +118,8 @@ public class WageDraftPanel extends InfoPanel {
 		//提成发薪
 		
 		rbBound = new JRadioButton("提成发薪");
+		rbBound.setFont(new Font("微软雅黑", Font.PLAIN,15));
+		rbBound.setForeground(Utils.STD_COLOR);
 		rbBound.setBackground(Color.WHITE);
 		rbBound.setBounds(rbMonth.getX(), wageCount.getY()+wageCount.getHeight()+10,200, 23);
 		rbBound.addItemListener(new ItemListener() {
