@@ -139,9 +139,10 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 			Result centerLoadSuc=Result.DATA_NOT_FOUND;
 			try {
 				CenterLoadingPO ctpo=(CenterLoadingPO)approveData.getOrder(id, kind);
-				if(ctpo!=null)
+				if(ctpo!=null){
 					centerLoadSuc=Result.SUCCESS;
-				centerLoad=VPFactory.toCenterLoadVO(ctpo);
+					centerLoad=VPFactory.toCenterLoadVO(ctpo);
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

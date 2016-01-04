@@ -31,6 +31,7 @@
     <ROW Directory="bin_Dir" Directory_Parent="Java_Dir" DefaultDir="bin"/>
     <ROW Directory="cmm_Dir" Directory_Parent="lib_Dir" DefaultDir="cmm"/>
     <ROW Directory="constant_Dir" Directory_Parent="data_Dir" DefaultDir="constant"/>
+    <ROW Directory="count_Dir" Directory_Parent="data_Dir" DefaultDir="count"/>
     <ROW Directory="cursors_Dir" Directory_Parent="images_Dir" DefaultDir="cursors"/>
     <ROW Directory="data_Dir" Directory_Parent="APPDIR" DefaultDir="data"/>
     <ROW Directory="deploy_Dir" Directory_Parent="lib_Dir" DefaultDir="deploy"/>
@@ -44,6 +45,7 @@
     <ROW Directory="plugin2_Dir" Directory_Parent="bin_Dir" DefaultDir="plugin2"/>
     <ROW Directory="security_Dir" Directory_Parent="lib_Dir" DefaultDir="security"/>
     <ROW Directory="server_Dir" Directory_Parent="bin_Dir" DefaultDir="server"/>
+    <ROW Directory="stockWarning_Dir" Directory_Parent="data_Dir" DefaultDir="STOCKW~1|stockWarning"/>
     <ROW Directory="vanImage_Dir" Directory_Parent="APPDIR" DefaultDir="vanImage"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
@@ -62,6 +64,7 @@
     <ROW Component="blacklist" ComponentId="{459B0A2F-EA28-4ED5-ABD9-3BB16083A64D}" Directory_="security_Dir" Attributes="0" KeyPath="blacklist" Type="0"/>
     <ROW Component="classes.jsa" ComponentId="{08ACF40E-3861-4582-B11C-59A1BA23B6E0}" Directory_="server_Dir" Attributes="0" KeyPath="classes.jsa" Type="0"/>
     <ROW Component="constant.ser" ComponentId="{A14F183A-457F-43D8-AE70-27A67869BF42}" Directory_="constant_Dir" Attributes="0" KeyPath="constant.ser" Type="0"/>
+    <ROW Component="count" ComponentId="{D7F4D222-ADC6-4181-AECB-DDBD5A5FF7E4}" Directory_="count_Dir" Attributes="0"/>
     <ROW Component="cursors.properties" ComponentId="{50A960E9-F715-42EA-B6CE-45C891AFD3F9}" Directory_="cursors_Dir" Attributes="0" KeyPath="cursors.properties" Type="0"/>
     <ROW Component="database.txt" ComponentId="{920A0C6C-95A7-4C67-A163-8BA603959194}" Directory_="APPDIR" Attributes="0" KeyPath="database.txt" Type="0"/>
     <ROW Component="dcpr.dll" ComponentId="{E3981A45-C22A-4828-B1CA-46C5A8A335E0}" Directory_="bin_Dir" Attributes="256" KeyPath="dcpr.dll"/>
@@ -144,6 +147,7 @@
     <ROW Component="splashscreen.dll" ComponentId="{9FA4CE1A-3FCF-4319-9708-C652E7D31483}" Directory_="bin_Dir" Attributes="256" KeyPath="splashscreen.dll"/>
     <ROW Component="ssv.dll" ComponentId="{C4ED3508-1728-43EC-A930-C85CE38DF5AC}" Directory_="bin_Dir" Attributes="256" KeyPath="ssv.dll"/>
     <ROW Component="ssvagent.exe" ComponentId="{D3896086-2F78-4DD3-BAF9-5E519C009F11}" Directory_="bin_Dir" Attributes="256" KeyPath="ssvagent.exe"/>
+    <ROW Component="stockWarning" ComponentId="{9085C487-F968-4BAA-BDEF-0153EE8BFC7B}" Directory_="stockWarning_Dir" Attributes="0"/>
     <ROW Component="sunec.dll" ComponentId="{5968C83B-4D89-4362-ABD1-530FF24B5DD4}" Directory_="bin_Dir" Attributes="256" KeyPath="sunec.dll"/>
     <ROW Component="sunmscapi.dll" ComponentId="{081AFCF5-E515-4E10-9539-77085A00C35F}" Directory_="bin_Dir" Attributes="256" KeyPath="sunmscapi.dll"/>
     <ROW Component="t2k.dll" ComponentId="{67A9F4E0-EB10-46A7-B47C-1EFF72420AF9}" Directory_="bin_Dir" Attributes="256" KeyPath="t2k.dll"/>
@@ -157,7 +161,7 @@
     <ROW Component="zip.dll" ComponentId="{77049443-FED6-44D8-8D6E-7D83BEAD1240}" Directory_="bin_Dir" Attributes="256" KeyPath="zip.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="ProductInformation SHORTCUTDIR constant.ser database.txt exe vanImage"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="ProductInformation SHORTCUTDIR constant.ser count database.txt exe stockWarning vanImage"/>
     <ROW Feature="bitJREBundle" Title="64-bit JRE Bundle" Description="This feature contains the 64-bit JRE bundle." Display="3" Level="1" Directory_="APPDIR" Attributes="0" Builds="DefaultBuild"/>
     <ROW Feature="bitJREBundle_1" Title="64-bit JRE Bundle" Description="This feature contains the 64-bit JRE bundle." Display="5" Level="1" Directory_="APPDIR" Attributes="0" Components="CIEXYZ.pf COPYRIGHT JAWTAccessBridge64.dll JavaAccessBridge64.dll LucidaBrightDemiBold.ttf WindowsAccessBridge64.dll accessbridge64.jar accessibility.properties awt.dll bci.dll blacklist classes.jsa cursors.properties dcpr.dll decora_sse.dll default.jfc deploy.dll deployJava1.dll dt_shmem.dll dt_socket.dll eula.dll ffjcext.zip fontmanager.dll fxplugins.dll glass.dll gliblite.dll gstreamerlite.dll hprof.dll instrument.dll j2pcsc.dll j2pkcs11.dll jaas_nt.dll jabswitch.exe java.dll java.exe java_crw_demo.dll javacpl.cpl javacpl.exe javafx_font.dll javafx_font_t2k.dll javafx_iio.dll javarmi.exe javaw.exe javaws.exe jawt.dll jdwp.dll jfr.dll jfxmedia.dll jfxwebkit.dll jjs.exe jli.dll jmxremote.access jp2iexp.dll jp2launcher.exe jp2native.dll jp2ssv.dll jpeg.dll jsdt.dll jsound.dll jsoundds.dll jvm.cfg jvm.dll kcms.dll keytool.exe kinit.exe klist.exe ktab.exe lcms.dll management.dll mlib_image.dll msvcp120.dll msvcr100.dll msvcr100.dll_1 msvcr120.dll net.dll nio.dll npdeployJava1.dll npjp2.dll npt.dll orbd.exe pack200.exe policytool.exe prism_common.dll prism_d3d.dll prism_sw.dll resource.dll rmid.exe rmiregistry.exe servertool.exe splashscreen.dll ssv.dll ssvagent.exe sunec.dll sunmscapi.dll t2k.dll tnameserv.exe unpack.dll unpack200.exe verify.dll w2k_lsa_auth.dll wsdetect.dll zip.dll" Builds="DefaultBuild"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
@@ -421,6 +425,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
     <ROW Directory_="vanImage_Dir" Component_="vanImage" ManualDelete="false"/>
+    <ROW Directory_="stockWarning_Dir" Component_="stockWarning" ManualDelete="false"/>
+    <ROW Directory_="count_Dir" Component_="count" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
