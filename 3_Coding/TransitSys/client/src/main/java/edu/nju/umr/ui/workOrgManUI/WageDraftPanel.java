@@ -75,6 +75,7 @@ public class WageDraftPanel extends InfoPanel {
 		add(rbMonth);
 		
 		UMRLabel wageMonth = new UMRLabel("月薪");
+		wageMonth.setMidFont();
 		wageMonth.setBounds(rbMonth.getX()+50, rbMonth.getY()+rbMonth.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageMonth);
 		
@@ -106,6 +107,7 @@ public class WageDraftPanel extends InfoPanel {
 		add(rbCount);
 		
 		UMRLabel wageCount = new UMRLabel("次薪");
+		wageCount.setMidFont();
 		wageCount.setBounds(wageMonth.getX(), rbCount.getY()+rbCount.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageCount);
 		
@@ -139,6 +141,7 @@ public class WageDraftPanel extends InfoPanel {
 		add(rbBound);
 		
 		UMRLabel wageinit= new UMRLabel("月基本工资");
+		wageinit.setMidFont();
 		wageinit.setBounds(wageMonth.getX(), rbBound.getY()+rbBound.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(wageinit);
 		
@@ -149,6 +152,7 @@ public class WageDraftPanel extends InfoPanel {
 		textFieldwi.setColumns(10);
 		
 		UMRLabel bound = new UMRLabel("提成份额");
+		bound.setMidFont();
 		bound.setBounds(wageMonth.getX(), wageinit.getY()+wageinit.getHeight()+10, Constants.LABEL_WIDTH, Constants.LABEL_HEIGHT_S);
 		add(bound);
 		
