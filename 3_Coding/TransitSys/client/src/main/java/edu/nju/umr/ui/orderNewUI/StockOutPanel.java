@@ -65,6 +65,7 @@ public class StockOutPanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		expressField.setText(vo.getExpressId());
 		transitIdField.setText(vo.getTransitId());
 		targetCombo.setSelectedItem(vo.getArrivePlace());

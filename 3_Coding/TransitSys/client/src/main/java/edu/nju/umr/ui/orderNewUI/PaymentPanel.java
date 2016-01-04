@@ -61,6 +61,7 @@ public class PaymentPanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		payerField.setText(vo.getPayer());
 		costField.setText(vo.getAmount().toString());
 		datePanel.setDate(vo.getDate());

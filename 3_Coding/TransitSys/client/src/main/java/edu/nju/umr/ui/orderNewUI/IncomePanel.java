@@ -61,6 +61,7 @@ public class IncomePanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		courierCombo.setSelectedItem(vo.getCourier());
 		amountField.setText(vo.getCost().toString());
 		datePanel.setDate(vo.getDate());
