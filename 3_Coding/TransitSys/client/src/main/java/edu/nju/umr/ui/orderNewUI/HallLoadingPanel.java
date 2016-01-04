@@ -12,36 +12,28 @@ import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 import edu.nju.umr.constants.DateFormat;
 import edu.nju.umr.logic.orderNewLogic.HallLoadingOrderLogic;
 import edu.nju.umr.logicService.orderNewLogic.HallLoadingOrderLSer;
 import edu.nju.umr.po.enums.Result;
-import edu.nju.umr.ui.AutoCompPanel;
 import edu.nju.umr.ui.DatePanel;
+import edu.nju.umr.ui.ExpressListPanel;
 import edu.nju.umr.ui.HintFrame;
-import edu.nju.umr.ui.Table;
 import edu.nju.umr.ui.component.Button;
 import edu.nju.umr.ui.component.UMRLabel;
 import edu.nju.umr.ui.component.PPanel;
 import edu.nju.umr.ui.component.TextField;
 import edu.nju.umr.ui.component.TitleLabel;
-import edu.nju.umr.ui.component.UMRScrollPane;
-import edu.nju.umr.ui.component.button.AddButton;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
-import edu.nju.umr.ui.component.button.DelButton;
 import edu.nju.umr.ui.component.comboBox.UMRComboBox;
 import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.ResultMessage;
 import edu.nju.umr.vo.order.HallLoadingVO;
 
-public class HallLoadingPanel extends PPanel {
+public class HallLoadingPanel extends PPanel implements PriceCount {
 	/**
 	 * 
 	 */
@@ -49,16 +41,13 @@ public class HallLoadingPanel extends PPanel {
 	private TextField transitIdField;
 	private TextField superviseField;
 	private TextField guardField;
-	private AutoCompPanel expressIdField;
 	private UMRLabel priceLabel;
-	private Table table;
-	private DefaultTableModel model;
 	private JFrame frame;
 	private DatePanel datePanel;
 	private HallLoadingOrderLSer serv;
 	private UMRComboBox<String> comboBoxDestination;
 	private UMRComboBox<String> comboBoxVan;
-	private ArrayList<String> expressIdList=new ArrayList<String>();
+	private ExpressListPanel expressList;
 	private ArrayList<String> allExpresses=new ArrayList<String>();
 	private String userName;
 	private String orgId;
@@ -80,11 +69,7 @@ public class HallLoadingPanel extends PPanel {
 		transitIdField.setText(vo.getConvertId());
 		superviseField.setText(vo.getSupervision());
 		guardField.setText(vo.getEscort());
-		model.setRowCount(0);
-		for(int i=0;i<vo.getExpress().size();i++)
-		{
-			model.addRow(new String[]{vo.getExpress().get(i)});
-		}
+		expressList.showExpressList(vo.getExpress());
 		datePanel.setDate(vo.getDate());
 		comboBoxDestination.setSelectedItem(vo.getArriveLoc());
 		comboBoxVan.setSelectedItem(vo.getVanId());
@@ -182,63 +167,17 @@ public class HallLoadingPanel extends PPanel {
 		priceLabel.setBounds(656, 224, 70, 24);
 		add(priceLabel);
 		
-		UMRLabel expressIdLabel = new UMRLabel("订单条形码号");
-		expressIdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		expressIdLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdLabel.setBounds(220+75, 275, 130, 24);
-		add(expressIdLabel);
+		costField = new TextField();
+		costField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		costField.setBounds(726, 224, 70, 24);
+		costField.setEditable(false);
+		costField.setText("0");
+		add(costField);
+		costField.setColumns(10);
 		
-		expressIdField = new AutoCompPanel();
-		expressIdField.setMyFont(new Font("微软雅黑", Font.PLAIN, 20));
-		expressIdField.setBounds(355+75, 274, 280, 25);
-		add(expressIdField);
-		
-		Button btnNewButton = new AddButton();
-		btnNewButton.setBounds(656+75, 271, 100, 30);
-		btnNewButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(serv.isLegal(expressIdField.getText())&&(!expressIdList.contains(expressIdField.getText())))
-				{
-					model.addRow(new String[]{expressIdField.getText()});
-					expressIdList.add(expressIdField.getText());
-					allExpresses.remove(expressIdField.getText());
-					expressIdField.setAllItem(allExpresses);
-					expressIdField.setText("");
-					table.getSelectionModel().setSelectionInterval(table.getRowCount()-1, table.getRowCount()-1);
-					if(!getPrice())
-					{
-						System.out.println("Invalid!");
-						int row=table.getSelectedRow();
-						model.removeRow(row);
-						expressIdList.remove(row);
-						expressIdField.setText("");
-					}
-				}
-				else
-				{
-					DoHint.hint("订单号非法!", frame);
-				}
-			}
-		});
-		add(btnNewButton);
-		
-		Button deleteButton = new DelButton();
-		deleteButton.setBounds(656+75+93+20, 271, 100, 30);
-		deleteButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				deleteExpress();
-			}
-		});
-		add(deleteButton);
-		
-		UMRLabel tableHeadLabel = new UMRLabel("已输入订单");
-		tableHeadLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tableHeadLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		tableHeadLabel.setBounds(401+75, 309, 130, 24);
-		add(tableHeadLabel);
+		expressList = new ExpressListPanel(frame,this);
+		expressList.setBounds(266, 236, 677, 273);
+		add(expressList);
 		
 		confirmButton = new ConfirmButton();
 		confirmButton.setBounds(342+75, 539, 100, 30);
@@ -259,48 +198,30 @@ public class HallLoadingPanel extends PPanel {
 			}
 		});
 		add(cancelButton);
-		tableInit();
 		dataInit();
 	}
 	protected void createOrder() {
 		// TODO Auto-generated method stub
+		if(superviseField.getText().equals("")){
+			DoHint.hint("监装员未输入！", frame);
+			return;
+		}
+		if(guardField.getText().equals("")){
+			DoHint.hint("押运员未输入！", frame);
+			return;
+		}
+		if(expressList.getExpresses().size()==0){
+			DoHint.hint("无订单输入！", frame);
+			return;
+		}
 		HallLoadingVO vo=new HallLoadingVO(orgId,transitIdField.getText(),comboBoxDestination.getSelectedItem().toString(),comboBoxVan.getSelectedItem().toString(),
-				superviseField.getText(),guardField.getText(),expressIdList,Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId,false);
+				superviseField.getText(),guardField.getText(),expressList.getExpresses(),Double.parseDouble(costField.getText()),datePanel.getCalendar(),userName,userId,false);
 		Result result=serv.create(vo);
 		DoHint.hint(result, frame,true);
 		if(result.equals(Result.SUCCESS)){
 			confirmButton.setEnabled(false);
 		}
 		return;
-	}
-	private void tableInit(){
-		table = new Table(new DefaultTableModel());
-		model=(DefaultTableModel)table.getModel();
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e){
-				if(e.getValueIsAdjusting()==false){
-					if(table.getSelectedRow() >= 0){
-//						expressIdField.setText(table.getValueAt(table.getSelectedRow(),0).toString());
-					}
-				};
-			}
-		});
-		table.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.getTableHeader().setReorderingAllowed(false);
-		
-		UMRScrollPane scroll=new UMRScrollPane(table);
-		scroll.setBounds(220+75, 333, 529, 176);
-		scroll.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		String[] columnNames={"订单号"};
-		model.setColumnIdentifiers(columnNames);
-		add(scroll);
-		
-		costField = new TextField();
-		costField.setEnabled(false);
-		costField.setBounds(731, 224, 106, 25);
-		add(costField);
-		costField.setColumns(10);
 	}
 	@SuppressWarnings("unchecked")
 	private void dataInit(){
@@ -355,32 +276,20 @@ public class HallLoadingPanel extends PPanel {
 			return;
 		}
 		allExpresses=(ArrayList<String>)message.getMessage();
-		expressIdField.setAllItem(allExpresses);
+		expressList.setAllItem(allExpresses);
 	}
-	private void deleteExpress(){
-		int row=table.getSelectedRow();
-		if(row<0||row>=table.getRowCount())return;
-		allExpresses.add(model.getValueAt(row, 0).toString());
-		expressIdField.setAllItem(allExpresses);
-		
-		model.removeRow(row);
-		expressIdList.remove(row);
-		expressIdField.setText("");
-		getPrice();
-	}
-	private boolean getPrice(){
+	public void getPrice(){
 		String des=(String)comboBoxDestination.getSelectedItem();
-		if(des==null||des.isEmpty())return false;
-		if(org==null)return false;
-		ResultMessage message=serv.getPrice(org, des,expressIdList);
+		if(des==null||des.isEmpty())return;
+		if(org==null)return;
+		ResultMessage message=serv.getPrice(org, des,expressList.getExpresses());
 		Result result=message.getReInfo();
 		if(!result.equals(Result.SUCCESS)){
 			DoHint.hint(result, frame);
-			return false;
+			return;
 		}
 		BigDecimal price=(BigDecimal)message.getMessage();
 		costField.setText(price.toString());
-		return true;
 	}
 	public void setEnabled(boolean enabled)
 	{

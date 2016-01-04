@@ -34,5 +34,6 @@ public class DoHint {
 	public static void hint(String content,JFrame fr){
 		@SuppressWarnings("unused")
 		HintFrame hint = new HintFrame(content, fr.getX(), fr.getY(), fr.getWidth(), fr.getHeight());
+		hint.setVisible(true);
 	}
 }

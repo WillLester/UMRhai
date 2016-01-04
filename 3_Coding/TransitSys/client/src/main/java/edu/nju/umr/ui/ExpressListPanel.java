@@ -92,11 +92,13 @@ public class ExpressListPanel extends JPanel{
 					if(!orderServ.isExpressValid(expressField.getText()))
 					{
 						DoHint.hint("订单不存在!", frame);
+						expressField.setText("");
+						return;
 					}
 					model.addElement(expressField.getText());
 					expressList.setModel(model);
-					toAddExpresses.remove(expressField.getText());
-					expressField.setAllItem(toAddExpresses);
+					if(toAddExpresses!=null)toAddExpresses.remove(expressField.getText());
+					if(toAddExpresses!=null)expressField.setAllItem(toAddExpresses);
 					expressField.setText("");
 					
 				}
