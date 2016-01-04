@@ -157,7 +157,7 @@ public class WorkWageListPanel extends PPanel {
 		add(make);
 		
 		Button out = new ExitButton();
-		out.setBounds(make.getX(), make.getY()+make.getHeight()+30, 100, 30);
+		out.setBounds(make.getX()+150, make.getY(), 100, 30);
 		out.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.dispose();
