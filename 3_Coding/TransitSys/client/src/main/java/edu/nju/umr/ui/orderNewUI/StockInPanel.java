@@ -68,6 +68,7 @@ public class StockInPanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		expressField.setText(vo.getExpressId());
 		partCombo.setSelectedItem(vo.getPart());
 		shelfCombo.setSelectedItem(vo.getShelfId());
