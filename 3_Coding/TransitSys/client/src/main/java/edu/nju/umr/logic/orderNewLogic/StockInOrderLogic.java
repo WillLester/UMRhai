@@ -22,6 +22,7 @@ import edu.nju.umr.logicService.utilityLogicSer.DiaryUpdateLSer;
 import edu.nju.umr.logicService.utilityLogicSer.OrderInfoLSer;
 import edu.nju.umr.logicService.utilityLogicSer.UtilityLSer;
 import edu.nju.umr.po.ShelfPO;
+import edu.nju.umr.po.enums.Part;
 import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.po.order.StockInPO;
 import edu.nju.umr.vo.GoodVO;
@@ -68,7 +69,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 				}
 			}
 			if(isSuc == Result.SUCCESS){
-				isSuc = this.checkWarning(order.getStockId());
+				isSuc = this.checkWarning(order.getStockId(),order.getPart());
 			}
 		}catch(RemoteException e){
 			return Result.NET_INTERRUPT;
@@ -82,9 +83,9 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		// TODO 自动生成的方法存根
 		return uti.getOrgNames();
 	}
-	private Result checkWarning(String id){
+	private Result checkWarning(String id,Part part){
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
-		return (Result) checkWarn.checkWarning(id).getMessage();
+		return (Result) checkWarn.checkWarning(id,part).getMessage();
 	}
 	@SuppressWarnings("unchecked")
 	@Override

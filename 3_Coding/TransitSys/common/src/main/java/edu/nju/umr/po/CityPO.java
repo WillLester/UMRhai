@@ -40,7 +40,7 @@ public class CityPO extends PO implements Serializable{
 		switch(op){
 		case INSERT:command="insert into city values"+"('"+id+"',"+"'"+name+"','"+province+"',"+key+")";break;
 		case DELETE:command="delete from city where name='"+name+"'";break;
-		case FIND:command="select * from city where ( name='"+name+"' or id='"+id+"' ) and key <> "+key;break;
+		case FIND:command="select * from city where ( name='"+name+"' or id='"+id+"' ) and keyid <> "+key;break;
 		case UPDATE:command = "update city set id='"+id+"',name='"+name+"',province='"+province+"' where keyid="+key;break;
 		}
 		return command;
