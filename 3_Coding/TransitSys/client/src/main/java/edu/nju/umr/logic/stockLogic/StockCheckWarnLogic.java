@@ -55,11 +55,12 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 			int vanShelf = 0;
 			int maneuverShelf = 0;
 			for(ShelfPO shelf:shelves){
+				int total = shelf.getRow() * shelf.getPlace();
 				switch(shelf.getPart()){
-				case PLANE:planeShelf++;break;
-				case TRAIN:trainShelf++;break;
-				case VAN:vanShelf++;break;
-				case MANEUVER:maneuverShelf++;break;
+				case PLANE:planeShelf += total;break;
+				case TRAIN:trainShelf += total;break;
+				case VAN:vanShelf += total;break;
+				case MANEUVER:maneuverShelf += total;break;
 				}
 			}
 			int planeGood = 0;
