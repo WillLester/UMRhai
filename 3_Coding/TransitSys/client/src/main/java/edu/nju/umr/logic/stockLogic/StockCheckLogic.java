@@ -43,12 +43,12 @@ public class StockCheckLogic implements StockCheckLSer{
 			ArrayList<StockInPO> stockInPOs=checkData.getIn(start, end, id);
 			ArrayList<StockOutPO> stockOutPOs=checkData.getOut(start, end, id);
 			for(StockInPO po:stockInPOs){
-				StockInOutVO stock = new StockInOutVO(po.getId(),po.getDate(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
+				StockInOutVO stock = new StockInOutVO(po.getId(),po.getOpTime(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
 				sList.add(stock);
 			}
 			
 			for(StockOutPO po:stockOutPOs){
-				StockInOutVO stock=new StockInOutVO(po.getId(),po.getDate(),"出库",po.getExpressId(),"",0,0);
+				StockInOutVO stock=new StockInOutVO(po.getId(),po.getOpTime(),"出库",po.getExpressId(),"",0,0);
 				sList.add(stock);
 			}
 			
