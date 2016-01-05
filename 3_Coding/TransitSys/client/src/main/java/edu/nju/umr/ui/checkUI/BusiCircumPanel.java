@@ -159,8 +159,8 @@ public class BusiCircumPanel extends PPanel {
 		for(int i=0;i<orderList.size();i++)
 		{
 			BusiCircumVO temp=orderList.get(i);
-			String kind="付款单";
-			if(temp.getKind()==1)kind="入款单";
+			String kind="收款单";
+			if(temp.getKind()==1)kind="付款单";
 			Calendar time=temp.getDate();
 			String timeString=time.get(Calendar.YEAR)+"年"+(time.get(Calendar.MONTH)+1)+"月"+time.get(Calendar.DATE)+"日";
 			String reason=null;
