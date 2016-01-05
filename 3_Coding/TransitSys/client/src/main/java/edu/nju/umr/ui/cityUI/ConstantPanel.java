@@ -54,8 +54,12 @@ public class ConstantPanel extends PPanel {
 	public ConstantPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-//		logicSer = new ConstantPanelStub();
-		
+		try {
+			logicSer = new ConstantLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel titleLabel = new TitleLabel("常量制定");
 		add(titleLabel);
@@ -232,12 +236,6 @@ public class ConstantPanel extends PPanel {
 		});
 		add(exitButton);
 		
-		try {
-			logicSer = new ConstantLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){
