@@ -65,7 +65,12 @@ public class CityListPanel extends PPanel{
 	public CityListPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-//		logicSer = new CityListPanelStub();
+		try {
+			logicSer = new CityLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		cityList = new ArrayList<CityVO>();
 		citiesList = new ArrayList<CitiesVO>();
 		
@@ -344,12 +349,7 @@ public class CityListPanel extends PPanel{
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
 		
-		try {
-			logicSer = new CityLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		
 		initialize();
 		

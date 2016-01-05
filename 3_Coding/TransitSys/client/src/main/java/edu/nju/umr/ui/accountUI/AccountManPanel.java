@@ -57,7 +57,13 @@ public class AccountManPanel extends PPanel{
 	 */
 	public AccountManPanel(JFrame fr,String name) {
 		setLayout(null);
-			
+		try {
+			logicSer=new AccountLogic();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		TitleLabel accountLabel = new TitleLabel("账户管理");
 		add(accountLabel);
 		frame = fr;
@@ -197,13 +203,7 @@ public class AccountManPanel extends PPanel{
 			}
 		});
 		
-		try {
-			logicSer=new AccountLogic();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 
 		tableInit();
 		getAccounts(null);

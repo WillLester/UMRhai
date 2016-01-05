@@ -48,7 +48,13 @@ public class CountPanel extends PPanel{
 	public CountPanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		
+		try {
+			logicSer=new CountLogic();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		TitleLabel countLabel = new TitleLabel("期初建账");
 		add(countLabel);
 		
@@ -111,13 +117,7 @@ public class CountPanel extends PPanel{
 		});
 		add(exitButton);
 		
-		try {
-			logicSer=new CountLogic();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		
 		tableInit();
 		fresh();

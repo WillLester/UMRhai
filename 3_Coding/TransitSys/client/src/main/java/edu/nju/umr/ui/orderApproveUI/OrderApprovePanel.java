@@ -68,7 +68,12 @@ public class OrderApprovePanel extends PPanel{
 	public OrderApprovePanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-//		serv=new OrderApprovePanelStub();
+		try {
+			serv=new OrderApproveLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		
 		TitleLabel approveLabel = new TitleLabel("审批单据");
@@ -147,12 +152,7 @@ public class OrderApprovePanel extends PPanel{
 		});
 		add(exitButton);
 		
-		try {
-			serv=new OrderApproveLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		
 		tableInit();
 		dataInit();
