@@ -39,7 +39,12 @@ public class CostBenePanel extends PPanel {
 		setLayout(null);
 		frame=fr;
 		this.setSize(1104,621);
-		
+		try {
+			serv = new CostBeneLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		TitleLabel nameLabel = new TitleLabel("成本收益");
 		add(nameLabel);
 		
@@ -86,12 +91,7 @@ public class CostBenePanel extends PPanel {
 		profitField.setBounds(754, 267, 175, 27);
 		add(profitField);
 		
-		try {
-			serv = new CostBeneLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 
 		dataInit();
 	}

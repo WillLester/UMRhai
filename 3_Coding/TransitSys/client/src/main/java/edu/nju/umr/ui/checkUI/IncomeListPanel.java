@@ -66,7 +66,12 @@ public class IncomeListPanel extends PPanel {
 	public IncomeListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
-		
+		try {
+			serv = new IncomeListLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		//设置panel大小
 		this.setSize(Constants.PANEL_WIDTH, Constants.PANEL_HEIGHT);
 		
@@ -156,12 +161,7 @@ public class IncomeListPanel extends PPanel {
 		});
 		add(out);
 		
-		try {
-			serv = new IncomeListLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		dataInit();
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })

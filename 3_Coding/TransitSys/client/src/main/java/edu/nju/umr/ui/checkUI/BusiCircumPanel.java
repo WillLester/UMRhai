@@ -58,7 +58,12 @@ public class BusiCircumPanel extends PPanel {
 	public BusiCircumPanel(JFrame fr) {
         setLayout(null);
         frame=fr;
-//        serv = new BusiCircumPanelStub();
+        try {
+			serv = new BusiCircumLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
 		UMRLabel start = new UMRLabel("开始日期");
@@ -116,12 +121,7 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(button);
 		
-		try {
-			serv = new BusiCircumLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		
 		tableInit();
 

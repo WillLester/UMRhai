@@ -54,7 +54,12 @@ public class DiaryListPanel extends PPanel {
 	public DiaryListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
-		
+		try {
+			serv = new DiaryLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
@@ -126,12 +131,7 @@ public class DiaryListPanel extends PPanel {
 		});
 		add(button);
 		
-		try {
-			serv = new DiaryLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		tableInit();
 
 	}

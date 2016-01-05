@@ -42,7 +42,12 @@ public class OrderRevisePanel extends PPanel{
 	public OrderRevisePanel(JFrame fr,String userId) {
 		setLayout(null);
 		frame=fr;
-//		serv=new OrderRevisePanelStub();
+		try {
+			serv=new OrderResubmitLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.userId = userId;
 
 		TitleLabel reviseLabel = new TitleLabel("未通过单据");
@@ -85,12 +90,7 @@ public class OrderRevisePanel extends PPanel{
 		});
 		add(exitButton);
 		
-		try {
-			serv=new OrderResubmitLogic();
-		} catch (RemoteException e1) {
-			DoHint.hint(Result.NET_INTERRUPT, frame);
-			frame.dispose();
-		}
+		
 		
 		tableInit();
 		getOrderList();
