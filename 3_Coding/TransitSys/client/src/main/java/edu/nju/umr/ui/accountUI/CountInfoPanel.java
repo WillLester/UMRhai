@@ -356,16 +356,14 @@ public class CountInfoPanel extends InfoPanel{
 	private void dataInit(){
 		OrgVO org = orgList.get(0);
 		setWorkCombo(org.getName());
-		if(workerPresented.size() > 0){
-			setWorkInfo(0);
-		}
+		
 		if(org.getKind() == Organization.HALL){
 			setVanCombo(org.getId());
 		}
-		setGoodCombo(0);
-		if(goodPresented.size() > 0){
-			setGoodInfo(0);
+		if(stockList.size() > 0){
+			setGoodCombo(0);
 		}
+		
 		if(accountList.size() > 0){
 			setAccountInfo(0);
 		}
@@ -384,6 +382,9 @@ public class CountInfoPanel extends InfoPanel{
 			workers[i] = worker.getName();
 		}
 		workerCombo.setModel(new DefaultComboBoxModel<String>(workers));
+		if(workerPresented.size() > 0){
+			setWorkInfo(0);
+		}
 	}
 	
 	private void setVanCombo(String orgId){
@@ -399,6 +400,9 @@ public class CountInfoPanel extends InfoPanel{
 			vans[i] = van.getId();
 		}
 		vanCombo.setModel(new DefaultComboBoxModel<String>(vans));
+		if(vanPresented.size() > 0){
+			setVanInfo(0);
+		}
 	}
 	
 	private void setGoodCombo(int stockIndex){
@@ -410,6 +414,9 @@ public class CountInfoPanel extends InfoPanel{
 			goods[i] = good.getId();
 		}
 		goodCombo.setModel(new DefaultComboBoxModel<String>(goods));
+		if(goodPresented.size() > 0){
+			setGoodInfo(0);
+		}
 	}
 	
 	private void setWorkInfo(int index){

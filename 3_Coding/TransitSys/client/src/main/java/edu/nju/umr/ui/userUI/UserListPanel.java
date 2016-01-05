@@ -353,7 +353,7 @@ public class UserListPanel extends PPanel {
 				reportWrong(result);
 			}
 		} else {
-			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText(),"","");
+			UserVO now=new UserVO(idField.getText(),passwordField.getText(),jur,nameField.getText(),mobileField.getText()," "," ");
 			Result result=serv.newUser(now,this.name);
 			if(result.equals(Result.SUCCESS)){
 				users.add(now);
