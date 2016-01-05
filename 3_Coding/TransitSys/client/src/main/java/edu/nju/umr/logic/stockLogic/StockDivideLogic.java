@@ -37,7 +37,7 @@ public class StockDivideLogic implements StockDivideLSer{
 
 	public ResultMessage searchShelf(String id,String keyword) {
 		// TODO 自动生成的方法存根
-		ArrayList<ShelfPO> ar=null;
+		ArrayList<ShelfPO> ar= new ArrayList<ShelfPO>();
 		try{
 			ar = checkData.getShelves(id,keyword);
 			if(keyword == null){
