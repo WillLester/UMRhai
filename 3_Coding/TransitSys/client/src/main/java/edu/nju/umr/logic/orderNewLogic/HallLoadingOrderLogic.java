@@ -35,7 +35,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
 	private OrderInfoLSer orderInfo;
 	private OrderCalcuLSer orderCalcu;
 	private UpdateTranStateLSer orderState;
-	public HallLoadingOrderLogic() {
+	public HallLoadingOrderLogic() throws RemoteException {
 		try{
 			dataFac = (HallLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			hallData = dataFac.getHallLoadingOrder();		
@@ -43,9 +43,7 @@ public class HallLoadingOrderLogic implements HallLoadingOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		uti = new UtilityLogic();	
 		diarySer = new DiaryUpdateLogic();
 		orderInfo = new OrderInfoLogic();

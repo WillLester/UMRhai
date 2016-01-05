@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -82,7 +83,6 @@ public class HallLoadingPanel extends PPanel implements PriceCount {
 		this.orgId=orgId;
 		this.userId=userId;
 		this.org=org;
-		serv=new HallLoadingOrderLogic();
 		setLayout(null);
 		
 		TitleLabel themeLabel = new TitleLabel("营业厅装车单");
@@ -175,7 +175,12 @@ public class HallLoadingPanel extends PPanel implements PriceCount {
 		add(costField);
 		costField.setColumns(10);
 		
-		expressList = new ExpressListPanel(frame,this);
+		try {
+			expressList = new ExpressListPanel(frame,this);
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		expressList.setBounds(266, 236, 677, 273);
 		add(expressList);
 		
@@ -225,7 +230,13 @@ public class HallLoadingPanel extends PPanel implements PriceCount {
 	}
 	@SuppressWarnings("unchecked")
 	private void dataInit(){
-		serv=new HallLoadingOrderLogic();
+		try {
+			serv=new HallLoadingOrderLogic();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		ResultMessage message=serv.getLocalHallAndAllCenter(orgId);
 		Result result = message.getReInfo();

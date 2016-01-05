@@ -31,7 +31,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
 	private ExpressPO express;
 	private UpdateTransitInfoLogic infoLogic;
 	private DiaryUpdateLSer diarySer;
-	public ReceiveOrderLogic() {
+	public ReceiveOrderLogic()throws RemoteException  {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (ReceiveOrderDFacSer)Naming.lookup(Url.URL);
@@ -42,9 +42,7 @@ public class ReceiveOrderLogic implements ReceiveOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		infoLogic = new UpdateTransitInfoLogic();
 		diarySer = new DiaryUpdateLogic();
 	}

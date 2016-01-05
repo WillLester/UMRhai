@@ -51,7 +51,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 	private DiaryUpdateLSer diarySer;
 	private OrderUpdate update;
 	private ExpressStateUpdate stateUpdate;
-	public OrderApproveLogic() {
+	public OrderApproveLogic()  throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (OrderApproveDFacSer)Naming.lookup(Url.URL);
@@ -60,9 +60,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
 		stateUpdate = new ExpressStateUpdate(this);
@@ -72,6 +70,9 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 		ArrayList<OrderVO> orders = new ArrayList<OrderVO>();
 		try {
 			 orderList= approveData.getExamine();
+			 if(orderList == null){
+				 return new ResultMessage(Result.DATABASE_ERROR, null);
+			 }
 			for(OrderPO order:orderList){
 				OrderVO vo = new OrderVO(order.getId(), order.getKind(), order.getOperator(), order.getTime());
 				orders.add(vo);
@@ -136,9 +137,10 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 			Result centerLoadSuc=Result.DATA_NOT_FOUND;
 			try {
 				CenterLoadingPO ctpo=(CenterLoadingPO)approveData.getOrder(id, kind);
-				if(ctpo!=null)
+				if(ctpo!=null){
 					centerLoadSuc=Result.SUCCESS;
-				centerLoad=VPFactory.toCenterLoadVO(ctpo);
+					centerLoad=VPFactory.toCenterLoadVO(ctpo);
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

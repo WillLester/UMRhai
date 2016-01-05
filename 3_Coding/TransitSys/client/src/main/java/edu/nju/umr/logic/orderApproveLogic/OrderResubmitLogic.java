@@ -33,7 +33,7 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
 	private OrderResubmitDFacSer dataFac;
 	private OrderResubmitDSer resubmitData;
 	private List<KindGetter> orderList;
-	public OrderResubmitLogic() {
+	public OrderResubmitLogic() throws RemoteException {
 		try{
 			dataFac = (OrderResubmitDFacSer)Naming.lookup(Url.URL);
 			resubmitData = dataFac.getOrderResubmit();
@@ -41,8 +41,6 @@ public class OrderResubmitLogic implements OrderResubmitLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         }
 	}
 

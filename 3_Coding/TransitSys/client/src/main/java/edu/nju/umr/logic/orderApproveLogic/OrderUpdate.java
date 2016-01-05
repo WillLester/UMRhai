@@ -41,7 +41,7 @@ class OrderUpdate {
 	private AccountUpdateDSer accountData;
 	private GoodUpdateDFacSer goodFac;
 	private GoodUpdateDSer goodData;
-	public OrderUpdate() {
+	public OrderUpdate() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		infoLogic = new UpdateTransitInfoLogic();
 		orderInfo = new OrderInfoLogic();
@@ -51,9 +51,6 @@ class OrderUpdate {
 			goodFac = (GoodUpdateDFacSer) Naming.lookup(Url.URL);
 			goodData = goodFac.getGoodUpdate();
 		} catch (MalformedURLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (NotBoundException e) {

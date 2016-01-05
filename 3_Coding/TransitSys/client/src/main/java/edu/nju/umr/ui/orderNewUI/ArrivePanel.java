@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -153,7 +154,12 @@ public class ArrivePanel extends PPanel {
 	}
 	private void dataInit()
 	{
-		serv=new ArriveOrderLogic();
+		try {
+			serv=new ArriveOrderLogic();
+		} catch (RemoteException e) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		centerField.setText(orgId);
 		ResultMessage message = serv.getLocalHallsAndAllCenter(orgId);
 		Result result=message.getReInfo();

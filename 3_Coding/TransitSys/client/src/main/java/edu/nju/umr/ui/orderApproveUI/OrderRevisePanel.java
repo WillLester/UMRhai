@@ -2,6 +2,7 @@ package edu.nju.umr.ui.orderApproveUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -41,8 +42,12 @@ public class OrderRevisePanel extends PPanel{
 	public OrderRevisePanel(JFrame fr,String userId) {
 		setLayout(null);
 		frame=fr;
-		serv=new OrderResubmitLogic();
-//		serv=new OrderRevisePanelStub();
+		try {
+			serv=new OrderResubmitLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.userId = userId;
 
 		TitleLabel reviseLabel = new TitleLabel("未通过单据");
@@ -84,6 +89,8 @@ public class OrderRevisePanel extends PPanel{
 			}
 		});
 		add(exitButton);
+		
+		
 		
 		tableInit();
 		getOrderList();

@@ -3,6 +3,7 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -60,7 +61,12 @@ public class StockDividePanel extends PPanel{
 	public StockDividePanel(JFrame fr,String orgId,String name) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockDivideLogic();
+		try {
+			logicSer = new StockDivideLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.orgId = orgId;
 		
 		TitleLabel divideLabel = new TitleLabel("库存分区");

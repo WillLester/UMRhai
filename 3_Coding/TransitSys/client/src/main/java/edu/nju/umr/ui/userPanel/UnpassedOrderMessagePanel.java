@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.rmi.RemoteException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -31,7 +32,7 @@ public class UnpassedOrderMessagePanel extends JPanel implements Runnable{
 	public UnpassedOrderMessagePanel(){
 		
 	}
-	public UnpassedOrderMessagePanel(String userId){
+	public UnpassedOrderMessagePanel(String userId)throws RemoteException{
 		x=0;
 		this.setBackground(Color.WHITE);
 		this.userId=userId;

@@ -226,7 +226,8 @@ public class OrderPOFactory {
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(8));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(9));
+				String opTimeS = result.getString(9);
+				opTime.setTime(DateFormat.TIME.parse(opTimeS));
 				Part parts[] = Part.values();
 				return new StockInPO(result.getString(1), result.getString(2), date, result.getString(3), parts[result.getInt(4)], 
 						result.getString(5), result.getInt(6), result.getInt(7), opTime,
@@ -234,7 +235,7 @@ public class OrderPOFactory {
 			} else {
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO 自动生成的 catch 块
 			return null;
 		}
@@ -245,14 +246,15 @@ public class OrderPOFactory {
 				Calendar date = Calendar.getInstance();
 				date.setTime(result.getDate(5));
 				Calendar opTime = Calendar.getInstance();
-				opTime.setTime(result.getDate(6));
+				String opTimeS = result.getString(6);
+				opTime.setTime(DateFormat.TIME.parse(opTimeS));
 				Transit transits[] = Transit.values();
 				return new StockOutPO(result.getString(1), result.getString(2), date, transits[result.getInt(3)], result.getString(9), 
 						result.getString(4), opTime, result.getString(7), result.getString(8),result.getString(10));
 			} else {
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO 自动生成的 catch 块
 			return null;
 		}

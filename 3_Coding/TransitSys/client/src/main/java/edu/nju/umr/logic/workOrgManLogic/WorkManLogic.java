@@ -30,7 +30,7 @@ public class WorkManLogic implements WorkManLSer{
 	private UtilityLSer uti;
 	private ArrayList<WorkPO> workList;
 	private DiaryUpdateLSer diarySer;
-	public WorkManLogic()
+	public WorkManLogic()throws RemoteException
 	{
 		try{
 			dataFac=(WorkManDFacSer)Naming.lookup(Url.URL);
@@ -40,11 +40,7 @@ public class WorkManLogic implements WorkManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 

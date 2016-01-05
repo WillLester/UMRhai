@@ -16,12 +16,12 @@ import edu.nju.umr.po.enums.Result;
 public class DiaryUpdateLogic implements DiaryUpdateLSer{
 	private DiaryUpdateDSer dataSer;
 	private DiaryUpdateDFacSer dataFac;
-	public DiaryUpdateLogic() {
+	public DiaryUpdateLogic()throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (DiaryUpdateDFacSer) Naming.lookup(Url.URL);
 			dataSer = dataFac.getDiaryUpdate();
-		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+		} catch (MalformedURLException  | NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

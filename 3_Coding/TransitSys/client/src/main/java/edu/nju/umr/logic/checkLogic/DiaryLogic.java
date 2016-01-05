@@ -20,7 +20,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class DiaryLogic implements DiaryLSer{
 	private DiaryDFacSer dataFac;
 	private DiaryDSer diaryData;
-	public DiaryLogic() {
+	public DiaryLogic() throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (DiaryDFacSer)Naming.lookup(Url.URL);
@@ -29,9 +29,10 @@ public class DiaryLogic implements DiaryLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
+//		catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 	}
 	public ResultMessage seeDiary(Calendar start, Calendar end) {
 		// TODO 自动生成的方法存根

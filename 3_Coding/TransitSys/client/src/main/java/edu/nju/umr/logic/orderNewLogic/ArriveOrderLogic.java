@@ -28,7 +28,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private UpdateTranStateLSer orderState;
-	public ArriveOrderLogic() {
+	public ArriveOrderLogic() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (ArriveOrderDFacSer)Naming.lookup(Url.URL);
@@ -38,9 +38,7 @@ public class ArriveOrderLogic implements ArriveOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 		orderState=new UpdateTranStateLogic();
 	}

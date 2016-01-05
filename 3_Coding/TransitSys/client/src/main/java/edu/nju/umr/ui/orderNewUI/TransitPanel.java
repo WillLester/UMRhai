@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -87,7 +88,12 @@ public class TransitPanel extends PPanel implements PriceCount {
 		this.name = name;
 		this.userId=userId;
 		this.orgId=orgId;
-		logicSer = new TransitOrderLogic();
+		try {
+			logicSer = new TransitOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 //		logicSer = new TransitPanelStub(); 
 		
 		TitleLabel titleLabel = new TitleLabel("中转单");
@@ -250,7 +256,12 @@ public class TransitPanel extends PPanel implements PriceCount {
 		containerField.setBounds(582, 204, 69, 25);
 		add(containerField);
 		
-		expressList = new ExpressListPanel(frame,this);
+		try {
+			expressList = new ExpressListPanel(frame,this);
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		expressList.setBounds(206, 212, 683, 297);
 		add(expressList);
 		

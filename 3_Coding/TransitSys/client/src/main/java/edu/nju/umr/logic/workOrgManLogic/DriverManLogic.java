@@ -22,7 +22,7 @@ public class DriverManLogic implements DriverManLSer{
 	private DriverManDFacSer dataFac;
 	private DriverManDSer driverData;
 	private DiaryUpdateLSer diarySer;
-	public DriverManLogic(){
+	public DriverManLogic()throws RemoteException{
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup(Url.URL);
 			driverData = dataFac.getDriverMan();
@@ -30,9 +30,7 @@ public class DriverManLogic implements DriverManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 
@@ -67,7 +65,7 @@ public class DriverManLogic implements DriverManLSer{
 		// TODO 自动生成的方法存根
 		Result isSuccessful=Result.SUCCESS;
 		try{
-			isSuccessful=driverData.addDriver(VPFactory.toDriverPO(driver));
+			isSuccessful=driverData.reviseDriver(VPFactory.toDriverPO(driver));
 			isSuccessful = diarySer.addDiary("修改司机"+driver.getId(), name);
 		}catch (RemoteException e) {
 			return Result.NET_INTERRUPT;

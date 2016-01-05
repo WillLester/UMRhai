@@ -3,6 +3,7 @@ package edu.nju.umr.ui.checkUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -28,6 +29,7 @@ import edu.nju.umr.ui.component.UMRScrollPane;
 import edu.nju.umr.ui.component.button.CanButton;
 import edu.nju.umr.ui.component.button.ConfirmButton;
 import edu.nju.umr.ui.component.button.ExitButton;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.DiaryVO;
 import edu.nju.umr.vo.ResultMessage;
 /*
@@ -52,7 +54,12 @@ public class DiaryListPanel extends PPanel {
 	public DiaryListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
-		serv = new DiaryLogic();
+		try {
+			serv = new DiaryLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
@@ -123,6 +130,8 @@ public class DiaryListPanel extends PPanel {
 			}
 		});
 		add(button);
+		
+		
 		tableInit();
 
 	}

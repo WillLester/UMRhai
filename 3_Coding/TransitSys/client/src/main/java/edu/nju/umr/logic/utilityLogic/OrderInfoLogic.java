@@ -17,12 +17,12 @@ public class OrderInfoLogic implements OrderInfoLSer{
 	private OrderInfoDFacSer dataFac;
 	private OrderInfoDSer dataSer;
 	
-	public OrderInfoLogic() {
+	public OrderInfoLogic()throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (OrderInfoDFacSer) Naming.lookup(Url.URL);
 			dataSer = dataFac.getOrderInfo();
-		} catch (RemoteException | MalformedURLException | NotBoundException e) {
+		} catch ( MalformedURLException | NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

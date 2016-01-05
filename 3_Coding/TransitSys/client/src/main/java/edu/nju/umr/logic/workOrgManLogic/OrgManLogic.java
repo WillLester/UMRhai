@@ -26,7 +26,7 @@ public class OrgManLogic implements OrgManLSer{
 	private OrgManDSer orgData;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
-	public OrgManLogic(){
+	public OrgManLogic()throws RemoteException{
 		try{
 			dataFac=(OrgManDFacSer)Naming.lookup(Url.URL);
 			orgData=dataFac.getOrgMan();
@@ -35,11 +35,7 @@ public class OrgManLogic implements OrgManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 	@SuppressWarnings("unchecked")

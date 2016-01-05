@@ -23,7 +23,7 @@ public class VanManLogic implements VanManLSer{
 	private VanManDSer vanData;
 	private ArrayList<VanPO> ar;
 	private DiaryUpdateLSer diarySer;
-	public VanManLogic(){
+	public VanManLogic()throws RemoteException{
 		try{
 			dataFac= (VanManDFacSer)Naming.lookup(Url.URL);
 			vanData = dataFac.getVanMan();
@@ -31,9 +31,7 @@ public class VanManLogic implements VanManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		ar = new ArrayList<VanPO>();
 		diarySer = new DiaryUpdateLogic();
 	}

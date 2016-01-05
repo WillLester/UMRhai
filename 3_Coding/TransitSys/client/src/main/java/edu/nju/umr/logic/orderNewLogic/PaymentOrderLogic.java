@@ -25,7 +25,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
 	private PaymentOrderDSer paymentData;
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
-	public PaymentOrderLogic() {
+	public PaymentOrderLogic()throws RemoteException  {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (PaymentOrderDFacSer)Naming.lookup(Url.URL);
@@ -34,9 +34,7 @@ public class PaymentOrderLogic implements PaymentOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 	}

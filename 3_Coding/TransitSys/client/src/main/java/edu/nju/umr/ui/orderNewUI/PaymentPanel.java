@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -61,6 +62,7 @@ public class PaymentPanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		payerField.setText(vo.getPayer());
 		costField.setText(vo.getAmount().toString());
 		datePanel.setDate(vo.getDate());
@@ -76,7 +78,12 @@ public class PaymentPanel extends PPanel {
 		frame=fr;
 		this.name = name;
 		this.userId=userId;
-		logicSer = new PaymentOrderLogic();
+		try {
+			logicSer = new PaymentOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel titleLabel = new TitleLabel("付款单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

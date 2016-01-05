@@ -33,7 +33,7 @@ public class CountLogic implements CountLSer{
 	private UtilityLSer uti;
 	private ArrayList<CountPO> countPO=new ArrayList<CountPO>();
 	private DiaryUpdateLSer diarySer;
-	public CountLogic() {
+	public CountLogic()throws RemoteException{
 		try{
 			countFac = (CountDFacSer)Naming.lookup(Url.URL);
 			countData = countFac.getCountData();
@@ -42,9 +42,10 @@ public class CountLogic implements CountLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
+//		catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result newCount(String name) {		

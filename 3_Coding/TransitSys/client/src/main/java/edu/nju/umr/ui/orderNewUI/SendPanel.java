@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -79,7 +80,12 @@ public class SendPanel extends PPanel {
 		this.name = name;
 		this.userId=userId;
 		this.orgId = orgId;
-		logicSer = new SendOrderLogic();
+		try {
+			logicSer = new SendOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		express = new LinkedList<String>();
 		
 		TitleLabel titleLabel = new TitleLabel("派件单");

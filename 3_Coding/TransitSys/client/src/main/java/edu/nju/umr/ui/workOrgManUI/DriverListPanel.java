@@ -2,6 +2,7 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -59,7 +60,12 @@ public class DriverListPanel extends PPanel {
 		frame=fr;
 		panel=this;
 		this.name = name;
-		serv=new DriverManLogic();
+		try {
+			serv=new DriverManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel nameLabel = new TitleLabel("司机信息列表");
 //		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));
@@ -185,7 +191,7 @@ public class DriverListPanel extends PPanel {
 		model.setColumnIdentifiers(columnNames);
 		add(scroll);
 	}
-	void displayDrivers(){
+	private void displayDrivers(){
 		model.setRowCount(0);
 		for(int i=0;i<driverList.size();i++)
 		{
@@ -193,9 +199,6 @@ public class DriverListPanel extends PPanel {
 			String [] data=driver.getData();
 			model.addRow(data);
 		}
-	}
-	void addDriver(DriverVO driver){
-		
 	}
 	public Result Modify(DriverVO driver){
 		int index;
@@ -210,7 +213,7 @@ public class DriverListPanel extends PPanel {
 					return result;
 				driverList.remove(index);
 				driverList.add(driver);
-				break;
+				return result;
 			}
 		}
 		if(index==driverList.size())
@@ -230,11 +233,4 @@ public class DriverListPanel extends PPanel {
 		displayDrivers();
 		return result;
 	}
-//	public static void main(String[] args){
-//		FunctionFrame f=new FunctionFrame("");
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		f.setSize(1300,800);
-//		f.setContentPane(new DriverListPanel(f,"",""));
-//		f.setVisible(true);
-//	}
 }

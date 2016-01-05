@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -75,7 +76,12 @@ public class OrgListPanel extends PPanel {
 		setLayout(null);
 		frame=fr;
 		orgList=new ArrayList<OrgVO>();
-		serv=new OrgManLogic();
+		try {
+			serv=new OrgManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		
 		JLabel nameLabel = new TitleLabel("机构信息");

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
@@ -53,9 +54,12 @@ public class ConstantPanel extends PPanel {
 	public ConstantPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new ConstantLogic();
-//		logicSer = new ConstantPanelStub();
-		
+		try {
+			logicSer = new ConstantLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel titleLabel = new TitleLabel("常量制定");
 		add(titleLabel);
@@ -231,6 +235,7 @@ public class ConstantPanel extends PPanel {
 			}
 		});
 		add(exitButton);
+		
 	}
 	@SuppressWarnings("unused")
 	private boolean isLegal(){

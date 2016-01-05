@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -57,8 +58,12 @@ public class BusiCircumPanel extends PPanel {
 	public BusiCircumPanel(JFrame fr) {
         setLayout(null);
         frame=fr;
-		serv = new BusiCircumLogic();
-//        serv = new BusiCircumPanelStub();
+        try {
+			serv = new BusiCircumLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
 		UMRLabel start = new UMRLabel("开始日期");
@@ -116,6 +121,8 @@ public class BusiCircumPanel extends PPanel {
 		});
 		add(button);
 		
+		
+		
 		tableInit();
 
 	}
@@ -160,7 +167,7 @@ public class BusiCircumPanel extends PPanel {
 		{
 			BusiCircumVO temp=orderList.get(i);
 			String kind="付款单";
-			if(temp.getKind()==1)kind="入款单";
+			if(temp.getKind()==0)kind="入款单";
 			Calendar time=temp.getDate();
 			String timeString=time.get(Calendar.YEAR)+"年"+(time.get(Calendar.MONTH)+1)+"月"+time.get(Calendar.DATE)+"日";
 			String reason=null;

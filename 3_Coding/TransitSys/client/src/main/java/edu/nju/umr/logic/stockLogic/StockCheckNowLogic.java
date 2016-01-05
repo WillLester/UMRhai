@@ -25,7 +25,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
 	private UtilityLSer uti;
 	private StockPO stock=null;
 	
-	public StockCheckNowLogic(){
+	public StockCheckNowLogic()throws RemoteException{
 		try{
 			dataFac=(StockCheckNowDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheckNow();
@@ -33,12 +33,7 @@ public class StockCheckNowLogic implements StockCheckNowLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+        }
 		uti = new UtilityLogic();
 	}
 	

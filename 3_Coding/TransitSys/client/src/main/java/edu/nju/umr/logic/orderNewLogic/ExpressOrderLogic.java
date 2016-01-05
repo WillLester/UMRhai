@@ -28,7 +28,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
 	private OrderCalcuLSer orderCalcu;
 	private ConstantGetLSer constantGet;
 	private DiaryUpdateLSer diarySer;
-	public ExpressOrderLogic() {
+	public ExpressOrderLogic()throws RemoteException  {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (ExpressOrderDFacSer)Naming.lookup(Url.URL);
@@ -37,9 +37,7 @@ public class ExpressOrderLogic implements ExpressOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 		orderCalcu = new OrderCalcuLogic();
 		constantGet = new ConstantGetLogic();

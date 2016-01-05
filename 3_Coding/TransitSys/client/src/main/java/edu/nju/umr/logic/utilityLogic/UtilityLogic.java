@@ -38,7 +38,7 @@ import edu.nju.umr.vo.WorkVO;
 public class UtilityLogic implements UtilityLSer{
 	private UtilityDSer utilityData;
 	private UtilityDFacSer dataFac;
-	public UtilityLogic() {
+	public UtilityLogic()throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (UtilityDFacSer) Naming.lookup(Url.URL);
@@ -47,9 +47,7 @@ public class UtilityLogic implements UtilityLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        }  
+        }
 	}
 	
 	@Override

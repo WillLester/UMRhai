@@ -21,7 +21,7 @@ public class StockCheckLogic implements StockCheckLSer{
 	private StockCheckDFacSer dataFac;
 	private StockCheckDSer checkData;
 	
-	public StockCheckLogic(){
+	public StockCheckLogic()throws RemoteException{
 		try {
 			dataFac=(StockCheckDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheck();
@@ -29,11 +29,7 @@ public class StockCheckLogic implements StockCheckLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e) {
-			e.printStackTrace();
-		}
+        }
 	}
 	
 	public ResultMessage orderStock(Calendar start,Calendar end,String id) {
@@ -43,12 +39,12 @@ public class StockCheckLogic implements StockCheckLSer{
 			ArrayList<StockInPO> stockInPOs=checkData.getIn(start, end, id);
 			ArrayList<StockOutPO> stockOutPOs=checkData.getOut(start, end, id);
 			for(StockInPO po:stockInPOs){
-				StockInOutVO stock = new StockInOutVO(po.getId(),po.getDate(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
+				StockInOutVO stock = new StockInOutVO(po.getId(),po.getOpTime(),"入库",po.getExpressId(),po.getShelfId(),po.getRow(),po.getPlace());
 				sList.add(stock);
 			}
 			
 			for(StockOutPO po:stockOutPOs){
-				StockInOutVO stock=new StockInOutVO(po.getId(),po.getDate(),"出库",po.getExpressId(),"",0,0);
+				StockInOutVO stock=new StockInOutVO(po.getId(),po.getOpTime(),"出库",po.getExpressId(),"",0,0);
 				sList.add(stock);
 			}
 			

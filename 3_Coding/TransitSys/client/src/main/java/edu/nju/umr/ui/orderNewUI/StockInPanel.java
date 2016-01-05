@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -68,20 +69,29 @@ public class StockInPanel extends PPanel {
 			if(co.getName()==null)
 			co.setEnabled(false);
 		}
+		idField.setText(vo.getId());
 		expressField.setText(vo.getExpressId());
 		partCombo.setSelectedItem(vo.getPart());
-		rowCombo.setSelectedItem(vo.getRow());
 		shelfCombo.setSelectedItem(vo.getShelfId());
-		placeCombo.setSelectedItem(vo.getPlace());
 		datePanel.setDate(vo.getDate());
 		targetCombo.setSelectedItem(vo.getArrivePlace());
+		Integer [] t= new Integer[1];
+		t[0]=vo.getRow();
+		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
+		t[0]=vo.getPlace();
+		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 	}
 
 	@SuppressWarnings("unchecked")
 	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockInOrderLogic();
+		try {
+			logicSer = new StockInOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;
@@ -150,6 +160,7 @@ public class StockInPanel extends PPanel {
 		} else {
 			@SuppressWarnings("unused")
 			HintFrame hint = new HintFrame(shelfResult.getReInfo(), frame.getX(), frame.getY(),frame.getWidth(),frame.getHeight());
+			frame.dispose();
 		}
 		
 		UMRLabel partLabel = new UMRLabel("区号");
@@ -234,6 +245,10 @@ public class StockInPanel extends PPanel {
 				if(isLegal()){
 					Result result = logicSer.create(createVO());
 					DoHint.hint(result, frame,true);
+					if((result == Result.OUT_OF_STOCK_VAN)||(result == Result.OUT_OF_STOCK_PLANE)||(result == Result.OUT_OF_STOCK_TRAIN)||
+							(result == Result.OUT_OF_STOCK_MANEUVER)){
+						DoHint.hint(Result.SUCCESS, fr);
+					}
 					if(result.equals(Result.SUCCESS)){
 						confirmButton.setEnabled(false);
 					}
@@ -291,6 +306,7 @@ public class StockInPanel extends PPanel {
 	}
 	private void getShelfPart(Part part){
 		shelfPart = new ArrayList<ShelfVO>();
+		if(shelfList==null)return;
 		for(ShelfVO shelf:shelfList){
 			if(shelf.getPart().equals(part)){
 				shelfPart.add(shelf);
@@ -318,7 +334,7 @@ public class StockInPanel extends PPanel {
 		Part parts[] = Part.values();
 		StockInVO vo = new StockInVO(idField.getText(),expressField.getText(), datePanel.getCalendar(), (String) targetCombo.getSelectedItem(),
 				parts[partCombo.getSelectedIndex()], (String)shelfCombo.getSelectedItem(),
-				rowCombo.getSelectedIndex()+1, placeCombo.getSelectedIndex()+1, name, orgId,userId);
+				Integer.parseInt(rowCombo.getSelectedItem().toString()), Integer.parseInt(placeCombo.getSelectedItem().toString()), name, orgId,userId);
 		return vo;
 	}
 	
@@ -331,34 +347,17 @@ public class StockInPanel extends PPanel {
 			shelves[i] = shelf.getId();
 		}
 		shelfCombo.setModel(new DefaultComboBoxModel<String>(shelves));
-//		setRowAndPlaceModel();
 		setRow();
 	}
 	
-//	private void setRowAndPlaceModel(){
-//		if(shelfCombo.getSelectedIndex() < 0){
-//			return;
-//		}
-//		ShelfVO shelf = shelfPart.get(shelfCombo.getSelectedIndex());
-//		Integer rows[] = new Integer[shelf.getRow()];
-//		for(int i = 1;i <= rows.length;i++){
-//			rows[i-1] = i;
-//		}
-//		Integer places[] = new Integer[shelf.getPlace()];
-//		for(int i = 1;i <= places.length;i++){
-//			places[i-1] = i;
-//		}
-//		rowCombo.setModel(new DefaultComboBoxModel<Integer>(rows));
-//		placeCombo.setModel(new DefaultComboBoxModel<Integer>(places));
-//	}
 	private void setRow(){
-		if(shelfCombo.getSelectedIndex()<0)return;
+		if(shelfCombo.getSelectedIndex()<0){rowCombo.setModel(new DefaultComboBoxModel<Integer>());setPlace();return;}
 		Integer [] t= logicSer.getRow(shelfCombo.getSelectedItem().toString());
 		rowCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 		setPlace();
 	}
 	private void setPlace(){
-		if(rowCombo.getSelectedIndex()<0)return;
+		if(rowCombo.getSelectedIndex()<0){placeCombo.setModel(new DefaultComboBoxModel<Integer>());return;}
 		Integer [] t= logicSer.getPlace(shelfCombo.getSelectedItem().toString(),Integer.parseInt((rowCombo.getSelectedItem().toString())));
 		placeCombo.setModel(new DefaultComboBoxModel<Integer>(t));
 		

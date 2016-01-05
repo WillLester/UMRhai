@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.userLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import edu.nju.umr.constants.Url;
@@ -16,8 +18,13 @@ import edu.nju.umr.vo.UserVO;
 public class LoginLogic implements LoginLSer{
 	private LoginDFacSer dataFac;
 	private LoginDSer loginData;
-	public LoginLogic() throws Exception{
-		dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
+	public LoginLogic()throws RemoteException{
+		try {
+			dataFac=(LoginDFacSer)Naming.lookup(Url.URL);
+		} catch (MalformedURLException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		loginData=dataFac.getLogin();
 	}
 

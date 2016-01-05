@@ -1,3 +1,2 @@
-localhost:3306/zxf
+localhost:3306/transitsys
 root
-123456

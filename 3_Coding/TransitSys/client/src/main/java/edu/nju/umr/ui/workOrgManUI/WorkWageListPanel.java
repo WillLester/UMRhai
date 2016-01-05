@@ -2,6 +2,7 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -59,7 +60,12 @@ public class WorkWageListPanel extends PPanel {
 		setLayout(null);
 		frame=fr;
 		this.name = name;
-		logicSer = new WageManLogic();
+		try {
+			logicSer = new WageManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 //		logicSer = new WorkWageListPanelStub();
 		wageList = new ArrayList<WageVO>();
 		

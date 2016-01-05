@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -44,7 +45,8 @@ public class ExpressListPanel extends JPanel{
 	private JFrame frame;
 	private PriceCount faPanel;
 	private Button newExpButton;
-	public ExpressListPanel(JFrame fr,PriceCount fa)
+	private OrderInfoLSer orderServ;
+	public ExpressListPanel(JFrame fr,PriceCount fa)throws RemoteException
 	{
 		this(fr);
 		faPanel=fa;
@@ -63,9 +65,10 @@ public class ExpressListPanel extends JPanel{
 		}});
 		
 	}
-	public ExpressListPanel(JFrame fr) {
+	public ExpressListPanel(JFrame fr) throws RemoteException{
 		frame = fr;
 		setLayout(null);
+		orderServ=new OrderInfoLogic();
 		
 		Color color = new Color(57, 152,214);
 		
@@ -87,8 +90,6 @@ public class ExpressListPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				if(isExpressLegal()){
-					OrderInfoLSer orderServ=new OrderInfoLogic();
-//					OrderInfoLSer orderServ=new OrderInfoLogicStub();
 					if(!orderServ.isExpressValid(expressField.getText()))
 					{
 						DoHint.hint("订单不存在!", frame);

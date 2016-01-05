@@ -28,7 +28,7 @@ public class CityLogic implements CityLSer{
 	private ArrayList<CityPO> cityPOs;
 	private ArrayList<CitiesPO> citiesPOs;
 	private DiaryUpdateLSer diarySer;
-	public CityLogic() {
+	public CityLogic()  throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
@@ -37,8 +37,6 @@ public class CityLogic implements CityLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
 	}
@@ -54,14 +52,14 @@ public class CityLogic implements CityLSer{
 			return Result.NET_INTERRUPT;
 		}
 		try {
-			if(cityData.isCityUsed(city.getName(), city.getId()).equals(Result.SUCCESS))
+			if(cityData.isCityUsed(city.getName(), city.getId(),-1).equals(Result.SUCCESS))
 			{
 				resultCity = cityData.addCity(VPFactory.toCityPO(city, 0));
 				resultCity = diarySer.addDiary("新增城市"+city.getName(), name);
 			}
 			else
 			{
-				return cityData.isCityUsed(city.getName(), city.getId());
+				return cityData.isCityUsed(city.getName(), city.getId(),-1);
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -105,14 +103,14 @@ public class CityLogic implements CityLSer{
 		CityPO po=cityPOs.get(index);
 		Result isSuc = Result.SUCCESS;
 		try {
-			if(cityData.isCityUsed(city.getName(), city.getId()).equals(Result.SUCCESS))
+			if(cityData.isCityUsed(city.getName(), city.getId(),po.getKey()).equals(Result.SUCCESS))
 			{
 				isSuc = cityData.reviseCity(VPFactory.toCityPO(city, po.getKey()));
 				isSuc = diarySer.addDiary("修改了"+city.getName()+"的信息", name);
 			}
 			else
 			{
-				return cityData.isCityUsed(city.getName(), city.getId());
+				return cityData.isCityUsed(city.getName(), city.getId(),po.getKey());
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
