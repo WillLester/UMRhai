@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,13 +34,15 @@ public class StockOutOrderLogic implements StockOutOrderLSer{
 	private OrderInfoLSer orderInfo;
 	private DiaryUpdateLSer diarySer;
 	private UpdateTranStateLSer orderState;
-	public StockOutOrderLogic(){
+	public StockOutOrderLogic()throws RemoteException{
 		try{
 			dataFac=(StockOutOrderDFacSer)Naming.lookup(Url.URL);
 			stockoutData=dataFac.getStockOutOrder();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        }
 		uti = new UtilityLogic();
 		orderInfo = new OrderInfoLogic();
 		diarySer = new DiaryUpdateLogic();

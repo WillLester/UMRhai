@@ -22,7 +22,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
 	private StockCheckWarnDFacSer dataFac;
 	private StockCheckWarnDSer checkData;
 	
-	public StockCheckWarnLogic(){
+	public StockCheckWarnLogic()throws RemoteException{
 		try{
 		dataFac=(StockCheckWarnDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockCheckWarn();
@@ -30,11 +30,7 @@ public class StockCheckWarnLogic implements StockCheckWarnLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 	}
 	public ResultMessage checkWarning(String id,Part part) {
 		// TODO 自动生成的方法存根

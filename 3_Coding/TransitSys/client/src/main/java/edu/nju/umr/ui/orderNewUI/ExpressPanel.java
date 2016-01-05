@@ -8,6 +8,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -149,7 +150,12 @@ public class ExpressPanel extends PPanel {
 	public ExpressPanel(JFrame fr,String name,String userId,String orgId) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new ExpressOrderLogic();
+		try {
+			logicSer = new ExpressOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 //		logicSer = new ExpressPanelStub();
 		this.name = name;
 		this.userId = userId;

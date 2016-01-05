@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.orderApproveLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -17,14 +19,18 @@ public class UpdateTransitInfoLogic{
 	private UpdateTransitInfoDSer tInfodata;
 	private CustomerDFacSer checkFac;
 	private CustomerDSer checkInfoData;
-	public UpdateTransitInfoLogic() {
+	public UpdateTransitInfoLogic() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac=(UpdateTransitInfoDFacSer)Naming.lookup(Url.URL);
 			tInfodata=dataFac.getUpdateTransitInfoDSer();
 			checkFac = (CustomerDFacSer) Naming.lookup(Url.URL);
 			checkInfoData = checkFac.getCustomer();
-		}catch(Exception e) {
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 	}

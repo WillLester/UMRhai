@@ -31,7 +31,7 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 	private UtilityLSer uti;
 	private ConstantGetLSer constantLSer;
 	private OrderInfoLSer orderInfo;
-	public OrderCalcuLogic() {
+	public OrderCalcuLogic()throws RemoteException  {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (OrderCalcuDFacSer)Naming.lookup(Url.URL);
@@ -39,10 +39,7 @@ public class OrderCalcuLogic implements OrderCalcuLSer{
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (NotBoundException e) {
+		}catch (NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

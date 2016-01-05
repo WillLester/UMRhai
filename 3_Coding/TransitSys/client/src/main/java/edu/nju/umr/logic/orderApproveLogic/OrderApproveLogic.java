@@ -51,7 +51,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
 	private DiaryUpdateLSer diarySer;
 	private OrderUpdate update;
 	private ExpressStateUpdate stateUpdate;
-	public OrderApproveLogic() {
+	public OrderApproveLogic()  throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (OrderApproveDFacSer)Naming.lookup(Url.URL);
@@ -60,9 +60,7 @@ public class OrderApproveLogic implements OrderApproveLSer,OrderChooseLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 		update = new OrderUpdate();
 		stateUpdate = new ExpressStateUpdate(this);

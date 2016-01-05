@@ -2,6 +2,7 @@ package edu.nju.umr.ui.accountUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.ListSelectionModel;
@@ -47,7 +48,6 @@ public class CountPanel extends PPanel{
 	public CountPanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		logicSer=new CountLogic();
 		
 		TitleLabel countLabel = new TitleLabel("期初建账");
 		add(countLabel);
@@ -110,6 +110,14 @@ public class CountPanel extends PPanel{
 			}
 		});
 		add(exitButton);
+		
+		try {
+			logicSer=new CountLogic();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		tableInit();
 		fresh();

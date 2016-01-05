@@ -2,6 +2,7 @@ package edu.nju.umr.ui.orderApproveUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -67,7 +68,6 @@ public class OrderApprovePanel extends PPanel{
 	public OrderApprovePanel(FunctionFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		serv=new OrderApproveLogic();
 //		serv=new OrderApprovePanelStub();
 		this.name = name;
 		
@@ -146,6 +146,14 @@ public class OrderApprovePanel extends PPanel{
 			}
 		});
 		add(exitButton);
+		
+		try {
+			serv=new OrderApproveLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
+		
 		tableInit();
 		dataInit();
 		

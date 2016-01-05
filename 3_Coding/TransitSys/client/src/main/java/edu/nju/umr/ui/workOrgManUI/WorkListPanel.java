@@ -2,6 +2,7 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -64,7 +65,12 @@ public class WorkListPanel extends PPanel {
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		setLayout(null);
 		frame=fr;
-		logicSer = new WorkManLogic();
+		try {
+			logicSer = new WorkManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		workList = new ArrayList<WorkVO>();
 		
 		TitleLabel nameLabel = new TitleLabel("人员信息列表");

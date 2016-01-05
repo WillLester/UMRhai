@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -57,7 +58,6 @@ public class BusiCircumPanel extends PPanel {
 	public BusiCircumPanel(JFrame fr) {
         setLayout(null);
         frame=fr;
-		serv = new BusiCircumLogic();
 //        serv = new BusiCircumPanelStub();
 		this.setSize(Constants.PANEL_WIDTH,Constants.PANEL_HEIGHT);
 		
@@ -115,6 +115,13 @@ public class BusiCircumPanel extends PPanel {
 			}
 		});
 		add(button);
+		
+		try {
+			serv = new BusiCircumLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		tableInit();
 

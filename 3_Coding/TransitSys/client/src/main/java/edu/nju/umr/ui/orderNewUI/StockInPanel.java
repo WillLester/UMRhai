@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -85,7 +86,12 @@ public class StockInPanel extends PPanel {
 	public StockInPanel(JFrame fr,String name,String orgId,String userId) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockInOrderLogic();
+		try {
+			logicSer = new StockInOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;

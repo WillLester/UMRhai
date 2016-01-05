@@ -3,7 +3,9 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
+import edu.nju.umr.po.enums.Result;
 import edu.nju.umr.ui.Constants;
 import edu.nju.umr.ui.FunctionFrame;
 import edu.nju.umr.ui.MainFrame;
@@ -14,6 +16,7 @@ import edu.nju.umr.ui.stockUI.StockCheckNowPanel;
 import edu.nju.umr.ui.stockUI.StockCheckPanel;
 import edu.nju.umr.ui.stockUI.StockDividePanel;
 import edu.nju.umr.ui.stockUI.StockWarningPanel;
+import edu.nju.umr.ui.utility.DoHint;
 import edu.nju.umr.vo.UserVO;
 
 public class StockManagerPanel extends UserPanel{
@@ -109,9 +112,16 @@ public class StockManagerPanel extends UserPanel{
 			}
 		});
 		
-		UnpassedOrderMessagePanel upo = new UnpassedOrderMessagePanel(user.getId());
-		upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
-		add(upo);
+		UnpassedOrderMessagePanel upo;
+		try {
+			upo = new UnpassedOrderMessagePanel(user.getId());
+			upo.setBounds(Constants.UNPASSED_X, Constants.UNPASSED_Y, 200, 30);
+			add(upo);
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
+		
 	}
 
 }

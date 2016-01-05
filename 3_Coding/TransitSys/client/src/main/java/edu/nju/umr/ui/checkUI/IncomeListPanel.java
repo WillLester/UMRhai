@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -65,7 +66,6 @@ public class IncomeListPanel extends PPanel {
 	public IncomeListPanel(JFrame fr) {
 		setLayout(null);
 		frame=fr;
-		serv = new IncomeListLogic();
 		
 		//设置panel大小
 		this.setSize(Constants.PANEL_WIDTH, Constants.PANEL_HEIGHT);
@@ -156,7 +156,12 @@ public class IncomeListPanel extends PPanel {
 		});
 		add(out);
 		
-		
+		try {
+			serv = new IncomeListLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		dataInit();
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -2,6 +2,7 @@ package edu.nju.umr.ui.transitInfoUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
 
@@ -38,7 +39,12 @@ public class ExpressInfoInqPanel extends ExpressPanel {
 	}
 	public ExpressInfoInqPanel(JFrame fr) {
 		super(fr,"","","");
-		logicSer = new CourierLogic();
+		try {
+			logicSer = new CourierLogic();
+		} catch (RemoteException e) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		titleLabel.setText("订单查询");
 		searchButton = new SearchButton();
 		searchButton.addActionListener(new InqListener());

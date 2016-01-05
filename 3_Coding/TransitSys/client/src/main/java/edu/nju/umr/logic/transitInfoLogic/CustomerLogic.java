@@ -17,7 +17,7 @@ public class CustomerLogic implements CustomerLogicSer{
 	private CustomerDFacSer dataFac;
 	private CustomerDSer transitData;
 	
-	public CustomerLogic(){
+	public CustomerLogic()throws RemoteException{
 		try{
 			dataFac=(CustomerDFacSer)Naming.lookup(Url.URL);
 			transitData=dataFac.getCustomer();
@@ -25,11 +25,7 @@ public class CustomerLogic implements CustomerLogicSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 	}
 
 	public ResultMessage enterBarcodeCustomer(String barcode) {

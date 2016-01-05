@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 import java.util.List;
@@ -34,13 +36,15 @@ public class TransitOrderLogic implements TransitOrderLSer{
 	private OrderInfoLSer orderInfo;
 	private OrderCalcuLSer orderCalcu;
 	private UpdateTranStateLSer orderState;
-	public TransitOrderLogic(){
+	public TransitOrderLogic()throws RemoteException{
 		try {
 			dataFac = (TransitOrderDFacSer)Naming.lookup(Url.URL);
 			transitData = dataFac.getTransitOrder();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        }
 		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 		orderInfo = new OrderInfoLogic();

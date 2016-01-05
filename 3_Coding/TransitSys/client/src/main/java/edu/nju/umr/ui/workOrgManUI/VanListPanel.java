@@ -2,6 +2,7 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -159,7 +160,12 @@ public class VanListPanel extends PPanel {
 		add(scroll);
 	}
 	private void dataInit(){
-		serv = new VanManLogic();
+		try {
+			serv = new VanManLogic();
+		} catch (RemoteException e) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		getVans(null);
 		displayVans();
 	}

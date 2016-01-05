@@ -21,7 +21,7 @@ public class StockCheckLogic implements StockCheckLSer{
 	private StockCheckDFacSer dataFac;
 	private StockCheckDSer checkData;
 	
-	public StockCheckLogic(){
+	public StockCheckLogic()throws RemoteException{
 		try {
 			dataFac=(StockCheckDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockCheck();
@@ -29,11 +29,7 @@ public class StockCheckLogic implements StockCheckLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e) {
-			e.printStackTrace();
-		}
+        }
 	}
 	
 	public ResultMessage orderStock(Calendar start,Calendar end,String id) {

@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 import java.util.List;
@@ -27,14 +29,15 @@ public class SendOrderLogic implements SendOrderLSer{
 	private UtilityLogic uti=new UtilityLogic();
 	private DiaryUpdateLSer diarySer;
 	private UpdateTranStateLSer orderState;
-	public SendOrderLogic(){
+	public SendOrderLogic()throws RemoteException{
 		try{
 			dataFac=(SendOrderDFacSer)Naming.lookup(Url.URL);
 			sendData=dataFac.getSendOrder();
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        }
 		diarySer = new DiaryUpdateLogic();
 		orderState=new UpdateTranStateLogic();
 	}

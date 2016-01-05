@@ -4,6 +4,7 @@ package edu.nju.umr.logic.orderApproveLogic;
  * @author Lester
  *
  */
+import java.rmi.RemoteException;
 import java.util.List;
 
 import edu.nju.umr.logic.utilityLogic.OrderInfoLogic;
@@ -26,7 +27,7 @@ public class ExpressStateUpdate{
 	private UpdateTranStateLSer state;
 	private OrderChooseLSer cho;
 	private OrderInfoLSer orderInfo;
-	public ExpressStateUpdate(OrderChooseLSer cho){
+	public ExpressStateUpdate(OrderChooseLSer cho) throws RemoteException{
 		this.cho = cho;
 		state = new UpdateTranStateLogic();
 		orderInfo = new OrderInfoLogic();

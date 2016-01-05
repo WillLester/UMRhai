@@ -32,7 +32,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
 	private DiaryUpdateLSer diarySer;
 	private OrderCalcuLSer orderCalcu;
 	private UpdateTranStateLSer orderState;
-	public CenterLoadingOrderLogic() {
+	public CenterLoadingOrderLogic() throws RemoteException {
 		try{
 			dataFac = (CenterLoadingOrderDFacSer)Naming.lookup(Url.URL);
 			centerData = dataFac.getCenterLoadingOrder();	
@@ -40,9 +40,7 @@ public class CenterLoadingOrderLogic implements CenterLoadingOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		uti=new UtilityLogic();
 		orderCalcu = new OrderCalcuLogic();
 		diarySer = new DiaryUpdateLogic();

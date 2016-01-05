@@ -23,7 +23,7 @@ public class AccountLogic implements AccountLSer{
 	private AccountDSer accountData;
 	private ArrayList<AccountPO> accountPOs;//从数据层拿到的po的列表排序要与界面层显示的vo列表排序一致
 	private DiaryUpdateLSer diarySer;//更新日志的逻辑接口
-	public AccountLogic() {
+	public AccountLogic() throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (AccountDFacSer)Naming.lookup(Url.URL);
@@ -33,9 +33,10 @@ public class AccountLogic implements AccountLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
+//		catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 		diarySer = new DiaryUpdateLogic();
 	}
 	@SuppressWarnings("unchecked")

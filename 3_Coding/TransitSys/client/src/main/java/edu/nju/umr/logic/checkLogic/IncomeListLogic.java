@@ -24,7 +24,7 @@ public class IncomeListLogic implements IncomeListLSer{
 	private IncomeListDFacSer dataFac;
 	private IncomeListDSer collectData;
 	private UtilityLSer uti;
-	public IncomeListLogic() {
+	public IncomeListLogic() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (IncomeListDFacSer)Naming.lookup(Url.URL);
@@ -33,9 +33,10 @@ public class IncomeListLogic implements IncomeListLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
+//		catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 		uti = new UtilityLogic();
 	}
 	public ResultMessage seeIncomeList(Calendar date, String org) {

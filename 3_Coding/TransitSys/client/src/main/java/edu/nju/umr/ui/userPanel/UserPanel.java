@@ -28,7 +28,7 @@ public class UserPanel extends JPanel{
 	private JLabel nameTxt;
 	private JLabel levelTxt;
 	private UserVO user;
-	private MainFrame frame;
+	public MainFrame frame;
 	public UserPanel(UserVO user,MainFrame fr) {
 		this.user=user;
 		this.frame=fr;

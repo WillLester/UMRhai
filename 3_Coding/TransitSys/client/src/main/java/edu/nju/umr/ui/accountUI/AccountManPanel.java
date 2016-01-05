@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -46,7 +47,6 @@ public class AccountManPanel extends PPanel{
 	private TextField balanceField;
 	private Table table;
 	private DefaultTableModel model;
-	private AccountLSer accountLSer;
 	private JFrame frame;
 	private ArrayList<AccountVO> accountList;
 	private AccountLSer logicSer;
@@ -57,7 +57,6 @@ public class AccountManPanel extends PPanel{
 	 */
 	public AccountManPanel(JFrame fr,String name) {
 		setLayout(null);
-		logicSer=new AccountLogic();
 			
 		TitleLabel accountLabel = new TitleLabel("账户管理");
 		add(accountLabel);
@@ -67,7 +66,6 @@ public class AccountManPanel extends PPanel{
 		searchField.setBounds(233,sec_y+ y+67, 402, 24);
 		add(searchField);
 		searchField.setColumns(10);
-		accountLSer = new AccountLogic();
 		
 		Button searchButton = new SearchButton();
 		searchButton.setBounds(233+442-20,sec_y+ y+65,100, 30);
@@ -136,7 +134,7 @@ public class AccountManPanel extends PPanel{
 				// TODO 自动生成的方法存根
 				int n = JOptionPane.showConfirmDialog(frame, "确认删除吗?", "确认删除框", JOptionPane.YES_NO_OPTION);  
 		        if (n == JOptionPane.YES_OPTION) {  
-		        	Result result = accountLSer.deleteAccount(table.getSelectedRow(),name);
+		        	Result result = logicSer.deleteAccount(table.getSelectedRow(),name);
 		        	if(result.equals(Result.SUCCESS)){
 		        		fresh();
 		        		DoHint.hint(result, frame);
@@ -198,6 +196,14 @@ public class AccountManPanel extends PPanel{
 				frame.dispose();
 			}
 		});
+		
+		try {
+			logicSer=new AccountLogic();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 
 		tableInit();
 		getAccounts(null);

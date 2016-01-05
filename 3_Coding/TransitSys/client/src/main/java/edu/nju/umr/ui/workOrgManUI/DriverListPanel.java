@@ -2,6 +2,7 @@ package edu.nju.umr.ui.workOrgManUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -59,7 +60,12 @@ public class DriverListPanel extends PPanel {
 		frame=fr;
 		panel=this;
 		this.name = name;
-		serv=new DriverManLogic();
+		try {
+			serv=new DriverManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel nameLabel = new TitleLabel("司机信息列表");
 //		nameLabel.setFont(new Font("微软雅黑",Font.PLAIN ,22));

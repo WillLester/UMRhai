@@ -2,6 +2,7 @@ package edu.nju.umr.ui.stockUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -42,7 +43,12 @@ public class StockWarningPanel extends PPanel{
 	public StockWarningPanel(JFrame fr,String orgId,String name) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockWarningLogic();
+		try {
+			logicSer = new StockWarningLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel warningLabel = new TitleLabel("库存报警设置");
 		add(warningLabel);

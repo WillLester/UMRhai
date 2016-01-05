@@ -20,7 +20,7 @@ import edu.nju.umr.vo.ResultMessage;
 public class CostBeneLogic implements CostBeneLSer{
 	private CostBeneDFacSer dataFac;
 	private CostBeneDSer costBeneDSer;
-	public CostBeneLogic() {
+	public CostBeneLogic() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (CostBeneDFacSer) Naming.lookup(Url.URL);
@@ -28,10 +28,12 @@ public class CostBeneLogic implements CostBeneLSer{
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (NotBoundException e) {
+		} 
+//		catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		} 
+		catch (NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

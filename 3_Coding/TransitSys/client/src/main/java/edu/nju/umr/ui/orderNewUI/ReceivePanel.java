@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
 
@@ -39,7 +40,12 @@ public class ReceivePanel extends ExpressInfoInqPanel {
 		titleLabel.setText("收件录入");
 		this.org = org;
 		this.name = name;
-		logicSer = new ReceiveOrderLogic();
+		try {
+			logicSer = new ReceiveOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		cancelButton.setLocation(942, 564+10);
 		cancelButton.addActionListener(new ActionListener() {
 			

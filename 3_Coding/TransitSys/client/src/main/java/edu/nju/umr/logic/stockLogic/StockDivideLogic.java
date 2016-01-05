@@ -22,7 +22,7 @@ public class StockDivideLogic implements StockDivideLSer{
 	private StockDivideDSer checkData;
 	private DiaryUpdateLSer diarySer;
 	private ArrayList<ShelfPO> shelfAll;
-	public StockDivideLogic(){
+	public StockDivideLogic()throws RemoteException{
 		try{
 		dataFac=(StockDivideDFacSer)Naming.lookup(Url.URL);
 		checkData=dataFac.getStockDivide();
@@ -30,11 +30,7 @@ public class StockDivideLogic implements StockDivideLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 		diarySer = new DiaryUpdateLogic();
 		shelfAll = new ArrayList<ShelfPO>();
 	}

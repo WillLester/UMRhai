@@ -3,6 +3,7 @@ package edu.nju.umr.ui.cityUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -64,7 +65,6 @@ public class CityListPanel extends PPanel{
 	public CityListPanel(JFrame fr,String name) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new CityLogic();
 //		logicSer = new CityListPanelStub();
 		cityList = new ArrayList<CityVO>();
 		citiesList = new ArrayList<CitiesVO>();
@@ -343,6 +343,14 @@ public class CityListPanel extends PPanel{
 		scroll2.setVerticalScrollBarPolicy(UMRScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		model2.setColumnIdentifiers(columnNames);
 		add(scroll2);
+		
+		try {
+			logicSer = new CityLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
+		
 		initialize();
 		
 	}

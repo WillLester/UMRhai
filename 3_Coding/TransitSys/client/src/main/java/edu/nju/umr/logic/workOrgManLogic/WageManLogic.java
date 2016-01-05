@@ -24,7 +24,7 @@ public class WageManLogic implements WageManLSer{
 	private WageManDSer wageData;
 	private List<WorkPO> workList;
 	private DiaryUpdateLSer diarySer;
-	public WageManLogic()
+	public WageManLogic()throws RemoteException
 	{
 		try{
 			dataFac=(WageManDFacSer)Naming.lookup(Url.URL);
@@ -33,11 +33,7 @@ public class WageManLogic implements WageManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 

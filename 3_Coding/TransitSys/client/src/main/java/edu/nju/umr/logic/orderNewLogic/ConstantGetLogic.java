@@ -19,15 +19,12 @@ import edu.nju.umr.vo.ResultMessage;
 public class ConstantGetLogic implements ConstantGetLSer{
 	private ConstantGetDFacSer dataFac;
 	private ConstantGetDSer dataSer;
-	public ConstantGetLogic() {
+	public ConstantGetLogic() throws RemoteException {
 		// TODO 自动生成的构造函数存根
 		try {
 			dataFac = (ConstantGetDFacSer) Naming.lookup(Url.URL);
 			dataSer = dataFac.getConstantGet();
 		} catch (MalformedURLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (NotBoundException e) {

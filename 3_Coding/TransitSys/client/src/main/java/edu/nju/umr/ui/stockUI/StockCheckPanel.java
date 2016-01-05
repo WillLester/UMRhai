@@ -3,6 +3,7 @@ package edu.nju.umr.ui.stockUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -47,7 +48,12 @@ public class StockCheckPanel extends PPanel{
 	public StockCheckPanel(JFrame fr,String orgId) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockCheckLogic();
+		try {
+			logicSer = new StockCheckLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		tableInit();
 		
 		TitleLabel checkLabel = new TitleLabel("库存查看");

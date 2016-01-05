@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.orderNewLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,13 +44,15 @@ public class StockInOrderLogic implements StockInOrderLSer{
 	private ArrayList<ShelfVO> theseShelves;
 	private boolean [][][] positions;
 	private int [] size;
-	public StockInOrderLogic(){
+	public StockInOrderLogic()throws RemoteException{
 		try{
 			dataFac=(StockInOrderDFacSer)Naming.lookup(Url.URL);
 			stockinData=dataFac.getStockInOrder();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		}catch (NotBoundException e) { 
+            e.printStackTrace(); 
+        } catch (MalformedURLException e) { 
+            e.printStackTrace(); 
+        }
 		uti = new UtilityLogic();
 		orderInfoLogic = new OrderInfoLogic();
 		diarySer = new DiaryUpdateLogic();
@@ -83,7 +87,7 @@ public class StockInOrderLogic implements StockInOrderLSer{
 		// TODO 自动生成的方法存根
 		return uti.getOrgNames();
 	}
-	private Result checkWarning(String id,Part part){
+	private Result checkWarning(String id,Part part) throws RemoteException{
 		StockCheckWarnLSer checkWarn = new StockCheckWarnLogic();
 		return (Result) checkWarn.checkWarning(id,part).getMessage();
 	}

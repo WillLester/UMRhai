@@ -28,7 +28,7 @@ public class CityLogic implements CityLSer{
 	private ArrayList<CityPO> cityPOs;
 	private ArrayList<CitiesPO> citiesPOs;
 	private DiaryUpdateLSer diarySer;
-	public CityLogic() {
+	public CityLogic()  throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (CityDFacSer)Naming.lookup(Url.URL);
@@ -37,8 +37,6 @@ public class CityLogic implements CityLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
         } 
 		diarySer = new DiaryUpdateLogic();
 	}

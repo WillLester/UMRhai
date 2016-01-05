@@ -18,7 +18,7 @@ public class CourierLogic implements CourierLSer{
 	private CourierDFacSer dataFac;
 	private CourierDSer CourierData;
 
-	public CourierLogic(){
+	public CourierLogic()throws RemoteException{
 		try{
 			dataFac=(CourierDFacSer)Naming.lookup(Url.URL);
 			CourierData=dataFac.getCourier();
@@ -26,11 +26,7 @@ public class CourierLogic implements CourierLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } catch(Exception e){
-			e.printStackTrace();
-		}
+        }
 	}
 	
 	public ResultMessage enterBarcodeCourier(String barcode) {

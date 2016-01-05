@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -80,7 +81,12 @@ public class StockOutPanel extends PPanel {
 	public StockOutPanel(JFrame fr,String name,String orgId,String userId,String org) {
 		setLayout(null);
 		frame=fr;
-		logicSer = new StockOutOrderLogic();
+		try {
+			logicSer = new StockOutOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		this.orgId = orgId;
 		this.userId=userId;

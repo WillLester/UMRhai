@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -67,11 +68,16 @@ public class UserListPanel extends PPanel {
 	 * Create the panel.
 	 */
 	public UserListPanel(FunctionFrame fr,String name){
-		serv=new UserManLogic();
-//		serv=new UserListPanelStub();
 		frame=fr;
 		setLayout(null);
 		this.name = name;
+		
+		try {
+			serv=new UserManLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		JLabel accountLabel = new JLabel("用户管理");
 		accountLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));

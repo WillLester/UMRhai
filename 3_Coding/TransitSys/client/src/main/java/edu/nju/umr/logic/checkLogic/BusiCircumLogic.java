@@ -25,7 +25,7 @@ public class BusiCircumLogic implements BusiCircumLSer{
 	private UtilityLSer uti;
 	private ArrayList<BusiCircumVO> busiList=new ArrayList<BusiCircumVO>();
 	
-	public BusiCircumLogic() {
+	public BusiCircumLogic()  throws RemoteException{
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (BusiCircumDFacSer)Naming.lookup(Url.URL);
@@ -35,9 +35,10 @@ public class BusiCircumLogic implements BusiCircumLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
+//		catch (RemoteException e) { 
+//            e.printStackTrace();   
+//        } 
 	}
 	public ResultMessage getBusiCircum(Calendar start, Calendar end) {
 		

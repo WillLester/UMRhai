@@ -19,7 +19,7 @@ public class StockWarningLogic implements StockWarningLSer{
 	private StockWarningDFacSer dataFac;
 	private StockWarningDSer checkData;
 	private DiaryUpdateLSer diarySer;
-	public StockWarningLogic(){
+	public StockWarningLogic()throws RemoteException{
 		try{
 			dataFac=(StockWarningDFacSer)Naming.lookup(Url.URL);
 			checkData=dataFac.getStockWarning();
@@ -27,11 +27,7 @@ public class StockWarningLogic implements StockWarningLSer{
 	        e.printStackTrace(); 
 	    } catch (MalformedURLException e) { 
 	        e.printStackTrace(); 
-	    } catch (RemoteException e) { 
-	        e.printStackTrace();   
-	    } catch(Exception e){
-	    	e.printStackTrace();
-		}
+	    }
 		diarySer = new DiaryUpdateLogic();
 	}
 

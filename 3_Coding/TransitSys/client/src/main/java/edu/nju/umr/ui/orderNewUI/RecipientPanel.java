@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -77,7 +78,12 @@ public class RecipientPanel extends PPanel {
 		this.name = name;
 		this.userId=userId;
 		this.orgId = orgId;
-		logicSer = new RecipientOrderLogic();
+		try {
+			logicSer = new RecipientOrderLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel titleLabel = new TitleLabel("营业厅接收单");
 		titleLabel.setFont(new Font("微软雅黑", Font.PLAIN, 30));

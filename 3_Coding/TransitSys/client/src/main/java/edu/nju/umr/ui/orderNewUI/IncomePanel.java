@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -74,7 +75,12 @@ public class IncomePanel extends PPanel {
 		this.orgId = orgId;
 		this.name = name;
 		this.userId = userId;
-		logicSer = new IncomeOrderLogic();
+		try {
+			logicSer = new IncomeOrderLogic();
+		} catch (RemoteException e2) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		
 		TitleLabel titleLabel = new TitleLabel("收款单");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,7 +126,12 @@ public class IncomePanel extends PPanel {
 		amountField.setBounds(569, 204, 85, 25);
 		add(amountField);
 
-		expressList = new ExpressListPanel(frame);
+		try {
+			expressList = new ExpressListPanel(frame);
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		expressList.setBounds(280, 230, 700, 290);
 		add(expressList);
 		

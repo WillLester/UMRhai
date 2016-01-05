@@ -21,7 +21,7 @@ public class ConstantLogic implements ConstantLSer{
 	private ConstantDFacSer dataFac;
 	private ConstantDSer constantData;
 	private DiaryUpdateLSer diarySer;
-	public ConstantLogic()
+	public ConstantLogic() throws RemoteException
 	{
 		try{
 			dataFac = (ConstantDFacSer)Naming.lookup(Url.URL);
@@ -30,9 +30,7 @@ public class ConstantLogic implements ConstantLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 	public Result setConstant(ConstantVO constant,String name)

@@ -22,7 +22,7 @@ public class DriverManLogic implements DriverManLSer{
 	private DriverManDFacSer dataFac;
 	private DriverManDSer driverData;
 	private DiaryUpdateLSer diarySer;
-	public DriverManLogic(){
+	public DriverManLogic()throws RemoteException{
 		try{
 			dataFac=(DriverManDFacSer)Naming.lookup(Url.URL);
 			driverData = dataFac.getDriverMan();
@@ -30,9 +30,7 @@ public class DriverManLogic implements DriverManLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		diarySer = new DiaryUpdateLogic();
 	}
 

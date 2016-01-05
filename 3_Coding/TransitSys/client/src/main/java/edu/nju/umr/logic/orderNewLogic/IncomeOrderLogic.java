@@ -29,7 +29,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
 	private UtilityLSer uti;
 	private DiaryUpdateLSer diarySer;
 	private UpdateTranStateLSer orderState;
-	public IncomeOrderLogic() {
+	public IncomeOrderLogic()throws RemoteException  {
 		// TODO 自动生成的构造函数存根
 		try{
 			dataFac = (IncomeOrderDFacSer)Naming.lookup(Url.URL);
@@ -38,9 +38,7 @@ public class IncomeOrderLogic implements IncomeOrderLSer{
             e.printStackTrace(); 
         } catch (MalformedURLException e) { 
             e.printStackTrace(); 
-        } catch (RemoteException e) { 
-            e.printStackTrace();   
-        } 
+        }
 		uti = new UtilityLogic();
 		diarySer = new DiaryUpdateLogic();
 		orderState=new UpdateTranStateLogic();

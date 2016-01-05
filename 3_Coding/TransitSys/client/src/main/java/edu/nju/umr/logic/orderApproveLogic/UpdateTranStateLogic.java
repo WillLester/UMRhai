@@ -20,7 +20,7 @@ import edu.nju.umr.logicService.orderApproveLogicSer.UpdateTranStateLSer;
 public class UpdateTranStateLogic implements UpdateTranStateLSer{
 	UpdateTranStateDFacSer dataFac;
 	UpdateTranStateDSer updateData;
-	public UpdateTranStateLogic(){
+	public UpdateTranStateLogic()throws RemoteException {
 		try{
 			dataFac = (UpdateTranStateDFacSer)Naming.lookup(Url.URL);
 			updateData = dataFac.getUpdateTranState();		
@@ -28,9 +28,7 @@ public class UpdateTranStateLogic implements UpdateTranStateLSer{
 			e.printStackTrace(); 
 		}catch (MalformedURLException e) { 
 			e.printStackTrace(); 
-		} catch (RemoteException e) { 
-			e.printStackTrace();   
-		} 
+		}
 	}
 	public Result updateExpressState(String id,String nowOrgId){
 		ExpressPO ex=new ExpressPO(null,null,null,null,null,null,null,null,null,null,0,null,0,

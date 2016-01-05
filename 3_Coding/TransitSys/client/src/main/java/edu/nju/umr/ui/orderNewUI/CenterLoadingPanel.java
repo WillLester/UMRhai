@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -84,7 +85,12 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		titleLabel.setBounds(392+75, 10, 243, 67);
 		add(titleLabel);
 		frame = fr;
-		logicSer = new CenterLoadingOrderLogic();
+		try {
+			logicSer = new CenterLoadingOrderLogic();
+		} catch (RemoteException e2) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		this.name = name;
 		this.userId = userId;
 		this.org = org;
@@ -209,7 +215,12 @@ public class CenterLoadingPanel extends PPanel implements PriceCount{
 		add(costField);
 		costField.setColumns(10);
 		
-		expressList = new ExpressListPanel(frame,this);
+		try {
+			expressList = new ExpressListPanel(frame,this);
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 		expressList.setBounds(266, 236, 677, 273);
 		add(expressList);
 		

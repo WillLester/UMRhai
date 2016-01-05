@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -50,7 +51,12 @@ public class TransitInfoInqPanel extends JPanel {
 	 */
 	public TransitInfoInqPanel(MainFrame fr) {
 		setLayout(null);
-		logicSer = new CustomerLogic();
+		try {
+			logicSer = new CustomerLogic();
+		} catch (RemoteException e1) {
+			DoHint.hint(Result.NET_INTERRUPT, frame);
+			frame.dispose();
+		}
 //		logicSer = new TransitInfoInqPanelStub();
 		frame = fr;
 		this.setBounds(0, 0, 1229, 691);

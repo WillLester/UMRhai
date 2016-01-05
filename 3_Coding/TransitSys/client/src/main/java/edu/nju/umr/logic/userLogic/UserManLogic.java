@@ -1,6 +1,8 @@
 package edu.nju.umr.logic.userLogic;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -20,15 +22,15 @@ public class UserManLogic implements UserManLSer{
 	private UserManDSer userData;
 	private ArrayList<UserPO> users;
 	private DiaryUpdateLSer diarySer;
-	public UserManLogic(){
-		try{
-			dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
-			userData=dataFac.getUserMan();
-			users=userData.findUser(null);
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+	public UserManLogic()throws RemoteException{
+			try {
+				dataFac=(UserManDFacSer)Naming.lookup(Url.URL);
+				userData=dataFac.getUserMan();
+				users=userData.findUser(null);
+			} catch (MalformedURLException | NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		diarySer = new DiaryUpdateLogic();
 	}
 	
